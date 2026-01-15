@@ -29,48 +29,48 @@ export default function Home() {
               <div className="flex items-center gap-3 xl:gap-8 text-[10px] xl:text-xs font-medium font-montserrat text-text-light">
                 {/* Find a Talent - Mega Menu Trigger */}
                 <div className="group h-full flex items-center">
-                  <button className="flex items-center gap-2 hover:text-primary transition py-6 border-b-2 border-transparent group-hover:border-primary whitespace-nowrap">
+                  <button className="nav-link flex items-center gap-2 hover:text-primary transition py-6 whitespace-nowrap">
                     Find a Talent <i className="fas fa-chevron-down text-[10px] group-hover:rotate-180 transition-transform duration-300"></i>
                   </button>
 
                   {/* Mega Menu Dropdown */}
                   <div className="absolute top-full left-0 w-full pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 -z-10">
-                    <div className="bg-white-sec border-t border-gray-100 shadow-xl rounded-2xl overflow-hidden">
+                    <div className="bg-white/95 backdrop-blur-md border-t border-gray-100 shadow-xl rounded-2xl overflow-hidden">
                       <div className="max-w-[1400px] mx-auto px-8 py-8 grid grid-cols-4 gap-8">
                         <div>
                           <h4 className="font-bold text-sm mb-4">Finance & Accounting</h4>
-                          <ul className="space-y-3 text-xs text-text-light-muted-muted">
-                            <li><a href="#" className="hover:text-primary transition block">Bookkeeper</a></li>
-                            <li><a href="#" className="hover:text-primary transition block">Financial Analyst</a></li>
-                            <li><a href="#" className="hover:text-primary transition block">Tax Specialist</a></li>
-                            <li><a href="#" className="hover:text-primary transition block">Accountant</a></li>
+                          <ul className="space-y-3 text-xs text-text-light-muted">
+                            <li><a href="#" className="dropdown-item block pb-1">Bookkeeper</a></li>
+                            <li><a href="#" className="dropdown-item block pb-1">Financial Analyst</a></li>
+                            <li><a href="#" className="dropdown-item block pb-1">Tax Specialist</a></li>
+                            <li><a href="#" className="dropdown-item block pb-1">Accountant</a></li>
                           </ul>
                         </div>
                         <div>
                           <h4 className="font-bold text-sm mb-4">Customer Support, Ops, & VAs</h4>
-                          <ul className="space-y-3 text-xs text-text-light-muted-muted">
-                            <li><a href="#" className="hover:text-primary transition block">Virtual Assistant</a></li>
-                            <li><a href="#" className="hover:text-primary transition block">Create Support</a></li>
-                            <li><a href="#" className="hover:text-primary transition block">Data Entry Specialist</a></li>
-                            <li><a href="#" className="hover:text-primary transition block">Operations Manager</a></li>
+                          <ul className="space-y-3 text-xs text-text-light-muted">
+                            <li><a href="#" className="dropdown-item block pb-1">Virtual Assistant</a></li>
+                            <li><a href="#" className="dropdown-item block pb-1">Create Support</a></li>
+                            <li><a href="#" className="dropdown-item block pb-1">Data Entry Specialist</a></li>
+                            <li><a href="#" className="dropdown-item block pb-1">Operations Manager</a></li>
                           </ul>
                         </div>
                         <div>
                           <h4 className="font-bold text-sm mb-4">Sales & Marketing</h4>
-                          <ul className="space-y-3 text-xs text-text-light-muted-muted">
-                            <li><a href="#" className="hover:text-primary transition block">Digital Marketer</a></li>
-                            <li><a href="#" className="hover:text-primary transition block">Social Media Manager</a></li>
-                            <li><a href="#" className="hover:text-primary transition block">SEO Specialist</a></li>
-                            <li><a href="#" className="hover:text-primary transition block">Sales Representative</a></li>
+                          <ul className="space-y-3 text-xs text-text-light-muted">
+                            <li><a href="#" className="dropdown-item block pb-1">Digital Marketer</a></li>
+                            <li><a href="#" className="dropdown-item block pb-1">Social Media Manager</a></li>
+                            <li><a href="#" className="dropdown-item block pb-1">SEO Specialist</a></li>
+                            <li><a href="#" className="dropdown-item block pb-1">Sales Representative</a></li>
                           </ul>
                         </div>
                         <div>
                           <h4 className="font-bold text-sm mb-4">IT, Data, and Engineering</h4>
-                          <ul className="space-y-3 text-xs text-text-light-muted-muted">
-                            <li><a href="#" className="hover:text-primary transition block">UI/UX Designer</a></li>
-                            <li><a href="#" className="hover:text-primary transition block">Frontend Developer</a></li>
-                            <li><a href="#" className="hover:text-primary transition block">Backend Developer</a></li>
-                            <li><a href="#" className="hover:text-primary transition block">DevOps Engineer</a></li>
+                          <ul className="space-y-3 text-xs text-text-light-muted">
+                            <li><a href="#" className="dropdown-item block pb-1">UI/UX Designer</a></li>
+                            <li><a href="#" className="dropdown-item block pb-1">Frontend Developer</a></li>
+                            <li><a href="#" className="dropdown-item block pb-1">Backend Developer</a></li>
+                            <li><a href="#" className="dropdown-item block pb-1">DevOps Engineer</a></li>
                           </ul>
                         </div>
                       </div>
@@ -80,29 +80,29 @@ export default function Home() {
 
                 {/* Services - Dropdown */}
                 <div className="group relative h-full flex items-center">
-                  <button className="flex items-center gap-2 hover:text-primary transition py-6 border-b-2 border-transparent group-hover:border-primary whitespace-nowrap">
+                  <button className="nav-link flex items-center gap-2 hover:text-primary transition py-6 whitespace-nowrap">
                     Services <i className="fas fa-chevron-down text-[10px] group-hover:rotate-180 transition-transform duration-300"></i>
                   </button>
                   <div className="absolute top-full -left-12 w-max min-w-[500px] pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 -z-10">
-                    <div className="bg-white-sec border border-gray-100 shadow-xl rounded-2xl overflow-hidden p-6 grid grid-cols-2 gap-8">
+                    <div className="bg-white/95 backdrop-blur-md border border-gray-100 shadow-xl rounded-2xl overflow-hidden p-6 grid grid-cols-2 gap-8">
                       <div>
                         <h4 className="font-bold text-sm mb-3">Talent As a Service</h4>
-                        <ul className="space-y-2 text-xs text-text-light-muted-muted">
-                          <li><a href="#" className="hover:text-primary transition block py-1">Head Hunting</a></li>
-                          <li><a href="#" className="hover:text-primary transition block py-1">Staffing</a></li>
-                          <li><a href="#" className="hover:text-primary transition block py-1">Internship</a></li>
-                          <li><a href="#" className="hover:text-primary transition block py-1">Inclusive Talent</a></li>
+                        <ul className="space-y-2 text-xs text-text-light-muted">
+                          <li><a href="#" className="dropdown-item block py-1">Head Hunting</a></li>
+                          <li><a href="#" className="dropdown-item block py-1">Staffing</a></li>
+                          <li><a href="#" className="dropdown-item block py-1">Internship</a></li>
+                          <li><a href="#" className="dropdown-item block py-1">Inclusive Talent</a></li>
                         </ul>
                       </div>
                       <div>
                         <h4 className="font-bold text-sm mb-3">Software Development</h4>
-                        <ul className="space-y-2 text-xs text-text-light-muted-muted">
-                          <li><a href="#" className="hover:text-primary transition block py-1">Specifications & Wireframe</a></li>
-                          <li><a href="#" className="hover:text-primary transition block py-1">UI/UX Design</a></li>
-                          <li><a href="#" className="hover:text-primary transition block py-1">Website Development</a></li>
-                          <li><a href="#" className="hover:text-primary transition block py-1">Mobile App Development</a></li>
-                          <li><a href="#" className="hover:text-primary transition block py-1">MVP Development</a></li>
-                          <li><a href="#" className="hover:text-primary transition block py-1">Custom Software Development</a></li>
+                        <ul className="space-y-2 text-xs text-text-light-muted">
+                          <li><a href="#" className="dropdown-item block py-1">Specifications & Wireframe</a></li>
+                          <li><a href="#" className="dropdown-item block py-1">UI/UX Design</a></li>
+                          <li><a href="#" className="dropdown-item block py-1">Website Development</a></li>
+                          <li><a href="#" className="dropdown-item block py-1">Mobile App Development</a></li>
+                          <li><a href="#" className="dropdown-item block py-1">MVP Development</a></li>
+                          <li><a href="#" className="dropdown-item block py-1">Custom Software Development</a></li>
                         </ul>
                       </div>
                     </div>
@@ -111,17 +111,17 @@ export default function Home() {
 
                 {/* Products - Dropdown */}
                 <div className="group relative h-full flex items-center">
-                  <button className="flex items-center gap-2 hover:text-primary transition py-6 border-b-2 border-transparent group-hover:border-primary whitespace-nowrap">
+                  <button className="nav-link flex items-center gap-2 hover:text-primary transition py-6 whitespace-nowrap">
                     Products <i className="fas fa-chevron-down text-[10px] group-hover:rotate-180 transition-transform duration-300"></i>
                   </button>
                   <div className="absolute top-full left-1/2 -translate-x-1/2 w-max pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 -z-10">
-                    <div className="bg-white-sec border border-gray-100 shadow-xl rounded-2xl overflow-hidden p-5">
+                    <div className="bg-white/95 backdrop-blur-md border border-gray-100 shadow-xl rounded-2xl overflow-hidden p-5">
                       <h4 className="font-bold text-sm mb-3 text-left whitespace-nowrap">Products</h4>
-                      <ul className="space-y-2 text-xs text-text-light-muted-muted text-left whitespace-nowrap">
-                        <li><a href="#" className="hover:text-primary transition block py-1">Hitalent</a></li>
-                        <li><a href="#" className="hover:text-primary transition block py-1">lorem ipsum</a></li>
-                        <li><a href="#" className="hover:text-primary transition block py-1">lorem ipsum</a></li>
-                        <li><a href="#" className="hover:text-primary transition block py-1">lorem ipsum</a></li>
+                      <ul className="space-y-2 text-xs text-text-light-muted text-left whitespace-nowrap">
+                        <li><a href="#" className="dropdown-item block py-1">Hitalent</a></li>
+                        <li><a href="#" className="dropdown-item block py-1">lorem ipsum</a></li>
+                        <li><a href="#" className="dropdown-item block py-1">lorem ipsum</a></li>
+                        <li><a href="#" className="dropdown-item block py-1">lorem ipsum</a></li>
                       </ul>
                     </div>
                   </div>
@@ -129,17 +129,17 @@ export default function Home() {
 
                 {/* Company - Dropdown */}
                 <div className="group relative h-full flex items-center">
-                  <button className="flex items-center gap-2 hover:text-primary transition py-6 border-b-2 border-transparent group-hover:border-primary whitespace-nowrap">
+                  <button className="nav-link flex items-center gap-2 hover:text-primary transition py-6 whitespace-nowrap">
                     Company <i className="fas fa-chevron-down text-[10px] group-hover:rotate-180 transition-transform duration-300"></i>
                   </button>
                   <div className="absolute top-full left-1/2 -translate-x-1/2 w-max pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 -z-10">
-                    <div className="bg-white-sec border border-gray-100 shadow-xl rounded-2xl overflow-hidden p-5">
+                    <div className="bg-white/95 backdrop-blur-md border border-gray-100 shadow-xl rounded-2xl overflow-hidden p-5">
                       <h4 className="font-bold text-sm mb-3 text-left whitespace-nowrap">Company</h4>
-                      <ul className="space-y-2 text-xs text-text-light-muted-muted text-left whitespace-nowrap">
-                        <li><a href="#" className="hover:text-primary transition block py-1">About Us</a></li>
-                        <li><a href="#" className="hover:text-primary transition block py-1">Portfolio</a></li>
-                        <li><a href="#" className="hover:text-primary transition block py-1">Careers</a></li>
-                        <li><a href="#" className="hover:text-primary transition block py-1">Our Journey</a></li>
+                      <ul className="space-y-2 text-xs text-text-light-muted text-left whitespace-nowrap">
+                        <li><a href="#" className="dropdown-item block py-1">About Us</a></li>
+                        <li><a href="#" className="dropdown-item block py-1">Portfolio</a></li>
+                        <li><a href="#" className="dropdown-item block py-1">Careers</a></li>
+                        <li><a href="#" className="dropdown-item block py-1">Our Journey</a></li>
                       </ul>
                     </div>
                   </div>
@@ -147,21 +147,21 @@ export default function Home() {
 
                 {/* Kreasi Academy - Dropdown */}
                 <div className="group relative h-full flex items-center">
-                  <button className="flex items-center gap-2 hover:text-primary transition py-6 border-b-2 border-transparent group-hover:border-primary whitespace-nowrap">
+                  <button className="nav-link flex items-center gap-2 hover:text-primary transition py-6 whitespace-nowrap">
                     Kreasi Academy <i className="fas fa-chevron-down text-[10px] group-hover:rotate-180 transition-transform duration-300"></i>
                   </button>
                   <div className="absolute top-full left-1/2 -translate-x-1/2 w-max pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 -z-10">
-                    <div className="bg-white-sec border border-gray-100 shadow-xl rounded-2xl overflow-hidden p-5">
+                    <div className="bg-white/95 backdrop-blur-md border border-gray-100 shadow-xl rounded-2xl overflow-hidden p-5">
                       <h4 className="font-bold text-sm mb-3 text-left whitespace-nowrap">Kreasi Academy</h4>
-                      <ul className="space-y-2 text-xs text-text-light-muted-muted text-left whitespace-nowrap">
-                        <li><a href="#" className="hover:text-primary transition block py-1">After Office Academy</a></li>
-                        <li><a href="#" className="hover:text-primary transition block py-1">Impact Academy</a></li>
+                      <ul className="space-y-2 text-xs text-text-light-muted text-left whitespace-nowrap">
+                        <li><a href="#" className="dropdown-item block py-1">After Office Academy</a></li>
+                        <li><a href="#" className="dropdown-item block py-1">Impact Academy</a></li>
                       </ul>
                     </div>
                   </div>
                 </div>
 
-                <a href="#" className="hover:text-primary transition py-6 border-b-2 border-transparent hover:border-primary whitespace-nowrap">
+                <a href="#" className="nav-link hover:text-primary transition py-6 whitespace-nowrap">
                   Digital Marketing
                 </a>
               </div>
@@ -211,7 +211,7 @@ export default function Home() {
                 <div className="bg-gray-50 p-4 space-y-6 rounded-lg mb-2">
                   <div>
                     <h4 className="font-bold text-sm mb-3">Finance & Accounting</h4>
-                    <ul className="space-y-2 text-xs text-text-light-muted-muted">
+                    <ul className="space-y-2 text-xs text-text-light-muted">
                       <li><a href="#" className="block py-1 hover:text-primary">Bookkeeper</a></li>
                       <li><a href="#" className="block py-1 hover:text-primary">Financial Analyst</a></li>
                       <li><a href="#" className="block py-1 hover:text-primary">Tax Specialist</a></li>
@@ -220,7 +220,7 @@ export default function Home() {
                   </div>
                   <div>
                     <h4 className="font-bold text-sm mb-3">Customer Support, Ops, & VAs</h4>
-                    <ul className="space-y-2 text-xs text-text-light-muted-muted">
+                    <ul className="space-y-2 text-xs text-text-light-muted">
                       <li><a href="#" className="block py-1 hover:text-primary">Virtual Assistant</a></li>
                       <li><a href="#" className="block py-1 hover:text-primary">Create Support</a></li>
                       <li><a href="#" className="block py-1 hover:text-primary">Data Entry Specialist</a></li>
@@ -229,7 +229,7 @@ export default function Home() {
                   </div>
                   <div>
                     <h4 className="font-bold text-sm mb-3">Sales & Marketing</h4>
-                    <ul className="space-y-2 text-xs text-text-light-muted-muted">
+                    <ul className="space-y-2 text-xs text-text-light-muted">
                       <li><a href="#" className="block py-1 hover:text-primary">Digital Marketer</a></li>
                       <li><a href="#" className="block py-1 hover:text-primary">Social Media Manager</a></li>
                       <li><a href="#" className="block py-1 hover:text-primary">SEO Specialist</a></li>
@@ -238,7 +238,7 @@ export default function Home() {
                   </div>
                   <div>
                     <h4 className="font-bold text-sm mb-3">IT, Data, and Engineering</h4>
-                    <ul className="space-y-2 text-xs text-text-light-muted-muted">
+                    <ul className="space-y-2 text-xs text-text-light-muted">
                       <li><a href="#" className="block py-1 hover:text-primary">UI/UX Designer</a></li>
                       <li><a href="#" className="block py-1 hover:text-primary">Frontend Developer</a></li>
                       <li><a href="#" className="block py-1 hover:text-primary">Backend Developer</a></li>
@@ -263,7 +263,7 @@ export default function Home() {
                 <div className="bg-gray-50 p-4 space-y-6 rounded-lg mb-2">
                   <div>
                     <h4 className="font-bold text-sm mb-3">Talent As a Service</h4>
-                    <ul className="space-y-2 text-xs text-text-light-muted-muted">
+                    <ul className="space-y-2 text-xs text-text-light-muted">
                       <li><a href="#" className="block py-1 hover:text-primary">Head Hunting</a></li>
                       <li><a href="#" className="block py-1 hover:text-primary">Staffing</a></li>
                       <li><a href="#" className="block py-1 hover:text-primary">Internship</a></li>
@@ -272,7 +272,7 @@ export default function Home() {
                   </div>
                   <div>
                     <h4 className="font-bold text-sm mb-3">Software Development</h4>
-                    <ul className="space-y-2 text-xs text-text-light-muted-muted">
+                    <ul className="space-y-2 text-xs text-text-light-muted">
                       <li><a href="#" className="block py-1 hover:text-primary">Specifications & Wireframe</a></li>
                       <li><a href="#" className="block py-1 hover:text-primary">UI/UX Design</a></li>
                       <li><a href="#" className="block py-1 hover:text-primary">Website Development</a></li>
@@ -297,7 +297,7 @@ export default function Home() {
               </button>
               <div className={`overflow-hidden transition-all duration-300 ${activeMobileDropdown === "products" ? "max-h-[300px] opacity-100" : "max-h-0 opacity-0"}`}>
                 <div className="bg-gray-50 p-4 rounded-lg mb-2">
-                  <ul className="space-y-2 text-xs text-text-light-muted-muted">
+                  <ul className="space-y-2 text-xs text-text-light-muted">
                     <li><a href="#" className="block py-1 hover:text-primary">Hitalent</a></li>
                     <li><a href="#" className="block py-1 hover:text-primary">lorem ipsum</a></li>
                     <li><a href="#" className="block py-1 hover:text-primary">lorem ipsum</a></li>
@@ -319,7 +319,7 @@ export default function Home() {
               </button>
               <div className={`overflow-hidden transition-all duration-300 ${activeMobileDropdown === "company" ? "max-h-[300px] opacity-100" : "max-h-0 opacity-0"}`}>
                 <div className="bg-gray-50 p-4 rounded-lg mb-2">
-                  <ul className="space-y-2 text-xs text-text-light-muted-muted">
+                  <ul className="space-y-2 text-xs text-text-light-muted">
                     <li><a href="#" className="block py-1 hover:text-primary">About Us</a></li>
                     <li><a href="#" className="block py-1 hover:text-primary">Portfolio</a></li>
                     <li><a href="#" className="block py-1 hover:text-primary">Careers</a></li>
@@ -341,7 +341,7 @@ export default function Home() {
               </button>
               <div className={`overflow-hidden transition-all duration-300 ${activeMobileDropdown === "academy" ? "max-h-[300px] opacity-100" : "max-h-0 opacity-0"}`}>
                 <div className="bg-gray-50 p-4 rounded-lg mb-2">
-                  <ul className="space-y-2 text-xs text-text-light-muted-muted">
+                  <ul className="space-y-2 text-xs text-text-light-muted">
                     <li><a href="#" className="block py-1 hover:text-primary">After Office Academy</a></li>
                     <li><a href="#" className="block py-1 hover:text-primary">Impact Academy</a></li>
                   </ul>
@@ -410,7 +410,7 @@ export default function Home() {
 
           {/* Card 1: Happy Clients */}
           <div className="hidden xl:block absolute -top-5 left-0 animate-float-slow z-20">
-            <div className="bg-white-sec p-4 rounded-lg shadow-[0px_2px_6px_2px_rgba(0,0,0,0.1)] border border-gray-100 flex items-center gap-4">
+            <div className="bg-white/95 backdrop-blur-md p-4 rounded-lg shadow-[0px_2px_6px_2px_rgba(0,0,0,0.1)] border border-gray-100 flex items-center gap-4">
               <div className="w-10 h-10 flex items-center justify-center border-2 border-dashed border-primary/30 rounded-full">
                 <img src="/assets/images/tag_faces.svg" alt="Happy Clients" className="w-6 h-6" />
               </div>
@@ -423,7 +423,7 @@ export default function Home() {
 
           {/* Card 2: Professional Talents */}
           <div className="hidden xl:block absolute top-40 -right-12 animate-float-medium z-20">
-            <div className="bg-white-sec p-4 rounded-lg shadow-[0px_2px_6px_2px_rgba(0,0,0,0.1)] border border-gray-100 flex items-center gap-4">
+            <div className="bg-white/95 backdrop-blur-md p-4 rounded-lg shadow-[0px_2px_6px_2px_rgba(0,0,0,0.1)] border border-gray-100 flex items-center gap-4">
               <div className="w-10 h-10 flex items-center justify-center border-2 border-dashed border-primary/30 rounded-full">
                 <img src="/assets/images/star_border_purple500.svg" alt="Professional Talents" className="w-6 h-6" />
               </div>
@@ -436,7 +436,7 @@ export default function Home() {
 
           {/* Card 3: Projects Completed */}
           <div className="hidden xl:block absolute bottom-56 left-10 animate-float-fast z-20">
-            <div className="bg-white-sec p-4 rounded-lg shadow-[0px_2px_6px_2px_rgba(0,0,0,0.1)] border border-gray-100 flex items-center gap-4">
+            <div className="bg-white/95 backdrop-blur-md p-4 rounded-lg shadow-[0px_2px_6px_2px_rgba(0,0,0,0.1)] border border-gray-100 flex items-center gap-4">
               <div className="w-10 h-10 flex items-center justify-center border-2 border-dashed border-primary/30 rounded-full">
                 <img src="/assets/images/task_alt.svg" alt="Projects Completed" className="w-6 h-6" />
               </div>
@@ -450,7 +450,7 @@ export default function Home() {
           {/* Tablet/Laptop Static Section (MD to XL) */}
           <div className="hidden md:flex xl:hidden w-full justify-center gap-6 mt-16 flex-wrap">
             {/* Badge 1 */}
-            <div className="p-4 bg-white-sec rounded-lg shadow-[0px_2px_6px_2px_rgba(0,0,0,0.1)] border border-gray-100 flex items-center gap-4 min-w-[200px]">
+            <div className="p-4 bg-white/95 backdrop-blur-md rounded-lg shadow-[0px_2px_6px_2px_rgba(0,0,0,0.1)] border border-gray-100 flex items-center gap-4 min-w-[200px]">
               <div className="w-10 h-10 flex items-center justify-center border-2 border-dashed border-primary/30 rounded-full">
                 <img src="/assets/images/tag_faces.svg" alt="Happy Clients" className="w-6 h-6" />
               </div>
@@ -461,7 +461,7 @@ export default function Home() {
             </div>
 
             {/* Badge 2 */}
-            <div className="p-4 bg-white-sec rounded-lg shadow-[0px_2px_6px_2px_rgba(0,0,0,0.1)] border border-gray-100 flex items-center gap-4 min-w-[200px]">
+            <div className="p-4 bg-white/95 backdrop-blur-md rounded-lg shadow-[0px_2px_6px_2px_rgba(0,0,0,0.1)] border border-gray-100 flex items-center gap-4 min-w-[200px]">
               <div className="w-10 h-10 flex items-center justify-center border-2 border-dashed border-primary/30 rounded-full">
                 <img src="/assets/images/star_border_purple500.svg" alt="Professional Talents" className="w-6 h-6" />
               </div>
@@ -472,7 +472,7 @@ export default function Home() {
             </div>
 
             {/* Badge 3 */}
-            <div className="p-4 bg-white-sec rounded-lg shadow-[0px_2px_6px_2px_rgba(0,0,0,0.1)] border border-gray-100 flex items-center gap-4 min-w-[200px]">
+            <div className="p-4 bg-white/95 backdrop-blur-md rounded-lg shadow-[0px_2px_6px_2px_rgba(0,0,0,0.1)] border border-gray-100 flex items-center gap-4 min-w-[200px]">
               <div className="w-10 h-10 flex items-center justify-center border-2 border-dashed border-primary/30 rounded-full">
                 <img src="/assets/images/task_alt.svg" alt="Projects Completed" className="w-6 h-6" />
               </div>
@@ -490,7 +490,7 @@ export default function Home() {
               {/* Loop 1 */}
               <div className="flex gap-4 mx-2">
                 {/* Badge 1 */}
-                <div className="p-2 bg-white-sec rounded-lg shadow-[0px_2px_6px_2px_rgba(0,0,0,0.15)] flex justify-start items-center gap-4 border border-gray-100">
+                <div className="p-2 bg-white/95 backdrop-blur-md rounded-lg shadow-[0px_2px_6px_2px_rgba(0,0,0,0.15)] flex justify-start items-center gap-4 border border-gray-100">
                   <div className="w-8 h-8 relative flex items-center justify-center bg-primary/10 rounded-full">
                     <img src="/assets/images/tag_faces.svg" alt="Happy Clients" className="w-6 h-6" />
                   </div>
@@ -501,7 +501,7 @@ export default function Home() {
                 </div>
 
                 {/* Badge 2 */}
-                <div className="p-2 bg-white-sec rounded-lg shadow-[0px_2px_6px_2px_rgba(0,0,0,0.15)] flex justify-start items-center gap-4 border border-gray-100">
+                <div className="p-2 bg-white/95 backdrop-blur-md rounded-lg shadow-[0px_2px_6px_2px_rgba(0,0,0,0.15)] flex justify-start items-center gap-4 border border-gray-100">
                   <div className="w-8 h-8 relative flex items-center justify-center bg-primary/10 rounded-full">
                     <img src="/assets/images/task_alt.svg" alt="Projects Completed" className="w-6 h-6" />
                   </div>
@@ -512,7 +512,7 @@ export default function Home() {
                 </div>
 
                 {/* Badge 3 */}
-                <div className="p-2 bg-white-sec rounded-lg shadow-[0px_2px_6px_2px_rgba(0,0,0,0.15)] flex justify-start items-center gap-4 border border-gray-100">
+                <div className="p-2 bg-white/95 backdrop-blur-md rounded-lg shadow-[0px_2px_6px_2px_rgba(0,0,0,0.15)] flex justify-start items-center gap-4 border border-gray-100">
                   <div className="w-8 h-8 relative flex items-center justify-center bg-primary/10 rounded-full">
                     <img src="/assets/images/star_border_purple500.svg" alt="Professional Talents" className="w-6 h-6" />
                   </div>
@@ -526,7 +526,7 @@ export default function Home() {
               {/* Loop 2 (Duplicate for smooth infinite scroll) */}
               <div className="flex gap-4 mx-2">
                 {/* Badge 1 */}
-                <div className="p-2 bg-white-sec rounded-lg shadow-[0px_2px_6px_2px_rgba(0,0,0,0.15)] flex justify-start items-center gap-4 border border-gray-100">
+                <div className="p-2 bg-white/95 backdrop-blur-md rounded-lg shadow-[0px_2px_6px_2px_rgba(0,0,0,0.15)] flex justify-start items-center gap-4 border border-gray-100">
                   <div className="w-8 h-8 relative flex items-center justify-center bg-primary/10 rounded-full">
                     <img src="/assets/images/tag_faces.svg" alt="Happy Clients" className="w-6 h-6" />
                   </div>
@@ -537,7 +537,7 @@ export default function Home() {
                 </div>
 
                 {/* Badge 2 */}
-                <div className="p-2 bg-white-sec rounded-lg shadow-[0px_2px_6px_2px_rgba(0,0,0,0.15)] flex justify-start items-center gap-4 border border-gray-100">
+                <div className="p-2 bg-white/95 backdrop-blur-md rounded-lg shadow-[0px_2px_6px_2px_rgba(0,0,0,0.15)] flex justify-start items-center gap-4 border border-gray-100">
                   <div className="w-8 h-8 relative flex items-center justify-center bg-primary/10 rounded-full">
                     <img src="/assets/images/task_alt.svg" alt="Projects Completed" className="w-6 h-6" />
                   </div>
@@ -548,7 +548,7 @@ export default function Home() {
                 </div>
 
                 {/* Badge 3 */}
-                <div className="p-2 bg-white-sec rounded-lg shadow-[0px_2px_6px_2px_rgba(0,0,0,0.15)] flex justify-start items-center gap-4 border border-gray-100">
+                <div className="p-2 bg-white/95 backdrop-blur-md rounded-lg shadow-[0px_2px_6px_2px_rgba(0,0,0,0.15)] flex justify-start items-center gap-4 border border-gray-100">
                   <div className="w-8 h-8 relative flex items-center justify-center bg-primary/10 rounded-full">
                     <img src="/assets/images/star_border_purple500.svg" alt="Professional Talents" className="w-6 h-6" />
                   </div>
@@ -589,7 +589,7 @@ export default function Home() {
             <h2 className="text-4xl font-medium font-montserrat text-text-light">
               Our Services
             </h2>
-            <p className="max-w-[576px] text-base font-normal font-montserrat text-text-light-muted-muted">
+            <p className="max-w-[576px] text-base font-normal font-montserrat text-text-light-muted">
               Unlock Your Business Potential with Our Expert Solutions
             </p>
           </div>
@@ -730,7 +730,7 @@ export default function Home() {
               <h3 className="text-2xl font-medium font-montserrat text-text-light text-center">
                 1. Candidate Screening
               </h3>
-              <p className="text-sm font-normal font-montserrat text-text-light-muted-muted text-center leading-relaxed">
+              <p className="text-sm font-normal font-montserrat text-text-light-muted text-center leading-relaxed">
                 Implement strategies to effectively evaluate resumes and shortlist candidates based on their qualifications.
               </p>
             </div>
@@ -740,7 +740,7 @@ export default function Home() {
               <h3 className="text-2xl font-medium font-montserrat text-text-light text-center">
                 2. Interview Process Improvement
               </h3>
-              <p className="text-sm font-normal font-montserrat text-text-light-muted-muted text-center leading-relaxed">
+              <p className="text-sm font-normal font-montserrat text-text-light-muted text-center leading-relaxed">
                 Refine the interview structure to better assess candidate skills and cultural fit.
               </p>
             </div>
@@ -750,7 +750,7 @@ export default function Home() {
               <h3 className="text-2xl font-medium font-montserrat text-text-light text-center">
                 3. Onboarding Experience
               </h3>
-              <p className="text-sm font-normal font-montserrat text-text-light-muted-muted text-center leading-relaxed">
+              <p className="text-sm font-normal font-montserrat text-text-light-muted text-center leading-relaxed">
                 Develop a comprehensive onboarding program to help new hires integrate smoothly into the team.
               </p>
             </div>
@@ -758,7 +758,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-24 bg-white-sec border-t border-gray-100">
+      <section className="py-24 bg-white/95 backdrop-blur-md border-t border-gray-100">
         <div className="max-w-[1200px] mx-auto px-4 flex flex-col items-center gap-24">
           <div className="w-full max-w-[784px] text-center">
             <h2 className="text-3xl font-medium font-montserrat text-text-light">
@@ -772,7 +772,7 @@ export default function Home() {
               <h3 className="text-2xl font-medium font-montserrat text-center text-text-light">
                 Onboard, pay, retain
               </h3>
-              <p className="text-sm font-normal font-montserrat text-center text-text-light-muted-muted leading-relaxed">
+              <p className="text-sm font-normal font-montserrat text-center text-text-light-muted leading-relaxed">
                 We support onboarding, payroll, and compliance, so your new hire integrates fast and sticks long term.
               </p>
             </div>
@@ -803,7 +803,7 @@ export default function Home() {
               <h3 className="text-2xl font-medium font-montserrat text-center text-text-light">
                 Ongoing support & team expansion
               </h3>
-              <p className="text-sm font-normal font-montserrat text-center text-text-light-muted-muted leading-relaxed">
+              <p className="text-sm font-normal font-montserrat text-center text-text-light-muted leading-relaxed">
                 Keep hiring with the same speed and quality whenever you need. Your recruiter stays close to support future hires, backfills, or scaling your team.
               </p>
             </div>
@@ -825,7 +825,7 @@ export default function Home() {
               style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             >
               {/* Testimonial 1 - Tina Rahayu */}
-              <div className="flex-shrink-0 w-full sm:w-[calc(50%-16px)] lg:w-96 h-[600px] p-8 bg-white-sec outline outline-[0.5px] outline-gray-300 dark:outline-gray-700 flex flex-col justify-between snap-start">
+              <div className="flex-shrink-0 w-full sm:w-[calc(50%-16px)] lg:w-96 h-[600px] p-8 bg-white/95 backdrop-blur-md outline outline-[0.5px] outline-gray-300 dark:outline-gray-700 flex flex-col justify-between snap-start">
                 <div className="flex flex-col gap-12">
                   <div className="flex items-center gap-6">
                     <div className="w-12 h-12 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold text-xl">
@@ -835,7 +835,7 @@ export default function Home() {
                       <div className="text-xl font-medium font-montserrat text-text-light">
                         Tina Rahayu
                       </div>
-                      <div className="text-xs font-normal font-montserrat text-text-light-muted-muted">
+                      <div className="text-xs font-normal font-montserrat text-text-light-muted">
                         Marketing Specialist
                       </div>
                     </div>
@@ -850,7 +850,7 @@ export default function Home() {
               </div>
 
               {/* Testimonial 2 - Joko Lestari */}
-              <div className="flex-shrink-0 w-full sm:w-[calc(50%-16px)] lg:w-96 h-[600px] p-8 bg-white-sec outline outline-[0.5px] outline-gray-300 dark:outline-gray-700 flex flex-col justify-between snap-start">
+              <div className="flex-shrink-0 w-full sm:w-[calc(50%-16px)] lg:w-96 h-[600px] p-8 bg-white/95 backdrop-blur-md outline outline-[0.5px] outline-gray-300 dark:outline-gray-700 flex flex-col justify-between snap-start">
                 <div className="flex flex-col gap-12">
                   <div className="flex items-center gap-6">
                     <div className="w-12 h-12 rounded-full bg-yellow-500 flex items-center justify-center text-white font-bold text-xl">
@@ -860,7 +860,7 @@ export default function Home() {
                       <div className="text-xl font-medium font-montserrat text-text-light">
                         Joko Lestari
                       </div>
-                      <div className="text-xs font-normal font-montserrat text-text-light-muted-muted">
+                      <div className="text-xs font-normal font-montserrat text-text-light-muted">
                         QA Engineer
                       </div>
                     </div>
@@ -875,7 +875,7 @@ export default function Home() {
               </div>
 
               {/* Testimonial 3 - Siti Aminah */}
-              <div className="flex-shrink-0 w-full sm:w-[calc(50%-16px)] lg:w-96 h-[600px] p-8 bg-white-sec outline outline-[0.5px] outline-gray-300 dark:outline-gray-700 flex flex-col justify-between snap-start">
+              <div className="flex-shrink-0 w-full sm:w-[calc(50%-16px)] lg:w-96 h-[600px] p-8 bg-white/95 backdrop-blur-md outline outline-[0.5px] outline-gray-300 dark:outline-gray-700 flex flex-col justify-between snap-start">
                 <div className="flex flex-col gap-12">
                   <div className="flex items-center gap-6">
                     <div className="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold text-xl">
@@ -885,7 +885,7 @@ export default function Home() {
                       <div className="text-xl font-medium font-montserrat text-text-light">
                         Siti Aminah
                       </div>
-                      <div className="text-xs font-normal font-montserrat text-text-light-muted-muted">
+                      <div className="text-xs font-normal font-montserrat text-text-light-muted">
                         Product Manager
                       </div>
                     </div>
@@ -900,7 +900,7 @@ export default function Home() {
               </div>
 
               {/* Testimonial 4 - Budi Santoso */}
-              <div className="flex-shrink-0 w-full sm:w-[calc(50%-16px)] lg:w-96 h-[600px] p-8 bg-white-sec outline outline-[0.5px] outline-gray-300 dark:outline-gray-700 flex flex-col justify-between snap-start">
+              <div className="flex-shrink-0 w-full sm:w-[calc(50%-16px)] lg:w-96 h-[600px] p-8 bg-white/95 backdrop-blur-md outline outline-[0.5px] outline-gray-300 dark:outline-gray-700 flex flex-col justify-between snap-start">
                 <div className="flex flex-col gap-12">
                   <div className="flex items-center gap-6">
                     <div className="w-12 h-12 rounded-full bg-orange-500 flex items-center justify-center text-white font-bold text-xl">
@@ -910,7 +910,7 @@ export default function Home() {
                       <div className="text-xl font-medium font-montserrat text-text-light">
                         Budi Santoso
                       </div>
-                      <div className="text-xs font-normal font-montserrat text-text-light-muted-muted">
+                      <div className="text-xs font-normal font-montserrat text-text-light-muted">
                         UX Designer
                       </div>
                     </div>
@@ -925,7 +925,7 @@ export default function Home() {
               </div>
 
               {/* Testimonial 5 - Rina Dewi */}
-              <div className="flex-shrink-0 w-full sm:w-[calc(50%-16px)] lg:w-96 h-[600px] p-8 bg-white-sec outline outline-[0.5px] outline-gray-300 dark:outline-gray-700 flex flex-col justify-between snap-start">
+              <div className="flex-shrink-0 w-full sm:w-[calc(50%-16px)] lg:w-96 h-[600px] p-8 bg-white/95 backdrop-blur-md outline outline-[0.5px] outline-gray-300 dark:outline-gray-700 flex flex-col justify-between snap-start">
                 <div className="flex flex-col gap-12">
                   <div className="flex items-center gap-6">
                     <div className="w-12 h-12 rounded-full bg-pink-500 flex items-center justify-center text-white font-bold text-xl">
@@ -935,7 +935,7 @@ export default function Home() {
                       <div className="text-xl font-medium font-montserrat text-text-light">
                         Rina Dewi
                       </div>
-                      <div className="text-xs font-normal font-montserrat text-text-light-muted-muted">
+                      <div className="text-xs font-normal font-montserrat text-text-light-muted">
                         Data Analyst
                       </div>
                     </div>
@@ -950,7 +950,7 @@ export default function Home() {
               </div>
 
               {/* Testimonial 6 - Eko Setiawan */}
-              <div className="flex-shrink-0 w-full sm:w-[calc(50%-16px)] lg:w-96 h-[600px] p-8 bg-white-sec outline outline-[0.5px] outline-gray-300 dark:outline-gray-700 flex flex-col justify-between snap-start">
+              <div className="flex-shrink-0 w-full sm:w-[calc(50%-16px)] lg:w-96 h-[600px] p-8 bg-white/95 backdrop-blur-md outline outline-[0.5px] outline-gray-300 dark:outline-gray-700 flex flex-col justify-between snap-start">
                 <div className="flex flex-col gap-12">
                   <div className="flex items-center gap-6">
                     <div className="w-12 h-12 rounded-full bg-green-500 flex items-center justify-center text-white font-bold text-xl">
@@ -960,7 +960,7 @@ export default function Home() {
                       <div className="text-xl font-medium font-montserrat text-text-light">
                         Eko Setiawan
                       </div>
-                      <div className="text-xs font-normal font-montserrat text-text-light-muted-muted">
+                      <div className="text-xs font-normal font-montserrat text-text-light-muted">
                         Frontend Developer
                       </div>
                     </div>
@@ -998,7 +998,7 @@ export default function Home() {
               <h2 className="text-3xl font-bold text-text-light">
                 Our Portfolio
               </h2>
-              <p className="text-xs mt-2 text-text-light-muted-muted">
+              <p className="text-xs mt-2 text-text-light-muted">
                 Projects showcase our expertise across various industries.
               </p>
             </div>
@@ -1161,7 +1161,7 @@ export default function Home() {
                 <br />
                 right choice for you?
               </h2>
-              <p className="text-sm text-text-light-muted-muted mb-8">
+              <p className="text-sm text-text-light-muted mb-8">
                 We provide secure, scalable, and innovative IT solutions
                 tailored to your needs. With expert-driven execution, we ensure
                 efficiency.
@@ -1213,7 +1213,7 @@ export default function Home() {
               <h3 className="font-bold text-lg mb-2">
                 Creative Partnership
               </h3>
-              <p className="text-sm text-text-light-muted-muted">
+              <p className="text-sm text-text-light-muted">
                 At Kreasitech, we believe that the best innovation comes from
                 strong collaboration. We work closely as a strategic partner.
               </p>
@@ -1222,7 +1222,7 @@ export default function Home() {
               <h3 className="font-bold text-lg mb-2">
                 Cost Effective & High ROI
               </h3>
-              <p className="text-sm text-text-light-muted-muted">
+              <p className="text-sm text-text-light-muted">
                 The technology we develop is not only effective but also
                 provides optimal investment value, increasing operational
                 efficiency.
@@ -1232,7 +1232,7 @@ export default function Home() {
               <h3 className="font-bold text-lg mb-2">
                 End to End IT Support
               </h3>
-              <p className="text-sm text-text-light-muted-muted">
+              <p className="text-sm text-text-light-muted">
                 From consultation to implementation and maintenance, we are here
                 to ensure your technology solutions always run optimally.
               </p>
@@ -1241,7 +1241,7 @@ export default function Home() {
               <h3 className="font-bold text-lg mb-2">
                 Experience Professionals
               </h3>
-              <p className="text-sm text-text-light-muted-muted">
+              <p className="text-sm text-text-light-muted">
                 We guarantee your project is handled by our experienced team of
                 professionals who understand modern business challenges.
               </p>
@@ -1250,7 +1250,7 @@ export default function Home() {
               <h3 className="font-bold text-lg mb-2">
                 Security & Compliance
               </h3>
-              <p className="text-sm text-text-light-muted-muted">
+              <p className="text-sm text-text-light-muted">
                 We prioritize data security and compliance with industry
                 regulations, ensuring your system remains secure and reliable.
               </p>
@@ -1259,7 +1259,7 @@ export default function Home() {
               <h3 className="font-bold text-lg mb-2">
                 Tailor Solutions
               </h3>
-              <p className="text-sm text-text-light-muted-muted">
+              <p className="text-sm text-text-light-muted">
                 The best technology is that which suits your business needs. At
                 Kreasitech, we present Tailored Solutions specifically designed.
               </p>
@@ -1275,7 +1275,7 @@ export default function Home() {
             <br />
             with Smart Digital Solutions
           </h2>
-          <p className="text-sm text-text-light-muted-muted mb-8">
+          <p className="text-sm text-text-light-muted mb-8">
             Transform your business with our end-to-end digital expertise and
             innovative technology.
           </p>
