@@ -813,9 +813,9 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-24 bg-gray-100 overflow-hidden">
-        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 mb-24">
-          <h2 className="text-4xl font-medium font-montserrat text-text-light">
+      <section className="py-16 md:py-24 bg-gray-100 overflow-hidden">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 mb-8 md:mb-24">
+          <h2 className="text-2xl md:text-4xl font-medium font-montserrat text-text-light">
             See why customers love using KreasiTech
           </h2>
         </div>
@@ -823,176 +823,176 @@ export default function Home() {
         <div className="relative">
           {/* Infinite Marquee Container - Full Width */}
           <div
-            className="flex gap-8 overflow-hidden"
+            className="flex gap-4 md:gap-8 overflow-hidden"
             onMouseEnter={() => setIsTestimonialHovered(true)}
             onMouseLeave={() => setIsTestimonialHovered(false)}
           >
             {/* First set of testimonials */}
             <div
-              className="flex gap-8 animate-marquee"
+              className="flex gap-4 md:gap-8 animate-marquee"
               style={{ animationPlayState: isTestimonialHovered ? 'paused' : 'running' }}
             >
               {/* Testimonial 1 - Tina Rahayu */}
-              <div className="flex-shrink-0 w-96 h-[600px] p-8 bg-white border border-gray-300 flex flex-col justify-start items-start gap-6">
-                <div className="self-stretch inline-flex justify-start items-center gap-6">
+              <div className="group flex-shrink-0 w-72 md:w-96 h-auto md:h-[600px] p-4 md:p-8 bg-white hover:bg-violet-800 border border-gray-300 hover:border-violet-800 flex flex-col justify-start items-start gap-3 md:gap-6 transition-all duration-300">
+                <div className="self-stretch inline-flex justify-start items-center gap-3 md:gap-6">
                   <img className="w-12 h-12" src="https://placehold.co/48x48/ec4899/1f2937" alt="Tina Rahayu" />
                   <div className="flex-1 inline-flex flex-col justify-start items-start gap-2">
-                    <div className="self-stretch justify-start text-text-light text-xl font-medium font-montserrat">Tina Rahayu</div>
-                    <div className="self-stretch justify-start text-text-light text-xs font-normal font-montserrat">Marketing Specialist</div>
+                    <div className="self-stretch justify-start text-text-light group-hover:text-white text-base md:text-xl font-medium font-montserrat transition-colors duration-300">Tina Rahayu</div>
+                    <div className="self-stretch justify-start text-text-light group-hover:text-white text-xs font-normal font-montserrat transition-colors duration-300">Marketing Specialist</div>
                   </div>
                 </div>
-                <div className="self-stretch justify-start text-text-light text-xl font-light font-montserrat">"Tina's marketing strategies are exceptionally creative, highly innovative, and meticulously data-driven, consistently capturing audience attention and driving impressive campaign results that not only exceed targets but also maximize ROI, setting new standards for marketing effectiveness."</div>
-                <div className="self-stretch justify-start text-gray-400 text-xs font-normal font-montserrat mt-auto">PT Marketing Pro</div>
+                <div className="self-stretch justify-start text-text-light group-hover:text-white text-base md:text-xl font-light font-montserrat transition-colors duration-300">"Tina's marketing strategies are exceptionally creative, highly innovative, and meticulously data-driven, consistently capturing audience attention and driving impressive campaign results that not only exceed targets but also maximize ROI, setting new standards for marketing effectiveness."</div>
+                <div className="self-stretch justify-start text-gray-400 group-hover:text-white text-xs font-normal font-montserrat mt-auto transition-colors duration-300">PT Marketing Pro</div>
               </div>
 
               {/* Testimonial 2 - Joko Lestari */}
-              <div className="flex-shrink-0 w-96 h-[600px] p-8 bg-white border border-gray-300 flex flex-col justify-start items-start gap-6">
-                <div className="self-stretch inline-flex justify-start items-center gap-6">
+              <div className="group flex-shrink-0 w-72 md:w-96 h-auto md:h-[600px] p-4 md:p-8 bg-white hover:bg-violet-800 border border-gray-300 hover:border-violet-800 flex flex-col justify-start items-start gap-3 md:gap-6 transition-all duration-300">
+                <div className="self-stretch inline-flex justify-start items-center gap-3 md:gap-6">
                   <img className="w-12 h-12" src="https://placehold.co/48x48/fbbf24/1f2937" alt="Joko Lestari" />
                   <div className="flex-1 inline-flex flex-col justify-start items-start gap-2">
-                    <div className="self-stretch justify-start text-text-light text-xl font-medium font-montserrat">Joko Lestari</div>
-                    <div className="self-stretch justify-start text-text-light text-xs font-normal font-montserrat">QA Engineer</div>
+                    <div className="self-stretch justify-start text-text-light group-hover:text-white text-base md:text-xl font-medium font-montserrat transition-colors duration-300">Joko Lestari</div>
+                    <div className="self-stretch justify-start text-text-light group-hover:text-white text-xs font-normal font-montserrat transition-colors duration-300">QA Engineer</div>
                   </div>
                 </div>
-                <div className="self-stretch justify-start text-text-light text-xl font-light font-montserrat">"Joko's rigorous testing protocols guarantee the superior quality and reliability of our products, proactively preventing potential problems and ensuring a seamless user experience right from initial release, significantly enhancing customer loyalty and fostering long-term relationships."</div>
-                <div className="self-stretch justify-start text-gray-400 text-xs font-normal font-montserrat mt-auto">PT Quality Assurance</div>
+                <div className="self-stretch justify-start text-text-light group-hover:text-white text-base md:text-xl font-light font-montserrat transition-colors duration-300">"Joko's rigorous testing protocols guarantee the superior quality and reliability of our products, proactively preventing potential problems and ensuring a seamless user experience right from initial release, significantly enhancing customer loyalty and fostering long-term relationships."</div>
+                <div className="self-stretch justify-start text-gray-400 group-hover:text-white text-xs font-normal font-montserrat mt-auto transition-colors duration-300">PT Quality Assurance</div>
               </div>
 
               {/* Testimonial 3 - Siti Aminah */}
-              <div className="flex-shrink-0 w-96 h-[600px] p-8 bg-white border border-gray-300 flex flex-col justify-start items-start gap-6">
-                <div className="self-stretch inline-flex justify-start items-center gap-6">
+              <div className="group flex-shrink-0 w-72 md:w-96 h-auto md:h-[600px] p-4 md:p-8 bg-white hover:bg-violet-800 border border-gray-300 hover:border-violet-800 flex flex-col justify-start items-start gap-3 md:gap-6 transition-all duration-300">
+                <div className="self-stretch inline-flex justify-start items-center gap-3 md:gap-6">
                   <img className="w-12 h-12" src="https://placehold.co/48x48/3b82f6/1f2937" alt="Siti Aminah" />
                   <div className="flex-1 inline-flex flex-col justify-start items-start gap-2">
-                    <div className="self-stretch justify-start text-text-light text-xl font-medium font-montserrat">Siti Aminah</div>
-                    <div className="self-stretch justify-start text-text-light text-xs font-normal font-montserrat">Product Manager</div>
+                    <div className="self-stretch justify-start text-text-light group-hover:text-white text-base md:text-xl font-medium font-montserrat transition-colors duration-300">Siti Aminah</div>
+                    <div className="self-stretch justify-start text-text-light group-hover:text-white text-xs font-normal font-montserrat transition-colors duration-300">Product Manager</div>
                   </div>
                 </div>
-                <div className="self-stretch justify-start text-text-light text-xl font-light font-montserrat">"Siti's leadership is truly transformative, as she champions collaboration, sparks innovation, and drives substantial growth. Her team consistently surpasses ambitious goals, achieving remarkable success and establishing new benchmarks for excellence throughout the entire organization, inspiring others to reach higher."</div>
-                <div className="self-stretch justify-start text-gray-400 text-xs font-normal font-montserrat mt-auto">PT Digital Solutions</div>
+                <div className="self-stretch justify-start text-text-light group-hover:text-white text-base md:text-xl font-light font-montserrat transition-colors duration-300">"Siti's leadership is truly transformative, as she champions collaboration, sparks innovation, and drives substantial growth. Her team consistently surpasses ambitious goals, achieving remarkable success and establishing new benchmarks for excellence throughout the entire organization, inspiring others to reach higher."</div>
+                <div className="self-stretch justify-start text-gray-400 group-hover:text-white text-xs font-normal font-montserrat mt-auto transition-colors duration-300">PT Digital Solutions</div>
               </div>
 
               {/* Testimonial 4 - Budi Santoso */}
-              <div className="flex-shrink-0 w-96 h-[600px] p-8 bg-white border border-gray-300 flex flex-col justify-start items-start gap-6">
-                <div className="self-stretch inline-flex justify-start items-center gap-6">
+              <div className="group flex-shrink-0 w-72 md:w-96 h-auto md:h-[600px] p-4 md:p-8 bg-white hover:bg-violet-800 border border-gray-300 hover:border-violet-800 flex flex-col justify-start items-start gap-3 md:gap-6 transition-all duration-300">
+                <div className="self-stretch inline-flex justify-start items-center gap-3 md:gap-6">
                   <img className="w-12 h-12" src="https://placehold.co/48x48/f97316/1f2937" alt="Budi Santoso" />
                   <div className="flex-1 inline-flex flex-col justify-start items-start gap-2">
-                    <div className="self-stretch justify-start text-text-light text-xl font-medium font-montserrat">Budi Santoso</div>
-                    <div className="self-stretch justify-start text-text-light text-xs font-normal font-montserrat">UX Designer</div>
+                    <div className="self-stretch justify-start text-text-light group-hover:text-white text-base md:text-xl font-medium font-montserrat transition-colors duration-300">Budi Santoso</div>
+                    <div className="self-stretch justify-start text-text-light group-hover:text-white text-xs font-normal font-montserrat transition-colors duration-300">UX Designer</div>
                   </div>
                 </div>
-                <div className="self-stretch justify-start text-text-light text-xl font-light font-montserrat">"Budi's UX designs are widely celebrated for their intuitive interfaces and exceptionally delightful user journeys, significantly boosting user satisfaction and engagement metrics. His thoughtful designs greatly enhance the overall user experience, making every interaction seamless and enjoyable for all users."</div>
-                <div className="self-stretch justify-start text-gray-400 text-xs font-normal font-montserrat mt-auto">PT Creative Minds</div>
+                <div className="self-stretch justify-start text-text-light group-hover:text-white text-base md:text-xl font-light font-montserrat transition-colors duration-300">"Budi's UX designs are widely celebrated for their intuitive interfaces and exceptionally delightful user journeys, significantly boosting user satisfaction and engagement metrics. His thoughtful designs greatly enhance the overall user experience, making every interaction seamless and enjoyable for all users."</div>
+                <div className="self-stretch justify-start text-gray-400 group-hover:text-white text-xs font-normal font-montserrat mt-auto transition-colors duration-300">PT Creative Minds</div>
               </div>
 
               {/* Testimonial 5 - Rina Dewi */}
-              <div className="flex-shrink-0 w-96 h-[600px] p-8 bg-white border border-gray-300 flex flex-col justify-start items-start gap-6">
-                <div className="self-stretch inline-flex justify-start items-center gap-6">
+              <div className="group flex-shrink-0 w-72 md:w-96 h-auto md:h-[600px] p-4 md:p-8 bg-white hover:bg-violet-800 border border-gray-300 hover:border-violet-800 flex flex-col justify-start items-start gap-3 md:gap-6 transition-all duration-300">
+                <div className="self-stretch inline-flex justify-start items-center gap-3 md:gap-6">
                   <img className="w-12 h-12" src="https://placehold.co/48x48/ec4899/1f2937" alt="Rina Dewi" />
                   <div className="flex-1 inline-flex flex-col justify-start items-start gap-2">
-                    <div className="self-stretch justify-start text-text-light text-xl font-medium font-montserrat">Rina Dewi</div>
-                    <div className="self-stretch justify-start text-text-light text-xs font-normal font-montserrat">Data Analyst</div>
+                    <div className="self-stretch justify-start text-text-light group-hover:text-white text-base md:text-xl font-medium font-montserrat transition-colors duration-300">Rina Dewi</div>
+                    <div className="self-stretch justify-start text-text-light group-hover:text-white text-xs font-normal font-montserrat transition-colors duration-300">Data Analyst</div>
                   </div>
                 </div>
-                <div className="self-stretch justify-start text-text-light text-xl font-light font-montserrat">"Rina's profound data insights are instrumental in shaping our strategic direction and future initiatives. Her detailed analyses provide unparalleled clarity and foresight, enabling well-informed decisions that drive significant growth and improve efficiency across all departments, optimizing resource allocation."</div>
-                <div className="self-stretch justify-start text-gray-400 text-xs font-normal font-montserrat mt-auto">PT Analytics Hub</div>
+                <div className="self-stretch justify-start text-text-light group-hover:text-white text-base md:text-xl font-light font-montserrat transition-colors duration-300">"Rina's profound data insights are instrumental in shaping our strategic direction and future initiatives. Her detailed analyses provide unparalleled clarity and foresight, enabling well-informed decisions that drive significant growth and improve efficiency across all departments, optimizing resource allocation."</div>
+                <div className="self-stretch justify-start text-gray-400 group-hover:text-white text-xs font-normal font-montserrat mt-auto transition-colors duration-300">PT Analytics Hub</div>
               </div>
 
               {/* Testimonial 6 - Eko Setiawan */}
-              <div className="flex-shrink-0 w-96 h-[600px] p-8 bg-white border border-gray-300 flex flex-col justify-start items-start gap-6">
-                <div className="self-stretch inline-flex justify-start items-center gap-6">
+              <div className="group flex-shrink-0 w-72 md:w-96 h-auto md:h-[600px] p-4 md:p-8 bg-white hover:bg-violet-800 border border-gray-300 hover:border-violet-800 flex flex-col justify-start items-start gap-3 md:gap-6 transition-all duration-300">
+                <div className="self-stretch inline-flex justify-start items-center gap-3 md:gap-6">
                   <img className="w-12 h-12" src="https://placehold.co/48x48/10b981/1f2937" alt="Eko Setiawan" />
                   <div className="flex-1 inline-flex flex-col justify-start items-start gap-2">
-                    <div className="self-stretch justify-start text-text-light text-xl font-medium font-montserrat">Eko Setiawan</div>
-                    <div className="self-stretch justify-start text-text-light text-xs font-normal font-montserrat">Frontend Developer</div>
+                    <div className="self-stretch justify-start text-text-light group-hover:text-white text-base md:text-xl font-medium font-montserrat transition-colors duration-300">Eko Setiawan</div>
+                    <div className="self-stretch justify-start text-text-light group-hover:text-white text-xs font-normal font-montserrat transition-colors duration-300">Frontend Developer</div>
                   </div>
                 </div>
-                <div className="self-stretch justify-start text-text-light text-xl font-light font-montserrat">"Eko's coding expertise is unparalleled in its depth and breadth, and his unwavering commitment to staying current with the latest technology trends ensures our projects are always cutting-edge and remarkably efficient, firmly positioning us as industry leaders in technological innovation."</div>
-                <div className="self-stretch justify-start text-gray-400 text-xs font-normal font-montserrat mt-auto">PT Web Solutions</div>
+                <div className="self-stretch justify-start text-text-light group-hover:text-white text-base md:text-xl font-light font-montserrat transition-colors duration-300">"Eko's coding expertise is unparalleled in its depth and breadth, and his unwavering commitment to staying current with the latest technology trends ensures our projects are always cutting-edge and remarkably efficient, firmly positioning us as industry leaders in technological innovation."</div>
+                <div className="self-stretch justify-start text-gray-400 group-hover:text-white text-xs font-normal font-montserrat mt-auto transition-colors duration-300">PT Web Solutions</div>
               </div>
             </div>
 
             {/* Duplicate set for seamless loop */}
             <div
-              className="flex gap-8 animate-marquee"
+              className="flex gap-4 md:gap-8 animate-marquee"
               style={{ animationPlayState: isTestimonialHovered ? 'paused' : 'running' }}
               aria-hidden="true"
             >
               {/* Testimonial 1 - Tina Rahayu */}
-              <div className="flex-shrink-0 w-96 h-[600px] p-8 bg-white border border-gray-300 flex flex-col justify-start items-start gap-6">
-                <div className="self-stretch inline-flex justify-start items-center gap-6">
+              <div className="group flex-shrink-0 w-72 md:w-96 h-auto md:h-[600px] p-4 md:p-8 bg-white hover:bg-violet-800 border border-gray-300 hover:border-violet-800 flex flex-col justify-start items-start gap-3 md:gap-6 transition-all duration-300">
+                <div className="self-stretch inline-flex justify-start items-center gap-3 md:gap-6">
                   <img className="w-12 h-12" src="https://placehold.co/48x48/ec4899/1f2937" alt="Tina Rahayu" />
                   <div className="flex-1 inline-flex flex-col justify-start items-start gap-2">
-                    <div className="self-stretch justify-start text-text-light text-xl font-medium font-montserrat">Tina Rahayu</div>
-                    <div className="self-stretch justify-start text-text-light text-xs font-normal font-montserrat">Marketing Specialist</div>
+                    <div className="self-stretch justify-start text-text-light group-hover:text-white text-base md:text-xl font-medium font-montserrat transition-colors duration-300">Tina Rahayu</div>
+                    <div className="self-stretch justify-start text-text-light group-hover:text-white text-xs font-normal font-montserrat transition-colors duration-300">Marketing Specialist</div>
                   </div>
                 </div>
-                <div className="self-stretch justify-start text-text-light text-xl font-light font-montserrat">"Tina's marketing strategies are exceptionally creative, highly innovative, and meticulously data-driven, consistently capturing audience attention and driving impressive campaign results that not only exceed targets but also maximize ROI, setting new standards for marketing effectiveness."</div>
-                <div className="self-stretch justify-start text-gray-400 text-xs font-normal font-montserrat mt-auto">PT Marketing Pro</div>
+                <div className="self-stretch justify-start text-text-light group-hover:text-white text-base md:text-xl font-light font-montserrat transition-colors duration-300">"Tina's marketing strategies are exceptionally creative, highly innovative, and meticulously data-driven, consistently capturing audience attention and driving impressive campaign results that not only exceed targets but also maximize ROI, setting new standards for marketing effectiveness."</div>
+                <div className="self-stretch justify-start text-gray-400 group-hover:text-white text-xs font-normal font-montserrat mt-auto transition-colors duration-300">PT Marketing Pro</div>
               </div>
 
               {/* Testimonial 2 - Joko Lestari */}
-              <div className="flex-shrink-0 w-96 h-[600px] p-8 bg-white border border-gray-300 flex flex-col justify-start items-start gap-6">
-                <div className="self-stretch inline-flex justify-start items-center gap-6">
+              <div className="group flex-shrink-0 w-72 md:w-96 h-auto md:h-[600px] p-4 md:p-8 bg-white hover:bg-violet-800 border border-gray-300 hover:border-violet-800 flex flex-col justify-start items-start gap-3 md:gap-6 transition-all duration-300">
+                <div className="self-stretch inline-flex justify-start items-center gap-3 md:gap-6">
                   <img className="w-12 h-12" src="https://placehold.co/48x48/fbbf24/1f2937" alt="Joko Lestari" />
                   <div className="flex-1 inline-flex flex-col justify-start items-start gap-2">
-                    <div className="self-stretch justify-start text-text-light text-xl font-medium font-montserrat">Joko Lestari</div>
-                    <div className="self-stretch justify-start text-text-light text-xs font-normal font-montserrat">QA Engineer</div>
+                    <div className="self-stretch justify-start text-text-light group-hover:text-white text-base md:text-xl font-medium font-montserrat transition-colors duration-300">Joko Lestari</div>
+                    <div className="self-stretch justify-start text-text-light group-hover:text-white text-xs font-normal font-montserrat transition-colors duration-300">QA Engineer</div>
                   </div>
                 </div>
-                <div className="self-stretch justify-start text-text-light text-xl font-light font-montserrat">"Joko's rigorous testing protocols guarantee the superior quality and reliability of our products, proactively preventing potential problems and ensuring a seamless user experience right from initial release, significantly enhancing customer loyalty and fostering long-term relationships."</div>
-                <div className="self-stretch justify-start text-gray-400 text-xs font-normal font-montserrat mt-auto">PT Quality Assurance</div>
+                <div className="self-stretch justify-start text-text-light group-hover:text-white text-base md:text-xl font-light font-montserrat transition-colors duration-300">"Joko's rigorous testing protocols guarantee the superior quality and reliability of our products, proactively preventing potential problems and ensuring a seamless user experience right from initial release, significantly enhancing customer loyalty and fostering long-term relationships."</div>
+                <div className="self-stretch justify-start text-gray-400 group-hover:text-white text-xs font-normal font-montserrat mt-auto transition-colors duration-300">PT Quality Assurance</div>
               </div>
 
               {/* Testimonial 3 - Siti Aminah */}
-              <div className="flex-shrink-0 w-96 h-[600px] p-8 bg-white border border-gray-300 flex flex-col justify-start items-start gap-6">
-                <div className="self-stretch inline-flex justify-start items-center gap-6">
+              <div className="group flex-shrink-0 w-72 md:w-96 h-auto md:h-[600px] p-4 md:p-8 bg-white hover:bg-violet-800 border border-gray-300 hover:border-violet-800 flex flex-col justify-start items-start gap-3 md:gap-6 transition-all duration-300">
+                <div className="self-stretch inline-flex justify-start items-center gap-3 md:gap-6">
                   <img className="w-12 h-12" src="https://placehold.co/48x48/3b82f6/1f2937" alt="Siti Aminah" />
                   <div className="flex-1 inline-flex flex-col justify-start items-start gap-2">
-                    <div className="self-stretch justify-start text-text-light text-xl font-medium font-montserrat">Siti Aminah</div>
-                    <div className="self-stretch justify-start text-text-light text-xs font-normal font-montserrat">Product Manager</div>
+                    <div className="self-stretch justify-start text-text-light group-hover:text-white text-base md:text-xl font-medium font-montserrat transition-colors duration-300">Siti Aminah</div>
+                    <div className="self-stretch justify-start text-text-light group-hover:text-white text-xs font-normal font-montserrat transition-colors duration-300">Product Manager</div>
                   </div>
                 </div>
-                <div className="self-stretch justify-start text-text-light text-xl font-light font-montserrat">"Siti's leadership is truly transformative, as she champions collaboration, sparks innovation, and drives substantial growth. Her team consistently surpasses ambitious goals, achieving remarkable success and establishing new benchmarks for excellence throughout the entire organization, inspiring others to reach higher."</div>
-                <div className="self-stretch justify-start text-gray-400 text-xs font-normal font-montserrat mt-auto">PT Digital Solutions</div>
+                <div className="self-stretch justify-start text-text-light group-hover:text-white text-base md:text-xl font-light font-montserrat transition-colors duration-300">"Siti's leadership is truly transformative, as she champions collaboration, sparks innovation, and drives substantial growth. Her team consistently surpasses ambitious goals, achieving remarkable success and establishing new benchmarks for excellence throughout the entire organization, inspiring others to reach higher."</div>
+                <div className="self-stretch justify-start text-gray-400 group-hover:text-white text-xs font-normal font-montserrat mt-auto transition-colors duration-300">PT Digital Solutions</div>
               </div>
 
               {/* Testimonial 4 - Budi Santoso */}
-              <div className="flex-shrink-0 w-96 h-[600px] p-8 bg-white border border-gray-300 flex flex-col justify-start items-start gap-6">
-                <div className="self-stretch inline-flex justify-start items-center gap-6">
+              <div className="group flex-shrink-0 w-72 md:w-96 h-auto md:h-[600px] p-4 md:p-8 bg-white hover:bg-violet-800 border border-gray-300 hover:border-violet-800 flex flex-col justify-start items-start gap-3 md:gap-6 transition-all duration-300">
+                <div className="self-stretch inline-flex justify-start items-center gap-3 md:gap-6">
                   <img className="w-12 h-12" src="https://placehold.co/48x48/f97316/1f2937" alt="Budi Santoso" />
                   <div className="flex-1 inline-flex flex-col justify-start items-start gap-2">
-                    <div className="self-stretch justify-start text-text-light text-xl font-medium font-montserrat">Budi Santoso</div>
-                    <div className="self-stretch justify-start text-text-light text-xs font-normal font-montserrat">UX Designer</div>
+                    <div className="self-stretch justify-start text-text-light group-hover:text-white text-base md:text-xl font-medium font-montserrat transition-colors duration-300">Budi Santoso</div>
+                    <div className="self-stretch justify-start text-text-light group-hover:text-white text-xs font-normal font-montserrat transition-colors duration-300">UX Designer</div>
                   </div>
                 </div>
-                <div className="self-stretch justify-start text-text-light text-xl font-light font-montserrat">"Budi's UX designs are widely celebrated for their intuitive interfaces and exceptionally delightful user journeys, significantly boosting user satisfaction and engagement metrics. His thoughtful designs greatly enhance the overall user experience, making every interaction seamless and enjoyable for all users."</div>
-                <div className="self-stretch justify-start text-gray-400 text-xs font-normal font-montserrat mt-auto">PT Creative Minds</div>
+                <div className="self-stretch justify-start text-text-light group-hover:text-white text-base md:text-xl font-light font-montserrat transition-colors duration-300">"Budi's UX designs are widely celebrated for their intuitive interfaces and exceptionally delightful user journeys, significantly boosting user satisfaction and engagement metrics. His thoughtful designs greatly enhance the overall user experience, making every interaction seamless and enjoyable for all users."</div>
+                <div className="self-stretch justify-start text-gray-400 group-hover:text-white text-xs font-normal font-montserrat mt-auto transition-colors duration-300">PT Creative Minds</div>
               </div>
 
               {/* Testimonial 5 - Rina Dewi */}
-              <div className="flex-shrink-0 w-96 h-[600px] p-8 bg-white border border-gray-300 flex flex-col justify-start items-start gap-6">
-                <div className="self-stretch inline-flex justify-start items-center gap-6">
+              <div className="group flex-shrink-0 w-72 md:w-96 h-auto md:h-[600px] p-4 md:p-8 bg-white hover:bg-violet-800 border border-gray-300 hover:border-violet-800 flex flex-col justify-start items-start gap-3 md:gap-6 transition-all duration-300">
+                <div className="self-stretch inline-flex justify-start items-center gap-3 md:gap-6">
                   <img className="w-12 h-12" src="https://placehold.co/48x48/ec4899/1f2937" alt="Rina Dewi" />
                   <div className="flex-1 inline-flex flex-col justify-start items-start gap-2">
-                    <div className="self-stretch justify-start text-text-light text-xl font-medium font-montserrat">Rina Dewi</div>
-                    <div className="self-stretch justify-start text-text-light text-xs font-normal font-montserrat">Data Analyst</div>
+                    <div className="self-stretch justify-start text-text-light group-hover:text-white text-base md:text-xl font-medium font-montserrat transition-colors duration-300">Rina Dewi</div>
+                    <div className="self-stretch justify-start text-text-light group-hover:text-white text-xs font-normal font-montserrat transition-colors duration-300">Data Analyst</div>
                   </div>
                 </div>
-                <div className="self-stretch justify-start text-text-light text-xl font-light font-montserrat">"Rina's profound data insights are instrumental in shaping our strategic direction and future initiatives. Her detailed analyses provide unparalleled clarity and foresight, enabling well-informed decisions that drive significant growth and improve efficiency across all departments, optimizing resource allocation."</div>
-                <div className="self-stretch justify-start text-gray-400 text-xs font-normal font-montserrat mt-auto">PT Analytics Hub</div>
+                <div className="self-stretch justify-start text-text-light group-hover:text-white text-base md:text-xl font-light font-montserrat transition-colors duration-300">"Rina's profound data insights are instrumental in shaping our strategic direction and future initiatives. Her detailed analyses provide unparalleled clarity and foresight, enabling well-informed decisions that drive significant growth and improve efficiency across all departments, optimizing resource allocation."</div>
+                <div className="self-stretch justify-start text-gray-400 group-hover:text-white text-xs font-normal font-montserrat mt-auto transition-colors duration-300">PT Analytics Hub</div>
               </div>
 
               {/* Testimonial 6 - Eko Setiawan */}
-              <div className="flex-shrink-0 w-96 h-[600px] p-8 bg-white border border-gray-300 flex flex-col justify-start items-start gap-6">
-                <div className="self-stretch inline-flex justify-start items-center gap-6">
+              <div className="group flex-shrink-0 w-72 md:w-96 h-auto md:h-[600px] p-4 md:p-8 bg-white hover:bg-violet-800 border border-gray-300 hover:border-violet-800 flex flex-col justify-start items-start gap-3 md:gap-6 transition-all duration-300">
+                <div className="self-stretch inline-flex justify-start items-center gap-3 md:gap-6">
                   <img className="w-12 h-12" src="https://placehold.co/48x48/10b981/1f2937" alt="Eko Setiawan" />
                   <div className="flex-1 inline-flex flex-col justify-start items-start gap-2">
-                    <div className="self-stretch justify-start text-text-light text-xl font-medium font-montserrat">Eko Setiawan</div>
-                    <div className="self-stretch justify-start text-text-light text-xs font-normal font-montserrat">Frontend Developer</div>
+                    <div className="self-stretch justify-start text-text-light group-hover:text-white text-base md:text-xl font-medium font-montserrat transition-colors duration-300">Eko Setiawan</div>
+                    <div className="self-stretch justify-start text-text-light group-hover:text-white text-xs font-normal font-montserrat transition-colors duration-300">Frontend Developer</div>
                   </div>
                 </div>
-                <div className="self-stretch justify-start text-text-light text-xl font-light font-montserrat">"Eko's coding expertise is unparalleled in its depth and breadth, and his unwavering commitment to staying current with the latest technology trends ensures our projects are always cutting-edge and remarkably efficient, firmly positioning us as industry leaders in technological innovation."</div>
-                <div className="self-stretch justify-start text-gray-400 text-xs font-normal font-montserrat mt-auto">PT Web Solutions</div>
+                <div className="self-stretch justify-start text-text-light group-hover:text-white text-base md:text-xl font-light font-montserrat transition-colors duration-300">"Eko's coding expertise is unparalleled in its depth and breadth, and his unwavering commitment to staying current with the latest technology trends ensures our projects are always cutting-edge and remarkably efficient, firmly positioning us as industry leaders in technological innovation."</div>
+                <div className="self-stretch justify-start text-gray-400 group-hover:text-white text-xs font-normal font-montserrat mt-auto transition-colors duration-300">PT Web Solutions</div>
               </div>
             </div>
           </div>
