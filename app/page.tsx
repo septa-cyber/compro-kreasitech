@@ -939,19 +939,19 @@ export default function Home() {
       </section>
 
       {/* Portfolio Section */}
-      <section className="py-16 md:py-24 bg-violet-800 overflow-hidden" >
+      <section className="py-16 md:py-24 bg-white overflow-hidden" >
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 mb-12 md:mb-24">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 md:gap-24">
             <div className="flex-1 flex flex-col justify-start items-start gap-4 md:gap-8">
-              <h2 className="text-2xl md:text-4xl font-medium font-montserrat text-white">
+              <h2 className="text-2xl md:text-4xl font-medium font-montserrat text-gray-900">
                 Our Portfolio
               </h2>
-              <p className="text-sm md:text-base font-normal font-montserrat text-white">
+              <p className="text-sm md:text-base font-normal font-montserrat text-gray-600">
                 Projects showcase our expertise across various industries. We are committed to delivering excellence in every solution.
               </p>
             </div>
-            <button className="px-6 md:px-8 py-3 md:py-4 bg-violet-300 hover:bg-violet-200 rounded-lg transition-colors duration-300">
-              <span className="text-violet-800 text-sm md:text-base font-medium font-montserrat">View All</span>
+            <button className="px-6 md:px-8 py-3 md:py-4 bg-violet-600 hover:bg-violet-700 rounded-lg transition-colors duration-300">
+              <span className="text-white text-sm md:text-base font-medium font-montserrat">View All</span>
             </button>
           </div>
         </div>
@@ -965,7 +965,7 @@ export default function Home() {
           >
             {/* Single marquee container with all cards (original + duplicate) */}
             <div
-              className="flex gap-4 md:gap-8 pr-4 md:pr-8 w-max flex-shrink-0 animate-marquee"
+              className="flex gap-4 md:gap-8 pr-4 md:pr-8 w-max flex-shrink-0 animate-marquee-reverse"
               style={{ animationPlayState: isPortfolioHovered ? 'paused' : 'running' }}
             >
               {/* Auto-clone: Original + Duplicate items for seamless loop */}
@@ -987,10 +987,10 @@ export default function Home() {
                       alt={item.title}
                     />
                     <div className="flex items-center gap-2">
-                      <h3 className="text-base md:text-xl font-medium font-montserrat text-white">
+                      <h3 className="text-base md:text-xl font-medium font-montserrat text-gray-900">
                         {item.title}
                       </h3>
-                      <span className="text-xs font-normal font-montserrat text-white">
+                      <span className="text-xs font-normal font-montserrat text-gray-600">
                         {item.subtitle}
                       </span>
                     </div>
@@ -1002,161 +1002,103 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-20 bg-background-light-sec-sec">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center mb-8">
-            <div>
-              <h2 className="text-3xl font-bold text-text-light">
-                Our Portfolio
-              </h2>
-              <p className="text-xs mt-2 text-text-light-muted">
-                Projects showcase our expertise across various industries.
-              </p>
-            </div>
-            <button className="bg-primary text-white px-6 py-2 rounded-lg text-sm font-semibold hover:bg-secondary transition cursor-pointer">
-              View All
-            </button>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div className="group cursor-pointer">
-              <div className="overflow-hidden rounded-xl h-64 mb-3">
-                <img
-                  alt="Art 1"
-                  className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7u-AooC_b90LajyHtqr0n7WRgQJz8pLn9Ik6YIg9YCafgTkHh0c2sZfxfAstoqAqRt2hubSOSde-5Xnpf6BNex9EMjgn3euPTMdKIB4ySMi7DE6MN4gtSMWttXwBdT-wb5hWufyDei9kdDHDBK1LhlgfVpaWEk1PlNf-uPRaRhhTt-2mLWchmzQxY45NbLrCnMNycBVuuYeRU0Ws5lkicBgaA-bQoELpi8awBjcYer8YORmdAGPWbncTymWBGqPp260abrcYlknY"
-                />
-              </div>
-              <div className="font-bold text-sm">
-                Danarhadi CRM
-              </div>
-              <div className="text-[10px] text-gray-500">
-                Marketing Specialist
-              </div>
-            </div>
-            <div className="group cursor-pointer">
-              <div className="overflow-hidden rounded-xl h-64 mb-3">
-                <img
-                  alt="Art 2"
-                  className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpM1gNDWKv0g4oyXtLm3c85s-AnPrlBIM0BeYFfchv_bbv9ACJSEAZchbajLtG5E1ZiU1hurf6wNp6xG02qvAKRsIqF_j82XCftTz0gkA45ALh2djHX2GDxCzQv_cCFVPMG-D0B6Wp5rVC7OdGJK8xpvLSRFWzCI9I1FOgyGKuCnXpr-xme-rjclu0f45pwBwpmbGgWeXnwAeH_RSPvxi_86IBK94inS7zk43nWzbqbnFzSxd81Q6bXw9whFe-mGKbsvcaqJTkuRI"
-                />
-              </div>
-              <div className="font-bold text-sm">
-                Danarhadi CRM
-              </div>
-              <div className="text-[10px] text-gray-500">
-                Marketing Specialist
-              </div>
-            </div>
-            <div className="group cursor-pointer">
-              <div className="overflow-hidden rounded-xl h-64 mb-3">
-                <img
-                  alt="Art 3"
-                  className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJIvQ65UnHhWnBrnX__MhQmLUJ69ivu7eEoe5rI-lKCWr_5ihJoyv378MuHaz4c9Ob9XcwGi5_Rz5tO4jyAVuCpvPCI1cXGH4-8IaFKqOZ-7d7_sNeQ-NBQJUE8CHGwuEOgLeeyg0q6kCADCU-mFUoh5gYKwnDjWhw_fYIAkOm4Xnjpyv82VhLccpk8DwCtY1ZhdwMKBqDPeRcs_3g9Pp1BjnGZ1ICwLocc892k3e7bXXSZFdXyO9e5CzfCgdNV7gHLmAtdAvPUWs"
-                />
-              </div>
-              <div className="font-bold text-sm">
-                Danarhadi CRM
-              </div>
-              <div className="text-[10px] text-gray-500">
-                Marketing Specialist
-              </div>
-            </div>
-            <div className="group cursor-pointer">
-              <div className="overflow-hidden rounded-xl h-64 mb-3">
-                <img
-                  alt="Art 4"
-                  className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuBH2zGjmfAdEJ23aq69VWlQy4P1KKZtS3Oief1zQOO9MDaWVTK4HoYs35dK9mu2QLJiXxIYzBIY8Z9VFndxNm2wi4lN1DmmKzNBQT5FpgEOFxvL_o7_LzvpyRT6dfDktMUJOpTT8hEzJEfBVvqzn_JUsXHLF2fQaVb_58zBbPuEiljTYV2OcSR7dDXugIakKYBwX6P2ldvPShiS-zNRqxh7CKgpLROOLHTb17qKvI3qKHLEe6_v6w9xiHw1BQvsPf-JTgXZv7y3fMI"
-                />
-              </div>
-              <div className="font-bold text-sm">
-                Danarhadi CRM
-              </div>
-              <div className="text-[10px] text-gray-500">
-                Marketing Specialist
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      <section className="py-20 bg-gradient-to-br from-primary-dark to-[#312e81] text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-2">
-            Match your energy with our
-            <br />
-            workflow
-          </h2>
-          <p className="text-sm text-white/70 mb-12 max-w-2xl mx-auto">
-            We ensure every project is executed efficiently and tailored to your
-            unique business needs, providing innovative solutions that drive
-            success.
-          </p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-6">
-            <div className="border border-white/20 bg-white/5 rounded-xl p-6 hover:bg-white/10 transition backdrop-blur-sm">
-              <i className="fas fa-search text-2xl mb-4 text-white/80"></i>
-              <h3 className="font-bold text-sm mb-2">
+
+      <section className="py-24 bg-violet-800 text-white overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center gap-16">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-3xl md:text-5xl font-medium font-montserrat mb-6">
+              Match your energy with our workflow
+            </h2>
+            <p className="text-sm md:text-base font-normal font-montserrat text-white/90 leading-relaxed">
+              We ensure every project is executed efficiently and tailored to your unique business needs, providing innovative solutions that drive success.
+            </p>
+          </div>
+
+          <div className="w-full flex flex-wrap justify-center items-center content-center border border-white/20 divide-y divide-white/20 md:divide-y-0">
+            {/* Row 1 */}
+            <div className="w-full md:w-1/2 lg:w-1/4 h-80 p-8 flex flex-col justify-start items-center gap-6 border-b md:border-b md:border-r border-white/20 transition-all duration-300 hover:bg-white group cursor-default">
+              <div className="w-12 h-12 flex items-center justify-center relative">
+                <i className="fas fa-shapes text-3xl text-violet-300 group-hover:text-violet-600 group-hover:scale-110 transition-all duration-300"></i>
+              </div>
+              <h3 className="text-xl font-medium font-montserrat text-center h-14 flex items-center justify-center group-hover:text-gray-900 transition-colors duration-300">
                 Discovery & Requirements
               </h3>
-              <p className="text-[10px] text-white/60">
-                Are essential documents outlining a project's boundaries and
-                goals.
+              <p className="text-sm font-normal font-montserrat text-center text-white/80 group-hover:text-gray-600 transition-colors duration-300">
+                Are essential documents outlining a project's boundaries and goals.
               </p>
             </div>
-            <div className="border border-white/20 bg-white/5 rounded-xl p-6 hover:bg-white/10 transition backdrop-blur-sm">
-              <i className="fas fa-pencil-alt text-2xl mb-4 text-white/80"></i>
-              <h3 className="font-bold text-sm mb-2">
+
+            <div className="w-full md:w-1/2 lg:w-1/4 h-80 p-8 flex flex-col justify-start items-center gap-6 border-b md:border-b md:border-r border-white/20 transition-all duration-300 hover:bg-white group cursor-default">
+              <div className="w-12 h-12 flex items-center justify-center relative">
+                <i className="fas fa-pen-nib text-3xl text-violet-300 group-hover:text-violet-600 group-hover:scale-110 transition-all duration-300"></i>
+              </div>
+              <h3 className="text-xl font-medium font-montserrat text-center h-14 flex items-center justify-center group-hover:text-gray-900 transition-colors duration-300">
                 Wireframe & UI/UX Design
               </h3>
-              <p className="text-[10px] text-white/60">
-                Details the step-by-step method of developing or improving a
-                current product.
+              <p className="text-sm font-normal font-montserrat text-center text-white/80 group-hover:text-gray-600 transition-colors duration-300">
+                Details the step-by-step method of developing or improving a current product.
               </p>
             </div>
-            <div className="border border-white/20 bg-white/5 rounded-xl p-6 hover:bg-white/10 transition backdrop-blur-sm">
-              <i className="fas fa-laptop-code text-2xl mb-4 text-white/80"></i>
-              <h3 className="font-bold text-sm mb-2">Development</h3>
-              <p className="text-[10px] text-white/60">
-                Outlines the detailed procedure for innovating or upgrading an
-                existing service.
+
+            <div className="w-full md:w-1/2 lg:w-1/4 h-80 p-8 flex flex-col justify-start items-center gap-6 border-b md:border-b md:border-r border-white/20 transition-all duration-300 hover:bg-white group cursor-default">
+              <div className="w-12 h-12 flex items-center justify-center relative">
+                <i className="fas fa-laptop-code text-3xl text-violet-300 group-hover:text-violet-600 group-hover:scale-110 transition-all duration-300"></i>
+              </div>
+              <h3 className="text-xl font-medium font-montserrat text-center h-14 flex items-center justify-center group-hover:text-gray-900 transition-colors duration-300">
+                Development
+              </h3>
+              <p className="text-sm font-normal font-montserrat text-center text-white/80 group-hover:text-gray-600 transition-colors duration-300">
+                Outlines the detailed procedure for innovating or upgrading an existing service.
               </p>
             </div>
-            <div className="border border-white/20 bg-white/5 rounded-xl p-6 hover:bg-white/10 transition backdrop-blur-sm">
-              <i className="fas fa-vial text-2xl mb-4 text-white/80"></i>
-              <h3 className="font-bold text-sm mb-2">SIT</h3>
-              <p className="text-[10px] text-white/60">
-                Represents a milestone reached through commitment, skill, and
-                courage.
+
+            <div className="w-full md:w-1/2 lg:w-1/4 h-80 p-8 flex flex-col justify-start items-center gap-6 border-b md:border-b border-white/20 transition-all duration-300 hover:bg-white group cursor-default">
+              <div className="w-12 h-12 flex items-center justify-center relative">
+                <i className="fas fa-microscope text-3xl text-violet-300 group-hover:text-violet-600 group-hover:scale-110 transition-all duration-300"></i>
+              </div>
+              <h3 className="text-xl font-medium font-montserrat text-center h-14 flex items-center justify-center group-hover:text-gray-900 transition-colors duration-300">
+                SIT
+              </h3>
+              <p className="text-sm font-normal font-montserrat text-center text-white/80 group-hover:text-gray-600 transition-colors duration-300">
+                Represents a milestone reached through commitment, skill, and courage.
               </p>
             </div>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:w-3/4 mx-auto">
-            <div className="border border-white/20 bg-white/5 rounded-xl p-6 hover:bg-white/10 transition backdrop-blur-sm">
-              <i className="fas fa-users text-2xl mb-4 text-white/80"></i>
-              <h3 className="font-bold text-sm mb-2">UAT</h3>
-              <p className="text-[10px] text-white/60">
-                Embodies a success story built on perseverance, expertise, and
-                valor.
+
+            {/* Row 2 */}
+            <div className="w-full md:w-1/3 h-80 p-8 flex flex-col justify-start items-center gap-6 border-b md:border-b-0 md:border-r border-white/20 transition-all duration-300 hover:bg-white group cursor-default">
+              <div className="w-12 h-12 flex items-center justify-center relative">
+                <i className="fas fa-users text-3xl text-violet-300 group-hover:text-violet-600 group-hover:scale-110 transition-all duration-300"></i>
+              </div>
+              <h3 className="text-xl font-medium font-montserrat text-center h-14 flex items-center justify-center group-hover:text-gray-900 transition-colors duration-300">
+                UAT
+              </h3>
+              <p className="text-sm font-normal font-montserrat text-center text-white/80 group-hover:text-gray-600 transition-colors duration-300">
+                Embodies a success story built on perseverance, expertise, and valor.
               </p>
             </div>
-            <div className="border border-white/20 bg-white/5 rounded-xl p-6 hover:bg-white/10 transition backdrop-blur-sm">
-              <i className="fas fa-rocket text-2xl mb-4 text-white/80"></i>
-              <h3 className="font-bold text-sm mb-2">Deployment</h3>
-              <p className="text-[10px] text-white/60">
-                It allows for ongoing improvements through constant reviews and
-                iterative changes.
+
+            <div className="w-full md:w-1/3 h-80 p-8 flex flex-col justify-start items-center gap-6 border-b md:border-b-0 md:border-r border-white/20 transition-all duration-300 hover:bg-white group cursor-default">
+              <div className="w-12 h-12 flex items-center justify-center relative">
+                <i className="fas fa-rocket text-3xl text-violet-300 group-hover:text-violet-600 group-hover:scale-110 transition-all duration-300"></i>
+              </div>
+              <h3 className="text-xl font-medium font-montserrat text-center h-14 flex items-center justify-center group-hover:text-gray-900 transition-colors duration-300">
+                Deployment
+              </h3>
+              <p className="text-sm font-normal font-montserrat text-center text-white/80 group-hover:text-gray-600 transition-colors duration-300">
+                It allows for ongoing improvements through constant reviews and iterative changes.
               </p>
             </div>
-            <div className="border border-white/20 bg-white/5 rounded-xl p-6 hover:bg-white/10 transition backdrop-blur-sm">
-              <i className="fas fa-tools text-2xl mb-4 text-white/80"></i>
-              <h3 className="font-bold text-sm mb-2">
+
+            <div className="w-full md:w-1/3 h-80 p-8 flex flex-col justify-start items-center gap-6 transition-all duration-300 hover:bg-white group cursor-default">
+              <div className="w-12 h-12 flex items-center justify-center relative">
+                <i className="fas fa-wrench text-3xl text-violet-300 group-hover:text-violet-600 group-hover:scale-110 transition-all duration-300"></i>
+              </div>
+              <h3 className="text-xl font-medium font-montserrat text-center h-14 flex items-center justify-center group-hover:text-gray-900 transition-colors duration-300">
                 Maintenance & Support
               </h3>
-              <p className="text-[10px] text-white/60">
-                It facilitates ongoing development through constant reviews and
-                iterative modifications.
+              <p className="text-sm font-normal font-montserrat text-center text-white/80 group-hover:text-gray-600 transition-colors duration-300">
+                It facilitates ongoing development through constant reviews and iterative modifications.
               </p>
             </div>
           </div>

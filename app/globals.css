@@ -153,6 +153,16 @@ body {
   }
 }
 
+@keyframes marquee-reverse {
+  0% {
+    transform: translateX(-50%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
 .animate-float-slow {
   animation: float-slow 6s ease-in-out infinite;
 }
@@ -172,8 +182,16 @@ body {
   transform-style: preserve-3d;
 }
 
+.animate-marquee-reverse {
+  animation: marquee-reverse 30s linear infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
 /* Pause marquee animation on hover */
-.marquee-container:hover .animate-marquee {
+.marquee-container:hover .animate-marquee,
+.marquee-container:hover .animate-marquee-reverse {
   animation-play-state: paused;
 }
 
