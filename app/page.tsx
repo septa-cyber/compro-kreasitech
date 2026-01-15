@@ -676,7 +676,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-24 bg-primary text-white overflow-hidden">
+      <section className="py-24 bg-violet-600 text-white overflow-hidden">
         <div className="flex flex-col items-center gap-24 px-4 w-full">
           {/* Header */}
           <div className="w-full max-w-[784px] text-center">
@@ -689,17 +689,17 @@ export default function Home() {
           <div className="w-full max-w-[1200px] flex flex-col-reverse lg:flex-row items-center gap-12 lg:gap-6">
             {/* Left Column: Text */}
             <div className="w-full lg:w-[480px] flex flex-col items-center lg:items-start text-center lg:text-left gap-6">
-              <div className="text-xs font-normal font-montserrat opacity-90">
+              <div className="text-xs font-normal font-montserrat text-white opacity-90">
                 13 Nov 2025
               </div>
-              <h3 className="text-3xl font-medium font-montserrat">
+              <h3 className="text-3xl font-medium font-montserrat text-white">
                 HiTalent
               </h3>
-              <p className="text-base font-normal font-montserrat leading-relaxed opacity-90">
-                Smart solutions to manage human resources efficiently — from attendance to payroll. Powered by cloud-based technology that simplifies management while boosting your company’s productivity and efficiency.
+              <p className="text-base font-normal font-montserrat leading-relaxed text-white opacity-90">
+                Smart solutions to manage human resources efficiently — from attendance to payroll. Powered by cloud-based technology that simplifies management while boosting your company's productivity and efficiency.
               </p>
-              <button className="px-8 py-4 bg-violet-300 rounded-lg flex justify-center items-center gap-2.5 hover:bg-violet-200 transition-colors">
-                <span className="text-violet-800 text-base font-medium font-montserrat">Start Detail</span>
+              <button className="px-8 py-4 bg-violet-300 rounded-lg inline-flex justify-center items-center gap-2.5 hover:bg-violet-200 transition-colors">
+                <span className="text-violet-800 text-base font-medium font-montserrat">See Detail</span>
               </button>
             </div>
 
