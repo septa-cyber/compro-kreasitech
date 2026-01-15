@@ -60,25 +60,38 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* Use same colors as light mode */
+    --background: #ffffff;
+    --foreground: #171717;
 
-    --background-light: #0f0f0f;
-    --background-light-sec: #1a1a1a;
+    --background-light: #ffffff;
+    --background-light-sec: #f9fafb;
+    --background-dark: #ffffff;
+    --background-dark-sec: #f9fafb;
 
-    --border: 217 33% 17%;
-    --input: 217 33% 17%;
+    /* Text colors - same as light mode */
+    --text-light: #1f2937;
+    --text-light-muted: #6b7280;
+    --text-dark: #1f2937;
+    --text-dark-muted: #6b7280;
 
-    --card: 222 47% 11%;
-    --card-foreground: 0 0% 98%;
-    --popover: 222 47% 11%;
-    --popover-foreground: 0 0% 98%;
+    /* Keep light mode border colors */
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
 
-    --muted: 217 33% 17%;
-    --muted-foreground: 215 20% 65%;
+    /* Keep light mode card colors */
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
 
-    --accent: 217 33% 17%;
-    --accent-foreground: 0 0% 98%;
+    /* Keep light mode muted colors */
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+
+    /* Keep light mode accent colors */
+    --accent: 210 40% 96%;
+    --accent-foreground: 222 47% 11%;
   }
 }
 
