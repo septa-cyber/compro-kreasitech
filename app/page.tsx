@@ -6,6 +6,7 @@ export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeMobileDropdown, setActiveMobileDropdown] = useState<string | null>(null);
   const [isTestimonialHovered, setIsTestimonialHovered] = useState(false);
+  const [isPortfolioHovered, setIsPortfolioHovered] = useState(false);
 
 
   const toggleMobileDropdown = (name: string) => {
@@ -1000,6 +1001,300 @@ export default function Home() {
           {/* Custom Progress Indicator */}
           <div className="flex items-center gap-4 mt-12 max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
             <div className="w-24 h-[5px] bg-text-light rounded-full"></div>
+          </div>
+        </div>
+      </section>
+
+      {/* Portfolio Section */}
+      <section className="py-16 md:py-24 bg-violet-800 overflow-hidden">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 mb-12 md:mb-24">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 md:gap-24">
+            <div className="flex-1 flex flex-col justify-start items-start gap-4 md:gap-8">
+              <h2 className="text-2xl md:text-4xl font-medium font-montserrat text-white">
+                Our Portfolio
+              </h2>
+              <p className="text-sm md:text-base font-normal font-montserrat text-white">
+                Projects showcase our expertise across various industries. We are committed to delivering excellence in every solution.
+              </p>
+            </div>
+            <button className="px-6 md:px-8 py-3 md:py-4 bg-violet-300 hover:bg-violet-200 rounded-lg transition-colors duration-300">
+              <span className="text-violet-800 text-sm md:text-base font-medium font-montserrat">View All</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Horizontal Scrolling Portfolio Cards with Marquee */}
+        <div className="relative">
+          <div
+            className="flex overflow-hidden"
+            onMouseEnter={() => setIsPortfolioHovered(true)}
+            onMouseLeave={() => setIsPortfolioHovered(false)}
+          >
+            {/* Single marquee container with all cards (original + duplicate) */}
+            <div
+              className="flex gap-4 md:gap-8 animate-marquee"
+              style={{ animationPlayState: isPortfolioHovered ? 'paused' : 'running' }}
+            >
+              {/* Portfolio Item 1 - Large */}
+              <div className="group flex-shrink-0 flex flex-col gap-4 md:gap-8">
+                <img
+                  className="w-80 md:w-[600px] h-64 md:h-96 object-cover"
+                  src="https://placehold.co/600x400"
+                  alt="Danarhadi CRM"
+                />
+                <div className="flex items-center gap-2">
+                  <h3 className="text-base md:text-xl font-medium font-montserrat text-white">Danarhadi CRM</h3>
+                  <span className="text-xs font-normal font-montserrat text-white">Marketing Specialist</span>
+                </div>
+              </div>
+
+              {/* Portfolio Item 2 - Medium */}
+              <div className="group flex-shrink-0 flex flex-col gap-4 md:gap-8">
+                <img
+                  className="w-64 md:w-96 h-64 md:h-96 object-cover"
+                  src="https://placehold.co/400x400"
+                  alt="Danarhadi CRM"
+                />
+                <div className="flex items-center gap-2">
+                  <h3 className="text-base md:text-xl font-medium font-montserrat text-white">Danarhadi CRM</h3>
+                  <span className="text-xs font-normal font-montserrat text-white">Marketing Specialist</span>
+                </div>
+              </div>
+
+              {/* Portfolio Item 3 - Large */}
+              <div className="group flex-shrink-0 flex flex-col gap-4 md:gap-8">
+                <img
+                  className="w-80 md:w-[600px] h-64 md:h-96 object-cover"
+                  src="https://placehold.co/600x400"
+                  alt="Danarhadi CRM"
+                />
+                <div className="flex items-center gap-2">
+                  <h3 className="text-base md:text-xl font-medium font-montserrat text-white">Danarhadi CRM</h3>
+                  <span className="text-xs font-normal font-montserrat text-white">Marketing Specialist</span>
+                </div>
+              </div>
+
+              {/* Portfolio Item 4 - Large */}
+              <div className="group flex-shrink-0 flex flex-col gap-4 md:gap-8">
+                <img
+                  className="w-80 md:w-[600px] h-64 md:h-96 object-cover"
+                  src="https://placehold.co/600x400"
+                  alt="Danarhadi CRM"
+                />
+                <div className="flex items-center gap-2">
+                  <h3 className="text-base md:text-xl font-medium font-montserrat text-white">Danarhadi CRM</h3>
+                  <span className="text-xs font-normal font-montserrat text-white">Marketing Specialist</span>
+                </div>
+              </div>
+
+              {/* Portfolio Item 5 - Medium */}
+              <div className="group flex-shrink-0 flex flex-col gap-4 md:gap-8">
+                <img
+                  className="w-64 md:w-96 h-64 md:h-96 object-cover"
+                  src="https://placehold.co/400x400"
+                  alt="Danarhadi CRM"
+                />
+                <div className="flex items-center gap-2">
+                  <h3 className="text-base md:text-xl font-medium font-montserrat text-white">Danarhadi CRM</h3>
+                  <span className="text-xs font-normal font-montserrat text-white">Marketing Specialist</span>
+                </div>
+              </div>
+
+              {/* Portfolio Item 6 - Large */}
+              <div className="group flex-shrink-0 flex flex-col gap-4 md:gap-8">
+                <img
+                  className="w-80 md:w-[600px] h-64 md:h-96 object-cover"
+                  src="https://placehold.co/600x400"
+                  alt="Danarhadi CRM"
+                />
+                <div className="flex items-center gap-2">
+                  <h3 className="text-base md:text-xl font-medium font-montserrat text-white">Danarhadi CRM</h3>
+                  <span className="text-xs font-normal font-montserrat text-white">Marketing Specialist</span>
+                </div>
+              </div>
+
+              {/* Portfolio Item 7 - Large */}
+              <div className="group flex-shrink-0 flex flex-col gap-4 md:gap-8">
+                <img
+                  className="w-80 md:w-[600px] h-64 md:h-96 object-cover"
+                  src="https://placehold.co/600x400"
+                  alt="Danarhadi CRM"
+                />
+                <div className="flex items-center gap-2">
+                  <h3 className="text-base md:text-xl font-medium font-montserrat text-white">Danarhadi CRM</h3>
+                  <span className="text-xs font-normal font-montserrat text-white">Marketing Specialist</span>
+                </div>
+              </div>
+
+              {/* Portfolio Item 8 - Medium */}
+              <div className="group flex-shrink-0 flex flex-col gap-4 md:gap-8">
+                <img
+                  className="w-64 md:w-96 h-64 md:h-96 object-cover"
+                  src="https://placehold.co/400x400"
+                  alt="Danarhadi CRM"
+                />
+                <div className="flex items-center gap-2">
+                  <h3 className="text-base md:text-xl font-medium font-montserrat text-white">Danarhadi CRM</h3>
+                  <span className="text-xs font-normal font-montserrat text-white">Marketing Specialist</span>
+                </div>
+              </div>
+
+              {/* Portfolio Item 9 - Large */}
+              <div className="group flex-shrink-0 flex flex-col gap-4 md:gap-8">
+                <img
+                  className="w-80 md:w-[600px] h-64 md:h-96 object-cover"
+                  src="https://placehold.co/600x400"
+                  alt="Danarhadi CRM"
+                />
+                <div className="flex items-center gap-2">
+                  <h3 className="text-base md:text-xl font-medium font-montserrat text-white">Danarhadi CRM</h3>
+                  <span className="text-xs font-normal font-montserrat text-white">Marketing Specialist</span>
+                </div>
+              </div>
+
+              {/* Portfolio Item 10 - Large */}
+              <div className="group flex-shrink-0 flex flex-col gap-4 md:gap-8">
+                <img
+                  className="w-80 md:w-[600px] h-64 md:h-96 object-cover"
+                  src="https://placehold.co/600x400"
+                  alt="Danarhadi CRM"
+                />
+                <div className="flex items-center gap-2">
+                  <h3 className="text-base md:text-xl font-medium font-montserrat text-white">Danarhadi CRM</h3>
+                  <span className="text-xs font-normal font-montserrat text-white">Marketing Specialist</span>
+                </div>
+              </div>
+
+              {/* DUPLICATE SET - Portfolio Item 1 - Large */}
+              <div className="group flex-shrink-0 flex flex-col gap-4 md:gap-8" aria-hidden="true">
+                <img
+                  className="w-80 md:w-[600px] h-64 md:h-96 object-cover"
+                  src="https://placehold.co/600x400"
+                  alt="Danarhadi CRM"
+                />
+                <div className="flex items-center gap-2">
+                  <h3 className="text-base md:text-xl font-medium font-montserrat text-white">Danarhadi CRM</h3>
+                  <span className="text-xs font-normal font-montserrat text-white">Marketing Specialist</span>
+                </div>
+              </div>
+
+              {/* DUPLICATE SET - Portfolio Item 2 - Medium */}
+              <div className="group flex-shrink-0 flex flex-col gap-4 md:gap-8" aria-hidden="true">
+                <img
+                  className="w-64 md:w-96 h-64 md:h-96 object-cover"
+                  src="https://placehold.co/400x400"
+                  alt="Danarhadi CRM"
+                />
+                <div className="flex items-center gap-2">
+                  <h3 className="text-base md:text-xl font-medium font-montserrat text-white">Danarhadi CRM</h3>
+                  <span className="text-xs font-normal font-montserrat text-white">Marketing Specialist</span>
+                </div>
+              </div>
+
+              {/* DUPLICATE SET - Portfolio Item 3 - Large */}
+              <div className="group flex-shrink-0 flex flex-col gap-4 md:gap-8" aria-hidden="true">
+                <img
+                  className="w-80 md:w-[600px] h-64 md:h-96 object-cover"
+                  src="https://placehold.co/600x400"
+                  alt="Danarhadi CRM"
+                />
+                <div className="flex items-center gap-2">
+                  <h3 className="text-base md:text-xl font-medium font-montserrat text-white">Danarhadi CRM</h3>
+                  <span className="text-xs font-normal font-montserrat text-white">Marketing Specialist</span>
+                </div>
+              </div>
+
+              {/* DUPLICATE SET - Portfolio Item 4 - Large */}
+              <div className="group flex-shrink-0 flex flex-col gap-4 md:gap-8" aria-hidden="true">
+                <img
+                  className="w-80 md:w-[600px] h-64 md:h-96 object-cover"
+                  src="https://placehold.co/600x400"
+                  alt="Danarhadi CRM"
+                />
+                <div className="flex items-center gap-2">
+                  <h3 className="text-base md:text-xl font-medium font-montserrat text-white">Danarhadi CRM</h3>
+                  <span className="text-xs font-normal font-montserrat text-white">Marketing Specialist</span>
+                </div>
+              </div>
+
+              {/* DUPLICATE SET - Portfolio Item 5 - Medium */}
+              <div className="group flex-shrink-0 flex flex-col gap-4 md:gap-8" aria-hidden="true">
+                <img
+                  className="w-64 md:w-96 h-64 md:h-96 object-cover"
+                  src="https://placehold.co/400x400"
+                  alt="Danarhadi CRM"
+                />
+                <div className="flex items-center gap-2">
+                  <h3 className="text-base md:text-xl font-medium font-montserrat text-white">Danarhadi CRM</h3>
+                  <span className="text-xs font-normal font-montserrat text-white">Marketing Specialist</span>
+                </div>
+              </div>
+
+              {/* DUPLICATE SET - Portfolio Item 6 - Large */}
+              <div className="group flex-shrink-0 flex flex-col gap-4 md:gap-8" aria-hidden="true">
+                <img
+                  className="w-80 md:w-[600px] h-64 md:h-96 object-cover"
+                  src="https://placehold.co/600x400"
+                  alt="Danarhadi CRM"
+                />
+                <div className="flex items-center gap-2">
+                  <h3 className="text-base md:text-xl font-medium font-montserrat text-white">Danarhadi CRM</h3>
+                  <span className="text-xs font-normal font-montserrat text-white">Marketing Specialist</span>
+                </div>
+              </div>
+
+              {/* DUPLICATE SET - Portfolio Item 7 - Large */}
+              <div className="group flex-shrink-0 flex flex-col gap-4 md:gap-8" aria-hidden="true">
+                <img
+                  className="w-80 md:w-[600px] h-64 md:h-96 object-cover"
+                  src="https://placehold.co/600x400"
+                  alt="Danarhadi CRM"
+                />
+                <div className="flex items-center gap-2">
+                  <h3 className="text-base md:text-xl font-medium font-montserrat text-white">Danarhadi CRM</h3>
+                  <span className="text-xs font-normal font-montserrat text-white">Marketing Specialist</span>
+                </div>
+              </div>
+
+              {/* DUPLICATE SET - Portfolio Item 8 - Medium */}
+              <div className="group flex-shrink-0 flex flex-col gap-4 md:gap-8" aria-hidden="true">
+                <img
+                  className="w-64 md:w-96 h-64 md:h-96 object-cover"
+                  src="https://placehold.co/400x400"
+                  alt="Danarhadi CRM"
+                />
+                <div className="flex items-center gap-2">
+                  <h3 className="text-base md:text-xl font-medium font-montserrat text-white">Danarhadi CRM</h3>
+                  <span className="text-xs font-normal font-montserrat text-white">Marketing Specialist</span>
+                </div>
+              </div>
+
+              {/* DUPLICATE SET - Portfolio Item 9 - Large */}
+              <div className="group flex-shrink-0 flex flex-col gap-4 md:gap-8" aria-hidden="true">
+                <img
+                  className="w-80 md:w-[600px] h-64 md:h-96 object-cover"
+                  src="https://placehold.co/600x400"
+                  alt="Danarhadi CRM"
+                />
+                <div className="flex items-center gap-2">
+                  <h3 className="text-base md:text-xl font-medium font-montserrat text-white">Danarhadi CRM</h3>
+                  <span className="text-xs font-normal font-montserrat text-white">Marketing Specialist</span>
+                </div>
+              </div>
+
+              {/* DUPLICATE SET - Portfolio Item 10 - Large */}
+              <div className="group flex-shrink-0 flex flex-col gap-4 md:gap-8" aria-hidden="true">
+                <img
+                  className="w-80 md:w-[600px] h-64 md:h-96 object-cover"
+                  src="https://placehold.co/600x400"
+                  alt="Danarhadi CRM"
+                />
+                <div className="flex items-center gap-2">
+                  <h3 className="text-base md:text-xl font-medium font-montserrat text-white">Danarhadi CRM</h3>
+                  <span className="text-xs font-normal font-montserrat text-white">Marketing Specialist</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
