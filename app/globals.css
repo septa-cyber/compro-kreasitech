@@ -169,6 +169,11 @@ body {
   animation: marquee 30s linear infinite;
 }
 
+/* Pause marquee animation on hover */
+.marquee-container:hover .animate-marquee {
+  animation-play-state: paused;
+}
+
 /* Shadow utilities */
 .shadow-glow {
   box-shadow: 0px 4px 20px 0px rgba(124, 58, 237, 0.4);
