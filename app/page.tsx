@@ -365,7 +365,7 @@ export default function Home() {
               </a>
               <a
                 href="#"
-                className="px-4 py-2.5 bg-violet-600 rounded-lg text-white text-xs font-medium text-center shadow-glow hover:bg-violet-700 transition-colors"
+                className="px-4 py-2.5 bg-violet-600 rounded-lg text-white text-xs font-medium text-center hover:bg-violet-700 transition-colors"
               >
                 START HIRING
               </a>
@@ -384,7 +384,7 @@ export default function Home() {
 
           {/* Main Heading */}
           <h1 className="text-4xl sm:text-5xl lg:text-7xl font-medium font-montserrat leading-tight max-w-5xl mx-auto mb-8 text-text-light dark:text-text-dark">
-            Connecting <span className="font-semibold text-primary">Education, Career, and Business</span> through Digital Innovation.
+            Connecting <span className="font-semibold text-violet-600">Education, Career, and Business</span> through Digital Innovation.
           </h1>
 
           {/* Subheading */}
@@ -395,14 +395,12 @@ export default function Home() {
 
             {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a href="#" className="w-full sm:w-auto px-8 py-4 bg-primary text-white text-base font-medium font-montserrat rounded-lg shadow-glow hover:bg-primary-dark transition-all duration-300">
-                Start Hiring
+              <a href="#" className="w-full sm:w-auto px-8 py-4 bg-violet-600 rounded-lg inline-flex justify-center items-center gap-2.5 hover:bg-violet-700 transition-all duration-300">
+                <div className="text-gray-100 text-base font-medium font-montserrat">Start Hiring</div>
               </a>
-              <a href="#" className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-4 text-text-light dark:text-text-dark text-base font-medium font-montserrat hover:text-primary transition-colors">
+              <a href="#" className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-4 text-text-light dark:text-text-dark text-base font-medium font-montserrat hover:text-violet-600 transition-colors group">
                 Learn More
-                <div className="w-5 h-5 relative flex items-center justify-center border border-gray-300 rounded-full">
-                  <i className="fas fa-arrow-down text-[10px] text-primary"></i>
-                </div>
+                <img src="/assets/images/arrow_downward.svg" alt="" className="w-6 h-6" />
               </a>
             </div>
             <p className="mt-4 text-xs text-gray-400 font-montserrat">Free to interview, low-cost hiring</p>
@@ -1282,7 +1280,7 @@ export default function Home() {
             Transform your business with our end-to-end digital expertise and
             innovative technology.
           </p>
-          <button className="bg-primary text-white px-8 py-3 rounded-lg font-semibold hover:bg-secondary transition shadow-glow cursor-pointer">
+          <button className="bg-primary text-white px-8 py-3 rounded-lg font-semibold hover:bg-secondary transition cursor-pointer">
             Get Started Today
           </button>
         </div>
