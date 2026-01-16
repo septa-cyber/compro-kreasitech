@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import WhyUs from "@/components/WhyUs";
+import CallToAction from "@/components/CallToAction";
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -81,7 +83,7 @@ export default function Home() {
 
   return (
     <div className="bg-background-light text-text-light font-sans transition-colors duration-300">
-      <nav className="fixed top-6 left-1/2 -translate-x-1/2 w-[95%] max-w-[1400px] z-50 bg-white/95/95 backdrop-blur-md border border-gray-100 shadow-[0px_4px_20px_0px_rgba(0,0,0,0.05)] rounded-2xl transition-all duration-300">
+      <nav className="fixed top-6 left-1/2 -translate-x-1/2 w-[95%] max-w-[1400px] z-50 bg-white/95/95 backdrop-blur-md border border-gray-100 shadow-[0px_4px_20px_0px_rgba(0,0,0,0.05)] rounded-lg transition-all duration-300">
         <div className="px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-[72px]">
             {/* Logo Section */}
@@ -239,7 +241,7 @@ export default function Home() {
               <div className="flex items-center gap-2 ml-2 xl:ml-4">
                 <a
                   href="#"
-                  className="h-8 xl:h-10 px-2 xl:px-4 rounded-lg outline outline-1 outline-violet-600 text-violet-600 text-[10px] xl:text-xs font-semibold font-montserrat flex items-center justify-center hover:bg-violet-50 transition whitespace-nowrap"
+                  className="bg-white h-8 xl:h-10 px-2 xl:px-4 rounded-lg outline outline-1 outline-violet-600 text-violet-600 text-[10px] xl:text-xs font-semibold font-montserrat flex items-center justify-center hover:bg-violet-50 transition whitespace-nowrap"
                 >
                   APPLY FOR JOBS
                 </a>
@@ -784,6 +786,9 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Why Us Section */}
+      <WhyUs />
+
       {/* Hiring Process Section */}
       <section className="py-24 bg-[#F4F4F7]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center gap-16 lg:gap-24">
@@ -1105,141 +1110,11 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-24 bg-background-light overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center gap-16">
-          <div className="lg:w-1/3 relative flex flex-col justify-between h-full gap-24 text-center lg:text-left">
-            <div className="relative">
-              <h2 className="text-3xl font-bold mb-6 text-text-light">
-                Why Kreasitech is the
-                <br />
-                right choice for you?
-              </h2>
-              <p className="text-sm text-text-light-muted mb-8">
-                We provide secure, scalable, and innovative IT solutions
-                tailored to your needs. With expert-driven execution, we ensure
-                efficiency.
-              </p>
-              <div className="text-primary/80 mx-auto lg:mx-0 w-48">
-                <svg
-                  className="w-full h-auto fill-current"
-                  viewBox="0 0 200 200"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M45.7,-76.3C58.9,-69.3,69.1,-58.3,77.3,-46.3C85.5,-34.3,91.7,-21.3,92.6,-8.2C93.5,4.9,89.1,18.1,81.4,29.3C73.7,40.5,62.7,49.7,51.4,56.8C40.1,63.9,28.5,68.9,16.5,70.9C4.5,72.9,-7.9,71.9,-19.9,68.7C-31.9,65.5,-43.5,60.1,-53.6,52.4C-63.7,44.7,-72.3,34.7,-77.8,23.1C-83.3,11.5,-85.7,-1.7,-82.9,-13.9C-80.1,-26.1,-72.1,-37.3,-62.4,-45.8C-52.7,-54.3,-41.3,-60.1,-30.1,-68.2C-18.9,-76.3,-7.9,-86.7,4.2,-93.2C16.3,-99.7,32.5,-102.3,45.7,-76.3Z"
-                    style={{ opacity: 0.1 }}
-                    transform="translate(100 100) scale(1.1)"
-                  ></path>
-                  <circle cx="100" cy="80" fill="currentColor" r="15"></circle>
-                  <path d="M100 100 L80 140 L120 140 Z" fill="currentColor"></path>
-                  <path
-                    d="M80 120 L60 100"
-                    stroke="currentColor"
-                    strokeWidth="4"
-                  ></path>
-                  <path
-                    d="M120 120 L140 100"
-                    stroke="currentColor"
-                    strokeWidth="4"
-                  ></path>
-                </svg>
-              </div>
-            </div>
-            <div className="text-primary/80 mx-auto lg:mx-0 w-48">
-              <svg
-                className="w-full h-auto"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1"
-                viewBox="0 0 24 24"
-              >
-                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-                <line x1="12" x2="12" y1="22.08" y2="12"></line>
-                <line x1="17" x2="22" y1="5" y2="2"></line>
-                <line x1="7" x2="2" y1="5" y2="2"></line>
-              </svg>
-            </div>
-          </div>
-          <div className="lg:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-y-12 gap-x-8">
-            <div>
-              <h3 className="font-bold text-lg mb-2">
-                Creative Partnership
-              </h3>
-              <p className="text-sm text-text-light-muted">
-                At Kreasitech, we believe that the best innovation comes from
-                strong collaboration. We work closely as a strategic partner.
-              </p>
-            </div>
-            <div>
-              <h3 className="font-bold text-lg mb-2">
-                Cost Effective & High ROI
-              </h3>
-              <p className="text-sm text-text-light-muted">
-                The technology we develop is not only effective but also
-                provides optimal investment value, increasing operational
-                efficiency.
-              </p>
-            </div>
-            <div>
-              <h3 className="font-bold text-lg mb-2">
-                End to End IT Support
-              </h3>
-              <p className="text-sm text-text-light-muted">
-                From consultation to implementation and maintenance, we are here
-                to ensure your technology solutions always run optimally.
-              </p>
-            </div>
-            <div>
-              <h3 className="font-bold text-lg mb-2">
-                Experience Professionals
-              </h3>
-              <p className="text-sm text-text-light-muted">
-                We guarantee your project is handled by our experienced team of
-                professionals who understand modern business challenges.
-              </p>
-            </div>
-            <div>
-              <h3 className="font-bold text-lg mb-2">
-                Security & Compliance
-              </h3>
-              <p className="text-sm text-text-light-muted">
-                We prioritize data security and compliance with industry
-                regulations, ensuring your system remains secure and reliable.
-              </p>
-            </div>
-            <div>
-              <h3 className="font-bold text-lg mb-2">
-                Tailor Solutions
-              </h3>
-              <p className="text-sm text-text-light-muted">
-                The best technology is that which suits your business needs. At
-                Kreasitech, we present Tailored Solutions specifically designed.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      <section className="py-20 bg-background-light-sec-sec border-t border-gray-100">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-4">
-            Empower Your Business
-            <br />
-            with Smart Digital Solutions
-          </h2>
-          <p className="text-sm text-text-light-muted mb-8">
-            Transform your business with our end-to-end digital expertise and
-            innovative technology.
-          </p>
-          <button className="bg-primary text-white px-8 py-3 rounded-lg font-semibold hover:bg-secondary transition cursor-pointer">
-            Get Started Today
-          </button>
-        </div>
-      </section>
+      <CallToAction />
 
-      <footer className="w-full bg-background-light-sec-sec pb-12 pt-0 px-4">
-        <div className="w-full max-w-[1400px] mx-auto bg-white rounded-3xl p-8 lg:p-12 shadow-sm flex flex-col justify-start items-start gap-8">
+      <footer className="w-full bg-[#F4F4F7] pb-12 pt-0 px-4">
+        <div className="w-full max-w-[1400px] mx-auto bg-white rounded-lg p-8 lg:p-12 shadow-sm flex flex-col justify-start items-start gap-8">
           <div className="w-full flex flex-col lg:flex-row justify-between items-center gap-6">
             <div className="flex items-center gap-2">
               <img
