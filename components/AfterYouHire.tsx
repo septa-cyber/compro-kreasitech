@@ -1,0 +1,58 @@
+import React from 'react';
+
+export default function AfterYouHire() {
+    return (
+        <section className="py-24 bg-white/95 backdrop-blur-md border-t border-gray-100">
+            <div className="max-w-[1200px] mx-auto px-4 flex flex-col items-center gap-24">
+                <div className="w-full max-w-[784px] text-center">
+                    <h2 className="text-3xl font-medium font-montserrat text-text-light">
+                        After You Hire
+                    </h2>
+                </div>
+
+                <div className="w-full flex flex-col lg:flex-row justify-center items-center gap-8 lg:gap-16">
+                    {/* Left Box */}
+                    <div className="w-full max-w-sm px-8 pt-8 pb-12 flex flex-col items-center gap-6">
+                        <h3 className="text-2xl font-medium font-montserrat text-center text-text-light">
+                            Onboard, pay, retain
+                        </h3>
+                        <p className="text-sm font-normal font-montserrat text-center text-text-light-muted leading-relaxed">
+                            We support onboarding, payroll, and compliance, so your new hire integrates fast and sticks long term.
+                        </p>
+                    </div>
+
+                    {/* Arrows */}
+                    {/* Desktop Arrows (Right) */}
+                    <div className="hidden lg:flex items-center gap-[-8px]">
+                        {[...Array(3)].map((_, i) => (
+                            <div key={i} className="relative w-16 h-32 flex items-center justify-center">
+                                <svg viewBox="0 0 24 24" fill="currentColor" className="w-16 h-16 text-violet-300">
+                                    <path d="M8 5v14l11-7z" />
+                                </svg>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Mobile Arrow (Down) */}
+                    <div className="flex lg:hidden items-center justify-center py-4">
+                        <div className="relative w-16 h-16 flex items-center justify-center">
+                            <svg viewBox="0 0 24 24" fill="currentColor" className="w-24 h-24 text-violet-300">
+                                <path d="M5 8h14l-7 11z" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    {/* Right Box */}
+                    <div className="w-full max-w-sm px-8 pt-8 pb-12 flex flex-col items-center gap-6">
+                        <h3 className="text-2xl font-medium font-montserrat text-center text-text-light">
+                            Ongoing support & team expansion
+                        </h3>
+                        <p className="text-sm font-normal font-montserrat text-center text-text-light-muted leading-relaxed">
+                            Keep hiring with the same speed and quality whenever you need. Your recruiter stays close to support future hires, backfills, or scaling your team.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+}
