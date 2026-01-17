@@ -1,16 +1,16 @@
-import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
-import Services from "@/components/Services";
-import OurProduct from "@/components/OurProduct";
-import WhyUs from "@/components/WhyUs";
-import HiringProcess from "@/components/HiringProcess";
-import AfterYouHire from "@/components/AfterYouHire";
-import Testimonials from "@/components/Testimonials";
-import Portfolio from "@/components/Portfolio";
-import Workflow from "@/components/Workflow";
-import CallToAction from "@/components/CallToAction";
-import Footer from "@/components/Footer";
-import WhatsAppButton from "@/components/WhatsAppButton";
+import Navbar from "@/app/components/Navbar";
+import Hero from "@/app/components/Hero";
+import Services from "@/app/components/Services";
+import OurProduct from "@/app/components/OurProduct";
+import WhyUs from "@/app/components/WhyUs";
+import HiringProcess from "@/app/components/HiringProcess";
+import AfterYouHire from "@/app/components/AfterYouHire";
+import Testimonials from "@/app/components/Testimonials";
+import Portfolio from "@/app/components/Portfolio";
+import Workflow from "@/app/components/Workflow";
+import CallToAction from "@/app/components/CallToAction";
+import Footer from "@/app/components/Footer";
+import WhatsAppButton from "@/app/components/WhatsAppButton";
 
 export default function Home() {
   return (
@@ -19,12 +19,12 @@ export default function Home() {
       <Hero />
       <Services />
       <OurProduct />
-      <WhyUs />
       <HiringProcess />
       <AfterYouHire />
       <Testimonials />
       <Portfolio />
       <Workflow />
+      <WhyUs />
       <CallToAction />
       <Footer />
       <WhatsAppButton />
