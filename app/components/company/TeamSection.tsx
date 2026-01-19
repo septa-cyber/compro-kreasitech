@@ -2,9 +2,9 @@ import React from "react";
 
 export default function TeamSection() {
     return (
-        <section className="py-24 bg-background-light dark:bg-background-dark">
+        <section className="py-24 bg-background-light">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <h2 className="font-display text-4xl font-semibold mb-16 text-gray-900 dark:text-white">Meet Our Team</h2>
+                <h2 className="font-display text-4xl font-semibold mb-16 text-gray-900">Meet Our Team</h2>
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-0 overflow-hidden rounded-xl max-w-6xl mx-auto">
                     {/* Item 1 */}
                     <div className="aspect-square bg-sky-300 relative group overflow-hidden">

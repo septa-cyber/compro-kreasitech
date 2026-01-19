@@ -2,21 +2,21 @@ import React from "react";
 
 export default function CompanyHero() {
     return (
-        <section className="relative pt-10 pb-20 overflow-hidden bg-gradient-to-b from-purple-50/50 to-white dark:from-background-dark dark:to-background-dark">
+        <section className="relative pt-10 pb-20 overflow-hidden bg-[#F4F4F7]">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-                <h1 className="font-display text-5xl md:text-7xl font-bold text-gray-900 dark:text-white tracking-tight leading-tight mb-6">
+                <h1 className="font-display text-5xl md:text-7xl font-bold text-gray-900 tracking-tight leading-tight mb-6">
                     Where <span className="text-primary">Talent</span> Meets <br className="hidden md:block" /> Technology
                 </h1>
-                <p className="max-w-3xl mx-auto text-gray-600 dark:text-gray-400 text-base md:text-lg mb-10 leading-relaxed font-body">
+                <p className="max-w-3xl mx-auto text-gray-600 text-base md:text-lg mb-10 leading-relaxed font-body">
                     At Kreasitech, we're dedicated to revolutionizing the tech industry by connecting exceptional talent with cutting-edge opportunities. Our mission is to empower individuals and organizations to thrive in the digital age.
                 </p>
                 <div className="flex justify-center items-center gap-4 mb-16">
-                    <button className="px-6 py-3 bg-primary text-white rounded-md font-medium hover:bg-purple-700 transition shadow-md font-body">
+                    <button className="px-6 py-3 bg-violet-600 text-white rounded-md font-medium hover:bg-violet-700 transition shadow-md font-body">
                         Talk to Us
                     </button>
-                    <button className="px-6 py-3 bg-transparent text-gray-700 dark:text-gray-300 rounded-md font-medium hover:text-primary flex items-center gap-2 group font-body">
+                    <button className="px-6 py-3 bg-transparent text-gray-700 rounded-md font-medium hover:text-violet-600 flex items-center gap-2 group font-body">
                         Learn More
-                        <span className="material-icons text-sm group-hover:translate-y-1 transition-transform">arrow_downward</span>
+                        <img src="/assets/images/arrow_downward.svg" alt="" className="w-5 h-5 group-hover:translate-y-1 transition-transform" />
                     </button>
                 </div>
 

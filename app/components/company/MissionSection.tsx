@@ -2,7 +2,7 @@ import React from "react";
 
 export default function MissionSection() {
     return (
-        <section className="py-24 bg-deep-purple dark:bg-indigo-950 text-white">
+        <section className="py-24 bg-violet-800 text-white">
             <div className="max-w-4xl mx-auto px-4 text-center">
                 <h2 className="font-display text-4xl font-semibold mb-8">Our Mission</h2>
                 <p className="text-purple-100 leading-relaxed text-lg max-w-2xl mx-auto font-body">
