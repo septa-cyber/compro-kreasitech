@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 export default function Footer() {
     return (
@@ -84,9 +85,9 @@ export default function Footer() {
                         <div className="justify-start text-violet-600 text-xs font-bold uppercase font-montserrat">
                             COMPANY
                         </div>
-                        <a href="#" className="justify-start text-text-light text-sm font-medium font-montserrat hover:text-primary transition">
+                        <Link href="/company" className="justify-start text-text-light text-sm font-medium font-montserrat hover:text-primary transition">
                             About Us
-                        </a>
+                        </Link>
                         <a href="#" className="justify-start text-text-light text-sm font-medium font-montserrat hover:text-primary transition">
                             Careers
                         </a>

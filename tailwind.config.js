@@ -19,6 +19,8 @@ module.exports = {
             fontFamily: {
                 sans: ["var(--font-montserrat)", "system-ui", "-apple-system", "sans-serif"],
                 montserrat: ["var(--font-montserrat)"],
+                display: ["var(--font-outfit)", "sans-serif"],
+                body: ["var(--font-inter)", "sans-serif"],
             },
             colors: {
                 border: "hsl(var(--border))",
@@ -26,17 +28,21 @@ module.exports = {
                 ring: "hsl(var(--ring))",
                 background: {
                     DEFAULT: "hsl(var(--background))",
-                    light: "var(--background-light)",
+                    light: "#ffffff",
                     "light-sec": "var(--background-light-sec)",
-                    dark: "var(--background-dark)",
+                    dark: "#0F172A",
                     "dark-sec": "var(--background-dark-sec)",
+                    "dark-card": "#1E293B",
+                    gray: "#F3F4F6",
                 },
                 foreground: "hsl(var(--foreground))",
                 primary: {
-                    DEFAULT: "hsl(var(--primary))",
+                    DEFAULT: "#7C3AED",
                     foreground: "hsl(var(--primary-foreground))",
                     dark: "#7c3aed",
                 },
+                "deep-purple": "#4C1D95",
+                "light-purple": "#8B5CF6",
                 secondary: {
                     DEFAULT: "hsl(var(--secondary))",
                     foreground: "hsl(var(--secondary-foreground))",

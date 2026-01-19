@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Montserrat } from "next/font/google";
+import { Plus_Jakarta_Sans, Montserrat, Outfit, Inter } from "next/font/google";
 import "./globals.css";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
@@ -11,6 +11,20 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["300", "400", "500", "600", "700"],
+});
+
+const outfit = Outfit({
+  variable: "--font-outfit",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["300", "400", "500", "600", "700"],
+});
+
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
   weight: ["300", "400", "500", "600", "700"],
@@ -35,10 +49,11 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${plusJakartaSans.variable} ${montserrat.variable} antialiased`}
+        className={`${plusJakartaSans.variable} ${montserrat.variable} ${outfit.variable} ${inter.variable} antialiased`}
       >
         {children}
       </body>
     </html>
   );
 }
+

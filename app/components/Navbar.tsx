@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 
 export default function Navbar() {
@@ -16,11 +17,13 @@ export default function Navbar() {
                 <div className="flex justify-between items-center h-[72px]">
                     {/* Logo Section */}
                     <div className="flex-shrink-0 flex items-center gap-2">
-                        <img
-                            src="/assets/images/Logo.svg"
-                            alt="Kreasitech Logo"
-                            className="h-6 lg:h-7 xl:h-8 w-auto"
-                        />
+                        <Link href="/" className="flex items-center gap-2">
+                            <img
+                                src="/assets/images/Logo.svg"
+                                alt="Kreasitech Logo"
+                                className="h-6 lg:h-7 xl:h-8 w-auto"
+                            />
+                        </Link>
                     </div>
 
                     {/* Desktop Navigation */}
@@ -135,7 +138,7 @@ export default function Navbar() {
                                     <div className="bg-white/95 backdrop-blur-md border border-gray-100 shadow-xl rounded-2xl overflow-hidden p-5">
                                         <h4 className="font-bold text-sm mb-3 text-left whitespace-nowrap">Company</h4>
                                         <ul className="space-y-2 text-xs text-text-light-muted text-left whitespace-nowrap">
-                                            <li><a href="#" className="dropdown-item block py-1">About Us</a></li>
+                                            <li><Link href="/company" className="dropdown-item block py-1">About Us</Link></li>
                                             <li><a href="#" className="dropdown-item block py-1">Portfolio</a></li>
                                             <li><a href="#" className="dropdown-item block py-1">Careers</a></li>
                                             <li><a href="#" className="dropdown-item block py-1">Our Journey</a></li>
