@@ -322,7 +322,7 @@ export default function Navbar() {
                         <div className={`overflow-hidden transition-all duration-300 ${activeMobileDropdown === "company" ? "max-h-[300px] opacity-100" : "max-h-0 opacity-0"}`}>
                             <div className="bg-gray-50 p-4 rounded-lg mb-2">
                                 <ul className="space-y-2 text-xs text-text-light-muted">
-                                    <li><a href="#" className="block py-1 hover:text-primary">About Us</a></li>
+                                    <li><Link href="/company" className="block py-1 hover:text-primary">About Us</Link></li>
                                     <li><a href="#" className="block py-1 hover:text-primary">Portfolio</a></li>
                                     <li><a href="#" className="block py-1 hover:text-primary">Careers</a></li>
                                     <li><a href="#" className="block py-1 hover:text-primary">Our Journey</a></li>
