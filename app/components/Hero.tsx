@@ -30,7 +30,7 @@ export default function Hero() {
     const partnerLogos = Array(7).fill("/assets/images/Logo.svg");
 
     return (
-        <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-16 overflow-hidden bg-[#F4F4F7]" style={{ paddingTop: "14rem" }}>
+        <section className="relative pt-40 pb-20 lg:pt-40 lg:pb-16 overflow-hidden bg-[#F4F4F7]">
             {/* Geometric Background Lines */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] md:w-full md:h-full max-w-[1400px] pointer-events-none flex items-center justify-center z-0">
                 <img src="/assets/images/Lines.svg" alt="" className="w-full h-full object-contain opacity-80 dark:opacity-60" />
@@ -39,7 +39,7 @@ export default function Hero() {
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10 flex flex-col items-center">
 
                 {/* Main Heading */}
-                <h1 className="text-4xl sm:text-5xl lg:text-7xl font-medium font-montserrat leading-tight max-w-5xl mx-auto mb-8 text-text-light">
+                <h1 className="text-[40px] sm:text-5xl lg:text-7xl font-medium font-montserrat leading-tight max-w-5xl mx-auto mb-8 text-text-light">
                     Connecting <span className="font-semibold text-violet-600">Education, Career, and Business</span> through Digital Innovation.
                 </h1>
 
@@ -51,10 +51,10 @@ export default function Hero() {
 
                     {/* Action Buttons */}
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                        <a href="#" className="w-full sm:w-auto px-8 py-4 bg-violet-600 rounded-lg inline-flex justify-center items-center gap-2.5 hover:bg-violet-700 transition-all duration-300">
+                        <a href="#" className="w-max px-8 py-4 bg-violet-600 rounded-lg inline-flex justify-center items-center gap-2.5 hover:bg-violet-700 transition-all duration-300">
                             <div className="text-gray-100 text-base font-medium font-montserrat">Start Hiring</div>
                         </a>
-                        <a href="#" className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-4 text-text-light text-base font-medium font-montserrat hover:text-violet-600 transition-colors group">
+                        <a href="#" className="w-max flex items-center justify-center gap-2 px-6 py-4 text-text-light text-base font-medium font-montserrat hover:text-violet-600 transition-colors group">
                             Learn More
                             <img src="/assets/images/arrow_downward.svg" alt="" className="w-6 h-6" />
                         </a>

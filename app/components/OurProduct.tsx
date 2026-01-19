@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function OurProduct() {
     return (
-        <section className="py-24 bg-violet-600 text-white overflow-hidden">
+        <section className="py-24 bg-violet-800 text-white overflow-hidden">
             <div className="flex flex-col items-center gap-24 px-4 w-full">
                 {/* Header */}
                 <div className="w-full max-w-[784px] text-center">
