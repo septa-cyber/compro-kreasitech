@@ -1,6 +1,34 @@
+"use client";
+
 import React from 'react';
 
 export default function Hero() {
+    const [isBadgesHovered, setIsBadgesHovered] = React.useState(false);
+    const [isTrustedByHovered, setIsTrustedByHovered] = React.useState(false);
+
+    const badgesData = [
+        {
+            icon: "/assets/images/tag_faces.svg",
+            count: "50+",
+            label: "Happy Clients",
+            bg: "bg-primary/10"
+        },
+        {
+            icon: "/assets/images/task_alt.svg",
+            count: "100+",
+            label: "Projects Completed",
+            bg: "bg-primary/10"
+        },
+        {
+            icon: "/assets/images/star_border_purple500.svg",
+            count: "4+",
+            label: "Years Experience",
+            bg: "bg-primary/10"
+        }
+    ];
+
+    const partnerLogos = Array(7).fill("/assets/images/Logo.svg");
+
     return (
         <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-16 overflow-hidden bg-[#F4F4F7]" style={{ paddingTop: "14rem" }}>
             {/* Geometric Background Lines */}
@@ -63,7 +91,7 @@ export default function Hero() {
                 </div>
 
                 {/* Card 3: Projects Completed */}
-                <div className="hidden xl:block absolute bottom-56 left-10 animate-float-fast z-20">
+                <div className="hidden xl:block absolute bottom-26 left-10 animate-float-fast z-20">
                     <div className="bg-white/95 backdrop-blur-md p-4 rounded-lg shadow-[0px_2px_6px_2px_rgba(0,0,0,0.1)] border border-gray-100 flex items-center gap-4">
                         <div className="w-10 h-10 flex items-center justify-center border-2 border-dashed border-primary/30 rounded-full">
                             <img src="/assets/images/task_alt.svg" alt="Projects Completed" className="w-6 h-6" />
@@ -77,136 +105,73 @@ export default function Hero() {
 
                 {/* Tablet/Laptop Static Section (MD to XL) */}
                 <div className="hidden md:flex xl:hidden w-full justify-center gap-6 mt-16 flex-wrap">
-                    {/* Badge 1 */}
-                    <div className="p-4 bg-white/95 backdrop-blur-md rounded-lg shadow-[0px_2px_6px_2px_rgba(0,0,0,0.1)] border border-gray-100 flex items-center gap-4 min-w-[200px]">
-                        <div className="w-10 h-10 flex items-center justify-center border-2 border-dashed border-primary/30 rounded-full">
-                            <img src="/assets/images/tag_faces.svg" alt="Happy Clients" className="w-6 h-6" />
-                        </div>
-                        <div className="text-left">
-                            <div className="font-bold text-base text-text-light">50+</div>
-                            <div className="text-[10px] text-gray-500 uppercase font-medium">Happy Clients</div>
-                        </div>
-                    </div>
-
-                    {/* Badge 2 */}
-                    <div className="p-4 bg-white/95 backdrop-blur-md rounded-lg shadow-[0px_2px_6px_2px_rgba(0,0,0,0.1)] border border-gray-100 flex items-center gap-4 min-w-[200px]">
-                        <div className="w-10 h-10 flex items-center justify-center border-2 border-dashed border-primary/30 rounded-full">
-                            <img src="/assets/images/star_border_purple500.svg" alt="Professional Talents" className="w-6 h-6" />
-                        </div>
-                        <div className="text-left">
-                            <div className="font-bold text-base text-text-light">100+</div>
-                            <div className="text-[10px] text-gray-500 uppercase font-medium">Professional Talents</div>
-                        </div>
-                    </div>
-
-                    {/* Badge 3 */}
-                    <div className="p-4 bg-white/95 backdrop-blur-md rounded-lg shadow-[0px_2px_6px_2px_rgba(0,0,0,0.1)] border border-gray-100 flex items-center gap-4 min-w-[200px]">
-                        <div className="w-10 h-10 flex items-center justify-center border-2 border-dashed border-primary/30 rounded-full">
-                            <img src="/assets/images/task_alt.svg" alt="Projects Completed" className="w-6 h-6" />
-                        </div>
-                        <div className="text-left">
-                            <div className="font-bold text-base text-text-light">50+</div>
-                            <div className="text-[10px] text-gray-500 uppercase font-medium">Projects Completed</div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Mobile Marquee Section (< MD) */}
-                <div className="w-full md:hidden mt-8 overflow-hidden relative">
-                    <div className="inline-flex whitespace-nowrap animate-marquee hover:[animation-play-state:paused] py-4">
-                        {/* Loop 1 */}
-                        <div className="flex gap-4 mx-2">
-                            {/* Badge 1 */}
-                            <div className="p-2 bg-white/95 backdrop-blur-md rounded-lg shadow-[0px_2px_6px_2px_rgba(0,0,0,0.15)] flex justify-start items-center gap-4 border border-gray-100">
-                                <div className="w-8 h-8 relative flex items-center justify-center bg-primary/10 rounded-full">
-                                    <img src="/assets/images/tag_faces.svg" alt="Happy Clients" className="w-6 h-6" />
-                                </div>
-                                <div className="inline-flex flex-col justify-start items-start gap-1">
-                                    <div className="text-text-light text-sm font-medium font-montserrat">50+</div>
-                                    <div className="text-gray-500 text-[10px] font-normal font-montserrat uppercase">Happy Clients</div>
-                                </div>
+                    {badgesData.map((badge, index) => (
+                        <div key={index} className="p-4 bg-white/95 backdrop-blur-md rounded-lg shadow-[0px_2px_6px_2px_rgba(0,0,0,0.1)] border border-gray-100 flex items-center gap-4 min-w-[200px]">
+                            <div className="w-10 h-10 flex items-center justify-center border-2 border-dashed border-primary/30 rounded-full">
+                                <img src={badge.icon} alt={badge.label} className="w-6 h-6" />
                             </div>
-
-                            {/* Badge 2 */}
-                            <div className="p-2 bg-white/95 backdrop-blur-md rounded-lg shadow-[0px_2px_6px_2px_rgba(0,0,0,0.15)] flex justify-start items-center gap-4 border border-gray-100">
-                                <div className="w-8 h-8 relative flex items-center justify-center bg-primary/10 rounded-full">
-                                    <img src="/assets/images/task_alt.svg" alt="Projects Completed" className="w-6 h-6" />
-                                </div>
-                                <div className="inline-flex flex-col justify-start items-start gap-1">
-                                    <div className="text-text-light text-sm font-medium font-montserrat">100+</div>
-                                    <div className="text-gray-500 text-[10px] font-normal font-montserrat uppercase">Projects Completed</div>
-                                </div>
-                            </div>
-
-                            {/* Badge 3 */}
-                            <div className="p-2 bg-white/95 backdrop-blur-md rounded-lg shadow-[0px_2px_6px_2px_rgba(0,0,0,0.15)] flex justify-start items-center gap-4 border border-gray-100">
-                                <div className="w-8 h-8 relative flex items-center justify-center bg-primary/10 rounded-full">
-                                    <img src="/assets/images/star_border_purple500.svg" alt="Professional Talents" className="w-6 h-6" />
-                                </div>
-                                <div className="inline-flex flex-col justify-start items-start gap-1">
-                                    <div className="text-text-light text-sm font-medium font-montserrat">4+</div>
-                                    <div className="text-gray-500 text-[10px] font-normal font-montserrat uppercase">Years Experience</div>
-                                </div>
+                            <div className="text-left">
+                                <div className="font-bold text-base text-text-light">{badge.count}</div>
+                                <div className="text-[10px] text-gray-500 uppercase font-medium">{badge.label}</div>
                             </div>
                         </div>
-
-                        {/* Loop 2 (Duplicate for smooth infinite scroll) */}
-                        <div className="flex gap-4 mx-2">
-                            {/* Badge 1 */}
-                            <div className="p-2 bg-white/95 backdrop-blur-md rounded-lg shadow-[0px_2px_6px_2px_rgba(0,0,0,0.15)] flex justify-start items-center gap-4 border border-gray-100">
-                                <div className="w-8 h-8 relative flex items-center justify-center bg-primary/10 rounded-full">
-                                    <img src="/assets/images/tag_faces.svg" alt="Happy Clients" className="w-6 h-6" />
-                                </div>
-                                <div className="inline-flex flex-col justify-start items-start gap-1">
-                                    <div className="text-text-light text-sm font-medium font-montserrat">50+</div>
-                                    <div className="text-gray-500 text-[10px] font-normal font-montserrat uppercase">Happy Clients</div>
-                                </div>
-                            </div>
-
-                            {/* Badge 2 */}
-                            <div className="p-2 bg-white/95 backdrop-blur-md rounded-lg shadow-[0px_2px_6px_2px_rgba(0,0,0,0.15)] flex justify-start items-center gap-4 border border-gray-100">
-                                <div className="w-8 h-8 relative flex items-center justify-center bg-primary/10 rounded-full">
-                                    <img src="/assets/images/task_alt.svg" alt="Projects Completed" className="w-6 h-6" />
-                                </div>
-                                <div className="inline-flex flex-col justify-start items-start gap-1">
-                                    <div className="text-text-light text-sm font-medium font-montserrat">100+</div>
-                                    <div className="text-gray-500 text-[10px] font-normal font-montserrat uppercase">Projects Completed</div>
-                                </div>
-                            </div>
-
-                            {/* Badge 3 */}
-                            <div className="p-2 bg-white/95 backdrop-blur-md rounded-lg shadow-[0px_2px_6px_2px_rgba(0,0,0,0.15)] flex justify-start items-center gap-4 border border-gray-100">
-                                <div className="w-8 h-8 relative flex items-center justify-center bg-primary/10 rounded-full">
-                                    <img src="/assets/images/star_border_purple500.svg" alt="Professional Talents" className="w-6 h-6" />
-                                </div>
-                                <div className="inline-flex flex-col justify-start items-start gap-1">
-                                    <div className="text-text-light text-sm font-medium font-montserrat">4+</div>
-                                    <div className="text-gray-500 text-[10px] font-normal font-montserrat uppercase">Years Experience</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Trusted By Header */}
-                <div className="mt-24 mb-6 w-full max-w-7xl mx-auto text-center z-10">
-                    <div className="w-full text-center text-SubText text-xs font-normal font-['Montserrat']">Trusted by great businesses like:</div>
+                    ))}
                 </div>
 
             </div>
 
-            {/* Trusted By Marquee */}
-            <div className="w-full overflow-hidden flex space-x-12 animate-marquee items-center opacity-60 grayscale hover:grayscale-0 transition duration-500 hide-scrollbar whitespace-nowrap px-4 pb-12 z-10 relative">
-                {/* Duplicate content for marquee effect */}
-                {[...Array(2)].map((_, i) => (
-                    <div key={i} className="flex space-x-12 shrink-0">
-                        {[...Array(7)].map((_, j) => (
-                            <div key={j} className="flex items-center gap-2">
-                                <img src="/assets/images/Logo.svg" alt="Kreasitech" className="h-8 w-auto" />
+            {/* Mobile Marquee Section (< MD) */}
+            <div className="w-full md:hidden mt-8 overflow-hidden relative">
+                <div
+                    className="flex overflow-hidden"
+                    onMouseEnter={() => setIsBadgesHovered(true)}
+                    onMouseLeave={() => setIsBadgesHovered(false)}
+                >
+                    <div
+                        className="flex gap-4 mx-2 w-max flex-shrink-0 animate-marquee"
+                        style={{ animationPlayState: isBadgesHovered ? 'paused' : 'running' }}
+                    >
+                        {[...badgesData, ...badgesData, ...badgesData, ...badgesData].map((badge, index) => (
+                            <div key={index} className="p-2 bg-white/95 backdrop-blur-md rounded-lg flex justify-start items-center gap-4 border border-gray-100">
+                                <div className={`w-8 h-8 relative flex items-center justify-center rounded-full ${badge.bg}`}>
+                                    <img src={badge.icon} alt={badge.label} className="w-6 h-6" />
+                                </div>
+                                <div className="inline-flex flex-col justify-start items-start gap-1">
+                                    <div className="text-text-light text-sm font-medium font-montserrat">{badge.count}</div>
+                                    <div className="text-gray-500 text-[10px] font-normal font-montserrat uppercase">{badge.label}</div>
+                                </div>
                             </div>
                         ))}
                     </div>
-                ))}
+                </div>
+            </div>
+
+            <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10 flex flex-col items-center">
+                {/* Trusted By Header */}
+                <div className="mt-24 mb-6 w-full max-w-7xl mx-auto text-center z-10">
+                    <div className="w-full text-center text-SubText text-xs font-normal font-['Montserrat']">Trusted by great businesses like:</div>
+                </div>
+            </div>
+
+            {/* Trusted By Marquee */}
+            <div className="relative">
+                <div
+                    className="w-full overflow-hidden flex items-center px-4 pb-12 z-10"
+                    onMouseEnter={() => setIsTrustedByHovered(true)}
+                    onMouseLeave={() => setIsTrustedByHovered(false)}
+                >
+                    <div
+                        className="flex space-x-12 shrink-0 animate-marquee items-center"
+                        style={{ animationPlayState: isTrustedByHovered ? 'paused' : 'running' }}
+                    >
+                        {/* Duplicate content for marquee effect */}
+                        {[...partnerLogos, ...partnerLogos, ...partnerLogos, ...partnerLogos].map((logo, index) => (
+                            <div key={index} className="flex items-center gap-2 opacity-60 grayscale hover:grayscale-0 transition duration-500">
+                                <img src={logo} alt="Kreasitech" className="h-8 w-auto" />
+                            </div>
+                        ))}
+                    </div>
+                </div>
             </div>
         </section>
     );
