@@ -1,0 +1,12 @@
+services:
+  app:
+    build: .
+    ports:
+      - "3020:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    restart: unless-stopped
+    command: npm run dev
