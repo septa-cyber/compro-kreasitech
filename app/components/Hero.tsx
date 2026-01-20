@@ -39,14 +39,14 @@ export default function Hero() {
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10 flex flex-col items-center">
 
                 {/* Main Heading */}
-                <h1 className="text-[40px] sm:text-5xl lg:text-7xl font-medium font-montserrat leading-tight max-w-5xl mx-auto mb-8 text-text-light">
-                    Connecting <span className="font-semibold text-violet-600">Education, Career, and Business</span> through Digital Innovation.
+                <h1 className="text-[40px] sm:text-5xl lg:text-7xl font-medium font-montserrat leading-tight max-w-6xl mx-auto mb-8 text-text-light">
+                    Membangun Ekosistem <span className="font-semibold text-violet-600">Talenta & Teknologi</span> yang Bersinergi serta Terintegrasi.
                 </h1>
 
                 {/* Subheading */}
                 <div className="max-w-2xl mx-auto mb-10">
                     <p className="text-sm sm:text-base text-gray-500 font-montserrat mb-8">
-                        An innovative IT firm that drives digital transformation with experienced experts and effective technology solutions.
+                        Software Development | Talent as a Service | Academy | Digital Marketing
                     </p>
 
                     {/* Action Buttons */}
@@ -59,7 +59,6 @@ export default function Hero() {
                             <img src="/assets/images/arrow_downward.svg" alt="" className="w-6 h-6" />
                         </a>
                     </div>
-                    <p className="mt-4 text-xs text-gray-400 font-montserrat">Free to interview, low-cost hiring</p>
                 </div>
 
                 {/* Floating Cards - Desktop (Absolute) for XL+ screens only */}
@@ -78,7 +77,7 @@ export default function Hero() {
                 </div>
 
                 {/* Card 2: Professional Talents */}
-                <div className="hidden xl:block absolute top-40 -right-12 animate-float-medium z-20">
+                <div className="hidden xl:block absolute top-35 -right-12 animate-float-medium z-20">
                     <div className="bg-white/95 backdrop-blur-md p-4 rounded-lg shadow-[0px_2px_6px_2px_rgba(0,0,0,0.1)] border border-gray-100 flex items-center gap-4">
                         <div className="w-10 h-10 flex items-center justify-center border-2 border-dashed border-primary/30 rounded-full">
                             <img src="/assets/images/star_border_purple500.svg" alt="Professional Talents" className="w-6 h-6" />
@@ -149,7 +148,7 @@ export default function Hero() {
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10 flex flex-col items-center">
                 {/* Trusted By Header */}
                 <div className="mt-24 mb-6 w-full max-w-7xl mx-auto text-center z-10">
-                    <div className="w-full text-center text-SubText text-xs font-normal font-['Montserrat']">Trusted by great businesses like:</div>
+                    <div className="w-full text-center text-SubText text-xs font-normal font-['Montserrat']">Dipercaya oleh bisnis terkemuka seperti:</div>
                 </div>
             </div>
 

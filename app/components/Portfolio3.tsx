@@ -1,0 +1,85 @@
+"use client";
+
+import { useState } from 'react';
+
+export default function Portfolio() {
+    const [isPortfolioHovered, setIsPortfolioHovered] = useState(false);
+
+    const portfolioItems = [
+        { id: 1, title: "Danarhadi CRM", subtitle: "Marketing Specialist", image: "https://placehold.co/600x400", size: "large" },
+        { id: 2, title: "Danarhadi CRM", subtitle: "Marketing Specialist", image: "https://placehold.co/400x400", size: "medium" },
+        { id: 3, title: "Danarhadi CRM", subtitle: "Marketing Specialist", image: "https://placehold.co/600x400", size: "large" },
+        { id: 4, title: "Danarhadi CRM", subtitle: "Marketing Specialist", image: "https://placehold.co/600x400", size: "large" },
+        { id: 5, title: "Danarhadi CRM", subtitle: "Marketing Specialist", image: "https://placehold.co/400x400", size: "medium" },
+        { id: 6, title: "Danarhadi CRM", subtitle: "Marketing Specialist", image: "https://placehold.co/600x400", size: "large" },
+        { id: 7, title: "Danarhadi CRM", subtitle: "Marketing Specialist", image: "https://placehold.co/600x400", size: "large" },
+        { id: 8, title: "Danarhadi CRM", subtitle: "Marketing Specialist", image: "https://placehold.co/400x400", size: "medium" },
+        { id: 9, title: "Danarhadi CRM", subtitle: "Marketing Specialist", image: "https://placehold.co/600x400", size: "large" },
+        { id: 10, title: "Danarhadi CRM", subtitle: "Marketing Specialist", image: "https://placehold.co/600x400", size: "large" },
+    ];
+
+    return (
+        <section className="py-16 md:py-24 bg-violet-800 overflow-hidden" >
+            <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 mb-12 md:mb-24">
+                <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 md:gap-24">
+                    <div className="flex-1 flex flex-col justify-start items-start gap-4 md:gap-8">
+                        <h2 className="text-2xl md:text-4xl font-medium font-montserrat text-white">
+                            Our Portfolio
+                        </h2>
+                        <p className="text-sm md:text-base font-normal font-montserrat text-white">
+                            Projects showcase our expertise across various industries. We are committed to delivering excellence in every solution.
+                        </p>
+                    </div>
+                    <button className="px-8 py-4 bg-violet-300 rounded-lg inline-flex justify-center items-center gap-2.5 hover:bg-violet-200 transition-colors">
+                        <span className="text-violet-800 text-base font-medium font-montserrat">View All</span>
+                    </button>
+                </div>
+            </div>
+
+            {/* Horizontal Scrolling Portfolio Cards with Marquee */}
+            <div className="relative">
+                <div
+                    className="flex overflow-hidden"
+                    onMouseEnter={() => setIsPortfolioHovered(true)}
+                    onMouseLeave={() => setIsPortfolioHovered(false)}
+                >
+                    {/* Single marquee container with all cards (original + duplicate) */}
+                    <div
+                        className="flex gap-4 md:gap-8 pr-4 md:pr-8 w-max flex-shrink-0 animate-marquee-reverse"
+                        style={{ animationPlayState: isPortfolioHovered ? 'paused' : 'running' }}
+                    >
+                        {/* Auto-clone: Original + Duplicate items for seamless loop */}
+                        {[...portfolioItems, ...portfolioItems].map((item, index) => {
+                            const isOriginal = index < portfolioItems.length;
+                            const sizeClasses = item.size === "large"
+                                ? "w-80 md:w-[600px]"
+                                : "w-64 md:w-96";
+
+                            return (
+                                <div
+                                    key={`portfolio-${item.id}-${index}`}
+                                    className="group flex-shrink-0 flex flex-col gap-4 md:gap-8"
+                                    aria-hidden={!isOriginal}
+                                >
+                                    <img
+                                        className={`${sizeClasses} h-64 md:h-96 object-cover`}
+                                        src={item.image}
+                                        alt={item.title}
+                                    />
+                                    <div className="flex items-center gap-2">
+                                        <h3 className="text-base md:text-xl font-medium font-montserrat text-white">
+                                            {item.title}
+                                        </h3>
+                                        <span className="text-xs font-normal font-montserrat text-white">
+                                            {item.subtitle}
+                                        </span>
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+}
