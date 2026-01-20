@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
+import { FaSearch, FaBell, FaChevronDown, FaUser, FaCog, FaSignOutAlt } from 'react-icons/fa';
 
 interface AdminHeaderProps {
     isSidebarCollapsed?: boolean;
@@ -42,7 +43,7 @@ export default function AdminHeader({ isSidebarCollapsed = false }: AdminHeaderP
             {/* Search Bar */}
             <div className="flex-1 max-w-xl">
                 <div className="relative">
-                    <i className="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                    <FaSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
                     <input
                         type="text"
                         placeholder="Cari konten, halaman, atau pengaturan..."
@@ -62,7 +63,7 @@ export default function AdminHeader({ isSidebarCollapsed = false }: AdminHeaderP
                         }}
                         className="p-2 rounded-lg hover:bg-gray-100 transition-colors relative"
                     >
-                        <i className="fas fa-bell text-gray-500"></i>
+                        <FaBell className="text-gray-500" size={18} />
                         {unreadCount > 0 && (
                             <span className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-red-500 text-white text-[10px] rounded-full flex items-center justify-center">
                                 {unreadCount}
@@ -115,18 +116,18 @@ export default function AdminHeader({ isSidebarCollapsed = false }: AdminHeaderP
                             <p className="text-sm font-medium text-text-light font-montserrat">Admin</p>
                             <p className="text-xs text-gray-400">Super Admin</p>
                         </div>
-                        <i className="fas fa-chevron-down text-gray-400 text-xs hidden md:block"></i>
+                        <FaChevronDown className="text-gray-400 text-xs hidden md:block" size={12} />
                     </button>
 
                     {/* Profile Dropdown */}
                     {isProfileOpen && (
                         <div className="absolute right-0 top-full mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-100 py-2 z-50">
                             <a href="/admin/dashboard/profile" className="flex items-center gap-3 px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 font-montserrat">
-                                <i className="fas fa-user text-gray-400 w-4"></i>
+                                <FaUser className="text-gray-400" size={14} />
                                 Profil Saya
                             </a>
-                            <a href="#" className="flex items-center gap-3 px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 font-montserrat">
-                                <i className="fas fa-cog text-gray-400 w-4"></i>
+                            <a href="/admin/dashboard/settings" className="flex items-center gap-3 px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 font-montserrat">
+                                <FaCog className="text-gray-400" size={14} />
                                 Pengaturan
                             </a>
                             <div className="border-t border-gray-100 my-1"></div>
@@ -137,7 +138,7 @@ export default function AdminHeader({ isSidebarCollapsed = false }: AdminHeaderP
                                 }}
                                 className="w-full flex items-center gap-3 px-4 py-2 text-sm text-red-500 hover:bg-red-50 font-montserrat"
                             >
-                                <i className="fas fa-sign-out-alt text-red-400 w-4"></i>
+                                <FaSignOutAlt className="text-red-400" size={14} />
                                 Logout
                             </button>
                         </div>

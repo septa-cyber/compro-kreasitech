@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import { FaMapMarkerAlt, FaPhone, FaRegEnvelope, FaLinkedin, FaInstagram, FaTwitter, FaFacebook } from 'react-icons/fa';
 
 export default function Footer() {
     return (
@@ -16,7 +17,7 @@ export default function Footer() {
                     <div className="flex flex-col md:flex-row justify-start items-center gap-6">
                         <div className="flex justify-start items-center gap-2">
                             <div data-style="Outlined" className="w-5 h-5 relative overflow-hidden flex items-center justify-center">
-                                <i className="fas fa-map-marker-alt text-violet-600 text-sm"></i>
+                                <FaMapMarkerAlt className="text-violet-600 text-sm" />
                             </div>
                             <div className="justify-start text-text-light text-sm font-normal font-montserrat">
                                 Jalan Lorong, Gedongan RT01/RW04, Sinduadi, Mlati, Sleman, DIY 55284
@@ -24,7 +25,7 @@ export default function Footer() {
                         </div>
                         <div className="flex justify-start items-center gap-2">
                             <div data-style="Outlined" className="w-5 h-5 relative overflow-hidden flex items-center justify-center">
-                                <i className="fas fa-phone text-violet-600 text-sm"></i>
+                                <FaPhone className="text-violet-600 text-sm" />
                             </div>
                             <div className="justify-start text-text-light text-sm font-normal font-montserrat">
                                 (62) 888-8088-877
@@ -32,7 +33,7 @@ export default function Footer() {
                         </div>
                         <div className="flex justify-start items-center gap-2">
                             <div data-style="Outlined" className="w-5 h-5 relative overflow-hidden flex items-center justify-center">
-                                <i className="far fa-envelope text-violet-600 text-sm"></i>
+                                <FaRegEnvelope className="text-violet-600 text-sm" />
                             </div>
                             <div className="justify-start text-text-light text-sm font-normal font-montserrat">
                                 marketing@kreasi.tech
@@ -110,17 +111,17 @@ export default function Footer() {
                         </a>
                     </div>
                     <div className="flex justify-center lg:justify-start items-center gap-6 order-1 lg:order-2">
-                        <a href="#" className="w-5 h-5 relative overflow-hidden text-violet-600 hover:text-primary-dark transition">
-                            <i className="fab fa-linkedin text-xl"></i>
+                        <a href="#" className="w-5 h-5 relative overflow-hidden text-violet-600 hover:text-primary-dark transition flex items-center justify-center">
+                            <FaLinkedin className="text-xl" />
                         </a>
-                        <a href="#" className="w-5 h-5 relative overflow-hidden text-violet-600 hover:text-primary-dark transition">
-                            <i className="fab fa-instagram text-xl"></i>
+                        <a href="#" className="w-5 h-5 relative overflow-hidden text-violet-600 hover:text-primary-dark transition flex items-center justify-center">
+                            <FaInstagram className="text-xl" />
                         </a>
-                        <a href="#" className="w-5 h-5 relative overflow-hidden text-violet-600 hover:text-primary-dark transition">
-                            <i className="fab fa-twitter text-xl"></i>
+                        <a href="#" className="w-5 h-5 relative overflow-hidden text-violet-600 hover:text-primary-dark transition flex items-center justify-center">
+                            <FaTwitter className="text-xl" />
                         </a>
-                        <a href="#" className="w-5 h-5 relative overflow-hidden text-violet-600 hover:text-primary-dark transition">
-                            <i className="fab fa-facebook text-xl"></i>
+                        <a href="#" className="w-5 h-5 relative overflow-hidden text-violet-600 hover:text-primary-dark transition flex items-center justify-center">
+                            <FaFacebook className="text-xl" />
                         </a>
                     </div>
                     <div className="flex justify-center lg:justify-end items-center gap-6 order-3 lg:order-3">

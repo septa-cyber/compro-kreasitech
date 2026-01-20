@@ -3,27 +3,28 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { FaThLarge, FaImage, FaCogs, FaBriefcase, FaComments, FaBox, FaUsers, FaCog, FaSignOutAlt, FaChevronRight, FaChevronLeft } from 'react-icons/fa';
 
 interface MenuItem {
     name: string;
     href: string;
-    icon: string;
+    icon: React.ElementType;
     badge?: number;
 }
 
 const menuItems: MenuItem[] = [
-    { name: 'Dashboard', href: '/admin/dashboard', icon: 'fas fa-th-large' },
-    { name: 'Hero Section', href: '/admin/dashboard/hero', icon: 'fas fa-image' },
-    { name: 'Services', href: '/admin/dashboard/services', icon: 'fas fa-cogs' },
-    { name: 'Portfolio', href: '/admin/dashboard/portfolio', icon: 'fas fa-briefcase', badge: 12 },
-    { name: 'Testimonials', href: '/admin/dashboard/testimonials', icon: 'fas fa-comments' },
-    { name: 'Products', href: '/admin/dashboard/products', icon: 'fas fa-box' },
-    { name: 'Team', href: '/admin/dashboard/team', icon: 'fas fa-users' },
+    { name: 'Dashboard', href: '/admin/dashboard', icon: FaThLarge },
+    { name: 'Hero Section', href: '/admin/dashboard/hero', icon: FaImage },
+    { name: 'Services', href: '/admin/dashboard/services', icon: FaCogs },
+    { name: 'Portfolio', href: '/admin/dashboard/portfolio', icon: FaBriefcase, badge: 12 },
+    { name: 'Testimonials', href: '/admin/dashboard/testimonials', icon: FaComments },
+    { name: 'Products', href: '/admin/dashboard/products', icon: FaBox },
+    { name: 'Team', href: '/admin/dashboard/team', icon: FaUsers },
 ];
 
 const bottomMenuItems: MenuItem[] = [
-    { name: 'Settings', href: '/admin/dashboard/settings', icon: 'fas fa-cog' },
-    { name: 'Logout', href: '/admin/login', icon: 'fas fa-sign-out-alt' },
+    { name: 'Settings', href: '/admin/dashboard/settings', icon: FaCog },
+    { name: 'Logout', href: '/admin/login', icon: FaSignOutAlt },
 ];
 
 export interface SidebarProps {
@@ -54,7 +55,7 @@ export default function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
                     onClick={toggleSidebar}
                     className={`p-2 rounded-lg hover:bg-gray-100 transition-colors ${isCollapsed ? 'mx-auto' : ''}`}
                 >
-                    <i className={`fas ${isCollapsed ? 'fa-chevron-right' : 'fa-chevron-left'} text-gray-500 text-sm`}></i>
+                    {isCollapsed ? <FaChevronRight className="text-gray-500" size={14} /> : <FaChevronLeft className="text-gray-500" size={14} />}
                 </button>
             </div>
 
@@ -65,14 +66,14 @@ export default function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
                         <Link
                             key={item.name}
                             href={item.href}
-                            className={`flex items-center gap-3 px-3 py-3 rounded-lg font-montserrat text-sm transition-all duration-200 group
+                            className={`flex items-center gap-3 px-3 py-3 rounded-lg font-montserrat text-sm transition-all duration-200 group relative
                                 ${isActive(item.href)
                                     ? 'bg-violet-600 text-white shadow-glow'
                                     : 'text-gray-600 hover:bg-violet-50 hover:text-violet-600'
                                 }`}
                         >
-                            <i className={`${item.icon} w-5 text-center ${isActive(item.href) ? 'text-white' : 'text-gray-400 group-hover:text-violet-600'}`}></i>
-                            {!isCollapsed && (
+                            <item.icon className={`w-5 text-center ${isActive(item.href) ? 'text-white' : 'text-gray-400 group-hover:text-violet-600'}`} size={20} />
+                            {!isCollapsed ? (
                                 <>
                                     <span className="flex-1">{item.name}</span>
                                     {item.badge && (
@@ -81,6 +82,12 @@ export default function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
                                         </span>
                                     )}
                                 </>
+                            ) : (
+                                item.badge && (
+                                    <span className="absolute top-1 right-2 w-5 h-5 flex items-center justify-center text-[10px] rounded-full bg-violet-600 text-white border-2 border-white">
+                                        {item.badge > 9 ? '9+' : item.badge}
+                                    </span>
+                                )
                             )}
                         </Link>
                     ))}
@@ -100,16 +107,16 @@ export default function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
                                 }}
                                 className={`w-full flex items-center gap-3 px-3 py-3 rounded-lg font-montserrat text-sm transition-all duration-200 group text-red-500 hover:bg-red-50`}
                             >
-                                <i className={`${item.icon} w-5 text-center text-red-400`}></i>
+                                <item.icon className={`w-5 text-center text-red-400`} size={20} />
                                 {!isCollapsed && <span>{item.name}</span>}
                             </button>
                         ) : (
                             <Link
                                 key={item.name}
                                 href={item.href}
-                                className={`flex items-center gap-3 px-3 py-3 rounded-lg font-montserrat text-sm transition-all duration-200 group text-gray-600 hover:bg-gray-100`}
+                                className={`flex items-center gap-3 px-3 py-3 rounded-lg font-montserrat text-sm transition-all duration-200 group text-gray-600 hover:bg-gray-100 ${isActive(item.href) ? 'bg-gray-100 font-semibold text-gray-900' : ''}`}
                             >
-                                <i className={`${item.icon} w-5 text-center text-gray-400`}></i>
+                                <item.icon className={`w-5 text-center text-gray-400`} size={20} />
                                 {!isCollapsed && <span>{item.name}</span>}
                             </Link>
                         )
