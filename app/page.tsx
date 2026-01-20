@@ -1,11 +1,10 @@
 import Navbar from "@/app/components/Navbar";
 import Hero from "@/app/components/Hero";
 import Services from "@/app/components/Services";
-import OurProduct from "@/app/components/OurProduct";
+import OurProduct from "@/app/components/OurProduct2";
 import WhyUs from "@/app/components/WhyUs3";
 import Testimonials from "@/app/components/Testimonials";
 import Portfolio from "@/app/components/Portfolio3";
-import Workflow from "@/app/components/Workflow";
 import CallToAction from "@/app/components/CallToAction";
 import Footer from "@/app/components/Footer";
 import WhatsAppButton from "@/app/components/WhatsAppButton";
@@ -25,7 +24,6 @@ export default function Home() {
       <Services />
       <OurProduct />
       <Portfolio />
-      <Workflow />
       <Testimonials />
       <CallToAction />
       <Footer />

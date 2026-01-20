@@ -41,27 +41,38 @@ export default function Footer() {
                     </div>
                 </div>
                 <div className="w-full h-px bg-gray-200 dark:bg-gray-800" />
-                <div className="w-full grid grid-cols-2 lg:flex lg:flex-row justify-start items-start gap-y-10 gap-x-8 lg:gap-12 xl:gap-44">
-                    <div className="inline-flex flex-col justify-center items-start gap-6 order-1 lg:order-1">
+                <div className="w-full grid grid-cols-2 lg:grid-cols-4 gap-y-10 gap-x-8 lg:gap-8">
+                    <div className="flex flex-col justify-start items-start gap-6">
                         <div className="justify-start text-violet-600 text-xs font-bold uppercase font-montserrat">
-                            Find a Hire
+                            Layanan
                         </div>
                         <a href="#" className="justify-start text-text-light text-sm font-medium font-montserrat hover:text-primary transition">
-                            Finance & Accounting
+                            Talent as a Service
                         </a>
                         <a href="#" className="justify-start text-text-light text-sm font-medium font-montserrat hover:text-primary transition">
-                            Customer Support, Ops, & VAs
+                            Software Development
                         </a>
                         <a href="#" className="justify-start text-text-light text-sm font-medium font-montserrat hover:text-primary transition">
-                            Sales & Marketing
+                            Academy
                         </a>
                         <a href="#" className="justify-start text-text-light text-sm font-medium font-montserrat hover:text-primary transition">
-                            Product, Design, Data, & Engineering
+                            Digital Marketing
                         </a>
                     </div>
-                    <div className="inline-flex flex-col justify-center items-start gap-6 order-3 lg:order-2">
+                    <div className="flex flex-col justify-start items-start gap-6">
                         <div className="justify-start text-violet-600 text-xs font-bold uppercase font-montserrat">
-                            PRODUCTS
+                            Perusahaan
+                        </div>
+                        <a href="#" className="justify-start text-text-light text-sm font-medium font-montserrat hover:text-primary transition">
+                            Tentang Kami
+                        </a>
+                        <a href="#" className="justify-start text-text-light text-sm font-medium font-montserrat hover:text-primary transition">
+                            Portfolio
+                        </a>
+                    </div>
+                    <div className="flex flex-col justify-start items-start gap-6">
+                        <div className="justify-start text-violet-600 text-xs font-bold uppercase font-montserrat">
+                            Produk
                         </div>
                         <a href="#" className="justify-start text-text-light text-sm font-medium font-montserrat hover:text-primary transition">
                             HiTalent
@@ -70,29 +81,18 @@ export default function Footer() {
                             IDAS SFA
                         </a>
                     </div>
-                    <div className="inline-flex flex-col justify-center items-start gap-6 order-4 lg:order-3">
+                    <div className="flex flex-col justify-start items-start gap-6">
                         <div className="justify-start text-violet-600 text-xs font-bold uppercase font-montserrat">
-                            SERVICES
-                        </div>
-                        <a href="#" className="justify-start text-text-light text-sm font-medium font-montserrat hover:text-primary transition">
-                            Find a Hire
-                        </a>
-                        <a href="#" className="justify-start text-text-light text-sm font-medium font-montserrat hover:text-primary transition">
-                            Recruitment
-                        </a>
-                    </div>
-                    <div className="inline-flex flex-col justify-center items-start gap-6 order-2 lg:order-4">
-                        <div className="justify-start text-violet-600 text-xs font-bold uppercase font-montserrat">
-                            COMPANY
+                            Lain-lainnya
                         </div>
                         <Link href="/company" className="justify-start text-text-light text-sm font-medium font-montserrat hover:text-primary transition">
-                            About Us
+                            Karier
                         </Link>
                         <a href="#" className="justify-start text-text-light text-sm font-medium font-montserrat hover:text-primary transition">
-                            Careers
+                            Artikel
                         </a>
                         <a href="#" className="justify-start text-text-light text-sm font-medium font-montserrat hover:text-primary transition">
-                            Article
+                            Kontak Kami
                         </a>
                     </div>
                 </div>
@@ -100,13 +100,13 @@ export default function Footer() {
                 <div className="w-full flex flex-col lg:flex-row justify-between items-center gap-8 lg:gap-6">
                     <div className="flex justify-center lg:justify-start items-center gap-6 order-2 lg:order-1 flex-wrap">
                         <a href="#" className="justify-start text-violet-600 text-xs font-semibold font-montserrat hover:text-primary-dark transition">
-                            Terms & Conditions
+                            Syarat & Ketentuan
                         </a>
                         <a href="#" className="justify-start text-violet-600 text-xs font-semibold font-montserrat hover:text-primary-dark transition">
-                            Privacy Policy
+                            Kebijakan Privasi
                         </a>
                         <a href="#" className="justify-start text-violet-600 text-xs font-semibold font-montserrat hover:text-primary-dark transition">
-                            Cookie Settings
+                            Pengaturan Cookie
                         </a>
                     </div>
                     <div className="flex justify-center lg:justify-start items-center gap-6 order-1 lg:order-2">
@@ -125,7 +125,7 @@ export default function Footer() {
                     </div>
                     <div className="flex justify-center lg:justify-end items-center gap-6 order-3 lg:order-3">
                         <div className="text-center lg:text-right justify-start text-violet-600 text-xs font-semibold font-montserrat">
-                            © 2025 KREASITECH. All right reserved.
+                            © 2025 KREASITECH. Hak cipta dilindungi.
                         </div>
                     </div>
                 </div>
