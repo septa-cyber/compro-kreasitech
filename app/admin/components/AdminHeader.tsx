@@ -16,6 +16,25 @@ export default function AdminHeader({ isSidebarCollapsed = false }: AdminHeaderP
         { id: 3, title: 'Backup berhasil', time: '2 jam lalu', read: true },
     ];
 
+    const notificationRef = React.useRef<HTMLDivElement>(null);
+    const profileRef = React.useRef<HTMLDivElement>(null);
+
+    React.useEffect(() => {
+        function handleClickOutside(event: MouseEvent) {
+            if (notificationRef.current && !notificationRef.current.contains(event.target as Node)) {
+                setIsNotificationOpen(false);
+            }
+            if (profileRef.current && !profileRef.current.contains(event.target as Node)) {
+                setIsProfileOpen(false);
+            }
+        }
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
+
     const unreadCount = notifications.filter(n => !n.read).length;
 
     return (
@@ -35,7 +54,7 @@ export default function AdminHeader({ isSidebarCollapsed = false }: AdminHeaderP
             {/* Right Section */}
             <div className="flex items-center gap-4">
                 {/* Notification Bell */}
-                <div className="relative">
+                <div className="relative" ref={notificationRef}>
                     <button
                         onClick={() => {
                             setIsNotificationOpen(!isNotificationOpen);
@@ -81,7 +100,7 @@ export default function AdminHeader({ isSidebarCollapsed = false }: AdminHeaderP
                 <div className="w-px h-8 bg-gray-200"></div>
 
                 {/* User Profile */}
-                <div className="relative">
+                <div className="relative" ref={profileRef}>
                     <button
                         onClick={() => {
                             setIsProfileOpen(!isProfileOpen);
@@ -102,7 +121,7 @@ export default function AdminHeader({ isSidebarCollapsed = false }: AdminHeaderP
                     {/* Profile Dropdown */}
                     {isProfileOpen && (
                         <div className="absolute right-0 top-full mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-100 py-2 z-50">
-                            <a href="#" className="flex items-center gap-3 px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 font-montserrat">
+                            <a href="/admin/dashboard/profile" className="flex items-center gap-3 px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 font-montserrat">
                                 <i className="fas fa-user text-gray-400 w-4"></i>
                                 Profil Saya
                             </a>
@@ -111,10 +130,16 @@ export default function AdminHeader({ isSidebarCollapsed = false }: AdminHeaderP
                                 Pengaturan
                             </a>
                             <div className="border-t border-gray-100 my-1"></div>
-                            <a href="/admin/login" className="flex items-center gap-3 px-4 py-2 text-sm text-red-500 hover:bg-red-50 font-montserrat">
+                            <button
+                                onClick={async () => {
+                                    await fetch('/api/auth/logout', { method: 'POST' });
+                                    window.location.href = '/admin/login';
+                                }}
+                                className="w-full flex items-center gap-3 px-4 py-2 text-sm text-red-500 hover:bg-red-50 font-montserrat"
+                            >
                                 <i className="fas fa-sign-out-alt text-red-400 w-4"></i>
                                 Logout
-                            </a>
+                            </button>
                         </div>
                     )}
                 </div>

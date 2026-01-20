@@ -26,11 +26,16 @@ const bottomMenuItems: MenuItem[] = [
     { name: 'Logout', href: '/admin/login', icon: 'fas fa-sign-out-alt' },
 ];
 
-export default function Sidebar() {
+export interface SidebarProps {
+    isCollapsed: boolean;
+    toggleSidebar: () => void;
+}
+
+export default function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
     const pathname = usePathname();
-    const [isCollapsed, setIsCollapsed] = useState(false);
 
     const isActive = (href: string) => pathname === href;
+
 
     return (
         <aside className={`${isCollapsed ? 'w-20' : 'w-64'} h-screen bg-white border-r border-gray-200 flex flex-col transition-all duration-300 fixed left-0 top-0 z-30`}>
@@ -46,7 +51,7 @@ export default function Sidebar() {
                     </Link>
                 )}
                 <button
-                    onClick={() => setIsCollapsed(!isCollapsed)}
+                    onClick={toggleSidebar}
                     className={`p-2 rounded-lg hover:bg-gray-100 transition-colors ${isCollapsed ? 'mx-auto' : ''}`}
                 >
                     <i className={`fas ${isCollapsed ? 'fa-chevron-right' : 'fa-chevron-left'} text-gray-500 text-sm`}></i>
@@ -86,18 +91,28 @@ export default function Sidebar() {
             <div className="py-4 px-3 border-t border-gray-100">
                 <div className="space-y-1">
                     {bottomMenuItems.map((item) => (
-                        <Link
-                            key={item.name}
-                            href={item.href}
-                            className={`flex items-center gap-3 px-3 py-3 rounded-lg font-montserrat text-sm transition-all duration-200 group
-                                ${item.name === 'Logout'
-                                    ? 'text-red-500 hover:bg-red-50'
-                                    : 'text-gray-600 hover:bg-gray-100'
-                                }`}
-                        >
-                            <i className={`${item.icon} w-5 text-center ${item.name === 'Logout' ? 'text-red-400' : 'text-gray-400'}`}></i>
-                            {!isCollapsed && <span>{item.name}</span>}
-                        </Link>
+                        item.name === 'Logout' ? (
+                            <button
+                                key={item.name}
+                                onClick={async () => {
+                                    await fetch('/api/auth/logout', { method: 'POST' });
+                                    window.location.href = '/admin/login';
+                                }}
+                                className={`w-full flex items-center gap-3 px-3 py-3 rounded-lg font-montserrat text-sm transition-all duration-200 group text-red-500 hover:bg-red-50`}
+                            >
+                                <i className={`${item.icon} w-5 text-center text-red-400`}></i>
+                                {!isCollapsed && <span>{item.name}</span>}
+                            </button>
+                        ) : (
+                            <Link
+                                key={item.name}
+                                href={item.href}
+                                className={`flex items-center gap-3 px-3 py-3 rounded-lg font-montserrat text-sm transition-all duration-200 group text-gray-600 hover:bg-gray-100`}
+                            >
+                                <i className={`${item.icon} w-5 text-center text-gray-400`}></i>
+                                {!isCollapsed && <span>{item.name}</span>}
+                            </Link>
+                        )
                     ))}
                 </div>
             </div>
