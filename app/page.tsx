@@ -1,13 +1,13 @@
 import Navbar from "@/app/components/Navbar";
-import Hero from "@/app/components/Hero";
-import Services from "@/app/components/Services";
-import OurProduct from "@/app/components/OurProduct2";
-import WhyUs from "@/app/components/WhyUs3";
-import Testimonials from "@/app/components/Testimonials";
-import Portfolio from "@/app/components/Portfolio3";
-import CallToAction from "@/app/components/CallToAction";
+import Hero from "@/app/components/landing/Hero";
+import Services from "@/app/components/landing/Services";
+import OurProduct from "@/app/components/landing/OurProduct2";
+import WhyUs from "@/app/components/landing/WhyUs3";
+import Testimonials from "@/app/components/landing/Testimonials";
+import Portfolio from "@/app/components/landing/Portfolio3";
+import CallToAction from "@/app/components/landing/CallToAction";
 import Footer from "@/app/components/Footer";
-import WhatsAppButton from "@/app/components/WhatsAppButton";
+import WhatsAppButton from "@/app/components/landing/WhatsAppButton";
 import ContentSection from "@/app/components/company/ContentSection";
 
 export default function Home() {

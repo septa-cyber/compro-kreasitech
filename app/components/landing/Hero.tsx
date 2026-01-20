@@ -52,10 +52,10 @@ export default function Hero() {
                     {/* Action Buttons */}
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                         <a href="#" className="w-max px-8 py-4 bg-violet-600 rounded-lg inline-flex justify-center items-center gap-2.5 hover:bg-violet-700 transition-all duration-300">
-                            <div className="text-gray-100 text-base font-medium font-montserrat">Start Hiring</div>
+                            <div className="text-gray-100 text-base font-medium font-montserrat">Konsultasi</div>
                         </a>
                         <a href="#" className="w-max flex items-center justify-center gap-2 px-6 py-4 text-text-light text-base font-medium font-montserrat hover:text-violet-600 transition-colors group">
-                            Learn More
+                            Pelajari Layanan
                             <img src="/assets/images/arrow_downward.svg" alt="" className="w-6 h-6" />
                         </a>
                     </div>
