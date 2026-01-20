@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { FaThLarge, FaImage, FaCogs, FaBriefcase, FaComments, FaBox, FaUsers, FaCog, FaSignOutAlt, FaChevronRight, FaChevronLeft } from 'react-icons/fa';
+import { FaThLarge, FaImage, FaCogs, FaBriefcase, FaComments, FaBox, FaUsers, FaCog, FaSignOutAlt, FaChevronRight, FaChevronLeft, FaHandshake } from 'react-icons/fa';
 
 interface MenuItem {
     name: string;
@@ -20,6 +20,7 @@ const menuItems: MenuItem[] = [
     { name: 'Testimonials', href: '/admin/dashboard/testimonials', icon: FaComments },
     { name: 'Products', href: '/admin/dashboard/products', icon: FaBox },
     { name: 'Team', href: '/admin/dashboard/team', icon: FaUsers },
+    { name: 'Partners', href: '/admin/dashboard/partners', icon: FaHandshake },
 ];
 
 const bottomMenuItems: MenuItem[] = [
