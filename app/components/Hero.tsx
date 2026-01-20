@@ -30,7 +30,7 @@ export default function Hero() {
     const partnerLogos = Array(7).fill("/assets/images/Logo.svg");
 
     return (
-        <section className="relative pt-40 pb-20 lg:pt-40 lg:pb-16 overflow-hidden bg-[#F4F4F7]">
+        <section className="relative pt-40 pb-20 lg:pt-54 lg:pb-16 overflow-hidden bg-[#F4F4F7]">
             {/* Geometric Background Lines */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] md:w-full md:h-full max-w-[1400px] pointer-events-none flex items-center justify-center z-0">
                 <img src="/assets/images/Lines.svg" alt="" className="w-full h-full object-contain opacity-80 dark:opacity-60" />
