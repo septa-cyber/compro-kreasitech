@@ -12,7 +12,7 @@ const articles = [
         title: "Transformasi Digital: Membangun Masa Depan yang Lebih Cerdas",
         description: "Temukan bagaimana teknologi inovatif mengubah cara kita bekerja, belajar, dan berinteraksi dalam ekosistem digital yang terus berkembang pesat.",
         image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop",
-        tagColor: "bg-orange-100 text-orange-700"
+        tagColor: "bg-blue-100 text-blue-700"
     },
     {
         id: 2,
