@@ -195,7 +195,7 @@ export default function Navbar() {
                                 </div>
                             </div>
 
-                            <a href="#" className={`nav-link hover:text-primary transition py-6 whitespace-nowrap ${isDarkBg ? 'text-white' : 'text-text-light'}`}>
+                            <a href="#" className={`nav-link hover:text-primary transition-colors duration-300 py-6 whitespace-nowrap ${isDarkBg ? 'text-white' : 'text-text-light'}`}>
                                 Digital Marketing
                             </a>
                         </div>
