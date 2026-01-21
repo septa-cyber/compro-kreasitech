@@ -5,6 +5,7 @@ import OurProduct from "@/app/components/landing/OurProduct2";
 import WhyUs from "@/app/components/landing/WhyUs3";
 import Testimonials from "@/app/components/landing/Testimonials";
 import Portfolio from "@/app/components/landing/Portfolio3";
+import ArticleSection from "@/app/components/landing/ArticleSection";
 import CallToAction from "@/app/components/landing/CallToAction";
 import Footer from "@/app/components/Footer";
 import WhatsAppButton from "@/app/components/landing/WhatsAppButton";
@@ -24,6 +25,7 @@ export default function Home() {
       <Services />
       <OurProduct />
       <Portfolio />
+      <ArticleSection />
       <Testimonials />
       <CallToAction />
       <Footer />
