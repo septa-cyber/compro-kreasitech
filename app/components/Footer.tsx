@@ -41,7 +41,7 @@ export default function Footer() {
                         </div>
                     </div>
                 </div>
-                <div className="w-full border-t border-gray-200 dark:border-gray-800" />
+                <div className="w-full border-t border-gray-200" />
                 <div className="w-full grid grid-cols-2 lg:grid-cols-4 gap-y-10 gap-x-8 lg:gap-8">
                     <div className="flex flex-col justify-start items-start gap-6">
                         <div className="justify-start text-violet-600 text-xs font-bold uppercase font-montserrat">
@@ -97,7 +97,7 @@ export default function Footer() {
                         </a>
                     </div>
                 </div>
-                <div className="w-full border-t border-gray-200 dark:border-gray-800" />
+                <div className="w-full border-t border-gray-200" />
                 <div className="w-full flex flex-col lg:flex-row justify-between items-center gap-8 lg:gap-6">
                     <div className="flex justify-center lg:justify-start items-center gap-6 order-2 lg:order-1 flex-wrap">
                         <a href="#" className="justify-start text-violet-600 text-xs font-semibold font-montserrat hover:text-primary-dark transition">
