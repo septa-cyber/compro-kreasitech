@@ -52,10 +52,9 @@ export default function TimelineSection() {
             {timelineData.map((item, index) => (
                 <section key={index} className={`py-20 ${item.bgClass}`}>
                     <div className="max-w-4xl mx-auto px-4 text-center">
-                        <h3 className={`font-display text-3xl font-semibold mb-4 ${item.bgClass.includes('text-white') ? '' : 'text-gray-900'}`}>
+                        <h2 className={`text-2xl md:text-4xl font-medium font-montserrat text-text-light mb-10`}>
                             {item.year}
-                        </h3>
-                        <div className={`w-16 h-1 mx-auto mb-8 ${item.lineColorClass}`}></div>
+                        </h2>
                         <p className={`text-lg ${item.bgClass.includes('text-white') ? 'text-purple-100' : 'text-gray-600'} font-body`}>
                             {item.text}
                         </p>

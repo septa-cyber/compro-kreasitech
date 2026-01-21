@@ -14,15 +14,15 @@ export default function CompanyPage() {
             <Navbar />
             <Breadcrumb />
             <CompanyHero />
-            <ContentSection title="About Us" className="bg-white">
+            <ContentSection title="Tentang Kami" className="bg-white">
                 <p>
-                    Kreasitech adalah perusahaan teknologi yang membangun jembatan antara dunia pendidikan, karier, dan bisnis melalui inovasi digital. Berangkat dari semangat <span className="text-primary font-medium">"Where Talent Meets Technology"</span>, Kreasitech hadir sebagai mitra strategis bagi sekolah, kampus, pelatihan, dan perusahaan untuk mencetak, mengembangkan, dan menyalurkan talenta yang siap bersaing di era digital.
+                    Kreasitech adalah perusahaan teknologi yang menghubungkan dunia pendidikan, karier, dan industri melalui inovasi digital. Berangkat dari semangat <span className="text-violet-600 font-medium">"Where Talent Meets Technology"</span> kami mencetak, mengembangkan, dan menyalurkan talenta siap kerja melalui layanan pelatihan, outsourcing, dan pengembangan produk digital.
                 </p>
                 <p>
                     Melalui ekosistem kami yang terintegrasi, mulai dari pengembangan skill (training & bootcamp), penyaluran tenaga kerja (hiring partner), hingga layanan pengembangan teknologi dan digital marketing, Kreasitech membantu setiap individu dan organisasi untuk bertumbuh bersama, menuju masa depan yang lebih cerdas dan terkoneksi.
                 </p>
             </ContentSection>
-            <ContentSection title="Our Vision" className="bg-[#F4F4F7]">
+            <ContentSection title="Visi Kami" className="bg-[#F4F4F7]">
                 <p>
                     Menjadi ekosistem digital terdepan yang menghubungkan edukasi, talenta, dan industri melalui teknologi.
                 </p>
