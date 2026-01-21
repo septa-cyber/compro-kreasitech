@@ -1,43 +1,90 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Navbar() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [activeMobileDropdown, setActiveMobileDropdown] = useState<string | null>(null);
+    const [isVioletTheme, setIsVioletTheme] = useState(false);
 
     const toggleMobileDropdown = (name: string) => {
         setActiveMobileDropdown(prev => prev === name ? null : name);
     };
 
+    useEffect(() => {
+        const handleScroll = () => {
+            const violetSections = document.querySelectorAll('[data-nav-theme="violet"]');
+            let isViolet = false;
+
+            const navHeight = 72; // Approximate navbar height
+            const safetyMargin = 30; // Extra buffer
+
+            violetSections.forEach((section) => {
+                const rect = section.getBoundingClientRect();
+                // Check if the navbar overlapping range (0 to navHeight) is inside the section
+                // We add a safety margin to make the switch feel snappier/smoother
+                if (rect.top <= (navHeight / 2) && rect.bottom >= (navHeight / 2)) {
+                    isViolet = true;
+                }
+            });
+
+            setIsVioletTheme(isViolet);
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        // Initial check
+        handleScroll();
+
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+    // Dynamic Classes
+    const navClasses = isVioletTheme
+        ? "fixed top-6 left-1/2 -translate-x-1/2 w-[95%] max-w-[1400px] z-50 bg-violet-800/95 backdrop-blur-md border border-white/10 shadow-[0px_4px_20px_0px_rgba(0,0,0,0.2)] rounded-lg transition-all duration-300"
+        : "fixed top-6 left-1/2 -translate-x-1/2 w-[95%] max-w-[1400px] z-50 bg-white/95 backdrop-blur-md border border-gray-100 shadow-[0px_4px_20px_0px_rgba(0,0,0,0.05)] rounded-lg transition-all duration-300";
+
+    const textClass = isVioletTheme ? "text-white" : "text-text-light";
+    const subTextClass = isVioletTheme ? "text-white/80" : "text-text-light-muted";
+    const logoSrc = isVioletTheme ? "/assets/images/Logo-white.svg" : "/assets/images/Logo.svg"; // Assuming you have a white logo, otherwise fallback or filter
+
+    // For buttons
+    const btnSecondaryClass = isVioletTheme
+        ? "bg-transparent h-8 xl:h-10 px-2 xl:px-4 rounded-lg outline outline-1 outline-white text-white text-[10px] xl:text-xs font-semibold font-montserrat flex items-center justify-center hover:bg-white/10 transition whitespace-nowrap"
+        : "bg-white h-8 xl:h-10 px-2 xl:px-4 rounded-lg outline outline-1 outline-violet-600 text-violet-600 text-[10px] xl:text-xs font-semibold font-montserrat flex items-center justify-center hover:bg-violet-50 transition whitespace-nowrap";
+
+    const btnPrimaryClass = isVioletTheme
+        ? "h-8 xl:h-10 px-2 xl:px-4 rounded-lg bg-white text-violet-600 text-[10px] xl:text-xs font-bold font-montserrat flex items-center justify-center hover:bg-gray-100 transition shadow-lg whitespace-nowrap"
+        : "h-8 xl:h-10 px-2 xl:px-4 rounded-lg bg-violet-600 text-white text-[10px] xl:text-xs font-bold font-montserrat flex items-center justify-center hover:bg-violet-700 transition shadow-[0px_4px_20px_0px_rgba(124,58,237,0.4)] whitespace-nowrap";
+
     return (
-        <nav className="fixed top-6 left-1/2 -translate-x-1/2 w-[95%] max-w-[1400px] z-50 bg-white/95/95 backdrop-blur-md border border-gray-100 shadow-[0px_4px_20px_0px_rgba(0,0,0,0.05)] rounded-lg transition-all duration-300">
+        <nav className={navClasses}>
             <div className="px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-[72px]">
                     {/* Logo Section */}
                     <div className="flex-shrink-0 flex items-center gap-2">
                         <Link href="/" className="flex items-center gap-2">
+                            {/* If you don't have Logo-white.svg, we can use CSS filter brightness(0) invert(1) for white */}
                             <img
                                 src="/assets/images/Logo.svg"
                                 alt="Kreasitech Logo"
-                                className="h-6 lg:h-7 xl:h-8 w-auto"
+                                className={`h-6 lg:h-7 xl:h-8 w-auto transition-filter duration-300 ${isVioletTheme ? 'brightness-0 invert' : ''}`}
                             />
                         </Link>
                     </div>
 
                     {/* Desktop Navigation */}
                     <div className="hidden lg:flex items-center gap-2 xl:gap-8">
-                        <div className="flex items-center gap-3 xl:gap-8 text-[10px] xl:text-xs font-medium font-montserrat text-text-light">
+                        <div className={`flex items-center gap-3 xl:gap-8 text-[10px] xl:text-xs font-medium font-montserrat ${textClass}`}>
                             {/* Find a Talent - Mega Menu Trigger */}
                             <div className="group h-full flex items-center">
-                                <button className="nav-link flex items-center gap-2 hover:text-primary transition py-6 whitespace-nowrap">
-                                    Find a Talent <i className="fas fa-chevron-down text-[10px] group-hover:rotate-180 transition-transform duration-300"></i>
+                                <button className={`nav-link flex items-center gap-2 hover:text-primary transition py-6 whitespace-nowrap ${isVioletTheme ? 'hover:text-white/80' : ''}`}>
+                                    Find a Talent <i className={`fas fa-chevron-down text-[10px] group-hover:rotate-180 transition-transform duration-300`}></i>
                                 </button>
 
                                 {/* Mega Menu Dropdown */}
                                 <div className="absolute top-full left-0 w-full pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 -z-10">
-                                    <div className="bg-white/95 backdrop-blur-md border-t border-gray-100 shadow-xl rounded-2xl overflow-hidden">
+                                    <div className="bg-white/95 backdrop-blur-md border-t border-gray-100 shadow-xl rounded-2xl overflow-hidden text-text-light">
                                         <div className="max-w-[1400px] mx-auto px-8 py-8 grid grid-cols-4 gap-8">
                                             <div>
                                                 <h4 className="font-bold text-sm mb-4">Finance & Accounting</h4>
@@ -82,11 +129,11 @@ export default function Navbar() {
 
                             {/* Services - Dropdown */}
                             <div className="group relative h-full flex items-center">
-                                <button className="nav-link flex items-center gap-2 hover:text-primary transition py-6 whitespace-nowrap">
+                                <button className={`nav-link flex items-center gap-2 hover:text-primary transition py-6 whitespace-nowrap ${isVioletTheme ? 'hover:text-white/80' : ''}`}>
                                     Services <i className="fas fa-chevron-down text-[10px] group-hover:rotate-180 transition-transform duration-300"></i>
                                 </button>
                                 <div className="absolute top-full -left-12 w-max min-w-[500px] pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 -z-10">
-                                    <div className="bg-white/95 backdrop-blur-md border border-gray-100 shadow-xl rounded-2xl overflow-hidden p-6 grid grid-cols-2 gap-8">
+                                    <div className="bg-white/95 backdrop-blur-md border border-gray-100 shadow-xl rounded-2xl overflow-hidden p-6 grid grid-cols-2 gap-8 text-text-light">
                                         <div>
                                             <h4 className="font-bold text-sm mb-3">Talent As a Service</h4>
                                             <ul className="space-y-2 text-xs text-text-light-muted">
@@ -113,11 +160,11 @@ export default function Navbar() {
 
                             {/* Products - Dropdown */}
                             <div className="group relative h-full flex items-center">
-                                <button className="nav-link flex items-center gap-2 hover:text-primary transition py-6 whitespace-nowrap">
+                                <button className={`nav-link flex items-center gap-2 hover:text-primary transition py-6 whitespace-nowrap ${isVioletTheme ? 'hover:text-white/80' : ''}`}>
                                     Products <i className="fas fa-chevron-down text-[10px] group-hover:rotate-180 transition-transform duration-300"></i>
                                 </button>
                                 <div className="absolute top-full left-1/2 -translate-x-1/2 w-max pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 -z-10">
-                                    <div className="bg-white/95 backdrop-blur-md border border-gray-100 shadow-xl rounded-2xl overflow-hidden p-5">
+                                    <div className="bg-white/95 backdrop-blur-md border border-gray-100 shadow-xl rounded-2xl overflow-hidden p-5 text-text-light">
                                         <h4 className="font-bold text-sm mb-3 text-left whitespace-nowrap">Products</h4>
                                         <ul className="space-y-2 text-xs text-text-light-muted text-left whitespace-nowrap">
                                             <li><a href="#" className="dropdown-item block py-1">HiTalent</a></li>
@@ -131,11 +178,11 @@ export default function Navbar() {
 
                             {/* Company - Dropdown */}
                             <div className="group relative h-full flex items-center">
-                                <button className="nav-link flex items-center gap-2 hover:text-primary transition py-6 whitespace-nowrap">
+                                <button className={`nav-link flex items-center gap-2 hover:text-primary transition py-6 whitespace-nowrap ${isVioletTheme ? 'hover:text-white/80' : ''}`}>
                                     Company <i className="fas fa-chevron-down text-[10px] group-hover:rotate-180 transition-transform duration-300"></i>
                                 </button>
                                 <div className="absolute top-full left-1/2 -translate-x-1/2 w-max pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 -z-10">
-                                    <div className="bg-white/95 backdrop-blur-md border border-gray-100 shadow-xl rounded-2xl overflow-hidden p-5">
+                                    <div className="bg-white/95 backdrop-blur-md border border-gray-100 shadow-xl rounded-2xl overflow-hidden p-5 text-text-light">
                                         <h4 className="font-bold text-sm mb-3 text-left whitespace-nowrap">Company</h4>
                                         <ul className="space-y-2 text-xs text-text-light-muted text-left whitespace-nowrap">
                                             <li><Link href="/company" className="dropdown-item block py-1">About Us</Link></li>
@@ -149,11 +196,11 @@ export default function Navbar() {
 
                             {/* Kreasi Academy - Dropdown */}
                             <div className="group relative h-full flex items-center">
-                                <button className="nav-link flex items-center gap-2 hover:text-primary transition py-6 whitespace-nowrap">
+                                <button className={`nav-link flex items-center gap-2 hover:text-primary transition py-6 whitespace-nowrap ${isVioletTheme ? 'hover:text-white/80' : ''}`}>
                                     Kreasi Academy <i className="fas fa-chevron-down text-[10px] group-hover:rotate-180 transition-transform duration-300"></i>
                                 </button>
                                 <div className="absolute top-full left-1/2 -translate-x-1/2 w-max pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 -z-10">
-                                    <div className="bg-white/95 backdrop-blur-md border border-gray-100 shadow-xl rounded-2xl overflow-hidden p-5">
+                                    <div className="bg-white/95 backdrop-blur-md border border-gray-100 shadow-xl rounded-2xl overflow-hidden p-5 text-text-light">
                                         <h4 className="font-bold text-sm mb-3 text-left whitespace-nowrap">Kreasi Academy</h4>
                                         <ul className="space-y-2 text-xs text-text-light-muted text-left whitespace-nowrap">
                                             <li><a href="#" className="dropdown-item block py-1">After Office Academy</a></li>
@@ -163,7 +210,7 @@ export default function Navbar() {
                                 </div>
                             </div>
 
-                            <a href="#" className="nav-link hover:text-primary transition py-6 whitespace-nowrap">
+                            <a href="#" className={`nav-link hover:text-primary transition py-6 whitespace-nowrap ${isVioletTheme ? 'hover:text-white/80' : ''}`}>
                                 Digital Marketing
                             </a>
                         </div>
@@ -172,13 +219,13 @@ export default function Navbar() {
                         <div className="flex items-center gap-2 ml-2 xl:ml-4">
                             <a
                                 href="#"
-                                className="bg-white h-8 xl:h-10 px-2 xl:px-4 rounded-lg outline outline-1 outline-violet-600 text-violet-600 text-[10px] xl:text-xs font-semibold font-montserrat flex items-center justify-center hover:bg-violet-50 transition whitespace-nowrap"
+                                className={btnSecondaryClass}
                             >
                                 APPLY FOR JOBS
                             </a>
                             <a
                                 href="#"
-                                className="h-8 xl:h-10 px-2 xl:px-4 rounded-lg bg-violet-600 text-white text-[10px] xl:text-xs font-bold font-montserrat flex items-center justify-center hover:bg-violet-700 transition shadow-[0px_4px_20px_0px_rgba(124,58,237,0.4)] whitespace-nowrap"
+                                className={btnPrimaryClass}
                             >
                                 START HIRING
                             </a>
@@ -188,7 +235,7 @@ export default function Navbar() {
                     {/* Mobile Menu Button */}
                     <div className="lg:hidden">
                         <button
-                            className="text-gray-500 hover:text-primary"
+                            className={`${isVioletTheme ? 'text-white' : 'text-gray-500'} hover:text-primary transition-colors`}
                             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                         >
                             <i className="fas fa-bars text-xl"></i>
