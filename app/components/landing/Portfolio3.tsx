@@ -19,7 +19,7 @@ export default function Portfolio() {
     ];
 
     return (
-        <section className="py-16 md:py-24 bg-violet-800 overflow-hidden" data-nav-theme="violet">
+        <section className="py-16 md:py-24 bg-violet-800 overflow-hidden" data-theme="dark">
             <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 mb-8 md:mb-24">
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 md:gap-24">
                     <div className="flex-1 flex flex-col justify-start items-start gap-4 md:gap-8">
