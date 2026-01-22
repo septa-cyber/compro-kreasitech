@@ -47,11 +47,11 @@ export default function CompanyHero() {
                             />
                         </div>
                     </div>
-                    <div className="w-40 h-56 md:w-56 md:h-72 bg-yellow-400 rounded-lg overflow-hidden relative group hover:-translate-y-1 transition-transform duration-300 shadow-xl">
+                    <div className="w-40 h-56 md:w-56 md:h-72 rounded-lg overflow-hidden relative group hover:-translate-y-1 transition-transform duration-300 shadow-xl">
                         <img
-                            alt="Main Avatar illustration"
+                            alt="Main Avatar illustration - Fendi"
                             className="w-full h-full object-cover mix-blend-multiply opacity-90"
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPHtof3sawxMsK3UP1ij8qJHMsIIsmAbkRSuTdM96_DCbI87MX6lf-TvudekRX_mqFlCVH3tcMtF1jc1xGH9DCgdinscZyCadh0EBRr1ZFpCibCAoux5yZ0AcxZNmJiGq2HuuhOt8IryOPlsgzUMoZ-jcQ5L79ZVfR10hCiqZ4IY4kUUuCVXD2y5ftC8g_uTrIkXSCl3HETntWl0xqQzIc0Ba5dFZ6ayYNMiEUWJ9tlFDruQv_gbjvpgAYk1LMmQyie3fyt2T7AC8"
+                            src="/assets/images/employee/Fendi.png"
                         />
                     </div>
                     <div className="flex flex-col gap-4">
