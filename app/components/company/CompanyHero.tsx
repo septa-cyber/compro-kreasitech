@@ -4,20 +4,22 @@ export default function CompanyHero() {
     return (
         <section className="relative pt-10 pb-20 overflow-hidden bg-[#F4F4F7]">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-                <h1 className="font-display text-5xl md:text-7xl font-bold text-gray-900 tracking-tight leading-tight mb-6">
-                    Where <span className="text-primary">Talent</span> Meets <br className="hidden md:block" /> Technology
+                <h1 className="text-[40px] sm:text-5xl lg:text-7xl font-medium font-montserrat leading-tight max-w-6xl mx-auto mb-8 text-text-light">
+                    Where <span className="font-semibold text-violet-600">Talent</span> Meets <br className="hidden md:block" /> Technology
                 </h1>
-                <p className="max-w-3xl mx-auto text-gray-600 text-base md:text-lg mb-10 leading-relaxed font-body">
+                <p className="max-w-3xl mx-auto text-sm sm:text-base text-gray-500 font-montserrat mb-8">
                     At Kreasitech, we're dedicated to revolutionizing the tech industry by connecting exceptional talent with cutting-edge opportunities. Our mission is to empower individuals and organizations to thrive in the digital age.
                 </p>
                 <div className="flex justify-center items-center gap-4 mb-16">
-                    <button className="px-6 py-3 bg-violet-600 text-white rounded-md font-medium hover:bg-violet-700 transition shadow-md font-body">
-                        Talk to Us
-                    </button>
-                    <button className="px-6 py-3 bg-transparent text-gray-700 rounded-md font-medium hover:text-violet-600 flex items-center gap-2 group font-body">
-                        Learn More
-                        <img src="/assets/images/arrow_downward.svg" alt="" className="w-5 h-5 group-hover:translate-y-1 transition-transform" />
-                    </button>
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                        <a href="#" className="w-max px-8 py-4 bg-violet-600 rounded-lg inline-flex justify-center items-center gap-2.5 hover:bg-violet-700 transition-all duration-300">
+                            <div className="text-gray-100 text-base font-medium font-montserrat">Diskusi ke Kami</div>
+                        </a>
+                        <a href="#" className="w-max flex items-center justify-center gap-2 px-6 py-4 text-text-light text-base font-medium font-montserrat hover:text-violet-600 transition-colors group">
+                            Pelajari Layanan
+                            <img src="/assets/images/arrow_downward.svg" alt="" className="w-6 h-6" />
+                        </a>
+                    </div>
                 </div>
 
                 {/* Avatar Collage */}
