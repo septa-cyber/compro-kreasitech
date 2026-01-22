@@ -24,11 +24,11 @@ export default function CompanyHero() {
 
                 {/* Avatar Collage */}
                 <div className="flex flex-wrap justify-center items-center gap-4 md:gap-6 max-w-5xl mx-auto">
-                    <div className="w-32 h-32 md:w-40 md:h-40 bg-purple-200 rounded-lg overflow-hidden relative group hover:-translate-y-1 transition-transform duration-300">
+                    <div className="w-32 h-32 md:w-40 md:h-40 rounded-lg overflow-hidden relative group hover:-translate-y-1 transition-transform duration-300">
                         <img
                             alt="Avatar illustration"
                             className="w-full h-full object-cover mix-blend-multiply opacity-80"
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6oqCu5NFbV3RpmqDY0cUm3R-wxLjQH2bUNm5kesywiHchR5NV6dTDGme_JKYkyALGCn2mgQkZqcy7z7bsRx_fLtf9IbtxLfW1d6ILiR6Wynd1cmDqEv7zo98A-_L3ICYBEQQh87xtR3FLVrtWlCWcixW7ZAie-ZnIYp_m1rtcaAJlEHm2VnqjaTsLHO56EJvWMuRoqEWHJ1fMjUrvz5AEx_1i2AswO9xq8M8urvzHlln7bOLb4BuN0K2eUjxEJicoWZ10LR6On2M"
+                            src="/assets/images/employee/Nina.png"
                         />
                     </div>
                     <div className="flex flex-col gap-4">
@@ -51,7 +51,7 @@ export default function CompanyHero() {
                         <img
                             alt="Main Avatar illustration - Fendi"
                             className="w-full h-full object-cover mix-blend-multiply opacity-90"
-                            src="/assets/images/employee/Fendi.png"
+                            src="/assets/images/employee/Imdad.png"
                         />
                     </div>
                     <div className="flex flex-col gap-4">
@@ -70,11 +70,11 @@ export default function CompanyHero() {
                             />
                         </div>
                     </div>
-                    <div className="w-32 h-32 md:w-40 md:h-40 bg-blue-500 rounded-lg overflow-hidden relative group hover:-translate-y-1 transition-transform duration-300">
+                    <div className="w-32 h-32 md:w-40 md:h-40 rounded-lg overflow-hidden relative group hover:-translate-y-1 transition-transform duration-300">
                         <img
                             alt="Avatar illustration"
                             className="w-full h-full object-cover mix-blend-multiply opacity-80"
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuC66gSYKPGB-uWFQdq2MfPEeeyTeAAGNbHRvLOm71hJQULq3vGJ0xnKb7nddKsNFA1a6YF9mbYVDwW74k1_FwBwlXLrYIalZU6YHPLNf3Pgq6LBJ1_PmCqO0ekv1qusgepQ3pLC0D7HpgjAyNQiI4JqDPcVJYY7Fzh25LlaNydkQDROZis50LSKQ_Acl2-Cg0DpHoOOlE3EQ6GK-YDPev1CQ6omUi_ee2oF4rsuevbpZBLswNHBtg9WwEV9DEA227uX23TSWYV_Huc"
+                            src="/assets/images/employee/Fendi.png"
                         />
                     </div>
                 </div>
