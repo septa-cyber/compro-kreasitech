@@ -46,7 +46,7 @@ export default function Navbar() {
     return (
         <nav className="fixed top-6 left-1/2 -translate-x-1/2 w-[95%] max-w-[1400px] z-50 bg-white/95/95 backdrop-blur-md border border-gray-100 shadow-[0px_4px_20px_0px_rgba(0,0,0,0.05)] rounded-lg transition-all duration-300">
             <div className="px-4 sm:px-6 lg:px-8">
-                <div className="flex justify-between items-center h-[72px]">
+                <div className="flex items-center justify-between h-[72px]">
                     {/* Logo Section */}
                     <div className="flex-shrink-0 flex items-center gap-2">
                         <Link href="/" className="flex items-center gap-2">
@@ -59,7 +59,7 @@ export default function Navbar() {
                     </div>
 
                     {/* Desktop Navigation */}
-                    <div className="hidden lg:flex items-center gap-2 xl:gap-8">
+                    <div className="hidden lg:flex flex-1 justify-center items-center gap-2 xl:gap-8">
                         <div className={`flex items-center gap-3 xl:gap-8 text-[10px] xl:text-xs font-medium font-montserrat transition-colors duration-300`}>
                             {/* Find a Talent - Mega Menu Trigger */}
                             <div className="group h-full flex items-center">
@@ -149,26 +149,26 @@ export default function Navbar() {
                                 Artikel
                             </a>
                         </div>
+                    </div>
 
-                        {/* Action Buttons */}
-                        <div className="flex items-center gap-2 ml-2 xl:ml-4">
-                            <a
-                                href="#"
-                                className="bg-white h-8 xl:h-10 px-2 xl:px-4 rounded-lg outline outline-1 outline-violet-600 text-violet-600 text-[10px] xl:text-xs font-semibold font-montserrat flex items-center justify-center hover:bg-violet-50 transition whitespace-nowrap"
-                            >
-                                KARIR
-                            </a>
-                            <a
-                                href="#"
-                                className="h-8 xl:h-10 px-2 xl:px-4 rounded-lg bg-violet-600 text-white text-[10px] xl:text-xs font-bold font-montserrat flex items-center justify-center hover:bg-violet-700 transition shadow-[0px_4px_20px_0px_rgba(124,58,237,0.4)] whitespace-nowrap"
-                            >
-                                KONTAK KAMI
-                            </a>
-                        </div>
+                    {/* Action Buttons */}
+                    <div className="hidden lg:flex items-center gap-2 flex-shrink-0">
+                        <a
+                            href="#"
+                            className="bg-white h-8 xl:h-10 px-2 xl:px-4 rounded-lg outline outline-1 outline-violet-600 text-violet-600 text-[10px] xl:text-xs font-semibold font-montserrat flex items-center justify-center hover:bg-violet-50 transition whitespace-nowrap"
+                        >
+                            KARIR
+                        </a>
+                        <a
+                            href="#"
+                            className="h-8 xl:h-10 px-2 xl:px-4 rounded-lg bg-violet-600 text-white text-[10px] xl:text-xs font-bold font-montserrat flex items-center justify-center hover:bg-violet-700 transition shadow-[0px_4px_20px_0px_rgba(124,58,237,0.4)] whitespace-nowrap"
+                        >
+                            KONTAK KAMI
+                        </a>
                     </div>
 
                     {/* Mobile Menu Button */}
-                    <div className="lg:hidden">
+                    <div className="lg:hidden ml-auto">
                         <button
                             className="text-gray-500 hover:text-primary"
                             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -284,13 +284,13 @@ export default function Navbar() {
                             href="#"
                             className="px-4 py-2.5 rounded-lg outline outline-1 outline-violet-600 text-violet-600 text-xs font-semibold text-center hover:bg-violet-50 transition-colors"
                         >
-                            APPLY FOR JOBS
+                            KARIR
                         </a>
                         <a
                             href="#"
                             className="px-4 py-2.5 bg-violet-600 rounded-lg text-white text-xs font-medium text-center hover:bg-violet-700 transition-colors"
                         >
-                            START HIRING
+                            KONTAK KAMI
                         </a>
                     </div>
                 </div>
