@@ -60,50 +60,50 @@ export default function Navbar() {
 
                     {/* Desktop Navigation */}
                     <div className="hidden lg:flex items-center gap-2 xl:gap-8">
-                        <div className={`flex items-center gap-3 xl:gap-8 text-[10px] xl:text-xs font-medium font-montserrat ${isDarkBg ? 'text-white' : 'text-text-light'} transition-colors duration-300`}>
+                        <div className={`flex items-center gap-3 xl:gap-8 text-[10px] xl:text-xs font-medium font-montserrat transition-colors duration-300`}>
                             {/* Find a Talent - Mega Menu Trigger */}
                             <div className="group h-full flex items-center">
-                                <button className="nav-link flex items-center gap-2 hover:text-primary transition py-6 whitespace-nowrap">
+                                <button className={`nav-link flex items-center gap-2 hover:text-primary transition py-6 whitespace-nowrap ${isDarkBg ? 'text-white' : 'text-text-light'}`}>
                                     Layanan <i className={`fas fa-chevron-down text-[10px] group-hover:rotate-180 transition-transform duration-300 ${isDarkBg ? 'text-white' : 'text-text-light'}`}></i>
                                 </button>
 
                                 {/* Mega Menu Dropdown */}
                                 <div className="absolute top-full left-0 w-full pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 -z-10">
-                                    <div className="bg-white/95 backdrop-blur-md border-t border-gray-100 shadow-xl rounded-2xl overflow-hidden">
+                                    <div className="bg-white/95 backdrop-blur-md border-t border-gray-100 shadow-xl rounded-2xl overflow-hidden text-text-light">
                                         <div className="max-w-[1400px] mx-auto px-8 py-8 grid grid-cols-4 gap-8">
                                             <div>
-                                                <h4 className="font-bold text-sm mb-4">Academy</h4>
+                                                <h4 className="font-bold text-sm mb-4 text-text-light">Academy</h4>
                                                 <ul className="space-y-3 text-xs text-text-light-muted">
-                                                    <li><a href="#" className="dropdown-item block pb-1">Impact Academy</a></li>
+                                                    <li><a href="#" className="dropdown-item block pb-1 text-text-light">Impact Academy</a></li>
                                                 </ul>
                                             </div>
                                             <div>
-                                                <h4 className="font-bold text-sm mb-4">Talent As a Service</h4>
+                                                <h4 className="font-bold text-sm mb-4 text-text-light">Talent As a Service</h4>
                                                 <ul className="space-y-3 text-xs text-text-light-muted">
-                                                    <li><a href="#" className="dropdown-item block pb-1">Head Hunting</a></li>
-                                                    <li><a href="#" className="dropdown-item block pb-1">Staffing</a></li>
-                                                    <li><a href="#" className="dropdown-item block pb-1">Internship</a></li>
-                                                    <li><a href="#" className="dropdown-item block pb-1">Inclusive Talent</a></li>
+                                                    <li><a href="#" className="dropdown-item block pb-1 text-text-light">Head Hunting</a></li>
+                                                    <li><a href="#" className="dropdown-item block pb-1 text-text-light">Staffing</a></li>
+                                                    <li><a href="#" className="dropdown-item block pb-1 text-text-light">Internship</a></li>
+                                                    <li><a href="#" className="dropdown-item block pb-1 text-text-light">Inclusive Talent</a></li>
                                                 </ul>
                                             </div>
                                             <div>
-                                                <h4 className="font-bold text-sm mb-4">Digital Marketing</h4>
+                                                <h4 className="font-bold text-sm mb-4 text-text-light">Digital Marketing</h4>
                                                 <ul className="space-y-3 text-xs text-text-light-muted">
-                                                    <li><a href="#" className="dropdown-item block pb-1">Google Ads</a></li>
-                                                    <li><a href="#" className="dropdown-item block pb-1">Backlink</a></li>
-                                                    <li><a href="#" className="dropdown-item block pb-1">Search Engine Optimization</a></li>
-                                                    <li><a href="#" className="dropdown-item block pb-1">Press Release</a></li>
+                                                    <li><a href="#" className="dropdown-item block pb-1 text-text-light">Google Ads</a></li>
+                                                    <li><a href="#" className="dropdown-item block pb-1 text-text-light">Backlink</a></li>
+                                                    <li><a href="#" className="dropdown-item block pb-1 text-text-light">Search Engine Optimization</a></li>
+                                                    <li><a href="#" className="dropdown-item block pb-1 text-text-light">Press Release</a></li>
                                                 </ul>
                                             </div>
                                             <div>
-                                                <h4 className="font-bold text-sm mb-4">Software Development</h4>
+                                                <h4 className="font-bold text-sm mb-4 text-text-light">Software Development</h4>
                                                 <ul className="space-y-3 text-xs text-text-light-muted">
-                                                    <li><a href="#" className="dropdown-item block pb-1">Specifications & Wireframe</a></li>
-                                                    <li><a href="#" className="dropdown-item block pb-1">UI/UX Design</a></li>
-                                                    <li><a href="#" className="dropdown-item block pb-1">Website Development</a></li>
-                                                    <li><a href="#" className="dropdown-item block pb-1">Mobile App Development</a></li>
-                                                    <li><a href="#" className="dropdown-item block pb-1">MVP Development</a></li>
-                                                    <li><a href="#" className="dropdown-item block pb-1">Custom Software Development</a></li>
+                                                    <li><a href="#" className="dropdown-item block pb-1 text-text-light">Specifications & Wireframe</a></li>
+                                                    <li><a href="#" className="dropdown-item block pb-1 text-text-light">UI/UX Design</a></li>
+                                                    <li><a href="#" className="dropdown-item block pb-1 text-text-light">Website Development</a></li>
+                                                    <li><a href="#" className="dropdown-item block pb-1 text-text-light">Mobile App Development</a></li>
+                                                    <li><a href="#" className="dropdown-item block pb-1 text-text-light">MVP Development</a></li>
+                                                    <li><a href="#" className="dropdown-item block pb-1 text-text-light">Custom Software Development</a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -115,15 +115,15 @@ export default function Navbar() {
 
                             {/* Products - Dropdown */}
                             <div className="group relative h-full flex items-center">
-                                <button className="nav-link flex items-center gap-2 hover:text-primary transition py-6 whitespace-nowrap">
+                                <button className={`nav-link flex items-center gap-2 hover:text-primary transition py-6 whitespace-nowrap ${isDarkBg ? 'text-white' : 'text-text-light'}`}>
                                     Produk <i className={`fas fa-chevron-down text-[10px] group-hover:rotate-180 transition-transform duration-300 ${isDarkBg ? 'text-white' : 'text-text-light'}`}></i>
                                 </button>
                                 <div className="absolute top-full left-1/2 -translate-x-1/2 w-max pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 -z-10">
-                                    <div className="bg-white/95 backdrop-blur-md border border-gray-100 shadow-xl rounded-2xl overflow-hidden p-5">
-                                        <h4 className="font-bold text-sm mb-3 text-left whitespace-nowrap">Produk</h4>
+                                    <div className="bg-white/95 backdrop-blur-md border border-gray-100 shadow-xl rounded-2xl overflow-hidden p-5 text-text-light">
+                                        <h4 className="font-bold text-sm mb-3 text-left whitespace-nowrap text-text-light">Produk</h4>
                                         <ul className="space-y-2 text-xs text-text-light-muted text-left whitespace-nowrap">
-                                            <li><a href="#" className="dropdown-item block py-1">HiTalent</a></li>
-                                            <li><a href="#" className="dropdown-item block py-1">HiSales</a></li>
+                                            <li><a href="#" className="dropdown-item block py-1 text-text-light">HiTalent</a></li>
+                                            <li><a href="#" className="dropdown-item block py-1 text-text-light">HiSales</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -131,15 +131,15 @@ export default function Navbar() {
 
                             {/* Company - Dropdown */}
                             <div className="group relative h-full flex items-center">
-                                <button className="nav-link flex items-center gap-2 hover:text-primary transition py-6 whitespace-nowrap">
+                                <button className={`nav-link flex items-center gap-2 hover:text-primary transition py-6 whitespace-nowrap ${isDarkBg ? 'text-white' : 'text-text-light'}`}>
                                     Perusahaan <i className={`fas fa-chevron-down text-[10px] group-hover:rotate-180 transition-transform duration-300 ${isDarkBg ? 'text-white' : 'text-text-light'}`}></i>
                                 </button>
                                 <div className="absolute top-full left-1/2 -translate-x-1/2 w-max pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 -z-10">
-                                    <div className="bg-white/95 backdrop-blur-md border border-gray-100 shadow-xl rounded-2xl overflow-hidden p-5">
-                                        <h4 className="font-bold text-sm mb-3 text-left whitespace-nowrap">Perusahaan</h4>
+                                    <div className="bg-white/95 backdrop-blur-md border border-gray-100 shadow-xl rounded-2xl overflow-hidden p-5 text-text-light">
+                                        <h4 className="font-bold text-sm mb-3 text-left whitespace-nowrap text-text-light">Perusahaan</h4>
                                         <ul className="space-y-2 text-xs text-text-light-muted text-left whitespace-nowrap">
-                                            <li><Link href="/company" className="dropdown-item block py-1">Tentang Kami</Link></li>
-                                            <li><a href="#" className="dropdown-item block py-1">Portfolio</a></li>
+                                            <li><Link href="/company" className="dropdown-item block py-1 text-text-light">Tentang Kami</Link></li>
+                                            <li><a href="#" className="dropdown-item block py-1 text-text-light">Portfolio</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -156,13 +156,13 @@ export default function Navbar() {
                                 href="#"
                                 className="bg-white h-8 xl:h-10 px-2 xl:px-4 rounded-lg outline outline-1 outline-violet-600 text-violet-600 text-[10px] xl:text-xs font-semibold font-montserrat flex items-center justify-center hover:bg-violet-50 transition whitespace-nowrap"
                             >
-                                APPLY FOR JOBS
+                                KARIR
                             </a>
                             <a
                                 href="#"
                                 className="h-8 xl:h-10 px-2 xl:px-4 rounded-lg bg-violet-600 text-white text-[10px] xl:text-xs font-bold font-montserrat flex items-center justify-center hover:bg-violet-700 transition shadow-[0px_4px_20px_0px_rgba(124,58,237,0.4)] whitespace-nowrap"
                             >
-                                START HIRING
+                                KONTAK KAMI
                             </a>
                         </div>
                     </div>
