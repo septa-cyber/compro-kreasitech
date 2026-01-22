@@ -64,7 +64,7 @@ export default function Navbar() {
                             {/* Find a Talent - Mega Menu Trigger */}
                             <div className="group h-full flex items-center">
                                 <button className="nav-link flex items-center gap-2 hover:text-primary transition py-6 whitespace-nowrap">
-                                    Find a Talent <i className={`fas fa-chevron-down text-[10px] group-hover:rotate-180 transition-transform duration-300 ${isDarkBg ? 'text-white' : 'text-text-light'}`}></i>
+                                    Layanan <i className={`fas fa-chevron-down text-[10px] group-hover:rotate-180 transition-transform duration-300 ${isDarkBg ? 'text-white' : 'text-text-light'}`}></i>
                                 </button>
 
                                 {/* Mega Menu Dropdown */}
@@ -72,39 +72,38 @@ export default function Navbar() {
                                     <div className="bg-white/95 backdrop-blur-md border-t border-gray-100 shadow-xl rounded-2xl overflow-hidden">
                                         <div className="max-w-[1400px] mx-auto px-8 py-8 grid grid-cols-4 gap-8">
                                             <div>
-                                                <h4 className="font-bold text-sm mb-4">Finance & Accounting</h4>
+                                                <h4 className="font-bold text-sm mb-4">Academy</h4>
                                                 <ul className="space-y-3 text-xs text-text-light-muted">
-                                                    <li><a href="#" className="dropdown-item block pb-1">Bookkeeper</a></li>
-                                                    <li><a href="#" className="dropdown-item block pb-1">Financial Analyst</a></li>
-                                                    <li><a href="#" className="dropdown-item block pb-1">Tax Specialist</a></li>
-                                                    <li><a href="#" className="dropdown-item block pb-1">Accountant</a></li>
+                                                    <li><a href="#" className="dropdown-item block pb-1">Impact Academy</a></li>
                                                 </ul>
                                             </div>
                                             <div>
-                                                <h4 className="font-bold text-sm mb-4">Customer Support, Ops, & VAs</h4>
+                                                <h4 className="font-bold text-sm mb-4">Talent As a Service</h4>
                                                 <ul className="space-y-3 text-xs text-text-light-muted">
-                                                    <li><a href="#" className="dropdown-item block pb-1">Virtual Assistant</a></li>
-                                                    <li><a href="#" className="dropdown-item block pb-1">Create Support</a></li>
-                                                    <li><a href="#" className="dropdown-item block pb-1">Data Entry Specialist</a></li>
-                                                    <li><a href="#" className="dropdown-item block pb-1">Operations Manager</a></li>
+                                                    <li><a href="#" className="dropdown-item block pb-1">Head Hunting</a></li>
+                                                    <li><a href="#" className="dropdown-item block pb-1">Staffing</a></li>
+                                                    <li><a href="#" className="dropdown-item block pb-1">Internship</a></li>
+                                                    <li><a href="#" className="dropdown-item block pb-1">Inclusive Talent</a></li>
                                                 </ul>
                                             </div>
                                             <div>
-                                                <h4 className="font-bold text-sm mb-4">Sales & Marketing</h4>
+                                                <h4 className="font-bold text-sm mb-4">Digital Marketing</h4>
                                                 <ul className="space-y-3 text-xs text-text-light-muted">
-                                                    <li><a href="#" className="dropdown-item block pb-1">Digital Marketer</a></li>
-                                                    <li><a href="#" className="dropdown-item block pb-1">Social Media Manager</a></li>
-                                                    <li><a href="#" className="dropdown-item block pb-1">SEO Specialist</a></li>
-                                                    <li><a href="#" className="dropdown-item block pb-1">Sales Representative</a></li>
+                                                    <li><a href="#" className="dropdown-item block pb-1">Google Ads</a></li>
+                                                    <li><a href="#" className="dropdown-item block pb-1">Backlink</a></li>
+                                                    <li><a href="#" className="dropdown-item block pb-1">Search Engine Optimization</a></li>
+                                                    <li><a href="#" className="dropdown-item block pb-1">Press Release</a></li>
                                                 </ul>
                                             </div>
                                             <div>
-                                                <h4 className="font-bold text-sm mb-4">IT, Data, and Engineering</h4>
+                                                <h4 className="font-bold text-sm mb-4">Software Development</h4>
                                                 <ul className="space-y-3 text-xs text-text-light-muted">
-                                                    <li><a href="#" className="dropdown-item block pb-1">UI/UX Designer</a></li>
-                                                    <li><a href="#" className="dropdown-item block pb-1">Frontend Developer</a></li>
-                                                    <li><a href="#" className="dropdown-item block pb-1">Backend Developer</a></li>
-                                                    <li><a href="#" className="dropdown-item block pb-1">DevOps Engineer</a></li>
+                                                    <li><a href="#" className="dropdown-item block pb-1">Specifications & Wireframe</a></li>
+                                                    <li><a href="#" className="dropdown-item block pb-1">UI/UX Design</a></li>
+                                                    <li><a href="#" className="dropdown-item block pb-1">Website Development</a></li>
+                                                    <li><a href="#" className="dropdown-item block pb-1">Mobile App Development</a></li>
+                                                    <li><a href="#" className="dropdown-item block pb-1">MVP Development</a></li>
+                                                    <li><a href="#" className="dropdown-item block pb-1">Custom Software Development</a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -112,50 +111,19 @@ export default function Navbar() {
                                 </div>
                             </div>
 
-                            {/* Services - Dropdown */}
-                            <div className="group relative h-full flex items-center">
-                                <button className="nav-link flex items-center gap-2 hover:text-primary transition py-6 whitespace-nowrap">
-                                    Services <i className={`fas fa-chevron-down text-[10px] group-hover:rotate-180 transition-transform duration-300 ${isDarkBg ? 'text-white' : 'text-text-light'}`}></i>
-                                </button>
-                                <div className="absolute top-full -left-12 w-max min-w-[500px] pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 -z-10">
-                                    <div className="bg-white/95 backdrop-blur-md border border-gray-100 shadow-xl rounded-2xl overflow-hidden p-6 grid grid-cols-2 gap-8">
-                                        <div>
-                                            <h4 className="font-bold text-sm mb-3">Talent As a Service</h4>
-                                            <ul className="space-y-2 text-xs text-text-light-muted">
-                                                <li><a href="#" className="dropdown-item block py-1">Head Hunting</a></li>
-                                                <li><a href="#" className="dropdown-item block py-1">Staffing</a></li>
-                                                <li><a href="#" className="dropdown-item block py-1">Internship</a></li>
-                                                <li><a href="#" className="dropdown-item block py-1">Inclusive Talent</a></li>
-                                            </ul>
-                                        </div>
-                                        <div>
-                                            <h4 className="font-bold text-sm mb-3">Software Development</h4>
-                                            <ul className="space-y-2 text-xs text-text-light-muted">
-                                                <li><a href="#" className="dropdown-item block py-1">Specifications & Wireframe</a></li>
-                                                <li><a href="#" className="dropdown-item block py-1">UI/UX Design</a></li>
-                                                <li><a href="#" className="dropdown-item block py-1">Website Development</a></li>
-                                                <li><a href="#" className="dropdown-item block py-1">Mobile App Development</a></li>
-                                                <li><a href="#" className="dropdown-item block py-1">MVP Development</a></li>
-                                                <li><a href="#" className="dropdown-item block py-1">Custom Software Development</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+
 
                             {/* Products - Dropdown */}
                             <div className="group relative h-full flex items-center">
                                 <button className="nav-link flex items-center gap-2 hover:text-primary transition py-6 whitespace-nowrap">
-                                    Products <i className={`fas fa-chevron-down text-[10px] group-hover:rotate-180 transition-transform duration-300 ${isDarkBg ? 'text-white' : 'text-text-light'}`}></i>
+                                    Produk <i className={`fas fa-chevron-down text-[10px] group-hover:rotate-180 transition-transform duration-300 ${isDarkBg ? 'text-white' : 'text-text-light'}`}></i>
                                 </button>
                                 <div className="absolute top-full left-1/2 -translate-x-1/2 w-max pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 -z-10">
                                     <div className="bg-white/95 backdrop-blur-md border border-gray-100 shadow-xl rounded-2xl overflow-hidden p-5">
-                                        <h4 className="font-bold text-sm mb-3 text-left whitespace-nowrap">Products</h4>
+                                        <h4 className="font-bold text-sm mb-3 text-left whitespace-nowrap">Produk</h4>
                                         <ul className="space-y-2 text-xs text-text-light-muted text-left whitespace-nowrap">
                                             <li><a href="#" className="dropdown-item block py-1">HiTalent</a></li>
-                                            <li><a href="#" className="dropdown-item block py-1">lorem ipsum</a></li>
-                                            <li><a href="#" className="dropdown-item block py-1">lorem ipsum</a></li>
-                                            <li><a href="#" className="dropdown-item block py-1">lorem ipsum</a></li>
+                                            <li><a href="#" className="dropdown-item block py-1">HiSales</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -164,39 +132,21 @@ export default function Navbar() {
                             {/* Company - Dropdown */}
                             <div className="group relative h-full flex items-center">
                                 <button className="nav-link flex items-center gap-2 hover:text-primary transition py-6 whitespace-nowrap">
-                                    Company <i className={`fas fa-chevron-down text-[10px] group-hover:rotate-180 transition-transform duration-300 ${isDarkBg ? 'text-white' : 'text-text-light'}`}></i>
+                                    Perusahaan <i className={`fas fa-chevron-down text-[10px] group-hover:rotate-180 transition-transform duration-300 ${isDarkBg ? 'text-white' : 'text-text-light'}`}></i>
                                 </button>
                                 <div className="absolute top-full left-1/2 -translate-x-1/2 w-max pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 -z-10">
                                     <div className="bg-white/95 backdrop-blur-md border border-gray-100 shadow-xl rounded-2xl overflow-hidden p-5">
-                                        <h4 className="font-bold text-sm mb-3 text-left whitespace-nowrap">Company</h4>
+                                        <h4 className="font-bold text-sm mb-3 text-left whitespace-nowrap">Perusahaan</h4>
                                         <ul className="space-y-2 text-xs text-text-light-muted text-left whitespace-nowrap">
-                                            <li><Link href="/company" className="dropdown-item block py-1">About Us</Link></li>
+                                            <li><Link href="/company" className="dropdown-item block py-1">Tentang Kami</Link></li>
                                             <li><a href="#" className="dropdown-item block py-1">Portfolio</a></li>
-                                            <li><a href="#" className="dropdown-item block py-1">Careers</a></li>
-                                            <li><a href="#" className="dropdown-item block py-1">Our Journey</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Kreasi Academy - Dropdown */}
-                            <div className="group relative h-full flex items-center">
-                                <button className="nav-link flex items-center gap-2 hover:text-primary transition py-6 whitespace-nowrap">
-                                    Kreasi Academy <i className={`fas fa-chevron-down text-[10px] group-hover:rotate-180 transition-transform duration-300 ${isDarkBg ? 'text-white' : 'text-text-light'}`}></i>
-                                </button>
-                                <div className="absolute top-full left-1/2 -translate-x-1/2 w-max pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 -z-10">
-                                    <div className="bg-white/95 backdrop-blur-md border border-gray-100 shadow-xl rounded-2xl overflow-hidden p-5">
-                                        <h4 className="font-bold text-sm mb-3 text-left whitespace-nowrap">Kreasi Academy</h4>
-                                        <ul className="space-y-2 text-xs text-text-light-muted text-left whitespace-nowrap">
-                                            <li><a href="#" className="dropdown-item block py-1">After Office Academy</a></li>
-                                            <li><a href="#" className="dropdown-item block py-1">Impact Academy</a></li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
 
                             <a href="#" className={`nav-link hover:text-primary transition-colors duration-300 py-6 whitespace-nowrap ${isDarkBg ? 'text-white' : 'text-text-light'}`}>
-                                Digital Marketing
+                                Artikel
                             </a>
                         </div>
 
