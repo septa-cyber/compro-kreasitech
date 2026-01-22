@@ -32,18 +32,18 @@ export default function CompanyHero() {
                         />
                     </div>
                     <div className="flex flex-col gap-4">
-                        <div className="w-28 h-28 md:w-32 md:h-32 bg-pink-200 rounded-lg overflow-hidden relative group hover:-translate-y-1 transition-transform duration-300">
+                        <div className="w-28 h-28 md:w-32 md:h-32 rounded-lg overflow-hidden relative group hover:-translate-y-1 transition-transform duration-300">
                             <img
                                 alt="Avatar illustration"
                                 className="w-full h-full object-cover mix-blend-multiply opacity-80"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5iTNypO_2r-4cWTF6I75CB64eBbDioKo0ScrPE8QSOhA-CrXMvKfCry6pC3Bw8VmI3JZxLhmz6NhWMQfETIbgQasiapuG_5sAIHPO34VavS5btSuRLSFbM9L_n0fXTLiR5LFKivqfhdDNxYcd7-2SeEqb8CwlUDiIFTSQ6ph0HH_aOnGftfo1UMSJqaqQZMveZDNdRl4sSe5PePYhLvr1f5kYM_3bwpIi25acqs4_75JUQN3nrWubPUQaa52OnQl5A6QD2z2lH4s"
+                                src="/assets/images/employee/Janah.png"
                             />
                         </div>
-                        <div className="w-28 h-28 md:w-32 md:h-32 bg-green-200 rounded-lg overflow-hidden relative group hover:-translate-y-1 transition-transform duration-300">
+                        <div className="w-28 h-28 md:w-32 md:h-32 rounded-lg overflow-hidden relative group hover:-translate-y-1 transition-transform duration-300">
                             <img
                                 alt="Avatar illustration"
                                 className="w-full h-full object-cover mix-blend-multiply opacity-80"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDR-ZVfmsNMTrPN0CQqJN3yL0AcyARzoADNpl1Q_ZvdP9-HHBWXecjiw5EZl3-3c3nMeONexq7NvIdRO1hhFZfNmwwh6Kc8X9rYsQWCSGXCetnj0hDIDQV7c4meapP1-eirf9r1QSeZmNsxjoNhYaNfv4RpqrOyvCBZpCKfSOpu8gGsn_Dg8X0HjMqdoTGVCKncHj7R7UydCpto5Br-SO51CVV31RB81pbFiyjNebGGBdtEdchrwnFFTh9fXZtP11SMyRkWH72ECDA"
+                                src="/assets/images/employee/Fena.png"
                             />
                         </div>
                     </div>
@@ -51,22 +51,22 @@ export default function CompanyHero() {
                         <img
                             alt="Main Avatar illustration - Fendi"
                             className="w-full h-full object-cover mix-blend-multiply opacity-90"
-                            src="/assets/images/employee/Imdad.png"
+                            src="/assets/images/employee/Rahmat.png"
                         />
                     </div>
                     <div className="flex flex-col gap-4">
-                        <div className="w-28 h-28 md:w-32 md:h-32 bg-blue-200 rounded-lg overflow-hidden relative group hover:-translate-y-1 transition-transform duration-300">
+                        <div className="w-28 h-28 md:w-32 md:h-32 rounded-lg overflow-hidden relative group hover:-translate-y-1 transition-transform duration-300">
                             <img
                                 alt="Avatar illustration"
                                 className="w-full h-full object-cover mix-blend-multiply opacity-80"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgriPjv37D0InLsts39Gh268QSc6d5CfSGyGgBUOXJinYZCrQShuIw6y947pIx_r8aTKNfzXu8rdlt7aF4LMAmnadI9bXvFbLXjZEv2y-se_uZtCmX5kuShcyHPr0dUjLqhoH0IcXcERcHJs-smZQPf4xyHwbrt8og6Gm7seLlSWeuMLPpWeLYnM_L5kjmDfH8eNxIJ0nVqL-qT7MI2v20aZ14E6JJkL23dL8kiCwV6RbgNFyylAJyNdShioMJb6Dkao_H0aWfJF0"
+                                src="/assets/images/employee/Imdad.png"
                             />
                         </div>
-                        <div className="w-28 h-28 md:w-32 md:h-32 bg-indigo-300 rounded-lg overflow-hidden relative group hover:-translate-y-1 transition-transform duration-300">
+                        <div className="w-28 h-28 md:w-32 md:h-32 rounded-lg overflow-hidden relative group hover:-translate-y-1 transition-transform duration-300">
                             <img
                                 alt="Avatar illustration"
                                 className="w-full h-full object-cover mix-blend-multiply opacity-80"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDA5zAQ9VO63U-sntwAamrEwm9FSiVk-kFtzAcGhYGd1orvaCK0A4IY6cNPRSQ0--SW0Bm_O2UN8n3JdJYRGWa41mJ-Umb19SW28RMUmCsYjgKEZyxtkEYoRQjLCdC0ywiu5ESgMLfAmo2yVLPIO1trjwG0QrLQVXKowgic8-yx1hurwg6hp9TxQT1okcePpvAMGp9msE6oBgehiTmWZy_VhzrSk9X10Ju2LN_YSoTitEJnTdJplGS-_oW6-ZOwWmCa_3Ym8Hh0LkE"
+                                src="/assets/images/employee/Luthfi.png"
                             />
                         </div>
                     </div>
