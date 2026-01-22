@@ -181,70 +181,24 @@ export default function Navbar() {
             {/* Mobile menu */}
             {mobileMenuOpen && (
                 <div className="lg:hidden px-4 pt-2 pb-4 space-y-1 bg-white border-t border-gray-100 font-montserrat h-auto max-h-[calc(100vh-72px)] overflow-y-auto shadow-lg rounded-b-2xl">
-                    {/* Find a Talent */}
+                    {/* Layanan (Consolidated) */}
                     <div className="border-b border-gray-50">
                         <button
-                            onClick={() => toggleMobileDropdown("find-talent")}
+                            onClick={() => toggleMobileDropdown("layanan")}
                             className="flex w-full items-center justify-between px-3 py-4 text-sm font-medium text-text-light hover:text-primary transition-colors"
-                            aria-expanded={activeMobileDropdown === "find-talent"}
+                            aria-expanded={activeMobileDropdown === "layanan"}
                         >
-                            Find a Talent
-                            <i className={`fas fa-chevron-down text-[10px] transition-transform duration-300 ${activeMobileDropdown === "find-talent" ? "rotate-180" : ""}`}></i>
+                            Layanan
+                            <i className={`fas fa-chevron-down text-[10px] transition-transform duration-300 ${activeMobileDropdown === "layanan" ? "rotate-180" : ""}`}></i>
                         </button>
-                        <div className={`overflow-hidden transition-all duration-300 ${activeMobileDropdown === "find-talent" ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0"}`}>
+                        <div className={`overflow-hidden transition-all duration-300 ${activeMobileDropdown === "layanan" ? "max-h-[1200px] opacity-100" : "max-h-0 opacity-0"}`}>
                             <div className="bg-gray-50 p-4 space-y-6 rounded-lg mb-2">
                                 <div>
-                                    <h4 className="font-bold text-sm mb-3">Finance & Accounting</h4>
+                                    <h4 className="font-bold text-sm mb-3">Academy</h4>
                                     <ul className="space-y-2 text-xs text-text-light-muted">
-                                        <li><a href="#" className="block py-1 hover:text-primary">Bookkeeper</a></li>
-                                        <li><a href="#" className="block py-1 hover:text-primary">Financial Analyst</a></li>
-                                        <li><a href="#" className="block py-1 hover:text-primary">Tax Specialist</a></li>
-                                        <li><a href="#" className="block py-1 hover:text-primary">Accountant</a></li>
+                                        <li><a href="#" className="block py-1 hover:text-primary">Impact Academy</a></li>
                                     </ul>
                                 </div>
-                                <div>
-                                    <h4 className="font-bold text-sm mb-3">Customer Support, Ops, & VAs</h4>
-                                    <ul className="space-y-2 text-xs text-text-light-muted">
-                                        <li><a href="#" className="block py-1 hover:text-primary">Virtual Assistant</a></li>
-                                        <li><a href="#" className="block py-1 hover:text-primary">Create Support</a></li>
-                                        <li><a href="#" className="block py-1 hover:text-primary">Data Entry Specialist</a></li>
-                                        <li><a href="#" className="block py-1 hover:text-primary">Operations Manager</a></li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <h4 className="font-bold text-sm mb-3">Sales & Marketing</h4>
-                                    <ul className="space-y-2 text-xs text-text-light-muted">
-                                        <li><a href="#" className="block py-1 hover:text-primary">Digital Marketer</a></li>
-                                        <li><a href="#" className="block py-1 hover:text-primary">Social Media Manager</a></li>
-                                        <li><a href="#" className="block py-1 hover:text-primary">SEO Specialist</a></li>
-                                        <li><a href="#" className="block py-1 hover:text-primary">Sales Representative</a></li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <h4 className="font-bold text-sm mb-3">IT, Data, and Engineering</h4>
-                                    <ul className="space-y-2 text-xs text-text-light-muted">
-                                        <li><a href="#" className="block py-1 hover:text-primary">UI/UX Designer</a></li>
-                                        <li><a href="#" className="block py-1 hover:text-primary">Frontend Developer</a></li>
-                                        <li><a href="#" className="block py-1 hover:text-primary">Backend Developer</a></li>
-                                        <li><a href="#" className="block py-1 hover:text-primary">DevOps Engineer</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Services */}
-                    <div className="border-b border-gray-50">
-                        <button
-                            onClick={() => toggleMobileDropdown("services")}
-                            className="flex w-full items-center justify-between px-3 py-4 text-sm font-medium text-text-light hover:text-primary transition-colors"
-                            aria-expanded={activeMobileDropdown === "services"}
-                        >
-                            Services
-                            <i className={`fas fa-chevron-down text-[10px] transition-transform duration-300 ${activeMobileDropdown === "services" ? "rotate-180" : ""}`}></i>
-                        </button>
-                        <div className={`overflow-hidden transition-all duration-300 ${activeMobileDropdown === "services" ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"}`}>
-                            <div className="bg-gray-50 p-4 space-y-6 rounded-lg mb-2">
                                 <div>
                                     <h4 className="font-bold text-sm mb-3">Talent As a Service</h4>
                                     <ul className="space-y-2 text-xs text-text-light-muted">
@@ -252,6 +206,15 @@ export default function Navbar() {
                                         <li><a href="#" className="block py-1 hover:text-primary">Staffing</a></li>
                                         <li><a href="#" className="block py-1 hover:text-primary">Internship</a></li>
                                         <li><a href="#" className="block py-1 hover:text-primary">Inclusive Talent</a></li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 className="font-bold text-sm mb-3">Digital Marketing</h4>
+                                    <ul className="space-y-2 text-xs text-text-light-muted">
+                                        <li><a href="#" className="block py-1 hover:text-primary">Google Ads</a></li>
+                                        <li><a href="#" className="block py-1 hover:text-primary">Backlink</a></li>
+                                        <li><a href="#" className="block py-1 hover:text-primary">Search Engine Optimization</a></li>
+                                        <li><a href="#" className="block py-1 hover:text-primary">Press Release</a></li>
                                     </ul>
                                 </div>
                                 <div>
@@ -269,65 +232,41 @@ export default function Navbar() {
                         </div>
                     </div>
 
-                    {/* Products */}
+                    {/* Produk */}
                     <div className="border-b border-gray-50">
                         <button
-                            onClick={() => toggleMobileDropdown("products")}
+                            onClick={() => toggleMobileDropdown("produk")}
                             className="flex w-full items-center justify-between px-3 py-4 text-sm font-medium text-text-light hover:text-primary transition-colors"
-                            aria-expanded={activeMobileDropdown === "products"}
+                            aria-expanded={activeMobileDropdown === "produk"}
                         >
-                            Products
-                            <i className={`fas fa-chevron-down text-[10px] transition-transform duration-300 ${activeMobileDropdown === "products" ? "rotate-180" : ""}`}></i>
+                            Produk
+                            <i className={`fas fa-chevron-down text-[10px] transition-transform duration-300 ${activeMobileDropdown === "produk" ? "rotate-180" : ""}`}></i>
                         </button>
-                        <div className={`overflow-hidden transition-all duration-300 ${activeMobileDropdown === "products" ? "max-h-[300px] opacity-100" : "max-h-0 opacity-0"}`}>
+                        <div className={`overflow-hidden transition-all duration-300 ${activeMobileDropdown === "produk" ? "max-h-[300px] opacity-100" : "max-h-0 opacity-0"}`}>
                             <div className="bg-gray-50 p-4 rounded-lg mb-2">
                                 <ul className="space-y-2 text-xs text-text-light-muted">
                                     <li><a href="#" className="block py-1 hover:text-primary">HiTalent</a></li>
-                                    <li><a href="#" className="block py-1 hover:text-primary">lorem ipsum</a></li>
-                                    <li><a href="#" className="block py-1 hover:text-primary">lorem ipsum</a></li>
-                                    <li><a href="#" className="block py-1 hover:text-primary">lorem ipsum</a></li>
+                                    <li><a href="#" className="block py-1 hover:text-primary">HiSales</a></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
 
-                    {/* Company */}
+                    {/* Perusahaan */}
                     <div className="border-b border-gray-50">
                         <button
-                            onClick={() => toggleMobileDropdown("company")}
+                            onClick={() => toggleMobileDropdown("perusahaan")}
                             className="flex w-full items-center justify-between px-3 py-4 text-sm font-medium text-text-light hover:text-primary transition-colors"
-                            aria-expanded={activeMobileDropdown === "company"}
+                            aria-expanded={activeMobileDropdown === "perusahaan"}
                         >
-                            Company
-                            <i className={`fas fa-chevron-down text-[10px] transition-transform duration-300 ${activeMobileDropdown === "company" ? "rotate-180" : ""}`}></i>
+                            Perusahaan
+                            <i className={`fas fa-chevron-down text-[10px] transition-transform duration-300 ${activeMobileDropdown === "perusahaan" ? "rotate-180" : ""}`}></i>
                         </button>
-                        <div className={`overflow-hidden transition-all duration-300 ${activeMobileDropdown === "company" ? "max-h-[300px] opacity-100" : "max-h-0 opacity-0"}`}>
+                        <div className={`overflow-hidden transition-all duration-300 ${activeMobileDropdown === "perusahaan" ? "max-h-[300px] opacity-100" : "max-h-0 opacity-0"}`}>
                             <div className="bg-gray-50 p-4 rounded-lg mb-2">
                                 <ul className="space-y-2 text-xs text-text-light-muted">
-                                    <li><Link href="/company" className="block py-1 hover:text-primary">About Us</Link></li>
+                                    <li><Link href="/company" className="block py-1 hover:text-primary">Tentang Kami</Link></li>
                                     <li><a href="#" className="block py-1 hover:text-primary">Portfolio</a></li>
-                                    <li><a href="#" className="block py-1 hover:text-primary">Careers</a></li>
-                                    <li><a href="#" className="block py-1 hover:text-primary">Our Journey</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Kreasi Academy */}
-                    <div className="border-b border-gray-50">
-                        <button
-                            onClick={() => toggleMobileDropdown("academy")}
-                            className="flex w-full items-center justify-between px-3 py-4 text-sm font-medium text-text-light hover:text-primary transition-colors"
-                            aria-expanded={activeMobileDropdown === "academy"}
-                        >
-                            Kreasi Academy
-                            <i className={`fas fa-chevron-down text-[10px] transition-transform duration-300 ${activeMobileDropdown === "academy" ? "rotate-180" : ""}`}></i>
-                        </button>
-                        <div className={`overflow-hidden transition-all duration-300 ${activeMobileDropdown === "academy" ? "max-h-[300px] opacity-100" : "max-h-0 opacity-0"}`}>
-                            <div className="bg-gray-50 p-4 rounded-lg mb-2">
-                                <ul className="space-y-2 text-xs text-text-light-muted">
-                                    <li><a href="#" className="block py-1 hover:text-primary">After Office Academy</a></li>
-                                    <li><a href="#" className="block py-1 hover:text-primary">Impact Academy</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -337,7 +276,7 @@ export default function Navbar() {
                         href="#"
                         className="block px-3 py-4 text-sm font-medium text-text-light hover:text-primary"
                     >
-                        Digital Marketing
+                        Artikel
                     </a>
 
                     <div className="grid grid-cols-2 gap-3 mt-4 px-3 pb-8">

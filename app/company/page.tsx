@@ -22,7 +22,7 @@ export default function CompanyPage() {
                     Melalui ekosistem kami yang terintegrasi, mulai dari pengembangan skill (training & bootcamp), penyaluran tenaga kerja (hiring partner), hingga layanan pengembangan teknologi dan digital marketing, Kreasitech membantu setiap individu dan organisasi untuk bertumbuh bersama, menuju masa depan yang lebih cerdas dan terkoneksi.
                 </p>
             </ContentSection>
-            <ContentSection title="Visi Kami" className="bg-[#F4F4F7]">
+            <ContentSection title="Visi" className="bg-[#F4F4F7]">
                 <p>
                     Menjadi ekosistem digital terdepan yang menghubungkan edukasi, talenta, dan industri melalui teknologi.
                 </p>
