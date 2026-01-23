@@ -8,6 +8,8 @@ import MethodologySection from "@/app/components/services/software-development/M
 import RelatedJobsSection from "@/app/components/services/software-development/RelatedJobsSection";
 import Breadcrumb from "@/app/components/services/software-development/Breadcrumb";
 import TalentCTA from "@/app/components/services/software-development/TalentCTA";
+import Workflow from "@/app/components/landing/Workflow";
+import TechStack from "@/app/components/services/software-development/TechStack";
 
 export default function SoftwareDevelopmentPage() {
     return (
@@ -17,7 +19,8 @@ export default function SoftwareDevelopmentPage() {
                 <Breadcrumb />
                 <SoftwareDevHero />
                 <SolutionGrid />
-                <WorkflowSection />
+                <TechStack />
+                <Workflow />
                 <MethodologySection />
                 <RelatedJobsSection />
                 <TalentCTA />
