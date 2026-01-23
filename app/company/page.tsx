@@ -8,6 +8,7 @@ import TeamSection from "@/app/components/company/TeamSection";
 import CallToAction from "@/app/components/company/CTASection";
 import Breadcrumb from "@/app/components/company/Breadcrumb";
 import CTASection from "@/app/components/company/CTASection";
+import InternSection from "@/app/components/company/InternSection";
 
 export default function CompanyPage() {
     return (
@@ -31,6 +32,7 @@ export default function CompanyPage() {
             <MissionSection />
             <TimelineSection />
             <TeamSection />
+            <InternSection />
             <CTASection />
             <Footer />
         </div>
