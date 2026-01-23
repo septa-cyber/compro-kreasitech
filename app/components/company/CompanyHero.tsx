@@ -15,6 +15,13 @@ export default function CompanyHero() {
         { src: "/assets/images/employee/Imdad.png", alt: "Avatar illustration" },
         { src: "/assets/images/employee/Luthfi.png", alt: "Avatar illustration" },
         { src: "/assets/images/employee/Fendi.png", alt: "Avatar illustration" },
+        { src: "/assets/images/employee/Canu.png", alt: "Avatar illustration" },
+        { src: "/assets/images/employee/Rian.png", alt: "Avatar illustration" },
+        { src: "/assets/images/employee/Galang.png", alt: "Avatar illustration" },
+        { src: "/assets/images/employee/Rio.png", alt: "Avatar illustration" },
+        { src: "/assets/images/employee/Wafik.png", alt: "Avatar illustration" },
+        { src: "/assets/images/employee/Tia.png", alt: "Avatar illustration" },
+        { src: "/assets/images/employee/Dimas.png", alt: "Avatar illustration" },
     ];
 
     const [currentEmployees, setCurrentEmployees] = React.useState(INITIAL_EMPLOYEES);
