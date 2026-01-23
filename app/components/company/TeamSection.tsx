@@ -4,7 +4,7 @@ export default function TeamSection() {
     return (
         <section className="py-24 bg-background-light">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <h2 className="text-2xl md:text-4xl font-medium font-montserrat text-text-light mb-10">Meet Our Team</h2>
+                <h2 className="text-2xl md:text-4xl font-medium font-montserrat text-text-light mb-10">KreasiTech Team</h2>
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 overflow-hidden max-w-6xl mx-auto">
                     {/* Item 1 */}
                     {[
