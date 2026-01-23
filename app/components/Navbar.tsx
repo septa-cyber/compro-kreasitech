@@ -8,9 +8,25 @@ export default function Navbar() {
     const [activeMobileDropdown, setActiveMobileDropdown] = useState<string | null>(null);
     const [isDarkBg, setIsDarkBg] = useState(false);
 
+    const [activeDesktopDropdown, setActiveDesktopDropdown] = useState<string | null>(null);
+
+    const toggleDesktopDropdown = (name: string) => {
+        setActiveDesktopDropdown(prev => prev === name ? null : name);
+    };
+
     const toggleMobileDropdown = (name: string) => {
         setActiveMobileDropdown(prev => prev === name ? null : name);
     };
+
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (!(event.target as Element).closest('.group')) {
+                setActiveDesktopDropdown(null);
+            }
+        };
+        document.addEventListener('click', handleClickOutside);
+        return () => document.removeEventListener('click', handleClickOutside);
+    }, []);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -63,12 +79,15 @@ export default function Navbar() {
                         <div className={`flex items-center gap-3 xl:gap-8 text-[10px] xl:text-xs font-medium font-montserrat transition-colors duration-300`}>
                             {/* Find a Talent - Mega Menu Trigger */}
                             <div className="group h-full flex items-center">
-                                <button className={`nav-link flex items-center gap-2 hover:text-primary transition py-6 whitespace-nowrap ${isDarkBg ? 'text-white' : 'text-text-light'}`}>
-                                    Layanan <i className={`fas fa-chevron-down text-[10px] group-hover:rotate-180 transition-transform duration-300 ${isDarkBg ? 'text-white' : 'text-text-light'}`}></i>
+                                <button
+                                    onClick={() => toggleDesktopDropdown('layanan')}
+                                    className={`nav-link flex items-center gap-2 hover:text-primary transition py-6 whitespace-nowrap ${isDarkBg ? 'text-white' : 'text-text-light'}`}
+                                >
+                                    Layanan <i className={`fas fa-chevron-down text-[10px] group-hover:rotate-180 transition-transform duration-300 ${isDarkBg ? 'text-white' : 'text-text-light'} ${activeDesktopDropdown === 'layanan' ? 'rotate-180' : ''}`}></i>
                                 </button>
 
                                 {/* Mega Menu Dropdown */}
-                                <div className="absolute top-full left-0 w-full pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 -z-10">
+                                <div className={`absolute top-full left-0 w-full pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 -z-10 ${activeDesktopDropdown === 'layanan' ? '!opacity-100 !visible !translate-y-0' : ''}`}>
                                     <div className="bg-white/95 backdrop-blur-md border-t border-gray-100 shadow-xl rounded-2xl overflow-hidden text-text-light">
                                         <div className="max-w-[1400px] mx-auto px-8 py-8 grid grid-cols-4 gap-8">
                                             <div>
@@ -115,10 +134,13 @@ export default function Navbar() {
 
                             {/* Products - Dropdown */}
                             <div className="group relative h-full flex items-center">
-                                <button className={`nav-link flex items-center gap-2 hover:text-primary transition py-6 whitespace-nowrap ${isDarkBg ? 'text-white' : 'text-text-light'}`}>
-                                    Produk <i className={`fas fa-chevron-down text-[10px] group-hover:rotate-180 transition-transform duration-300 ${isDarkBg ? 'text-white' : 'text-text-light'}`}></i>
+                                <button
+                                    onClick={() => toggleDesktopDropdown('produk')}
+                                    className={`nav-link flex items-center gap-2 hover:text-primary transition py-6 whitespace-nowrap ${isDarkBg ? 'text-white' : 'text-text-light'}`}
+                                >
+                                    Produk <i className={`fas fa-chevron-down text-[10px] group-hover:rotate-180 transition-transform duration-300 ${isDarkBg ? 'text-white' : 'text-text-light'} ${activeDesktopDropdown === 'produk' ? 'rotate-180' : ''}`}></i>
                                 </button>
-                                <div className="absolute top-full left-1/2 -translate-x-1/2 w-max pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 -z-10">
+                                <div className={`absolute top-full left-1/2 -translate-x-1/2 w-max pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 -z-10 ${activeDesktopDropdown === 'produk' ? '!opacity-100 !visible !translate-y-0' : ''}`}>
                                     <div className="bg-white/95 backdrop-blur-md border border-gray-100 shadow-xl rounded-2xl overflow-hidden p-5 text-text-light">
                                         <h4 className="font-bold text-sm mb-3 text-left whitespace-nowrap text-text-light">Produk</h4>
                                         <ul className="space-y-2 text-xs text-text-light-muted text-left whitespace-nowrap">
@@ -131,10 +153,13 @@ export default function Navbar() {
 
                             {/* Company - Dropdown */}
                             <div className="group relative h-full flex items-center">
-                                <button className={`nav-link flex items-center gap-2 hover:text-primary transition py-6 whitespace-nowrap ${isDarkBg ? 'text-white' : 'text-text-light'}`}>
-                                    Perusahaan <i className={`fas fa-chevron-down text-[10px] group-hover:rotate-180 transition-transform duration-300 ${isDarkBg ? 'text-white' : 'text-text-light'}`}></i>
+                                <button
+                                    onClick={() => toggleDesktopDropdown('perusahaan')}
+                                    className={`nav-link flex items-center gap-2 hover:text-primary transition py-6 whitespace-nowrap ${isDarkBg ? 'text-white' : 'text-text-light'}`}
+                                >
+                                    Perusahaan <i className={`fas fa-chevron-down text-[10px] group-hover:rotate-180 transition-transform duration-300 ${isDarkBg ? 'text-white' : 'text-text-light'} ${activeDesktopDropdown === 'perusahaan' ? 'rotate-180' : ''}`}></i>
                                 </button>
-                                <div className="absolute top-full left-1/2 -translate-x-1/2 w-max pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 -z-10">
+                                <div className={`absolute top-full left-1/2 -translate-x-1/2 w-max pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 -z-10 ${activeDesktopDropdown === 'perusahaan' ? '!opacity-100 !visible !translate-y-0' : ''}`}>
                                     <div className="bg-white/95 backdrop-blur-md border border-gray-100 shadow-xl rounded-2xl overflow-hidden p-5 text-text-light">
                                         <h4 className="font-bold text-sm mb-3 text-left whitespace-nowrap text-text-light">Perusahaan</h4>
                                         <ul className="space-y-2 text-xs text-text-light-muted text-left whitespace-nowrap">
