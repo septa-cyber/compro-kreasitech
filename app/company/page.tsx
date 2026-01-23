@@ -5,8 +5,9 @@ import ContentSection from "@/app/components/company/ContentSection";
 import MissionSection from "@/app/components/company/MissionSection";
 import TimelineSection from "@/app/components/company/TimelineSection";
 import TeamSection from "@/app/components/company/TeamSection";
-import CTASection from "@/app/components/company/CTASection";
+import CallToAction from "@/app/components/company/CTASection";
 import Breadcrumb from "@/app/components/company/Breadcrumb";
+import CTASection from "@/app/components/company/CTASection";
 
 export default function CompanyPage() {
     return (

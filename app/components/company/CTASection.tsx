@@ -1,22 +1,28 @@
-import React from "react";
+import React from 'react';
 
 export default function CTASection() {
     return (
-        <section className="py-24 bg-[#F4F4F7]">
-            <div className="max-w-4xl mx-auto px-4 text-center">
-                <h2 className="font-display text-3xl md:text-4xl font-semibold mb-4 text-gray-900">
-                    We're a team of fun,<br />passionate people
-                </h2>
-                <p className="text-gray-500 mb-10 text-sm font-body">
-                    We are coming from all over the world.<br />Welcome and nice to meet you!
-                </p>
-                <div className="flex flex-col sm:flex-row justify-center gap-4">
-                    <button className="px-8 py-3 bg-violet-600 text-white rounded-md font-medium hover:bg-violet-700 transition shadow-lg text-sm font-body">
-                        Start Hiring
-                    </button>
-                    <button className="px-8 py-3 bg-purple-200 text-purple-900 rounded-md font-medium hover:bg-purple-300 transition text-sm font-body">
-                        Join Our Team
-                    </button>
+        <section className="py-24 bg-gray-100 flex flex-col justify-start items-center gap-24 overflow-hidden">
+            <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-center items-center gap-16">
+                <div className="w-full flex flex-col justify-start items-center gap-8">
+                    <div className="w-full flex flex-col justify-start items-center gap-8 text-center">
+                        <h2 className="text-3xl sm:text-4xl font-medium font-montserrat text-text-light leading-tight">
+                            Kami tim yang menyenangkan<br />dan penuh semangat
+                        </h2>
+                        <p className="text-sm sm:text-base font-normal font-montserrat text-text-light-muted">
+                            Kami berasal dari seluruh dunia.Selamat datang dan salam kenal!
+                        </p>
+                    </div>
+                </div>
+                <div className="inline-flex justify-start items-start gap-8">
+                    <a
+                        href="#"
+                        className="px-8 py-4 bg-violet-600 rounded-lg flex justify-center items-center gap-2.5 hover:bg-violet-700 transition-colors"
+                    >
+                        <span className="text-gray-100 text-base font-medium font-montserrat">
+                            Bergabung dengan Kami
+                        </span>
+                    </a>
                 </div>
             </div>
         </section>

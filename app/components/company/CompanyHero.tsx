@@ -1,6 +1,12 @@
+"use client";
 import React from "react";
 
 export default function CompanyHero() {
+
+    const [isTrustedByHovered, setIsTrustedByHovered] = React.useState(false);
+
+    const partnerLogos = Array(7).fill("/assets/images/Logo.svg");
+
     return (
         <section className="relative pt-10 pb-20 overflow-hidden bg-[#F4F4F7]">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
@@ -23,23 +29,23 @@ export default function CompanyHero() {
                 </div>
 
                 {/* Avatar Collage */}
-                <div className="flex flex-wrap justify-center items-center gap-4 md:gap-6 max-w-5xl mx-auto">
-                    <div className="w-32 h-32 md:w-40 md:h-40 rounded-lg overflow-hidden relative group hover:-translate-y-1 transition-transform duration-300">
+                <div className="flex flex-nowrap justify-center items-center gap-1.5 sm:gap-4 md:gap-6 max-w-5xl mx-auto">
+                    <div className="w-14 h-14 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-40 lg:h-40 rounded-lg overflow-hidden relative group hover:-translate-y-1 transition-transform duration-300 flex-shrink-0">
                         <img
                             alt="Avatar illustration"
                             className="w-full h-full object-cover mix-blend-multiply opacity-80"
                             src="/assets/images/employee/Nina.png"
                         />
                     </div>
-                    <div className="flex flex-col gap-4">
-                        <div className="w-28 h-28 md:w-32 md:h-32 rounded-lg overflow-hidden relative group hover:-translate-y-1 transition-transform duration-300">
+                    <div className="flex flex-col gap-1.5 sm:gap-4 flex-shrink-0">
+                        <div className="w-12 h-12 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 rounded-lg overflow-hidden relative group hover:-translate-y-1 transition-transform duration-300">
                             <img
                                 alt="Avatar illustration"
                                 className="w-full h-full object-cover mix-blend-multiply opacity-80"
                                 src="/assets/images/employee/Janah.png"
                             />
                         </div>
-                        <div className="w-28 h-28 md:w-32 md:h-32 rounded-lg overflow-hidden relative group hover:-translate-y-1 transition-transform duration-300">
+                        <div className="w-12 h-12 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 rounded-lg overflow-hidden relative group hover:-translate-y-1 transition-transform duration-300">
                             <img
                                 alt="Avatar illustration"
                                 className="w-full h-full object-cover mix-blend-multiply opacity-80"
@@ -47,22 +53,22 @@ export default function CompanyHero() {
                             />
                         </div>
                     </div>
-                    <div className="w-40 h-56 md:w-56 md:h-72 rounded-lg overflow-hidden relative group hover:-translate-y-1 transition-transform duration-300 shadow-xl">
+                    <div className="w-20 h-28 sm:w-40 sm:h-56 md:w-40 md:h-56 lg:w-56 lg:h-72 rounded-lg overflow-hidden relative group hover:-translate-y-1 transition-transform duration-300 shadow-xl flex-shrink-0">
                         <img
                             alt="Main Avatar illustration - Fendi"
                             className="w-full h-full object-cover mix-blend-multiply opacity-90"
                             src="/assets/images/employee/Rahmat.png"
                         />
                     </div>
-                    <div className="flex flex-col gap-4">
-                        <div className="w-28 h-28 md:w-32 md:h-32 rounded-lg overflow-hidden relative group hover:-translate-y-1 transition-transform duration-300">
+                    <div className="flex flex-col gap-1.5 sm:gap-4 flex-shrink-0">
+                        <div className="w-12 h-12 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 rounded-lg overflow-hidden relative group hover:-translate-y-1 transition-transform duration-300">
                             <img
                                 alt="Avatar illustration"
                                 className="w-full h-full object-cover mix-blend-multiply opacity-80"
                                 src="/assets/images/employee/Imdad.png"
                             />
                         </div>
-                        <div className="w-28 h-28 md:w-32 md:h-32 rounded-lg overflow-hidden relative group hover:-translate-y-1 transition-transform duration-300">
+                        <div className="w-12 h-12 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 rounded-lg overflow-hidden relative group hover:-translate-y-1 transition-transform duration-300">
                             <img
                                 alt="Avatar illustration"
                                 className="w-full h-full object-cover mix-blend-multiply opacity-80"
@@ -70,7 +76,7 @@ export default function CompanyHero() {
                             />
                         </div>
                     </div>
-                    <div className="w-32 h-32 md:w-40 md:h-40 rounded-lg overflow-hidden relative group hover:-translate-y-1 transition-transform duration-300">
+                    <div className="w-14 h-14 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-40 lg:h-40 rounded-lg overflow-hidden relative group hover:-translate-y-1 transition-transform duration-300 flex-shrink-0">
                         <img
                             alt="Avatar illustration"
                             className="w-full h-full object-cover mix-blend-multiply opacity-80"
@@ -78,16 +84,30 @@ export default function CompanyHero() {
                         />
                     </div>
                 </div>
+            </div>
 
-                {/* Trusted By */}
-                <div className="mt-20 text-center">
-                    <p className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-6 font-body">
-                        Trusted by great businesses like:
-                    </p>
-                    <div className="flex flex-wrap justify-center gap-8 md:gap-16 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
-                        {[1, 2, 3, 4, 5].map((i) => (
-                            <div key={i} className="flex items-center gap-2 font-bold text-lg text-primary dark:text-white font-display">
-                                <span className="w-5 h-5 bg-primary rounded-sm"></span> kreasitech
+            <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10 flex flex-col items-center">
+                {/* Trusted By Header */}
+                <div className="mt-24 mb-6 w-full max-w-7xl mx-auto text-center z-10">
+                    <div className="w-full text-center text-SubText text-xs font-normal font-['Montserrat']">Dipercaya oleh bisnis terkemuka seperti:</div>
+                </div>
+            </div>
+
+            {/* Trusted By Marquee */}
+            <div className="relative">
+                <div
+                    className="w-full overflow-hidden flex items-center px-4 pb-12 z-10"
+                    onMouseEnter={() => setIsTrustedByHovered(true)}
+                    onMouseLeave={() => setIsTrustedByHovered(false)}
+                >
+                    <div
+                        className="flex space-x-12 shrink-0 animate-marquee items-center"
+                        style={{ animationPlayState: isTrustedByHovered ? 'paused' : 'running' }}
+                    >
+                        {/* Duplicate content for marquee effect */}
+                        {[...partnerLogos, ...partnerLogos, ...partnerLogos, ...partnerLogos].map((logo, index) => (
+                            <div key={index} className="flex items-center gap-2 opacity-60 grayscale hover:grayscale-0 transition duration-500">
+                                <img src={logo} alt="Kreasitech" className="h-8 w-auto" />
                             </div>
                         ))}
                     </div>
