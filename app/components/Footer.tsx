@@ -14,28 +14,28 @@ export default function Footer() {
                             className="h-7 w-auto"
                         />
                     </div>
-                    <div className="flex flex-col md:flex-row justify-start items-center gap-6">
-                        <div className="flex justify-start items-center gap-2">
-                            <div data-style="Outlined" className="w-5 h-5 relative overflow-hidden flex items-center justify-center">
+                    <div className="flex flex-col md:flex-row justify-center md:justify-start items-center gap-6 w-full md:w-auto">
+                        <div className="flex flex-row justify-center md:justify-start items-center gap-2 text-center md:text-left">
+                            <div data-style="Outlined" className="w-5 h-5 relative overflow-hidden flex items-center justify-center shrink-0">
                                 <FaMapMarkerAlt className="text-violet-600 text-sm" />
                             </div>
-                            <div className="justify-start text-text-light text-sm font-normal font-montserrat">
+                            <div className="text-text-light text-sm font-normal font-montserrat max-w-[195px] md:max-w-none">
                                 Jalan Lorong, Gedongan RT01/RW04, Sinduadi, Mlati, Sleman, DIY 55284
                             </div>
                         </div>
-                        <div className="flex justify-start items-center gap-2">
-                            <div data-style="Outlined" className="w-5 h-5 relative overflow-hidden flex items-center justify-center">
+                        <div className="flex flex-row justify-center md:justify-start items-center gap-2 text-center md:text-left">
+                            <div data-style="Outlined" className="w-5 h-5 relative overflow-hidden flex items-center justify-center shrink-0">
                                 <FaPhone className="text-violet-600 text-sm" />
                             </div>
-                            <div className="justify-start text-text-light text-sm font-normal font-montserrat">
+                            <div className="text-text-light text-sm font-normal font-montserrat">
                                 (62) 888-8088-877
                             </div>
                         </div>
-                        <div className="flex justify-start items-center gap-2">
-                            <div data-style="Outlined" className="w-5 h-5 relative overflow-hidden flex items-center justify-center">
+                        <div className="flex flex-row justify-center md:justify-start items-center gap-2 text-center md:text-left">
+                            <div data-style="Outlined" className="w-5 h-5 relative overflow-hidden flex items-center justify-center shrink-0">
                                 <FaRegEnvelope className="text-violet-600 text-sm" />
                             </div>
-                            <div className="justify-start text-text-light text-sm font-normal font-montserrat">
+                            <div className="text-text-light text-sm font-normal font-montserrat">
                                 marketing@kreasi.tech
                             </div>
                         </div>
