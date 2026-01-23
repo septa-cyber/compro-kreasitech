@@ -1,0 +1,40 @@
+import React from "react";
+
+export default function WorkflowSection() {
+    return (
+        <section className="py-24 bg-[#4834d4] text-white relative">
+            {/* No gradient overlay needed as per new reference, just solid deep purple or very subtle gradient */}
+            <div className="absolute inset-0 bg-[#4834d4]"></div>
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div className="text-center mb-16">
+                    <h2 className="text-3xl font-bold mb-4 font-montserrat tracking-tight">Match your energy with our<br />workflow</h2>
+                    <p className="text-indigo-100 text-[10px] max-w-sm mx-auto font-inter leading-relaxed">
+                        We ensure every project is executed efficiently and tailored to your unique business needs, providing innovative solutions that drive success.
+                    </p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 border-t border-l border-white/20">
+                    {/* Workflow Items */}
+                    <WorkflowItem number="1" title="Discovery & Requirements" desc="Are essential documents outlining a project's boundaries and goals." light />
+                    <WorkflowItem number="2" title="Wireframe & UI/UX Design" desc="Details the step-by-step method of developing or improving a current product." />
+                    <WorkflowItem number="3" title="Development" desc="Outlines the detailed procedure for innovating or upgrading an existing service." />
+                    <WorkflowItem number="4" title="SIT" desc="Represents a milestone reached through commitment, skill, and courage." />
+                    <WorkflowItem number="5" title="UAT" desc="Embodies a success story built on perseverance, expertise, and valor." className="lg:col-start-1 lg:ml-auto w-full" />
+                    <WorkflowItem number="6" title="Deployment" desc="It allows for ongoing improvements through constant reviews and iterative changes." />
+                    <WorkflowItem number="7" title="Maintenance & Support" desc="It facilitates ongoing development through constant reviews and iterative modifications." className="lg:col-span-2 text-center w-full" />
+                </div>
+            </div>
+        </section>
+    );
+}
+
+function WorkflowItem({ number, title, desc, light, className = "" }: { number: string, title: string, desc: string, light?: boolean, className?: string }) {
+    return (
+        <div className={`p-8 border-r border-b border-white/20 text-center flex flex-col items-center flex-grow ${light ? 'bg-white text-gray-900' : 'bg-transparent backdrop-blur-sm'} ${className}`}>
+            <div className={`w-8 h-8 rounded-[4px] flex items-center justify-center font-bold mb-4 font-montserrat ${light ? 'border border-[#4834d4] text-[#4834d4]' : 'border border-white text-white'}`}>
+                {number}
+            </div>
+            <h3 className={`text-lg font-bold mb-2 font-montserrat ${light ? 'text-[#4834d4]' : 'text-white'}`}>{title}</h3>
+            <p className={`text-[10px] ${light ? 'text-gray-500' : 'text-indigo-100'} font-inter px-4`}>{desc}</p>
+        </div>
+    )
+}

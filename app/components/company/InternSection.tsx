@@ -8,8 +8,8 @@ export default function TeamSection() {
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 overflow-hidden max-w-6xl mx-auto">
                     {/* Item 1 */}
                     {[
-                        { name: "Wahyu Septa Pramudya", role: "UI/UX Designer", batch: "Batch 1", image: "Septa.png" },
-                        { name: "⁠Pradipta Triatmaja Purwa Nugraha", role: "Frontend Web Developer", batch: "Batch 1", image: "Dipta.png" },
+                        { name: "Wahyu Septa Pramudya", role: "UI/UX Designer", batch: "Batch 1 - 2026", image: "Septa.png" },
+                        { name: "Pradipta Triatmaja Purwa Nugraha", role: "Frontend Web Developer", batch: "Batch 1 - 2026", image: "Dipta.png" },
                     ].map((member, index) => {
                         return (
                             <div key={index} className="aspect-[3/4] relative group overflow-hidden bg-gray-100">
