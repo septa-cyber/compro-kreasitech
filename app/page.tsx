@@ -15,19 +15,21 @@ export default function Home() {
   return (
     <div className="bg-background-light text-text-light font-sans transition-colors duration-300">
       <Navbar />
-      <Hero />
-      <ContentSection title="Tentang Kami" className="bg-white">
-        <p>
-          Kreasitech adalah perusahaan teknologi yang menghubungkan dunia pendidikan, karier, dan industri melalui inovasi digital. Berangkat dari semangat <span className="text-violet-600 font-medium">"Where Talent Meets Technology"</span> kami mencetak, mengembangkan, dan menyalurkan talenta siap kerja melalui layanan pelatihan, outsourcing, dan pengembangan produk digital.
-        </p>
-      </ContentSection>
-      <WhyUs />
-      <Services />
-      <OurProduct />
-      <Portfolio />
-      <ArticleSection />
-      <Testimonials />
-      <CallToAction />
+      <main>
+        <Hero />
+        <ContentSection title="Tentang Kami" className="bg-white">
+          <p>
+            Kreasitech adalah perusahaan teknologi yang menghubungkan dunia pendidikan, karier, dan industri melalui inovasi digital. Berangkat dari semangat <span className="text-violet-600 font-medium">"Where Talent Meets Technology"</span> kami mencetak, mengembangkan, dan menyalurkan talenta siap kerja melalui layanan pelatihan, outsourcing, dan pengembangan produk digital.
+          </p>
+        </ContentSection>
+        <WhyUs />
+        <Services />
+        <OurProduct />
+        <Portfolio />
+        <ArticleSection />
+        <Testimonials />
+        <CallToAction />
+      </main>
       <Footer />
       <WhatsAppButton />
     </div>

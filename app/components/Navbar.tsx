@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState, useEffect } from "react";
 
 export default function Navbar() {
@@ -66,9 +67,11 @@ export default function Navbar() {
                     {/* Logo Section */}
                     <div className="flex-shrink-0 flex items-center gap-2">
                         <Link href="/" className="flex items-center gap-2">
-                            <img
+                            <Image
                                 src="/assets/images/Logo.svg"
                                 alt="Kreasitech Logo"
+                                width={120}
+                                height={32}
                                 className={`h-6 lg:h-7 xl:h-8 w-auto transition-all duration-300 ${isDarkBg ? 'brightness-0 invert' : ''}`}
                             />
                         </Link>

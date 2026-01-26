@@ -9,6 +9,16 @@ import CallToAction from "@/app/components/company/CTASection";
 import Breadcrumb from "@/app/components/company/Breadcrumb";
 import CTASection from "@/app/components/company/CTASection";
 import InternSection from "@/app/components/company/InternSection";
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+    title: "Tentang Kami",
+    description: "Pelajari lebih lanjut tentang misi Kreasitech dalam menghubungkan pendidikan, karier, dan industri melalui teknologi.",
+    openGraph: {
+        title: "Tentang Kami - Kreasitech",
+        description: "Kenali lebih dekat Kreasitech sebagai partner teknologi Anda. Visi kami menghubungkan talenta terbaik dengan inovasi teknologi.",
+    }
+};
 
 export default function CompanyPage() {
     return (

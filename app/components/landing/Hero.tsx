@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import Image from 'next/image';
 
 export default function Hero() {
     const [isBadgesHovered, setIsBadgesHovered] = React.useState(false);
@@ -67,7 +68,7 @@ export default function Hero() {
                 <div className="hidden xl:block absolute -top-5 left-0 animate-float-slow z-20">
                     <div className="bg-white/95 backdrop-blur-md p-4 rounded-lg shadow-[0px_2px_6px_2px_rgba(0,0,0,0.1)] border border-gray-100 flex items-center gap-4">
                         <div className="w-10 h-10 flex items-center justify-center border-2 border-dashed border-primary/30 rounded-full">
-                            <img src="/assets/images/tag_faces.svg" alt="Happy Clients" className="w-6 h-6" />
+                            <Image src="/assets/images/tag_faces.svg" alt="Happy Clients" width={24} height={24} className="w-6 h-6" />
                         </div>
                         <div className="text-left">
                             <div className="font-bold text-base text-text-light">50+</div>
@@ -80,7 +81,7 @@ export default function Hero() {
                 <div className="hidden xl:block absolute top-35 -right-12 animate-float-medium z-20">
                     <div className="bg-white/95 backdrop-blur-md p-4 rounded-lg shadow-[0px_2px_6px_2px_rgba(0,0,0,0.1)] border border-gray-100 flex items-center gap-4">
                         <div className="w-10 h-10 flex items-center justify-center border-2 border-dashed border-primary/30 rounded-full">
-                            <img src="/assets/images/star_border_purple500.svg" alt="Professional Talents" className="w-6 h-6" />
+                            <Image src="/assets/images/star_border_purple500.svg" alt="Professional Talents" width={24} height={24} className="w-6 h-6" />
                         </div>
                         <div className="text-left">
                             <div className="font-bold text-base text-text-light">100+</div>
@@ -93,7 +94,7 @@ export default function Hero() {
                 <div className="hidden xl:block absolute bottom-26 left-10 animate-float-fast z-20">
                     <div className="bg-white/95 backdrop-blur-md p-4 rounded-lg shadow-[0px_2px_6px_2px_rgba(0,0,0,0.1)] border border-gray-100 flex items-center gap-4">
                         <div className="w-10 h-10 flex items-center justify-center border-2 border-dashed border-primary/30 rounded-full">
-                            <img src="/assets/images/task_alt.svg" alt="Projects Completed" className="w-6 h-6" />
+                            <Image src="/assets/images/task_alt.svg" alt="Projects Completed" width={24} height={24} className="w-6 h-6" />
                         </div>
                         <div className="text-left">
                             <div className="font-bold text-base text-text-light">50+</div>
@@ -107,7 +108,7 @@ export default function Hero() {
                     {badgesData.map((badge, index) => (
                         <div key={index} className="p-4 bg-white/95 backdrop-blur-md rounded-lg shadow-[0px_2px_6px_2px_rgba(0,0,0,0.1)] border border-gray-100 flex items-center gap-4 min-w-[200px]">
                             <div className="w-10 h-10 flex items-center justify-center border-2 border-dashed border-primary/30 rounded-full">
-                                <img src={badge.icon} alt={badge.label} className="w-6 h-6" />
+                                <Image src={badge.icon} alt={badge.label} width={24} height={24} className="w-6 h-6" />
                             </div>
                             <div className="text-left">
                                 <div className="font-bold text-base text-text-light">{badge.count}</div>
@@ -133,7 +134,7 @@ export default function Hero() {
                         {[...badgesData, ...badgesData, ...badgesData, ...badgesData].map((badge, index) => (
                             <div key={index} className="p-2 bg-white/95 backdrop-blur-md rounded-lg flex justify-start items-center gap-4 border border-gray-100">
                                 <div className={`w-8 h-8 relative flex items-center justify-center rounded-full ${badge.bg}`}>
-                                    <img src={badge.icon} alt={badge.label} className="w-6 h-6" />
+                                    <Image src={badge.icon} alt={badge.label} width={24} height={24} className="w-6 h-6" />
                                 </div>
                                 <div className="inline-flex flex-col justify-start items-start gap-1">
                                     <div className="text-text-light text-sm font-medium font-montserrat">{badge.count}</div>
@@ -166,7 +167,7 @@ export default function Hero() {
                         {/* Duplicate content for marquee effect */}
                         {[...partnerLogos, ...partnerLogos, ...partnerLogos, ...partnerLogos].map((logo, index) => (
                             <div key={index} className="flex items-center gap-2 opacity-60 grayscale hover:grayscale-0 transition duration-500">
-                                <img src={logo} alt="Kreasitech" className="h-8 w-auto" />
+                                <Image src={logo} alt="Kreasitech" width={100} height={32} className="h-8 w-auto" />
                             </div>
                         ))}
                     </div>
