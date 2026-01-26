@@ -8,9 +8,10 @@ interface BreadcrumbItem {
 
 interface BreadcrumbProps {
     items: BreadcrumbItem[];
+    className?: string;
 }
 
-export default function Breadcrumb({ items }: BreadcrumbProps) {
+export default function Breadcrumb({ items, className = "" }: BreadcrumbProps) {
     const jsonLd = {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
@@ -24,7 +25,7 @@ export default function Breadcrumb({ items }: BreadcrumbProps) {
 
     return (
         <section className="bg-[#F4F4F7] w-full pt-28 pb-4">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className={`max-w-7xl mx-auto ${className}`}>
                 <nav className="flex text-xs text-gray-500 font-body items-center">
                     {items.map((item, index) => (
                         <React.Fragment key={index}>

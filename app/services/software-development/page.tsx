@@ -16,7 +16,7 @@ export default function SoftwareDevelopmentPage() {
         <div className="bg-background-light dark:bg-background-dark min-h-screen">
             <Navbar />
             <main>
-                <Breadcrumb items={[
+                <Breadcrumb className="px-4 sm:px-6 lg:px-8" items={[
                     { label: "Home", href: "/" },
                     { label: "Services", href: "#" },
                     { label: "Software Development", href: "/services/software-development" }

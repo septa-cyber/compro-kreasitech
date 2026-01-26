@@ -111,6 +111,14 @@ module.exports = {
                     "0%, 100%": { transform: "translateY(0px)" },
                     "50%": { transform: "translateY(-10px)" },
                 },
+                "scroll-up": {
+                    "0%": { transform: "translateY(0)" },
+                    "100%": { transform: "translateY(-50%)" },
+                },
+                "scroll-down": {
+                    "0%": { transform: "translateY(-50%)" },
+                    "100%": { transform: "translateY(0)" },
+                },
             },
             animation: {
                 "accordion-down": "accordion-down 0.2s ease-out",
@@ -120,6 +128,8 @@ module.exports = {
                 "float-slow": "float-slow 6s ease-in-out infinite",
                 "float-medium": "float-medium 5s ease-in-out infinite",
                 "float-fast": "float-fast 4s ease-in-out infinite",
+                "scroll-up": "scroll-up 30s linear infinite",
+                "scroll-down": "scroll-down 30s linear infinite",
             },
         },
     },

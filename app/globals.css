@@ -163,8 +163,58 @@ body {
   }
 }
 
-.animate-float-slow {
-  animation: float-slow 6s ease-in-out infinite;
+@keyframes scroll-slow {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.animate-scroll-slow {
+  animation: scroll-slow 8s ease-in-out infinite;
+}
+
+@keyframes scroll-up {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(0, -50%, 0);
+  }
+}
+
+@keyframes scroll-down {
+  0% {
+    transform: translate3d(0, -50%, 0);
+  }
+
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.animate-scroll-up {
+  animation: scroll-up 30s linear infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.animate-scroll-down {
+  animation: scroll-down 30s linear infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  perspective: 1000px;
 }
 
 .animate-float-medium {
@@ -190,9 +240,15 @@ body {
 }
 
 /* Pause marquee animation on hover */
+/* Pause marquee animation on hover */
 .marquee-container:hover .animate-marquee,
 .marquee-container:hover .animate-marquee-reverse {
   animation-play-state: paused;
+}
+
+.animate-scroll-up:hover,
+.animate-scroll-down:hover {
+  animation-play-state: paused !important;
 }
 
 /* Shadow utilities */

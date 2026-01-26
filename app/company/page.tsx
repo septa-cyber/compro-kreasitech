@@ -24,7 +24,7 @@ export default function CompanyPage() {
     return (
         <div className="bg-background-light text-gray-800 transition-colors duration-300">
             <Navbar />
-            <Breadcrumb items={[
+            <Breadcrumb className="px-4 sm:px-6 lg:px-8" items={[
                 { label: "Home", href: "/" },
                 { label: "Perusahaan", href: "#" },
                 { label: "Tentang Kami", href: "/company" }

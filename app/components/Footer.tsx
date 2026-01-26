@@ -67,9 +67,9 @@ export default function Footer() {
                         <a href="#" className="justify-start text-text-light text-sm font-medium font-montserrat hover:text-primary transition">
                             Tentang Kami
                         </a>
-                        <a href="#" className="justify-start text-text-light text-sm font-medium font-montserrat hover:text-primary transition">
+                        <Link href="/portfolio" className="justify-start text-text-light text-sm font-medium font-montserrat hover:text-primary transition">
                             Portfolio
-                        </a>
+                        </Link>
                     </div>
                     <div className="flex flex-col justify-start items-start gap-6">
                         <div className="justify-start text-violet-600 text-xs font-bold uppercase font-montserrat">
