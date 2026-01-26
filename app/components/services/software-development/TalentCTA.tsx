@@ -1,18 +1,29 @@
-import React from "react";
+import React from 'react';
 
 export default function TalentCTA() {
     return (
-        <section className="py-24 bg-background-light dark:bg-background-dark text-center">
-            <div className="max-w-4xl mx-auto px-4">
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4 font-montserrat">
-                    Build Your Dream<br />Team Effortlessly
-                </h2>
-                <p className="text-sm text-gray-500 dark:text-gray-400 mb-8 max-w-lg mx-auto font-inter">
-                    Connect with pre-vetted professionals ready to accelerate your project's success.
-                </p>
-                <a className="inline-block px-8 py-3 bg-[#6342E8] text-white rounded-[4px] font-medium text-sm hover:bg-[#5033c5] shadow-lg hover:shadow-xl transition transform hover:-translate-y-0.5 font-montserrat" href="#">
-                    Hire Top Tech Talent
-                </a>
+        <section className="py-24 bg-gray-100 flex flex-col justify-start items-center gap-24 overflow-hidden">
+            <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-center items-center gap-16">
+                <div className="w-full flex flex-col justify-start items-center gap-8">
+                    <div className="w-full flex flex-col justify-start items-center gap-8 text-center">
+                        <h2 className="text-3xl sm:text-4xl font-medium font-montserrat text-text-light leading-tight">
+                            Mari wujudkan transformasi digital bersama.
+                        </h2>
+                        <p className="text-sm sm:text-base font-normal font-montserrat text-text-light-muted">
+                            Dapatkan konsultasi gratis sesuai kebutuhan bisnis atau talenta Anda.
+                        </p>
+                    </div>
+                </div>
+                <div className="inline-flex justify-start items-start gap-8">
+                    <a
+                        href="#"
+                        className="px-8 py-4 bg-violet-600 rounded-lg flex justify-center items-center gap-2.5 hover:bg-violet-700 transition-colors"
+                    >
+                        <span className="text-gray-100 text-base font-medium font-montserrat">
+                            Hubungi Kami
+                        </span>
+                    </a>
+                </div>
             </div>
         </section>
     );
