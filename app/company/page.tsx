@@ -6,7 +6,7 @@ import MissionSection from "@/app/components/company/MissionSection";
 import TimelineSection from "@/app/components/company/TimelineSection";
 import TeamSection from "@/app/components/company/TeamSection";
 import CallToAction from "@/app/components/company/CTASection";
-import Breadcrumb from "@/app/components/company/Breadcrumb";
+import Breadcrumb from "@/app/components/ui/Breadcrumb";
 import CTASection from "@/app/components/company/CTASection";
 import InternSection from "@/app/components/company/InternSection";
 import type { Metadata } from 'next';
@@ -24,7 +24,11 @@ export default function CompanyPage() {
     return (
         <div className="bg-background-light text-gray-800 transition-colors duration-300">
             <Navbar />
-            <Breadcrumb />
+            <Breadcrumb items={[
+                { label: "Home", href: "/" },
+                { label: "Perusahaan", href: "#" },
+                { label: "Tentang Kami", href: "/company" }
+            ]} />
             <CompanyHero />
             <ContentSection title="Tentang Kami" className="bg-white">
                 <p>

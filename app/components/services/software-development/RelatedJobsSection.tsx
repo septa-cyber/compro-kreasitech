@@ -2,23 +2,32 @@ import React from "react";
 import { MdNorthEast } from "react-icons/md";
 
 export default function RelatedJobsSection() {
+    const jobs = [
+        "Front-End Developer",
+        "Back-End Developer",
+        "Full Stack Developer",
+        "QA Engineer",
+        "QA Automation"
+    ];
+
     return (
-        <section className="py-20 bg-[#4834d4] text-white relative overflow-hidden">
-            {/* Subtle gradient matching the design style */}
-            <div className="absolute inset-0 bg-[#4834d4]"></div>
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <h2 className="text-3xl font-bold mb-10 font-montserrat">Related Jobs</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
-                    {["Front-End Developer", "Back-End Developer", "Full Stack Developer", "QA Engineer"].map((job, i) => (
-                        <a key={i} className="group flex justify-between items-center py-4 border-b border-white/20 hover:border-white transition font-montserrat" href="#">
-                            <span className="text-lg font-medium">{job}</span>
-                            <MdNorthEast className="transform group-hover:translate-x-1 group-hover:-translate-y-1 transition text-sm" />
+        <section className="w-full py-24 bg-violet-800 flex justify-center">
+            <div className="w-full max-w-[1200px] px-4 flex flex-col gap-8">
+                {/* Title */}
+                <h2 className="text-white text-4xl font-medium font-montserrat">
+                    Related Jobs
+                </h2>
+
+                {/* Jobs Grid */}
+                <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-8 content-start">
+                    {jobs.map((job, i) => (
+                        <a key={i} href="#" className="group flex items-center justify-between md:justify-start gap-4 w-full md:w-[584px] py-2 hover:opacity-80 transition-opacity">
+                            <span className="text-white text-2xl font-medium font-montserrat group-hover:underline underline-offset-4 decoration-2">{job}</span>
+                            <div className="relative w-6 h-6 overflow-hidden">
+                                <MdNorthEast className="text-violet-300 text-xl absolute top-[2px] right-[2px] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                            </div>
                         </a>
                     ))}
-                    <a className="group flex justify-between items-center py-4 border-b border-white/20 hover:border-white transition md:col-span-2 w-full md:w-1/2 font-montserrat" href="#">
-                        <span className="text-lg font-medium">QA Automation</span>
-                        <MdNorthEast className="transform group-hover:translate-x-1 group-hover:-translate-y-1 transition text-sm" />
-                    </a>
                 </div>
             </div>
         </section>
