@@ -198,7 +198,7 @@ export default function Navbar() {
                     {/* Mobile Menu Button */}
                     <div className="lg:hidden ml-auto">
                         <button
-                            className="text-gray-500 hover:text-primary"
+                            className={`hover:text-primary transition-colors duration-300 ${isDarkBg ? 'text-white' : 'text-gray-500'}`}
                             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                         >
                             <i className="fas fa-bars text-xl"></i>
