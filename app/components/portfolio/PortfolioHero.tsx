@@ -34,7 +34,7 @@ export default function PortfolioHero() {
 
                         {/* Title & Desc */}
                         <div className="flex flex-col gap-8">
-                            <h1 className="text-4xl sm:text-4xl lg:text-7xl font-medium font-montserrat leading-tight max-w-6xl text-text-light">
+                            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-medium font-montserrat leading-tight max-w-6xl text-text-light">
                                 Experience <br />
                                 Our <span className="font-semibold text-violet-600">Best Works</span>
                             </h1>
