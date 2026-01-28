@@ -18,7 +18,6 @@ export default function PortfolioPage() {
             <NewestProjects />
             <IdeaCTA />
             <PortfolioTestimonials />
-            <WorkCTA />
 
             <Footer />
         </div>
