@@ -173,9 +173,9 @@ export default function Navbar() {
                                 </div>
                             </div>
 
-                            <a href="#" className={`nav-link hover:text-primary transition-colors duration-300 py-6 whitespace-nowrap ${isDarkBg ? 'text-white' : 'text-text-light'}`}>
+                            <Link href="/blog" className={`nav-link hover:text-primary transition-colors duration-300 py-6 whitespace-nowrap ${isDarkBg ? 'text-white' : 'text-text-light'}`}>
                                 Artikel
-                            </a>
+                            </Link>
                         </div>
                     </div>
 
@@ -300,12 +300,12 @@ export default function Navbar() {
                         </div>
                     </div>
 
-                    <a
-                        href="#"
+                    <Link
+                        href="/blog"
                         className="block px-3 py-4 text-sm font-medium text-text-light hover:text-primary"
                     >
                         Artikel
-                    </a>
+                    </Link>
 
                     <div className="grid grid-cols-2 gap-3 mt-4 px-3 pb-8">
                         <a

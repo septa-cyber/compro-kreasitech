@@ -89,9 +89,9 @@ export default function Footer() {
                         <Link href="/company" className="justify-start text-text-light text-sm font-medium font-montserrat hover:text-primary transition">
                             Karier
                         </Link>
-                        <a href="#" className="justify-start text-text-light text-sm font-medium font-montserrat hover:text-primary transition">
+                        <Link href="/blog" className="justify-start text-text-light text-sm font-medium font-montserrat hover:text-primary transition">
                             Artikel
-                        </a>
+                        </Link>
                         <a href="#" className="justify-start text-text-light text-sm font-medium font-montserrat hover:text-primary transition">
                             Kontak Kami
                         </a>
