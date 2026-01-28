@@ -3,7 +3,7 @@ import React from 'react';
 
 export default function HiTalentCTA() {
     return (
-        <section className="py-24 bg-violet-800 flex flex-col justify-start items-center gap-24 overflow-hidden">
+        <section className="py-24 bg-violet-800 flex flex-col justify-start items-center gap-24 overflow-hidden" data-theme="dark">
             <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-center items-center gap-16">
                 <div className="w-full flex flex-col justify-start items-center gap-8">
                     <div className="w-full flex flex-col justify-start items-center gap-8 text-center">

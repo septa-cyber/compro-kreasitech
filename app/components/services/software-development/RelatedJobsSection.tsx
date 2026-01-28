@@ -11,7 +11,7 @@ export default function RelatedJobsSection() {
     ];
 
     return (
-        <section className="w-full py-24 bg-violet-800 flex justify-center">
+        <section className="w-full py-24 bg-violet-800 flex justify-center" data-theme="dark">
             <div className="w-full max-w-[1200px] px-4 flex flex-col gap-8">
                 {/* Title */}
                 <h2 className="text-white text-4xl font-medium font-montserrat">
