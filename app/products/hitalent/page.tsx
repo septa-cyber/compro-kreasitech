@@ -16,19 +16,17 @@ export default function HiTalentPage() {
     return (
         <div className="bg-[#F8F9FC] text-gray-800 font-sans antialiased transition-colors duration-200">
             <Navbar />
-            <main>
-                <Breadcrumb className="px-4 sm:px-6 lg:px-8" items={[
-                    { label: "Home", href: "/" },
-                    { label: "Products", href: "#" },
-                    { label: "HiTalent", href: "/products/hitalent" }
-                ]} />
-                <HiTalentHero />
-                <HiTalentAbout />
-                <HiTalentFeatures />
-                <HiTalentBenefits />
-                <HiTalentCTA />
-                <HiTalentTestimonials />
-            </main>
+            <Breadcrumb className="px-4 sm:px-6 lg:px-8" items={[
+                { label: "Home", href: "/" },
+                { label: "Products", href: "#" },
+                { label: "HiTalent", href: "/products/hitalent" }
+            ]} />
+            <HiTalentHero />
+            <HiTalentAbout />
+            <HiTalentFeatures />
+            <HiTalentBenefits />
+            <HiTalentCTA />
+            <HiTalentTestimonials />
             <Footer />
             <WhatsAppButton />
         </div>
