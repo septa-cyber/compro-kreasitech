@@ -11,6 +11,7 @@ import ArticleMeta from "@/app/components/blog/ArticleMeta";
 import RelatedArticles from "@/app/components/blog/RelatedArticles";
 import { blogPosts, getBlogPostBySlug, getRelatedPosts } from "@/app/data/blogData";
 import Link from "next/link";
+import CTASection from "@/app/components/company/CTASection";
 
 export default function BlogPostPage() {
     const params = useParams();
@@ -29,7 +30,7 @@ export default function BlogPostPage() {
             <div className="bg-background-light text-gray-900 font-sans transition-colors duration-300 antialiased min-h-screen">
                 <Navbar />
                 <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
-                    <h1 className="text-3xl font-medium font-montserrat text-text-light mb-4">
+                    <h1 className="text-[40px] sm:text-5xl lg:text-7xl font-medium font-montserrat leading-tight max-w-6xl mx-auto mb-8 text-text-light">
                         Artikel Tidak Ditemukan
                     </h1>
                     <p className="text-gray-500 font-montserrat mb-8">
@@ -42,6 +43,7 @@ export default function BlogPostPage() {
                         Kembali ke Blog
                     </Link>
                 </div>
+                <CTASection />
                 <Footer />
             </div>
         );
@@ -58,6 +60,7 @@ export default function BlogPostPage() {
                 nextPost={nextPost}
             />
             <RelatedArticles posts={relatedPosts} />
+            <CTASection />
             <Footer />
             <WhatsAppButton />
         </div>

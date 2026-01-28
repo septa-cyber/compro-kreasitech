@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import Link from "next/link";
 import { BlogPost } from "@/app/data/blogData";
@@ -12,54 +10,41 @@ interface ArticleMetaProps {
 
 export default function ArticleMeta({ post, previousPost, nextPost }: ArticleMetaProps) {
     return (
-        <section className="py-8 md:py-12 bg-gray-50 border-t border-gray-100">
+        <section className="bg-[#F4F4F7] pb-16 border-t border-gray-100 pt-12">
             <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="max-w-3xl mx-auto">
-                    {/* Tags */}
-                    <div className="mb-8">
-                        <h4 className="text-sm font-medium font-montserrat text-gray-500 mb-4">Tags</h4>
-                        <div className="flex flex-wrap gap-2">
-                            {post.tags.map((tag, index) => (
-                                <span
-                                    key={index}
-                                    className="px-3 py-1.5 bg-white border border-gray-200 rounded-full text-sm font-montserrat text-gray-600 hover:border-violet-300 hover:text-violet-600 transition-colors cursor-pointer"
-                                >
-                                    {tag}
-                                </span>
-                            ))}
-                        </div>
-                    </div>
+                {/* Tags */}
+                <div className="flex flex-wrap gap-2 mb-12">
+                    {post.tags.map((tag, index) => (
+                        <span
+                            key={index}
+                            className="bg-white border border-gray-200 text-gray-600 px-4 py-2 rounded-full text-sm font-montserrat hover:bg-violet-50 hover:text-violet-600 transition-colors cursor-pointer"
+                        >
+                            #{tag}
+                        </span>
+                    ))}
+                </div>
 
-                    {/* Navigation */}
-                    <div className="flex flex-col sm:flex-row justify-between gap-4 pt-8 border-t border-gray-200">
-                        {previousPost ? (
-                            <Link
-                                href={`/blog/${previousPost.slug}`}
-                                className="flex-1 p-4 bg-white border border-gray-200 rounded-lg hover:border-violet-300 hover:shadow-md transition-all group"
-                            >
-                                <p className="text-xs font-montserrat text-gray-400 mb-1">← Artikel Sebelumnya</p>
-                                <p className="text-sm font-medium font-montserrat text-text-light group-hover:text-violet-600 line-clamp-1">
-                                    {previousPost.title}
-                                </p>
-                            </Link>
-                        ) : (
-                            <div className="flex-1" />
-                        )}
+                {/* Navigation */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {previousPost ? (
+                        <Link href={`/blog/${previousPost.slug}`} className="bg-white group flex flex-col gap-2 p-6 rounded-2xl border border-gray-200 hover:border-violet-200 hover:shadow-sm transition-all text-left">
+                            <span className="text-xs font-semibold text-gray-400 font-montserrat uppercase tracking-wider">Previous Article</span>
+                            <h4 className="text-md font-medium font-montserrat text-gray-900 group-hover:text-violet-600 transition-colors line-clamp-2">
+                                {previousPost.title}
+                            </h4>
+                        </Link>
+                    ) : (
+                        <div className="hidden md:block"></div>
+                    )}
 
-                        {nextPost ? (
-                            <Link
-                                href={`/blog/${nextPost.slug}`}
-                                className="flex-1 p-4 bg-white border border-gray-200 rounded-lg hover:border-violet-300 hover:shadow-md transition-all group text-right"
-                            >
-                                <p className="text-xs font-montserrat text-gray-400 mb-1">Artikel Berikutnya →</p>
-                                <p className="text-sm font-medium font-montserrat text-text-light group-hover:text-violet-600 line-clamp-1">
-                                    {nextPost.title}
-                                </p>
-                            </Link>
-                        ) : (
-                            <div className="flex-1" />
-                        )}
-                    </div>
+                    {nextPost && (
+                        <Link href={`/blog/${nextPost.slug}`} className="bg-white group flex flex-col gap-2 p-6 rounded-2xl border border-gray-200 hover:border-violet-200 hover:shadow-sm transition-all text-right items-end">
+                            <span className="text-xs font-semibold text-gray-400 font-montserrat uppercase tracking-wider">Next Article</span>
+                            <h4 className="text-md font-medium font-montserrat text-gray-900 group-hover:text-violet-600 transition-colors line-clamp-2">
+                                {nextPost.title}
+                            </h4>
+                        </Link>
+                    )}
                 </div>
             </div>
         </section>

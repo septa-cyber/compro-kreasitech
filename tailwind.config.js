@@ -134,5 +134,7 @@ module.exports = {
         },
     },
     // Removed plugins to avoid dependency issues
-    plugins: [],
+    plugins: [
+        require('@tailwindcss/typography'),
+    ],
 }

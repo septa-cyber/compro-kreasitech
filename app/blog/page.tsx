@@ -9,6 +9,8 @@ import BlogFilter from "@/app/components/blog/BlogFilter";
 import BlogList from "@/app/components/blog/BlogList";
 import BlogPagination from "@/app/components/blog/BlogPagination";
 import { blogPosts, categories } from "@/app/data/blogData";
+import CTASection from "../components/company/CTASection";
+import Breadcrumb from "../components/ui/Breadcrumb";
 
 const POSTS_PER_PAGE = 6;
 
@@ -74,30 +76,7 @@ export default function BlogPage() {
                 </section>
             )}
 
-            {/* CTA Section */}
-            <section className="py-16 md:py-24 bg-[#F4F4F7]">
-                <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-                        <div>
-                            <h2 className="text-2xl sm:text-3xl font-medium font-montserrat text-text-light mb-2">
-                                Mulai Transformasi Digital Anda
-                            </h2>
-                            <p className="text-base text-gray-500 font-montserrat">
-                                Bergabung dengan 100+ perusahaan yang sudah menggunakan layanan kami.
-                            </p>
-                        </div>
-                        <div className="flex gap-3 w-full md:w-auto">
-                            <button className="flex-1 md:flex-none px-6 py-3 rounded-lg border border-gray-300 bg-white text-gray-700 font-medium font-montserrat hover:bg-gray-50 transition-colors">
-                                Pelajari Lebih
-                            </button>
-                            <button className="flex-1 md:flex-none px-6 py-3 rounded-lg bg-violet-600 hover:bg-violet-700 text-white font-medium font-montserrat transition-colors">
-                                Hubungi Kami
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
+            <CTASection />
             <Footer />
             <WhatsAppButton />
         </div>

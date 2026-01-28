@@ -24,7 +24,7 @@ export default function Breadcrumb({ items, className = "" }: BreadcrumbProps) {
     };
 
     return (
-        <section className="bg-[#F4F4F7] w-full pt-28 pb-4">
+        <section className={`w-full pt-28 pb-4`}>
             <div className={`max-w-7xl mx-auto ${className}`}>
                 <nav className="flex text-xs text-gray-500 font-body items-center">
                     {items.map((item, index) => (

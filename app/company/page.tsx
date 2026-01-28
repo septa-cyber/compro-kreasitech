@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 
 export default function CompanyPage() {
     return (
-        <div className="bg-background-light text-gray-800 transition-colors duration-300">
+        <div className="bg-[#F4F4F7] text-gray-800 transition-colors duration-300">
             <Navbar />
             <Breadcrumb className="px-4 sm:px-6 lg:px-8" items={[
                 { label: "Home", href: "/" },

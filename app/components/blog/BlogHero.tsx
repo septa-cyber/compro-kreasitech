@@ -11,19 +11,19 @@ interface BlogHeroProps {
 
 export default function BlogHero({ featuredPost }: BlogHeroProps) {
     return (
-        <section className="bg-[#F4F4F7]">
+        <section className="bg-white">
             {/* Header */}
-            <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
-                <div className="flex flex-col gap-4">
-                    <Breadcrumb items={[
-                        { label: "Home", href: "/" },
-                        { label: "Blog", href: "/blog" }
-                    ]} />
-                    <span className="text-violet-600 font-semibold text-sm font-montserrat">Blog Kami</span>
-                    <h1 className="text-4xl sm:text-5xl font-medium font-montserrat text-text-light tracking-tight">
-                        Resources dan Insights
+            <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 pb-16 sm:pb-24">
+                <Breadcrumb className="mb-8" items={[
+                    { label: "Home", href: "/" },
+                    { label: "Blog", href: "/blog" }
+                ]} />
+                <div className="flex flex-col gap-8">
+                    <h1 className="text-4xl sm:text-5xl lg:text-7xl font-medium font-montserrat leading-tight max-w-6xl text-text-light">
+                        Experience <br />
+                        Our <span className="font-semibold text-violet-600">Best Works</span>
                     </h1>
-                    <p className="text-lg text-gray-500 font-montserrat max-w-3xl">
+                    <p className="text-sm sm:text-base text-gray-500 font-montserrat">
                         Berita industri terbaru, wawancara, teknologi, dan sumber daya terkini.
                     </p>
                 </div>

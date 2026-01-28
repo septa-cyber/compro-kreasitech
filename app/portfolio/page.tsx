@@ -10,7 +10,7 @@ import WorkCTA from "@/app/components/portfolio/WorkCTA";
 
 export default function PortfolioPage() {
     return (
-        <div className="bg-background-light text-gray-900 font-sans transition-colors duration-300 antialiased overflow-x-hidden">
+        <div className="bg-[#F4F4F7] text-gray-900 font-sans transition-colors duration-300 antialiased overflow-x-hidden">
             <Navbar />
 
             <PortfolioHero />
