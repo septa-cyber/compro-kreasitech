@@ -147,7 +147,7 @@ export default function Navbar() {
                                     <div className="bg-white/95 backdrop-blur-md border border-gray-100 shadow-xl rounded-2xl overflow-hidden p-5 text-text-light">
                                         <h4 className="font-bold text-sm mb-3 text-left whitespace-nowrap text-text-light">Produk</h4>
                                         <ul className="space-y-2 text-xs text-text-light-muted text-left whitespace-nowrap">
-                                            <li><a href="#" className="dropdown-item block py-1 text-text-light">HiTalent</a></li>
+                                            <li><Link href="/products/hitalent" className="dropdown-item block py-1 text-text-light">HiTalent</Link></li>
                                             <li><a href="#" className="dropdown-item block py-1 text-text-light">HiSales</a></li>
                                         </ul>
                                     </div>
@@ -273,7 +273,7 @@ export default function Navbar() {
                         <div className={`overflow-hidden transition-all duration-300 ${activeMobileDropdown === "produk" ? "max-h-[300px] opacity-100" : "max-h-0 opacity-0"}`}>
                             <div className="bg-gray-50 p-4 rounded-lg mb-2">
                                 <ul className="space-y-2 text-xs text-text-light-muted">
-                                    <li><a href="#" className="block py-1 hover:text-primary">HiTalent</a></li>
+                                    <li><Link href="/products/hitalent" className="block py-1 hover:text-primary">HiTalent</Link></li>
                                     <li><a href="#" className="block py-1 hover:text-primary">HiSales</a></li>
                                 </ul>
                             </div>

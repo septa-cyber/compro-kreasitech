@@ -1,92 +1,117 @@
 "use client";
 
-const testimonials = [
-    {
-        initials: "TR",
-        name: "Tina Rahayu",
-        role: "Marketing Specialist",
-        company: "PT Marketing Pro",
-        color: "bg-pink-500",
-        quote:
-            '"Tina\'s marketing strategies are exceptionally creative, highly innovative, and meticulously data-driven, consistently capturing audience attention and driving impressive campaign results that not only exceed targets but also maximize ROI."',
-    },
-    {
-        initials: "JL",
-        name: "Joko Lestari",
-        role: "QA Engineer",
-        company: "PT Quality Assurance",
-        color: "bg-yellow-500",
-        quote:
-            '"Joko\'s rigorous testing protocols guarantee the superior quality and reliability of our products, proactively preventing potential problems and ensuring a seamless user experience right from initial release."',
-    },
-    {
-        initials: "SA",
-        name: "Siti Aminah",
-        role: "Product Manager",
-        company: "PT Digital Solutions",
-        color: "bg-indigo-500",
-        quote:
-            '"Siti\'s leadership is truly transformative, as she champions collaboration, sparks innovation, and drives substantial growth. Her team consistently surpasses ambitious goals, achieving remarkable success."',
-    },
-    {
-        initials: "BS",
-        name: "Budi Santoso",
-        role: "UX Designer",
-        company: "PT Creative Minds",
-        color: "bg-blue-500",
-        quote:
-            '"Budi\'s UX designs are celebrated for their intuitive interfaces and elegant flow. His thoughtful layouts and interactions seamlessly guide users, significantly boosting user satisfaction and engagement."',
-    },
-];
+import { useState } from 'react';
 
 export default function HiTalentTestimonials() {
+    const [isTestimonialHovered, setIsTestimonialHovered] = useState(false);
+
+    const testimonialItems = [
+        {
+            id: 1,
+            name: "Tina Rahayu",
+            role: "Marketing Specialist",
+            company: "PT Marketing Pro",
+            avatar: "https://placehold.co/48x48/ec4899/1f2937",
+            quote: "Tina's marketing strategies are exceptionally creative, highly innovative, and meticulously data-driven, consistently capturing audience attention and driving impressive campaign results that not only exceed targets but also maximize ROI, setting new standards for marketing effectiveness."
+        },
+        {
+            id: 2,
+            name: "Joko Lestari",
+            role: "QA Engineer",
+            company: "PT Quality Assurance",
+            avatar: "https://placehold.co/48x48/fbbf24/1f2937",
+            quote: "Joko's rigorous testing protocols guarantee the superior quality and reliability of our products, proactively preventing potential problems and ensuring a seamless user experience right from initial release, significantly enhancing customer loyalty and fostering long-term relationships."
+        },
+        {
+            id: 3,
+            name: "Siti Aminah",
+            role: "Product Manager",
+            company: "PT Digital Solutions",
+            avatar: "https://placehold.co/48x48/3b82f6/1f2937",
+            quote: "Siti's leadership is truly transformative, as she champions collaboration, sparks innovation, and drives substantial growth. Her team consistently surpasses ambitious goals, achieving remarkable success and establishing new benchmarks for excellence throughout the entire organization, inspiring others to reach higher."
+        },
+        {
+            id: 4,
+            name: "Budi Santoso",
+            role: "UX Designer",
+            company: "PT Creative Minds",
+            avatar: "https://placehold.co/48x48/f97316/1f2937",
+            quote: "Budi's UX designs are widely celebrated for their intuitive interfaces and exceptionally delightful user journeys, significantly boosting user satisfaction and engagement metrics. His thoughtful designs greatly enhance the overall user experience, making every interaction seamless and enjoyable for all users."
+        },
+        {
+            id: 5,
+            name: "Rina Dewi",
+            role: "Data Analyst",
+            company: "PT Analytics Hub",
+            avatar: "https://placehold.co/48x48/ec4899/1f2937",
+            quote: "Rina's profound data insights are instrumental in shaping our strategic direction and future initiatives. Her detailed analyses provide unparalleled clarity and foresight, enabling well-informed decisions that drive significant growth and improve efficiency across all departments, optimizing resource allocation."
+        },
+        {
+            id: 6,
+            name: "Eko Setiawan",
+            role: "DevOps Engineer",
+            company: "PT Tech Infrastructure",
+            avatar: "https://placehold.co/48x48/10b981/1f2937",
+            quote: "Eko's DevOps expertise ensures our systems run smoothly and efficiently. His automation solutions have dramatically reduced deployment times while improving reliability, enabling our team to focus on innovation rather than maintenance."
+        },
+    ];
+
     return (
-        <section className="py-16 sm:py-20 lg:py-24 bg-gray-50">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-12 sm:mb-16 max-w-xl text-gray-900">
-                    See why customers love using KreasiTech
+        <section className="py-16 md:py-24 bg-gray-100 overflow-hidden">
+            <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 mb-8 md:mb-24">
+                <h2 className="text-2xl md:text-4xl font-medium font-montserrat text-text-light">
+                    Lihat mengapa pelanggan <br /> senang menggunakan KreasiTech
                 </h2>
+            </div>
 
-                {/* Testimonial Cards Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {testimonials.map((testimonial, index) => (
-                        <div
-                            key={index}
-                            className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 flex flex-col h-full"
-                        >
-                            {/* Avatar and Name */}
-                            <div className="flex items-center gap-3 mb-4">
+            <div className="relative">
+                {/* Single marquee container with all testimonials (original + duplicate) */}
+                <div
+                    className="flex gap-4 md:gap-8 overflow-hidden"
+                    onMouseEnter={() => setIsTestimonialHovered(true)}
+                    onMouseLeave={() => setIsTestimonialHovered(false)}
+                >
+                    <div
+                        className="flex gap-4 md:gap-8 pr-4 md:pr-8 w-max flex-shrink-0 animate-marquee"
+                        style={{ animationPlayState: isTestimonialHovered ? 'paused' : 'running' }}
+                    >
+                        {/* Auto-clone: Original + Duplicate items for seamless loop */}
+                        {[...testimonialItems, ...testimonialItems].map((item, index) => {
+                            const isOriginal = index < testimonialItems.length;
+
+                            return (
                                 <div
-                                    className={`w-10 h-10 ${testimonial.color} rounded flex items-center justify-center text-white font-bold`}
+                                    key={`testimonial-${item.id}-${index}`}
+                                    className="group flex-shrink-0 w-72 md:w-96 h-auto md:h-[600px] p-4 md:p-8 bg-white hover:bg-violet-800 border border-gray-300 hover:border-violet-800 flex flex-col justify-start items-start gap-3 md:gap-6 transition-all duration-300"
+                                    aria-hidden={!isOriginal}
                                 >
-                                    {testimonial.initials}
+                                    <div className="self-stretch inline-flex justify-start items-center gap-3 md:gap-6">
+                                        <img className="w-12 h-12" src={item.avatar} alt={item.name} />
+                                        <div className="flex-1 inline-flex flex-col justify-start items-start gap-2">
+                                            <div className="self-stretch justify-start text-text-light group-hover:text-white text-base md:text-xl font-medium font-montserrat transition-colors duration-300">
+                                                {item.name}
+                                            </div>
+                                            <div className="self-stretch justify-start text-text-light group-hover:text-white text-xs font-normal font-montserrat transition-colors duration-300">
+                                                {item.role}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="self-stretch justify-start text-text-light group-hover:text-white text-base md:text-xl font-light font-montserrat transition-colors duration-300">
+                                        "{item.quote}"
+                                    </div>
+                                    <div className="self-stretch justify-start text-gray-400 group-hover:text-white text-xs font-normal font-montserrat mt-auto transition-colors duration-300">
+                                        {item.company}
+                                    </div>
                                 </div>
-                                <div>
-                                    <p className="text-sm font-bold text-gray-900">
-                                        {testimonial.name}
-                                    </p>
-                                    <p className="text-xs text-gray-500">{testimonial.role}</p>
-                                </div>
-                            </div>
-
-                            {/* Quote */}
-                            <p className="text-sm text-gray-600 mb-6 flex-grow leading-relaxed">
-                                {testimonial.quote}
-                            </p>
-
-                            {/* Company */}
-                            <p className="text-xs text-gray-400 mt-auto pt-4 border-t border-gray-100">
-                                {testimonial.company}
-                            </p>
-                        </div>
-                    ))}
+                            );
+                        })}
+                    </div>
                 </div>
+            </div>
 
-                {/* Pagination Dots */}
-                <div className="flex gap-2 mt-8">
-                    <div className="w-8 h-1 bg-violet-600 rounded-full"></div>
-                    <div className="w-2 h-1 bg-gray-300 rounded-full"></div>
-                </div>
+            {/* Custom Progress Indicator */}
+            <div className="flex items-center gap-4 mt-12 max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="w-24 h-[5px] bg-text-light rounded-full"></div>
             </div>
         </section>
     );

@@ -75,9 +75,9 @@ export default function Footer() {
                         <div className="justify-start text-violet-600 text-xs font-bold uppercase font-montserrat">
                             Produk
                         </div>
-                        <a href="#" className="justify-start text-text-light text-sm font-medium font-montserrat hover:text-primary transition">
+                        <Link href="/products/hitalent" className="justify-start text-text-light text-sm font-medium font-montserrat hover:text-primary transition">
                             HiTalent
-                        </a>
+                        </Link>
                         <a href="#" className="justify-start text-text-light text-sm font-medium font-montserrat hover:text-primary transition">
                             IDAS SFA
                         </a>
