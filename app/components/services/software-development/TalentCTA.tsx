@@ -7,10 +7,10 @@ export default function TalentCTA() {
                 <div className="w-full flex flex-col justify-start items-center gap-8">
                     <div className="w-full flex flex-col justify-start items-center gap-8 text-center">
                         <h2 className="text-3xl sm:text-4xl font-medium font-montserrat text-text-light leading-tight">
-                            Siap Membangun Solusi Digital Anda?
+                            Ada Ide Digital Product? Yuk Diskusi!
                         </h2>
                         <p className="text-sm sm:text-base font-normal font-montserrat text-text-light-muted">
-                            Tim developer kami siap membantu mewujudkan produk digital berkualitas untuk bisnis Anda.
+                            Dari konsep sampai launching, tim developer kami siap jadi partner terpercaya untuk mewujudkan produk impian Anda.
                         </p>
                     </div>
                 </div>

@@ -8,8 +8,11 @@ export default function HiTalentCTA() {
                 <div className="w-full flex flex-col justify-start items-center gap-8">
                     <div className="w-full flex flex-col justify-start items-center gap-8 text-center">
                         <h2 className="text-3xl sm:text-4xl font-medium font-montserrat text-white leading-tight">
-                            Kelola Tim Anda Lebih Efisien dengan HiTalent
+                            Kelola Tim Jadi Lebih Mudah dengan HiTalent
                         </h2>
+                        <p className="text-sm sm:text-base font-normal font-montserrat text-white/80">
+                            Coba lihat sendiri bagaimana platform kami bisa bantu HR dan team leader kerja lebih efisien.
+                        </p>
                     </div>
                 </div>
                 <button className="px-8 py-4 bg-violet-300 rounded-lg inline-flex justify-center items-center gap-2.5 hover:bg-violet-200 transition-colors">

@@ -7,8 +7,11 @@ export default function IdeaCTA() {
                 <div className="w-full flex flex-col justify-start items-center gap-8">
                     <div className="w-full flex flex-col justify-start items-center gap-8 text-center">
                         <h2 className="text-3xl sm:text-4xl font-medium font-montserrat text-white leading-tight">
-                            Punya Ide Proyek yang Ingin Diwujudkan?
+                            Punya Ide Menarik? Yuk Obrolan Dulu!
                         </h2>
+                        <p className="text-sm sm:text-base font-normal font-montserrat text-white/80">
+                            Diskusi santai tanpa biaya untuk eksplorasi kemungkinan proyek Anda. Kami siap dengar dan kasih masukan.
+                        </p>
                     </div>
                 </div>
                 <button className="px-8 py-4 bg-violet-300 rounded-lg inline-flex justify-center items-center gap-2.5 hover:bg-violet-200 transition-colors">

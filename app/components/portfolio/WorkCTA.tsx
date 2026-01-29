@@ -7,10 +7,10 @@ export default function WorkCTA() {
                 <div className="w-full flex flex-col justify-start items-center gap-8">
                     <div className="w-full flex flex-col justify-start items-center gap-8 text-center">
                         <h2 className="text-3xl sm:text-4xl font-medium font-montserrat text-text-light leading-tight">
-                            Lihat Bagaimana Kami Membantu Klien Berkembang
+                            Mau Lihat Track Record Kami?
                         </h2>
                         <p className="text-sm sm:text-base font-normal font-montserrat text-text-light-muted">
-                            Jelajahi portofolio kami dan temukan inspirasi untuk proyek Anda selanjutnya.
+                            Cek berbagai proyek yang sudah kami kerjakan. Siapa tau bisa jadi referensi untuk project Anda nanti.
                         </p>
                     </div>
                 </div>

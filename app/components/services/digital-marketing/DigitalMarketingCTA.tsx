@@ -8,10 +8,10 @@ export default function DigitalMarketingCTA() {
                 <div className="w-full flex flex-col justify-start items-center gap-8">
                     <div className="w-full flex flex-col justify-start items-center gap-8 text-center">
                         <h2 className="text-3xl sm:text-4xl font-medium font-montserrat text-text-light leading-tight">
-                            Ubah Klik Menjadi Pelanggan
+                            Saatnya Brand Anda Lebih Dikenal
                         </h2>
                         <p className="text-sm sm:text-base font-normal font-montserrat text-text-light-muted">
-                            Jangkau audiens Anda dan kembangkan brand Anda dengan strategi marketing berbasis data.
+                            Kami bantu susun strategi digital marketing yang efektif untuk mengubah awareness jadi engagement yang nyata.
                         </p>
                     </div>
                 </div>

@@ -7,10 +7,10 @@ export default function CallToAction() {
                 <div className="w-full flex flex-col justify-start items-center gap-8">
                     <div className="w-full flex flex-col justify-start items-center gap-8 text-center">
                         <h2 className="text-3xl sm:text-4xl font-medium font-montserrat text-text-light leading-tight">
-                            Mari wujudkan transformasi digital bersama.
+                            Yuk, Ceritakan Kebutuhan Bisnis Anda
                         </h2>
                         <p className="text-sm sm:text-base font-normal font-montserrat text-text-light-muted">
-                            Dapatkan konsultasi gratis sesuai kebutuhan bisnis atau talenta Anda.
+                            Tim kami siap mendengar dan membantu menemukan solusi yang paling cocok. Gratis dan tanpa komitmen.
                         </p>
                     </div>
                 </div>
