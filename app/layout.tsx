@@ -73,7 +73,7 @@ export default function RootLayout({
     },
     "contactPoint": {
       "@type": "ContactPoint",
-      "telephone": "+62-812-3456-7890",
+      "telephone": "+62-888-8088-877",
       "contactType": "customer service"
     }
   };

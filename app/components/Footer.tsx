@@ -86,15 +86,15 @@ export default function Footer() {
                         <div className="justify-start text-violet-600 text-xs font-bold uppercase font-montserrat">
                             Lain-lainnya
                         </div>
-                        <Link href="/company" className="justify-start text-text-light text-sm font-medium font-montserrat hover:text-primary transition">
-                            Karier
+                        <Link href="/karir" className="justify-start text-text-light text-sm font-medium font-montserrat hover:text-primary transition">
+                            Karir
                         </Link>
                         <Link href="/blog" className="justify-start text-text-light text-sm font-medium font-montserrat hover:text-primary transition">
                             Artikel
                         </Link>
-                        <a href="#" className="justify-start text-text-light text-sm font-medium font-montserrat hover:text-primary transition">
+                        <Link href="/contact" className="justify-start text-text-light text-sm font-medium font-montserrat hover:text-primary transition">
                             Kontak Kami
-                        </a>
+                        </Link>
                     </div>
                 </div>
                 <div className="w-full border-t border-gray-200" />

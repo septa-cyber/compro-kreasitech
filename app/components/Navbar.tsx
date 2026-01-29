@@ -186,13 +186,13 @@ export default function Navbar() {
                     {/* Action Buttons */}
                     <div className="hidden lg:flex items-center gap-2 flex-shrink-0">
                         <a
-                            href="#"
+                            href="/karir"
                             className="bg-white h-8 xl:h-10 px-2 xl:px-4 rounded-lg outline outline-1 outline-violet-600 text-violet-600 text-[10px] xl:text-xs font-semibold font-montserrat flex items-center justify-center hover:bg-violet-50 transition whitespace-nowrap"
                         >
                             KARIR
                         </a>
                         <a
-                            href="#"
+                            href="/contact"
                             className="h-8 xl:h-10 px-2 xl:px-4 rounded-lg bg-violet-600 text-white text-[10px] xl:text-xs font-bold font-montserrat flex items-center justify-center hover:bg-violet-700 transition shadow-[0px_4px_20px_0px_rgba(124,58,237,0.4)] whitespace-nowrap"
                         >
                             KONTAK KAMI
@@ -317,13 +317,13 @@ export default function Navbar() {
 
                     <div className="grid grid-cols-2 gap-3 mt-4 px-3 pb-8">
                         <a
-                            href="#"
+                            href="/karir"
                             className="px-4 py-2.5 rounded-lg outline outline-1 outline-violet-600 text-violet-600 text-xs font-semibold text-center hover:bg-violet-50 transition-colors"
                         >
                             KARIR
                         </a>
                         <a
-                            href="#"
+                            href="/contact"
                             className="px-4 py-2.5 bg-violet-600 rounded-lg text-white text-xs font-medium text-center hover:bg-violet-700 transition-colors"
                         >
                             KONTAK KAMI
