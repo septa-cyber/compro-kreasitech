@@ -11,7 +11,7 @@ import ArticleMeta from "@/app/components/blog/ArticleMeta";
 import RelatedArticles from "@/app/components/blog/RelatedArticles";
 import { blogPosts, getBlogPostBySlug, getRelatedPosts } from "@/app/data/blogData";
 import Link from "next/link";
-import CTASection from "@/app/components/company/CTASection";
+import BlogCTA from "@/app/components/blog/BlogCTA";
 
 export default function BlogPostPage() {
     const params = useParams();
@@ -43,7 +43,7 @@ export default function BlogPostPage() {
                         Kembali ke Blog
                     </Link>
                 </div>
-                <CTASection />
+                <BlogCTA />
                 <Footer />
             </div>
         );
@@ -60,7 +60,7 @@ export default function BlogPostPage() {
                 nextPost={nextPost}
             />
             <RelatedArticles posts={relatedPosts} />
-            <CTASection />
+            <BlogCTA />
             <Footer />
             <WhatsAppButton />
         </div>

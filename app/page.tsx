@@ -9,7 +9,7 @@ import ArticleSection from "@/app/components/landing/ArticleSection";
 import CallToAction from "@/app/components/landing/CallToAction";
 import Footer from "@/app/components/Footer";
 import WhatsAppButton from "@/app/components/landing/WhatsAppButton";
-import ContentSection from "@/app/components/company/ContentSection";
+import LandingAbout from "@/app/components/landing/LandingAbout";
 
 export default function Home() {
   return (
@@ -17,11 +17,7 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
-        <ContentSection title="Tentang Kami" className="bg-white">
-          <p>
-            Kreasitech adalah perusahaan teknologi yang menghubungkan dunia pendidikan, karier, dan industri melalui inovasi digital. Berangkat dari semangat <span className="text-violet-600 font-medium">"Where Talent Meets Technology"</span> kami mencetak, mengembangkan, dan menyalurkan talenta siap kerja melalui layanan pelatihan, outsourcing, dan pengembangan produk digital.
-          </p>
-        </ContentSection>
+        <LandingAbout />
         <WhyUs />
         <Services />
         <OurProduct />
