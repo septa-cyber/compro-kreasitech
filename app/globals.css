@@ -232,6 +232,13 @@ body {
   transform-style: preserve-3d;
 }
 
+.animate-marquee-slow {
+  animation: marquee 50s linear infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
 .animate-marquee-reverse {
   animation: marquee-reverse 30s linear infinite;
   will-change: transform;
