@@ -3,10 +3,6 @@ import React from "react";
 import Image from "next/image";
 
 export default function DigitalMarketingHero() {
-    const [isTrustedByHovered, setIsTrustedByHovered] = React.useState(false);
-
-    const partnerLogos = Array(7).fill("/assets/images/Logo.svg");
-
     return (
         <section className="relative pt-12 pb-6 bg-gray-100 overflow-hidden">
             <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -92,37 +88,8 @@ export default function DigitalMarketingHero() {
             </div>
 
             {/* Divider */}
-            <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="w-full h-px bg-gray-200 mb-12" />
-            </div>
-
-            {/* Trusted By Section */}
-            <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10 flex flex-col items-center">
-                {/* Trusted By Header */}
-                <div className="mb-6 w-full max-w-7xl mx-auto text-center z-10">
-                    <div className="w-full text-center text-gray-500 text-xs font-normal font-montserrat">Dipercaya oleh bisnis terkemuka seperti:</div>
-                </div>
-            </div>
-
-            {/* Trusted By Marquee */}
-            <div className="relative">
-                <div
-                    className="w-full overflow-hidden flex items-center px-4 pb-12 z-10"
-                    onMouseEnter={() => setIsTrustedByHovered(true)}
-                    onMouseLeave={() => setIsTrustedByHovered(false)}
-                >
-                    <div
-                        className="flex space-x-12 shrink-0 animate-marquee items-center"
-                        style={{ animationPlayState: isTrustedByHovered ? 'paused' : 'running' }}
-                    >
-                        {/* Duplicate content for marquee effect */}
-                        {[...partnerLogos, ...partnerLogos, ...partnerLogos, ...partnerLogos].map((logo, index) => (
-                            <div key={index} className="flex items-center gap-2 opacity-60 grayscale hover:grayscale-0 transition duration-500">
-                                <Image src={logo} alt="Kreasitech" width={100} height={32} className="h-8 w-auto" />
-                            </div>
-                        ))}
-                    </div>
-                </div>
+            <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+                <div className="w-full h-px bg-gray-200" />
             </div>
         </section>
     );
