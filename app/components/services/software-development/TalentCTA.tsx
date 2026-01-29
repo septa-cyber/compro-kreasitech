@@ -16,7 +16,7 @@ export default function TalentCTA() {
                 </div>
                 <div className="inline-flex justify-start items-start gap-8">
                     <a
-                        href="#"
+                        href="/contact"
                         className="px-8 py-4 bg-violet-600 rounded-lg flex justify-center items-center gap-2.5 hover:bg-violet-700 transition-colors"
                     >
                         <span className="text-gray-100 text-base font-medium font-montserrat">

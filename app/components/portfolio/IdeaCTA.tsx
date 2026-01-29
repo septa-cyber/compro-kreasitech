@@ -14,9 +14,9 @@ export default function IdeaCTA() {
                         </p>
                     </div>
                 </div>
-                <button className="px-8 py-4 bg-violet-300 rounded-lg inline-flex justify-center items-center gap-2.5 hover:bg-violet-200 transition-colors">
+                <a href="/contact" className="px-8 py-4 bg-violet-300 rounded-lg inline-flex justify-center items-center gap-2.5 hover:bg-violet-200 transition-colors">
                     <span className="text-violet-800 text-base font-medium font-montserrat">Konsultasi Gratis</span>
-                </button>
+                </a>
             </div>
         </section>
     );
