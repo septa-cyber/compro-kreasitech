@@ -15,9 +15,7 @@ export default function PortfolioPage() {
 
             <PortfolioHero />
             <FeaturedShowcase />
-            <NewestProjects />
-            <IdeaCTA />
-            <PortfolioTestimonials />
+            <WorkCTA />
 
             <Footer />
         </div>
