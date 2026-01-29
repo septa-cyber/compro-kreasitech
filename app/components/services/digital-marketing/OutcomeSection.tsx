@@ -21,29 +21,29 @@ const outcomes = [
 
 export default function OutcomeSection() {
     return (
-        <section className="py-24 bg-[#F4F4F7]">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 className="text-3xl md:text-4xl font-medium font-montserrat text-center mb-16 text-text-light">
+        <section className="py-24 bg-gray-100 flex flex-col justify-start items-center gap-24">
+            <div className="max-w-[784px] flex flex-col justify-start items-center gap-8 px-4">
+                <div className="max-w-[672px] text-center text-text-light text-4xl font-medium font-montserrat">
                     Outcome
-                </h2>
-
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 text-center">
-                    {outcomes.map((outcome, index) => (
-                        <div 
-                            key={index} 
-                            className={`px-4 py-8 ${
-                                index === 1 ? 'border-l-0 md:border-l border-r-0 md:border-r border-gray-200' : ''
-                            }`}
-                        >
-                            <h3 className="text-xl font-bold font-montserrat mb-4 text-text-light">
-                                {outcome.number}. {outcome.title}
-                            </h3>
-                            <p className="text-gray-500 text-sm leading-relaxed font-montserrat">
-                                {outcome.description}
-                            </p>
-                        </div>
-                    ))}
                 </div>
+            </div>
+            
+            <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-center md:justify-between items-center md:items-stretch flex-wrap">
+                {outcomes.map((outcome, index) => (
+                    <div 
+                        key={index} 
+                        className={`w-full md:w-96 p-8 flex flex-col justify-start items-center gap-6 ${
+                            index === 1 ? 'md:border-l-[0.5px] md:border-r-[0.5px] border-gray-200' : ''
+                        }`}
+                    >
+                        <div className="self-stretch text-center text-text-light text-2xl font-medium font-montserrat">
+                            {outcome.title}
+                        </div>
+                        <div className="self-stretch text-center text-text-light text-sm font-normal font-montserrat">
+                            {outcome.description}
+                        </div>
+                    </div>
+                ))}
             </div>
         </section>
     );

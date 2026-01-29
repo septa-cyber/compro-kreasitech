@@ -3,21 +3,28 @@ import React from "react";
 
 export default function DigitalMarketingCTA() {
     return (
-        <section className="py-20 bg-gray-100 relative">
-            <div className="max-w-4xl mx-auto px-4 text-center">
-                <h2 className="text-3xl md:text-4xl font-medium font-montserrat mb-4 text-text-light">
-                    Ubah Klik Menjadi Pelanggan
-                </h2>
-                <p className="text-gray-600 mb-10 font-montserrat">
-                    Jangkau audiens Anda dan kembangkan brand Anda<br className="hidden sm:block" />
-                    dengan strategi marketing berbasis data.
-                </p>
-                <a 
-                    href="#" 
-                    className="inline-block bg-violet-600 hover:bg-violet-700 text-white font-medium py-4 px-8 rounded-lg shadow-lg shadow-violet-600/30 transition transform hover:-translate-y-1 font-montserrat"
-                >
-                    Tingkatkan Kehadiran Online Anda
-                </a>
+        <section className="py-24 bg-gray-100 flex flex-col justify-start items-center gap-24 overflow-hidden">
+            <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-center items-center gap-16">
+                <div className="w-full flex flex-col justify-start items-center gap-8">
+                    <div className="w-full flex flex-col justify-start items-center gap-8 text-center">
+                        <h2 className="text-3xl sm:text-4xl font-medium font-montserrat text-text-light leading-tight">
+                            Ubah Klik Menjadi Pelanggan
+                        </h2>
+                        <p className="text-sm sm:text-base font-normal font-montserrat text-text-light-muted">
+                            Jangkau audiens Anda dan kembangkan brand Anda dengan strategi marketing berbasis data.
+                        </p>
+                    </div>
+                </div>
+                <div className="inline-flex justify-start items-start gap-8">
+                    <a
+                        href="#"
+                        className="px-8 py-4 bg-violet-600 rounded-lg flex justify-center items-center gap-2.5 hover:bg-violet-700 transition-colors"
+                    >
+                        <span className="text-gray-100 text-base font-medium font-montserrat">
+                            Tingkatkan Kehadiran Online Anda
+                        </span>
+                    </a>
+                </div>
             </div>
         </section>
     );

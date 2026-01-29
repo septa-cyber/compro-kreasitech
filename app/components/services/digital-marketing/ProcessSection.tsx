@@ -26,41 +26,36 @@ const processSteps = [
 
 export default function ProcessSection() {
     return (
-        <section className="py-24 bg-violet-600 text-white">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 className="text-3xl md:text-4xl font-medium font-montserrat text-center mb-16">
-                    Alur Layanan Digital Marketing
-                </h2>
+        <section className="py-24 bg-violet-800 text-white overflow-hidden" data-theme="dark">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center gap-16">
+                <div className="max-w-3xl mx-auto">
+                    <h2 className="text-2xl md:text-4xl font-medium font-montserrat mb-6">
+                        Alur Layanan Digital Marketing
+                    </h2>
+                    <p className="text-sm md:text-base font-normal font-montserrat text-white/90 leading-relaxed">
+                        Setiap langkah dirancang untuk mengoptimalkan kehadiran digital Anda dengan strategi yang terukur dan efektif.
+                    </p>
+                </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 max-w-5xl mx-auto">
+                <div className="w-full grid grid-cols-1 md:grid-cols-2 max-w-5xl mx-auto border border-white/20">
                     {processSteps.map((step, index) => (
                         <div 
                             key={index}
-                            className={`p-10 border border-white/20 hover:bg-white/5 transition ${
-                                index === 3 
-                                    ? 'bg-white text-violet-600 rounded-none md:rounded-br-lg hover:scale-[1.02] transform origin-center shadow-2xl' 
-                                    : ''
+                            className={`p-10 flex flex-col justify-start items-center gap-6 transition-all duration-300 hover:bg-white group cursor-default ${
+                                index === 0 ? 'border-b border-white/20 md:border-b md:border-r border-white/20' : ''
                             } ${
-                                index === 0 ? 'border-b-0 md:border-r-0 md:border-b' : ''
+                                index === 1 ? 'border-b border-white/20 md:border-b border-white/20' : ''
                             } ${
-                                index === 1 ? 'border-b-0 md:border-b' : ''
-                            } ${
-                                index === 2 ? 'md:border-r-0' : ''
+                                index === 2 ? 'md:border-r border-white/20' : ''
                             }`}
                         >
-                            <div className={`w-10 h-10 border rounded flex items-center justify-center text-xl font-medium mb-6 ${
-                                index === 3 ? 'border-violet-600' : 'border-white'
-                            }`}>
+                            <div className="w-10 h-10 border border-white rounded flex items-center justify-center text-xl font-medium mb-0 group-hover:border-violet-600 group-hover:text-violet-600 transition-all duration-300">
                                 {step.number}
                             </div>
-                            <h3 className={`text-xl md:text-2xl font-semibold font-montserrat mb-3 ${
-                                index === 3 ? 'text-violet-600' : 'text-white'
-                            }`}>
+                            <h3 className="text-xl font-medium font-montserrat text-center group-hover:text-gray-900 transition-colors duration-300">
                                 {step.title}
                             </h3>
-                            <p className={`font-light text-sm leading-relaxed font-montserrat ${
-                                index === 3 ? 'text-gray-600' : 'text-white/70'
-                            }`}>
+                            <p className="text-sm font-normal font-montserrat text-center text-white/80 group-hover:text-gray-600 transition-colors duration-300">
                                 {step.description}
                             </p>
                         </div>
