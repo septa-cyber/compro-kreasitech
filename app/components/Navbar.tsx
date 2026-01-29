@@ -109,16 +109,20 @@ export default function Navbar() {
                                                 </ul>
                                             </div>
                                             <div>
-                                                <h4 className="font-bold text-sm mb-4 text-text-light">Digital Marketing</h4>
+                                                <Link href="/services/digital-marketing">
+                                                    <h4 className="font-bold text-sm mb-4 text-text-light hover:text-violet-600 transition cursor-pointer">Digital Marketing</h4>
+                                                </Link>
                                                 <ul className="space-y-3 text-xs text-text-light-muted">
-                                                    <li><a href="#" className="dropdown-item block pb-1 text-text-light">Google Ads</a></li>
-                                                    <li><a href="#" className="dropdown-item block pb-1 text-text-light">Backlink</a></li>
-                                                    <li><a href="#" className="dropdown-item block pb-1 text-text-light">Search Engine Optimization</a></li>
-                                                    <li><a href="#" className="dropdown-item block pb-1 text-text-light">Press Release</a></li>
+                                                    <li><Link href="/services/digital-marketing" className="dropdown-item block pb-1 text-text-light">Google Ads</Link></li>
+                                                    <li><Link href="/services/digital-marketing" className="dropdown-item block pb-1 text-text-light">Backlink</Link></li>
+                                                    <li><Link href="/services/digital-marketing" className="dropdown-item block pb-1 text-text-light">Search Engine Optimization</Link></li>
+                                                    <li><Link href="/services/digital-marketing" className="dropdown-item block pb-1 text-text-light">Press Release</Link></li>
                                                 </ul>
                                             </div>
                                             <div>
-                                                <h4 className="font-bold text-sm mb-4 text-text-light">Software Development</h4>
+                                                <Link href="/services/software-development">
+                                                    <h4 className="font-bold text-sm mb-4 text-text-light hover:text-violet-600 transition cursor-pointer">Software Development</h4>
+                                                </Link>
                                                 <ul className="space-y-3 text-xs text-text-light-muted">
                                                     <li><Link href="/services/software-development" className="dropdown-item block pb-1 text-text-light">Specifications & Wireframe</Link></li>
                                                     <li><Link href="/services/software-development" className="dropdown-item block pb-1 text-text-light">UI/UX Design</Link></li>
@@ -237,16 +241,20 @@ export default function Navbar() {
                                     </ul>
                                 </div>
                                 <div>
-                                    <h4 className="font-bold text-sm mb-3">Digital Marketing</h4>
+                                    <Link href="/services/digital-marketing">
+                                        <h4 className="font-bold text-sm mb-3 hover:text-violet-600 transition cursor-pointer">Digital Marketing</h4>
+                                    </Link>
                                     <ul className="space-y-2 text-xs text-text-light-muted">
-                                        <li><a href="#" className="block py-1 hover:text-primary">Google Ads</a></li>
-                                        <li><a href="#" className="block py-1 hover:text-primary">Backlink</a></li>
-                                        <li><a href="#" className="block py-1 hover:text-primary">Search Engine Optimization</a></li>
-                                        <li><a href="#" className="block py-1 hover:text-primary">Press Release</a></li>
+                                        <li><Link href="/services/digital-marketing" className="block py-1 hover:text-primary">Google Ads</Link></li>
+                                        <li><Link href="/services/digital-marketing" className="block py-1 hover:text-primary">Backlink</Link></li>
+                                        <li><Link href="/services/digital-marketing" className="block py-1 hover:text-primary">Search Engine Optimization</Link></li>
+                                        <li><Link href="/services/digital-marketing" className="block py-1 hover:text-primary">Press Release</Link></li>
                                     </ul>
                                 </div>
                                 <div>
-                                    <h4 className="font-bold text-sm mb-3">Software Development</h4>
+                                    <Link href="/services/software-development">
+                                        <h4 className="font-bold text-sm mb-3 hover:text-violet-600 transition cursor-pointer">Software Development</h4>
+                                    </Link>
                                     <ul className="space-y-2 text-xs text-text-light-muted">
                                         <li><Link href="/services/software-development" className="block py-1 hover:text-primary">Specifications & Wireframe</Link></li>
                                         <li><Link href="/services/software-development" className="block py-1 hover:text-primary">UI/UX Design</Link></li>
