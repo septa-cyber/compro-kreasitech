@@ -7,15 +7,15 @@ export default function IdeaCTA() {
                 <div className="w-full flex flex-col justify-start items-center gap-8">
                     <div className="w-full flex flex-col justify-start items-center gap-8 text-center">
                         <h2 className="text-3xl sm:text-4xl font-medium font-montserrat text-white leading-tight">
-                            Punya Ide Menarik? Yuk Obrolan Dulu!
+                            Punya Ide Menarik? Yuk Ngobrol Dulu!
                         </h2>
                         <p className="text-sm sm:text-base font-normal font-montserrat text-white/80">
-                            Diskusi santai tanpa biaya untuk eksplorasi kemungkinan proyek Anda. Kami siap dengar dan kasih masukan.
+                            Diskusi santai tanpa biaya untuk mengeksplorasi kemungkinan proyek Anda. Kami siap mendengar dan memberi masukan.
                         </p>
                     </div>
                 </div>
                 <button className="px-8 py-4 bg-violet-300 rounded-lg inline-flex justify-center items-center gap-2.5 hover:bg-violet-200 transition-colors">
-                    <span className="text-violet-800 text-base font-medium font-montserrat">Konsultasikan Gratis</span>
+                    <span className="text-violet-800 text-base font-medium font-montserrat">Konsultasi Gratis</span>
                 </button>
             </div>
         </section>

@@ -36,12 +36,6 @@ export default function TechStack() {
 
     return (
         <section className="relative lg:pb-20 lg:pt-20 md:pb-16 md:pt-16 sm:pb-12 sm:pt-12 overflow-hidden bg-[#F4F4F7]">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
-                <h2 className="text-2xl sm:text-3xl font-medium font-montserrat text-text-light text-center">
-                    Tech Stack yang Kami Gunakan
-                </h2>
-            </div>
-
             {/* Tech Stack Marquee */}
             <div className="relative">
                 <div

@@ -11,12 +11,12 @@ export default function HiTalentCTA() {
                             Kelola Tim Jadi Lebih Mudah dengan HiTalent
                         </h2>
                         <p className="text-sm sm:text-base font-normal font-montserrat text-white/80">
-                            Coba lihat sendiri bagaimana platform kami bisa bantu HR dan team leader kerja lebih efisien.
+                            Lihat langsung bagaimana platform kami membantu HR dan team leader bekerja lebih efisien.
                         </p>
                     </div>
                 </div>
                 <button className="px-8 py-4 bg-violet-300 rounded-lg inline-flex justify-center items-center gap-2.5 hover:bg-violet-200 transition-colors">
-                    <span className="text-violet-800 text-base font-medium font-montserrat">Coba HiTalent Sekarang</span>
+                    <span className="text-violet-800 text-base font-medium font-montserrat">Coba HiTalent</span>
                 </button>
             </div>
         </section>

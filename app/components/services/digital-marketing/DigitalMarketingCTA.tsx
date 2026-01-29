@@ -11,7 +11,7 @@ export default function DigitalMarketingCTA() {
                             Saatnya Brand Anda Lebih Dikenal
                         </h2>
                         <p className="text-sm sm:text-base font-normal font-montserrat text-text-light-muted">
-                            Kami bantu susun strategi digital marketing yang efektif untuk mengubah awareness jadi engagement yang nyata.
+                            Kami bantu menyusun strategi digital marketing yang efektif untuk mengubah awareness menjadi engagement nyata.
                         </p>
                     </div>
                 </div>
@@ -21,7 +21,7 @@ export default function DigitalMarketingCTA() {
                         className="px-8 py-4 bg-violet-600 rounded-lg flex justify-center items-center gap-2.5 hover:bg-violet-700 transition-colors"
                     >
                         <span className="text-gray-100 text-base font-medium font-montserrat">
-                            Tingkatkan Kehadiran Online Anda
+                            Tingkatkan Brand Anda
                         </span>
                     </a>
                 </div>

@@ -58,7 +58,7 @@ Transformasi digital adalah perjalanan, bukan tujuan akhir. Perusahaan yang berh
             name: "Ahmad Rizky",
             avatar: "https://placehold.co/48x48/6366f1/ffffff?text=AR"
         },
-        category: "TEKNOLOGI",
+        category: "TECHNOLOGY",
         categoryColor: "bg-blue-100 text-blue-700",
         coverImage: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop",
         tags: ["Digital", "Teknologi", "Bisnis", "Inovasi"]
@@ -101,7 +101,7 @@ AI adalah alat yang luar biasa, namun kreativitas sejati tetap berasal dari piki
             name: "Siti Nurhaliza",
             avatar: "https://placehold.co/48x48/ec4899/ffffff?text=SN"
         },
-        category: "INOVASI",
+        category: "TIPS_TRICKS",
         categoryColor: "bg-pink-100 text-pink-700",
         coverImage: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1965&auto=format&fit=crop",
         tags: ["AI", "Kreativitas", "Desain", "Inovasi"]
@@ -142,7 +142,7 @@ Model pembelajaran masa depan kemungkinan akan menggabungkan yang terbaik dari k
             name: "Budi Santoso",
             avatar: "https://placehold.co/48x48/10b981/ffffff?text=BS"
         },
-        category: "EDUKASI",
+        category: "NEWS",
         categoryColor: "bg-green-100 text-green-700",
         coverImage: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?q=80&w=1974&auto=format&fit=crop",
         tags: ["Pendidikan", "E-Learning", "Teknologi"]
@@ -183,7 +183,7 @@ Talenta terbaik akan bertahan jika mereka merasa:
             name: "Dewi Lestari",
             avatar: "https://placehold.co/48x48/f59e0b/ffffff?text=DL"
         },
-        category: "KARIR",
+        category: "EVENT",
         categoryColor: "bg-orange-100 text-orange-700",
         coverImage: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop",
         tags: ["Tim", "HR", "Rekrutmen", "Karir"]
@@ -226,7 +226,7 @@ Biaya pencegahan jauh lebih kecil dibanding biaya pemulihan dari serangan siber.
             name: "Rizal Pratama",
             avatar: "https://placehold.co/48x48/ef4444/ffffff?text=RP"
         },
-        category: "KEAMANAN",
+        category: "TECHNOLOGY",
         categoryColor: "bg-red-100 text-red-700",
         coverImage: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop",
         tags: ["Keamanan", "Cybersecurity", "Data"]
@@ -270,7 +270,7 @@ Sebelum migrasi ke cloud, pertimbangkan:
             name: "Andi Wijaya",
             avatar: "https://placehold.co/48x48/8b5cf6/ffffff?text=AW"
         },
-        category: "TEKNOLOGI",
+        category: "TECHNOLOGY",
         categoryColor: "bg-blue-100 text-blue-700",
         coverImage: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=2070&auto=format&fit=crop",
         tags: ["Cloud", "Infrastruktur", "Teknologi"]
@@ -278,12 +278,11 @@ Sebelum migrasi ke cloud, pertimbangkan:
 ];
 
 export const categories = [
-    { name: "Semua", value: "all" },
-    { name: "Teknologi", value: "TEKNOLOGI" },
-    { name: "Inovasi", value: "INOVASI" },
-    { name: "Edukasi", value: "EDUKASI" },
-    { name: "Karir", value: "KARIR" },
-    { name: "Keamanan", value: "KEAMANAN" }
+    { name: "Semua Topik", value: "all" },
+    { name: "Event", value: "EVENT" },
+    { name: "News", value: "NEWS" },
+    { name: "Technology", value: "TECHNOLOGY" },
+    { name: "Tips & Tricks", value: "TIPS_TRICKS" }
 ];
 
 export function getBlogPostBySlug(slug: string): BlogPost | undefined {

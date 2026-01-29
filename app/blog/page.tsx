@@ -9,7 +9,7 @@ import BlogFilter from "@/app/components/blog/BlogFilter";
 import BlogList from "@/app/components/blog/BlogList";
 import BlogPagination from "@/app/components/blog/BlogPagination";
 import { blogPosts, categories } from "@/app/data/blogData";
-import CTASection from "../components/company/CTASection";
+import BlogCTA from "@/app/components/blog/BlogCTA";
 import Breadcrumb from "../components/ui/Breadcrumb";
 
 const POSTS_PER_PAGE = 6;
@@ -76,7 +76,7 @@ export default function BlogPage() {
                 </section>
             )}
 
-            <CTASection />
+            <BlogCTA />
             <Footer />
             <WhatsAppButton />
         </div>

@@ -7,10 +7,10 @@ export default function CTASection() {
                 <div className="w-full flex flex-col justify-start items-center gap-8">
                     <div className="w-full flex flex-col justify-start items-center gap-8 text-center">
                         <h2 className="text-3xl sm:text-4xl font-medium font-montserrat text-text-light leading-tight">
-                            Kami tim yang menyenangkan<br />dan penuh semangat
+                            Kami Tim yang Menyenangkan<br />dan Penuh Semangat
                         </h2>
                         <p className="text-sm sm:text-base font-normal font-montserrat text-text-light-muted">
-                            Kami berasal dari seluruh dunia.Selamat datang dan salam kenal!
+                            Kami berasal dari seluruh dunia. Selamat datang dan salam kenal!
                         </p>
                     </div>
                 </div>
@@ -20,7 +20,7 @@ export default function CTASection() {
                         className="px-8 py-4 bg-violet-600 rounded-lg flex justify-center items-center gap-2.5 hover:bg-violet-700 transition-colors"
                     >
                         <span className="text-gray-100 text-base font-medium font-montserrat">
-                            Bergabung dengan Kami
+                            Gabung Tim Kami
                         </span>
                     </a>
                 </div>

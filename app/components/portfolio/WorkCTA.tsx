@@ -10,7 +10,7 @@ export default function WorkCTA() {
                             Mau Lihat Track Record Kami?
                         </h2>
                         <p className="text-sm sm:text-base font-normal font-montserrat text-text-light-muted">
-                            Cek berbagai proyek yang sudah kami kerjakan. Siapa tau bisa jadi referensi untuk project Anda nanti.
+                            Cek berbagai proyek yang telah kami kerjakan. Siapa tahu bisa jadi referensi untuk proyek Anda berikutnya.
                         </p>
                     </div>
                 </div>
@@ -20,7 +20,7 @@ export default function WorkCTA() {
                         className="px-8 py-4 bg-violet-600 rounded-lg flex justify-center items-center gap-2.5 hover:bg-violet-700 transition-colors"
                     >
                         <span className="text-gray-100 text-base font-medium font-montserrat">
-                            Lihat Semua Proyek
+                            Lihat Proyek
                         </span>
                     </a>
                 </div>

@@ -10,7 +10,7 @@ export default function TalentCTA() {
                             Ada Ide Digital Product? Yuk Diskusi!
                         </h2>
                         <p className="text-sm sm:text-base font-normal font-montserrat text-text-light-muted">
-                            Dari konsep sampai launching, tim developer kami siap jadi partner terpercaya untuk mewujudkan produk impian Anda.
+                            Dari konsep hingga launching, tim developer kami siap menjadi partner terpercaya untuk mewujudkan produk impian Anda.
                         </p>
                     </div>
                 </div>
@@ -20,7 +20,7 @@ export default function TalentCTA() {
                         className="px-8 py-4 bg-violet-600 rounded-lg flex justify-center items-center gap-2.5 hover:bg-violet-700 transition-colors"
                     >
                         <span className="text-gray-100 text-base font-medium font-montserrat">
-                            Mulai Proyek Anda
+                            Mulai Proyek
                         </span>
                     </a>
                 </div>
