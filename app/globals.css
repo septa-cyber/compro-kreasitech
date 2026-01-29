@@ -246,6 +246,13 @@ body {
   transform-style: preserve-3d;
 }
 
+.animate-marquee-reverse-slow {
+  animation: marquee-reverse 50s linear infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
 /* Pause marquee animation on hover */
 /* Pause marquee animation on hover */
 .marquee-container:hover .animate-marquee,
