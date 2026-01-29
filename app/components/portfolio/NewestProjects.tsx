@@ -5,7 +5,7 @@ export default function NewestProjects() {
     return (
         <section className="py-24 bg-background-light">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center gap-12">
-                <h2 className="text-4xl font-medium font-montserrat text-center text-gray-900">Our Newest Projects</h2>
+                <h2 className="text-4xl font-medium font-montserrat text-center text-gray-900">Proyek Terbaru Kami</h2>
 
                 {/* Bento Grid */}
                 <div className="w-full grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 auto-rows-[160px] md:auto-rows-[240px] lg:auto-rows-[300px]">

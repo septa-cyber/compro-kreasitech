@@ -9,7 +9,7 @@ export default function MethodologySection() {
                 {/* Header */}
                 <div className="max-w-[784px] flex flex-col items-center gap-8 text-center">
                     <h2 className="text-4xl font-medium font-montserrat text-gray-900">
-                        Development Method
+                        Metode Pengembangan
                     </h2>
                     <p className="text-base text-gray-500 font-montserrat">
                         Kami menyesuaikan metode pengembangan dengan kebutuhan bisnis Anda

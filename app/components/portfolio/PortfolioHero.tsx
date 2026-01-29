@@ -27,28 +27,28 @@ export default function PortfolioHero() {
                     {/* Left Content */}
                     <div className="w-2/3 md:w-1/2 flex flex-col justify-start items-start gap-4 md:gap-8 z-10">
                         <Breadcrumb items={[
-                            { label: "Home", href: "/" },
-                            { label: "Company", href: "/company" },
-                            { label: "Portfolio", href: "/portfolio" }
+                            { label: "Beranda", href: "/" },
+                            { label: "Perusahaan", href: "/company" },
+                            { label: "Portofolio", href: "/portfolio" }
                         ]} />
 
                         {/* Title & Desc */}
                         <div className="flex flex-col gap-8">
                             <h1 className="text-4xl sm:text-5xl lg:text-7xl font-medium font-montserrat leading-tight max-w-6xl text-text-light">
-                                Experience <br />
-                                Our <span className="font-semibold text-violet-600">Best Works</span>
+                                Jelajahi <br />
+                                <span className="font-semibold text-violet-600">Karya Terbaik</span> Kami
                             </h1>
                             <p className="text-sm sm:text-base text-gray-500 font-montserrat">
-                                Our team is a quirky, talented bunch who thrive in a relaxed and friendly environment. If you're looking for a place where your ideas can shine, come join us and let's create something awesome!
+                                Tim kami adalah kumpulan orang-orang berbakat yang berkembang dalam lingkungan yang santai dan ramah. Jika Anda mencari tempat di mana ide-ide Anda bisa bersinar, bergabunglah dengan kami dan mari ciptakan sesuatu yang luar biasa!
                             </p>
                         </div>
 
                         {/* CTA */}
                         <button className="px-6 md:px-8 py-3 md:py-4 bg-violet-600 hover:bg-violet-700 rounded-lg transition-colors duration-300">
-                            <span className="text-white text-sm md:text-base font-medium font-montserrat">View All</span>
+                            <span className="text-white text-sm md:text-base font-medium font-montserrat">Lihat Semua</span>
                         </button>
                         <a href="#featured" className="group inline-flex items-center gap-4 text-gray-900 font-medium font-montserrat hover:text-violet-600 transition-colors">
-                            <span>Learn More</span>
+                            <span>Pelajari Lebih Lanjut</span>
                             <div className="w-6 h-6 flex items-center justify-center relative">
                                 <MdArrowDownward className="text-violet-600 text-xl group-hover:translate-y-1 transition-transform" />
                             </div>

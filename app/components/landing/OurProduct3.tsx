@@ -7,7 +7,7 @@ export default function OurProduct() {
                 {/* Header */}
                 <div className="w-full max-w-[784px] text-center">
                     <h2 className="text-4xl font-medium font-montserrat">
-                        Our Product
+                        Produk Kami
                     </h2>
                 </div>
 
@@ -22,10 +22,10 @@ export default function OurProduct() {
                             HiTalent
                         </h3>
                         <p className="text-base font-normal font-montserrat leading-relaxed text-white opacity-90">
-                            Smart solutions to manage human resources efficiently — from attendance to payroll. Powered by cloud-based technology that simplifies management while boosting your company's productivity and efficiency.
+                            Solusi cerdas untuk mengelola sumber daya manusia secara efisien — mulai dari absensi hingga penggajian. Didukung oleh teknologi berbasis cloud yang menyederhanakan pengelolaan sekaligus meningkatkan produktivitas dan efisiensi perusahaan Anda.
                         </p>
                         <button className="px-8 py-4 bg-violet-300 rounded-lg inline-flex justify-center items-center gap-2.5 hover:bg-violet-200 transition-colors">
-                            <span className="text-violet-800 text-base font-medium font-montserrat">See Detail</span>
+                            <span className="text-violet-800 text-base font-medium font-montserrat">Lihat Detail</span>
                         </button>
                     </div>
 

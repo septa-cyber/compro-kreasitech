@@ -5,10 +5,8 @@ import ContentSection from "@/app/components/company/ContentSection";
 import MissionSection from "@/app/components/company/MissionSection";
 import TimelineSection from "@/app/components/company/TimelineSection";
 import TeamSection from "@/app/components/company/TeamSection";
-import CallToAction from "@/app/components/company/CTASection";
 import Breadcrumb from "@/app/components/ui/Breadcrumb";
 import CTASection from "@/app/components/company/CTASection";
-import InternSection from "@/app/components/company/InternSection";
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -46,7 +44,6 @@ export default function CompanyPage() {
             <MissionSection />
             <TimelineSection />
             <TeamSection />
-            <InternSection />
             <CTASection />
             <Footer />
         </div>

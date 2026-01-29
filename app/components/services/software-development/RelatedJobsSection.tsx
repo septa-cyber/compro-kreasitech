@@ -15,7 +15,7 @@ export default function RelatedJobsSection() {
             <div className="w-full max-w-[1200px] px-4 flex flex-col gap-8">
                 {/* Title */}
                 <h2 className="text-white text-4xl font-medium font-montserrat">
-                    Related Jobs
+                    Lowongan Terkait
                 </h2>
 
                 {/* Jobs Grid */}

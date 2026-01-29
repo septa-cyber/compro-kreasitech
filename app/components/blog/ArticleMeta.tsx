@@ -28,7 +28,7 @@ export default function ArticleMeta({ post, previousPost, nextPost }: ArticleMet
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {previousPost ? (
                         <Link href={`/blog/${previousPost.slug}`} className="bg-white group flex flex-col gap-2 p-6 rounded-2xl border border-gray-200 hover:border-violet-200 hover:shadow-sm transition-all text-left">
-                            <span className="text-xs font-semibold text-gray-400 font-montserrat uppercase tracking-wider">Previous Article</span>
+                            <span className="text-xs font-semibold text-gray-400 font-montserrat uppercase tracking-wider">Artikel Sebelumnya</span>
                             <h4 className="text-md font-medium font-montserrat text-gray-900 group-hover:text-violet-600 transition-colors line-clamp-2">
                                 {previousPost.title}
                             </h4>
@@ -39,7 +39,7 @@ export default function ArticleMeta({ post, previousPost, nextPost }: ArticleMet
 
                     {nextPost && (
                         <Link href={`/blog/${nextPost.slug}`} className="bg-white group flex flex-col gap-2 p-6 rounded-2xl border border-gray-200 hover:border-violet-200 hover:shadow-sm transition-all text-right items-end">
-                            <span className="text-xs font-semibold text-gray-400 font-montserrat uppercase tracking-wider">Next Article</span>
+                            <span className="text-xs font-semibold text-gray-400 font-montserrat uppercase tracking-wider">Artikel Selanjutnya</span>
                             <h4 className="text-md font-medium font-montserrat text-gray-900 group-hover:text-violet-600 transition-colors line-clamp-2">
                                 {nextPost.title}
                             </h4>

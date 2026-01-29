@@ -24,14 +24,14 @@ export default function Portfolio() {
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 md:gap-24">
                     <div className="flex-1 flex flex-col justify-start items-start gap-4 md:gap-8">
                         <h2 className="text-2xl md:text-4xl font-medium font-montserrat text-gray-900">
-                            Our Portfolio
+                            Portofolio Kami
                         </h2>
                         <p className="text-sm md:text-base font-normal font-montserrat text-gray-600">
-                            Projects showcase our expertise across various industries. We are committed to delivering excellence in every solution.
+                            Proyek-proyek kami menunjukkan keahlian di berbagai industri. Kami berkomitmen untuk memberikan yang terbaik dalam setiap solusi.
                         </p>
                     </div>
                     <button className="px-6 md:px-8 py-3 md:py-4 bg-violet-600 hover:bg-violet-700 rounded-lg transition-colors duration-300">
-                        <span className="text-white text-sm md:text-base font-medium font-montserrat">View All</span>
+                        <span className="text-white text-sm md:text-base font-medium font-montserrat">Lihat Semua</span>
                     </button>
                 </div>
             </div>

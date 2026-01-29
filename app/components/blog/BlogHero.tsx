@@ -15,13 +15,13 @@ export default function BlogHero({ featuredPost }: BlogHeroProps) {
             {/* Header */}
             <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 pb-16 sm:pb-24">
                 <Breadcrumb className="mb-8" items={[
-                    { label: "Home", href: "/" },
+                    { label: "Beranda", href: "/" },
                     { label: "Blog", href: "/blog" }
                 ]} />
                 <div className="flex flex-col gap-8">
                     <h1 className="text-4xl sm:text-5xl lg:text-7xl font-medium font-montserrat leading-tight max-w-6xl text-text-light">
-                        Experience <br />
-                        Our <span className="font-semibold text-violet-600">Best Works</span>
+                        Jelajahi <br />
+                        <span className="font-semibold text-violet-600">Karya Terbaik</span> Kami
                     </h1>
                     <p className="text-sm sm:text-base text-gray-500 font-montserrat">
                         Berita industri terbaru, wawancara, teknologi, dan sumber daya terkini.

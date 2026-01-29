@@ -24,7 +24,7 @@ export default function OutcomeSection() {
         <section className="py-24 bg-gray-100 flex flex-col justify-start items-center gap-24">
             <div className="max-w-[784px] flex flex-col justify-start items-center gap-8 px-4">
                 <div className="max-w-[672px] text-center text-text-light text-4xl font-medium font-montserrat">
-                    Outcome
+                    Hasil yang Didapat
                 </div>
             </div>
             

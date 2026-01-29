@@ -4,12 +4,12 @@ export default function TeamSection() {
     return (
         <section className="py-24 bg-background-light">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <h2 className="text-2xl md:text-4xl font-medium font-montserrat text-text-light mb-10">KreasiTech Intern</h2>
+                <h2 className="text-2xl md:text-4xl font-medium font-montserrat text-text-light mb-10">Magang KreasiTech</h2>
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 overflow-hidden max-w-6xl mx-auto">
                     {/* Item 1 */}
                     {[
-                        { name: "Wahyu Septa Pramudya", role: "UI/UX Designer", batch: "Batch 1 - 2026", image: "Septa.png" },
-                        { name: "Pradipta Triatmaja Purwa Nugraha", role: "Frontend Web Developer", batch: "Batch 1 - 2026", image: "Dipta.png" },
+                        { name: "Wahyu Septa Pramudya", role: "UI/UX Designer", batch: "Angkatan 1 - 2026", image: "Septa.png" },
+                        { name: "Pradipta Triatmaja Purwa Nugraha", role: "Frontend Web Developer", batch: "Angkatan 1 - 2026", image: "Dipta.png" },
                     ].map((member, index) => {
                         return (
                             <div key={index} className="aspect-[3/4] relative group overflow-hidden bg-gray-100">

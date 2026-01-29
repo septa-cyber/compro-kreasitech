@@ -11,19 +11,19 @@ export default function Hero() {
         {
             icon: "/assets/images/tag_faces.svg",
             count: "50+",
-            label: "Happy Clients",
+            label: "Klien Puas",
             bg: "bg-primary/10"
         },
         {
             icon: "/assets/images/task_alt.svg",
             count: "100+",
-            label: "Projects Completed",
+            label: "Proyek Selesai",
             bg: "bg-primary/10"
         },
         {
             icon: "/assets/images/star_border_purple500.svg",
             count: "4+",
-            label: "Years Experience",
+            label: "Tahun Pengalaman",
             bg: "bg-primary/10"
         }
     ];
@@ -64,41 +64,41 @@ export default function Hero() {
 
                 {/* Floating Cards - Desktop (Absolute) for XL+ screens only */}
 
-                {/* Card 1: Happy Clients */}
+                {/* Card 1: Klien Puas */}
                 <div className="hidden xl:block absolute -top-5 left-0 animate-float-slow z-20">
                     <div className="bg-white/95 backdrop-blur-md p-4 rounded-lg shadow-[0px_2px_6px_2px_rgba(0,0,0,0.1)] border border-gray-100 flex items-center gap-4">
                         <div className="w-10 h-10 flex items-center justify-center border-2 border-dashed border-primary/30 rounded-full">
-                            <Image src="/assets/images/tag_faces.svg" alt="Happy Clients" width={24} height={24} className="w-6 h-6" />
+                            <Image src="/assets/images/tag_faces.svg" alt="Klien Puas" width={24} height={24} className="w-6 h-6" />
                         </div>
                         <div className="text-left">
                             <div className="font-bold text-base text-text-light">50+</div>
-                            <div className="text-[10px] text-gray-500 uppercase font-medium">Happy Clients</div>
+                            <div className="text-[10px] text-gray-500 uppercase font-medium">Klien Puas</div>
                         </div>
                     </div>
                 </div>
 
-                {/* Card 2: Professional Talents */}
+                {/* Card 2: Talenta Profesional */}
                 <div className="hidden xl:block absolute top-35 -right-12 animate-float-medium z-20">
                     <div className="bg-white/95 backdrop-blur-md p-4 rounded-lg shadow-[0px_2px_6px_2px_rgba(0,0,0,0.1)] border border-gray-100 flex items-center gap-4">
                         <div className="w-10 h-10 flex items-center justify-center border-2 border-dashed border-primary/30 rounded-full">
-                            <Image src="/assets/images/star_border_purple500.svg" alt="Professional Talents" width={24} height={24} className="w-6 h-6" />
+                            <Image src="/assets/images/star_border_purple500.svg" alt="Talenta Profesional" width={24} height={24} className="w-6 h-6" />
                         </div>
                         <div className="text-left">
                             <div className="font-bold text-base text-text-light">100+</div>
-                            <div className="text-[10px] text-gray-500 uppercase font-medium">Professional Talents</div>
+                            <div className="text-[10px] text-gray-500 uppercase font-medium">Talenta Profesional</div>
                         </div>
                     </div>
                 </div>
 
-                {/* Card 3: Projects Completed */}
+                {/* Card 3: Proyek Selesai */}
                 <div className="hidden xl:block absolute bottom-26 left-10 animate-float-fast z-20">
                     <div className="bg-white/95 backdrop-blur-md p-4 rounded-lg shadow-[0px_2px_6px_2px_rgba(0,0,0,0.1)] border border-gray-100 flex items-center gap-4">
                         <div className="w-10 h-10 flex items-center justify-center border-2 border-dashed border-primary/30 rounded-full">
-                            <Image src="/assets/images/task_alt.svg" alt="Projects Completed" width={24} height={24} className="w-6 h-6" />
+                            <Image src="/assets/images/task_alt.svg" alt="Proyek Selesai" width={24} height={24} className="w-6 h-6" />
                         </div>
                         <div className="text-left">
                             <div className="font-bold text-base text-text-light">50+</div>
-                            <div className="text-[10px] text-gray-500 uppercase font-medium">Projects Completed</div>
+                            <div className="text-[10px] text-gray-500 uppercase font-medium">Proyek Selesai</div>
                         </div>
                     </div>
                 </div>

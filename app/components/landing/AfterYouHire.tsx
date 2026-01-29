@@ -6,7 +6,7 @@ export default function AfterYouHire() {
             <div className="max-w-[1200px] mx-auto px-4 flex flex-col items-center gap-24">
                 <div className="w-full max-w-[784px] text-center">
                     <h2 className="text-3xl font-medium font-montserrat text-text-light">
-                        After You Hire
+                        Setelah Anda Merekrut
                     </h2>
                 </div>
 
@@ -14,10 +14,10 @@ export default function AfterYouHire() {
                     {/* Left Box */}
                     <div className="w-full max-w-sm px-8 pt-8 pb-12 flex flex-col items-center gap-6">
                         <h3 className="text-2xl font-medium font-montserrat text-center text-text-light">
-                            Onboard, pay, retain
+                            Onboarding, Pembayaran, Retensi
                         </h3>
                         <p className="text-sm font-normal font-montserrat text-center text-text-light-muted leading-relaxed">
-                            We support onboarding, payroll, and compliance, so your new hire integrates fast and sticks long term.
+                            Kami mendukung onboarding, penggajian, dan kepatuhan, sehingga karyawan baru Anda dapat berintegrasi dengan cepat dan bertahan dalam jangka panjang.
                         </p>
                     </div>
 
@@ -45,10 +45,10 @@ export default function AfterYouHire() {
                     {/* Right Box */}
                     <div className="w-full max-w-sm px-8 pt-8 pb-12 flex flex-col items-center gap-6">
                         <h3 className="text-2xl font-medium font-montserrat text-center text-text-light">
-                            Ongoing support & team expansion
+                            Dukungan Berkelanjutan & Ekspansi Tim
                         </h3>
                         <p className="text-sm font-normal font-montserrat text-center text-text-light-muted leading-relaxed">
-                            Keep hiring with the same speed and quality whenever you need. Your recruiter stays close to support future hires, backfills, or scaling your team.
+                            Terus merekrut dengan kecepatan dan kualitas yang sama kapan pun Anda butuhkan. Rekruter Anda tetap siap mendukung perekrutan di masa depan, penggantian posisi, atau perluasan tim Anda.
                         </p>
                     </div>
                 </div>

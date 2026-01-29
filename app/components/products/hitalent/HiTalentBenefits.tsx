@@ -3,31 +3,31 @@
 export default function HiTalentBenefits() {
     const leftBenefits = [
         {
-            title: "Guaranteed Data Accuracy",
-            description: "Minimize human errors in payroll, taxation, and benefits processing.",
+            title: "Akurasi Data Terjamin",
+            description: "Meminimalkan kesalahan manusia dalam pemrosesan penggajian, perpajakan, dan tunjangan.",
         },
         {
-            title: "Employee Self-Service",
-            description: "Employees can easily access payslips, request leave, and update their personal information anytime.",
+            title: "Layanan Mandiri Karyawan",
+            description: "Karyawan dapat dengan mudah mengakses slip gaji, mengajukan cuti, dan memperbarui informasi pribadi mereka kapan saja.",
         },
         {
-            title: "Smart HR Analytics",
-            description: "Gain real-time insights to support data-driven decision-making.",
+            title: "Analitik HR Cerdas",
+            description: "Dapatkan wawasan real-time untuk mendukung pengambilan keputusan berbasis data.",
         },
     ];
 
     const rightBenefits = [
         {
-            title: "Save Time & Costs",
-            description: "Eliminate manual tasks with automated systems for payroll, attendance, and leave management.",
+            title: "Hemat Waktu & Biaya",
+            description: "Eliminasi tugas manual dengan sistem otomatis untuk penggajian, absensi, dan manajemen cuti.",
         },
         {
-            title: "Integrated & Flexible",
-            description: "Compatible with all types of businesses and accessible anytime, anywhere.",
+            title: "Terintegrasi & Fleksibel",
+            description: "Kompatibel dengan semua jenis bisnis dan dapat diakses kapan saja, di mana saja.",
         },
         {
-            title: "Regulatory Compliance",
-            description: "Ensure full compliance with labor regulations effortlessly.",
+            title: "Kepatuhan Regulasi",
+            description: "Memastikan kepatuhan penuh terhadap peraturan ketenagakerjaan dengan mudah.",
         },
     ];
 
@@ -35,7 +35,7 @@ export default function HiTalentBenefits() {
         <section className="py-24 bg-white overflow-hidden font-montserrat">
             <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
                 <h2 className="text-3xl md:text-4xl font-medium text-center mb-16 md:mb-24 text-[#171717]">
-                    The Benefit
+                    Keuntungan
                 </h2>
 
                 <div className="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-8">

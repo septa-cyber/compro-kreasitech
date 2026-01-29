@@ -31,8 +31,8 @@ export default function DigitalMarketingHero() {
                                 
                                 {/* Title */}
                                 <h1 className="text-4xl sm:text-5xl md:text-6xl font-medium font-montserrat leading-tight text-text-light">
-                                    Make Your Business Easy to{" "}
-                                    <span className="text-violet-600 font-semibold">Find & Trust</span>
+                                    Buat Bisnis Anda Mudah{" "}
+                                    <span className="text-violet-600 font-semibold">Ditemukan & Dipercaya</span>
                                 </h1>
                             </div>
 
@@ -41,8 +41,8 @@ export default function DigitalMarketingHero() {
                                 {/* Left: Title */}
                                 <div className="flex-1 flex justify-center items-end">
                                     <h1 className="text-7xl xl:text-8xl font-medium font-montserrat leading-tight text-text-light">
-                                        Make Your Business Easy to{" "}
-                                        <span className="text-violet-600 font-semibold">Find & Trust</span>
+                                        Buat Bisnis Anda Mudah{" "}
+                                        <span className="text-violet-600 font-semibold">Ditemukan & Dipercaya</span>
                                     </h1>
                                 </div>
                                 
@@ -61,7 +61,7 @@ export default function DigitalMarketingHero() {
                             
                             {/* Description */}
                             <p className="w-full text-gray-600 text-base font-normal font-montserrat leading-relaxed text-center lg:text-left">
-                                Build a professional image for your brand with KreasiTech&apos;s creative services. From logo & visual identity creation, company profiles, professional websites, to exclusive illustrations & visual content tailored to your brand&apos;s identity.
+                                Bangun citra profesional untuk brand Anda dengan layanan kreatif KreasiTech. Mulai dari pembuatan logo & identitas visual, profil perusahaan, website profesional, hingga ilustrasi eksklusif & konten visual yang disesuaikan dengan identitas brand Anda.
                             </p>
                         </div>
                         
@@ -71,13 +71,13 @@ export default function DigitalMarketingHero() {
                                 href="#" 
                                 className="w-full sm:w-auto px-8 py-4 bg-violet-600 rounded-lg flex justify-center items-center gap-2.5 hover:bg-violet-700 transition-all duration-300 shadow-lg shadow-violet-600/30"
                             >
-                                <span className="text-gray-100 text-base font-medium font-montserrat">Contact Us</span>
+                                <span className="text-gray-100 text-base font-medium font-montserrat">Hubungi Kami</span>
                             </a>
                             <a 
                                 href="#solutions" 
                                 className="flex justify-start items-center gap-4 group"
                             >
-                                <span className="text-text-light text-base font-medium font-montserrat group-hover:text-violet-600 transition">Learn More</span>
+                                <span className="text-text-light text-base font-medium font-montserrat group-hover:text-violet-600 transition">Pelajari Lebih Lanjut</span>
                                 <Image 
                                     src="/assets/images/arrow_downward.svg" 
                                     alt="" 

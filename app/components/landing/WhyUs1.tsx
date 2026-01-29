@@ -4,27 +4,27 @@ export default function WhyUs() {
     const items = [
         {
             title: "Creative Partnership",
-            description: "At Kreasitech, we believe that the best innovation comes from strong collaboration. Creative Partnership is more than just a business relationship; it's our commitment to working as strategic and flexible partners in creating relevant and impactful digital solutions for your business."
+            description: "Di Kreasitech, kami percaya bahwa inovasi terbaik lahir dari kolaborasi yang kuat. Creative Partnership lebih dari sekadar hubungan bisnis; ini adalah komitmen kami untuk bekerja sebagai mitra strategis dan fleksibel dalam menciptakan solusi digital yang relevan dan berdampak bagi bisnis Anda."
         },
         {
-            title: "Cost Effective & High ROI",
-            description: "The technology we develop is not only effective but also provides optimal investment value, increasing operational efficiency and your business profits."
+            title: "Hemat Biaya & ROI Tinggi",
+            description: "Teknologi yang kami kembangkan tidak hanya efektif tetapi juga memberikan nilai investasi yang optimal, meningkatkan efisiensi operasional dan keuntungan bisnis Anda."
         },
         {
-            title: "End to End IT Support",
-            description: "From consultation to implementation and maintenance, we are here to ensure your technology solutions always run optimally."
+            title: "Dukungan IT Menyeluruh",
+            description: "Mulai dari konsultasi hingga implementasi dan pemeliharaan, kami hadir untuk memastikan solusi teknologi Anda selalu berjalan optimal."
         },
         {
-            title: "Experience Professionals",
-            description: "We guarantee your project is handled by our experienced team of professionals who understand modern business challenges and can deliver solutions that are precise, efficient, and sustainable."
+            title: "Profesional Berpengalaman",
+            description: "Kami menjamin proyek Anda ditangani oleh tim profesional berpengalaman kami yang memahami tantangan bisnis modern dan dapat memberikan solusi yang tepat, efisien, dan berkelanjutan."
         },
         {
-            title: "Security & Compliance",
-            description: "We prioritize data security and compliance with industry regulations, ensuring your system remains secure and reliable."
+            title: "Keamanan & Kepatuhan",
+            description: "Kami memprioritaskan keamanan data dan kepatuhan terhadap peraturan industri, memastikan sistem Anda tetap aman dan andal."
         },
         {
-            title: "Tailor Solutions",
-            description: "The best technology is that which suits your business needs. At Kreasitech, we present Tailored Solutions—solutions specifically designed to support the growth and scalability of your business."
+            title: "Solusi yang Disesuaikan",
+            description: "Teknologi terbaik adalah yang sesuai dengan kebutuhan bisnis Anda. Di Kreasitech, kami menghadirkan Solusi yang Disesuaikan—solusi yang dirancang khusus untuk mendukung pertumbuhan dan skalabilitas bisnis Anda."
         }
     ];
 
@@ -48,10 +48,10 @@ export default function WhyUs() {
                         {/* Middle Content */}
                         <div className="my-auto lg:mt-64 lg:mb-64 relative z-10 flex flex-col gap-6 lg:gap-8">
                             <h2 className="text-3xl sm:text-4xl font-medium font-montserrat text-text-light leading-tight">
-                                Why Kreasitech is the right choice for you?
+                                Mengapa Kreasitech pilihan yang tepat untuk Anda?
                             </h2>
                             <p className="text-sm sm:text-base font-normal font-montserrat text-text-light-muted leading-relaxed max-w-lg">
-                                We provide secure, scalable, and innovative IT solutions tailored to your needs. With expert-driven execution, we ensure efficiency and reliability in every project.
+                                Kami menyediakan solusi IT yang aman, terukur, dan inovatif yang disesuaikan dengan kebutuhan Anda. Dengan eksekusi yang dipandu oleh para ahli, kami memastikan efisiensi dan keandalan dalam setiap proyek.
                             </p>
                         </div>
 

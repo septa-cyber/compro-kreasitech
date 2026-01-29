@@ -7,20 +7,20 @@ export default function WorkflowSection() {
             <div className="absolute inset-0 bg-[#4834d4]"></div>
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="text-center mb-16">
-                    <h2 className="text-3xl font-bold mb-4 font-montserrat tracking-tight">Match your energy with our<br />workflow</h2>
+                    <h2 className="text-3xl font-bold mb-4 font-montserrat tracking-tight">Sesuaikan energi Anda dengan<br />alur kerja kami</h2>
                     <p className="text-indigo-100 text-[10px] max-w-sm mx-auto font-inter leading-relaxed">
-                        We ensure every project is executed efficiently and tailored to your unique business needs, providing innovative solutions that drive success.
+                        Kami memastikan setiap proyek dieksekusi secara efisien dan disesuaikan dengan kebutuhan bisnis unik Anda, menyediakan solusi inovatif yang mendorong kesuksesan.
                     </p>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 border-t border-l border-white/20">
                     {/* Workflow Items */}
-                    <WorkflowItem number="1" title="Discovery & Requirements" desc="Are essential documents outlining a project's boundaries and goals." light />
-                    <WorkflowItem number="2" title="Wireframe & UI/UX Design" desc="Details the step-by-step method of developing or improving a current product." />
-                    <WorkflowItem number="3" title="Development" desc="Outlines the detailed procedure for innovating or upgrading an existing service." />
-                    <WorkflowItem number="4" title="SIT" desc="Represents a milestone reached through commitment, skill, and courage." />
-                    <WorkflowItem number="5" title="UAT" desc="Embodies a success story built on perseverance, expertise, and valor." className="lg:col-start-1 lg:ml-auto w-full" />
-                    <WorkflowItem number="6" title="Deployment" desc="It allows for ongoing improvements through constant reviews and iterative changes." />
-                    <WorkflowItem number="7" title="Maintenance & Support" desc="It facilitates ongoing development through constant reviews and iterative modifications." className="lg:col-span-2 text-center w-full" />
+                    <WorkflowItem number="1" title="Discovery & Requirements" desc="Dokumen penting yang menguraikan batasan dan tujuan proyek." light />
+                    <WorkflowItem number="2" title="Wireframe & Desain UI/UX" desc="Menjelaskan metode langkah demi langkah untuk mengembangkan atau meningkatkan produk saat ini." />
+                    <WorkflowItem number="3" title="Pengembangan" desc="Menguraikan prosedur terperinci untuk berinovasi atau meningkatkan layanan yang ada." />
+                    <WorkflowItem number="4" title="SIT" desc="Mewakili pencapaian yang diraih melalui komitmen, keterampilan, dan keberanian." />
+                    <WorkflowItem number="5" title="UAT" desc="Mewujudkan kisah sukses yang dibangun atas ketekunan, keahlian, dan keberanian." className="lg:col-start-1 lg:ml-auto w-full" />
+                    <WorkflowItem number="6" title="Deployment" desc="Memungkinkan perbaikan berkelanjutan melalui tinjauan konstan dan perubahan berulang." />
+                    <WorkflowItem number="7" title="Pemeliharaan & Dukungan" desc="Memfasilitasi pengembangan berkelanjutan melalui tinjauan konstan dan modifikasi berulang." className="lg:col-span-2 text-center w-full" />
                 </div>
             </div>
         </section>

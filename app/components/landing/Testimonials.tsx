@@ -12,7 +12,7 @@ export default function Testimonials() {
             role: "Marketing Specialist",
             company: "PT Marketing Pro",
             avatar: "https://placehold.co/48x48/ec4899/1f2937",
-            quote: "Tina's marketing strategies are exceptionally creative, highly innovative, and meticulously data-driven, consistently capturing audience attention and driving impressive campaign results that not only exceed targets but also maximize ROI, setting new standards for marketing effectiveness."
+            quote: "Strategi pemasaran Tina sangat kreatif, inovatif, dan berbasis data, secara konsisten menarik perhatian audiens dan menghasilkan hasil kampanye yang mengesankan yang tidak hanya melampaui target tetapi juga memaksimalkan ROI, menetapkan standar baru untuk efektivitas pemasaran."
         },
         {
             id: 2,
@@ -20,7 +20,7 @@ export default function Testimonials() {
             role: "QA Engineer",
             company: "PT Quality Assurance",
             avatar: "https://placehold.co/48x48/fbbf24/1f2937",
-            quote: "Joko's rigorous testing protocols guarantee the superior quality and reliability of our products, proactively preventing potential problems and ensuring a seamless user experience right from initial release, significantly enhancing customer loyalty and fostering long-term relationships."
+            quote: "Protokol pengujian ketat Joko menjamin kualitas dan keandalan produk kami yang unggul, secara proaktif mencegah masalah potensial dan memastikan pengalaman pengguna yang mulus sejak rilis awal, secara signifikan meningkatkan loyalitas pelanggan dan membina hubungan jangka panjang."
         },
         {
             id: 3,
@@ -28,7 +28,7 @@ export default function Testimonials() {
             role: "Product Manager",
             company: "PT Digital Solutions",
             avatar: "https://placehold.co/48x48/3b82f6/1f2937",
-            quote: "Siti's leadership is truly transformative, as she champions collaboration, sparks innovation, and drives substantial growth. Her team consistently surpasses ambitious goals, achieving remarkable success and establishing new benchmarks for excellence throughout the entire organization, inspiring others to reach higher."
+            quote: "Kepemimpinan Siti benar-benar transformatif, karena dia memperjuangkan kolaborasi, memicu inovasi, dan mendorong pertumbuhan substansial. Timnya secara konsisten melampaui tujuan ambisius, mencapai kesuksesan luar biasa dan menetapkan tolok ukur baru untuk keunggulan di seluruh organisasi."
         },
         {
             id: 4,
@@ -36,7 +36,7 @@ export default function Testimonials() {
             role: "UX Designer",
             company: "PT Creative Minds",
             avatar: "https://placehold.co/48x48/f97316/1f2937",
-            quote: "Budi's UX designs are widely celebrated for their intuitive interfaces and exceptionally delightful user journeys, significantly boosting user satisfaction and engagement metrics. His thoughtful designs greatly enhance the overall user experience, making every interaction seamless and enjoyable for all users."
+            quote: "Desain UX Budi dikenal luas karena antarmuka intuitif dan perjalanan pengguna yang sangat menyenangkan, secara signifikan meningkatkan kepuasan dan metrik keterlibatan pengguna. Desainnya yang penuh pertimbangan sangat meningkatkan pengalaman pengguna secara keseluruhan."
         },
         {
             id: 5,
@@ -44,7 +44,7 @@ export default function Testimonials() {
             role: "Data Analyst",
             company: "PT Analytics Hub",
             avatar: "https://placehold.co/48x48/ec4899/1f2937",
-            quote: "Rina's profound data insights are instrumental in shaping our strategic direction and future initiatives. Her detailed analyses provide unparalleled clarity and foresight, enabling well-informed decisions that drive significant growth and improve efficiency across all departments, optimizing resource allocation."
+            quote: "Wawasan data mendalam Rina sangat penting dalam membentuk arah strategis dan inisiatif masa depan kami. Analisisnya yang detail memberikan kejelasan dan pandangan ke depan yang tak tertandingi, memungkinkan keputusan yang tepat yang mendorong pertumbuhan signifikan."
         },
         {
             id: 6,
@@ -52,7 +52,7 @@ export default function Testimonials() {
             role: "DevOps Engineer",
             company: "PT Tech Infrastructure",
             avatar: "https://placehold.co/48x48/10b981/1f2937",
-            quote: "Eko's DevOps expertise ensures our systems run smoothly and efficiently. His automation solutions have dramatically reduced deployment times while improving reliability, enabling our team to focus on innovation rather than maintenance."
+            quote: "Keahlian DevOps Eko memastikan sistem kami berjalan dengan lancar dan efisien. Solusi otomatisasinya telah secara dramatis mengurangi waktu deployment sambil meningkatkan keandalan, memungkinkan tim kami fokus pada inovasi daripada pemeliharaan."
         },
     ];
 

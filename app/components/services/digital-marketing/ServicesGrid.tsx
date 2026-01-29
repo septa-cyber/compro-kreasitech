@@ -5,10 +5,10 @@ import Image from "next/image";
 const services = [
     {
         title: "SEO",
-        description: "Improve your website's visibility and organic traffic to be easily found on Google without large advertising costs.",
+        description: "Tingkatkan visibilitas website dan traffic organik Anda agar mudah ditemukan di Google tanpa biaya iklan yang besar.",
         image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBbPeV9vrCsVLTRIfjhyhMWxhixceXHIrKrD_9YuOTYpwDF3i52IZTo5aW26eNDmJsZoj6b0IXbgydbauAIBU2RLla4i4y9d4H4-060Ir0CmfWKV9hiITDzuhNW3hTEZLPJqurvFQHLHOJTMi7D647XuOlZX5Wgud8AxNA6EUCny6paakq1OA_p8P7jQIgVUY044-5jO6tgdDgQrX3Ew27Tw-S8vGuRFSrg94RCotKa77kQLI_MTasHJnPbJmvcx7T6gxfjTZ6Z5Cc",
         features: [
-            "Research keyword",
+            "Riset Keyword",
             "Pembuatan artikel SEO",
             "Setup & maintenance web",
             "Optimasi Berbasis Data & Laporan Bulanan"
@@ -16,33 +16,33 @@ const services = [
     },
     {
         title: "Ads",
-        description: "Reach more potential customers with a targeted digital advertising strategy.",
+        description: "Jangkau lebih banyak calon pelanggan dengan strategi periklanan digital yang tertarget.",
         image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAX-QV7IJP0pTQulGKKIPNZ1cB1ImC50bzuDNe75SHG8TPuXPpwx1K33qnAXcpZW1r4SpEbXluTIFsSObNxqxHs6yWxE4vKTmWWcvxEcKtZs4cREgVRaYvqJx7H6T6a53EMTgpspPsAwU-mHuL-rxEKm9WJywPTNf3_Qfdk4CCSXRfE6io3JEYyYGalT5tSXaiNJGrQ3vI8v7NKpCftPcBpmsZ_RM-P1Ck-Y6PxZGMVxTqXFgvT1VqoNNAIrOgjXQN5Ces8RGbhNYw",
         features: [
-            "Research",
-            "Copy Writing",
+            "Riset",
+            "Penulisan Konten",
             "Desain Visual",
             "Report Bulanan"
         ]
     },
     {
         title: "Press Release",
-        description: "Reach more potential customers with a targeted digital advertising strategy.",
+        description: "Tingkatkan kredibilitas dan eksposur brand Anda melalui publikasi di media terpercaya.",
         image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCDst4rSoagCdQW-qxqxv5BlRcKvtmOny1mNZRqfQ81gSezOS9Ttquo_xMXm7J1qEE4ibkBeFh88BOVIxVXLmW6y0Xbh2ziZaeQLNgQtEyy7qht4BSGmeCGLsFV5SzcJXCEEfjmYq-_b6PJAq9mWkz6gZnqC1Dv5Blfvi0XsgEdWqQfbgFblot5k7wUAOBM0YvCsAhA_eLakoPEpdVcvjYUsSzd5XxKkJ8fqmj0khnSxvessNEg3gfNlXJEfEtjZKmM1LpF6WgRGww",
         features: [
-            "Research",
-            "Copy Writing",
+            "Riset",
+            "Penulisan Konten",
             "Desain Visual",
             "Report Bulanan"
         ]
     },
     {
         title: "Backlink",
-        description: "Reach more potential customers with a targeted digital advertising strategy.",
+        description: "Tingkatkan otoritas website Anda dengan backlink berkualitas dari situs terpercaya.",
         image: "https://lh3.googleusercontent.com/aida-public/AB6AXuD7l4tAiuO-rDVTWvGEXt454BPvQ4Q5nYKrG-Kul12xHkOMcF15A0ETlyJ33yXScDaIcynswA_61maEFZBgnp8rV7470R6suWDTVD6UPGk4pJl9N9qdBFRbHx8zbMwlrPvLUm4EcOzi9KvuJh0k2AunwRorLkp3x-XCGYfNPR6ixFZKSKIXMzqC-8Rie91AcdUPwNlg8S-Y0iK3tiUDixOKyOt0sBhDm2QSDkhRTHbVgwSsUSV8CNNIXapS19rD55-soFmJFgs5nQo",
         features: [
-            "Research",
-            "Copy Writing",
+            "Riset",
+            "Penulisan Konten",
             "Desain Visual",
             "Report Bulanan"
         ]
@@ -56,10 +56,10 @@ export default function ServicesGrid() {
                 {/* Header */}
                 <div className="w-full max-w-[784px] flex flex-col items-center gap-6 sm:gap-8 text-center px-4">
                     <h2 className="text-3xl sm:text-4xl font-medium font-montserrat text-text-light">
-                        Our Offered Solutions
+                        Solusi yang Kami Tawarkan
                     </h2>
                     <p className="w-full max-w-[627px] text-gray-600 text-sm sm:text-base font-normal font-montserrat">
-                        Our digital marketing solutions are designed to elevate your brand and drive growth. We offer a comprehensive suite of services to help you succeed in today&apos;s competitive online landscape.
+                        Solusi digital marketing kami dirancang untuk mengangkat brand Anda dan mendorong pertumbuhan. Kami menawarkan rangkaian layanan komprehensif untuk membantu Anda sukses di lanskap online yang kompetitif saat ini.
                     </p>
                 </div>
 
@@ -117,7 +117,7 @@ export default function ServicesGrid() {
                                         className="w-full px-6 sm:px-8 py-3 sm:py-4 bg-violet-600 group-hover:bg-white rounded-lg flex justify-center items-center gap-2.5 transition-colors"
                                     >
                                         <span className="text-gray-100 group-hover:text-violet-600 text-base font-medium font-montserrat transition-colors">
-                                            Pricelist
+                                            Daftar Harga
                                         </span>
                                         {/* Arrow Icon */}
                                         <svg className="w-5 h-5 flex-shrink-0" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
