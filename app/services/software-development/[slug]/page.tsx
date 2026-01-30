@@ -126,33 +126,49 @@ export default async function SoftwareServiceDetailPage({ params }: PageProps) {
 
                 {/* Skills Section */}
                 <section className="bg-[#4F11BD] py-24 text-white">
-                    <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
+                    <div className="max-w-[1240px] mx-auto px-6 lg:px-8">
+                        {/* Introduction sentence - DO NOT DELETE */}
                         <div className="text-center mb-24">
                             <h2 className="text-3xl md:text-4xl font-medium font-montserrat max-w-4xl mx-auto leading-tight italic">
                                 Berikut daftar hardskill dan softskill yang harus dimiliki oleh seorang {service.roleName}:
                             </h2>
                         </div>
-                        <div className="grid md:grid-cols-2 gap-16 lg:gap-32">
-                            {/* Hard Skills */}
-                            <div>
-                                <h3 className="text-4xl mb-12 border-b border-white/10 pb-8 font-semibold text-white font-montserrat">Hard Skill</h3>
-                                <div className="space-y-12">
+
+                        {/* Updated Skills Layout based on user request */}
+                        <div className="flex flex-col lg:flex-row justify-center items-start gap-12 lg:gap-24">
+                            {/* Hard Skill Column */}
+                            <div className="flex-1 w-full flex flex-col justify-start items-center">
+                                <div className="self-stretch p-8 border-b-[0.50px] border-white/20 flex flex-col justify-center items-start gap-6">
+                                    <div className="self-stretch justify-start text-white text-4xl font-medium font-montserrat">Hard Skill</div>
+                                </div>
+                                <div className="w-full space-y-2">
                                     {service.hardSkills.map((skill, idx) => (
-                                        <div key={idx} className="group">
-                                            <h4 className="text-2xl font-bold mb-4 tracking-tight font-montserrat">{skill.title}</h4>
-                                            <p className="text-white/70 text-base leading-relaxed font-light font-montserrat">{skill.description}</p>
+                                        <div key={idx} className="w-full p-8 flex flex-col justify-start items-center gap-4 overflow-hidden">
+                                            <div className="self-stretch inline-flex justify-start items-center gap-6">
+                                                <div className="justify-start text-white text-2xl font-medium font-montserrat">{skill.title}</div>
+                                            </div>
+                                            <div className="self-stretch inline-flex justify-center items-center gap-2.5">
+                                                <div className="flex-1 justify-start text-white/80 text-sm font-normal font-montserrat leading-relaxed">{skill.description}</div>
+                                            </div>
                                         </div>
                                     ))}
                                 </div>
                             </div>
-                            {/* Soft Skills */}
-                            <div>
-                                <h3 className="text-4xl mb-12 border-b border-white/10 pb-8 font-semibold text-white font-montserrat">Soft Skill</h3>
-                                <div className="space-y-12">
+
+                            {/* Soft Skill Column */}
+                            <div className="flex-1 w-full flex flex-col justify-start items-center">
+                                <div className="self-stretch p-8 border-b-[0.50px] border-white/20 flex flex-col justify-center items-start gap-6">
+                                    <div className="self-stretch justify-start text-white text-4xl font-medium font-montserrat">Soft Skill</div>
+                                </div>
+                                <div className="w-full space-y-2">
                                     {service.softSkills.map((skill, idx) => (
-                                        <div key={idx} className="group">
-                                            <h4 className="text-2xl font-bold mb-4 tracking-tight font-montserrat">{skill.title}</h4>
-                                            <p className="text-white/70 text-base leading-relaxed font-light font-montserrat">{skill.description}</p>
+                                        <div key={idx} className="w-full p-8 flex flex-col justify-start items-center gap-4 overflow-hidden">
+                                            <div className="self-stretch inline-flex justify-start items-center gap-6">
+                                                <div className="justify-start text-white text-2xl font-medium font-montserrat">{skill.title}</div>
+                                            </div>
+                                            <div className="self-stretch inline-flex justify-center items-center gap-2.5">
+                                                <div className="flex-1 justify-start text-white/80 text-sm font-normal font-montserrat leading-relaxed">{skill.description}</div>
+                                            </div>
                                         </div>
                                     ))}
                                 </div>
@@ -251,10 +267,12 @@ export default async function SoftwareServiceDetailPage({ params }: PageProps) {
                 </section>
 
                 {/* Related Jobs Section */}
-                <section className="bg-[#4F11BD] text-white py-28 font-montserrat">
-                    <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
-                        <h2 className="text-4xl font-bold mb-20 tracking-tight font-montserrat">Related Jobs</h2>
-                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-16 gap-y-12">
+                <section className="bg-violet-800 text-white py-24 font-montserrat" data-theme="dark">
+                    <div className="max-w-[1240px] mx-auto px-6 lg:px-8 flex flex-col gap-12">
+                        <h2 className="text-white text-4xl font-medium font-montserrat">
+                            Lowongan Terkait
+                        </h2>
+                        <div className="w-full grid md:grid-cols-2 gap-x-12 gap-y-10 content-start">
                             {[...service.relatedJobs,
                             { title: "Front-End Developer", slug: "#" },
                             { title: "Back-End Developer", slug: "#" },
@@ -265,10 +283,14 @@ export default async function SoftwareServiceDetailPage({ params }: PageProps) {
                                 <Link
                                     key={idx}
                                     href={job.slug.startsWith('#') ? '#' : `/services/software-development/${job.slug}`}
-                                    className="flex justify-between items-center group"
+                                    className="group flex flex-1 items-center justify-between py-2 border-b border-white/10 hover:border-white/30 transition-all"
                                 >
-                                    <span className="text-xl md:text-2xl font-bold group-hover:text-white/70 transition-colors font-montserrat">{job.title}</span>
-                                    <MdNorthEast className="text-xl opacity-50 group-hover:opacity-100 transition-all transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                                    <span className="text-white text-2xl font-medium font-montserrat group-hover:underline underline-offset-4 decoration-2">
+                                        {job.title}
+                                    </span>
+                                    <div className="relative w-6 h-6 overflow-hidden flex items-center justify-center">
+                                        <MdNorthEast className="text-violet-300 text-xl transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                                    </div>
                                 </Link>
                             ))}
                         </div>
@@ -276,20 +298,28 @@ export default async function SoftwareServiceDetailPage({ params }: PageProps) {
                 </section>
 
                 {/* Final CTA Section */}
-                <section className="bg-white py-36 text-center relative font-montserrat">
-                    <div className="max-w-[1200px] mx-auto px-6">
-                        <h2 className="text-4xl md:text-5xl font-bold mb-8 text-gray-900 tracking-tight leading-tight font-montserrat">
-                            Build Your Dream<br />Team Effortlessly
-                        </h2>
-                        <p className="text-gray-400 text-lg mb-12 max-w-2xl mx-auto font-medium leading-relaxed italic font-montserrat">
-                            {service.ctaDescription}
-                        </p>
-                        <Link
-                            href="https://wa.me/628888088877"
-                            className="bg-[#4F11BD] text-white px-12 py-5 rounded-2xl font-bold font-montserrat hover:bg-violet-800 transition-all duration-300 shadow-2xl shadow-violet-500/20 inline-block text-lg"
-                        >
-                            Hire a {service.roleName}
-                        </Link>
+                <section className="py-24 bg-[#F3F4F6] flex flex-col justify-start items-center gap-24 overflow-hidden font-montserrat">
+                    <div className="w-full max-w-7xl mx-auto px-6 lg:px-8 flex flex-col justify-center items-center gap-16">
+                        <div className="w-full flex flex-col justify-start items-center gap-8">
+                            <div className="w-full flex flex-col justify-start items-center gap-8 text-center">
+                                <h2 className="text-4xl md:text-5xl font-medium font-montserrat text-gray-900 leading-tight tracking-tight">
+                                    Build Your Dream<br />Team Effortlessly
+                                </h2>
+                                <p className="text-gray-500 text-sm md:text-base font-normal font-montserrat max-w-2xl mx-auto leading-relaxed">
+                                    {service.ctaDescription}
+                                </p>
+                            </div>
+                        </div>
+                        <div className="inline-flex justify-start items-start gap-8">
+                            <Link
+                                href="https://wa.me/628888088877"
+                                className="px-10 py-4 bg-[#4F11BD] rounded-lg flex justify-center items-center gap-2.5 hover:bg-violet-800 transition-all duration-300 shadow-xl shadow-violet-500/10"
+                            >
+                                <span className="text-white text-base font-medium font-montserrat">
+                                    Hire a {service.roleName}
+                                </span>
+                            </Link>
+                        </div>
                     </div>
                 </section>
             </main>
