@@ -24,7 +24,7 @@ export default function DigitalMarketingHero() {
                                         className="relative w-full h-auto object-cover rounded-xl shadow-2xl z-10"
                                     />
                                 </div>
-                                
+
                                 {/* Title */}
                                 <h1 className="text-4xl sm:text-5xl md:text-6xl font-medium font-montserrat leading-tight text-text-light">
                                     Buat Bisnis Anda Mudah{" "}
@@ -36,12 +36,12 @@ export default function DigitalMarketingHero() {
                             <div className="hidden lg:flex w-full justify-start items-end gap-8">
                                 {/* Left: Title */}
                                 <div className="flex-1 flex justify-center items-end">
-                                    <h1 className="text-7xl xl:text-8xl font-medium font-montserrat leading-tight text-text-light">
+                                    <h1 className="text-6xl lg:text-7xl font-medium font-montserrat leading-tight text-text-light">
                                         Buat Bisnis Anda Mudah{" "}
                                         <span className="text-violet-600 font-semibold">Ditemukan & Dipercaya</span>
                                     </h1>
                                 </div>
-                                
+
                                 {/* Right: Image */}
                                 <div className="relative">
                                     <div className="absolute -top-4 -right-4 w-32 h-32 bg-violet-600/10 rounded-full blur-2xl"></div>
@@ -54,32 +54,32 @@ export default function DigitalMarketingHero() {
                                     />
                                 </div>
                             </div>
-                            
+
                             {/* Description */}
                             <p className="w-full text-gray-600 text-base font-normal font-montserrat leading-relaxed text-center lg:text-left">
                                 Bangun citra profesional untuk brand Anda dengan layanan kreatif KreasiTech. Mulai dari pembuatan logo & identitas visual, profil perusahaan, website profesional, hingga ilustrasi eksklusif & konten visual yang disesuaikan dengan identitas brand Anda.
                             </p>
                         </div>
-                        
+
                         {/* CTA Buttons */}
                         <div className="flex flex-col sm:flex-row justify-center lg:justify-start items-center gap-4 sm:gap-8 w-full">
-                            <a 
-                                href="#" 
+                            <a
+                                href="#"
                                 className="w-full sm:w-auto px-8 py-4 bg-violet-600 rounded-lg flex justify-center items-center gap-2.5 hover:bg-violet-700 transition-all duration-300 shadow-lg shadow-violet-600/30"
                             >
                                 <span className="text-gray-100 text-base font-medium font-montserrat">Hubungi Kami</span>
                             </a>
-                            <a 
-                                href="#solutions" 
+                            <a
+                                href="#solutions"
                                 className="flex justify-start items-center gap-4 group"
                             >
                                 <span className="text-text-light text-base font-medium font-montserrat group-hover:text-violet-600 transition">Pelajari Lebih Lanjut</span>
-                                <Image 
-                                    src="/assets/images/arrow_downward.svg" 
-                                    alt="" 
-                                    width={24} 
-                                    height={24} 
-                                    className="w-6 h-6 group-hover:translate-y-1 transition-transform" 
+                                <Image
+                                    src="/assets/images/arrow_downward.svg"
+                                    alt=""
+                                    width={24}
+                                    height={24}
+                                    className="w-6 h-6 group-hover:translate-y-1 transition-transform"
                                 />
                             </a>
                         </div>

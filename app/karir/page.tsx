@@ -13,7 +13,7 @@ interface Job {
     icon: string;
     iconBg: string;
     postedTime: string;
-    salary: string;
+    salary: string; // e.g., "$80k - $120k/year" or "3.500K-6.500K"
     description: string;
     type: string;
     location: string;
@@ -24,391 +24,440 @@ const jobsData: Job[] = [
     {
         id: 1,
         title: "Front-End Developer",
-        company: "KreasiTech",
-        icon: "⚛️",
-        iconBg: "bg-cyan-100",
-        postedTime: "18 minutes ago",
-        salary: "3,000K-8,000K",
-        description: "Hire UI/UX designers, experts, specialists, and artists on demand. Top companies and startups choose UI/UX designers from KreasiTech for user research, wireframing, interaction design, usability testing, and more.",
+        company: "CodeCo",
+        icon: "fab fa-react",
+        iconBg: "bg-blue-600 text-white",
+        postedTime: "2 days ago",
+        salary: "$80k - $120k/year",
+        description: "We are looking for an experienced Front-End Developer to join our team and build responsive user interfaces.",
         type: "Technology",
-        location: "On-site",
+        location: "On Site",
         category: "full-time"
     },
     {
         id: 2,
-        title: "Back-End Developer",
-        company: "KreasiTech",
-        icon: "JS",
-        iconBg: "bg-yellow-400",
-        postedTime: "18 minutes ago",
-        salary: "3,500K-9,000K",
-        description: "Hire UI/UX designers, experts, specialists, and artists on demand. Top companies and startups choose UI/UX designers from KreasiTech for user research, wireframing, interaction design, usability testing, and more.",
+        title: "UX/UI Designer",
+        company: "EcoWorks",
+        icon: "fab fa-figma",
+        iconBg: "bg-green-500 text-white",
+        postedTime: "1 day ago",
+        salary: "$75k - $110k/year",
+        description: "Design user-centric experiences for sustainable products.",
+        type: "Technology",
+        location: "Hybrid",
+        category: "full-time"
+    },
+    {
+        id: 3,
+        title: "Back-End Engineer",
+        company: "TechFlow",
+        icon: "fas fa-server",
+        iconBg: "bg-yellow-500 text-white",
+        postedTime: "3 days ago",
+        salary: "$90k - $130k/year",
+        description: "Build scalable APIs and microservices for our growing platform.",
         type: "Technology",
         location: "Remote",
         category: "full-time"
     },
     {
-        id: 3,
-        title: "UI/UX Designer",
-        company: "KreasiTech",
-        icon: "🎨",
-        iconBg: "bg-pink-100",
-        postedTime: "18 minutes ago",
-        salary: "3,000K-6,500K",
-        description: "Hire UI/UX designers, experts, specialists, and artists on demand. Top companies and startups choose UI/UX designers from KreasiTech for user research, wireframing, interaction design, usability testing, and more.",
-        type: "Creative",
-        location: "On-site",
-        category: "full-time"
-    },
-    {
         id: 4,
-        title: "Legal Staff",
-        company: "KreasiTech",
-        icon: "⚖️",
-        iconBg: "bg-blue-100",
-        postedTime: "18 minutes ago",
-        salary: "3,000K-6,500K",
-        description: "Hire UI/UX designers, experts, specialists, and artists on demand. Top companies and startups choose UI/UX designers from KreasiTech for user research, wireframing, interaction design, usability testing, and more.",
-        type: "Management",
-        location: "On-site",
-        category: "full-time"
-    },
-    {
-        id: 5,
-        title: "Digital Marketing Specialist",
-        company: "KreasiTech",
-        icon: "📱",
-        iconBg: "bg-purple-100",
-        postedTime: "1 day ago",
-        salary: "2,500K-5,500K",
-        description: "Hire UI/UX designers, experts, specialists, and artists on demand. Top companies and startups choose UI/UX designers from KreasiTech for user research, wireframing, interaction design, usability testing, and more.",
-        type: "Marketing",
-        location: "Hybrid",
-        category: "full-time"
-    },
-    {
-        id: 6,
         title: "Product Manager",
-        company: "KreasiTech",
-        icon: "📊",
-        iconBg: "bg-green-100",
-        postedTime: "2 days ago",
-        salary: "5,000K-12,000K",
-        description: "Hire UI/UX designers, experts, specialists, and artists on demand. Top companies and startups choose UI/UX designers from KreasiTech for user research, wireframing, interaction design, usability testing, and more.",
+        company: "InnoSoft",
+        icon: "fas fa-rocket",
+        iconBg: "bg-purple-500 text-white",
+        postedTime: "5 days ago",
+        salary: "$100k - $150k/year",
+        description: "Lead the product vision and strategy for our core products.",
         type: "Management",
-        location: "Remote",
+        location: "On Site",
         category: "full-time"
-    },
+    }
 ];
 
 export default function KarirPage() {
     const [searchJob, setSearchJob] = useState("");
     const [searchLocation, setSearchLocation] = useState("");
-    const [selectedJob, setSelectedJob] = useState<number | null>(null);
-    const [datePosted, setDatePosted] = useState("anytime");
+    const [datePosted, setDatePosted] = useState("Last 7 Days");
     const [jobTypes, setJobTypes] = useState({
-        fulltime: false,
-        freelance: false,
+        fulltime: true,
+        parttime: true,
+        contract: false,
         internship: false
     });
-    const [salaryRange, setSalaryRange] = useState([3500, 8500]);
+    const [salaryRange, setSalaryRange] = useState([3500, 6500]);
     const [locationPrefs, setLocationPrefs] = useState({
         remote: false,
         onsite: false,
         hybrid: false
     });
+    // Track active job for mobile click state
+    const [selectedJobId, setSelectedJobId] = useState<number | null>(null);
 
     const handleClearAll = () => {
         setSearchJob("");
         setSearchLocation("");
-        setDatePosted("anytime");
-        setJobTypes({ fulltime: false, freelance: false, internship: false });
-        setSalaryRange([3500, 8500]);
+        setDatePosted("Last 7 Days");
+        setJobTypes({ fulltime: false, parttime: false, contract: false, internship: false });
+        setSalaryRange([3500, 6500]);
         setLocationPrefs({ remote: false, onsite: false, hybrid: false });
+    };
+
+    const handleSalaryChange = (index: number, value: number) => {
+        const newRange = [...salaryRange];
+        newRange[index] = value;
+        // Prevent crossing
+        if (index === 0 && value > salaryRange[1]) newRange[0] = salaryRange[1];
+        if (index === 1 && value < salaryRange[0]) newRange[1] = salaryRange[0];
+        setSalaryRange(newRange);
+    };
+
+    const handleJobClick = (e: React.MouseEvent, id: number) => {
+        // Build navigation url
+        const url = `/karir/${id}`;
+
+        // Check if device is likely mobile/tablet (or if user wants persistent click state logic)
+        // Using window.innerWidth in handler is safe for client interaction
+        if (window.innerWidth < 1024) { // lg breakpoint
+            if (selectedJobId !== id) {
+                e.preventDefault();
+                setSelectedJobId(id);
+            } else {
+                // Already selected, proceed to navigate
+                window.location.href = url;
+            }
+        } else {
+            // Desktop: Navigate immediately
+            window.location.href = url;
+        }
     };
 
     const filteredJobs = jobsData.filter(job => {
         const matchesSearch = job.title.toLowerCase().includes(searchJob.toLowerCase()) ||
-                            job.description.toLowerCase().includes(searchJob.toLowerCase());
-        const matchesLocation = searchLocation === "" || 
-                              job.location.toLowerCase().includes(searchLocation.toLowerCase());
-        
+            job.description.toLowerCase().includes(searchJob.toLowerCase());
+        const matchesLocation = searchLocation === "" ||
+            job.location.toLowerCase().includes(searchLocation.toLowerCase());
+
         return matchesSearch && matchesLocation;
     });
 
+    // Calculations for salary slider track
+    const minSalary = 3000;
+    const maxSalary = 12000;
+    const getPercent = (value: number) => Math.round(((value - minSalary) / (maxSalary - minSalary)) * 100);
+
     return (
-        <div className="bg-[#F4F4F7] text-gray-800 transition-colors duration-300 min-h-screen">
+        <div className="bg-[#f8f9fc] text-gray-800 font-sans min-h-screen">
             <Navbar />
-            <Breadcrumb className="px-4 sm:px-6 lg:px-8" items={[
-                { label: "Home", href: "/" },
-                { label: "Karir", href: "/karir" }
-            ]} />
 
-            {/* Hero Section */}
-            <section className="pt-8 pb-6 bg-[#F4F4F7]">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="text-center mb-8">
-                        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-medium font-montserrat leading-tight text-text-light mb-4">
-                            Temukan <span className="text-violet-600 font-semibold">Karir Impian</span>
-                        </h1>
-                        <p className="max-w-2xl mx-auto text-base sm:text-lg text-gray-500 font-montserrat">
-                            Bergabunglah dengan tim terbaik dan kembangkan karir Anda bersama KreasiTech
-                        </p>
-                    </div>
+            {/* Main Content Container */}
+            <div className="max-w-[1250px] mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20">
+                <div className="flex flex-col lg:flex-row gap-8">
 
-                    {/* Search Bar */}
-                    <div className="max-w-5xl mx-auto bg-white rounded-2xl shadow-sm p-4">
-                        <div className="flex flex-col md:flex-row gap-4">
-                            <div className="flex-1 relative">
-                                <svg className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                                </svg>
-                                <input
-                                    type="text"
-                                    placeholder="Search for jobs"
-                                    value={searchJob}
-                                    onChange={(e) => setSearchJob(e.target.value)}
-                                    className="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent font-montserrat text-sm"
-                                />
-                            </div>
-                            <div className="flex-1 relative">
-                                <svg className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                </svg>
-                                <input
-                                    type="text"
-                                    placeholder="Search by location"
-                                    value={searchLocation}
-                                    onChange={(e) => setSearchLocation(e.target.value)}
-                                    className="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent font-montserrat text-sm"
-                                />
-                            </div>
-                            <button className="px-8 py-3 bg-violet-600 text-white rounded-xl font-semibold font-montserrat hover:bg-violet-700 transition-colors whitespace-nowrap">
-                                Find Jobs
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* Main Content */}
-            <section className="pb-20 bg-[#F4F4F7]">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex flex-col lg:flex-row gap-8">
-                        
-                        {/* Sidebar Filters */}
-                        <div className="lg:w-80 flex-shrink-0">
-                            <div className="bg-white rounded-2xl p-6 shadow-sm sticky top-4">
-                                <div className="flex justify-between items-center mb-6">
-                                    <h3 className="text-lg font-semibold font-montserrat text-text-light">Filters</h3>
-                                    <button 
-                                        onClick={handleClearAll}
-                                        className="text-violet-600 text-sm font-medium font-montserrat hover:text-violet-700"
-                                    >
-                                        Clear All
-                                    </button>
-                                </div>
-
-                                {/* Date Posted */}
-                                <div className="mb-6">
-                                    <label className="block text-sm font-semibold font-montserrat text-text-light mb-3">
-                                        Date Posted
-                                    </label>
-                                    <select
-                                        value={datePosted}
-                                        onChange={(e) => setDatePosted(e.target.value)}
-                                        className="w-full px-4 py-2.5 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-violet-500 font-montserrat text-sm bg-white cursor-pointer"
-                                    >
-                                        <option value="anytime">Anytime</option>
-                                        <option value="today">Today</option>
-                                        <option value="week">This Week</option>
-                                        <option value="month">This Month</option>
-                                    </select>
-                                </div>
-
-                                {/* Job Type */}
-                                <div className="mb-6">
-                                    <label className="block text-sm font-semibold font-montserrat text-text-light mb-3">
-                                        Job Type
-                                    </label>
-                                    <div className="space-y-3">
-                                        <label className="flex items-center cursor-pointer">
-                                            <input
-                                                type="checkbox"
-                                                checked={jobTypes.fulltime}
-                                                onChange={(e) => setJobTypes({...jobTypes, fulltime: e.target.checked})}
-                                                className="w-4 h-4 text-violet-600 border-gray-300 rounded focus:ring-violet-500 cursor-pointer"
-                                            />
-                                            <span className="ml-3 text-sm font-montserrat text-gray-700">Full-time</span>
-                                        </label>
-                                        <label className="flex items-center cursor-pointer">
-                                            <input
-                                                type="checkbox"
-                                                checked={jobTypes.freelance}
-                                                onChange={(e) => setJobTypes({...jobTypes, freelance: e.target.checked})}
-                                                className="w-4 h-4 text-violet-600 border-gray-300 rounded focus:ring-violet-500 cursor-pointer"
-                                            />
-                                            <span className="ml-3 text-sm font-montserrat text-gray-700">Freelance</span>
-                                        </label>
-                                        <label className="flex items-center cursor-pointer">
-                                            <input
-                                                type="checkbox"
-                                                checked={jobTypes.internship}
-                                                onChange={(e) => setJobTypes({...jobTypes, internship: e.target.checked})}
-                                                className="w-4 h-4 text-violet-600 border-gray-300 rounded focus:ring-violet-500 cursor-pointer"
-                                            />
-                                            <span className="ml-3 text-sm font-montserrat text-gray-700">Internship</span>
-                                        </label>
+                    {/* Sidebar Filters */}
+                    <aside className="w-full lg:w-64 flex-shrink-0">
+                        <div className="sticky top-24">
+                            <div className="pb-4 bg-white rounded-lg border border-gray-200 inline-flex flex-col justify-start items-center gap-4 w-full">
+                                {/* Header */}
+                                <div className="w-full py-4 border-b border-gray-200 inline-flex justify-center items-center gap-2.5">
+                                    <div className="flex-1 px-4 flex justify-center items-center gap-2.5">
+                                        <div className="flex-1 justify-start text-gray-900 text-base font-medium font-montserrat">Filters</div>
+                                        <button
+                                            onClick={handleClearAll}
+                                            className="flex-1 text-right justify-start text-violet-600 text-xs font-medium font-montserrat hover:text-violet-700"
+                                        >
+                                            Clear All
+                                        </button>
                                     </div>
                                 </div>
 
-                                {/* Salary Range */}
-                                <div className="mb-6">
-                                    <label className="block text-sm font-semibold font-montserrat text-text-light mb-3">
-                                        Salary Range
-                                    </label>
-                                    <div className="px-2">
-                                        <input
-                                            type="range"
-                                            min="3000"
-                                            max="12000"
-                                            step="500"
-                                            value={salaryRange[1]}
-                                            onChange={(e) => setSalaryRange([salaryRange[0], parseInt(e.target.value)])}
-                                            className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-violet-600"
-                                        />
-                                        <div className="flex justify-between mt-2">
-                                            <span className="text-xs font-montserrat text-gray-600">{salaryRange[0]}K</span>
-                                            <span className="text-xs font-montserrat text-gray-600">{salaryRange[1]}K</span>
-                                        </div>
-                                    </div>
-                                </div>
+                                <div className="flex flex-col justify-start items-start gap-6 w-full px-4">
+                                    {/* Date Posted */}
+                                    <div className="self-stretch flex flex-col justify-start items-start gap-4">
+                                        <div className="self-stretch justify-start text-gray-900 text-base font-medium font-montserrat">Date Posted</div>
+                                        <div className="relative w-full h-12 rounded-lg border border-gray-200 inline-flex justify-start items-center gap-2.5 bg-white">
+                                            <select
+                                                value={datePosted}
+                                                onChange={(e) => setDatePosted(e.target.value)}
+                                                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10 appearance-none pl-4 pr-10"
+                                            >
+                                                <option value="Anytime">Anytime</option>
+                                                <option value="Last 24 Hours">Last 24 Hours</option>
+                                                <option value="Last 3 Days">Last 3 Days</option>
+                                                <option value="Last 7 Days">Last 7 Days</option>
+                                            </select>
 
-                                {/* Location Preference */}
-                                <div>
-                                    <label className="block text-sm font-semibold font-montserrat text-text-light mb-3">
-                                        Location Preference
-                                    </label>
-                                    <div className="space-y-3">
-                                        <label className="flex items-center cursor-pointer">
-                                            <input
-                                                type="checkbox"
-                                                checked={locationPrefs.remote}
-                                                onChange={(e) => setLocationPrefs({...locationPrefs, remote: e.target.checked})}
-                                                className="w-4 h-4 text-violet-600 border-gray-300 rounded focus:ring-violet-500 cursor-pointer"
-                                            />
-                                            <span className="ml-3 text-sm font-montserrat text-gray-700">Remote</span>
-                                        </label>
-                                        <label className="flex items-center cursor-pointer">
-                                            <input
-                                                type="checkbox"
-                                                checked={locationPrefs.onsite}
-                                                onChange={(e) => setLocationPrefs({...locationPrefs, onsite: e.target.checked})}
-                                                className="w-4 h-4 text-violet-600 border-gray-300 rounded focus:ring-violet-500 cursor-pointer"
-                                            />
-                                            <span className="ml-3 text-sm font-montserrat text-gray-700">On-site</span>
-                                        </label>
-                                        <label className="flex items-center cursor-pointer">
-                                            <input
-                                                type="checkbox"
-                                                checked={locationPrefs.hybrid}
-                                                onChange={(e) => setLocationPrefs({...locationPrefs, hybrid: e.target.checked})}
-                                                className="w-4 h-4 text-violet-600 border-gray-300 rounded focus:ring-violet-500 cursor-pointer"
-                                            />
-                                            <span className="ml-3 text-sm font-montserrat text-gray-700">Hybrid</span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Job Listings */}
-                        <div className="flex-1">
-                            <div className="mb-4">
-                                <p className="text-sm text-gray-500 font-montserrat">
-                                    Found <span className="font-semibold text-text-light">{filteredJobs.length}</span> Related Jobs
-                                </p>
-                            </div>
-
-                            <div className="space-y-4">
-                                {filteredJobs.map((job) => (
-                                    <div
-                                        key={job.id}
-                                        onClick={() => window.location.href = `/karir/${job.id}`}
-                                        className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-all cursor-pointer"
-                                    >
-                                        <div className="flex items-start gap-4">
-                                            {/* Icon */}
-                                            <div className={`w-14 h-14 ${job.iconBg} rounded-xl flex items-center justify-center flex-shrink-0 text-2xl`}>
-                                                {job.icon}
+                                            <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-gray-900">
+                                                <i className="fas fa-chevron-down text-xs"></i>
                                             </div>
 
-                                            {/* Content */}
-                                            <div className="flex-1 min-w-0">
-                                                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-2">
-                                                    <div>
-                                                        <h3 className="text-xl font-semibold font-montserrat text-text-light mb-1">
-                                                            {job.title}
-                                                        </h3>
-                                                        <div className="flex items-center gap-3 text-sm text-gray-500 font-montserrat">
-                                                            <span>Posted {job.postedTime}</span>
-                                                            <span>•</span>
-                                                            <span>{job.salary}</span>
-                                                        </div>
+                                            <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                                <span className="text-gray-900 text-xs font-normal font-montserrat">{datePosted}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="self-stretch h-px bg-gray-200" />
+
+                                    {/* Job Type */}
+                                    <div className="w-full flex flex-col justify-start items-start gap-4">
+                                        <div className="justify-start text-gray-900 text-base font-medium font-montserrat">Job Type</div>
+                                        {[
+                                            { id: 'fulltime', label: 'Full-time' },
+                                            { id: 'freelance', label: 'Freelance' },
+                                            { id: 'internship', label: 'Internship' }
+                                        ].map((type) => (
+                                            <label key={type.id} className="self-stretch h-5 inline-flex justify-start items-center gap-2 cursor-pointer group">
+                                                <input
+                                                    type="checkbox"
+                                                    checked={jobTypes[type.id as keyof typeof jobTypes]}
+                                                    onChange={(e) => setJobTypes({ ...jobTypes, [type.id]: e.target.checked })}
+                                                    className="hidden"
+                                                />
+                                                {jobTypes[type.id as keyof typeof jobTypes] ? (
+                                                    <div className="w-5 h-5 bg-violet-800 rounded border border-violet-800 flex justify-center items-center gap-2.5 overflow-hidden">
+                                                        <i className="fas fa-check text-white text-[8px]"></i>
                                                     </div>
-                                                    <div className="flex flex-wrap gap-2">
-                                                        <span className="px-3 py-1 bg-violet-100 text-violet-700 rounded-lg text-xs font-medium font-montserrat">
-                                                            {job.type}
-                                                        </span>
-                                                        <span className={`px-3 py-1 rounded-lg text-xs font-medium font-montserrat ${
-                                                            job.location === 'Remote' ? 'bg-green-100 text-green-700' :
-                                                            job.location === 'On-site' ? 'bg-orange-100 text-orange-700' :
-                                                            'bg-blue-100 text-blue-700'
-                                                        }`}>
-                                                            {job.location}
-                                                        </span>
+                                                ) : (
+                                                    <div className="w-5 h-5 rounded border border-gray-200 group-hover:border-violet-400 transition-colors" />
+                                                )}
+                                                <div className="text-center justify-start text-gray-900 text-xs font-normal font-montserrat">{type.label}</div>
+                                            </label>
+                                        ))}
+                                    </div>
+
+                                    <div className="self-stretch h-px bg-gray-200" />
+
+                                    {/* Salary Range */}
+                                    <div className="self-stretch justify-start text-gray-900 text-base font-medium font-montserrat">Salary Range</div>
+                                    <div className="self-stretch flex flex-col justify-start items-start gap-6 relative h-16">
+                                        {/* Slider Container */}
+                                        <div className="relative w-full h-1 bg-gray-200 rounded-sm mt-2">
+                                            {/* Active Rail */}
+                                            <div
+                                                className="absolute h-full bg-violet-600 rounded-sm z-10"
+                                                style={{
+                                                    left: `${getPercent(salaryRange[0])}%`,
+                                                    width: `${getPercent(salaryRange[1]) - getPercent(salaryRange[0])}%`
+                                                }}
+                                            />
+
+                                            {/* Min Slider */}
+                                            <input
+                                                type="range"
+                                                min={minSalary}
+                                                max={maxSalary}
+                                                step="500"
+                                                value={salaryRange[0]}
+                                                onChange={(e) => handleSalaryChange(0, Math.min(Number(e.target.value), salaryRange[1] - 500))}
+                                                className="absolute w-full h-full opacity-0 z-20 cursor-pointer pointer-events-none [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:appearance-none [-webkit-appearance:none] bg-transparent"
+                                            />
+                                            {/* Max Slider */}
+                                            <input
+                                                type="range"
+                                                min={minSalary}
+                                                max={maxSalary}
+                                                step="500"
+                                                value={salaryRange[1]}
+                                                onChange={(e) => handleSalaryChange(1, Math.max(Number(e.target.value), salaryRange[0] + 500))}
+                                                className="absolute w-full h-full opacity-0 z-20 cursor-pointer pointer-events-none [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:appearance-none [-webkit-appearance:none] bg-transparent"
+                                            />
+
+                                            {/* Thumb Visuals */}
+                                            <div
+                                                className="absolute w-3 h-3 bg-white border-2 border-violet-600 rounded-full z-10 top-1/2 -translate-y-1/2 -ml-1.5 flex items-center justify-center pointer-events-none"
+                                                style={{ left: `${getPercent(salaryRange[0])}%` }}
+                                            >
+                                                <div className="w-1.5 h-1.5 bg-violet-600 rounded-full" />
+                                            </div>
+                                            <div
+                                                className="absolute w-3 h-3 bg-white border-2 border-violet-600 rounded-full z-10 top-1/2 -translate-y-1/2 -ml-1.5 flex items-center justify-center pointer-events-none"
+                                                style={{ left: `${getPercent(salaryRange[1])}%` }}
+                                            >
+                                                <div className="w-1.5 h-1.5 bg-violet-600 rounded-full" />
+                                            </div>
+                                        </div>
+
+                                        {/* Labels */}
+                                        <div className="w-full flex justify-between items-center -mt-2">
+                                            <div className="flex flex-col justify-start items-center gap-2" style={{ marginLeft: `${getPercent(salaryRange[0])}%`, transform: 'translateX(-50%)', transition: 'margin-left 0.1s' }}>
+                                                <div className="text-center justify-start text-gray-900 text-xs font-medium font-montserrat">{salaryRange[0].toLocaleString()} K</div>
+                                            </div>
+                                            <div className="flex flex-col justify-start items-center gap-2" style={{ marginRight: `${100 - getPercent(salaryRange[1])}%`, transform: 'translateX(50%)', transition: 'margin-right 0.1s' }}>
+                                                <div className="text-center justify-start text-gray-900 text-xs font-medium font-montserrat">{salaryRange[1].toLocaleString()} K</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="self-stretch h-px bg-gray-200" />
+
+                                    {/* Location Preference */}
+                                    <div className="w-full flex flex-col justify-start items-start gap-4">
+                                        <div className="justify-start text-gray-900 text-base font-medium font-montserrat">Location Preference</div>
+                                        {[
+                                            { id: 'remote', label: 'Remote' },
+                                            { id: 'onsite', label: 'On-site' },
+                                            { id: 'hybrid', label: 'Hybrid' }
+                                        ].map((loc) => (
+                                            <label key={loc.id} className="self-stretch h-5 inline-flex justify-start items-center gap-2 cursor-pointer group">
+                                                <input
+                                                    type="checkbox"
+                                                    checked={locationPrefs[loc.id as keyof typeof locationPrefs]}
+                                                    onChange={(e) => setLocationPrefs({ ...locationPrefs, [loc.id]: e.target.checked })}
+                                                    className="hidden"
+                                                />
+                                                {locationPrefs[loc.id as keyof typeof locationPrefs] ? (
+                                                    <div className="w-5 h-5 bg-violet-800 rounded border border-violet-800 flex justify-center items-center gap-2.5 overflow-hidden">
+                                                        <i className="fas fa-check text-white text-[8px]"></i>
+                                                    </div>
+                                                ) : (
+                                                    <div className="w-5 h-5 rounded border border-gray-200 group-hover:border-violet-400 transition-colors" />
+                                                )}
+                                                <div className="text-center justify-start text-gray-900 text-xs font-normal font-montserrat">{loc.label}</div>
+                                            </label>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </aside>
+
+                    {/* Main Content Area */}
+                    <div className="flex-1">
+                        {/* Search Bar */}
+                        <div className="w-full p-4 bg-white rounded-lg border border-gray-200 flex flex-col justify-start items-start gap-4 mb-6">
+                            <div className="w-full flex flex-col md:flex-row justify-between items-center gap-4">
+                                <div className="flex-1 w-full md:border-r border-gray-200 flex justify-start items-center gap-2.5">
+                                    <div className="flex-1 flex justify-start items-center gap-2">
+                                        <div className="w-6 h-6 relative flex items-center justify-center">
+                                            <i className="fas fa-search text-gray-400 text-base"></i>
+                                        </div>
+                                        <input
+                                            type="text"
+                                            placeholder="Search for jobs"
+                                            value={searchJob}
+                                            onChange={(e) => setSearchJob(e.target.value)}
+                                            className="w-full bg-transparent border-none focus:ring-0 text-base font-normal font-montserrat text-gray-900 placeholder-gray-400 p-0"
+                                        />
+                                    </div>
+                                </div>
+                                <div className="flex-1 w-full flex justify-start items-center gap-2.5">
+                                    <div className="flex-1 md:pl-4 flex justify-start items-center gap-2">
+                                        <div className="w-6 h-6 relative flex items-center justify-center">
+                                            <i className="fas fa-map-marker-alt text-gray-400 text-base"></i>
+                                        </div>
+                                        <input
+                                            type="text"
+                                            placeholder="Search by location"
+                                            value={searchLocation}
+                                            onChange={(e) => setSearchLocation(e.target.value)}
+                                            className="w-full bg-transparent border-none focus:ring-0 text-base font-normal font-montserrat text-gray-900 placeholder-gray-400 p-0"
+                                        />
+                                    </div>
+                                </div>
+                                <button className="w-full md:w-auto px-8 py-3.5 bg-violet-600 rounded-lg flex justify-center items-center gap-2.5 hover:bg-violet-700 transition-colors">
+                                    <div className="justify-start text-gray-100 text-xs font-medium font-montserrat">Find Jobs</div>
+                                </button>
+                            </div>
+                        </div>
+
+                        {/* Top Result Count */}
+                        <div className="text-right mb-4">
+                            <p className="text-sm text-gray-400 font-montserrat">
+                                Found {filteredJobs.length} Related Jobs
+                            </p>
+                        </div>
+
+                        {/* Job Lists */}
+                        <div className="space-y-4">
+                            {filteredJobs.map((job) => (
+                                <div
+                                    key={job.id}
+                                    onClick={(e) => handleJobClick(e, job.id)}
+                                    // data-active attribute for cleaner state selection logic
+                                    data-active={selectedJobId === job.id}
+                                    className={`w-full p-4 rounded-lg border border-gray-200 flex flex-col justify-start items-start gap-4 transition-all duration-500 ease-in-out cursor-pointer group 
+                                    bg-white hover:bg-violet-800 hover:border-violet-800
+                                    data-[active=true]:bg-violet-800 data-[active=true]:border-violet-800`}
+                                >
+                                    <div className="self-stretch flex flex-col md:flex-row justify-between items-start gap-4">
+                                        <div className="flex justify-start items-center gap-4">
+                                            <div className="w-11 h-11 rounded-lg flex justify-center items-center flex-shrink-0
+                                                bg-gray-100 group-hover:bg-yellow-400
+                                                data-[active=true]:bg-yellow-400 transition-colors duration-500">
+                                                <i className={`${job.icon} text-xl
+                                                    text-gray-700 group-hover:text-violet-900
+                                                    data-[active=true]:text-violet-900 transition-colors duration-500`}></i>
+                                            </div>
+                                            <div className="flex flex-col justify-center items-start gap-1">
+                                                <div className="text-lg font-medium font-montserrat
+                                                    text-gray-900 group-hover:text-white
+                                                    data-[active=true]:text-white transition-colors duration-500">
+                                                    {job.title}
+                                                </div>
+                                                <div className="flex justify-start items-center gap-2">
+                                                    <div className="text-xs font-normal font-montserrat
+                                                        text-gray-900 group-hover:text-white
+                                                        data-[active=true]:text-white transition-colors duration-500">
+                                                        Posted {job.postedTime}
+                                                    </div>
+                                                    <div className="w-1 h-1 rounded-full
+                                                        bg-gray-300 group-hover:bg-white
+                                                        data-[active=true]:bg-white transition-colors duration-500" />
+                                                    <div className="text-xs font-normal font-montserrat
+                                                        text-gray-900 group-hover:text-white
+                                                        data-[active=true]:text-white transition-colors duration-500">
+                                                        {job.salary}
                                                     </div>
                                                 </div>
+                                            </div>
+                                        </div>
 
-                                                <p className="text-sm text-gray-600 font-montserrat leading-relaxed mb-4">
-                                                    {job.description}
-                                                </p>
-
-                                                <button 
-                                                    onClick={(e) => {
-                                                        e.stopPropagation();
-                                                        window.location.href = `/karir/${job.id}`;
-                                                    }}
-                                                    className="px-6 py-2.5 bg-violet-600 text-white rounded-xl font-medium font-montserrat hover:bg-violet-700 transition-colors flex items-center gap-2"
-                                                >
-                                                    View Details
-                                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                                                    </svg>
-                                                </button>
+                                        <div className="flex justify-start items-center gap-2">
+                                            <div className="px-3 py-1 bg-violet-500 rounded flex justify-center items-center">
+                                                <div className="text-white text-xs font-normal font-montserrat">{job.type}</div>
+                                            </div>
+                                            <div className="px-3 py-1 bg-orange-300 rounded flex justify-center items-center">
+                                                <div className="text-white text-xs font-normal font-montserrat">{job.location}</div>
                                             </div>
                                         </div>
                                     </div>
-                                ))}
-                            </div>
 
-                            {filteredJobs.length === 0 && (
-                                <div className="bg-white rounded-2xl p-12 text-center shadow-sm">
-                                    <svg className="w-16 h-16 mx-auto text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                                    </svg>
-                                    <h3 className="text-xl font-semibold font-montserrat text-text-light mb-2">
-                                        No jobs found
-                                    </h3>
-                                    <p className="text-gray-500 font-montserrat">
-                                        Try adjusting your filters or search criteria
-                                    </p>
+                                    <div className="self-stretch text-sm font-normal font-montserrat line-clamp-2
+                                        text-gray-500 group-hover:text-white
+                                        data-[active=true]:text-white transition-colors duration-500">
+                                        {job.description}
+                                    </div>
+
+                                    {/* Apply Button Section - Originally Hidden, Visible on Hover/Active */}
+                                    <div className="self-stretch hidden group-hover:flex data-[active=true]:flex flex-col justify-center items-end gap-2.5 animate-in fade-in slide-in-from-top-1 duration-500 fill-mode-forwards">
+                                        <div className="inline-flex justify-end items-center gap-4">
+                                            <div className="text-right justify-start text-white text-base font-medium font-montserrat">Apply</div>
+                                            <div className="w-6 h-6 relative overflow-hidden flex items-center justify-center">
+                                                <i className="fas fa-arrow-right text-violet-300 -rotate-45"></i>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            )}
+                            ))}
                         </div>
+
+                        {filteredJobs.length === 0 && (
+                            <div className="bg-white rounded-2xl p-12 text-center border border-gray-100">
+                                <svg className="w-16 h-16 mx-auto text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                </svg>
+                                <h3 className="text-xl font-semibold font-montserrat text-gray-900 mb-2">
+                                    No jobs found
+                                </h3>
+                                <p className="text-gray-500 font-montserrat">
+                                    Try adjusting your filters or search criteria
+                                </p>
+                            </div>
+                        )}
                     </div>
                 </div>
-            </section>
+            </div>
 
             <Footer />
             <WhatsAppButton />
