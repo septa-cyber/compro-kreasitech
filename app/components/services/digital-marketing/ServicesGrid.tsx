@@ -29,11 +29,11 @@ export default function ServicesGrid() {
                             {/* Image */}
                             <div className="self-stretch bg-orange-100 flex items-center justify-center overflow-hidden py-2.5 h-48">
                                 <Image
-                                    src={service.image}
+                                    src={service.heroImage1}
                                     alt={`${service.title} Illustration`}
                                     width={256}
                                     height={176}
-                                    className="w-64 h-44 object-contain"
+                                    className="w-64 h-44 object-contain mix-blend-multiply"
                                 />
                             </div>
 
@@ -42,8 +42,8 @@ export default function ServicesGrid() {
                                 <h3 className="text-2xl font-medium font-montserrat text-text-light group-hover:text-white transition-colors">
                                     {service.title}
                                 </h3>
-                                <p className="text-sm font-normal font-montserrat text-text-light group-hover:text-white transition-colors">
-                                    {service.shortDescription}
+                                <p className="text-sm font-normal font-montserrat text-text-light group-hover:text-white transition-colors line-clamp-3">
+                                    {service.heroDescription}
                                 </p>
                             </div>
 
@@ -51,7 +51,7 @@ export default function ServicesGrid() {
                             <div className="self-stretch flex-1 flex flex-col justify-between gap-6">
                                 {/* Features */}
                                 <div className="self-stretch flex flex-col gap-4">
-                                    {service.features.map((feature, featureIndex) => (
+                                    {service.cardFeatures.map((feature, featureIndex) => (
                                         <div key={featureIndex} className="flex items-center gap-4">
                                             {/* Checkmark Icon */}
                                             <svg className="w-6 h-6 flex-shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

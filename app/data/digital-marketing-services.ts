@@ -1,120 +1,325 @@
-export interface ServiceFeature {
+import { IconType } from "react-icons";
+import { FaStar, FaMobileScreenButton, FaScrewdriverWrench, FaChartColumn, FaRegCommentDots } from "react-icons/fa6";
+
+export interface ProcessStep {
+    iconName: string; // We'll map string to icon component in the page
     title: string;
-    description: string;
+}
+
+export interface FeatureItem {
+    name: string;
+    iconName: string;
+}
+
+export interface PricingPackage {
+    title: string;
+    features: FeatureItem[];
+    serviceFee: string;
+    budgetAds: string;
+    totalPrice: string;
+    period: string; // e.g. "/ bulan"
 }
 
 export interface DigitalMarketingService {
     slug: string;
     title: string;
-    shortDescription: string;
-    description: string;
-    image: string;
-    icon?: string; // Optional specific icon if needed
-    features: string[]; // For the grid card
-    detailedFeatures: ServiceFeature[]; // For the detail page
-    benefits: string[];
-    priceStart?: string;
+    heroTitle: string; // e.g., "Precision <span...>Ads</span> Solutions"
+    heroDescription: string;
+    heroImage1: string; // Main image
+    heroImage2: string; // Secondary/Small image 1
+    heroImage3: string; // Secondary/Small image 2
+
+    processSteps: ProcessStep[];
+    cardFeatures: string[]; // For the main page grid
+
+    pricingTitle: string;
+    pricingPackages: PricingPackage[];
+
+    advantagesTitle: string; // e.g. "Boost Profits with..."
+    advantagesDescription: string;
+    advantagesList: string[];
+
+    ctaTitle: string;
+    ctaDescription: string;
+    ctaButtonText: string;
 }
+
 
 export const digitalMarketingServices: DigitalMarketingService[] = [
     {
         slug: "seo",
+        // ... (title, hero props same)
         title: "SEO",
-        shortDescription: "Tingkatkan visibilitas website dan traffic organik Anda agar mudah ditemukan di Google tanpa biaya iklan yang besar.",
-        description: "Search Engine Optimization (SEO) adalah strategi jangka panjang untuk memastikan website Anda muncul di halaman pertama pencarian Google untuk kata kunci yang relevan. Kami menggunakan teknik White-Hat SEO yang aman dan efektif.",
-        image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBbPeV9vrCsVLTRIfjhyhMWxhixceXHIrKrD_9YuOTYpwDF3i52IZTo5aW26eNDmJsZoj6b0IXbgydbauAIBU2RLla4i4y9d4H4-060Ir0CmfWKV9hiITDzuhNW3hTEZLPJqurvFQHLHOJTMi7D647XuOlZX5Wgud8AxNA6EUCny6paakq1OA_p8P7jQIgVUY044-5jO6tgdDgQrX3Ew27Tw-S8vGuRFSrg94RCotKa77kQLI_MTasHJnPbJmvcx7T6gxfjTZ6Z5Cc",
-        features: [
+        heroTitle: "Dominasi <span class='text-secondary'>Google</span> <br/>Ranking #1",
+        heroDescription: "Tingkatkan trafik organik dan kredibilitas bisnis Anda dengan teknik SEO White-Hat yang teruji. Kami membantu website Anda ditemukan oleh pelanggan yang tepat.",
+        heroImage1: "https://lh3.googleusercontent.com/aida-public/AB6AXuDEbbqtzEwfPYzzWjviYokdaYr0ZoCHdyWyNe0xqWOTe3Hd1GExmNYqu6B6C75fofhJOsSjMjAydtBJ5wJcWqQM3KSVA-BYXYNFJLtcv9CSitETJ3iSnMbfmGgH4lV4f7azhFqWjkEO9_1_q974AzR0idAXZ_hvU9YB5UrnNIqBJjCy8Z4SDHoHeKA8qR37xVvNoA5LgOpFeowKHYDz1xR7WybFIiUwpVa1os85srttKQ3VpcwuAJ5ynOADhQ-4MBhRd2Jx73yJLP0",
+        heroImage2: "https://lh3.googleusercontent.com/aida-public/AB6AXuA0kdVJIGpObl_EUhJUi1SYD5A2FrNjEeqyAh9rrIoE4IZNc3ci1Hlj8NR3JYJsxvNq_EwkysuO3_HB8Q9n3HQe37sHhwfE-ET4rdxEoZ95ohowneBKd80jf9Xfl5WUNB0obXGwvdEMcUZ9jJgOW-5-OfZ0b28afGj0ADCIHBsDPCano7Vin59AjvaMTgQWfhsCxEZGOhCbHXyJamQXp-zD9V4If4rB7Pg9zh0xCJEw0QrmHZcIbcQkUS_frJ5uKr4l9utN7p0nQ2U",
+        heroImage3: "https://lh3.googleusercontent.com/aida-public/AB6AXuDA9dWku15pT_DEuGP1-JwQ0CgC-B-Tt_41lc7DgTlAEWlg-eX7f4P7te-Hl-Iga_TQEE3i9w5zkP3KHLFb0YRK-bGwCzYXwWgKZq0s4F-UDYcaigSHmbZ5ZFMaGMGq-PICvBrSIZtAKV1bXmmV_31un1dje0vsm_yddQ3w2LW9tQ2UdE7J0teZXKMeewY7upUNCBhUNoGi5pH-31uPWsfZJdGBJq808PSdnPzsXPBNMrVyesIMhS1K2HoS8xFAnRv3N1kMHxufua8",
+        processSteps: [
+            { iconName: "FaMagnifyingGlass", title: "Riset<br/>Keyword" },
+            { iconName: "FaFilePen", title: "Optimasi<br/>Konten" },
+            { iconName: "FaCode", title: "Technical<br/>SEO" },
+            { iconName: "FaLink", title: "Link<br/>Building" },
+            { iconName: "FaChartLine", title: "Analisis &<br/>Monitoring" },
+        ],
+        cardFeatures: [
             "Riset Keyword",
-            "Pembuatan artikel SEO",
-            "Setup & maintenance web",
-            "Optimasi Berbasis Data & Laporan Bulanan"
+            "Pembuatan Artikel SEO",
+            "Setup & Perawatan Web",
+            "Optimasi Berbasis Data"
         ],
-        detailedFeatures: [
-            { title: "Technical SEO", description: "Audit menyeluruh struktur website, kecepatan, dan mobile-friendliness." },
-            { title: "On-Page SEO", description: "Optimasi konten, meta tags, heading, dan internal linking." },
-            { title: "Off-Page SEO", description: "Strategi link building berkualitas untuk meningkatkan otoritas domain." },
-            { title: "Local SEO", description: "Optimasi Google My Business agar mudah ditemukan pelanggan lokal." }
+        pricingTitle: "Paket SEO",
+        pricingPackages: [
+            {
+                title: "Basic SEO",
+                features: [
+                    { name: "Riset Keyword (Hingga 5 Keyword)", iconName: "FaMagnifyingGlass" },
+                    { name: "Optimasi On-Page", iconName: "FaFilePen" },
+                    { name: "Audit Teknis Dasar", iconName: "FaCode" },
+                    { name: "Setup Google My Business", iconName: "FaLocationDot" },
+                    { name: "Laporan Bulanan", iconName: "FaChartLine" },
+                    { name: "Dukungan Standar", iconName: "FaHeadset" },
+                    { name: "Fokus Satu Halaman", iconName: "FaMobileScreenButton" }
+                ],
+                serviceFee: "IDR 2.000.000",
+                budgetAds: "IDR 0",
+                totalPrice: "IDR 2.000.000",
+                period: "/ bulan"
+            },
+            {
+                title: "Advanced SEO",
+                features: [
+                    { name: "Riset Keyword (Hingga 15 Keyword)", iconName: "FaMagnifyingGlass" },
+                    { name: "On-Page & Off-Page Lanjutan", iconName: "FaScrewdriverWrench" },
+                    { name: "Pembuatan Konten (4 Artikel/bulan)", iconName: "FaFilePen" },
+                    { name: "Perbaikan Technical SEO", iconName: "FaCode" },
+                    { name: "Analisis Kompetitor", iconName: "FaUsersViewfinder" },
+                    { name: "Laporan Dua Mingguan", iconName: "FaChartLine" },
+                    { name: "Dukungan Prioritas", iconName: "FaStar" },
+                    { name: "Strategi Multi-Halaman", iconName: "FaSitemap" },
+                    { name: "Backlink Berkualitas Tinggi", iconName: "FaLink" }
+                ],
+                serviceFee: "IDR 4.500.000",
+                budgetAds: "IDR 0",
+                totalPrice: "IDR 4.500.000",
+                period: "/ bulan"
+            }
         ],
-        benefits: [
-            "Traffic organik yang stabil dan berkualitas",
-            "Biaya pemasaran jangka panjang lebih efisien",
-            "Meningkatkan kredibilitas dan kepercayaan brand",
-            "ROI (Return on Investment) yang tinggi"
-        ]
+        advantagesTitle: "Tumbuhkan Trafik Organik<br/>dengan <span class='opacity-80'>SEO Terpercaya</span>",
+        advantagesDescription: "SEO Kreasitech memastikan fondasi digital Anda kuat, mendatangkan trafik yang relevan dan meningkatkan konversi jangka panjang tanpa ketergantungan penuh pada iklan berbayar.",
+        advantagesList: [
+            "Peringkat tinggi di kata kunci relevan",
+            "Trafik organik yang stabil dan berkualitas",
+            "Otoritas domain meningkat jangka panjang",
+            "Efisiensi biaya pemasaran jangka panjang"
+        ],
+        ctaTitle: "Siap Mendominasi <br/>Hasil Pencarian?",
+        ctaDescription: "Mulai perjalanan Anda ke halaman pertama Google hari ini dengan strategi SEO berbasis data kami yang memberikan pertumbuhan jangka panjang.",
+        ctaButtonText: "Audit SEO Gratis"
     },
     {
         slug: "ads",
         title: "Ads",
-        shortDescription: "Jangkau lebih banyak calon pelanggan dengan strategi periklanan digital yang tertarget.",
-        description: "Layanan periklanan digital kami mencakup Google Ads (SEM), Facebook Ads, Instagram Ads, dan platform lainnya. Kami menargetkan audiens yang tepat di saat yang tepat untuk menghasilkan konversi maksimal.",
-        image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAX-QV7IJP0pTQulGKKIPNZ1cB1ImC50bzuDNe75SHG8TPuXPpwx1K33qnAXcpZW1r4SpEbXluTIFsSObNxqxHs6yWxE4vKTmWWcvxEcKtZs4cREgVRaYvqJx7H6T6a53EMTgpspPsAwU-mHuL-rxEKm9WJywPTNf3_Qfdk4CCSXRfE6io3JEYyYGalT5tSXaiNJGrQ3vI8v7NKpCftPcBpmsZ_RM-P1Ck-Y6PxZGMVxTqXFgvT1VqoNNAIrOgjXQN5Ces8RGbhNYw",
-        features: [
-            "Riset",
-            "Penulisan Konten",
-            "Desain Visual",
-            "Report Bulanan"
+        heroTitle: "Solusi <span class='text-secondary'>Ads</span><br/>Presisi",
+        heroDescription: "Jangkau lebih banyak calon pelanggan dalam hitungan hari dengan strategi iklan tertarget di Google, Meta, atau LinkedIn. Dengan 5+ tahun pengalaman, kami telah mengelola 300+ kampanye iklan.",
+        heroImage1: "https://lh3.googleusercontent.com/aida-public/AB6AXuDEbbqtzEwfPYzzWjviYokdaYr0ZoCHdyWyNe0xqWOTe3Hd1GExmNYqu6B6C75fofhJOsSjMjAydtBJ5wJcWqQM3KSVA-BYXYNFJLtcv9CSitETJ3iSnMbfmGgH4lV4f7azhFqWjkEO9_1_q974AzR0idAXZ_hvU9YB5UrnNIqBJjCy8Z4SDHoHeKA8qR37xVvNoA5LgOpFeowKHYDz1xR7WybFIiUwpVa1os85srttKQ3VpcwuAJ5ynOADhQ-4MBhRd2Jx73yJLP0",
+        heroImage2: "https://lh3.googleusercontent.com/aida-public/AB6AXuA0kdVJIGpObl_EUhJUi1SYD5A2FrNjEeqyAh9rrIoE4IZNc3ci1Hlj8NR3JYJsxvNq_EwkysuO3_HB8Q9n3HQe37sHhwfE-ET4rdxEoZ95ohowneBKd80jf9Xfl5WUNB0obXGwvdEMcUZ9jJgOW-5-OfZ0b28afGj0ADCIHBsDPCano7Vin59AjvaMTgQWfhsCxEZGOhCbHXyJamQXp-zD9V4If4rB7Pg9zh0xCJEw0QrmHZcIbcQkUS_frJ5uKr4l9utN7p0nQ2U",
+        heroImage3: "https://lh3.googleusercontent.com/aida-public/AB6AXuDA9dWku15pT_DEuGP1-JwQ0CgC-B-Tt_41lc7DgTlAEWlg-eX7f4P7te-Hl-Iga_TQEE3i9w5zkP3KHLFb0YRK-bGwCzYXwWgKZq0s4F-UDYcaigSHmbZ5ZFMaGMGq-PICvBrSIZtAKV1bXmmV_31un1dje0vsm_yddQ3w2LW9tQ2UdE7J0teZXKMeewY7upUNCBhUNoGi5pH-31uPWsfZJdGBJq808PSdnPzsXPBNMrVyesIMhS1K2HoS8xFAnRv3N1kMHxufua8",
+        processSteps: [
+            { iconName: "FaUsersViewfinder", title: "Riset<br/>Audiens" },
+            { iconName: "FaPalette", title: "Desain<br/>Iklan" },
+            { iconName: "FaBullhorn", title: "Setup<br/>Kampanye" },
+            { iconName: "FaFlask", title: "A/B<br/>Testing" },
+            { iconName: "FaHandHoldingDollar", title: "Analisis<br/>ROI" },
         ],
-        detailedFeatures: [
-            { title: "Campaign Setup", description: "Struktur kampanye yang efisien untuk memaksimalkan budget." },
-            { title: "Audience Targeting", description: "Menargetkan demografi, minat, dan perilaku yang spesifik." },
-            { title: "A/B Testing", description: "Menguji berbagai variasi iklan untuk menemukan performa terbaik." },
-            { title: "Conversion Tracking", description: "Pelacakan akurat untuk setiap lead atau penjualan yang masuk." }
+        cardFeatures: [
+            "Targeting Audiens",
+            "Desain Kreatif",
+            "Optimasi Kampanye",
+            "Laporan Performa"
         ],
-        benefits: [
-            "Hasil instan dan terukur",
-            "Kontrol penuh atas budget harian",
-            "Targeting yang sangat spesifik",
-            "Remarketing untuk menjangkau pengunjung lama"
-        ]
+        pricingTitle: "Daftar Harga",
+        pricingPackages: [
+            {
+                title: "Google Ads",
+                features: [
+                    { name: "Screenshot iklan", iconName: "FaFileImport" },
+                    { name: "Konsultasi keyword planner gratis", iconName: "FaRegCommentDots" },
+                    { name: "Analisis audiens gratis", iconName: "FaUsersViewfinder" },
+                    { name: "Hingga 10 keyword", iconName: "FaMagnifyingGlass" },
+                    { name: "1 grup iklan dengan 3 iklan", iconName: "FaLayerGroup" },
+                    { name: "Manajemen dan optimasi kampanye", iconName: "FaScrewdriverWrench" },
+                    { name: "Termasuk biaya iklan harian", iconName: "FaHandHoldingDollar" },
+                    { name: "Kontrak minimum 6 bulan", iconName: "FaFileContract" },
+                    { name: "Laporan akhir kampanye", iconName: "FaChartColumn" }
+                ],
+                serviceFee: "IDR 2.000.000",
+                budgetAds: "IDR 1.500.000",
+                totalPrice: "IDR 3.500.000",
+                period: "/ bulan"
+            },
+            {
+                title: "Meta Ads",
+                features: [
+                    { name: "Facebook Ads Feed", iconName: "FaFacebookF" },
+                    { name: "Instagram Ads Feed", iconName: "FaInstagram" },
+                    { name: "Screenshot iklan", iconName: "FaMobileScreenButton" },
+                    { name: "Analisis audiens gratis", iconName: "FaUsersViewfinder" },
+                    { name: "Konsultasi iklan gratis", iconName: "FaRegCommentDots" },
+                    { name: "1 grup iklan terdiri dari 3 iklan", iconName: "FaLayerGroup" },
+                    { name: "Manajemen dan optimasi kampanye", iconName: "FaScrewdriverWrench" },
+                    { name: "Termasuk biaya iklan maksimal", iconName: "FaHandHoldingDollar" },
+                    { name: "Kontrak minimum 6 bulan", iconName: "FaFileContract" },
+                    { name: "Laporan di akhir kampanye", iconName: "FaChartColumn" }
+                ],
+                serviceFee: "IDR 2.000.000",
+                budgetAds: "IDR 1.500.000",
+                totalPrice: "IDR 3.500.000",
+                period: "/ bulan"
+            }
+        ],
+        advantagesTitle: "Tingkatkan Profit dengan<br/><span class='opacity-80'>Iklan Digital</span> Tertarget",
+        advantagesDescription: "Kreasitech memastikan kampanye Anda mencapai audiens yang tepat dengan pesan yang tepat pada biaya yang efisien, didukung oleh data dan strategi yang relevan.",
+        advantagesList: [
+            "Jangkau pelanggan potensial lebih cepat & luas",
+            "Hemat waktu dan biaya pemasaran jangka pendek",
+            "Optimasi performa berkala untuk hasil maksimal",
+            "Laporan performa yang transparan & mudah dipahami"
+        ],
+        ctaTitle: "Maksimalkan ROI Anda <br/>dengan Iklan Presisi",
+        ctaDescription: "Berhenti membuang uang pada iklan yang tidak efektif. Pakar kami mengoptimalkan pengeluaran Anda untuk konversi maksimal dan pertumbuhan bisnis.",
+        ctaButtonText: "Mulai Kampanye Iklan"
     },
     {
         slug: "press-release",
         title: "Press Release",
-        shortDescription: "Tingkatkan kredibilitas dan eksposur brand Anda melalui publikasi di media terpercaya.",
-        description: "Kami membantu mendistribusikan berita bisnis Anda ke berbagai media nasional dan lokal terkemuka. Layanan ini sangat efektif untuk membangun reputasi, launching produk, atau klarifikasi isu.",
-        image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCDst4rSoagCdQW-qxqxv5BlRcKvtmOny1mNZRqfQ81gSezOS9Ttquo_xMXm7J1qEE4ibkBeFh88BOVIxVXLmW6y0Xbh2ziZaeQLNgQtEyy7qht4BSGmeCGLsFV5SzcJXCEEfjmYq-_b6PJAq9mWkz6gZnqC1Dv5Blfvi0XsgEdWqQfbgFblot5k7wUAOBM0YvCsAhA_eLakoPEpdVcvjYUsSzd5XxKkJ8fqmj0khnSxvessNEg3gfNlXJEfEtjZKmM1LpF6WgRGww",
-        features: [
-            "Riset",
-            "Penulisan Konten",
-            "Desain Visual",
-            "Report Bulanan"
+        heroTitle: "Bangun Kepercayaan dengan <br/>Publikasi <span class='text-secondary'>Media</span>",
+        heroDescription: "Publikasikan berita bisnis Anda di media nasional terpercaya. Tingkatkan kredibilitas brand dan jangkau audiens yang lebih luas.",
+        heroImage1: "https://lh3.googleusercontent.com/aida-public/AB6AXuDEbbqtzEwfPYzzWjviYokdaYr0ZoCHdyWyNe0xqWOTe3Hd1GExmNYqu6B6C75fofhJOsSjMjAydtBJ5wJcWqQM3KSVA-BYXYNFJLtcv9CSitETJ3iSnMbfmGgH4lV4f7azhFqWjkEO9_1_q974AzR0idAXZ_hvU9YB5UrnNIqBJjCy8Z4SDHoHeKA8qR37xVvNoA5LgOpFeowKHYDz1xR7WybFIiUwpVa1os85srttKQ3VpcwuAJ5ynOADhQ-4MBhRd2Jx73yJLP0",
+        heroImage2: "https://lh3.googleusercontent.com/aida-public/AB6AXuA0kdVJIGpObl_EUhJUi1SYD5A2FrNjEeqyAh9rrIoE4IZNc3ci1Hlj8NR3JYJsxvNq_EwkysuO3_HB8Q9n3HQe37sHhwfE-ET4rdxEoZ95ohowneBKd80jf9Xfl5WUNB0obXGwvdEMcUZ9jJgOW-5-OfZ0b28afGj0ADCIHBsDPCano7Vin59AjvaMTgQWfhsCxEZGOhCbHXyJamQXp-zD9V4If4rB7Pg9zh0xCJEw0QrmHZcIbcQkUS_frJ5uKr4l9utN7p0nQ2U",
+        heroImage3: "https://lh3.googleusercontent.com/aida-public/AB6AXuDA9dWku15pT_DEuGP1-JwQ0CgC-B-Tt_41lc7DgTlAEWlg-eX7f4P7te-Hl-Iga_TQEE3i9w5zkP3KHLFb0YRK-bGwCzYXwWgKZq0s4F-UDYcaigSHmbZ5ZFMaGMGq-PICvBrSIZtAKV1bXmmV_31un1dje0vsm_yddQ3w2LW9tQ2UdE7J0teZXKMeewY7upUNCBhUNoGi5pH-31uPWsfZJdGBJq808PSdnPzsXPBNMrVyesIMhS1K2HoS8xFAnRv3N1kMHxufua8",
+        processSteps: [
+            { iconName: "FaClipboardList", title: "Perencanaan<br/>Media" },
+            { iconName: "FaNewspaper", title: "Penulisan<br/>Rilis" },
+            { iconName: "FaPaperPlane", title: "Distribusi<br/>Media" },
+            { iconName: "FaEye", title: "Monitoring<br/>Publikasi" },
+            { iconName: "FaFileContract", title: "Laporan<br/>Coverage" },
         ],
-        detailedFeatures: [
-            { title: "Copywriting Jurnalistik", description: "Penulisan rilis dengan gaya bahasa media yang profesional." },
-            { title: "Media Relations", description: "Akses ke jaringan editor media nasional terpercaya." },
-            { title: "Guaranteed Publish", description: "Jaminan terbit di media yang dipilih sesuai paket." },
-            { title: "Media Monitoring", description: "Laporan lengkap beserta link berita yang telah tayang." }
+        cardFeatures: [
+            "Hubungan Media",
+            "Penulisan Rilis",
+            "Garansi Terbit",
+            "Monitoring Media"
         ],
-        benefits: [
-            "Membangun kredibilitas dan trust",
-            "Mendapatkan backlink berkualitas dari media besar",
-            "Meningkatkan brand awareness secara luas",
-            "Dokumentasi digital yang positif untuk brand"
-        ]
+        pricingTitle: "Paket Media",
+        pricingPackages: [
+            {
+                title: "Starter Pack",
+                features: [
+                    { name: "1x Penulisan Press Release", iconName: "FaPen" },
+                    { name: "Distribusi ke 5 Media Online", iconName: "FaShareNodes" },
+                    { name: "Garansi Penempatan", iconName: "FaCheckDouble" },
+                    { name: "Laporan Monitoring Media", iconName: "FaChartBar" },
+                    { name: "Pengerjaan Standar (5 Hari)", iconName: "FaClock" }
+                ],
+                serviceFee: "IDR 1.500.000",
+                budgetAds: "IDR 0",
+                totalPrice: "IDR 1.500.000",
+                period: "/ rilis"
+            },
+            {
+                title: "Business Pack",
+                features: [
+                    { name: "2x Penulisan Press Release", iconName: "FaPenFancy" },
+                    { name: "Distribusi ke 10 Media Online", iconName: "FaShareNodes" },
+                    { name: "Termasuk 1 Media Tier Atas", iconName: "FaStar" },
+                    { name: "Garansi Penempatan", iconName: "FaCheckDouble" },
+                    { name: "Laporan Media Detail", iconName: "FaFileInvoice" },
+                    { name: "Pengerjaan Prioritas (3 Hari)", iconName: "FaBolt" },
+                    { name: "Amplifikasi Media Sosial", iconName: "FaBullhorn" }
+                ],
+                serviceFee: "IDR 3.000.000",
+                budgetAds: "IDR 0",
+                totalPrice: "IDR 3.000.000",
+                period: "/ bulan"
+            }
+        ],
+        advantagesTitle: "Perkuat Brand dengan<br/><span class='opacity-80'>Liputan Media</span> Terpercaya",
+        advantagesDescription: "Publikasi media memberikan validasi pihak ketiga yang kuat untuk brand Anda, meningkatkan kepercayaan pelanggan dan investor.",
+        advantagesList: [
+            "Membangun kredibilitas instan",
+            "Mendapatkan backlink berkualitas tinggi",
+            "Meningkatkan awareness di pasar target",
+            "Dokumentasi digital yang permanen"
+        ],
+        ctaTitle: "Tampilkan Bisnis Anda <br/>di Media Terkemuka",
+        ctaDescription: "Bangun kredibilitas instan dan jangkau jutaan orang melalui jaringan media tepercaya kami. Ceritakan kisah Anda kepada audiens yang tepat.",
+        ctaButtonText: "Dapatkan Liputan Sekarang"
     },
     {
         slug: "backlink",
         title: "Backlink",
-        shortDescription: "Tingkatkan otoritas website Anda dengan backlink berkualitas dari situs terpercaya.",
-        description: "Layanan backlink kami fokus pada kualitas, bukan sekadar kuantitas. Kami menyediakan backlink content placement dari website dengan Domain Authority (DA) tinggi yang relevan dengan niche bisnis Anda.",
-        image: "https://lh3.googleusercontent.com/aida-public/AB6AXuD7l4tAiuO-rDVTWvGEXt454BPvQ4Q5nYKrG-Kul12xHkOMcF15A0ETlyJ33yXScDaIcynswA_61maEFZBgnp8rV7470R6suWDTVD6UPGk4pJl9N9qdBFRbHx8zbMwlrPvLUm4EcOzi9KvuJh0k2AunwRorLkp3x-XCGYfNPR6ixFZKSKIXMzqC-8Rie91AcdUPwNlg8S-Y0iK3tiUDixOKyOt0sBhDm2QSDkhRTHbVgwSsUSV8CNNIXapS19rD55-soFmJFgs5nQo",
-        features: [
-            "Riset",
-            "Penulisan Konten",
-            "Desain Visual",
-            "Report Bulanan"
+        heroTitle: "Jaringan <span class='text-secondary'>Backlink</span><br/>Berkualitas Tinggi",
+        heroDescription: "Tingkatkan Domain Authority (DA) dan Page Authority (PA) website Anda dengan backlink berkualitas dari jaringan website terpercaya.",
+        heroImage1: "https://lh3.googleusercontent.com/aida-public/AB6AXuDEbbqtzEwfPYzzWjviYokdaYr0ZoCHdyWyNe0xqWOTe3Hd1GExmNYqu6B6C75fofhJOsSjMjAydtBJ5wJcWqQM3KSVA-BYXYNFJLtcv9CSitETJ3iSnMbfmGgH4lV4f7azhFqWjkEO9_1_q974AzR0idAXZ_hvU9YB5UrnNIqBJjCy8Z4SDHoHeKA8qR37xVvNoA5LgOpFeowKHYDz1xR7WybFIiUwpVa1os85srttKQ3VpcwuAJ5ynOADhQ-4MBhRd2Jx73yJLP0",
+        heroImage2: "https://lh3.googleusercontent.com/aida-public/AB6AXuA0kdVJIGpObl_EUhJUi1SYD5A2FrNjEeqyAh9rrIoE4IZNc3ci1Hlj8NR3JYJsxvNq_EwkysuO3_HB8Q9n3HQe37sHhwfE-ET4rdxEoZ95ohowneBKd80jf9Xfl5WUNB0obXGwvdEMcUZ9jJgOW-5-OfZ0b28afGj0ADCIHBsDPCano7Vin59AjvaMTgQWfhsCxEZGOhCbHXyJamQXp-zD9V4If4rB7Pg9zh0xCJEw0QrmHZcIbcQkUS_frJ5uKr4l9utN7p0nQ2U",
+        heroImage3: "https://lh3.googleusercontent.com/aida-public/AB6AXuDA9dWku15pT_DEuGP1-JwQ0CgC-B-Tt_41lc7DgTlAEWlg-eX7f4P7te-Hl-Iga_TQEE3i9w5zkP3KHLFb0YRK-bGwCzYXwWgKZq0s4F-UDYcaigSHmbZ5ZFMaGMGq-PICvBrSIZtAKV1bXmmV_31un1dje0vsm_yddQ3w2LW9tQ2UdE7J0teZXKMeewY7upUNCBhUNoGi5pH-31uPWsfZJdGBJq808PSdnPzsXPBNMrVyesIMhS1K2HoS8xFAnRv3N1kMHxufua8",
+        processSteps: [
+            { iconName: "FaGlobe", title: "Seleksi<br/>Domain" },
+            { iconName: "FaFileImport", title: "Penempatan<br/>Konten" },
+            { iconName: "FaRobot", title: "Proses<br/>Indexing" },
+            { iconName: "FaGaugeHigh", title: "Cek<br/>DA/PA" },
+            { iconName: "FaLaptopCode", title: "Live<br/>Report" },
         ],
-        detailedFeatures: [
-            { title: "High DA/PA Sites", description: "Backlink dari website dengan otoritas tinggi." },
-            { title: "Contextual Links", description: "Link ditanam secara natural di dalam artikel yang relevan." },
-            { title: "Dofollow Links", description: "Mayoritas link bersifat dofollow untuk passing juice SEO maksimal." },
-            { title: "Safety First", description: "Aman dari algoritma Google Penguin (anti-spam)." }
+        cardFeatures: [
+            "Situs DA/PA Tinggi",
+            "Contextual Links",
+            "Dofollow Links",
+            "Aman & Manual"
         ],
-        benefits: [
-            "Mendongkrak ranking keyword di Google",
-            "Meningkatkan Domain Authority (DA) website",
-            "Mendatangkan traffic referral",
-            "Investasi aset digital jangka panjang"
-        ]
+        pricingTitle: "Paket Backlink",
+        pricingPackages: [
+            {
+                title: "Standard Links",
+                features: [
+                    { name: "5 Backlink Content Placement", iconName: "FaLink" },
+                    { name: "Situs DA 20-30", iconName: "FaServer" },
+                    { name: "Dofollow Permanen", iconName: "FaInfinity" },
+                    { name: "Termasuk Artikel Unik", iconName: "FaFileLines" },
+                    { name: "Dashboard Laporan", iconName: "FaChartLine" }
+                ],
+                serviceFee: "IDR 1.000.000",
+                budgetAds: "IDR 0",
+                totalPrice: "IDR 1.000.000",
+                period: "/ paket"
+            },
+            {
+                title: "Premium Links",
+                features: [
+                    { name: "10 Backlink Content Placement", iconName: "FaLink" },
+                    { name: "Situs DA 40+ (Otoritas Tinggi)", iconName: "FaCrown" },
+                    { name: "Dofollow Permanen", iconName: "FaInfinity" },
+                    { name: "Artikel Premium 500 kata", iconName: "FaFeather" },
+                    { name: "Indexing Lebih Cepat", iconName: "FaBolt" },
+                    { name: "Anchor Text Strategis", iconName: "FaAnchor" },
+                    { name: "Analisis Link Kompetitor", iconName: "FaMagnifyingGlassChart" }
+                ],
+                serviceFee: "IDR 3.500.000",
+                budgetAds: "IDR 0",
+                totalPrice: "IDR 3.500.000",
+                period: "/ paket"
+            }
+        ],
+        advantagesTitle: "Otoritas & Ranking dengan<br/><span class='opacity-80'>Backlink</span> Berkualitas",
+        advantagesDescription: "Backlink berkualitas adalah sinyal kepercayaan bagi Google. Kami membantu Anda mendapatkan backlink yang aman dan powerful.",
+        advantagesList: [
+            "Meningkatkan ranking di SERP dengan cepat",
+            "Memperkuat struktur SEO website",
+            "Aman dari penalti algoritma Google",
+            "Sumber trafik referral baru"
+        ],
+        ctaTitle: "Tingkatkan Situs Anda <br/>dengan Backlink Premium",
+        ctaDescription: "Perkuat fondasi SEO Anda dan tingkatkan peringkat Anda dengan aman menggunakan jaringan link otoritas tinggi kami. Kualitas link yang nyata.",
+        ctaButtonText: "Dapatkan Link Premium"
     }
 ];

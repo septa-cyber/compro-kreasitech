@@ -59,6 +59,7 @@ export default function Footer() {
                         <Link href="/services/digital-marketing" className="justify-start text-text-light text-sm font-medium font-montserrat hover:text-primary transition">
                             Digital Marketing
                         </Link>
+
                     </div>
                     <div className="flex flex-col justify-start items-start gap-6">
                         <div className="justify-start text-violet-600 text-xs font-bold uppercase font-montserrat">

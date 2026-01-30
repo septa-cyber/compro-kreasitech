@@ -19,13 +19,13 @@ export default function DigitalMarketingPage() {
         <div className="bg-[#F4F4F7] min-h-screen">
             <Navbar />
             <main>
-                <Breadcrumb 
-                    className="px-4 sm:px-6 lg:px-8" 
+                <Breadcrumb
+                    className="px-4 sm:px-6 lg:px-8"
                     items={[
-                        { label: "Home", href: "/" },
-                        { label: "Services", href: "#" },
+                        { label: "Beranda", href: "/" },
+                        { label: "Layanan", href: "#" },
                         { label: "Digital Marketing", href: "/services/digital-marketing" }
-                    ]} 
+                    ]}
                 />
                 <DigitalMarketingHero />
                 <ServicesGrid />

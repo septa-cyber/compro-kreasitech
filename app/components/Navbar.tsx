@@ -113,10 +113,10 @@ export default function Navbar() {
                                                     <h4 className="font-bold text-sm mb-4 text-text-light hover:text-violet-600 transition cursor-pointer">Digital Marketing</h4>
                                                 </Link>
                                                 <ul className="space-y-3 text-xs text-text-light-muted">
-                                                    <li><Link href="/services/digital-marketing" className="dropdown-item block pb-1 text-text-light">Google Ads</Link></li>
-                                                    <li><Link href="/services/digital-marketing" className="dropdown-item block pb-1 text-text-light">Backlink</Link></li>
-                                                    <li><Link href="/services/digital-marketing" className="dropdown-item block pb-1 text-text-light">Search Engine Optimization</Link></li>
-                                                    <li><Link href="/services/digital-marketing" className="dropdown-item block pb-1 text-text-light">Press Release</Link></li>
+                                                    <li><Link href="/services/digital-marketing/ads" className="dropdown-item block pb-1 text-text-light">Google Ads</Link></li>
+                                                    <li><Link href="/services/digital-marketing/backlink" className="dropdown-item block pb-1 text-text-light">Backlink</Link></li>
+                                                    <li><Link href="/services/digital-marketing/seo" className="dropdown-item block pb-1 text-text-light">Search Engine Optimization</Link></li>
+                                                    <li><Link href="/services/digital-marketing/press-release" className="dropdown-item block pb-1 text-text-light">Press Release</Link></li>
                                                 </ul>
                                             </div>
                                             <div>
@@ -124,12 +124,12 @@ export default function Navbar() {
                                                     <h4 className="font-bold text-sm mb-4 text-text-light hover:text-violet-600 transition cursor-pointer">Software Development</h4>
                                                 </Link>
                                                 <ul className="space-y-3 text-xs text-text-light-muted">
-                                                    <li><Link href="/services/software-development" className="dropdown-item block pb-1 text-text-light">Specifications & Wireframe</Link></li>
-                                                    <li><Link href="/services/software-development" className="dropdown-item block pb-1 text-text-light">UI/UX Design</Link></li>
-                                                    <li><Link href="/services/software-development" className="dropdown-item block pb-1 text-text-light">Website Development</Link></li>
-                                                    <li><Link href="/services/software-development" className="dropdown-item block pb-1 text-text-light">Mobile App Development</Link></li>
-                                                    <li><Link href="/services/software-development" className="dropdown-item block pb-1 text-text-light">MVP Development</Link></li>
-                                                    <li><Link href="/services/software-development" className="dropdown-item block pb-1 text-text-light">Custom Software Development</Link></li>
+                                                    <li><Link href="/services/software-development/specifications-and-wireframe" className="dropdown-item block pb-1 text-text-light">Specifications & Wireframe</Link></li>
+                                                    <li><Link href="/services/software-development/ui-ux-design" className="dropdown-item block pb-1 text-text-light">UI/UX Design</Link></li>
+                                                    <li><Link href="/services/software-development/website-development" className="dropdown-item block pb-1 text-text-light">Website Development</Link></li>
+                                                    <li><Link href="/services/software-development/mobile-app-development" className="dropdown-item block pb-1 text-text-light">Mobile App Development</Link></li>
+                                                    <li><Link href="/services/software-development/mvp-development" className="dropdown-item block pb-1 text-text-light">MVP Development</Link></li>
+                                                    <li><Link href="/services/software-development/custom-software-development" className="dropdown-item block pb-1 text-text-light">Custom Software Development</Link></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -245,10 +245,10 @@ export default function Navbar() {
                                         <h4 className="font-bold text-sm mb-3 hover:text-violet-600 transition cursor-pointer">Digital Marketing</h4>
                                     </Link>
                                     <ul className="space-y-2 text-xs text-text-light-muted">
-                                        <li><Link href="/services/digital-marketing" className="block py-1 hover:text-primary">Google Ads</Link></li>
-                                        <li><Link href="/services/digital-marketing" className="block py-1 hover:text-primary">Backlink</Link></li>
-                                        <li><Link href="/services/digital-marketing" className="block py-1 hover:text-primary">Search Engine Optimization</Link></li>
-                                        <li><Link href="/services/digital-marketing" className="block py-1 hover:text-primary">Press Release</Link></li>
+                                        <li><Link href="/services/digital-marketing/ads" className="block py-1 hover:text-primary">Google Ads</Link></li>
+                                        <li><Link href="/services/digital-marketing/backlink" className="block py-1 hover:text-primary">Backlink</Link></li>
+                                        <li><Link href="/services/digital-marketing/seo" className="block py-1 hover:text-primary">Search Engine Optimization</Link></li>
+                                        <li><Link href="/services/digital-marketing/press-release" className="block py-1 hover:text-primary">Press Release</Link></li>
                                     </ul>
                                 </div>
                                 <div>
@@ -256,12 +256,12 @@ export default function Navbar() {
                                         <h4 className="font-bold text-sm mb-3 hover:text-violet-600 transition cursor-pointer">Software Development</h4>
                                     </Link>
                                     <ul className="space-y-2 text-xs text-text-light-muted">
-                                        <li><Link href="/services/software-development" className="block py-1 hover:text-primary">Specifications & Wireframe</Link></li>
-                                        <li><Link href="/services/software-development" className="block py-1 hover:text-primary">UI/UX Design</Link></li>
-                                        <li><Link href="/services/software-development" className="block py-1 hover:text-primary">Website Development</Link></li>
-                                        <li><Link href="/services/software-development" className="block py-1 hover:text-primary">Mobile App Development</Link></li>
-                                        <li><Link href="/services/software-development" className="block py-1 hover:text-primary">MVP Development</Link></li>
-                                        <li><Link href="/services/software-development" className="block py-1 hover:text-primary">Custom Software Development</Link></li>
+                                        <li><Link href="/services/software-development/specifications-and-wireframe" className="block py-1 hover:text-primary">Specifications & Wireframe</Link></li>
+                                        <li><Link href="/services/software-development/ui-ux-design" className="block py-1 hover:text-primary">UI/UX Design</Link></li>
+                                        <li><Link href="/services/software-development/website-development" className="block py-1 hover:text-primary">Website Development</Link></li>
+                                        <li><Link href="/services/software-development/mobile-app-development" className="block py-1 hover:text-primary">Mobile App Development</Link></li>
+                                        <li><Link href="/services/software-development/mvp-development" className="block py-1 hover:text-primary">MVP Development</Link></li>
+                                        <li><Link href="/services/software-development/custom-software-development" className="block py-1 hover:text-primary">Custom Software Development</Link></li>
                                     </ul>
                                 </div>
                             </div>

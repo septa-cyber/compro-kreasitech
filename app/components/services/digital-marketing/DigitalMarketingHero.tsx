@@ -57,7 +57,7 @@ export default function DigitalMarketingHero() {
 
                             {/* Description */}
                             <p className="w-full text-gray-600 text-base font-normal font-montserrat leading-relaxed text-center lg:text-left">
-                                Bangun citra profesional untuk brand Anda dengan layanan kreatif KreasiTech. Mulai dari pembuatan logo & identitas visual, profil perusahaan, website profesional, hingga ilustrasi eksklusif & konten visual yang disesuaikan dengan identitas brand Anda.
+                                Tingkatkan eksistensi bisnis Anda di dunia digital dengan strategi pemasaran yang terukur. Mulai dari optimasi SEO, manajemen Iklan (Ads), penguatan Backlink, hingga publikasi Press Release untuk membangun kredibilitas brand Anda.
                             </p>
                         </div>
 
