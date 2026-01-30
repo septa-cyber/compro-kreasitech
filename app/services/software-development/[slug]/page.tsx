@@ -46,11 +46,10 @@ export default async function SoftwareServiceDetailPage({ params }: PageProps) {
     }
 
     // Define consistent design colors
-    const BRAND_PURPLE = "#4F11BD"; // Deep vibrant purple from the image
-    const HIGHLIGHT_PURPLE = "#7C3AED"; // Lighter contrast purple
+    const BRAND_PURPLE = "#4F11BD";
 
     return (
-        <div className="bg-[#F9FAFB] text-gray-800 font-sans min-h-screen selection:bg-violet-100">
+        <div className="bg-[#F9FAFB] text-gray-800 font-montserrat min-h-screen selection:bg-violet-100">
             <Navbar />
 
             <main>
@@ -61,6 +60,7 @@ export default async function SoftwareServiceDetailPage({ params }: PageProps) {
                             <div className="mb-12 lg:mb-0">
                                 <div className="mb-8">
                                     <Breadcrumb
+                                        className="font-montserrat"
                                         items={[
                                             { label: 'Software Development', href: '/services/software-development' },
                                             { label: service.roleName, href: `/services/software-development/${service.slug}` }
@@ -68,22 +68,22 @@ export default async function SoftwareServiceDetailPage({ params }: PageProps) {
                                     />
                                 </div>
                                 <h1
-                                    className="text-5xl lg:text-7xl font-bold tracking-tight mb-6 text-gray-900 leading-[1.1]"
+                                    className="text-5xl lg:text-7xl font-medium font-montserrat tracking-tight mb-6 text-gray-900 leading-[1.1]"
                                     dangerouslySetInnerHTML={{ __html: service.heroTitle }}
                                 />
-                                <p className="text-gray-600 text-lg mb-10 max-w-lg leading-relaxed">
+                                <p className="text-gray-600 text-lg mb-10 max-w-lg leading-relaxed font-montserrat">
                                     {service.heroDescription}
                                 </p>
                                 <div className="flex flex-col sm:flex-row gap-5 items-start sm:items-center">
                                     <Link
                                         href="https://wa.me/628888088877"
-                                        className="bg-[#4F11BD] text-white px-10 py-4 rounded-lg font-bold hover:bg-violet-700 transition-all duration-300 shadow-xl shadow-violet-500/20 inline-block text-center w-full sm:w-auto"
+                                        className="bg-[#4F11BD] text-white px-10 py-4 rounded-lg font-bold font-montserrat hover:bg-violet-700 transition-all duration-300 shadow-xl shadow-violet-500/20 inline-block text-center w-full sm:w-auto"
                                     >
                                         Hire {service.roleName} Now
                                     </Link>
-                                    <span className="text-xs text-gray-400 font-medium tracking-wide uppercase px-2">Free to interview, low-cost hiring</span>
+                                    <span className="text-xs text-gray-400 font-semibold font-montserrat tracking-wide uppercase px-2">Free to interview, low-cost hiring</span>
                                 </div>
-                                <div className="mt-10 flex items-center text-gray-400 text-sm font-semibold hover:text-[#4F11BD] transition-colors cursor-pointer group w-fit">
+                                <div className="mt-10 flex items-center text-gray-400 text-sm font-semibold font-montserrat hover:text-[#4F11BD] transition-colors cursor-pointer group w-fit">
                                     Learn More
                                     <FaArrowDown className="ml-2 text-xs transform group-hover:translate-y-1 transition-transform" />
                                 </div>
@@ -128,31 +128,31 @@ export default async function SoftwareServiceDetailPage({ params }: PageProps) {
                 <section className="bg-[#4F11BD] py-24 text-white">
                     <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
                         <div className="text-center mb-24">
-                            <h2 className="text-3xl md:text-4xl font-normal max-w-4xl mx-auto leading-tight italic">
+                            <h2 className="text-3xl md:text-4xl font-medium font-montserrat max-w-4xl mx-auto leading-tight italic">
                                 Berikut daftar hardskill dan softskill yang harus dimiliki oleh seorang {service.roleName}:
                             </h2>
                         </div>
                         <div className="grid md:grid-cols-2 gap-16 lg:gap-32">
                             {/* Hard Skills */}
                             <div>
-                                <h3 className="text-4xl mb-12 border-b border-white/10 pb-8 font-semibold tracking-wide text-white">Hard Skill</h3>
+                                <h3 className="text-4xl mb-12 border-b border-white/10 pb-8 font-semibold text-white font-montserrat">Hard Skill</h3>
                                 <div className="space-y-12">
                                     {service.hardSkills.map((skill, idx) => (
                                         <div key={idx} className="group">
-                                            <h4 className="text-2xl font-bold mb-4 tracking-tight">{skill.title}</h4>
-                                            <p className="text-white/70 text-base leading-relaxed font-light">{skill.description}</p>
+                                            <h4 className="text-2xl font-bold mb-4 tracking-tight font-montserrat">{skill.title}</h4>
+                                            <p className="text-white/70 text-base leading-relaxed font-light font-montserrat">{skill.description}</p>
                                         </div>
                                     ))}
                                 </div>
                             </div>
                             {/* Soft Skills */}
                             <div>
-                                <h3 className="text-4xl mb-12 border-b border-white/10 pb-8 font-semibold tracking-wide text-white">Soft Skill</h3>
+                                <h3 className="text-4xl mb-12 border-b border-white/10 pb-8 font-semibold text-white font-montserrat">Soft Skill</h3>
                                 <div className="space-y-12">
                                     {service.softSkills.map((skill, idx) => (
                                         <div key={idx} className="group">
-                                            <h4 className="text-2xl font-bold mb-4 tracking-tight">{skill.title}</h4>
-                                            <p className="text-white/70 text-base leading-relaxed font-light">{skill.description}</p>
+                                            <h4 className="text-2xl font-bold mb-4 tracking-tight font-montserrat">{skill.title}</h4>
+                                            <p className="text-white/70 text-base leading-relaxed font-light font-montserrat">{skill.description}</p>
                                         </div>
                                     ))}
                                 </div>
@@ -162,19 +162,19 @@ export default async function SoftwareServiceDetailPage({ params }: PageProps) {
                 </section>
 
                 {/* Levels Section */}
-                <section className="bg-white py-28 text-gray-900 overflow-hidden">
+                <section className="bg-white py-28 text-gray-900 overflow-hidden font-montserrat">
                     <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
-                        <h2 className="text-4xl md:text-5xl font-bold text-center mb-24 tracking-tight">Find the Position Level You Need</h2>
+                        <h2 className="text-4xl md:text-5xl font-bold text-center mb-24 tracking-tight font-montserrat">Find the Position Level You Need</h2>
                         <div className="grid lg:grid-cols-3 gap-6 items-stretch pt-4">
                             {service.levels.map((level, idx) => {
-                                const isFirst = idx === 0; // In the image, the first card seems to be the purple one
+                                const isFirst = idx === 0;
                                 return (
                                     <div
                                         key={idx}
                                         className={`${isFirst ? 'bg-[#4F11BD] text-white' : 'bg-[#F9FAFB] text-gray-900 border border-gray-100'} flex flex-col h-full rounded-[32px] p-8 md:p-10 transition-all duration-300 hover:shadow-2xl`}
                                     >
-                                        <h3 className={`text-2xl md:text-3xl font-bold mb-10 ${isFirst ? 'text-white' : 'text-gray-900'}`}>{level.title}</h3>
-                                        <ul className="space-y-6 mb-16 flex-1 text-[15px] tracking-wide">
+                                        <h3 className={`text-2xl md:text-3xl font-bold mb-10 font-montserrat ${isFirst ? 'text-white' : 'text-gray-900'}`}>{level.title}</h3>
+                                        <ul className="space-y-6 mb-16 flex-1 text-[15px] tracking-wide font-montserrat">
                                             {level.bulletPoints.map((bp, bidx) => (
                                                 <li key={bidx} className="flex items-start">
                                                     <MdLocationOn className={`${isFirst ? 'text-white/50' : 'text-[#4F11BD]'} text-xl mr-3 mt-1 shrink-0`} />
@@ -184,8 +184,8 @@ export default async function SoftwareServiceDetailPage({ params }: PageProps) {
                                         </ul>
                                         <div className="flex justify-between items-end border-t border-white/10 pt-8 mt-auto">
                                             <div>
-                                                <p className={`text-[11px] uppercase tracking-[0.2em] mb-3 font-bold ${isFirst ? 'text-white/50' : 'text-gray-400'}`}>Monthly Salary</p>
-                                                <p className="font-extrabold text-lg md:text-xl">IDR {level.salaryRange}</p>
+                                                <p className={`text-[11px] uppercase tracking-[0.2em] mb-3 font-bold font-montserrat ${isFirst ? 'text-white/50' : 'text-gray-400'}`}>Monthly Salary</p>
+                                                <p className="font-extrabold text-lg md:text-xl font-montserrat">IDR {level.salaryRange}</p>
                                             </div>
                                             <div className={`${isFirst ? 'bg-white/20' : 'bg-white text-[#4F11BD] shadow-sm'} w-12 h-12 rounded-xl flex items-center justify-center transition-transform hover:scale-110 cursor-pointer`}>
                                                 <MdNorthEast className="text-xl" />
@@ -198,7 +198,7 @@ export default async function SoftwareServiceDetailPage({ params }: PageProps) {
                         <div className="mt-20 text-center">
                             <Link
                                 href="https://wa.me/628888088877"
-                                className="bg-[#4F11BD] text-white px-12 py-5 rounded-xl font-bold hover:bg-violet-800 transition-all duration-300 shadow-2xl shadow-violet-500/10 inline-block"
+                                className="bg-[#4F11BD] text-white px-12 py-5 rounded-xl font-bold font-montserrat hover:bg-violet-800 transition-all duration-300 shadow-2xl shadow-violet-500/10 inline-block"
                             >
                                 Hire Now
                             </Link>
@@ -207,21 +207,21 @@ export default async function SoftwareServiceDetailPage({ params }: PageProps) {
                 </section>
 
                 {/* Process Section */}
-                <section className="bg-white py-28 border-t border-gray-50">
+                <section className="bg-white py-28 border-t border-gray-50 font-montserrat">
                     <div className="max-w-[1200px] mx-auto px-6 lg:px-8 text-center">
-                        <h2 className="text-4xl md:text-5xl font-bold mb-28 text-gray-900 leading-tight tracking-tight">
+                        <h2 className="text-4xl md:text-5xl font-bold mb-28 text-gray-900 leading-tight tracking-tight font-montserrat">
                             Discover the Power of<br />Kreasitech Hiring Process
                         </h2>
                         <div className="grid md:grid-cols-3 gap-16">
                             {service.hiringProcessSteps.map((step, idx) => (
                                 <div key={idx} className="flex flex-col items-center group">
                                     <div className="w-20 h-20 bg-white rounded-full shadow-lg border border-gray-100 flex items-center justify-center mb-10 transition-transform group-hover:scale-105">
-                                        <span className="text-xl font-bold text-[#4F11BD]">
+                                        <span className="text-xl font-bold text-[#4F11BD] font-montserrat">
                                             {idx + 1 < 10 ? `0${idx + 1}` : idx + 1}
                                         </span>
                                     </div>
-                                    <h3 className="text-xl font-bold mb-4 text-gray-900 tracking-tight">{step.title}</h3>
-                                    <p className="text-sm text-gray-400 max-w-[280px] leading-loose font-medium px-4">
+                                    <h3 className="text-xl font-bold mb-4 text-gray-900 tracking-tight font-montserrat">{step.title}</h3>
+                                    <p className="text-sm text-gray-400 max-w-[280px] leading-loose font-medium px-4 font-montserrat">
                                         {step.description}
                                     </p>
                                 </div>
@@ -231,29 +231,29 @@ export default async function SoftwareServiceDetailPage({ params }: PageProps) {
                 </section>
 
                 {/* After Hire Section */}
-                <section className="bg-[#F9FAFB] py-32">
+                <section className="bg-[#F9FAFB] py-32 font-montserrat">
                     <div className="max-w-[1000px] mx-auto px-6 lg:px-8">
-                        <h2 className="text-3xl font-bold text-center mb-24 text-gray-900 tracking-tight">After You Hire</h2>
+                        <h2 className="text-3xl font-bold text-center mb-24 text-gray-900 tracking-tight font-montserrat">After You Hire</h2>
                         <div className="grid md:grid-cols-[1fr_auto_1fr] items-center gap-12 md:gap-20">
                             <div className="text-center md:text-right">
-                                <h3 className="text-2xl font-bold mb-4 text-gray-900">{service.afterHireSteps[0]?.title}</h3>
-                                <p className="text-base text-gray-400 leading-relaxed font-medium italic">{service.afterHireSteps[0]?.description}</p>
+                                <h3 className="text-2xl font-bold mb-4 text-gray-900 font-montserrat">{service.afterHireSteps[0]?.title}</h3>
+                                <p className="text-base text-gray-400 leading-relaxed font-medium italic font-montserrat">{service.afterHireSteps[0]?.description}</p>
                             </div>
                             <div className="flex justify-center text-[#4F11BD]/20">
                                 <MdFastForward className="text-7xl opacity-50" />
                             </div>
                             <div className="text-center md:text-left">
-                                <h3 className="text-2xl font-bold mb-4 text-gray-900">{service.afterHireSteps[1]?.title}</h3>
-                                <p className="text-base text-gray-400 leading-relaxed font-medium italic">{service.afterHireSteps[1]?.description}</p>
+                                <h3 className="text-2xl font-bold mb-4 text-gray-900 font-montserrat">{service.afterHireSteps[1]?.title}</h3>
+                                <p className="text-base text-gray-400 leading-relaxed font-medium italic font-montserrat">{service.afterHireSteps[1]?.description}</p>
                             </div>
                         </div>
                     </div>
                 </section>
 
                 {/* Related Jobs Section */}
-                <section className="bg-[#4F11BD] text-white py-28">
+                <section className="bg-[#4F11BD] text-white py-28 font-montserrat">
                     <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
-                        <h2 className="text-4xl font-bold mb-20 tracking-tight">Related Jobs</h2>
+                        <h2 className="text-4xl font-bold mb-20 tracking-tight font-montserrat">Related Jobs</h2>
                         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-16 gap-y-12">
                             {[...service.relatedJobs,
                             { title: "Front-End Developer", slug: "#" },
@@ -267,7 +267,7 @@ export default async function SoftwareServiceDetailPage({ params }: PageProps) {
                                     href={job.slug.startsWith('#') ? '#' : `/services/software-development/${job.slug}`}
                                     className="flex justify-between items-center group"
                                 >
-                                    <span className="text-xl md:text-2xl font-bold group-hover:text-white/70 transition-colors">{job.title}</span>
+                                    <span className="text-xl md:text-2xl font-bold group-hover:text-white/70 transition-colors font-montserrat">{job.title}</span>
                                     <MdNorthEast className="text-xl opacity-50 group-hover:opacity-100 transition-all transform group-hover:translate-x-1 group-hover:-translate-y-1" />
                                 </Link>
                             ))}
@@ -276,17 +276,17 @@ export default async function SoftwareServiceDetailPage({ params }: PageProps) {
                 </section>
 
                 {/* Final CTA Section */}
-                <section className="bg-white py-36 text-center relative">
+                <section className="bg-white py-36 text-center relative font-montserrat">
                     <div className="max-w-[1200px] mx-auto px-6">
-                        <h2 className="text-4xl md:text-5xl font-bold mb-8 text-gray-900 tracking-tight leading-tight">
+                        <h2 className="text-4xl md:text-5xl font-bold mb-8 text-gray-900 tracking-tight leading-tight font-montserrat">
                             Build Your Dream<br />Team Effortlessly
                         </h2>
-                        <p className="text-gray-400 text-lg mb-12 max-w-2xl mx-auto font-medium leading-relaxed italic">
+                        <p className="text-gray-400 text-lg mb-12 max-w-2xl mx-auto font-medium leading-relaxed italic font-montserrat">
                             {service.ctaDescription}
                         </p>
                         <Link
                             href="https://wa.me/628888088877"
-                            className="bg-[#4F11BD] text-white px-12 py-5 rounded-2xl font-bold hover:bg-violet-800 transition-all duration-300 shadow-2xl shadow-violet-500/20 inline-block text-lg"
+                            className="bg-[#4F11BD] text-white px-12 py-5 rounded-2xl font-bold font-montserrat hover:bg-violet-800 transition-all duration-300 shadow-2xl shadow-violet-500/20 inline-block text-lg"
                         >
                             Hire a {service.roleName}
                         </Link>
