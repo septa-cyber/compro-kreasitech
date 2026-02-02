@@ -152,7 +152,6 @@ export default function Navbar() {
                                         <h4 className="font-bold text-sm mb-3 text-left whitespace-nowrap text-text-light">Produk</h4>
                                         <ul className="space-y-2 text-xs text-text-light-muted text-left whitespace-nowrap">
                                             <li><Link href="/products/hitalent" className="dropdown-item block py-1 text-text-light">HiTalent</Link></li>
-                                            <li><a href="#" className="dropdown-item block py-1 text-text-light">HiSales</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -282,7 +281,6 @@ export default function Navbar() {
                             <div className="bg-gray-50 p-4 rounded-lg mb-2">
                                 <ul className="space-y-2 text-xs text-text-light-muted">
                                     <li><Link href="/products/hitalent" className="block py-1 hover:text-primary">HiTalent</Link></li>
-                                    <li><a href="#" className="block py-1 hover:text-primary">HiSales</a></li>
                                 </ul>
                             </div>
                         </div>

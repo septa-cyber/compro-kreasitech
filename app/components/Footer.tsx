@@ -79,9 +79,6 @@ export default function Footer() {
                         <Link href="/products/hitalent" className="justify-start text-text-light text-sm font-medium font-montserrat hover:text-primary transition">
                             HiTalent
                         </Link>
-                        <a href="#" className="justify-start text-text-light text-sm font-medium font-montserrat hover:text-primary transition">
-                            IDAS SFA
-                        </a>
                     </div>
                     <div className="flex flex-col justify-start items-start gap-6">
                         <div className="justify-start text-violet-600 text-xs font-bold uppercase font-montserrat">

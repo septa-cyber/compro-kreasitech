@@ -174,18 +174,36 @@ export default function Hero() {
             </div>
 
             {/* Mobile Marquee Section (< MD) */}
-            <div className="w-full md:hidden mt-8 overflow-hidden relative">
+            <div className="w-full md:hidden mt-8 overflow-hidden relative marquee-container">
                 <div
-                    className="flex overflow-hidden"
+                    className="flex overflow-hidden relative"
                     onMouseEnter={() => setIsBadgesHovered(true)}
                     onMouseLeave={() => setIsBadgesHovered(false)}
                 >
+                    {/* Container 1 */}
                     <div
-                        className="flex gap-4 mx-2 w-max flex-shrink-0 animate-marquee"
+                        className="flex w-max flex-shrink-0 animate-scroll-left"
                         style={{ animationPlayState: isBadgesHovered ? 'paused' : 'running' }}
                     >
-                        {[...badgesData, ...badgesData, ...badgesData, ...badgesData].map((badge, index) => (
-                            <div key={index} className="p-2 bg-white/95 backdrop-blur-md rounded-lg flex justify-start items-center gap-4 border border-gray-100">
+                        {[...badgesData, ...badgesData].map((badge, index) => (
+                            <div key={`badge-1-${index}`} className="mx-2 p-2 bg-white/95 backdrop-blur-md rounded-lg flex justify-start items-center gap-4 border border-gray-100 w-[200px]">
+                                <div className={`w-8 h-8 relative flex items-center justify-center rounded-full ${badge.bg}`}>
+                                    <Image src={badge.icon} alt={badge.label} width={24} height={24} className="w-6 h-6" />
+                                </div>
+                                <div className="inline-flex flex-col justify-start items-start gap-1">
+                                    <div className="text-text-light text-sm font-medium font-montserrat">{badge.count}</div>
+                                    <div className="text-gray-500 text-[10px] font-normal font-montserrat uppercase">{badge.label}</div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                    {/* Container 2 (Duplicate) */}
+                    <div
+                        className="flex w-max flex-shrink-0 animate-scroll-left"
+                        style={{ animationPlayState: isBadgesHovered ? 'paused' : 'running' }}
+                    >
+                        {[...badgesData, ...badgesData].map((badge, index) => (
+                            <div key={`badge-2-${index}`} className="mx-2 p-2 bg-white/95 backdrop-blur-md rounded-lg flex justify-start items-center gap-4 border border-gray-100 w-[200px]">
                                 <div className={`w-8 h-8 relative flex items-center justify-center rounded-full ${badge.bg}`}>
                                     <Image src={badge.icon} alt={badge.label} width={24} height={24} className="w-6 h-6" />
                                 </div>
@@ -207,20 +225,43 @@ export default function Hero() {
             </div>
 
             {/* Trusted By Marquee */}
-            <div className="relative">
+            <div className="relative marquee-container">
                 <div
-                    className="w-full overflow-hidden flex items-center px-4 pb-12 z-10"
+                    className="w-full overflow-hidden flex items-center pb-12 z-10"
                     onMouseEnter={() => setIsTrustedByHovered(true)}
                     onMouseLeave={() => setIsTrustedByHovered(false)}
                 >
+                    {/* Container 1 */}
                     <div
-                        className="flex space-x-12 shrink-0 animate-marquee-slow items-center"
+                        className="flex shrink-0 animate-scroll-left-slow items-center"
                         style={{ animationPlayState: isTrustedByHovered ? 'paused' : 'running' }}
                     >
-                        {/* Duplicate content for marquee effect */}
-                        {[...partnerLogos, ...partnerLogos, ...partnerLogos, ...partnerLogos].map((logo, index) => (
-                            <div key={index} className="flex items-center gap-2 grayscale hover:grayscale-0 opacity-70 hover:opacity-100 transition duration-500">
-                                <Image src={logo} alt="Partner Logo" width={120} height={48} className="h-10 w-auto object-contain" />
+                        {[...partnerLogos].map((logo, index) => (
+                            <div key={`logo-1-${index}`} className="flex items-center justify-center mx-8">
+                                <Image
+                                    src={logo}
+                                    alt="Partner Logo"
+                                    width={200}
+                                    height={50}
+                                    className="h-[50px] w-auto object-contain"
+                                />
+                            </div>
+                        ))}
+                    </div>
+                    {/* Container 2 (Duplicate) */}
+                    <div
+                        className="flex shrink-0 animate-scroll-left-slow items-center"
+                        style={{ animationPlayState: isTrustedByHovered ? 'paused' : 'running' }}
+                    >
+                        {[...partnerLogos].map((logo, index) => (
+                            <div key={`logo-2-${index}`} className="flex items-center justify-center mx-8">
+                                <Image
+                                    src={logo}
+                                    alt="Partner Logo"
+                                    width={200}
+                                    height={50}
+                                    className="h-[50px] w-auto object-contain"
+                                />
                             </div>
                         ))}
                     </div>

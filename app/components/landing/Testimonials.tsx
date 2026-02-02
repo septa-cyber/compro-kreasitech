@@ -64,47 +64,72 @@ export default function Testimonials() {
                 </h2>
             </div>
 
-            <div className="relative">
-                {/* Single marquee container with all testimonials (original + duplicate) */}
+            <div className="relative marquee-container">
                 <div
-                    className="flex gap-4 md:gap-8 overflow-hidden"
+                    className="flex overflow-hidden"
                     onMouseEnter={() => setIsTestimonialHovered(true)}
                     onMouseLeave={() => setIsTestimonialHovered(false)}
                 >
+                    {/* Container 1 */}
                     <div
-                        className="flex gap-4 md:gap-8 pr-4 md:pr-8 w-max flex-shrink-0 animate-marquee"
+                        className="flex w-max flex-shrink-0 animate-scroll-left"
                         style={{ animationPlayState: isTestimonialHovered ? 'paused' : 'running' }}
                     >
-                        {/* Auto-clone: Original + Duplicate items for seamless loop */}
-                        {[...testimonialItems, ...testimonialItems].map((item, index) => {
-                            const isOriginal = index < testimonialItems.length;
-
-                            return (
-                                <div
-                                    key={`testimonial-${item.id}-${index}`}
-                                    className="group flex-shrink-0 w-72 md:w-96 h-auto md:h-[600px] p-4 md:p-8 bg-white hover:bg-violet-800 border border-gray-300 hover:border-violet-800 flex flex-col justify-start items-start gap-3 md:gap-6 transition-all duration-300"
-                                    aria-hidden={!isOriginal}
-                                >
-                                    <div className="self-stretch inline-flex justify-start items-center gap-3 md:gap-6">
-                                        <img className="w-12 h-12" src={item.avatar} alt={item.name} />
-                                        <div className="flex-1 inline-flex flex-col justify-start items-start gap-2">
-                                            <div className="self-stretch justify-start text-text-light group-hover:text-white text-base md:text-xl font-medium font-montserrat transition-colors duration-300">
-                                                {item.name}
-                                            </div>
-                                            <div className="self-stretch justify-start text-text-light group-hover:text-white text-xs font-normal font-montserrat transition-colors duration-300">
-                                                {item.role}
-                                            </div>
+                        {[...testimonialItems].map((item, index) => (
+                            <div
+                                key={`testimonial-1-${item.id}-${index}`}
+                                className="group mx-2 md:mx-4 flex-shrink-0 w-72 md:w-96 h-auto md:h-[600px] p-4 md:p-8 bg-white hover:bg-violet-800 border border-gray-300 hover:border-violet-800 flex flex-col justify-start items-start gap-3 md:gap-6 transition-all duration-300"
+                            >
+                                <div className="self-stretch inline-flex justify-start items-center gap-3 md:gap-6">
+                                    <img className="w-12 h-12" src={item.avatar} alt={item.name} />
+                                    <div className="flex-1 inline-flex flex-col justify-start items-start gap-2">
+                                        <div className="self-stretch justify-start text-text-light group-hover:text-white text-base md:text-xl font-medium font-montserrat transition-colors duration-300">
+                                            {item.name}
+                                        </div>
+                                        <div className="self-stretch justify-start text-text-light group-hover:text-white text-xs font-normal font-montserrat transition-colors duration-300">
+                                            {item.role}
                                         </div>
                                     </div>
-                                    <div className="self-stretch justify-start text-text-light group-hover:text-white text-base md:text-xl font-light font-montserrat transition-colors duration-300">
-                                        "{item.quote}"
-                                    </div>
-                                    <div className="self-stretch justify-start text-gray-400 group-hover:text-white text-xs font-normal font-montserrat mt-auto transition-colors duration-300">
-                                        {item.company}
+                                </div>
+                                <div className="self-stretch justify-start text-text-light group-hover:text-white text-base md:text-xl font-light font-montserrat transition-colors duration-300">
+                                    "{item.quote}"
+                                </div>
+                                <div className="self-stretch justify-start text-gray-400 group-hover:text-white text-xs font-normal font-montserrat mt-auto transition-colors duration-300">
+                                    {item.company}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Container 2 (Duplicate) */}
+                    <div
+                        className="flex w-max flex-shrink-0 animate-scroll-left"
+                        style={{ animationPlayState: isTestimonialHovered ? 'paused' : 'running' }}
+                    >
+                        {[...testimonialItems].map((item, index) => (
+                            <div
+                                key={`testimonial-2-${item.id}-${index}`}
+                                className="group mx-2 md:mx-4 flex-shrink-0 w-72 md:w-96 h-auto md:h-[600px] p-4 md:p-8 bg-white hover:bg-violet-800 border border-gray-300 hover:border-violet-800 flex flex-col justify-start items-start gap-3 md:gap-6 transition-all duration-300"
+                            >
+                                <div className="self-stretch inline-flex justify-start items-center gap-3 md:gap-6">
+                                    <img className="w-12 h-12" src={item.avatar} alt={item.name} />
+                                    <div className="flex-1 inline-flex flex-col justify-start items-start gap-2">
+                                        <div className="self-stretch justify-start text-text-light group-hover:text-white text-base md:text-xl font-medium font-montserrat transition-colors duration-300">
+                                            {item.name}
+                                        </div>
+                                        <div className="self-stretch justify-start text-text-light group-hover:text-white text-xs font-normal font-montserrat transition-colors duration-300">
+                                            {item.role}
+                                        </div>
                                     </div>
                                 </div>
-                            );
-                        })}
+                                <div className="self-stretch justify-start text-text-light group-hover:text-white text-base md:text-xl font-light font-montserrat transition-colors duration-300">
+                                    "{item.quote}"
+                                </div>
+                                <div className="self-stretch justify-start text-gray-400 group-hover:text-white text-xs font-normal font-montserrat mt-auto transition-colors duration-300">
+                                    {item.company}
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>

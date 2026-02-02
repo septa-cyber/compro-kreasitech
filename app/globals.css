@@ -143,57 +143,19 @@ body {
   }
 }
 
-@keyframes marquee {
-  0% {
-    transform: translateX(0);
-  }
-
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-@keyframes marquee-reverse {
-  0% {
-    transform: translateX(-50%);
-  }
-
-  100% {
-    transform: translateX(0);
-  }
-}
-
-@keyframes scroll-slow {
-  0% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-20px);
-  }
-
-  100% {
-    transform: translateY(0);
-  }
-}
-
-.animate-scroll-slow {
-  animation: scroll-slow 8s ease-in-out infinite;
-}
-
-@keyframes scroll-up {
+@keyframes scroll-left {
   0% {
     transform: translate3d(0, 0, 0);
   }
 
   100% {
-    transform: translate3d(0, -50%, 0);
+    transform: translate3d(-100%, 0, 0);
   }
 }
 
-@keyframes scroll-down {
+@keyframes scroll-right {
   0% {
-    transform: translate3d(0, -50%, 0);
+    transform: translate3d(-100%, 0, 0);
   }
 
   100% {
@@ -201,62 +163,70 @@ body {
   }
 }
 
-.animate-scroll-up {
-  animation: scroll-up 30s linear infinite;
+.animate-scroll-left {
+  animation: scroll-left 50s linear infinite;
   will-change: transform;
   backface-visibility: hidden;
   transform-style: preserve-3d;
-  perspective: 1000px;
 }
 
-.animate-scroll-down {
-  animation: scroll-down 30s linear infinite;
+.animate-scroll-right {
+  animation: scroll-right 50s linear infinite;
   will-change: transform;
   backface-visibility: hidden;
   transform-style: preserve-3d;
-  perspective: 1000px;
 }
 
-.animate-float-medium {
-  animation: float-medium 5s ease-in-out infinite;
+/* Slower variants */
+.animate-scroll-left-slow {
+  animation: scroll-left 80s linear infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
 }
 
-.animate-float-fast {
-  animation: float-fast 4s ease-in-out infinite;
+.animate-scroll-right-slow {
+  animation: scroll-right 80s linear infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
 }
 
 .animate-marquee {
-  animation: marquee 30s linear infinite;
+  animation: marquee 40s linear infinite;
   will-change: transform;
   backface-visibility: hidden;
   transform-style: preserve-3d;
 }
 
 .animate-marquee-slow {
-  animation: marquee 50s linear infinite;
+  animation: marquee 80s linear infinite;
   will-change: transform;
   backface-visibility: hidden;
   transform-style: preserve-3d;
 }
 
 .animate-marquee-reverse {
-  animation: marquee-reverse 30s linear infinite;
+  animation: marquee-reverse 40s linear infinite;
   will-change: transform;
   backface-visibility: hidden;
   transform-style: preserve-3d;
 }
 
 .animate-marquee-reverse-slow {
-  animation: marquee-reverse 50s linear infinite;
+  animation: marquee-reverse 80s linear infinite;
   will-change: transform;
   backface-visibility: hidden;
   transform-style: preserve-3d;
 }
 
 /* Pause marquee animation on hover */
-/* Pause marquee animation on hover */
 .marquee-container:hover .animate-marquee,
-.marquee-container:hover .animate-marquee-reverse {
+.marquee-container:hover .animate-marquee-reverse,
+.marquee-container:hover .animate-scroll-left,
+.marquee-container:hover .animate-scroll-right,
+.marquee-container:hover .animate-scroll-left-slow,
+.marquee-container:hover .animate-scroll-right-slow {
   animation-play-state: paused;
 }
 

@@ -37,29 +37,59 @@ export default function Portfolio() {
             </div>
 
             {/* Horizontal Scrolling Portfolio Cards with Marquee */}
-            <div className="relative">
+            <div className="relative marquee-container">
                 <div
                     className="flex overflow-hidden"
                     onMouseEnter={() => setIsPortfolioHovered(true)}
                     onMouseLeave={() => setIsPortfolioHovered(false)}
                 >
-                    {/* Single marquee container with all cards (original + duplicate) */}
+                    {/* Container 1 (Right Scroll) */}
                     <div
-                        className="flex gap-4 md:gap-8 pr-4 md:pr-8 w-max flex-shrink-0 animate-marquee-reverse"
+                        className="flex w-max flex-shrink-0 animate-scroll-right"
                         style={{ animationPlayState: isPortfolioHovered ? 'paused' : 'running' }}
                     >
-                        {/* Auto-clone: Original + Duplicate items for seamless loop */}
-                        {[...portfolioItems, ...portfolioItems].map((item, index) => {
-                            const isOriginal = index < portfolioItems.length;
+                        {[...portfolioItems].map((item, index) => {
                             const sizeClasses = item.size === "large"
                                 ? "w-80 md:w-[600px]"
                                 : "w-64 md:w-96";
 
                             return (
                                 <div
-                                    key={`portfolio-${item.id}-${index}`}
-                                    className="group flex-shrink-0 flex flex-col gap-4 md:gap-8"
-                                    aria-hidden={!isOriginal}
+                                    key={`portfolio-1-${item.id}-${index}`}
+                                    className="group mx-2 md:mx-4 flex-shrink-0 flex flex-col gap-4 md:gap-8"
+                                >
+                                    <img
+                                        className={`${sizeClasses} h-64 md:h-96 object-cover`}
+                                        src={item.image}
+                                        alt={item.title}
+                                    />
+                                    <div className="flex items-center gap-2">
+                                        <h3 className="text-base md:text-xl font-medium font-montserrat text-white">
+                                            {item.title}
+                                        </h3>
+                                        <span className="text-xs font-normal font-montserrat text-white">
+                                            {item.subtitle}
+                                        </span>
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
+
+                    {/* Container 2 (Duplicate for Right Scroll) */}
+                    <div
+                        className="flex w-max flex-shrink-0 animate-scroll-right"
+                        style={{ animationPlayState: isPortfolioHovered ? 'paused' : 'running' }}
+                    >
+                        {[...portfolioItems].map((item, index) => {
+                            const sizeClasses = item.size === "large"
+                                ? "w-80 md:w-[600px]"
+                                : "w-64 md:w-96";
+
+                            return (
+                                <div
+                                    key={`portfolio-2-${item.id}-${index}`}
+                                    className="group mx-2 md:mx-4 flex-shrink-0 flex flex-col gap-4 md:gap-8"
                                 >
                                     <img
                                         className={`${sizeClasses} h-64 md:h-96 object-cover`}

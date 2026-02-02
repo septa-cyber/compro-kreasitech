@@ -20,8 +20,8 @@ export default function BlogHero({ featuredPost }: BlogHeroProps) {
                 ]} />
                 <div className="flex flex-col gap-8">
                     <h1 className="text-4xl sm:text-5xl lg:text-7xl font-medium font-montserrat leading-tight max-w-6xl text-text-light">
-                        Jelajahi <br />
-                        <span className="font-semibold text-violet-600">Karya Terbaik</span> Kami
+                        Baca Berita <br />
+                        <span className="font-semibold text-violet-600">Terbaru & Terkini</span>
                     </h1>
                     <p className="text-sm sm:text-base text-gray-500 font-montserrat">
                         Berita industri terbaru, wawancara, teknologi, dan sumber daya terkini.
