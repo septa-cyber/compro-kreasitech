@@ -2,7 +2,7 @@
 
 import React from "react";
 import BlogCard from "./BlogCard";
-import { BlogPost } from "@/app/data/blogData";
+import { BlogPost } from "@/data/blogData";
 
 interface RelatedArticlesProps {
     posts: BlogPost[];

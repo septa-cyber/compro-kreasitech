@@ -1,13 +1,13 @@
 import React from "react";
-import Navbar from "@/app/components/Navbar";
-import Footer from "@/app/components/Footer";
-import Breadcrumb from "@/app/components/ui/Breadcrumb";
-import WhatsAppButton from "@/app/components/landing/WhatsAppButton";
-import DigitalMarketingHero from "@/app/components/services/digital-marketing/DigitalMarketingHero";
-import ServicesGrid from "@/app/components/services/digital-marketing/ServicesGrid";
-import ProcessSection from "@/app/components/services/digital-marketing/ProcessSection";
-import OutcomeSection from "@/app/components/services/digital-marketing/OutcomeSection";
-import DigitalMarketingCTA from "@/app/components/services/digital-marketing/DigitalMarketingCTA";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import Breadcrumb from "@/components/ui/Breadcrumb";
+import WhatsAppButton from "@/components/landing/WhatsAppButton";
+import DigitalMarketingHero from "@/components/services/digital-marketing/DigitalMarketingHero";
+import ServicesGrid from "@/components/services/digital-marketing/ServicesGrid";
+import ProcessSection from "@/components/services/digital-marketing/ProcessSection";
+import OutcomeSection from "@/components/services/digital-marketing/OutcomeSection";
+import DigitalMarketingCTA from "@/components/services/digital-marketing/DigitalMarketingCTA";
 
 export const metadata = {
     title: "Digital Marketing - Kreasitech",

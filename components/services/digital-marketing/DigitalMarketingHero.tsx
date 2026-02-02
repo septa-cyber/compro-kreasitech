@@ -65,7 +65,7 @@ export default function DigitalMarketingHero() {
                         <div className="flex flex-col sm:flex-row justify-center lg:justify-start items-center gap-4 sm:gap-8 w-full">
                             <a
                                 href="#"
-                                className="w-full sm:w-auto px-8 py-4 bg-violet-600 rounded-lg flex justify-center items-center gap-2.5 hover:bg-violet-700 transition-all duration-300 shadow-lg shadow-violet-600/30"
+                                className="w-full sm:w-auto px-8 py-4 bg-violet-600 rounded-lg flex justify-center items-center gap-2.5 hover:bg-violet-700 transition-all duration-300"
                             >
                                 <span className="text-gray-100 text-base font-medium font-montserrat">Hubungi Kami</span>
                             </a>

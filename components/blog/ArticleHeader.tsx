@@ -1,5 +1,5 @@
 import React from "react";
-import { BlogPost } from "@/app/data/blogData";
+import { BlogPost } from "@/data/blogData";
 
 interface ArticleHeaderProps {
     post: BlogPost;

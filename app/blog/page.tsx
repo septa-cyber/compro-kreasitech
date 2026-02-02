@@ -1,16 +1,16 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
-import Navbar from "@/app/components/Navbar";
-import Footer from "@/app/components/Footer";
-import WhatsAppButton from "@/app/components/landing/WhatsAppButton";
-import BlogHero from "@/app/components/blog/BlogHero";
-import BlogFilter from "@/app/components/blog/BlogFilter";
-import BlogList from "@/app/components/blog/BlogList";
-import BlogPagination from "@/app/components/blog/BlogPagination";
-import { blogPosts, categories } from "@/app/data/blogData";
-import BlogCTA from "@/app/components/blog/BlogCTA";
-import Breadcrumb from "../components/ui/Breadcrumb";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import WhatsAppButton from "@/components/landing/WhatsAppButton";
+import BlogHero from "@/components/blog/BlogHero";
+import BlogFilter from "@/components/blog/BlogFilter";
+import BlogList from "@/components/blog/BlogList";
+import BlogPagination from "@/components/blog/BlogPagination";
+import { blogPosts, categories } from "@/data/blogData";
+import BlogCTA from "@/components/blog/BlogCTA";
+import Breadcrumb from "@/components/ui/Breadcrumb";
 
 const POSTS_PER_PAGE = 6;
 

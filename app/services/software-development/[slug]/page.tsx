@@ -3,11 +3,11 @@ import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import Navbar from '@/app/components/Navbar';
-import Footer from '@/app/components/Footer';
-import WhatsAppButton from '@/app/components/landing/WhatsAppButton';
-import Breadcrumb from '@/app/components/ui/Breadcrumb';
-import { softwareDevelopmentServices } from '@/app/data/software-development-services';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
+import WhatsAppButton from '@/components/landing/WhatsAppButton';
+import Breadcrumb from '@/components/ui/Breadcrumb';
+import { softwareDevelopmentServices } from '@/data/software-development-services';
 import { FaArrowDown } from 'react-icons/fa6';
 import { MdNorthEast, MdFastForward, MdLocationOn } from 'react-icons/md';
 
@@ -71,53 +71,94 @@ export default async function SoftwareServiceDetailPage({ params }: PageProps) {
                                     className="text-5xl lg:text-7xl font-medium font-montserrat tracking-tight mb-6 text-gray-900 leading-[1.1]"
                                     dangerouslySetInnerHTML={{ __html: service.heroTitle }}
                                 />
-                                <p className="text-gray-600 text-lg mb-10 max-w-lg leading-relaxed font-montserrat">
+                                <p className="max-w-3xl mx-auto text-sm sm:text-base text-gray-500 font-montserrat mb-8">
                                     {service.heroDescription}
                                 </p>
                                 <div className="flex flex-col sm:flex-row gap-5 items-start sm:items-center">
                                     <Link
                                         href="https://wa.me/628888088877"
-                                        className="bg-[#4F11BD] text-white px-10 py-4 rounded-lg font-bold font-montserrat hover:bg-violet-700 transition-all duration-300 shadow-xl shadow-violet-500/20 inline-block text-center w-full sm:w-auto"
+                                        className="bg-[#7C3AED] text-white px-8 py-4 rounded-lg font-medium font-montserrat hover:bg-violet-700 transition-all duration-300 inline-block text-center w-full sm:w-auto"
                                     >
                                         Hire {service.roleName} Now
                                     </Link>
-                                    <span className="text-xs text-gray-400 font-semibold font-montserrat tracking-wide uppercase px-2">Free to interview, low-cost hiring</span>
+                                    <span className="text-xs text-gray-400 font-normal font-montserrat tracking-wide px-2 select-none">Free to interview, low-cost hiring</span>
                                 </div>
-                                <div className="mt-10 flex items-center text-gray-400 text-sm font-semibold font-montserrat hover:text-[#4F11BD] transition-colors cursor-pointer group w-fit">
+                                <div className="mt-10 flex items-center text-gray-900 text-sm font-medium font-montserrat cursor-pointer group w-fit select-none">
                                     Learn More
-                                    <FaArrowDown className="ml-2 text-xs transform group-hover:translate-y-1 transition-transform" />
+                                    <FaArrowDown className="ml-2 text-xs text-[#7C3AED] transform group-hover:translate-y-1 transition-transform" />
                                 </div>
                             </div>
 
-                            {/* Avatar Grid */}
-                            <div className="relative">
-                                <div className="grid grid-cols-4 gap-3 max-w-sm sm:max-w-md mx-auto lg:ml-auto">
-                                    {service.heroImages.map((img, idx) => {
-                                        const positions = [
-                                            "col-start-3", "col-start-4", "col-start-2",
-                                            "col-start-3", "col-start-4", "col-start-1",
-                                            "col-start-2", "col-start-3", "col-start-4"
-                                        ];
-                                        const colors = [
-                                            "bg-[#FFD4B2]", "bg-[#FFB7B7]", "bg-[#B4E4FF]",
-                                            "bg-[#D2D2FF]", "bg-[#C4FFC4]", "bg-[#BAE5E5]",
-                                            "bg-[#FFCCCC]", "bg-[#FFE0B2]", "bg-[#E2F0CB]"
-                                        ];
-                                        return (
-                                            <div
-                                                key={idx}
-                                                className={`${positions[idx % positions.length]} col-span-1 aspect-square rounded-2xl overflow-hidden ${colors[idx % colors.length]} shadow-sm`}
-                                            >
-                                                <Image
-                                                    alt={`Expert ${idx + 1}`}
-                                                    className="w-full h-full object-cover mix-blend-multiply opacity-90 transition-transform duration-700 ease-out grayscale hover:grayscale-0"
-                                                    src={img}
-                                                    width={100}
-                                                    height={100}
-                                                />
-                                            </div>
-                                        );
-                                    })}
+                            {/* Avatar Grid - Stairstep Layout */}
+                            <div className="relative flex justify-center lg:justify-end">
+                                <div className="grid grid-cols-3 gap-4 w-fit">
+                                    {/* Row 1: 1 Image (Rightmost) */}
+                                    <div className="col-start-3 row-start-1 aspect-square w-24 sm:w-32 rounded-none overflow-hidden bg-[#FFD4B2]">
+                                        <Image
+                                            alt="Expert 1"
+                                            className="w-full h-full object-cover mix-blend-multiply opacity-90 grayscale hover:grayscale-0 transition-all duration-500"
+                                            src={service.heroImages[0] || 'https://placehold.co/400x400/png'}
+                                            width={128}
+                                            height={128}
+                                        />
+                                    </div>
+
+                                    {/* Row 2: 2 Images (Middle & Right) */}
+                                    <div className="col-start-2 row-start-2 aspect-square w-24 sm:w-32 rounded-none overflow-hidden bg-[#B4E4FF]">
+                                        <Image
+                                            alt="Expert 2"
+                                            className="w-full h-full object-cover mix-blend-multiply opacity-90 grayscale hover:grayscale-0 transition-all duration-500"
+                                            src={service.heroImages[1] || 'https://placehold.co/400x400/png'}
+                                            width={128}
+                                            height={128}
+                                        />
+                                    </div>
+                                    <div className="col-start-3 row-start-2 aspect-square w-24 sm:w-32 rounded-none overflow-hidden bg-[#FFB7B7]">
+                                        <Image
+                                            alt="Expert 3"
+                                            className="w-full h-full object-cover mix-blend-multiply opacity-90 grayscale hover:grayscale-0 transition-all duration-500"
+                                            src={service.heroImages[2] || 'https://placehold.co/400x400/png'}
+                                            width={128}
+                                            height={128}
+                                        />
+                                    </div>
+
+                                    {/* Row 3: 3 Images (Full Row) */}
+                                    <div className="col-start-1 row-start-3 aspect-square w-24 sm:w-32 rounded-none overflow-hidden bg-[#BAE5E5]">
+                                        <Image
+                                            alt="Expert 4"
+                                            className="w-full h-full object-cover mix-blend-multiply opacity-90 grayscale hover:grayscale-0 transition-all duration-500"
+                                            src={service.heroImages[3] || 'https://placehold.co/400x400/png'}
+                                            width={128}
+                                            height={128}
+                                        />
+                                    </div>
+                                    <div className="col-start-2 row-start-3 aspect-square w-24 sm:w-32 rounded-none overflow-hidden bg-[#E2F0CB]">
+                                        <Image
+                                            alt="Expert 5"
+                                            className="w-full h-full object-cover mix-blend-multiply opacity-90 grayscale hover:grayscale-0 transition-all duration-500"
+                                            src={service.heroImages[4] || 'https://placehold.co/400x400/png'}
+                                            width={128}
+                                            height={128}
+                                        />
+                                    </div>
+                                    <div className="col-start-3 row-start-3 aspect-square w-24 sm:w-32 rounded-none overflow-hidden bg-[#ffff00]">
+                                        <Image
+                                            alt="Expert 6"
+                                            className="w-full h-full object-cover mix-blend-multiply opacity-90 grayscale hover:grayscale-0 transition-all duration-500"
+                                            src={service.heroImages[5] || 'https://placehold.co/400x400/png'}
+                                            width={128}
+                                            height={128}
+                                        />
+                                    </div>
+
+                                    {/* Row 4: 1 Image (Leftmost) - As per some stairstep designs, or stop at 3 rows? 
+                                        User image shows 3 rows pyramid:
+                                          [ ]
+                                        [ ][ ]
+                                      [ ][ ][ ]
+                                      Let's stick to the 1-2-3 structure clearly visible in the reference.
+                                     */}
                                 </div>
                             </div>
                         </div>

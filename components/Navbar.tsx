@@ -81,7 +81,7 @@ export default function Navbar() {
                     <div className="hidden lg:flex flex-1 justify-center items-center gap-2 xl:gap-8">
                         <div className={`flex items-center gap-3 xl:gap-8 text-[10px] xl:text-xs font-medium font-montserrat transition-colors duration-300`}>
                             {/* Find a Talent - Mega Menu Trigger */}
-                            <div className="group h-full flex items-center">
+                            <div className="group relative h-full flex items-center">
                                 <button
                                     onClick={() => toggleDesktopDropdown('layanan')}
                                     className={`nav-link flex items-center gap-2 hover:text-primary transition py-6 whitespace-nowrap ${isDarkBg ? 'text-white' : 'text-text-light'}`}
@@ -89,50 +89,16 @@ export default function Navbar() {
                                     Layanan <i className={`fas fa-chevron-down text-[10px] group-hover:rotate-180 transition-transform duration-300 ${isDarkBg ? 'text-white' : 'text-text-light'} ${activeDesktopDropdown === 'layanan' ? 'rotate-180' : ''}`}></i>
                                 </button>
 
-                                {/* Mega Menu Dropdown */}
-                                <div className={`absolute top-full left-0 w-full pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 -z-10 ${activeDesktopDropdown === 'layanan' ? '!opacity-100 !visible !translate-y-0' : ''}`}>
-                                    <div className="bg-white/95 backdrop-blur-md border-t border-gray-100 shadow-xl rounded-2xl overflow-hidden text-text-light">
-                                        <div className="max-w-[1400px] mx-auto px-8 py-8 grid grid-cols-4 gap-8">
-                                            <div>
-                                                <h4 className="font-bold text-sm mb-4 text-text-light">Academy</h4>
-                                                <ul className="space-y-3 text-xs text-text-light-muted">
-                                                    <li><a href="#" className="dropdown-item block pb-1 text-text-light">Impact Academy</a></li>
-                                                </ul>
-                                            </div>
-                                            <div>
-                                                <h4 className="font-bold text-sm mb-4 text-text-light">Talent As a Service</h4>
-                                                <ul className="space-y-3 text-xs text-text-light-muted">
-                                                    <li><a href="#" className="dropdown-item block pb-1 text-text-light">Head Hunting</a></li>
-                                                    <li><a href="#" className="dropdown-item block pb-1 text-text-light">Staffing</a></li>
-                                                    <li><a href="#" className="dropdown-item block pb-1 text-text-light">Internship</a></li>
-                                                    <li><a href="#" className="dropdown-item block pb-1 text-text-light">Inclusive Talent</a></li>
-                                                </ul>
-                                            </div>
-                                            <div>
-                                                <Link href="/services/digital-marketing">
-                                                    <h4 className="font-bold text-sm mb-4 text-text-light hover:text-violet-600 transition cursor-pointer">Digital Marketing</h4>
-                                                </Link>
-                                                <ul className="space-y-3 text-xs text-text-light-muted">
-                                                    <li><Link href="/services/digital-marketing/ads" className="dropdown-item block pb-1 text-text-light">Google Ads</Link></li>
-                                                    <li><Link href="/services/digital-marketing/backlink" className="dropdown-item block pb-1 text-text-light">Backlink</Link></li>
-                                                    <li><Link href="/services/digital-marketing/seo" className="dropdown-item block pb-1 text-text-light">Search Engine Optimization</Link></li>
-                                                    <li><Link href="/services/digital-marketing/press-release" className="dropdown-item block pb-1 text-text-light">Press Release</Link></li>
-                                                </ul>
-                                            </div>
-                                            <div>
-                                                <Link href="/services/software-development">
-                                                    <h4 className="font-bold text-sm mb-4 text-text-light hover:text-violet-600 transition cursor-pointer">Software Development</h4>
-                                                </Link>
-                                                <ul className="space-y-3 text-xs text-text-light-muted">
-                                                    <li><Link href="/services/software-development/specifications-and-wireframe" className="dropdown-item block pb-1 text-text-light">Specifications & Wireframe</Link></li>
-                                                    <li><Link href="/services/software-development/ui-ux-design" className="dropdown-item block pb-1 text-text-light">UI/UX Design</Link></li>
-                                                    <li><Link href="/services/software-development/website-development" className="dropdown-item block pb-1 text-text-light">Website Development</Link></li>
-                                                    <li><Link href="/services/software-development/mobile-app-development" className="dropdown-item block pb-1 text-text-light">Mobile App Development</Link></li>
-                                                    <li><Link href="/services/software-development/mvp-development" className="dropdown-item block pb-1 text-text-light">MVP Development</Link></li>
-                                                    <li><Link href="/services/software-development/custom-software-development" className="dropdown-item block pb-1 text-text-light">Custom Software Development</Link></li>
-                                                </ul>
-                                            </div>
-                                        </div>
+                                {/* Mega Menu Dropdown - Now Simplified */}
+                                <div className={`absolute top-full left-1/2 -translate-x-1/2 w-max pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 -z-10 ${activeDesktopDropdown === 'layanan' ? '!opacity-100 !visible !translate-y-0' : ''}`}>
+                                    <div className="bg-white/95 backdrop-blur-md border border-gray-100 shadow-xl rounded-2xl overflow-hidden p-5 text-text-light">
+                                        <h4 className="font-bold text-sm mb-3 text-left whitespace-nowrap text-text-light">Layanan</h4>
+                                        <ul className="space-y-2 text-xs text-text-light-muted text-left whitespace-nowrap">
+                                            <li><a href="#" className="dropdown-item block py-1 text-text-light">Academy</a></li>
+                                            <li><a href="#" className="dropdown-item block py-1 text-text-light">Talent As a Service</a></li>
+                                            <li><Link href="/services/digital-marketing" className="dropdown-item block py-1 text-text-light">Digital Marketing</Link></li>
+                                            <li><Link href="/services/software-development" className="dropdown-item block py-1 text-text-light">Software Development</Link></li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
@@ -222,47 +188,14 @@ export default function Navbar() {
                             Layanan
                             <i className={`fas fa-chevron-down text-[10px] transition-transform duration-300 ${activeMobileDropdown === "layanan" ? "rotate-180" : ""}`}></i>
                         </button>
-                        <div className={`overflow-hidden transition-all duration-300 ${activeMobileDropdown === "layanan" ? "max-h-[1200px] opacity-100" : "max-h-0 opacity-0"}`}>
+                        <div className={`overflow-hidden transition-all duration-300 ${activeMobileDropdown === "layanan" ? "max-h-[300px] opacity-100" : "max-h-0 opacity-0"}`}>
                             <div className="bg-gray-50 p-4 space-y-6 rounded-lg mb-2">
-                                <div>
-                                    <h4 className="font-bold text-sm mb-3">Academy</h4>
-                                    <ul className="space-y-2 text-xs text-text-light-muted">
-                                        <li><a href="#" className="block py-1 hover:text-primary">Impact Academy</a></li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <h4 className="font-bold text-sm mb-3">Talent As a Service</h4>
-                                    <ul className="space-y-2 text-xs text-text-light-muted">
-                                        <li><a href="#" className="block py-1 hover:text-primary">Head Hunting</a></li>
-                                        <li><a href="#" className="block py-1 hover:text-primary">Staffing</a></li>
-                                        <li><a href="#" className="block py-1 hover:text-primary">Internship</a></li>
-                                        <li><a href="#" className="block py-1 hover:text-primary">Inclusive Talent</a></li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <Link href="/services/digital-marketing">
-                                        <h4 className="font-bold text-sm mb-3 hover:text-violet-600 transition cursor-pointer">Digital Marketing</h4>
-                                    </Link>
-                                    <ul className="space-y-2 text-xs text-text-light-muted">
-                                        <li><Link href="/services/digital-marketing/ads" className="block py-1 hover:text-primary">Google Ads</Link></li>
-                                        <li><Link href="/services/digital-marketing/backlink" className="block py-1 hover:text-primary">Backlink</Link></li>
-                                        <li><Link href="/services/digital-marketing/seo" className="block py-1 hover:text-primary">Search Engine Optimization</Link></li>
-                                        <li><Link href="/services/digital-marketing/press-release" className="block py-1 hover:text-primary">Press Release</Link></li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <Link href="/services/software-development">
-                                        <h4 className="font-bold text-sm mb-3 hover:text-violet-600 transition cursor-pointer">Software Development</h4>
-                                    </Link>
-                                    <ul className="space-y-2 text-xs text-text-light-muted">
-                                        <li><Link href="/services/software-development/specifications-and-wireframe" className="block py-1 hover:text-primary">Specifications & Wireframe</Link></li>
-                                        <li><Link href="/services/software-development/ui-ux-design" className="block py-1 hover:text-primary">UI/UX Design</Link></li>
-                                        <li><Link href="/services/software-development/website-development" className="block py-1 hover:text-primary">Website Development</Link></li>
-                                        <li><Link href="/services/software-development/mobile-app-development" className="block py-1 hover:text-primary">Mobile App Development</Link></li>
-                                        <li><Link href="/services/software-development/mvp-development" className="block py-1 hover:text-primary">MVP Development</Link></li>
-                                        <li><Link href="/services/software-development/custom-software-development" className="block py-1 hover:text-primary">Custom Software Development</Link></li>
-                                    </ul>
-                                </div>
+                                <ul className="space-y-2 text-xs text-text-light-muted">
+                                    <li><a href="#" className="block py-1 hover:text-primary">Academy</a></li>
+                                    <li><a href="#" className="block py-1 hover:text-primary">Talent As a Service</a></li>
+                                    <li><Link href="/services/digital-marketing" className="block py-1 hover:text-primary">Digital Marketing</Link></li>
+                                    <li><Link href="/services/software-development" className="block py-1 hover:text-primary">Software Development</Link></li>
+                                </ul>
                             </div>
                         </div>
                     </div>

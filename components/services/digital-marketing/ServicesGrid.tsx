@@ -2,7 +2,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { digitalMarketingServices } from "@/app/data/digital-marketing-services";
+import { digitalMarketingServices } from "@/data/digital-marketing-services";
 
 export default function ServicesGrid() {
     return (

@@ -1,12 +1,12 @@
 import React from "react";
-import Navbar from "@/app/components/Navbar";
-import Footer from "@/app/components/Footer";
-import PortfolioHero from "@/app/components/portfolio/PortfolioHero";
-import FeaturedShowcase from "@/app/components/portfolio/FeaturedShowcase";
-import NewestProjects from "@/app/components/portfolio/NewestProjects";
-import IdeaCTA from "@/app/components/portfolio/IdeaCTA";
-import PortfolioTestimonials from "@/app/components/portfolio/PortfolioTestimonials";
-import WorkCTA from "@/app/components/portfolio/WorkCTA";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import PortfolioHero from "@/components/portfolio/PortfolioHero";
+import FeaturedShowcase from "@/components/portfolio/FeaturedShowcase";
+import NewestProjects from "@/components/portfolio/NewestProjects";
+import IdeaCTA from "@/components/portfolio/IdeaCTA";
+import PortfolioTestimonials from "@/components/portfolio/PortfolioTestimonials";
+import WorkCTA from "@/components/portfolio/WorkCTA";
 
 export default function PortfolioPage() {
     return (

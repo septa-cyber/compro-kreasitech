@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { BlogPost } from "@/app/data/blogData";
+import { BlogPost } from "@/data/blogData";
 
 interface ArticleMetaProps {
     post: BlogPost;

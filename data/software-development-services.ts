@@ -68,7 +68,7 @@ export const softwareDevelopmentServices: SoftwareDevelopmentService[] = [
         title: "Specifications & Wireframe",
         roleName: "Technical Analyst",
         heroTitle: "<span class='text-primary block mb-2'>Technical</span> Analyst",
-        heroDescription: "Rekrut Technical Analyst ahli sesuai kebutuhan. Perusahaan top dan startup memilih analis dari KreasiTech untuk dokumentasi SRS, arsitektur sistem, dan perencanaan blueprint teknis yang presisi.",
+        heroDescription: "Setiap kebutuhan platform digital atau sistem yang akan Anda bangun, seperti jumlah resource, teknologi, biaya, hingga timeline pengerjaan dengan specification document dan wireframe yang jelas dan terukur.",
         heroImages: DEFAULT_AVATARS,
         hardSkills: [
             { title: "SRS Documentation", description: "Mampu menyusun Software Requirements Specifications yang mendetail untuk panduan developer." },
@@ -131,7 +131,7 @@ export const softwareDevelopmentServices: SoftwareDevelopmentService[] = [
         title: "UI/UX Design",
         roleName: "UI/UX Designer",
         heroTitle: "<span class='text-primary block mb-2'>UI/UX</span> Designer",
-        heroDescription: "Rekrut desainer UI/UX, pakar, spesialis, dan seniman sesuai permintaan. Perusahaan top dan startup memilih desainer UI/UX dari KreasiTech untuk riset pengguna, wireframing, desain interaksi, pengujian kegunaan, dan lainnya.",
+        heroDescription: "Pengalaman terbaik pelanggan Anda berawal dari desain platform digital yang mampu menyampaikan pesan, layanan, visi, dan misi perusahaan Anda. Kebiasaan user ditentukan oleh baik tidaknya pengalaman mereka menggunakan platform digital Anda.",
         heroImages: DEFAULT_AVATARS,
         hardSkills: [
             { title: "User Research", description: "Profisien dalam melakukan riset pengguna untuk memahami kebutuhan, perilaku, dan motivasi guna mendasari keputusan desain." },
@@ -194,7 +194,7 @@ export const softwareDevelopmentServices: SoftwareDevelopmentService[] = [
         title: "Website Development",
         roleName: "Web Developer",
         heroTitle: "<span class='text-primary block mb-2'>Web</span> Developer",
-        heroDescription: "Rekrut Web Developer handal untuk membangun website performa tinggi. Keahlian dalam Next.js, React, Node.js, dan optimasi SEO untuk meningkatkan visibilitas bisnis Anda.",
+        heroDescription: "Dengan tim developer yang berpengalaman, kami selalu mempertimbangkan relevansi teknologi dengan kebutuhan setiap bisnis Anda. Kami pastikan website yang dibangun tidak hanya cepat, sesuai kebutuhan, namun juga mudah digunakan.",
         heroImages: DEFAULT_AVATARS,
         hardSkills: [
             { title: "Frontend Mastery", description: "Mahir dalam React.js, Next.js, dan Tailwind CSS untuk tampilan modern dan responsif." },
@@ -257,7 +257,7 @@ export const softwareDevelopmentServices: SoftwareDevelopmentService[] = [
         title: "Mobile App Development",
         roleName: "Mobile Developer",
         heroTitle: "<span class='text-primary block mb-2'>Mobile</span> App Developer",
-        heroDescription: "Rekrut pengembang aplikasi mobile Android & iOS. Spesialis Flutter, React Native, dan Swift yang fokus pada user experience responsif dan performa native.",
+        heroDescription: "Berikan pengalaman terbaik dan tingkatkan mobilitas serta brand bisnis Anda dengan membangun aplikasi mobile (Android & iOS). Jangkau lebih banyak pelanggan lagi, serta jadikan bisnis Anda siap untuk berkompetisi di era digital sekarang juga.",
         heroImages: DEFAULT_AVATARS,
         hardSkills: [
             { title: "Cross-Platform Dev", description: "Mahir menggunakan Flutter atau React Native untuk pengembangan efisien satu kode." },
@@ -320,7 +320,7 @@ export const softwareDevelopmentServices: SoftwareDevelopmentService[] = [
         title: "MVP Development",
         roleName: "MVP Strategist",
         heroTitle: "<span class='text-primary block mb-2'>MVP</span> Builder & Strategist",
-        heroDescription: "Rekrut spesialis pembangunan MVP (Minimum Viable Product). Fokus pada validasi ide tercepat dengan fitur inti yang fungsional dan siap skala.",
+        heroDescription: "Peluang bisnis dari setiap ide dan gagasan dengan mengembangkan produk MVP. Bangun produk MVP bersama kami, dan temukan jawaban dari setiap peluang bisnis di pasar digital saat ini. Layanan ini cocok untuk Anda yang sedang membangun bisnis startup.",
         heroImages: DEFAULT_AVATARS,
         hardSkills: [
             { title: "Rapid Prototyping", description: "Membangun fungsi inti produk dalam hitungan minggu (Bukan bulan)." },
@@ -383,7 +383,7 @@ export const softwareDevelopmentServices: SoftwareDevelopmentService[] = [
         title: "Custom Software Development",
         roleName: "Software Engineer",
         heroTitle: "<span class='text-primary block mb-2'>Custom</span> Software Engineer",
-        heroDescription: "Rekrut insinyur perangkat lunak untuk solusi khusus. ERP, CRM, dan sistem manajemen internal perusahaan yang kompleks dan terintegrasi.",
+        heroDescription: "Percepat laju bisnis dengan membangun platform digital yang tepat dan sesuai kebutuhan bisnis perusahaan Anda. Efektifkan serta efisiensikan setiap proses bisnis agar menjadi lebih mudah dan cepat.",
         heroImages: DEFAULT_AVATARS,
         hardSkills: [
             { title: "Enterprise Logic", description: "Pemetaan alur bisnis perusahaan ke dalam logika kode yang presisi." },

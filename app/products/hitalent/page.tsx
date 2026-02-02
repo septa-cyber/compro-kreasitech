@@ -1,16 +1,16 @@
 "use client";
 
-import Navbar from "@/app/components/Navbar";
-import Footer from "@/app/components/Footer";
-import HiTalentHero from "@/app/components/products/hitalent/HiTalentHero";
-import HiTalentAbout from "@/app/components/products/hitalent/HiTalentAbout";
-import HiTalentFeatures from "@/app/components/products/hitalent/HiTalentFeatures";
-import HiTalentBenefits from "@/app/components/products/hitalent/HiTalentBenefits";
-import HiTalentCTA from "@/app/components/products/hitalent/HiTalentCTA";
-import HiTalentTestimonials from "@/app/components/products/hitalent/HiTalentTestimonials";
-import HiTalentTools from "@/app/components/products/hitalent/HiTalentTools";
-import Breadcrumb from "@/app/components/ui/Breadcrumb";
-import WhatsAppButton from "@/app/components/landing/WhatsAppButton";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import HiTalentHero from "@/components/products/hitalent/HiTalentHero";
+import HiTalentAbout from "@/components/products/hitalent/HiTalentAbout";
+import HiTalentFeatures from "@/components/products/hitalent/HiTalentFeatures";
+import HiTalentBenefits from "@/components/products/hitalent/HiTalentBenefits";
+import HiTalentCTA from "@/components/products/hitalent/HiTalentCTA";
+import HiTalentTestimonials from "@/components/products/hitalent/HiTalentTestimonials";
+import HiTalentTools from "@/components/products/hitalent/HiTalentTools";
+import Breadcrumb from "@/components/ui/Breadcrumb";
+import WhatsAppButton from "@/components/landing/WhatsAppButton";
 
 export default function HiTalentPage() {
     return (

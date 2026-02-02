@@ -1,9 +1,9 @@
 "use client";
 
 import React from "react";
-import Breadcrumb from "@/app/components/ui/Breadcrumb";
+import Breadcrumb from "@/components/ui/Breadcrumb";
 import Link from "next/link";
-import { BlogPost } from "@/app/data/blogData";
+import { BlogPost } from "@/data/blogData";
 
 interface BlogHeroProps {
     featuredPost: BlogPost;

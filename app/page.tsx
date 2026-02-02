@@ -1,15 +1,15 @@
-import Navbar from "@/app/components/Navbar";
-import Hero from "@/app/components/landing/Hero";
-import Services from "@/app/components/landing/Services";
-import OurProduct from "@/app/components/landing/OurProduct2";
-import WhyUs from "@/app/components/landing/WhyUs3";
-import Testimonials from "@/app/components/landing/Testimonials";
-import Portfolio from "@/app/components/landing/Portfolio3";
-import ArticleSection from "@/app/components/landing/ArticleSection";
-import CallToAction from "@/app/components/landing/CallToAction";
-import Footer from "@/app/components/Footer";
-import WhatsAppButton from "@/app/components/landing/WhatsAppButton";
-import LandingAbout from "@/app/components/landing/LandingAbout";
+import Navbar from "@/components/Navbar";
+import Hero from "@/components/landing/Hero";
+import Services from "@/components/landing/Services";
+import OurProduct from "@/components/landing/OurProduct2";
+import WhyUs from "@/components/landing/WhyUs3";
+import Testimonials from "@/components/landing/Testimonials";
+import Portfolio from "@/components/landing/Portfolio3";
+import ArticleSection from "@/components/landing/ArticleSection";
+import CallToAction from "@/components/landing/CallToAction";
+import Footer from "@/components/Footer";
+import WhatsAppButton from "@/components/landing/WhatsAppButton";
+import LandingAbout from "@/components/landing/LandingAbout";
 
 export default function Home() {
   return (

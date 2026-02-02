@@ -1,11 +1,11 @@
 import React from "react";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { digitalMarketingServices } from "@/app/data/digital-marketing-services";
-import Navbar from "@/app/components/Navbar";
-import Footer from "@/app/components/Footer";
-import WhatsAppButton from "@/app/components/landing/WhatsAppButton";
-import Breadcrumb from "@/app/components/ui/Breadcrumb";
+import { digitalMarketingServices } from "@/data/digital-marketing-services";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import WhatsAppButton from "@/components/landing/WhatsAppButton";
+import Breadcrumb from "@/components/ui/Breadcrumb";
 import {
     FaStar, FaMobileScreenButton, FaScrewdriverWrench, FaChartColumn, FaRegCommentDots,
     FaArrowDown, FaCheck, FaLocationDot, FaPhone, FaEnvelope, FaLinkedinIn, FaInstagram, FaTwitter, FaFacebookF, FaBars, FaChevronDown, FaArrowUpRightFromSquare, FaArrowRight,
@@ -99,7 +99,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
                                     {service.heroDescription}
                                 </p>
                                 <div className="flex flex-col sm:flex-row justify-center lg:justify-start items-center gap-4 sm:gap-8 w-full">
-                                    <a href="#pricelist" className="w-full sm:w-auto px-8 py-4 bg-violet-600 rounded-lg flex justify-center items-center gap-2.5 hover:bg-violet-700 transition-all duration-300 shadow-lg shadow-violet-600/30">
+                                    <a href="#pricelist" className="w-full sm:w-auto px-8 py-4 bg-violet-600 rounded-lg flex justify-center items-center gap-2.5 hover:bg-violet-700 transition-all duration-300">
                                         <span className="text-gray-100 text-base font-medium font-montserrat">Pesan Sekarang</span>
                                     </a>
                                     <a href="#advantages" className="flex justify-start items-center gap-4 group">
@@ -118,7 +118,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
                             {/* Hero Image Grid */}
                             <div className="relative w-full">
                                 <div className="flex gap-4 h-[350px] md:h-[400px]">
-                                    <div className="flex-1 bg-white border border-blue-100 rounded-xl overflow-hidden shadow-sm relative p-6 flex items-center justify-center">
+                                    <div className="flex-1 bg-white border border-blue-100 rounded-xl overflow-hidden relative p-6 flex items-center justify-center">
                                         <Image
                                             src={service.heroImage1}
                                             alt="Hero Main"
@@ -127,7 +127,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
                                         />
                                     </div>
                                     <div className="w-1/3 flex flex-col gap-4">
-                                        <div className="flex-1 bg-white border border-blue-100 rounded-xl overflow-hidden shadow-sm p-4 flex items-center justify-center">
+                                        <div className="flex-1 bg-white border border-blue-100 rounded-xl overflow-hidden p-4 flex items-center justify-center">
                                             <Image
                                                 src={service.heroImage2}
                                                 alt="Hero Secondary 1"
@@ -135,7 +135,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
                                                 className="w-full h-full object-contain mix-blend-multiply"
                                             />
                                         </div>
-                                        <div className="flex-1 bg-white border border-red-50 rounded-xl overflow-hidden shadow-sm p-4 flex items-center justify-center">
+                                        <div className="flex-1 bg-white border border-red-50 rounded-xl overflow-hidden p-4 flex items-center justify-center">
                                             <Image
                                                 src={service.heroImage3}
                                                 alt="Hero Secondary 2"

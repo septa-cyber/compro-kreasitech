@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { MdArrowForward, MdArrowDownward } from "react-icons/md";
-import Breadcrumb from "@/app/components/ui/Breadcrumb";
+import Breadcrumb from "@/components/ui/Breadcrumb";
 
 export default function PortfolioHero() {
     const column1Images = [

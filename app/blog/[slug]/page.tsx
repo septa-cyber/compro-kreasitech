@@ -2,16 +2,16 @@
 
 import React from "react";
 import { useParams } from "next/navigation";
-import Navbar from "@/app/components/Navbar";
-import Footer from "@/app/components/Footer";
-import WhatsAppButton from "@/app/components/landing/WhatsAppButton";
-import ArticleHeader from "@/app/components/blog/ArticleHeader";
-import ArticleContent from "@/app/components/blog/ArticleContent";
-import ArticleMeta from "@/app/components/blog/ArticleMeta";
-import RelatedArticles from "@/app/components/blog/RelatedArticles";
-import { blogPosts, getBlogPostBySlug, getRelatedPosts } from "@/app/data/blogData";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import WhatsAppButton from "@/components/landing/WhatsAppButton";
+import ArticleHeader from "@/components/blog/ArticleHeader";
+import ArticleContent from "@/components/blog/ArticleContent";
+import ArticleMeta from "@/components/blog/ArticleMeta";
+import RelatedArticles from "@/components/blog/RelatedArticles";
+import { blogPosts, getBlogPostBySlug, getRelatedPosts } from "@/data/blogData";
 import Link from "next/link";
-import BlogCTA from "@/app/components/blog/BlogCTA";
+import BlogCTA from "@/components/blog/BlogCTA";
 
 export default function BlogPostPage() {
     const params = useParams();

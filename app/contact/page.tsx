@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import Navbar from "@/app/components/Navbar";
-import Footer from "@/app/components/Footer";
-import WhatsAppButton from "@/app/components/landing/WhatsAppButton";
-import Breadcrumb from "@/app/components/ui/Breadcrumb";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import WhatsAppButton from "@/components/landing/WhatsAppButton";
+import Breadcrumb from "@/components/ui/Breadcrumb";
 
 interface FormData {
     name: string;

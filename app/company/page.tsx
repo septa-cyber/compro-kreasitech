@@ -1,12 +1,12 @@
-import Navbar from "@/app/components/Navbar";
-import Footer from "@/app/components/Footer";
-import CompanyHero from "@/app/components/company/CompanyHero";
-import ContentSection from "@/app/components/company/ContentSection";
-import MissionSection from "@/app/components/company/MissionSection";
-import TimelineSection from "@/app/components/company/TimelineSection";
-import TeamSection from "@/app/components/company/TeamSection";
-import Breadcrumb from "@/app/components/ui/Breadcrumb";
-import CTASection from "@/app/components/company/CTASection";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import CompanyHero from "@/components/company/CompanyHero";
+import ContentSection from "@/components/company/ContentSection";
+import MissionSection from "@/components/company/MissionSection";
+import TimelineSection from "@/components/company/TimelineSection";
+import TeamSection from "@/components/company/TeamSection";
+import Breadcrumb from "@/components/ui/Breadcrumb";
+import CTASection from "@/components/company/CTASection";
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
