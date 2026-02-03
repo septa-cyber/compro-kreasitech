@@ -6,17 +6,17 @@ import Breadcrumb from "@/components/ui/Breadcrumb";
 
 export default function PortfolioHero() {
     const column1Images = [
-        "https://placehold.co/228x448",
-        "https://placehold.co/228x448",
-        "https://placehold.co/228x448",
-        "https://placehold.co/228x448",
+        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=400",
+        "https://images.unsplash.com/photo-1557821552-17105176677c?q=80&w=400",
+        "https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?q=80&w=400",
+        "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=400",
     ];
 
     const column2Images = [
-        "https://placehold.co/228x448",
-        "https://placehold.co/228x448",
-        "https://placehold.co/228x448",
-        "https://placehold.co/228x448",
+        "https://images.unsplash.com/photo-1551288049-bbbda536339a?q=80&w=400",
+        "https://images.unsplash.com/photo-1501504905252-473c47e087f8?q=80&w=400",
+        "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=400",
+        "https://images.unsplash.com/photo-1586771107445-d3ca888129ff?q=80&w=400",
     ];
 
     return (
@@ -44,15 +44,15 @@ export default function PortfolioHero() {
                         </div>
 
                         {/* CTA */}
-                        <button className="px-6 md:px-8 py-3 md:py-4 bg-violet-600 hover:bg-violet-700 rounded-lg transition-colors duration-300">
+                        <Link href="/portfolio" className="px-6 md:px-8 py-3 md:py-4 bg-violet-600 hover:bg-violet-700 rounded-lg transition-colors duration-300">
                             <span className="text-white text-sm md:text-base font-medium font-montserrat">Lihat Semua</span>
-                        </button>
-                        <a href="#featured" className="group inline-flex items-center gap-4 text-gray-900 font-medium font-montserrat hover:text-violet-600 transition-colors">
-                            <span>Pelajari Lebih Lanjut</span>
+                        </Link>
+                        <Link href="#featured" className="group inline-flex items-center gap-4 text-gray-900 font-medium font-montserrat hover:text-violet-600 transition-colors">
+                            <span>Pelajari Layanan</span>
                             <div className="w-6 h-6 flex items-center justify-center relative">
-                                <MdArrowDownward className="text-violet-600 text-xl group-hover:translate-y-1 transition-transform" />
+                                <MdArrowDownward className="text-violet-600 text-xl animate-bounce" />
                             </div>
-                        </a>
+                        </Link>
                     </div>
 
                     {/* Right Content - Image Columns */}

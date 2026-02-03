@@ -1,6 +1,6 @@
-"use client";
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function DigitalMarketingHero() {
     return (
@@ -63,25 +63,25 @@ export default function DigitalMarketingHero() {
 
                         {/* CTA Buttons */}
                         <div className="flex flex-col sm:flex-row justify-center lg:justify-start items-center gap-4 sm:gap-8 w-full">
-                            <a
-                                href="#"
+                            <Link
+                                href="/contact"
                                 className="w-full sm:w-auto px-8 py-4 bg-violet-600 rounded-lg flex justify-center items-center gap-2.5 hover:bg-violet-700 transition-all duration-300"
                             >
                                 <span className="text-gray-100 text-base font-medium font-montserrat">Hubungi Kami</span>
-                            </a>
-                            <a
-                                href="#solutions"
+                            </Link>
+                            <Link
+                                href="#services"
                                 className="flex justify-start items-center gap-4 group"
                             >
-                                <span className="text-text-light text-base font-medium font-montserrat group-hover:text-violet-600 transition">Pelajari Lebih Lanjut</span>
+                                <span className="text-text-light text-base font-medium font-montserrat group-hover:text-violet-600 transition">Pelajari Layanan</span>
                                 <Image
                                     src="/assets/images/arrow_downward.svg"
                                     alt=""
                                     width={24}
                                     height={24}
-                                    className="w-6 h-6 group-hover:translate-y-1 transition-transform"
+                                    className="w-6 h-6 animate-bounce"
                                 />
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </div>

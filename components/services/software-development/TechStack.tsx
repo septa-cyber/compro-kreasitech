@@ -39,18 +39,17 @@ export default function TechStack() {
             {/* Tech Stack Marquee */}
             <div className="relative">
                 <div
-                    className="w-full overflow-hidden flex items-center px-4 pb-4 pt-4 z-10"
+                    className="w-full overflow-hidden py-4 marquee-container"
                     onMouseEnter={() => setIsTechStackHovered(true)}
                     onMouseLeave={() => setIsTechStackHovered(false)}
                 >
                     <div
-                        className="flex space-x-12 shrink-0 animate-marquee-reverse-slow items-center"
-                        style={{ animationPlayState: isTechStackHovered ? 'paused' : 'running' }}
+                        className="flex flex-nowrap space-x-12 min-w-max animate-marquee-reverse hover:[animation-play-state:paused]"
                     >
-                        {/* Duplicate content for marquee effect */}
-                        {[...techStackLogos, ...techStackLogos, ...techStackLogos].map((logo, index) => (
-                            <div key={index} className="flex items-center gap-2 grayscale hover:grayscale-0 opacity-70 hover:opacity-100 transition duration-500">
-                                <Image src={logo} alt="Tech Stack" width={100} height={100} className="h-12 w-auto object-contain" />
+                        {/* Perfect loop with 2 sets of logos */}
+                        {[...techStackLogos, ...techStackLogos].map((logo, index) => (
+                            <div key={index} className="flex-shrink-0 flex items-center gap-2 opacity-100 transition duration-500">
+                                <Image src={logo} alt="Tech Stack" width={100} height={40} className="h-[40px] w-auto object-contain" />
                             </div>
                         ))}
                     </div>

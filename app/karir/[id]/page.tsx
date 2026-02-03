@@ -366,8 +366,8 @@ export default function JobDetailPage() {
                                         {job.type}
                                     </span>
                                     <span className={`px-4 py-2 rounded-xl text-sm font-medium font-montserrat ${job.location === 'Remote' ? 'bg-green-100 text-green-700' :
-                                            job.location === 'On-site' ? 'bg-orange-100 text-orange-700' :
-                                                'bg-blue-100 text-blue-700'
+                                        job.location === 'On-site' ? 'bg-orange-100 text-orange-700' :
+                                            'bg-blue-100 text-blue-700'
                                         }`}>
                                         {job.location}
                                     </span>

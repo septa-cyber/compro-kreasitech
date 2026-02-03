@@ -1,5 +1,5 @@
-"use client";
 import React from "react";
+import Link from "next/link";
 
 export default function SoftwareDevHero() {
     return (
@@ -13,13 +13,13 @@ export default function SoftwareDevHero() {
                 </p>
                 <div className="flex justify-center items-center gap-4">
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                        <a href="#" className="w-max px-8 py-4 bg-violet-600 rounded-lg inline-flex justify-center items-center gap-2.5 hover:bg-violet-700 transition-all duration-300">
+                        <Link href="/contact" className="w-max px-8 py-4 bg-violet-600 rounded-lg inline-flex justify-center items-center gap-2.5 hover:bg-violet-700 transition-all duration-300">
                             <div className="text-gray-100 text-base font-medium font-montserrat">Diskusi ke Kami</div>
-                        </a>
-                        <a href="#" className="w-max flex items-center justify-center gap-2 px-6 py-4 text-text-light text-base font-medium font-montserrat hover:text-violet-600 transition-colors group">
+                        </Link>
+                        <Link href="#solutions" className="w-max flex items-center justify-center gap-2 px-6 py-4 text-text-light text-base font-medium font-montserrat hover:text-violet-600 transition-colors group">
                             Pelajari Layanan
-                            <img src="/assets/images/arrow_downward.svg" alt="" className="w-6 h-6" />
-                        </a>
+                            <img src="/assets/images/arrow_downward.svg" alt="" className="w-6 h-6 animate-bounce" />
+                        </Link>
                     </div>
                 </div>
             </div>

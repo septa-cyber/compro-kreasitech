@@ -1,22 +1,13 @@
 "use client";
 
 import { useState } from 'react';
+import Link from 'next/link';
+import { portfolioItems } from '@/data/portfolioData';
 
 export default function Portfolio() {
     const [isPortfolioHovered, setIsPortfolioHovered] = useState(false);
 
-    const portfolioItems = [
-        { id: 1, title: "Danarhadi CRM", subtitle: "Marketing Specialist", image: "https://placehold.co/600x400", size: "large" },
-        { id: 2, title: "Danarhadi CRM", subtitle: "Marketing Specialist", image: "https://placehold.co/400x400", size: "medium" },
-        { id: 3, title: "Danarhadi CRM", subtitle: "Marketing Specialist", image: "https://placehold.co/600x400", size: "large" },
-        { id: 4, title: "Danarhadi CRM", subtitle: "Marketing Specialist", image: "https://placehold.co/600x400", size: "large" },
-        { id: 5, title: "Danarhadi CRM", subtitle: "Marketing Specialist", image: "https://placehold.co/400x400", size: "medium" },
-        { id: 6, title: "Danarhadi CRM", subtitle: "Marketing Specialist", image: "https://placehold.co/600x400", size: "large" },
-        { id: 7, title: "Danarhadi CRM", subtitle: "Marketing Specialist", image: "https://placehold.co/600x400", size: "large" },
-        { id: 8, title: "Danarhadi CRM", subtitle: "Marketing Specialist", image: "https://placehold.co/400x400", size: "medium" },
-        { id: 9, title: "Danarhadi CRM", subtitle: "Marketing Specialist", image: "https://placehold.co/600x400", size: "large" },
-        { id: 10, title: "Danarhadi CRM", subtitle: "Marketing Specialist", image: "https://placehold.co/600x400", size: "large" },
-    ];
+
 
     return (
         <section className="py-16 md:py-24 bg-violet-800 overflow-hidden" data-theme="dark">
@@ -26,13 +17,13 @@ export default function Portfolio() {
                         <h2 className="text-2xl md:text-4xl font-medium font-montserrat text-white">
                             Portofolio Kami
                         </h2>
-                        <p className="text-sm md:text-base font-normal font-montserrat text-white">
-                            Proyek-proyek kami menunjukkan keahlian di berbagai industri. Kami berkomitmen untuk memberikan yang terbaik dalam setiap solusi.
+                        <p className="text-sm md:text-base font-normal font-montserrat text-white leading-relaxed max-w-[800px]">
+                            Telah mendukung berbagai jenis bisnis, startup, institusi pendidikan, UKM, dan corporate dalam membangun aplikasi, website, digital marketing, hingga penyediaan talent IT yang berkelanjutan.
                         </p>
                     </div>
-                    <button className="px-8 py-4 bg-violet-300 rounded-lg inline-flex justify-center items-center gap-2.5 hover:bg-violet-200 transition-colors">
+                    <Link href="/portfolio" className="px-8 py-4 bg-violet-300 rounded-lg inline-flex justify-center items-center gap-2.5 hover:bg-violet-200 transition-colors">
                         <span className="text-violet-800 text-base font-medium font-montserrat">Lihat Semua</span>
-                    </button>
+                    </Link>
                 </div>
             </div>
 

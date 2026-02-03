@@ -125,6 +125,8 @@ module.exports = {
                 "accordion-up": "accordion-up 0.2s ease-out",
                 scroll: "scroll 40s linear infinite",
                 marquee: "marquee 30s linear infinite",
+                "marquee-reverse": "marquee 30s linear infinite reverse",
+                "marquee-reverse-slow": "marquee 60s linear infinite reverse",
                 "float-slow": "float-slow 6s ease-in-out infinite",
                 "float-medium": "float-medium 5s ease-in-out infinite",
                 "float-fast": "float-fast 4s ease-in-out infinite",

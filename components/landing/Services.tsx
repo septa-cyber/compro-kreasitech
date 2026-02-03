@@ -1,4 +1,6 @@
 import React from 'react';
+import { LuLaptop, LuUsers, LuGraduationCap, LuMegaphone } from 'react-icons/lu';
+import Link from 'next/link';
 
 export default function Services() {
     return (
@@ -8,63 +10,63 @@ export default function Services() {
                     <h2 className="text-4xl font-medium font-montserrat text-text-light">
                         Layanan Kami
                     </h2>
-                    <p className="max-w-[576px] text-base font-normal font-montserrat text-text-light-muted">
-                        Buka Potensi Bisnis Anda dengan Solusi Ahli Kami
+                    <p className="max-w-[700px] text-base font-normal font-montserrat text-text-light-muted">
+                        Kreasitech menyediakan solusi end-to-end bagi organisasi yang ingin membangun produk digital, memperkuat tim teknologi, meningkatkan kompetensi, hingga mengembangkan bisnis melalui digital marketing.
                     </p>
                 </div>
 
-                <div className="w-full max-w-[1200px] outline outline-[0.5px] outline-offset-[-0.5px] outline-gray-200 inline-flex justify-between items-center flex-wrap content-center">
-                    {/* 1. Talent as a Service */}
-                    <div className="w-full md:w-1/2 lg:w-1/2 h-96 px-8 pt-8 pb-12 bg-white outline outline-[0.5px] outline-offset-[-0.25px] outline-gray-200 inline-flex flex-col justify-start items-start gap-6 hover:bg-violet-800 transition-colors duration-300 group cursor-pointer">
-                        <div className="w-12 h-12 relative overflow-hidden flex items-center justify-center">
-                            <i className="far fa-star text-violet-600 group-hover:text-violet-300 text-3xl transition-colors duration-300"></i>
+                <div className="w-full max-w-[1200px] outline outline-[0.5px] outline-offset-[-0.5px] outline-gray-200 flex justify-between items-stretch flex-wrap content-center">
+                    {/* 1. Software Development */}
+                    <Link href="/services/software-development" className="w-full md:w-1/2 lg:w-1/4 h-auto py-16 px-8 bg-white outline outline-[0.5px] outline-offset-[-0.25px] outline-gray-200 inline-flex flex-col justify-center items-center text-center gap-6 hover:bg-violet-800 transition-colors duration-300 group cursor-pointer">
+                        <div className="w-14 h-14 relative flex items-center justify-center rounded-2xl bg-violet-50 group-hover:bg-white/10 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 shadow-sm">
+                            <LuLaptop className="text-3xl text-violet-600 group-hover:text-white transition-colors duration-300" />
                         </div>
                         <h3 className="self-stretch text-text-light group-hover:text-white text-2xl font-medium font-montserrat leading-tight transition-colors duration-300">
                             Software Development
                         </h3>
                         <p className="self-stretch text-text-light group-hover:text-white text-sm font-normal font-montserrat leading-relaxed transition-colors duration-300">
-                            Kami menawarkan layanan Web & Mobile App yang inovatif, mendukung transformasi digital bisnis Anda dengan teknologi terkini dan fokus pada pengalaman pengguna.
+                            Website, aplikasi mobile, MVP, custom system
                         </p>
-                    </div>
+                    </Link>
 
-                    {/* 2. Web & Mobile Apps Development */}
-                    <div className="w-full md:w-1/2 lg:w-1/2 h-96 px-8 pt-8 pb-12 bg-white outline outline-[0.5px] outline-offset-[-0.25px] outline-gray-200 inline-flex flex-col justify-start items-start gap-6 hover:bg-violet-800 transition-colors duration-300 group cursor-pointer">
-                        <div className="w-12 h-12 relative overflow-hidden flex items-center justify-center">
-                            <i className="fas fa-mobile-alt text-violet-600 group-hover:text-violet-300 text-3xl transition-colors duration-300"></i>
+                    {/* 2. Talent as a Service */}
+                    <Link href="/services" className="w-full md:w-1/2 lg:w-1/4 h-auto py-16 px-8 bg-white outline outline-[0.5px] outline-offset-[-0.25px] outline-gray-200 inline-flex flex-col justify-center items-center text-center gap-6 hover:bg-violet-800 transition-colors duration-300 group cursor-pointer">
+                        <div className="w-14 h-14 relative flex items-center justify-center rounded-2xl bg-violet-50 group-hover:bg-white/10 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 shadow-sm">
+                            <LuUsers className="text-3xl text-violet-600 group-hover:text-white transition-colors duration-300" />
                         </div>
                         <h3 className="self-stretch text-text-light group-hover:text-white text-2xl font-medium font-montserrat leading-tight transition-colors duration-300">
                             Talent as a Service
                         </h3>
                         <p className="self-stretch text-text-light group-hover:text-white text-sm font-normal font-montserrat leading-relaxed transition-colors duration-300">
-                            Kami menyediakan Talent as a Service (TaaS) yang fleksibel dan efisien, menghadirkan talenta terbaik di industri teknologi untuk mendukung inovasi dan pertumbuhan bisnis Anda.
+                            Staffing, headhunting, internship, inclusive placement
                         </p>
-                    </div>
+                    </Link>
 
-                    {/* 3. Product Digital Design & Tech Consultation */}
-                    <div className="w-full md:w-1/2 lg:w-1/2 h-96 px-8 pt-8 pb-12 bg-white outline outline-[0.5px] outline-offset-[-0.25px] outline-gray-200 inline-flex flex-col justify-start items-start gap-6 hover:bg-violet-800 transition-colors duration-300 group cursor-pointer">
-                        <div className="w-12 h-12 relative overflow-hidden flex items-center justify-center">
-                            <i className="far fa-question-circle text-violet-600 group-hover:text-violet-300 text-3xl transition-colors duration-300"></i>
+                    {/* 3. Academy */}
+                    <Link href="/services" className="w-full md:w-1/2 lg:w-1/4 h-auto py-16 px-8 bg-white outline outline-[0.5px] outline-offset-[-0.25px] outline-gray-200 inline-flex flex-col justify-center items-center text-center gap-6 hover:bg-violet-800 transition-colors duration-300 group cursor-pointer">
+                        <div className="w-14 h-14 relative flex items-center justify-center rounded-2xl bg-violet-50 group-hover:bg-white/10 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 shadow-sm">
+                            <LuGraduationCap className="text-3xl text-violet-600 group-hover:text-white transition-colors duration-300" />
                         </div>
                         <h3 className="self-stretch text-text-light group-hover:text-white text-2xl font-medium font-montserrat leading-tight transition-colors duration-300">
                             Academy
                         </h3>
                         <p className="self-stretch text-text-light group-hover:text-white text-sm font-normal font-montserrat leading-relaxed transition-colors duration-300">
-                            Kami menawarkan layanan pengembangan website WordPress yang profesional, responsif, dan optimal untuk mendukung kebutuhan dan kinerja bisnis Anda.
+                            Pelatihan digital & tech untuk masyarakat umum dan profesional
                         </p>
-                    </div>
+                    </Link>
 
-                    {/* 4. UI/UX Design */}
-                    <div className="w-full md:w-1/2 lg:w-1/2 h-96 px-8 pt-8 pb-12 bg-white outline outline-[0.5px] outline-offset-[-0.25px] outline-gray-200 inline-flex flex-col justify-start items-start gap-6 hover:bg-violet-800 transition-colors duration-300 group cursor-pointer">
-                        <div className="w-12 h-12 relative overflow-hidden flex items-center justify-center">
-                            <i className="fas fa-pencil-ruler text-violet-600 group-hover:text-violet-300 text-3xl transition-colors duration-300"></i>
+                    {/* 4. Digital Marketing */}
+                    <Link href="/services/digital-marketing" className="w-full md:w-1/2 lg:w-1/4 h-auto py-16 px-8 bg-white outline outline-[0.5px] outline-offset-[-0.25px] outline-gray-200 inline-flex flex-col justify-center items-center text-center gap-6 hover:bg-violet-800 transition-colors duration-300 group cursor-pointer">
+                        <div className="w-14 h-14 relative flex items-center justify-center rounded-2xl bg-violet-50 group-hover:bg-white/10 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 shadow-sm">
+                            <LuMegaphone className="text-3xl text-violet-600 group-hover:text-white transition-colors duration-300" />
                         </div>
                         <h3 className="self-stretch text-text-light group-hover:text-white text-2xl font-medium font-montserrat leading-tight transition-colors duration-300">
                             Digital Marketing
                         </h3>
                         <p className="self-stretch text-text-light group-hover:text-white text-sm font-normal font-montserrat leading-relaxed transition-colors duration-300">
-                            Kami menyediakan layanan Desain UI/UX berbasis riset untuk menghasilkan visual yang menarik dan pengalaman pengguna yang optimal, disesuaikan dengan kebutuhan bisnis Anda.
+                            SEO, Google Ads, backlink, press release
                         </p>
-                    </div>
+                    </Link>
 
                     {/* 5. QA Testing */}
                     {/* <div className="w-full md:w-1/2 lg:w-1/3 h-96 px-8 pt-8 pb-12 bg-white outline outline-[0.5px] outline-offset-[-0.25px] outline-gray-200 inline-flex flex-col justify-start items-start gap-6 hover:bg-violet-800 transition-colors duration-300 group cursor-pointer">

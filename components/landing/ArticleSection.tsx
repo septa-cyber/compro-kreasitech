@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 
 
 
@@ -12,7 +13,8 @@ const articles = [
         title: "Transformasi Digital: Membangun Masa Depan yang Lebih Cerdas",
         description: "Temukan bagaimana teknologi inovatif mengubah cara kita bekerja, belajar, dan berinteraksi dalam ekosistem digital yang terus berkembang pesat.",
         image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop",
-        tagColor: "bg-blue-100 text-blue-700"
+        tagColor: "bg-blue-100 text-blue-700",
+        slug: "transformasi-digital"
     },
     {
         id: 2,
@@ -21,7 +23,8 @@ const articles = [
         title: "Kecerdasan Buatan: Peluang Baru dalam Industri Kreatif",
         description: "Bagaimana AI membantu para kreator untuk mengeksplorasi batas-batas baru dalam seni, desain, dan musik tanpa menghilangkan sentuhan manusia.",
         image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1965&auto=format&fit=crop",
-        tagColor: "bg-pink-100 text-pink-700"
+        tagColor: "bg-pink-100 text-pink-700",
+        slug: "kecerdasan-buatan"
     },
     {
         id: 3,
@@ -30,7 +33,8 @@ const articles = [
         title: "Masa Depan Pendidikan: Belajar Tanpa Batas Ruang dan Waktu",
         description: "Evolusi metode pembelajaran daring yang memungkinkan akses pendidikan berkualitas bagi siapa saja, di mana saja, dan kapan saja.",
         image: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?q=80&w=1974&auto=format&fit=crop",
-        tagColor: "bg-green-100 text-green-700"
+        tagColor: "bg-green-100 text-green-700",
+        slug: "masa-depan-pendidikan"
     }
 ];
 
@@ -47,9 +51,9 @@ export default function ArticleSection() {
                             Artikel terbaru yang dapat membantu Anda dalam memahami berbagai topik dan tren terkini.
                         </p>
                     </div>
-                    <button className="px-6 md:px-8 py-3 md:py-4 bg-violet-600 hover:bg-violet-700 rounded-lg transition-colors duration-300">
+                    <Link href="/blog" className="px-6 md:px-8 py-3 md:py-4 bg-violet-600 hover:bg-violet-700 rounded-lg transition-colors duration-300">
                         <span className="text-white text-sm md:text-base font-medium font-montserrat">Lihat Semua</span>
-                    </button>
+                    </Link>
                 </div>
             </div>
 
@@ -89,10 +93,10 @@ export default function ArticleSection() {
                                 </p>
 
                                 <div className="mt-auto pt-2">
-                                    <button className="text-text-light hover:text-violet-600 font-medium font-montserrat transition-colors duration-300 flex items-center gap-2 group/btn text-sm">
+                                    <Link href={`/blog/${article.slug}`} className="text-text-light hover:text-violet-600 font-medium font-montserrat transition-colors duration-300 flex items-center gap-2 group/btn text-sm">
                                         Baca Selengkapnya
                                         <span className="group-hover/btn:translate-x-1 transition-transform">&rarr;</span>
-                                    </button>
+                                    </Link>
                                 </div>
                             </div>
                         </div>

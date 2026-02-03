@@ -15,9 +15,6 @@ export default function OurProduct() {
                 <div className="w-full max-w-[1200px] flex flex-col-reverse lg:flex-row items-center gap-12 lg:gap-6">
                     {/* Left Column: Text */}
                     <div className="w-full lg:w-[480px] flex flex-col items-center lg:items-start text-center lg:text-left gap-6">
-                        <div className="text-xs font-normal font-montserrat text-[#171717] opacity-90">
-                            13 Nov 2025
-                        </div>
                         <h3 className="text-3xl font-medium font-montserrat text-[#171717]">
                             HiTalent
                         </h3>

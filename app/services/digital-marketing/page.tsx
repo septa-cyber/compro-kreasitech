@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 import Breadcrumb from "@/components/ui/Breadcrumb";
 import WhatsAppButton from "@/components/landing/WhatsAppButton";
 import DigitalMarketingHero from "@/components/services/digital-marketing/DigitalMarketingHero";
-import ServicesGrid from "@/components/services/digital-marketing/ServicesGrid";
+import ServicesSections from "@/components/services/digital-marketing/ServicesSections";
 import ProcessSection from "@/components/services/digital-marketing/ProcessSection";
 import OutcomeSection from "@/components/services/digital-marketing/OutcomeSection";
 import DigitalMarketingCTA from "@/components/services/digital-marketing/DigitalMarketingCTA";
@@ -28,7 +28,7 @@ export default function DigitalMarketingPage() {
                     ]}
                 />
                 <DigitalMarketingHero />
-                <ServicesGrid />
+                <ServicesSections />
                 <ProcessSection />
                 <OutcomeSection />
                 <DigitalMarketingCTA />

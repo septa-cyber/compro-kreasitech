@@ -3,7 +3,7 @@ import React from 'react';
 
 export default function HiTalentAbout() {
     return (
-        <section className="py-24 bg-white text-[#171717] overflow-hidden">
+        <section id="about" className="py-24 bg-white text-[#171717] overflow-hidden">
             <div className="flex flex-col items-center gap-24 px-4 w-full">
                 {/* Header */}
                 <div className="w-full max-w-[784px] text-center">

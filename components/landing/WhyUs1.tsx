@@ -3,28 +3,24 @@ import React from 'react';
 export default function WhyUs() {
     const items = [
         {
-            title: "Creative Partnership",
-            description: "Di Kreasitech, kami percaya bahwa inovasi terbaik lahir dari kolaborasi yang kuat. Creative Partnership lebih dari sekadar hubungan bisnis; ini adalah komitmen kami untuk bekerja sebagai mitra strategis dan fleksibel dalam menciptakan solusi digital yang relevan dan berdampak bagi bisnis Anda."
+            title: "Partner end-to-end",
+            description: "Dari ide, pengembangan, sampai maintenance."
         },
         {
-            title: "Hemat Biaya & ROI Tinggi",
-            description: "Teknologi yang kami kembangkan tidak hanya efektif tetapi juga memberikan nilai investasi yang optimal, meningkatkan efisiensi operasional dan keuntungan bisnis Anda."
+            title: "Tim muda & adaptif",
+            description: "Kreatif, cepat belajar, dan berorientasi solusi."
         },
         {
-            title: "Dukungan IT Menyeluruh",
-            description: "Mulai dari konsultasi hingga implementasi dan pemeliharaan, kami hadir untuk memastikan solusi teknologi Anda selalu berjalan optimal."
+            title: "Satu ekosistem layanan",
+            description: "Software, marketing, talent & academy."
         },
         {
-            title: "Profesional Berpengalaman",
-            description: "Kami menjamin proyek Anda ditangani oleh tim profesional berpengalaman kami yang memahami tantangan bisnis modern dan dapat memberikan solusi yang tepat, efisien, dan berkelanjutan."
+            title: "Flexible & scalable",
+            description: "Menyesuaikan kebutuhan dan kapasitas klien."
         },
         {
-            title: "Keamanan & Kepatuhan",
-            description: "Kami memprioritaskan keamanan data dan kepatuhan terhadap peraturan industri, memastikan sistem Anda tetap aman dan andal."
-        },
-        {
-            title: "Solusi yang Disesuaikan",
-            description: "Teknologi terbaik adalah yang sesuai dengan kebutuhan bisnis Anda. Di Kreasitech, kami menghadirkan Solusi yang Disesuaikan—solusi yang dirancang khusus untuk mendukung pertumbuhan dan skalabilitas bisnis Anda."
+            title: "Impact first",
+            description: "Setiap layanan fokus memberikan hasil nyata."
         }
     ];
 

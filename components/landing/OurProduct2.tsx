@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 export default function OurProduct() {
     return (
@@ -15,18 +16,15 @@ export default function OurProduct() {
                 <div className="w-full max-w-[1200px] flex flex-col-reverse lg:flex-row items-center gap-12 lg:gap-6">
                     {/* Left Column: Text */}
                     <div className="w-full lg:w-[480px] flex flex-col items-center lg:items-start text-center lg:text-left gap-6">
-                        <div className="text-xs font-normal font-montserrat text-[#171717] opacity-90">
-                            13 Nov 2025
-                        </div>
                         <h3 className="text-3xl font-medium font-montserrat text-[#171717]">
                             HiTalent
                         </h3>
                         <p className="text-base font-normal font-montserrat leading-relaxed text-[#171717] opacity-90">
                             Solusi cerdas untuk mengelola sumber daya manusia secara efisien — mulai dari absensi hingga penggajian. Didukung oleh teknologi berbasis cloud yang menyederhanakan pengelolaan sekaligus meningkatkan produktivitas dan efisiensi perusahaan Anda.
                         </p>
-                        <button className="px-6 md:px-8 py-3 md:py-4 bg-violet-600 hover:bg-violet-700 rounded-lg transition-colors duration-300">
+                        <Link href="/products/hitalent" className="px-6 md:px-8 py-3 md:py-4 bg-violet-600 hover:bg-violet-700 rounded-lg transition-colors duration-300 inline-block">
                             <span className="text-white text-sm md:text-base font-medium font-montserrat">Lihat Detail</span>
-                        </button>
+                        </Link>
                     </div>
 
                     {/* Right Column: Image */}
