@@ -53,9 +53,9 @@ export default function Footer() {
                         <Link href="/services/software-development" className="justify-start text-text-light text-sm font-medium font-montserrat hover:text-primary transition">
                             Software Development
                         </Link>
-                        <a href="#" className="justify-start text-text-light text-sm font-medium font-montserrat hover:text-primary transition">
+                        <Link href="/academy" className="justify-start text-text-light text-sm font-medium font-montserrat hover:text-primary transition">
                             Academy
-                        </a>
+                        </Link>
                         <Link href="/services/digital-marketing" className="justify-start text-text-light text-sm font-medium font-montserrat hover:text-primary transition">
                             Digital Marketing
                         </Link>

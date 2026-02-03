@@ -1,8 +1,8 @@
 "use client";
 import React from 'react';
-import { LuSearch, LuLayers, LuCode, LuShieldCheck, LuUsers, LuRocket } from 'react-icons/lu';
 
-export default function HiTalentFeatures() {
+// Renamed to fix Turbopack HMR cache issue
+export default function HiTalentProcess() {
     return (
         <section id="features" className="py-24 bg-violet-800 text-white overflow-hidden " data-theme="dark">
             <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center gap-16">

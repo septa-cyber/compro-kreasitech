@@ -94,7 +94,7 @@ export default function Navbar() {
                                     <div className="bg-white/95 backdrop-blur-md border border-gray-100 shadow-xl rounded-2xl overflow-hidden p-5 text-text-light">
                                         <h4 className="font-bold text-sm mb-3 text-left whitespace-nowrap text-text-light">Layanan</h4>
                                         <ul className="space-y-2 text-xs text-text-light-muted text-left whitespace-nowrap">
-                                            <li><a href="#" className="dropdown-item block py-1 text-text-light">Academy</a></li>
+                                            <li><Link href="/academy" className="dropdown-item block py-1 text-text-light">Academy</Link></li>
                                             <li><a href="#" className="dropdown-item block py-1 text-text-light">Talent As a Service</a></li>
                                             <li><Link href="/services/digital-marketing" className="dropdown-item block py-1 text-text-light">Digital Marketing</Link></li>
                                             <li><Link href="/services/software-development" className="dropdown-item block py-1 text-text-light">Software Development</Link></li>
@@ -191,7 +191,7 @@ export default function Navbar() {
                         <div className={`overflow-hidden transition-all duration-300 ${activeMobileDropdown === "layanan" ? "max-h-[300px] opacity-100" : "max-h-0 opacity-0"}`}>
                             <div className="bg-gray-50 p-4 space-y-6 rounded-lg mb-2">
                                 <ul className="space-y-2 text-xs text-text-light-muted">
-                                    <li><a href="#" className="block py-1 hover:text-primary">Academy</a></li>
+                                    <li><Link href="/academy" className="block py-1 hover:text-primary">Academy</Link></li>
                                     <li><a href="#" className="block py-1 hover:text-primary">Talent As a Service</a></li>
                                     <li><Link href="/services/digital-marketing" className="block py-1 hover:text-primary">Digital Marketing</Link></li>
                                     <li><Link href="/services/software-development" className="block py-1 hover:text-primary">Software Development</Link></li>

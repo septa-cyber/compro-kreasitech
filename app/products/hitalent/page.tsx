@@ -4,7 +4,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import HiTalentHero from "@/components/products/hitalent/HiTalentHero";
 import HiTalentAbout from "@/components/products/hitalent/HiTalentAbout";
-import HiTalentFeatures from "@/components/products/hitalent/HiTalentFeatures";
+import HiTalentProcess from "@/components/products/hitalent/HiTalentProcess";
 import HiTalentBenefits from "@/components/products/hitalent/HiTalentBenefits";
 import HiTalentCTA from "@/components/products/hitalent/HiTalentCTA";
 import HiTalentTestimonials from "@/components/products/hitalent/HiTalentTestimonials";
@@ -23,7 +23,7 @@ export default function HiTalentPage() {
             ]} />
             <HiTalentHero />
             <HiTalentAbout />
-            <HiTalentFeatures />
+            <HiTalentProcess />
             <HiTalentBenefits />
             <HiTalentCTA />
             <HiTalentTestimonials />
