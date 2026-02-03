@@ -37,7 +37,7 @@ export default function ProcessSection() {
                     </p>
                 </div>
 
-                <div className="w-full grid grid-cols-1 md:grid-cols-2 max-w-5xl mx-auto border border-white/20">
+                <div className="w-full grid grid-cols-1 md:grid-cols-2 mx-auto border border-white/20">
                     {processSteps.map((step, index) => (
                         <div
                             key={index}

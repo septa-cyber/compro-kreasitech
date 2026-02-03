@@ -44,7 +44,7 @@ export const portfolioItems: PortfolioItem[] = [
         id: 5,
         title: "SkyLine Dashboard",
         subtitle: "Real Estate Analytics",
-        image: "https://images.unsplash.com/photo-1551288049-bbbda536339a?q=80&w=2070&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=2073&auto=format&fit=crop",
         size: "medium",
         category: "Software Development"
     },
