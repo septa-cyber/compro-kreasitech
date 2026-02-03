@@ -16,7 +16,7 @@ export default function HiTalentCTA() {
                         </p>
                     </div>
                 </div>
-                <Link href="/contact" className="px-8 py-4 bg-violet-300 rounded-lg inline-flex justify-center items-center gap-2.5 hover:bg-violet-200 transition-colors">
+                <Link href="/contact" className="px-8 py-4 bg-white rounded-lg inline-flex justify-center items-center gap-2.5 hover:bg-gray-100 transition-colors">
                     <span className="text-violet-800 text-base font-medium font-montserrat">Coba HiTalent</span>
                 </Link>
             </div>

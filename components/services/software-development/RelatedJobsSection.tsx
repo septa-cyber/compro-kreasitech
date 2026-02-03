@@ -24,7 +24,7 @@ export default function RelatedJobsSection() {
                         <a key={i} href="#" className="group flex items-center justify-between md:justify-start gap-4 w-full md:w-[584px] py-2 hover:opacity-80 transition-opacity">
                             <span className="text-white text-2xl font-medium font-montserrat group-hover:underline underline-offset-4 decoration-2">{job}</span>
                             <div className="relative w-6 h-6 overflow-hidden">
-                                <MdNorthEast className="text-violet-300 text-xl absolute top-[2px] right-[2px] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                                <MdNorthEast className="text-white text-xl absolute top-[2px] right-[2px] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                             </div>
                         </a>
                     ))}

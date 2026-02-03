@@ -434,7 +434,7 @@ export default function KarirPage() {
                                         <div className="inline-flex justify-end items-center gap-4">
                                             <div className="text-right justify-start text-white text-base font-medium font-montserrat">Apply</div>
                                             <div className="w-6 h-6 relative overflow-hidden flex items-center justify-center">
-                                                <i className="fas fa-arrow-right text-violet-300 -rotate-45"></i>
+                                                <i className="fas fa-arrow-right text-white -rotate-45"></i>
                                             </div>
                                         </div>
                                     </div>

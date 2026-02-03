@@ -330,7 +330,7 @@ export default async function SoftwareServiceDetailPage({ params }: PageProps) {
                                         {job.title}
                                     </span>
                                     <div className="relative w-6 h-6 overflow-hidden flex items-center justify-center">
-                                        <MdNorthEast className="text-violet-300 text-xl transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                                        <MdNorthEast className="text-white text-xl transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                                     </div>
                                 </Link>
                             ))}

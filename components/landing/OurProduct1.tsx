@@ -21,8 +21,8 @@ export default function OurProduct() {
                         <p className="text-base font-normal font-montserrat leading-relaxed text-[#171717] opacity-90">
                             Solusi cerdas untuk mengelola sumber daya manusia secara efisien — mulai dari absensi hingga penggajian. Didukung oleh teknologi berbasis cloud yang menyederhanakan pengelolaan sekaligus meningkatkan produktivitas dan efisiensi perusahaan Anda.
                         </p>
-                        <button className="px-8 py-4 bg-violet-300 rounded-lg inline-flex justify-center items-center gap-2.5 hover:bg-violet-200 transition-colors">
-                            <span className="text-violet-800 text-base font-medium font-montserrat">Lihat Detail</span>
+                        <button className="px-8 py-4 bg-violet-600 rounded-lg inline-flex justify-center items-center gap-2.5 hover:bg-violet-700 transition-colors">
+                            <span className="text-white text-base font-medium font-montserrat">Lihat Detail</span>
                         </button>
                     </div>
 

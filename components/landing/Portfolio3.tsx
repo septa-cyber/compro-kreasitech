@@ -21,7 +21,7 @@ export default function Portfolio() {
                             Telah mendukung berbagai jenis bisnis, startup, institusi pendidikan, UKM, dan corporate dalam membangun aplikasi, website, digital marketing, hingga penyediaan talent IT yang berkelanjutan.
                         </p>
                     </div>
-                    <Link href="/portfolio" className="px-8 py-4 bg-violet-300 rounded-lg inline-flex justify-center items-center gap-2.5 hover:bg-violet-200 transition-colors">
+                    <Link href="/portfolio" className="px-8 py-4 bg-white rounded-lg inline-flex justify-center items-center gap-2.5 hover:bg-gray-100 transition-colors">
                         <span className="text-violet-800 text-base font-medium font-montserrat">Lihat Semua</span>
                     </Link>
                 </div>
