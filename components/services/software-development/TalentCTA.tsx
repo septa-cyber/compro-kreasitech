@@ -3,7 +3,7 @@ import React from 'react';
 export default function TalentCTA() {
     return (
         <section className="py-24 bg-gray-100 flex flex-col justify-start items-center gap-24 overflow-hidden">
-            <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-center items-center gap-16">
+            <div className="w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-center items-center gap-16">
                 <div className="w-full flex flex-col justify-start items-center gap-8">
                     <div className="w-full flex flex-col justify-start items-center gap-8 text-center">
                         <h2 className="text-3xl sm:text-4xl font-medium font-montserrat text-text-light leading-tight">

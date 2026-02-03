@@ -18,7 +18,7 @@ export default function Loading() {
             </div>
 
             {/* Hero Skeleton */}
-            <div className="pt-40 pb-20 max-w-7xl mx-auto px-4 flex flex-col items-center">
+            <div className="pt-40 pb-20 max-w-[1200px] mx-auto px-4 flex flex-col items-center">
                 <Skeleton className="h-16 w-3/4 mb-4" />
                 <Skeleton className="h-16 w-1/2 mb-8" />
                 <Skeleton className="h-4 w-96 mb-8" />

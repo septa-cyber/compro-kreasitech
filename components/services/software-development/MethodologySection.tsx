@@ -4,7 +4,7 @@ import { MdCheckCircle, MdLightbulb } from "react-icons/md";
 export default function MethodologySection() {
     return (
         <section className="py-24 bg-white overflow-hidden">
-            <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center gap-24">
+            <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center gap-24">
 
                 {/* Header */}
                 <div className="max-w-[784px] flex flex-col items-center gap-8 text-center">

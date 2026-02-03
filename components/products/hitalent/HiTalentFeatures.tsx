@@ -5,7 +5,7 @@ import { LuSearch, LuLayers, LuCode, LuShieldCheck, LuUsers, LuRocket } from 're
 export default function HiTalentFeatures() {
     return (
         <section id="features" className="py-24 bg-violet-800 text-white overflow-hidden " data-theme="dark">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center gap-16">
+            <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center gap-16">
                 <div className="max-w-3xl mx-auto">
                     <h2 className="text-2xl md:text-4xl font-medium font-montserrat mb-6">
                         Sesuaikan energi Anda dengan alur kerja kami

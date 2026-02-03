@@ -7,7 +7,7 @@ interface LandingAboutProps {
 export default function LandingAbout({ className = "bg-white" }: LandingAboutProps) {
     return (
         <section id="about" className={`py-20 ${className}`}>
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="max-w-4xl mx-auto text-center">
                     <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium font-montserrat text-text-light mb-8">
                         Tentang Kami

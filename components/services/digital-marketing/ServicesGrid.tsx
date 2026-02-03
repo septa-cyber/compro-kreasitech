@@ -7,7 +7,7 @@ import { digitalMarketingServices } from "@/data/digital-marketing-services";
 export default function ServicesGrid() {
     return (
         <section id="solutions" className="py-16 sm:py-20 lg:py-24 bg-white">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center gap-16 sm:gap-20 lg:gap-24">
+            <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center gap-16 sm:gap-20 lg:gap-24">
                 {/* Header */}
                 <div className="w-full max-w-[784px] flex flex-col items-center gap-6 sm:gap-8 text-center px-4">
                     <h2 className="text-3xl sm:text-4xl font-medium font-montserrat text-text-light">

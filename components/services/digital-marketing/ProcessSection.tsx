@@ -27,7 +27,7 @@ const processSteps = [
 export default function ProcessSection() {
     return (
         <section className="py-24 bg-violet-800 text-white overflow-hidden" data-theme="dark">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center gap-16">
+            <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center gap-16">
                 <div className="max-w-3xl mx-auto">
                     <h2 className="text-2xl md:text-4xl font-medium font-montserrat mb-6">
                         Alur Layanan Digital Marketing
@@ -39,15 +39,12 @@ export default function ProcessSection() {
 
                 <div className="w-full grid grid-cols-1 md:grid-cols-2 max-w-5xl mx-auto border border-white/20">
                     {processSteps.map((step, index) => (
-                        <div 
+                        <div
                             key={index}
-                            className={`p-10 flex flex-col justify-start items-center gap-6 transition-all duration-300 hover:bg-white group cursor-default ${
-                                index === 0 ? 'border-b border-white/20 md:border-b md:border-r border-white/20' : ''
-                            } ${
-                                index === 1 ? 'border-b border-white/20 md:border-b border-white/20' : ''
-                            } ${
-                                index === 2 ? 'md:border-r border-white/20' : ''
-                            }`}
+                            className={`p-10 flex flex-col justify-start items-center gap-6 transition-all duration-300 hover:bg-white group cursor-default ${index === 0 ? 'border-b border-white/20 md:border-b md:border-r border-white/20' : ''
+                                } ${index === 1 ? 'border-b border-white/20 md:border-b border-white/20' : ''
+                                } ${index === 2 ? 'md:border-r border-white/20' : ''
+                                }`}
                         >
                             <div className="w-10 h-10 border border-white rounded flex items-center justify-center text-xl font-medium mb-0 group-hover:border-violet-600 group-hover:text-violet-600 transition-all duration-300">
                                 {step.number}

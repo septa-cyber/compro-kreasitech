@@ -167,7 +167,7 @@ export default async function SoftwareServiceDetailPage({ params }: PageProps) {
 
                 {/* Skills Section */}
                 <section className="bg-[#4F11BD] py-24 text-white">
-                    <div className="max-w-[1240px] mx-auto px-6 lg:px-8">
+                    <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
                         {/* Introduction sentence - DO NOT DELETE */}
                         <div className="text-center mb-24">
                             <h2 className="text-3xl md:text-4xl font-medium font-montserrat max-w-4xl mx-auto leading-tight italic">
@@ -309,7 +309,7 @@ export default async function SoftwareServiceDetailPage({ params }: PageProps) {
 
                 {/* Related Jobs Section */}
                 <section className="bg-violet-800 text-white py-24 font-montserrat" data-theme="dark">
-                    <div className="max-w-[1240px] mx-auto px-6 lg:px-8 flex flex-col gap-12">
+                    <div className="max-w-[1200px] mx-auto px-6 lg:px-8 flex flex-col gap-12">
                         <h2 className="text-white text-4xl font-medium font-montserrat">
                             Lowongan Terkait
                         </h2>
@@ -340,7 +340,7 @@ export default async function SoftwareServiceDetailPage({ params }: PageProps) {
 
                 {/* Final CTA Section */}
                 <section className="py-24 bg-[#F3F4F6] flex flex-col justify-start items-center gap-24 overflow-hidden font-montserrat">
-                    <div className="w-full max-w-7xl mx-auto px-6 lg:px-8 flex flex-col justify-center items-center gap-16">
+                    <div className="w-full max-w-[1200px] mx-auto px-6 lg:px-8 flex flex-col justify-center items-center gap-16">
                         <div className="w-full flex flex-col justify-start items-center gap-8">
                             <div className="w-full flex flex-col justify-start items-center gap-8 text-center">
                                 <h2 className="text-4xl md:text-5xl font-medium font-montserrat text-gray-900 leading-tight tracking-tight">

@@ -305,7 +305,7 @@ export default function JobDetailPage() {
         return (
             <div className="bg-[#F4F4F7] text-gray-800 min-h-screen">
                 <Navbar />
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+                <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
                     <h1 className="text-3xl font-bold font-montserrat text-text-light mb-4">Job Not Found</h1>
                     <button
                         onClick={() => router.push('/karir')}
@@ -329,7 +329,7 @@ export default function JobDetailPage() {
 
             {/* Main Content */}
             <section className="py-12 bg-[#F4F4F7]">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex flex-col lg:flex-row gap-8">
 
                         {/* Main Content */}

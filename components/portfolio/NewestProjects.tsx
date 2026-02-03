@@ -4,7 +4,7 @@ import Image from "next/image";
 export default function NewestProjects() {
     return (
         <section className="py-24 bg-background-light">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center gap-12">
+            <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center gap-12">
                 <h2 className="text-4xl font-medium font-montserrat text-center text-gray-900">Proyek Terbaru Kami</h2>
 
                 {/* Bento Grid */}

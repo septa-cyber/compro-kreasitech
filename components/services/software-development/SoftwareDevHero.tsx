@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function SoftwareDevHero() {
     return (
         <section className="relative pt-10 pb-12 overflow-hidden bg-[#F4F4F7]">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
                 <h1 className="text-[40px] sm:text-5xl lg:text-7xl font-medium font-montserrat leading-tight max-w-6xl mx-auto mb-8 text-text-light">
                     Mewujudkan Ide Menjadi <span className="font-semibold text-violet-600">Solusi Digital</span> Bernilai Bisnis
                 </h1>

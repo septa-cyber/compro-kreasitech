@@ -27,14 +27,13 @@ export default function OutcomeSection() {
                     Hasil yang Didapat
                 </div>
             </div>
-            
-            <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-center md:justify-between items-center md:items-stretch flex-wrap">
+
+            <div className="w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-center md:justify-between items-center md:items-stretch flex-wrap">
                 {outcomes.map((outcome, index) => (
-                    <div 
-                        key={index} 
-                        className={`w-full md:w-96 p-8 flex flex-col justify-start items-center gap-6 ${
-                            index === 1 ? 'md:border-l-[0.5px] md:border-r-[0.5px] border-gray-200' : ''
-                        }`}
+                    <div
+                        key={index}
+                        className={`w-full md:w-96 p-8 flex flex-col justify-start items-center gap-6 ${index === 1 ? 'md:border-l-[0.5px] md:border-r-[0.5px] border-gray-200' : ''
+                            }`}
                     >
                         <div className="self-stretch text-center text-text-light text-2xl font-medium font-montserrat">
                             {outcome.title}

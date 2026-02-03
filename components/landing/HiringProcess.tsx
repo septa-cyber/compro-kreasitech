@@ -3,7 +3,7 @@ import React from 'react';
 export default function HiringProcess() {
     return (
         <section className="py-24 bg-[#F4F4F7]">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center gap-16 lg:gap-24">
+            <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center gap-16 lg:gap-24">
                 <div className="w-full max-w-[784px] text-center">
                     <h2 className="text-3xl lg:text-4xl font-medium font-montserrat text-text-light leading-tight">
                         Temukan Kehebatan <br className="hidden md:block" /> Proses Perekrutan KreasiTech
