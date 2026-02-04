@@ -24,7 +24,7 @@ export default function TaaSPlacementModel() {
         <section className="py-24 bg-violet-800">
             <div className="flex flex-col items-center gap-24">
                 <div className="w-full max-w-[784px] flex flex-col items-center gap-8 px-4 text-center">
-                    <h2 className="text-4xl font-medium font-montserrat text-white">
+                    <h2 className="text-3xl md:text-4xl font-medium font-montserrat text-white">
                         Talent Placement Model
                     </h2>
                     <p className="max-w-[700px] text-base font-normal font-montserrat text-white/80">

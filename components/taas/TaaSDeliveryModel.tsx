@@ -25,7 +25,7 @@ export default function TaaSDeliveryModel() {
             <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex flex-col items-center gap-16">
                     <div className="w-full max-w-[784px] flex flex-col items-center gap-8 text-center">
-                        <h2 className="text-4xl font-medium font-montserrat text-text-light">
+                        <h2 className="text-3xl md:text-4xl font-medium font-montserrat text-text-light">
                             Talent Delivery Model
                         </h2>
                         <p className="max-w-[672px] text-base font-normal font-montserrat text-text-light-muted">
@@ -35,16 +35,12 @@ export default function TaaSDeliveryModel() {
 
                     <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-0">
                         {deliveryModels.map((model, index) => {
-                            const IconComponent = model.icon;
                             return (
                                 <div
                                     key={index}
                                     className={`w-full p-8 flex flex-col justify-start items-center gap-6 ${index === 1 ? 'md:border-l-[0.5px] md:border-r-[0.5px] border-gray-200' : ''
                                         }`}
                                 >
-                                    <div className="w-14 h-14 relative flex items-center justify-center rounded-2xl bg-violet-50 shadow-sm">
-                                        <IconComponent className="text-3xl text-violet-600" />
-                                    </div>
                                     <h3 className="self-stretch text-center text-text-light text-2xl font-medium font-montserrat">
                                         {model.title}
                                     </h3>

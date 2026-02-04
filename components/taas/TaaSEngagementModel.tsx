@@ -30,7 +30,7 @@ export default function TaaSEngagementModel() {
             <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex flex-col items-center gap-24">
                     <div className="w-full max-w-[784px] flex flex-col items-center gap-8 text-center">
-                        <h2 className="text-4xl font-medium font-montserrat text-text-light">
+                        <h2 className="text-3xl md:text-4xl font-medium font-montserrat text-text-light">
                             Talent Engagement Model
                         </h2>
                     </div>

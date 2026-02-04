@@ -5,11 +5,11 @@ export default function TaaSDifferentiators() {
         <section className="py-24 bg-[#F4F4F7] text-gray-900 overflow-hidden">
             <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center gap-16">
                 <div className="max-w-3xl mx-auto">
-                    <h2 className="text-2xl md:text-4xl font-medium font-montserrat mb-6 text-gray-900">
-                        Sesuaikan energi Anda dengan alur kerja kami
+                    <h2 className="text-3xl md:text-4xl font-medium font-montserrat mb-6 text-gray-900">
+                        Kunci Pembeda Kreasitech
                     </h2>
-                    <p className="text-sm md:text-base font-normal font-montserrat text-gray-600 leading-relaxed">
-                        Kami memastikan setiap proyek dieksekusi secara efisien dan disesuaikan dengan kebutuhan bisnis unik Anda, menyediakan solusi inovatif yang mendorong kesuksesan.
+                    <p className="text-base font-normal font-montserrat text-gray-600 leading-relaxed">
+                        Mengapa memilih Kreasitech sebagai partner penyedia talent teknologi Anda? Kami menawarkan lebih dari sekadar penempatan tenaga kerja—kami menghadirkan ekosistem pengembangan talenta digital yang berkelanjutan.
                     </p>
                 </div>
 
@@ -20,10 +20,10 @@ export default function TaaSDifferentiators() {
                             1
                         </div>
                         <h3 className="text-xl font-medium font-montserrat text-center h-14 flex items-center justify-center text-gray-900 group-hover:text-white transition-colors duration-300 relative z-10">
-                            Discovery & Requirements
+                            Fokus pada Talenta Teknologi
                         </h3>
                         <p className="text-sm font-normal font-montserrat text-center text-gray-600 group-hover:text-white/90 transition-colors duration-300 relative z-10">
-                            Menggali kebutuhan bisnis secara mendalam dan merumuskan spesifikasi teknis yang menjadi fondasi proyek.
+                            Spesifik pada talent IT dan digital yang telah melalui proses kurasi teknis (developer, QA, UI/UX, data, dll.).
                         </p>
                     </div>
 
@@ -32,10 +32,10 @@ export default function TaaSDifferentiators() {
                             2
                         </div>
                         <h3 className="text-xl font-medium font-montserrat text-center h-14 flex items-center justify-center text-gray-900 group-hover:text-white transition-colors duration-300 relative z-10">
-                            Wireframe & Desain UI/UX
+                            Peningkatan Skill melalui Academy
                         </h3>
                         <p className="text-sm font-normal font-montserrat text-center text-gray-600 group-hover:text-white/90 transition-colors duration-300 relative z-10">
-                            Merancang kerangka visual dan pengalaman pengguna yang intuitif sebelum tahap penulisan kode dimulai.
+                            Program training, bootcamp, dan webinar (After Office & Impact Academy) untuk talent yang lebih siap dan terstandarisasi.
                         </p>
                     </div>
 
@@ -44,10 +44,10 @@ export default function TaaSDifferentiators() {
                             3
                         </div>
                         <h3 className="text-xl font-medium font-montserrat text-center h-14 flex items-center justify-center text-gray-900 group-hover:text-white transition-colors duration-300 relative z-10">
-                            Pengembangan
+                            Model Fleksibel
                         </h3>
                         <p className="text-sm font-normal font-montserrat text-center text-gray-600 group-hover:text-white/90 transition-colors duration-300 relative z-10">
-                            Proses coding sistem backend dan frontend untuk mengubah desain menjadi aplikasi fungsional yang robust.
+                            Berbagai skema penempatan (onsite, remote, hybrid) sesuai kebutuhan klien tanpa mengurangi kualitas kinerja.
                         </p>
                     </div>
 
@@ -56,10 +56,10 @@ export default function TaaSDifferentiators() {
                             4
                         </div>
                         <h3 className="text-xl font-medium font-montserrat text-center h-14 flex items-center justify-center text-gray-900 group-hover:text-white transition-colors duration-300 relative z-10">
-                            SIT
+                            Manajemen Terpusat
                         </h3>
                         <p className="text-sm font-normal font-montserrat text-center text-gray-600 group-hover:text-white/90 transition-colors duration-300 relative z-10">
-                            System Integration Testing untuk memastikan seluruh modul dan interaksi sistem berjalan mulus tanpa konflik.
+                            Administrasi, performa, payroll, BPJS, dan evaluasi dikelola Kreasitech sehingga klien fokus pada bisnis inti.
                         </p>
                     </div>
 
@@ -69,10 +69,10 @@ export default function TaaSDifferentiators() {
                             5
                         </div>
                         <h3 className="text-xl font-medium font-montserrat text-center h-14 flex items-center justify-center text-gray-900 group-hover:text-white transition-colors duration-300 relative z-10">
-                            UAT
+                            Talent Development Berkelanjutan
                         </h3>
                         <p className="text-sm font-normal font-montserrat text-center text-gray-600 group-hover:text-white/90 transition-colors duration-300 relative z-10">
-                            User Acceptance Testing, validasi akhir oleh Anda untuk memastikan aplikasi sesuai kebutuhan bisnis yang disepakati.
+                            Pembinaan, evaluasi performa, dan peningkatan skill secara berkala untuk kualitas kerja yang stabil dan meningkat.
                         </p>
                     </div>
 
@@ -81,10 +81,10 @@ export default function TaaSDifferentiators() {
                             6
                         </div>
                         <h3 className="text-xl font-medium font-montserrat text-center h-14 flex items-center justify-center text-gray-900 group-hover:text-white transition-colors duration-300 relative z-10">
-                            Deployment
+                            Biaya Efisien & Terprediksi
                         </h3>
                         <p className="text-sm font-normal font-montserrat text-center text-gray-600 group-hover:text-white/90 transition-colors duration-300 relative z-10">
-                            Peluncuran aplikasi ke lingkungan produksi (live) agar dapat digunakan secara penuh oleh user.
+                            Skema biaya transparan dan terukur tanpa beban HR tambahan, rekrutmen ulang, atau biaya turnover.
                         </p>
                     </div>
 
@@ -93,10 +93,10 @@ export default function TaaSDifferentiators() {
                             7
                         </div>
                         <h3 className="text-xl font-medium font-montserrat text-center h-14 flex items-center justify-center text-gray-900 group-hover:text-white transition-colors duration-300 relative z-10">
-                            Pemeliharaan & Dukungan
+                            Berbasis Teknologi & Data
                         </h3>
                         <p className="text-sm font-normal font-montserrat text-center text-gray-600 group-hover:text-white/90 transition-colors duration-300 relative z-10">
-                            Layanan monitoring, perbaikan bug, dan optimasi berkelanjutan untuk menjamin stabilitas sistem jangka panjang.
+                            Proses seleksi, monitoring, dan evaluasi berbasis sistem untuk kualitas yang lebih konsisten.
                         </p>
                     </div>
                 </div>
