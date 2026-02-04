@@ -47,9 +47,9 @@ export default function Footer() {
                         <div className="justify-start text-violet-600 text-xs font-bold uppercase font-montserrat">
                             Layanan
                         </div>
-                        <a href="#" className="justify-start text-text-light text-sm font-medium font-montserrat hover:text-primary transition">
+                        <Link href="/taas" className="justify-start text-text-light text-sm font-medium font-montserrat hover:text-primary transition">
                             Talent as a Service
-                        </a>
+                        </Link>
                         <Link href="/services/software-development" className="justify-start text-text-light text-sm font-medium font-montserrat hover:text-primary transition">
                             Software Development
                         </Link>

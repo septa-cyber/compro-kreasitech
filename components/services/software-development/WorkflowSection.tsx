@@ -2,9 +2,9 @@ import React from "react";
 
 export default function WorkflowSection() {
     return (
-        <section className="py-24 bg-[#4834d4] text-white relative">
+        <section className="py-24 bg-violet-800 text-white relative">
             {/* No gradient overlay needed as per new reference, just solid deep purple or very subtle gradient */}
-            <div className="absolute inset-0 bg-[#4834d4]"></div>
+            <div className="absolute inset-0 bg-violet-800"></div>
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="text-center mb-16">
                     <h2 className="text-3xl font-bold mb-4 font-montserrat tracking-tight">Sesuaikan energi Anda dengan<br />alur kerja kami</h2>

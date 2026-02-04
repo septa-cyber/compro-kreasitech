@@ -95,7 +95,7 @@ export default function Navbar() {
                                         <h4 className="font-bold text-sm mb-3 text-left whitespace-nowrap text-text-light">Layanan</h4>
                                         <ul className="space-y-2 text-xs text-text-light-muted text-left whitespace-nowrap">
                                             <li><Link href="/academy" className="dropdown-item block py-1 text-text-light">Academy</Link></li>
-                                            <li><a href="#" className="dropdown-item block py-1 text-text-light">Talent As a Service</a></li>
+                                            <li><Link href="/taas" className="dropdown-item block py-1 text-text-light">Talent As a Service</Link></li>
                                             <li><Link href="/services/digital-marketing" className="dropdown-item block py-1 text-text-light">Digital Marketing</Link></li>
                                             <li><Link href="/services/software-development" className="dropdown-item block py-1 text-text-light">Software Development</Link></li>
                                         </ul>
@@ -192,7 +192,7 @@ export default function Navbar() {
                             <div className="bg-gray-50 p-4 space-y-6 rounded-lg mb-2">
                                 <ul className="space-y-2 text-xs text-text-light-muted">
                                     <li><Link href="/academy" className="block py-1 hover:text-primary">Academy</Link></li>
-                                    <li><a href="#" className="block py-1 hover:text-primary">Talent As a Service</a></li>
+                                    <li><Link href="/taas" className="block py-1 hover:text-primary">Talent As a Service</Link></li>
                                     <li><Link href="/services/digital-marketing" className="block py-1 hover:text-primary">Digital Marketing</Link></li>
                                     <li><Link href="/services/software-development" className="block py-1 hover:text-primary">Software Development</Link></li>
                                 </ul>
