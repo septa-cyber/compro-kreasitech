@@ -3,7 +3,7 @@ import React from "react";
 
 export default function TaaSTalentRoles() {
     return (
-        <section className="py-24 bg-violet-800 text-white">
+        <section className="py-24 bg-violet-800 text-white" data-theme="dark">
             <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-16 space-y-4">
                     <h2 className="text-3xl md:text-4xl font-medium font-montserrat text-white">

@@ -21,7 +21,7 @@ const placementModels = [
 
 export default function TaaSPlacementModel() {
     return (
-        <section className="py-24 bg-violet-800">
+        <section className="py-24 bg-violet-800" data-theme="dark">
             <div className="flex flex-col items-center gap-24">
                 <div className="w-full max-w-[784px] flex flex-col items-center gap-8 px-4 text-center">
                     <h2 className="text-3xl md:text-4xl font-medium font-montserrat text-white">
