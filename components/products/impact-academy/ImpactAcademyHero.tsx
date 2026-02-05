@@ -10,7 +10,7 @@ export default function ImpactAcademyHero() {
                 </div>
 
                 <h1 className="text-[40px] sm:text-5xl lg:text-7xl font-medium font-montserrat leading-tight max-w-6xl mx-auto mb-8 text-text-light">
-                    Impact <span className="font-semibold text-violet-600">Academy</span>
+                    Kreasi <span className="font-semibold text-violet-600">Space</span>
                 </h1>
 
                 <p className="max-w-3xl mx-auto text-sm sm:text-base text-gray-500 font-montserrat mb-4">
