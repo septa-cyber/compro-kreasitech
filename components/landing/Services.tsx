@@ -48,7 +48,7 @@ export default function Services() {
                             <LuGraduationCap className="text-3xl text-violet-600 group-hover:text-white transition-colors duration-300" />
                         </div>
                         <h3 className="self-stretch text-text-light group-hover:text-white text-2xl font-medium font-montserrat leading-tight transition-colors duration-300">
-                            Academy
+                            Kreasi Space
                         </h3>
                         <p className="self-stretch text-text-light group-hover:text-white text-sm font-normal font-montserrat leading-relaxed transition-colors duration-300">
                             Pelatihan digital & tech untuk masyarakat umum dan profesional
@@ -61,10 +61,10 @@ export default function Services() {
                             <LuMegaphone className="text-3xl text-violet-600 group-hover:text-white transition-colors duration-300" />
                         </div>
                         <h3 className="self-stretch text-text-light group-hover:text-white text-2xl font-medium font-montserrat leading-tight transition-colors duration-300">
-                            Digital Marketing
+                            Product SaaS
                         </h3>
                         <p className="self-stretch text-text-light group-hover:text-white text-sm font-normal font-montserrat leading-relaxed transition-colors duration-300">
-                            SEO, Google Ads, backlink, press release
+                            HiTalent, HiSales, Ventri, Idas SFA
                         </p>
                     </Link>
 
