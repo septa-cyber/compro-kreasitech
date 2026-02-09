@@ -1,6 +1,7 @@
 import React from 'react';
 import { LuLaptop, LuUsers, LuGraduationCap, LuMegaphone } from 'react-icons/lu';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Services() {
     return (
@@ -17,9 +18,9 @@ export default function Services() {
 
                 <div className="w-full max-w-[1200px] outline outline-[0.5px] outline-offset-[-0.5px] outline-gray-200 flex justify-between items-stretch flex-wrap content-center">
                     {/* 1. Software Development */}
-                    <Link href="/services/software-development" className="w-full md:w-1/2 lg:w-1/4 h-auto py-16 px-8 bg-white outline outline-[0.5px] outline-offset-[-0.25px] outline-gray-200 inline-flex flex-col justify-center items-center text-center gap-6 hover:bg-violet-800 transition-colors duration-300 group cursor-pointer">
+                    <Link href="/services/software-development" className="w-full md:w-1/2 lg:w-1/4 h-auto py-16 px-8 bg-white outline outline-[0.5px] outline-offset-[-0.25px] outline-gray-200 inline-flex flex-col justify-start items-center text-center gap-6 hover:bg-violet-800 transition-colors duration-300 group cursor-pointer">
                         <div className="w-14 h-14 relative flex items-center justify-center rounded-2xl bg-violet-50 group-hover:bg-white/10 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 shadow-sm">
-                            <LuLaptop className="text-3xl text-violet-600 group-hover:text-white transition-colors duration-300" />
+                            <Image src="/assets/images/icon services/3dicons-computer-dynamic-color.png" alt="Software Development" width={30} height={30} className="transition-transform duration-300" />
                         </div>
                         <h3 className="self-stretch text-text-light group-hover:text-white text-2xl font-medium font-montserrat leading-tight transition-colors duration-300">
                             Software Development
@@ -30,9 +31,9 @@ export default function Services() {
                     </Link>
 
                     {/* 2. Talent as a Service */}
-                    <Link href="/services" className="w-full md:w-1/2 lg:w-1/4 h-auto py-16 px-8 bg-white outline outline-[0.5px] outline-offset-[-0.25px] outline-gray-200 inline-flex flex-col justify-center items-center text-center gap-6 hover:bg-violet-800 transition-colors duration-300 group cursor-pointer">
+                    <Link href="/services" className="w-full md:w-1/2 lg:w-1/4 h-auto py-16 px-8 bg-white outline outline-[0.5px] outline-offset-[-0.25px] outline-gray-200 inline-flex flex-col justify-start items-center text-center gap-6 hover:bg-violet-800 transition-colors duration-300 group cursor-pointer">
                         <div className="w-14 h-14 relative flex items-center justify-center rounded-2xl bg-violet-50 group-hover:bg-white/10 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 shadow-sm">
-                            <LuUsers className="text-3xl text-violet-600 group-hover:text-white transition-colors duration-300" />
+                            <Image src="/assets/images/icon services/3dicons-zoom-dynamic-color.png" alt="Talent as a Service" width={30} height={30} className="transition-transform duration-300" />
                         </div>
                         <h3 className="self-stretch text-text-light group-hover:text-white text-2xl font-medium font-montserrat leading-tight transition-colors duration-300">
                             Talent as a Service
@@ -43,9 +44,9 @@ export default function Services() {
                     </Link>
 
                     {/* 3. Academy */}
-                    <Link href="/services" className="w-full md:w-1/2 lg:w-1/4 h-auto py-16 px-8 bg-white outline outline-[0.5px] outline-offset-[-0.25px] outline-gray-200 inline-flex flex-col justify-center items-center text-center gap-6 hover:bg-violet-800 transition-colors duration-300 group cursor-pointer">
+                    <Link href="/services" className="w-full md:w-1/2 lg:w-1/4 h-auto py-16 px-8 bg-white outline outline-[0.5px] outline-offset-[-0.25px] outline-gray-200 inline-flex flex-col justify-start items-center text-center gap-6 hover:bg-violet-800 transition-colors duration-300 group cursor-pointer">
                         <div className="w-14 h-14 relative flex items-center justify-center rounded-2xl bg-violet-50 group-hover:bg-white/10 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 shadow-sm">
-                            <LuGraduationCap className="text-3xl text-violet-600 group-hover:text-white transition-colors duration-300" />
+                            <Image src="/assets/images/icon services/3dicons-notebook-dynamic-color.png" alt="Kreasi Space" width={30} height={30} className="transition-transform duration-300" />
                         </div>
                         <h3 className="self-stretch text-text-light group-hover:text-white text-2xl font-medium font-montserrat leading-tight transition-colors duration-300">
                             Kreasi Space
@@ -56,9 +57,9 @@ export default function Services() {
                     </Link>
 
                     {/* 4. Digital Marketing */}
-                    <Link href="/services/digital-marketing" className="w-full md:w-1/2 lg:w-1/4 h-auto py-16 px-8 bg-white outline outline-[0.5px] outline-offset-[-0.25px] outline-gray-200 inline-flex flex-col justify-center items-center text-center gap-6 hover:bg-violet-800 transition-colors duration-300 group cursor-pointer">
+                    <Link href="/services/digital-marketing" className="w-full md:w-1/2 lg:w-1/4 h-auto py-16 px-8 bg-white outline outline-[0.5px] outline-offset-[-0.25px] outline-gray-200 inline-flex flex-col justify-start items-center text-center gap-6 hover:bg-violet-800 transition-colors duration-300 group cursor-pointer">
                         <div className="w-14 h-14 relative flex items-center justify-center rounded-2xl bg-violet-50 group-hover:bg-white/10 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 shadow-sm">
-                            <LuMegaphone className="text-3xl text-violet-600 group-hover:text-white transition-colors duration-300" />
+                            <Image src="/assets/images/icon services/3dicons-megaphone-dynamic-color.png" alt="Product SaaS" width={30} height={30} className="transition-transform duration-300" />
                         </div>
                         <h3 className="self-stretch text-text-light group-hover:text-white text-2xl font-medium font-montserrat leading-tight transition-colors duration-300">
                             Product SaaS
