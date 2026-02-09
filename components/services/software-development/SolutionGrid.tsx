@@ -1,14 +1,14 @@
 import Link from 'next/link';
 import { softwareDevelopmentServices } from '@/data/software-development-services';
-import { LuFileSpreadsheet, LuPenTool, LuMonitor, LuSmartphone, LuRocket, LuCpu } from 'react-icons/lu';
+import Image from 'next/image';
 
-const iconMapping: { [key: string]: React.ElementType } = {
-    'specifications-and-wireframe': LuFileSpreadsheet,
-    'ui-ux-design': LuPenTool,
-    'website-development': LuMonitor,
-    'mobile-app-development': LuSmartphone,
-    'mvp-development': LuRocket,
-    'custom-software-development': LuCpu,
+const iconMapping: { [key: string]: string } = {
+    'specifications-and-wireframe': "https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Spiral%20notepad/3D/spiral_notepad_3d.png",
+    'ui-ux-design': "https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Artist%20palette/3D/artist_palette_3d.png",
+    'website-development': "https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Desktop%20computer/3D/desktop_computer_3d.png",
+    'mobile-app-development': "https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Mobile%20phone/3D/mobile_phone_3d.png",
+    'mvp-development': "https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Rocket/3D/rocket_3d.png",
+    'custom-software-development': "https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Gear/3D/gear_3d.png",
 };
 
 export default function Services() {
@@ -26,14 +26,20 @@ export default function Services() {
 
                 <div className="w-full max-w-[1200px] outline outline-[0.5px] outline-offset-[-0.5px] outline-gray-200 inline-flex justify-between items-center flex-wrap content-center">
                     {softwareDevelopmentServices.map((service, index) => {
-                        const IconComponent = iconMapping[service.slug] || LuCpu;
+                        const iconSrc = iconMapping[service.slug] || "https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Gear/3D/gear_3d.png";
                         return (
                             <div
                                 key={index}
                                 className="w-full md:w-1/2 lg:w-1/3 h-96 px-8 pt-8 pb-12 bg-white outline outline-[0.5px] outline-offset-[-0.25px] outline-gray-200 inline-flex flex-col justify-start items-start gap-6 hover:bg-violet-800 transition-colors duration-300 group"
                             >
                                 <div className="w-14 h-14 relative flex items-center justify-center rounded-2xl bg-violet-50 group-hover:bg-white/10 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 shadow-sm">
-                                    <IconComponent className="text-3xl text-violet-600 group-hover:text-white transition-colors duration-300" />
+                                    <Image
+                                        src={iconSrc}
+                                        alt={service.title}
+                                        width={40}
+                                        height={40}
+                                        className="w-10 h-10 object-contain transition-all duration-300"
+                                    />
                                 </div>
                                 <h3 className="self-stretch text-text-light group-hover:text-white text-2xl font-medium font-montserrat leading-tight transition-colors duration-300">
                                     {service.title}

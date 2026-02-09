@@ -1,24 +1,24 @@
 import React from 'react';
-import { LuUsers, LuBriefcase, LuTrendingUp, LuHandshake } from 'react-icons/lu';
+import Image from 'next/image';
 
 const focusPrograms = [
     {
-        icon: LuUsers,
+        icon: "https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Mechanical%20arm/3D/mechanical_arm_3d.png",
         title: "Pengembangan Skill Digital untuk Talent Difabel",
         description: "Program pelatihan digital yang dirancang khusus untuk mengembangkan kompetensi teknologi bagi individu berkebutuhan khusus dengan metode pembelajaran inklusif."
     },
     {
-        icon: LuBriefcase,
+        icon: "https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Briefcase/3D/briefcase_3d.png",
         title: "Pelatihan Kesiapan Kerja & Soft Skill",
         description: "Persiapan komprehensif untuk memasuki dunia kerja dengan penguatan soft skills seperti komunikasi, teamwork, dan problem solving yang dibutuhkan industri."
     },
     {
-        icon: LuTrendingUp,
+        icon: "https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Chart%20increasing/3D/chart_increasing_3d.png",
         title: "Program Magang dan Penempatan Kerja",
         description: "Kesempatan magang yang terstruktur dengan bimbingan mentor profesional, dilanjutkan dengan dukungan penempatan kerja di perusahaan mitra."
     },
     {
-        icon: LuHandshake,
+        icon: "https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Handshake/3D/handshake_3d.png",
         title: "Kolaborasi CSR & ESG",
         description: "Kemitraan strategis dengan perusahaan melalui program Corporate Social Responsibility dan Environmental, Social, Governance untuk menciptakan dampak sosial berkelanjutan."
     }
@@ -40,7 +40,6 @@ export default function ImpactAcademyWhy() {
 
                     <div className="w-full outline outline-[0.5px] outline-offset-[-0.5px] outline-gray-200 inline-flex justify-between items-center flex-wrap content-center">
                         {focusPrograms.map((program, index) => {
-                            const IconComponent = program.icon;
                             return (
                                 <div
                                     key={index}
@@ -48,7 +47,13 @@ export default function ImpactAcademyWhy() {
                                     style={{ height: '300px' }}
                                 >
                                     <div className="w-14 h-14 flex-shrink-0 relative flex items-center justify-center rounded-2xl bg-violet-50 group-hover:bg-white/10 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 shadow-sm">
-                                        <IconComponent className="text-3xl flex-shrink-0 text-violet-600 group-hover:text-white transition-colors duration-300" />
+                                        <Image
+                                            src={program.icon}
+                                            alt={program.title}
+                                            width={40}
+                                            height={40}
+                                            className="w-10 h-10 object-contain transition-all duration-300"
+                                        />
                                     </div>
                                     <h3 className="self-stretch text-text-light group-hover:text-white text-2xl font-medium font-montserrat leading-tight transition-colors duration-300">
                                         {program.title}

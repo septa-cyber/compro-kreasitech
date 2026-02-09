@@ -1,44 +1,44 @@
 import React from 'react';
-import { LuClock, LuUserCheck, LuFileText, LuDollarSign, LuRefreshCw, LuShield, LuTarget, LuTrendingUp } from 'react-icons/lu';
+import Image from 'next/image';
 
 const benefits = [
     {
-        icon: LuClock,
+        icon: "https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Alarm%20clock/3D/alarm_clock_3d.png",
         title: "Lebih Hemat Waktu & Biaya Rekrutmen",
         description: "Tidak perlu proses iklan lowongan, seleksi, wawancara berulang, hingga onboarding."
     },
     {
-        icon: LuUserCheck,
+        icon: "https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Check%20mark%20button/3D/check_mark_button_3d.png",
         title: "Talent Siap Pakai",
         description: "Talent sudah diseleksi, divalidasi skill-nya, dan siap langsung bekerja."
     },
     {
-        icon: LuFileText,
+        icon: "https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Clipboard/3D/clipboard_3d.png",
         title: "Tanpa Beban Administrasi HR",
         description: "Payroll, pajak, BPJS, kontrak, dan administrasi ditangani oleh Kreasitech."
     },
     {
-        icon: LuDollarSign,
+        icon: "https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Money%20bag/3D/money_bag_3d.png",
         title: "Biaya Lebih Terkontrol & Transparan",
         description: "Tidak ada biaya tersembunyi, cukup satu tagihan bulanan sesuai kesepakatan."
     },
     {
-        icon: LuRefreshCw,
+        icon: "https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Counterclockwise%20arrows%20button/3D/counterclockwise_arrows_button_3d.png",
         title: "Fleksibel Sesuai Kebutuhan Proyek",
         description: "Bisa menambah, mengurangi, atau mengganti talent tanpa proses rekrut ulang."
     },
     {
-        icon: LuShield,
+        icon: "https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Shield/3D/shield_3d.png",
         title: "Risiko Turnover Lebih Rendah",
         description: "Jika talent tidak sesuai, Kreasitech membantu proses penggantian."
     },
     {
-        icon: LuTarget,
+        icon: "https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Rocket/3D/rocket_3d.png",
         title: "Fokus ke Bisnis Inti",
         description: "Klien dapat fokus pada pengembangan produk dan bisnis, bukan urusan SDM."
     },
     {
-        icon: LuTrendingUp,
+        icon: "https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Chart%20increasing/3D/chart_increasing_3d.png",
         title: "Didukung Monitoring & Evaluasi Kinerja",
         description: "Performa talent dipantau secara berkala untuk menjaga kualitas kerja."
     }
@@ -59,14 +59,19 @@ export default function TaaSBenefits() {
 
                 <div className="w-full max-w-[1200px] outline outline-[0.5px] outline-offset-[-0.5px] outline-gray-200 inline-flex justify-between items-stretch flex-wrap content-center">
                     {benefits.map((benefit, index) => {
-                        const IconComponent = benefit.icon;
                         return (
                             <div
                                 key={index}
                                 className="w-full md:w-1/2 lg:w-1/4 h-96 px-8 pt-8 pb-12 bg-white outline outline-[0.5px] outline-offset-[-0.25px] outline-gray-200 inline-flex flex-col justify-start items-start gap-6 hover:bg-violet-800 transition-colors duration-300 group"
                             >
                                 <div className="w-14 h-14 relative flex items-center justify-center rounded-2xl bg-violet-50 group-hover:bg-white/10 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 shadow-sm">
-                                    <IconComponent className="text-3xl text-violet-600 group-hover:text-white transition-colors duration-300" />
+                                    <Image
+                                        src={benefit.icon}
+                                        alt={benefit.title}
+                                        width={40}
+                                        height={40}
+                                        className="w-10 h-10 object-contain transition-all duration-300"
+                                    />
                                 </div>
                                 <h3 className="self-stretch text-text-light group-hover:text-white text-2xl font-medium font-montserrat leading-tight transition-colors duration-300">
                                     {benefit.title}

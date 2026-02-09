@@ -13,7 +13,7 @@ export default function PortfolioHero() {
     ];
 
     const column2Images = [
-        "https://images.unsplash.com/photo-1551288049-bbbda536339a?q=80&w=400",
+        "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=400",
         "https://images.unsplash.com/photo-1501504905252-473c47e087f8?q=80&w=400",
         "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=400",
         "https://images.unsplash.com/photo-1586771107445-d3ca888129ff?q=80&w=400",
