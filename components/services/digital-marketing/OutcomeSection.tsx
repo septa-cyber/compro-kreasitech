@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import React from "react";
 
 const outcomes = [
@@ -35,7 +35,7 @@ export default function OutcomeSection() {
                         className={`w-full p-8 flex flex-col justify-start items-center gap-6 ${index === 1 ? 'md:border-l-[0.5px] md:border-r-[0.5px] border-gray-200' : ''
                             }`}
                     >
-                        <div className="self-stretch text-center text-text-light text-2xl font-medium font-montserrat">
+                        <div className="self-stretch text-center text-text-light text-xl font-medium font-montserrat">
                             {outcome.title}
                         </div>
                         <div className="self-stretch text-center text-text-light text-sm font-normal font-montserrat">
@@ -47,3 +47,4 @@ export default function OutcomeSection() {
         </section>
     );
 }
+

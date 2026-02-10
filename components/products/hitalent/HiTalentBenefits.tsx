@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 export default function HiTalentBenefits() {
     const leftBenefits = [
@@ -96,3 +96,4 @@ export default function HiTalentBenefits() {
         </section>
     );
 }
+

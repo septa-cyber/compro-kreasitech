@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import Link from "next/link";
 
 export default function ImpactAcademyHero() {
@@ -36,3 +36,4 @@ export default function ImpactAcademyHero() {
         </section>
     );
 }
+

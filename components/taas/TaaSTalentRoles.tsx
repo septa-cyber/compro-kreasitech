@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import React from "react";
 
 export default function TaaSTalentRoles() {
@@ -16,7 +16,7 @@ export default function TaaSTalentRoles() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {/* Front-End Development */}
                     <div className="text-center md:text-left">
-                        <h3 className="text-2xl font-medium text-white mb-6">Front-End Development</h3>
+                        <h3 className="text-xl font-medium text-white mb-6">Front-End Development</h3>
                         <ul className="space-y-3">
                             <li className="text-sm text-white/90">Front-End Developer (React, Vue, Angular)</li>
                             <li className="text-sm text-white/90">UI/UX Designer</li>
@@ -25,7 +25,7 @@ export default function TaaSTalentRoles() {
 
                     {/* Mobile App */}
                     <div className="text-center md:text-left">
-                        <h3 className="text-2xl font-medium text-white mb-6">Mobile App</h3>
+                        <h3 className="text-xl font-medium text-white mb-6">Mobile App</h3>
                         <ul className="space-y-3">
                             <li className="text-sm text-white/90">Android Developer</li>
                             <li className="text-sm text-white/90">Flutter Developer</li>
@@ -35,7 +35,7 @@ export default function TaaSTalentRoles() {
 
                     {/* Back-End Development */}
                     <div className="text-center md:text-left">
-                        <h3 className="text-2xl font-medium text-white mb-6">Back-End Development</h3>
+                        <h3 className="text-xl font-medium text-white mb-6">Back-End Development</h3>
                         <ul className="space-y-3">
                             <li className="text-sm text-white/90">Back-End Developer (Node.js, Python, PHP, Java)</li>
                             <li className="text-sm text-white/90">Full Stack Developer</li>
@@ -44,7 +44,7 @@ export default function TaaSTalentRoles() {
 
                     {/* Infrastructure */}
                     <div className="text-center md:text-left">
-                        <h3 className="text-2xl font-medium text-white mb-6">Infrastructure</h3>
+                        <h3 className="text-xl font-medium text-white mb-6">Infrastructure</h3>
                         <ul className="space-y-3">
                             <li className="text-sm text-white/90">Cloud Developer</li>
                             <li className="text-sm text-white/90">DevOps Developer</li>
@@ -55,7 +55,7 @@ export default function TaaSTalentRoles() {
 
                     {/* Quality & Testing */}
                     <div className="text-center md:text-left">
-                        <h3 className="text-2xl font-medium text-white mb-6">Quality & Testing</h3>
+                        <h3 className="text-xl font-medium text-white mb-6">Quality & Testing</h3>
                         <ul className="space-y-3">
                             <li className="text-sm text-white/90">Quality Assurance (QA Tester, Automation QA)</li>
                         </ul>
@@ -63,7 +63,7 @@ export default function TaaSTalentRoles() {
 
                     {/* Functional */}
                     <div className="text-center md:text-left">
-                        <h3 className="text-2xl font-medium text-white mb-6">Functional</h3>
+                        <h3 className="text-xl font-medium text-white mb-6">Functional</h3>
                         <ul className="space-y-3">
                             <li className="text-sm text-white/90">Project Manager</li>
                             <li className="text-sm text-white/90">Program Manager</li>
@@ -77,3 +77,4 @@ export default function TaaSTalentRoles() {
         </section>
     );
 }
+

@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import Image from 'next/image';
 
 const benefits = [
@@ -49,7 +49,7 @@ export default function TaaSBenefits() {
         <section id="benefits" className="py-24 bg-white">
             <div className="flex flex-col items-center gap-24">
                 <div className="w-full max-w-[784px] flex flex-col items-center gap-8 px-4 text-center">
-                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-medium font-montserrat text-text-light">
+                    <h2 className="text-xl sm:text-3xl md:text-4xl font-medium font-montserrat text-text-light">
                         Benefit Menggunakan Kreasitech vs Rekrut Mandiri
                     </h2>
                     <p className="max-w-[700px] text-base font-normal font-montserrat text-text-light-muted">
@@ -73,7 +73,7 @@ export default function TaaSBenefits() {
                                         className="w-10 h-10 object-contain transition-all duration-300"
                                     />
                                 </div>
-                                <h3 className="self-stretch text-text-light group-hover:text-white text-2xl font-medium font-montserrat leading-tight transition-colors duration-300">
+                                <h3 className="self-stretch text-text-light group-hover:text-white text-xl font-medium font-montserrat leading-tight transition-colors duration-300">
                                     {benefit.title}
                                 </h3>
                                 <p className="self-stretch text-text-light group-hover:text-white text-sm font-normal font-montserrat leading-relaxed transition-colors duration-300">
@@ -87,3 +87,4 @@ export default function TaaSBenefits() {
         </section>
     );
 }
+

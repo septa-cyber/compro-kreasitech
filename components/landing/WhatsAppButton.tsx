@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 
 export default function WhatsAppButton() {
     return (
@@ -8,7 +8,8 @@ export default function WhatsAppButton() {
             target="_blank"
             rel="noopener noreferrer"
         >
-            <i className="fab fa-whatsapp text-2xl"></i>
+            <i className="fab fa-whatsapp text-xl"></i>
         </a>
     );
 }
+

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState } from 'react';
 
@@ -29,7 +29,7 @@ export default function ProfilePage() {
 
     return (
         <div className="space-y-6">
-            <h1 className="text-2xl md:text-3xl font-semibold font-montserrat text-text-light">
+            <h1 className="text-xl md:text-3xl font-semibold font-montserrat text-text-light">
                 Profil Saya
             </h1>
 
@@ -115,7 +115,7 @@ export default function ProfilePage() {
                                 value={currentPassword}
                                 onChange={(e) => setCurrentPassword(e.target.value)}
                                 className="w-full px-4 py-2 bg-[#F4F4F7] border border-gray-200 rounded-lg text-sm text-text-light focus:outline-none focus:ring-2 focus:ring-violet-500/50 focus:border-violet-500 transition-all"
-                                placeholder="••••••••"
+                                placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
                             />
                         </div>
 
@@ -128,7 +128,7 @@ export default function ProfilePage() {
                                 value={newPassword}
                                 onChange={(e) => setNewPassword(e.target.value)}
                                 className="w-full px-4 py-2 bg-[#F4F4F7] border border-gray-200 rounded-lg text-sm text-text-light focus:outline-none focus:ring-2 focus:ring-violet-500/50 focus:border-violet-500 transition-all"
-                                placeholder="••••••••"
+                                placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
                             />
                         </div>
 
@@ -141,7 +141,7 @@ export default function ProfilePage() {
                                 value={confirmPassword}
                                 onChange={(e) => setConfirmPassword(e.target.value)}
                                 className="w-full px-4 py-2 bg-[#F4F4F7] border border-gray-200 rounded-lg text-sm text-text-light focus:outline-none focus:ring-2 focus:ring-violet-500/50 focus:border-violet-500 transition-all"
-                                placeholder="••••••••"
+                                placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
                             />
                         </div>
 
@@ -159,3 +159,4 @@ export default function ProfilePage() {
         </div>
     );
 }
+

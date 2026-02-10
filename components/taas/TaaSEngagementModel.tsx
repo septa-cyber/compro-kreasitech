@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import Image from 'next/image';
 
 const engagementModels = [
@@ -51,7 +51,7 @@ export default function TaaSEngagementModel() {
                                             className="w-10 h-10 object-contain transition-all duration-300"
                                         />
                                     </div>
-                                    <h3 className="self-stretch text-text-light group-hover:text-white text-2xl font-medium font-montserrat leading-tight transition-colors duration-300">
+                                    <h3 className="self-stretch text-text-light group-hover:text-white text-xl font-medium font-montserrat leading-tight transition-colors duration-300">
                                         {model.title}
                                     </h3>
                                     <p className="self-stretch text-text-light group-hover:text-white text-sm font-normal font-montserrat leading-relaxed transition-colors duration-300">
@@ -66,3 +66,4 @@ export default function TaaSEngagementModel() {
         </section>
     );
 }
+

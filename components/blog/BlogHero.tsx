@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React from "react";
 import Breadcrumb from "@/components/ui/Breadcrumb";
@@ -44,7 +44,7 @@ export default function BlogHero({ featuredPost }: BlogHeroProps) {
                             <div className="flex flex-col gap-4 max-w-3xl">
                                 <div className="flex justify-between items-start w-full">
                                     <div>
-                                        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-medium font-montserrat text-white mb-3">
+                                        <h2 className="text-xl sm:text-3xl lg:text-4xl font-medium font-montserrat text-white mb-3">
                                             {featuredPost.title}
                                         </h2>
                                         <p className="text-gray-200 text-base sm:text-lg font-montserrat mb-6 line-clamp-2">
@@ -98,3 +98,4 @@ export default function BlogHero({ featuredPost }: BlogHeroProps) {
         </section>
     );
 }
+

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState } from 'react';
 import { FaHeading, FaParagraph, FaSave, FaPlus, FaTrash, FaImage, FaCalendarAlt, FaLink, FaBoxOpen, FaLayerGroup } from 'react-icons/fa';
@@ -13,7 +13,7 @@ export default function ProductsSettingsPage() {
             id: 1,
             title: "HiTalent",
             date: "13 Nov 2025",
-            description: "Solusi cerdas untuk mengelola sumber daya manusia secara efisien — mulai dari absensi hingga penggajian.",
+            description: "Solusi cerdas untuk mengelola sumber daya manusia secara efisien â€” mulai dari absensi hingga penggajian.",
             image: "https://placehold.co/600x400",
             buttonText: "Lihat Detail",
             buttonLink: "#"
@@ -60,7 +60,7 @@ export default function ProductsSettingsPage() {
     return (
         <div className="space-y-6">
             <div className="flex items-center justify-between">
-                <h1 className="text-2xl md:text-3xl font-semibold font-montserrat text-text-light">
+                <h1 className="text-xl md:text-3xl font-semibold font-montserrat text-text-light">
                     Pengaturan Produk
                 </h1>
                 <button
@@ -247,3 +247,4 @@ export default function ProductsSettingsPage() {
         </div>
     );
 }
+

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -39,7 +39,7 @@ export default function ServicesGrid() {
 
                             {/* Title & Description */}
                             <div className="self-stretch flex flex-col gap-2">
-                                <h3 className="text-2xl font-medium font-montserrat text-text-light group-hover:text-white transition-colors">
+                                <h3 className="text-xl font-medium font-montserrat text-text-light group-hover:text-white transition-colors">
                                     {service.title}
                                 </h3>
                                 <p className="text-sm font-normal font-montserrat text-text-light group-hover:text-white transition-colors line-clamp-3">
@@ -88,3 +88,4 @@ export default function ServicesGrid() {
         </section>
     );
 }
+

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from 'react';
 
@@ -59,7 +59,7 @@ export default function HiTalentTestimonials() {
     return (
         <section className="py-16 md:py-24 bg-gray-100 overflow-hidden">
             <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 mb-8 md:mb-24">
-                <h2 className="text-2xl md:text-4xl font-medium font-montserrat text-text-light">
+                <h2 className="text-xl md:text-4xl font-medium font-montserrat text-text-light">
                     Lihat mengapa pelanggan <br /> senang menggunakan KreasiTech
                 </h2>
             </div>
@@ -116,3 +116,4 @@ export default function HiTalentTestimonials() {
         </section>
     );
 }
+

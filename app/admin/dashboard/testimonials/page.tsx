@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState } from 'react';
 import { FaHeading, FaParagraph, FaSave, FaPlus, FaTrash, FaUserCircle, FaQuoteLeft, FaBuilding, FaUserTie } from 'react-icons/fa';
@@ -66,7 +66,7 @@ export default function TestimonialsSettingsPage() {
     return (
         <div className="space-y-6">
             <div className="flex items-center justify-between">
-                <h1 className="text-2xl md:text-3xl font-semibold font-montserrat text-text-light">
+                <h1 className="text-xl md:text-3xl font-semibold font-montserrat text-text-light">
                     Pengaturan Testimoni
                 </h1>
                 <button
@@ -256,3 +256,4 @@ export default function TestimonialsSettingsPage() {
         </div>
     );
 }
+

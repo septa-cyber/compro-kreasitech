@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 
 export default function HiringProcess() {
     return (
@@ -13,7 +13,7 @@ export default function HiringProcess() {
                 <div className="w-full flex flex-col lg:flex-row justify-center items-start lg:items-stretch gap-8 lg:gap-0">
                     {/* 1. Penyaringan Kandidat */}
                     <div className="w-full lg:w-96 px-4 lg:px-8 py-4 flex flex-col items-center gap-6">
-                        <h3 className="text-2xl font-medium font-montserrat text-text-light text-center">
+                        <h3 className="text-xl font-medium font-montserrat text-text-light text-center">
                             1. Penyaringan Kandidat
                         </h3>
                         <p className="text-sm font-normal font-montserrat text-text-light-muted text-center leading-relaxed">
@@ -23,7 +23,7 @@ export default function HiringProcess() {
 
                     {/* 2. Peningkatan Proses Wawancara */}
                     <div className="w-full lg:w-96 px-4 lg:px-8 py-4 flex flex-col items-center gap-6 lg:border-l lg:border-r border-gray-300">
-                        <h3 className="text-2xl font-medium font-montserrat text-text-light text-center">
+                        <h3 className="text-xl font-medium font-montserrat text-text-light text-center">
                             2. Peningkatan Proses Wawancara
                         </h3>
                         <p className="text-sm font-normal font-montserrat text-text-light-muted text-center leading-relaxed">
@@ -33,7 +33,7 @@ export default function HiringProcess() {
 
                     {/* 3. Pengalaman Onboarding */}
                     <div className="w-full lg:w-96 px-4 lg:px-8 py-4 flex flex-col items-center gap-6">
-                        <h3 className="text-2xl font-medium font-montserrat text-text-light text-center">
+                        <h3 className="text-xl font-medium font-montserrat text-text-light text-center">
                             3. Pengalaman Onboarding
                         </h3>
                         <p className="text-sm font-normal font-montserrat text-text-light-muted text-center leading-relaxed">
@@ -45,3 +45,4 @@ export default function HiringProcess() {
         </section>
     );
 }
+

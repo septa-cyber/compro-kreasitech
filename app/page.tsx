@@ -1,4 +1,4 @@
-import Navbar from "@/components/Navbar";
+﻿import Navbar from "@/components/Navbar";
 import Hero from "@/components/landing/Hero";
 import Services from "@/components/landing/Services";
 import OurProduct from "@/components/landing/OurProduct2";
@@ -31,3 +31,4 @@ export default function Home() {
     </div>
   );
 }
+

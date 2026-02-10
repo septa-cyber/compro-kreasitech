@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import { LuUsers, LuTarget, LuZap } from "react-icons/lu";
 
 const deliveryModels = [
@@ -41,7 +41,7 @@ export default function TaaSDeliveryModel() {
                                     className={`w-full p-8 flex flex-col justify-start items-center gap-6 ${index === 1 ? 'md:border-l-[0.5px] md:border-r-[0.5px] border-gray-200' : ''
                                         }`}
                                 >
-                                    <h3 className="self-stretch text-center text-text-light text-2xl font-medium font-montserrat">
+                                    <h3 className="self-stretch text-center text-text-light text-xl font-medium font-montserrat">
                                         {model.title}
                                     </h3>
                                     <p className="self-stretch text-center text-text-light-muted text-sm font-normal font-montserrat leading-relaxed">
@@ -56,3 +56,4 @@ export default function TaaSDeliveryModel() {
         </section>
     );
 }
+

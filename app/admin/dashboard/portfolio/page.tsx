@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState } from 'react';
 import { FaHeading, FaParagraph, FaSave, FaPlus, FaTrash, FaImage, FaBriefcase, FaArrowsAltH, FaTag } from 'react-icons/fa';
@@ -39,7 +39,7 @@ export default function PortfolioSettingsPage() {
     return (
         <div className="space-y-6">
             <div className="flex items-center justify-between">
-                <h1 className="text-2xl md:text-3xl font-semibold font-montserrat text-text-light">
+                <h1 className="text-xl md:text-3xl font-semibold font-montserrat text-text-light">
                     Pengaturan Portfolio
                 </h1>
                 <button
@@ -187,3 +187,4 @@ export default function PortfolioSettingsPage() {
         </div>
     );
 }
+

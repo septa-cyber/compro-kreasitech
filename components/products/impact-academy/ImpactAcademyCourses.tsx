@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React from 'react';
 import Link from 'next/link';
@@ -47,7 +47,7 @@ export default function ImpactAcademyCourses() {
         <section className="py-16 md:py-24 bg-white overflow-hidden">
             <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 mb-8 md:mb-16">
                 <div className="flex flex-col items-center text-center gap-4 md:gap-6">
-                    <h2 className="text-2xl md:text-4xl font-medium font-montserrat text-text-light">
+                    <h2 className="text-xl md:text-4xl font-medium font-montserrat text-text-light">
                         Start Learning Today
                     </h2>
                     <p className="text-sm md:text-base font-normal font-montserrat text-text-light max-w-2xl">
@@ -103,3 +103,4 @@ export default function ImpactAcademyCourses() {
         </section>
     );
 }
+

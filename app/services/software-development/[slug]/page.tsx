@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import Link from 'next/link';
@@ -186,7 +186,7 @@ export default async function SoftwareServiceDetailPage({ params }: PageProps) {
                                     {service.hardSkills.map((skill, idx) => (
                                         <div key={idx} className="w-full p-8 flex flex-col justify-start items-center gap-4 overflow-hidden">
                                             <div className="self-stretch inline-flex justify-start items-center gap-6">
-                                                <div className="justify-start text-white text-2xl font-medium font-montserrat">{skill.title}</div>
+                                                <div className="justify-start text-white text-xl font-medium font-montserrat">{skill.title}</div>
                                             </div>
                                             <div className="self-stretch inline-flex justify-center items-center gap-2.5">
                                                 <div className="flex-1 justify-start text-white/80 text-sm font-normal font-montserrat leading-relaxed">{skill.description}</div>
@@ -205,7 +205,7 @@ export default async function SoftwareServiceDetailPage({ params }: PageProps) {
                                     {service.softSkills.map((skill, idx) => (
                                         <div key={idx} className="w-full p-8 flex flex-col justify-start items-center gap-4 overflow-hidden">
                                             <div className="self-stretch inline-flex justify-start items-center gap-6">
-                                                <div className="justify-start text-white text-2xl font-medium font-montserrat">{skill.title}</div>
+                                                <div className="justify-start text-white text-xl font-medium font-montserrat">{skill.title}</div>
                                             </div>
                                             <div className="self-stretch inline-flex justify-center items-center gap-2.5">
                                                 <div className="flex-1 justify-start text-white/80 text-sm font-normal font-montserrat leading-relaxed">{skill.description}</div>
@@ -230,7 +230,7 @@ export default async function SoftwareServiceDetailPage({ params }: PageProps) {
                                         key={idx}
                                         className={`${isFirst ? 'bg-[#4F11BD] text-white' : 'bg-[#F9FAFB] text-gray-900 border border-gray-100'} flex flex-col h-full rounded-[32px] p-8 md:p-10 transition-all duration-300 hover:shadow-2xl`}
                                     >
-                                        <h3 className={`text-2xl md:text-3xl font-bold mb-10 font-montserrat ${isFirst ? 'text-white' : 'text-gray-900'}`}>{level.title}</h3>
+                                        <h3 className={`text-xl md:text-3xl font-bold mb-10 font-montserrat ${isFirst ? 'text-white' : 'text-gray-900'}`}>{level.title}</h3>
                                         <ul className="space-y-6 mb-16 flex-1 text-[15px] tracking-wide font-montserrat">
                                             {level.bulletPoints.map((bp, bidx) => (
                                                 <li key={bidx} className="flex items-start">
@@ -293,14 +293,14 @@ export default async function SoftwareServiceDetailPage({ params }: PageProps) {
                         <h2 className="text-3xl font-bold text-center mb-24 text-gray-900 tracking-tight font-montserrat">After You Hire</h2>
                         <div className="grid md:grid-cols-[1fr_auto_1fr] items-center gap-12 md:gap-20">
                             <div className="text-center md:text-right">
-                                <h3 className="text-2xl font-bold mb-4 text-gray-900 font-montserrat">{service.afterHireSteps[0]?.title}</h3>
+                                <h3 className="text-xl font-bold mb-4 text-gray-900 font-montserrat">{service.afterHireSteps[0]?.title}</h3>
                                 <p className="text-base text-gray-400 leading-relaxed font-medium italic font-montserrat">{service.afterHireSteps[0]?.description}</p>
                             </div>
                             <div className="flex justify-center text-[#4F11BD]/20">
                                 <MdFastForward className="text-7xl opacity-50" />
                             </div>
                             <div className="text-center md:text-left">
-                                <h3 className="text-2xl font-bold mb-4 text-gray-900 font-montserrat">{service.afterHireSteps[1]?.title}</h3>
+                                <h3 className="text-xl font-bold mb-4 text-gray-900 font-montserrat">{service.afterHireSteps[1]?.title}</h3>
                                 <p className="text-base text-gray-400 leading-relaxed font-medium italic font-montserrat">{service.afterHireSteps[1]?.description}</p>
                             </div>
                         </div>
@@ -326,7 +326,7 @@ export default async function SoftwareServiceDetailPage({ params }: PageProps) {
                                     href={job.slug.startsWith('#') ? '#' : `/services/software-development/${job.slug}`}
                                     className="group flex flex-1 items-center justify-between py-2 border-b border-white/10 hover:border-white/30 transition-all"
                                 >
-                                    <span className="text-white text-2xl font-medium font-montserrat group-hover:underline underline-offset-4 decoration-2">
+                                    <span className="text-white text-xl font-medium font-montserrat group-hover:underline underline-offset-4 decoration-2">
                                         {job.title}
                                     </span>
                                     <div className="relative w-6 h-6 overflow-hidden flex items-center justify-center">

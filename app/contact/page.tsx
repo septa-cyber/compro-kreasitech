@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
@@ -146,7 +146,7 @@ export default function ContactPage() {
                         {/* Contact Form */}
                         <div className="lg:col-span-3">
                             <div className="bg-white rounded-2xl p-8 shadow-sm">
-                                <h2 className="text-2xl font-semibold font-montserrat text-text-light mb-6">
+                                <h2 className="text-xl font-semibold font-montserrat text-text-light mb-6">
                                     Kirim Pesan
                                 </h2>
 
@@ -433,3 +433,4 @@ export default function ContactPage() {
         </div>
     );
 }
+

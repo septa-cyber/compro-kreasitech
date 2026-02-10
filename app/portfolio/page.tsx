@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PortfolioHero from "@/components/portfolio/PortfolioHero";
@@ -21,3 +21,4 @@ export default function PortfolioPage() {
         </div>
     );
 }
+

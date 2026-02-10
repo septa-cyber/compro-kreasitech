@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 
 export default function AfterYouHire() {
     return (
@@ -13,7 +13,7 @@ export default function AfterYouHire() {
                 <div className="w-full flex flex-col lg:flex-row justify-center items-center gap-8 lg:gap-16">
                     {/* Left Box */}
                     <div className="w-full max-w-sm px-8 pt-8 pb-12 flex flex-col items-center gap-6">
-                        <h3 className="text-2xl font-medium font-montserrat text-center text-text-light">
+                        <h3 className="text-xl font-medium font-montserrat text-center text-text-light">
                             Onboarding, Pembayaran, Retensi
                         </h3>
                         <p className="text-sm font-normal font-montserrat text-center text-text-light-muted leading-relaxed">
@@ -44,7 +44,7 @@ export default function AfterYouHire() {
 
                     {/* Right Box */}
                     <div className="w-full max-w-sm px-8 pt-8 pb-12 flex flex-col items-center gap-6">
-                        <h3 className="text-2xl font-medium font-montserrat text-center text-text-light">
+                        <h3 className="text-xl font-medium font-montserrat text-center text-text-light">
                             Dukungan Berkelanjutan & Ekspansi Tim
                         </h3>
                         <p className="text-sm font-normal font-montserrat text-center text-text-light-muted leading-relaxed">
@@ -56,3 +56,4 @@ export default function AfterYouHire() {
         </section>
     );
 }
+

@@ -1,5 +1,6 @@
-import React from "react";
+﻿import React from "react";
 import Link from "next/link";
+import { MdChevronRight } from "react-icons/md";
 
 interface BreadcrumbItem {
     label: string;
@@ -29,7 +30,7 @@ export default function Breadcrumb({ items, className = "" }: BreadcrumbProps) {
                 <nav className="flex text-xs text-gray-500 font-body items-center">
                     {items.map((item, index) => (
                         <React.Fragment key={index}>
-                            {index > 0 && <span className="mx-2">→</span>}
+                            {index > 0 && <MdChevronRight className="mx-2 w-4 h-4 text-gray-400" />}
                             {index === items.length - 1 ? (
                                 <span className="font-medium text-gray-800">{item.label}</span>
                             ) : (
@@ -48,3 +49,4 @@ export default function Breadcrumb({ items, className = "" }: BreadcrumbProps) {
         </section>
     );
 }
+

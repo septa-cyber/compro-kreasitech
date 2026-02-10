@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import Link from 'next/link';
 import { FaMapMarkerAlt, FaPhone, FaRegEnvelope, FaLinkedin, FaInstagram, FaTwitter, FaFacebook } from 'react-icons/fa';
 
@@ -124,7 +124,7 @@ export default function Footer() {
                     </div>
                     <div className="flex justify-center lg:justify-end items-center gap-6 order-3 lg:order-3">
                         <div className="text-center lg:text-right justify-start text-violet-600 text-xs font-semibold font-montserrat">
-                            © 2025 KREASITECH. Hak cipta dilindungi.
+                            Â© 2025 KREASITECH. Hak cipta dilindungi.
                         </div>
                     </div>
                 </div>
@@ -132,3 +132,4 @@ export default function Footer() {
         </footer>
     );
 }
+

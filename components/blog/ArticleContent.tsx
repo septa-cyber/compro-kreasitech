@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import { BlogPost } from "@/data/blogData";
 import ReactMarkdown from 'react-markdown';
 
@@ -27,3 +27,4 @@ export default function ArticleContent({ post }: ArticleContentProps) {
         </article>
     );
 }
+

@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ImpactAcademyHero from "@/components/products/impact-academy/ImpactAcademyHero";
@@ -39,3 +39,4 @@ export default function AcademyPage() {
         </div>
     );
 }
+

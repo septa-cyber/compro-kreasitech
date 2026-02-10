@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState } from 'react';
 import { FaHeading, FaParagraph, FaSave, FaPlus, FaTrash, FaHandshake, FaImage } from 'react-icons/fa';
@@ -42,7 +42,7 @@ export default function PartnersSettingsPage() {
     return (
         <div className="space-y-6">
             <div className="flex items-center justify-between">
-                <h1 className="text-2xl md:text-3xl font-semibold font-montserrat text-text-light">
+                <h1 className="text-xl md:text-3xl font-semibold font-montserrat text-text-light">
                     Pengaturan Partner
                 </h1>
                 <button
@@ -157,3 +157,4 @@ export default function PartnersSettingsPage() {
         </div>
     );
 }
+

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React from "react";
 import BlogCard from "./BlogCard";
@@ -21,3 +21,4 @@ export default function BlogList({ posts }: BlogListProps) {
         </section>
     );
 }
+

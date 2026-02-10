@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Breadcrumb from "@/components/ui/Breadcrumb";
@@ -38,3 +38,4 @@ export default function DigitalMarketingPage() {
         </div>
     );
 }
+

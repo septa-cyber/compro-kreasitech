@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState } from "react";
 
@@ -121,7 +121,7 @@ export default function TimelineSection() {
 
                 {/* Content Area */}
                 <div className="max-w-4xl mx-auto text-center px-4 animate-fadeIn mt-8 md:mt-12">
-                    <h3 className="text-xl sm:text-2xl font-medium font-montserrat text-violet-600">
+                    <h3 className="text-xl sm:text-xl font-medium font-montserrat text-violet-600">
                         Tahun {timelineData[activeIndex].year}
                     </h3>
                     <div className="my-6"></div>
@@ -133,3 +133,4 @@ export default function TimelineSection() {
         </section>
     );
 }
+

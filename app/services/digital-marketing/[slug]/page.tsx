@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { digitalMarketingServices } from "@/data/digital-marketing-services";
@@ -163,7 +163,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
                                             <Icon className="text-3xl text-white relative z-10" />
                                         </div>
                                         <h3
-                                            className="self-stretch text-center text-white text-2xl font-medium font-montserrat leading-tight"
+                                            className="self-stretch text-center text-white text-xl font-medium font-montserrat leading-tight"
                                             dangerouslySetInnerHTML={{ __html: step.title }}
                                         />
                                     </div>
@@ -180,7 +180,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
                         <div className="w-full grid md:grid-cols-2 gap-0 outline outline-[0.5px] outline-offset-[-0.5px] outline-gray-200">
                             {service.pricingPackages.map((pkg, index) => (
                                 <div key={index} className="p-8 outline outline-[0.5px] outline-offset-[-0.25px] outline-gray-200 flex flex-col justify-start items-center gap-6 group hover:bg-violet-800 transition-colors duration-300">
-                                    <h3 className="self-stretch text-left text-2xl font-medium font-montserrat text-gray-900 group-hover:text-white transition-colors duration-300">{pkg.title}</h3>
+                                    <h3 className="self-stretch text-left text-xl font-medium font-montserrat text-gray-900 group-hover:text-white transition-colors duration-300">{pkg.title}</h3>
                                     <div className="self-stretch h-full flex flex-col justify-between items-center gap-8">
                                         <div className="self-stretch flex flex-col justify-start items-start gap-4">
                                             {pkg.features.map((feature, idx) => (
@@ -207,7 +207,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
                                                     <div className="self-stretch flex flex-col justify-start items-start gap-2">
                                                         <div className="self-stretch justify-start text-gray-900 text-base font-medium font-montserrat group-hover:text-white transition-colors duration-300">Total Harga</div>
                                                         <div className="self-stretch inline-flex justify-start items-end gap-2">
-                                                            <div className="justify-start text-gray-900 text-2xl font-medium font-montserrat group-hover:text-white transition-colors duration-300">{pkg.totalPrice}</div>
+                                                            <div className="justify-start text-gray-900 text-xl font-medium font-montserrat group-hover:text-white transition-colors duration-300">{pkg.totalPrice}</div>
                                                             <div className="justify-start text-gray-500 text-xl font-normal font-montserrat group-hover:text-gray-300 transition-colors duration-300">{pkg.period}</div>
                                                         </div>
                                                     </div>

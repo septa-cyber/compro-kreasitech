@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState, useEffect, Suspense } from 'react';
 import Link from 'next/link';
@@ -68,7 +68,7 @@ function LoginForm() {
 
                 {/* Form Header */}
                 <div className="text-center mb-8">
-                    <h2 className="text-2xl font-semibold font-montserrat text-text-light mb-2">
+                    <h2 className="text-xl font-semibold font-montserrat text-text-light mb-2">
                         Masuk ke Admin Panel
                     </h2>
                     <p className="text-sm text-gray-500 font-montserrat">
@@ -123,7 +123,7 @@ function LoginForm() {
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                                 className="w-full pl-11 pr-12 py-3 bg-[#F4F4F7] border border-gray-200 rounded-lg text-text-light font-montserrat text-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-violet-500/50 focus:border-violet-500 transition-all duration-300"
-                                placeholder="••••••••"
+                                placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
                                 required
                                 disabled={isLoading}
                             />
@@ -193,7 +193,7 @@ function LoginForm() {
             {/* Copyright */}
             <div className="mt-6 text-center">
                 <p className="text-xs text-gray-400 font-montserrat">
-                    © 2025 KREASITECH. Hak cipta dilindungi.
+                    Â© 2025 KREASITECH. Hak cipta dilindungi.
                 </p>
             </div>
         </div>
@@ -263,3 +263,4 @@ export default function AdminLoginPage() {
         </div>
     );
 }
+

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React from 'react';
 import Link from 'next/link';
@@ -67,8 +67,8 @@ export default function DashboardPage() {
                 <div className="absolute right-0 top-0 w-64 h-64 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2"></div>
                 <div className="absolute right-20 bottom-0 w-32 h-32 bg-white/10 rounded-full translate-y-1/2"></div>
                 <div className="relative z-10">
-                    <h1 className="text-2xl md:text-3xl font-semibold font-montserrat mb-2">
-                        Selamat Datang, Admin! 👋
+                    <h1 className="text-xl md:text-3xl font-semibold font-montserrat mb-2">
+                        Selamat Datang, Admin! ðŸ‘‹
                     </h1>
                     <p className="text-violet-100 font-montserrat max-w-xl">
                         Kelola konten website Kreasitech dengan mudah. Perbarui hero section, portfolio, testimonials, dan masih banyak lagi.
@@ -91,7 +91,7 @@ export default function DashboardPage() {
                                     }`}></i>
                             </div>
                         </div>
-                        <h3 className="text-2xl font-bold text-text-light font-montserrat mb-1">{card.value}</h3>
+                        <h3 className="text-xl font-bold text-text-light font-montserrat mb-1">{card.value}</h3>
                         <p className="text-sm text-gray-500 font-montserrat mb-2">{card.title}</p>
                         <p className={`text-xs font-medium ${card.changeType === 'up' ? 'text-green-500' :
                                 card.changeType === 'down' ? 'text-red-500' : 'text-gray-400'
@@ -194,3 +194,4 @@ export default function DashboardPage() {
         </div>
     );
 }
+

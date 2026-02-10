@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useParams, useRouter } from "next/navigation";
 import Navbar from "@/components/Navbar";
@@ -31,7 +31,7 @@ const jobsDetailData: Record<string, JobDetail> = {
         id: 1,
         title: "Front-End Developer",
         company: "KreasiTech",
-        icon: "⚛️",
+        icon: "âš›ï¸",
         iconBg: "bg-cyan-100",
         postedTime: "18 minutes ago",
         salary: "3,000K-8,000K",
@@ -119,7 +119,7 @@ const jobsDetailData: Record<string, JobDetail> = {
         id: 3,
         title: "UI/UX Designer",
         company: "KreasiTech",
-        icon: "🎨",
+        icon: "ðŸŽ¨",
         iconBg: "bg-pink-100",
         postedTime: "18 minutes ago",
         salary: "3,000K-6,500K",
@@ -163,7 +163,7 @@ const jobsDetailData: Record<string, JobDetail> = {
         id: 4,
         title: "Legal Staff",
         company: "KreasiTech",
-        icon: "⚖️",
+        icon: "âš–ï¸",
         iconBg: "bg-blue-100",
         postedTime: "18 minutes ago",
         salary: "3,000K-6,500K",
@@ -207,7 +207,7 @@ const jobsDetailData: Record<string, JobDetail> = {
         id: 5,
         title: "Digital Marketing Specialist",
         company: "KreasiTech",
-        icon: "📱",
+        icon: "ðŸ“±",
         iconBg: "bg-purple-100",
         postedTime: "1 day ago",
         salary: "2,500K-5,500K",
@@ -252,7 +252,7 @@ const jobsDetailData: Record<string, JobDetail> = {
         id: 6,
         title: "Product Manager",
         company: "KreasiTech",
-        icon: "📊",
+        icon: "ðŸ“Š",
         iconBg: "bg-green-100",
         postedTime: "2 days ago",
         salary: "5,000K-12,000K",
@@ -383,7 +383,7 @@ export default function JobDetailPage() {
 
                             {/* Responsibilities */}
                             <div className="bg-white rounded-2xl p-8 shadow-sm mb-6">
-                                <h2 className="text-2xl font-bold font-montserrat text-text-light mb-4">
+                                <h2 className="text-xl font-bold font-montserrat text-text-light mb-4">
                                     Tanggung Jawab
                                 </h2>
                                 <ul className="space-y-3">
@@ -400,7 +400,7 @@ export default function JobDetailPage() {
 
                             {/* Requirements */}
                             <div className="bg-white rounded-2xl p-8 shadow-sm mb-6">
-                                <h2 className="text-2xl font-bold font-montserrat text-text-light mb-4">
+                                <h2 className="text-xl font-bold font-montserrat text-text-light mb-4">
                                     Kualifikasi
                                 </h2>
                                 <ul className="space-y-3">
@@ -417,7 +417,7 @@ export default function JobDetailPage() {
 
                             {/* Benefits */}
                             <div className="bg-white rounded-2xl p-8 shadow-sm">
-                                <h2 className="text-2xl font-bold font-montserrat text-text-light mb-4">
+                                <h2 className="text-xl font-bold font-montserrat text-text-light mb-4">
                                     Benefit & Fasilitas
                                 </h2>
                                 <ul className="space-y-3">

@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -27,7 +27,7 @@ export default function Services() {
                                 className="w-10 h-10 object-contain group-hover:grayscale-0 transition-all duration-300"
                             />
                         </div>
-                        <h3 className="self-stretch text-text-light group-hover:text-white text-2xl font-medium font-montserrat leading-tight transition-colors duration-300">
+                        <h3 className="self-stretch text-text-light group-hover:text-white text-xl font-medium font-montserrat leading-tight transition-colors duration-300">
                             Software Development
                         </h3>
                         <p className="self-stretch text-text-light group-hover:text-white text-sm font-normal font-montserrat leading-relaxed transition-colors duration-300">
@@ -46,7 +46,7 @@ export default function Services() {
                                 className="w-10 h-10 object-contain transition-all duration-300"
                             />
                         </div>
-                        <h3 className="self-stretch text-text-light group-hover:text-white text-2xl font-medium font-montserrat leading-tight transition-colors duration-300">
+                        <h3 className="self-stretch text-text-light group-hover:text-white text-xl font-medium font-montserrat leading-tight transition-colors duration-300">
                             Talent as a Service
                         </h3>
                         <p className="self-stretch text-text-light group-hover:text-white text-sm font-normal font-montserrat leading-relaxed transition-colors duration-300">
@@ -65,7 +65,7 @@ export default function Services() {
                                 className="w-10 h-10 object-contain transition-all duration-300"
                             />
                         </div>
-                        <h3 className="self-stretch text-text-light group-hover:text-white text-2xl font-medium font-montserrat leading-tight transition-colors duration-300">
+                        <h3 className="self-stretch text-text-light group-hover:text-white text-xl font-medium font-montserrat leading-tight transition-colors duration-300">
                             Kreasi Space
                         </h3>
                         <p className="self-stretch text-text-light group-hover:text-white text-sm font-normal font-montserrat leading-relaxed transition-colors duration-300">
@@ -84,7 +84,7 @@ export default function Services() {
                                 className="w-10 h-10 object-contain transition-all duration-300"
                             />
                         </div>
-                        <h3 className="self-stretch text-text-light group-hover:text-white text-2xl font-medium font-montserrat leading-tight transition-colors duration-300">
+                        <h3 className="self-stretch text-text-light group-hover:text-white text-xl font-medium font-montserrat leading-tight transition-colors duration-300">
                             Product SaaS
                         </h3>
                         <p className="self-stretch text-text-light group-hover:text-white text-sm font-normal font-montserrat leading-relaxed transition-colors duration-300">
@@ -97,7 +97,7 @@ export default function Services() {
                         <div className="w-12 h-12 relative overflow-hidden flex items-center justify-center">
                             <i className="fas fa-tasks text-violet-600 group-hover:text-violet-300 text-3xl transition-colors duration-300"></i>
                         </div>
-                        <h3 className="self-stretch text-text-light group-hover:text-white text-2xl font-medium font-montserrat leading-tight transition-colors duration-300">
+                        <h3 className="self-stretch text-text-light group-hover:text-white text-xl font-medium font-montserrat leading-tight transition-colors duration-300">
                             QA Testing
                         </h3>
                         <p className="self-stretch text-text-light group-hover:text-white text-sm font-normal font-montserrat leading-relaxed transition-colors duration-300">
@@ -110,7 +110,7 @@ export default function Services() {
                         <div className="w-12 h-12 relative overflow-hidden flex items-center justify-center">
                             <i className="fab fa-wordpress text-violet-600 group-hover:text-violet-300 text-3xl transition-colors duration-300"></i>
                         </div>
-                        <h3 className="self-stretch text-text-light group-hover:text-white text-2xl font-medium font-montserrat leading-tight transition-colors duration-300">
+                        <h3 className="self-stretch text-text-light group-hover:text-white text-xl font-medium font-montserrat leading-tight transition-colors duration-300">
                             WordPress
                         </h3>
                         <p className="self-stretch text-text-light group-hover:text-white text-sm font-normal font-montserrat leading-relaxed transition-colors duration-300">
@@ -122,3 +122,4 @@ export default function Services() {
         </section>
     );
 }
+

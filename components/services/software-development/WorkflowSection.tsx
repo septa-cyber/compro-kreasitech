@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 
 export default function WorkflowSection() {
     return (
@@ -38,3 +38,4 @@ function WorkflowItem({ number, title, desc, light, className = "" }: { number: 
         </div>
     )
 }
+

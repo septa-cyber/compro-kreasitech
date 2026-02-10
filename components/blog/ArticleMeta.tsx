@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import Link from "next/link";
 import { BlogPost } from "@/data/blogData";
 
@@ -50,3 +50,4 @@ export default function ArticleMeta({ post, previousPost, nextPost }: ArticleMet
         </section>
     );
 }
+

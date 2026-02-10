@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+﻿import { NextResponse } from 'next/server';
 import { findUserByEmail, verifyPassword, setSessionCookie } from '@/lib/auth';
 
 export async function POST(request: Request) {
@@ -58,3 +58,4 @@ export async function POST(request: Request) {
         );
     }
 }
+

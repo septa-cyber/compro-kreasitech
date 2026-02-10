@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 
 export default function WhyUs() {
     const items = [
@@ -66,7 +66,7 @@ export default function WhyUs() {
                     <div className="w-full lg:w-[528px] flex flex-col gap-8 lg:pt-12">
                         {items.map((item, index) => (
                             <div key={index} className="flex flex-col gap-4 sm:gap-6 py-4 border-b border-white/20 last:border-0 hover:bg-white/10 transition-colors p-4">
-                                <h3 className="text-xl sm:text-2xl font-medium font-montserrat text-white">
+                                <h3 className="text-xl font-medium font-montserrat text-white">
                                     {item.title}
                                 </h3>
                                 <p className="text-sm font-normal font-montserrat text-white leading-relaxed">
@@ -90,3 +90,4 @@ export default function WhyUs() {
         </section>
     );
 }
+

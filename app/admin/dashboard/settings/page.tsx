@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState } from 'react';
 import { FaGlobe, FaImage, FaStar, FaAddressBook, FaShareAlt, FaInstagram, FaLinkedinIn, FaWhatsapp, FaSave, FaTwitter, FaFacebook } from 'react-icons/fa';
@@ -30,7 +30,7 @@ export default function SettingsPage() {
     return (
         <div className="space-y-6">
             <div className="flex items-center justify-between">
-                <h1 className="text-2xl md:text-3xl font-semibold font-montserrat text-text-light">
+                <h1 className="text-xl md:text-3xl font-semibold font-montserrat text-text-light">
                     Pengaturan Website
                 </h1>
                 <button
@@ -246,3 +246,4 @@ export default function SettingsPage() {
         </div>
     );
 }
+

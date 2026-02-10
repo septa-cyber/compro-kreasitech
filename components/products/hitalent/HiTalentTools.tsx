@@ -1,10 +1,10 @@
-"use client";
+﻿"use client";
 
 export default function HiTalentTools() {
     return (
         <section className="py-16 sm:py-20 lg:py-24 bg-[#F8F9FC] text-center">
             <div className="max-w-2xl mx-auto px-4">
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-gray-900">
+                <h2 className="text-xl sm:text-3xl md:text-4xl font-bold mb-4 text-gray-900">
                     Alat Inovatif untuk Era Digital
                 </h2>
                 <p className="text-gray-600 mb-8">
@@ -20,3 +20,4 @@ export default function HiTalentTools() {
         </section>
     );
 }
+

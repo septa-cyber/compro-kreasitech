@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import { BlogPost } from "@/data/blogData";
 
 interface ArticleHeaderProps {
@@ -56,3 +56,4 @@ export default function ArticleHeader({ post }: ArticleHeaderProps) {
         </section>
     );
 }
+

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import React from "react";
 import Image from 'next/image';
 
@@ -40,7 +40,7 @@ export default function ImpactAcademyProgram() {
         <section className="py-24 bg-violet-800 text-white overflow-hidden" data-theme="dark">
             <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center gap-16">
                 <div className="max-w-3xl mx-auto">
-                    <h2 className="text-2xl md:text-4xl font-medium font-montserrat mb-6">
+                    <h2 className="text-xl md:text-4xl font-medium font-montserrat mb-6">
                         Bentuk Kegiatan Impact Academy
                     </h2>
                     <p className="text-sm md:text-base font-normal font-montserrat text-white/90 leading-relaxed">
@@ -78,3 +78,4 @@ export default function ImpactAcademyProgram() {
         </section>
     );
 }
+

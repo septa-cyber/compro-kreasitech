@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 
 export default function TaaSDifferentiators() {
     return (
@@ -9,7 +9,7 @@ export default function TaaSDifferentiators() {
                         Kunci Pembeda Kreasitech
                     </h2>
                     <p className="text-base font-normal font-montserrat text-gray-600 leading-relaxed">
-                        Mengapa memilih Kreasitech sebagai partner penyedia talent teknologi Anda? Kami menawarkan lebih dari sekadar penempatan tenaga kerja—kami menghadirkan ekosistem pengembangan talenta digital yang berkelanjutan.
+                        Mengapa memilih Kreasitech sebagai partner penyedia talent teknologi Anda? Kami menawarkan lebih dari sekadar penempatan tenaga kerjaâ€”kami menghadirkan ekosistem pengembangan talenta digital yang berkelanjutan.
                     </p>
                 </div>
 
@@ -104,3 +104,4 @@ export default function TaaSDifferentiators() {
         </section>
     );
 }
+
