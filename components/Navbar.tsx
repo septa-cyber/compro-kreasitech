@@ -94,10 +94,10 @@ export default function Navbar() {
                                     <div className="bg-white/95 backdrop-blur-md border border-gray-100 shadow-xl rounded-2xl overflow-hidden p-5 text-text-light">
                                         <h4 className="font-bold text-sm mb-3 text-left whitespace-nowrap text-text-light">Layanan</h4>
                                         <ul className="space-y-2 text-xs text-text-light-muted text-left whitespace-nowrap">
-                                            <li><Link href="/academy" className="dropdown-item block py-1 text-text-light">Academy</Link></li>
+                                            <li><Link href="/services/software-development" className="dropdown-item block py-1 text-text-light">Software Development</Link></li>
                                             <li><Link href="/taas" className="dropdown-item block py-1 text-text-light">Talent As a Service</Link></li>
                                             <li><Link href="/services/digital-marketing" className="dropdown-item block py-1 text-text-light">Digital Marketing</Link></li>
-                                            <li><Link href="/services/software-development" className="dropdown-item block py-1 text-text-light">Software Development</Link></li>
+                                            <li><Link href="/academy" className="dropdown-item block py-1 text-text-light">Academy</Link></li>
                                         </ul>
                                     </div>
                                 </div>
