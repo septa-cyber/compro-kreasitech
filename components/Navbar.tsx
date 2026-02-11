@@ -79,7 +79,7 @@ export default function Navbar() {
 
                     {/* Desktop Navigation */}
                     <div className="hidden lg:flex flex-1 justify-center items-center gap-2 xl:gap-8">
-                        <div className={`flex items-center gap-3 xl:gap-8 text-xs xl:text-sm font-medium font-montserrat transition-colors duration-300`}>
+                        <div className={`flex items-center gap-3 xl:gap-8 text-xs lg:text-sm font-medium font-montserrat transition-colors duration-300`}>
                             {/* Find a Talent - Mega Menu Trigger */}
                             <div className="group relative h-full flex items-center">
                                 <button
