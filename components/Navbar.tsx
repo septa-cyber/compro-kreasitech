@@ -79,7 +79,7 @@ export default function Navbar() {
 
                     {/* Desktop Navigation */}
                     <div className="hidden lg:flex flex-1 justify-center items-center gap-2 xl:gap-8">
-                        <div className={`flex items-center gap-3 xl:gap-8 text-[10px] xl:text-xs font-medium font-montserrat transition-colors duration-300`}>
+                        <div className={`flex items-center gap-3 xl:gap-8 text-xs xl:text-sm font-medium font-montserrat transition-colors duration-300`}>
                             {/* Find a Talent - Mega Menu Trigger */}
                             <div className="group relative h-full flex items-center">
                                 <button
@@ -93,7 +93,7 @@ export default function Navbar() {
                                 <div className={`absolute top-full left-1/2 -translate-x-1/2 w-max pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 -z-10 ${activeDesktopDropdown === 'layanan' ? '!opacity-100 !visible !translate-y-0' : ''}`}>
                                     <div className="bg-white/95 backdrop-blur-md border border-gray-100 shadow-xl rounded-2xl overflow-hidden p-5 text-text-light">
                                         <h4 className="font-bold text-sm mb-3 text-left whitespace-nowrap text-text-light">Layanan</h4>
-                                        <ul className="space-y-2 text-xs text-text-light-muted text-left whitespace-nowrap">
+                                        <ul className="space-y-2 text-sm text-text-light-muted text-left whitespace-nowrap">
                                             <li><Link href="/services/software-development" className="dropdown-item block py-1 text-text-light">Software Development</Link></li>
                                             <li><Link href="/taas" className="dropdown-item block py-1 text-text-light">Talent As a Service</Link></li>
                                             <li><Link href="/services/digital-marketing" className="dropdown-item block py-1 text-text-light">Digital Marketing</Link></li>
@@ -116,7 +116,7 @@ export default function Navbar() {
                                 <div className={`absolute top-full left-1/2 -translate-x-1/2 w-max pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 -z-10 ${activeDesktopDropdown === 'produk' ? '!opacity-100 !visible !translate-y-0' : ''}`}>
                                     <div className="bg-white/95 backdrop-blur-md border border-gray-100 shadow-xl rounded-2xl overflow-hidden p-5 text-text-light">
                                         <h4 className="font-bold text-sm mb-3 text-left whitespace-nowrap text-text-light">Produk</h4>
-                                        <ul className="space-y-2 text-xs text-text-light-muted text-left whitespace-nowrap">
+                                        <ul className="space-y-2 text-sm text-text-light-muted text-left whitespace-nowrap">
                                             <li><Link href="/products/hitalent" className="dropdown-item block py-1 text-text-light">HiTalent</Link></li>
                                         </ul>
                                     </div>
@@ -134,7 +134,7 @@ export default function Navbar() {
                                 <div className={`absolute top-full left-1/2 -translate-x-1/2 w-max pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 -z-10 ${activeDesktopDropdown === 'perusahaan' ? '!opacity-100 !visible !translate-y-0' : ''}`}>
                                     <div className="bg-white/95 backdrop-blur-md border border-gray-100 shadow-xl rounded-2xl overflow-hidden p-5 text-text-light">
                                         <h4 className="font-bold text-sm mb-3 text-left whitespace-nowrap text-text-light">Perusahaan</h4>
-                                        <ul className="space-y-2 text-xs text-text-light-muted text-left whitespace-nowrap">
+                                        <ul className="space-y-2 text-sm text-text-light-muted text-left whitespace-nowrap">
                                             <li><Link href="/company" className="dropdown-item block py-1 text-text-light">Tentang Kami</Link></li>
                                             <li><Link href="/portfolio" className="dropdown-item block py-1 text-text-light">Portfolio</Link></li>
                                         </ul>
@@ -190,7 +190,7 @@ export default function Navbar() {
                         </button>
                         <div className={`overflow-hidden transition-all duration-300 ${activeMobileDropdown === "layanan" ? "max-h-[300px] opacity-100" : "max-h-0 opacity-0"}`}>
                             <div className="bg-gray-50 p-4 space-y-6 rounded-lg mb-2">
-                                <ul className="space-y-2 text-xs text-text-light-muted">
+                                <ul className="space-y-2 text-sm text-text-light-muted">
                                     <li><Link href="/academy" className="block py-1 hover:text-primary">Academy</Link></li>
                                     <li><Link href="/taas" className="block py-1 hover:text-primary">Talent As a Service</Link></li>
                                     <li><Link href="/services/digital-marketing" className="block py-1 hover:text-primary">Digital Marketing</Link></li>
@@ -212,7 +212,7 @@ export default function Navbar() {
                         </button>
                         <div className={`overflow-hidden transition-all duration-300 ${activeMobileDropdown === "produk" ? "max-h-[300px] opacity-100" : "max-h-0 opacity-0"}`}>
                             <div className="bg-gray-50 p-4 rounded-lg mb-2">
-                                <ul className="space-y-2 text-xs text-text-light-muted">
+                                <ul className="space-y-2 text-sm text-text-light-muted">
                                     <li><Link href="/products/hitalent" className="block py-1 hover:text-primary">HiTalent</Link></li>
                                 </ul>
                             </div>
@@ -231,7 +231,7 @@ export default function Navbar() {
                         </button>
                         <div className={`overflow-hidden transition-all duration-300 ${activeMobileDropdown === "perusahaan" ? "max-h-[300px] opacity-100" : "max-h-0 opacity-0"}`}>
                             <div className="bg-gray-50 p-4 rounded-lg mb-2">
-                                <ul className="space-y-2 text-xs text-text-light-muted">
+                                <ul className="space-y-2 text-sm text-text-light-muted">
                                     <li><Link href="/company" className="block py-1 hover:text-primary">Tentang Kami</Link></li>
                                     <li><Link href="/portfolio" className="block py-1 hover:text-primary">Portfolio</Link></li>
                                 </ul>
