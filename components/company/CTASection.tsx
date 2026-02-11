@@ -16,10 +16,10 @@ export default function CTASection() {
                 </div>
                 <div className="w-full lg:w-1/2 flex flex-col justify-start items-center lg:items-start gap-8">
                     <div className="w-full flex flex-col justify-start items-center lg:items-start gap-8 text-center lg:text-left">
-                        <h2 className="text-3xl sm:text-4xl font-medium font-montserrat text-text-light leading-tight">
+                        <h2 className="text-2xl md:text-4xl font-medium font-montserrat text-text-light mb-10">
                             Kami Tim yang Menyenangkan<br />dan Penuh Semangat
                         </h2>
-                        <p className="text-sm sm:text-base font-normal font-montserrat text-text-light-muted">
+                        <p className="space-y-6 text-gray-600 leading-relaxed text-lg font-body">
                             Kami berasal dari seluruh dunia. Selamat datang dan salam kenal!
                         </p>
                     </div>

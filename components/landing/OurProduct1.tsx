@@ -6,7 +6,7 @@ export default function OurProduct() {
             <div className="flex flex-col items-center gap-24 px-4 w-full">
                 {/* Header */}
                 <div className="w-full max-w-[784px] text-center">
-                    <h2 className="text-4xl font-medium font-montserrat">
+                    <h2 className="text-2xl md:text-4xl font-medium font-montserrat text-text-light mb-10">
                         Produk Kami
                     </h2>
                 </div>

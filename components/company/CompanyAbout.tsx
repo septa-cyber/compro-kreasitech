@@ -11,12 +11,12 @@ export default function CompanyAbout() {
                     {/* Left Column: Content */}
                     <div className="flex flex-col gap-8">
                         <div>
-                            <h2 className="text-3xl sm:text-4xl lg:text-4xl font-medium font-montserrat text-text-light mb-8">
+                            <h2 className="text-2xl md:text-4xl font-medium font-montserrat text-text-light mb-10">
                                 Tentang Kami
                             </h2>
                         </div>
 
-                        <div className="text-sm sm:text-base font-normal font-montserrat text-gray-600 leading-relaxed space-y-4">
+                        <div className="space-y-6 text-gray-600 leading-relaxed text-lg font-body">
                             <p>
                                 Kreasitech adalah perusahaan teknologi yang menghubungkan dunia pendidikan, karier, dan industri melalui inovasi digital. Berangkat dari semangat <span className="text-violet-600 font-medium">"Where Talent Meets Technology"</span> kami mencetak, mengembangkan, dan menyalurkan talenta siap kerja melalui layanan pelatihan, outsourcing, dan pengembangan produk digital.
                             </p>

@@ -56,7 +56,7 @@ export default function TimelineSection() {
         <section className="py-20 bg-white overflow-hidden">
             <div className="max-w-[1200px] mx-auto px-4">
                 <div className="w-full max-w-[784px] mx-auto flex flex-col items-center gap-8 px-4 text-center mb-12 md:mb-16">
-                    <h2 className="text-4xl font-medium font-montserrat text-text-light">
+                    <h2 className="text-2xl md:text-4xl font-medium font-montserrat text-text-light mb-10">
                         Perjalanan Kami
                     </h2>
                     <p className="max-w-[576px] text-base font-normal font-montserrat text-text-light-muted">

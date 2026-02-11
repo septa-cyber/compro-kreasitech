@@ -43,10 +43,10 @@ export default function WhyUs() {
 
                         {/* Middle Content */}
                         <div className="my-auto lg:mt-64 lg:mb-64 relative z-10 flex flex-col gap-6 lg:gap-8">
-                            <h2 className="text-3xl sm:text-4xl font-medium font-montserrat text-white leading-tight">
+                            <h2 className="text-2xl md:text-4xl font-medium font-montserrat text-white mb-10">
                                 Mengapa Kreasitech pilihan yang tepat?
                             </h2>
-                            <p className="text-sm sm:text-base font-normal font-montserrat text-white leading-relaxed max-w-lg">
+                            <p className="space-y-6 text-white leading-relaxed text-lg font-body">
                                 Kami menyediakan solusi TI yang aman, terukur, dan inovatif yang disesuaikan dengan kebutuhan Anda. Dengan eksekusi yang dipandu oleh para ahli, kami memastikan efisiensi dan keandalan dalam setiap proyek.
                             </p>
                         </div>

@@ -7,7 +7,7 @@ export default function Services() {
         <section className="py-24 bg-white">
             <div className="flex flex-col items-center gap-24">
                 <div className="w-full max-w-[784px] flex flex-col items-center gap-8 px-4 text-center">
-                    <h2 className="text-4xl font-medium font-montserrat text-text-light">
+                    <h2 className="text-2xl md:text-4xl font-medium font-montserrat text-text-light mb-10">
                         Layanan Kami
                     </h2>
                     <p className="max-w-[700px] text-base font-normal font-montserrat text-text-light-muted">
