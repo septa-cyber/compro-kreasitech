@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { FaThLarge, FaImage, FaCogs, FaBriefcase, FaComments, FaBox, FaUsers, FaCog, FaSignOutAlt, FaChevronRight, FaChevronLeft, FaHandshake } from 'react-icons/fa';
+import { FaThLarge, FaImage, FaCogs, FaBriefcase, FaComments, FaBox, FaUsers, FaCog, FaSignOutAlt, FaChevronRight, FaChevronLeft, FaHandshake, FaNewspaper, FaUserTie } from 'react-icons/fa';
 
 interface MenuItem {
     name: string;
@@ -14,11 +14,10 @@ interface MenuItem {
 
 const menuItems: MenuItem[] = [
     { name: 'Dashboard', href: '/admin/dashboard', icon: FaThLarge },
-    { name: 'Hero Section', href: '/admin/dashboard/hero', icon: FaImage },
-    { name: 'Services', href: '/admin/dashboard/services', icon: FaCogs },
-    { name: 'Portfolio', href: '/admin/dashboard/portfolio', icon: FaBriefcase, badge: 12 },
+    { name: 'Articles', href: '/admin/dashboard/articles', icon: FaNewspaper },
+    { name: 'Jobs', href: '/admin/dashboard/jobs', icon: FaUserTie },
     { name: 'Testimonials', href: '/admin/dashboard/testimonials', icon: FaComments },
-    { name: 'Products', href: '/admin/dashboard/products', icon: FaBox },
+    { name: 'Portfolio', href: '/admin/dashboard/portfolio', icon: FaBriefcase, badge: 12 },
     { name: 'Team', href: '/admin/dashboard/team', icon: FaUsers },
     { name: 'Partners', href: '/admin/dashboard/partners', icon: FaHandshake },
 ];

@@ -1,60 +1,27 @@
 ﻿"use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function Testimonials() {
     const [isTestimonialHovered, setIsTestimonialHovered] = useState(false);
 
-    const testimonialItems = [
-        {
-            id: 1,
-            name: "Tina Rahayu",
-            role: "Marketing Specialist",
-            company: "PT Marketing Pro",
-            avatar: "https://placehold.co/48x48/ec4899/1f2937",
-            quote: "Strategi pemasaran Tina sangat kreatif, inovatif, dan berbasis data, secara konsisten menarik perhatian audiens dan menghasilkan hasil kampanye yang mengesankan yang tidak hanya melampaui target tetapi juga memaksimalkan ROI, menetapkan standar baru untuk efektivitas pemasaran."
-        },
-        {
-            id: 2,
-            name: "Joko Lestari",
-            role: "QA Engineer",
-            company: "PT Quality Assurance",
-            avatar: "https://placehold.co/48x48/fbbf24/1f2937",
-            quote: "Protokol pengujian ketat Joko menjamin kualitas dan keandalan produk kami yang unggul, secara proaktif mencegah masalah potensial dan memastikan pengalaman pengguna yang mulus sejak rilis awal, secara signifikan meningkatkan loyalitas pelanggan dan membina hubungan jangka panjang."
-        },
-        {
-            id: 3,
-            name: "Siti Aminah",
-            role: "Product Manager",
-            company: "PT Digital Solutions",
-            avatar: "https://placehold.co/48x48/3b82f6/1f2937",
-            quote: "Kepemimpinan Siti benar-benar transformatif, karena dia memperjuangkan kolaborasi, memicu inovasi, dan mendorong pertumbuhan substansial. Timnya secara konsisten melampaui tujuan ambisius, mencapai kesuksesan luar biasa dan menetapkan tolok ukur baru untuk keunggulan di seluruh organisasi."
-        },
-        {
-            id: 4,
-            name: "Budi Santoso",
-            role: "UX Designer",
-            company: "PT Creative Minds",
-            avatar: "https://placehold.co/48x48/f97316/1f2937",
-            quote: "Desain UX Budi dikenal luas karena antarmuka intuitif dan perjalanan pengguna yang sangat menyenangkan, secara signifikan meningkatkan kepuasan dan metrik keterlibatan pengguna. Desainnya yang penuh pertimbangan sangat meningkatkan pengalaman pengguna secara keseluruhan."
-        },
-        {
-            id: 5,
-            name: "Rina Dewi",
-            role: "Data Analyst",
-            company: "PT Analytics Hub",
-            avatar: "https://placehold.co/48x48/ec4899/1f2937",
-            quote: "Wawasan data mendalam Rina sangat penting dalam membentuk arah strategis dan inisiatif masa depan kami. Analisisnya yang detail memberikan kejelasan dan pandangan ke depan yang tak tertandingi, memungkinkan keputusan yang tepat yang mendorong pertumbuhan signifikan."
-        },
-        {
-            id: 6,
-            name: "Eko Setiawan",
-            role: "DevOps Engineer",
-            company: "PT Tech Infrastructure",
-            avatar: "https://placehold.co/48x48/10b981/1f2937",
-            quote: "Keahlian DevOps Eko memastikan sistem kami berjalan dengan lancar dan efisien. Solusi otomatisasinya telah secara dramatis mengurangi waktu deployment sambil meningkatkan keandalan, memungkinkan tim kami fokus pada inovasi daripada pemeliharaan."
-        },
-    ];
+    const [testimonialItems, setTestimonialItems] = useState<any[]>([]);
+
+    useEffect(() => {
+        const fetchTestimonials = async () => {
+            try {
+                const res = await fetch('/api/testimonials?status=visible');
+                if (res.ok) {
+                    const data = await res.json();
+                    setTestimonialItems(data);
+                }
+            } catch (error) {
+                console.error('Failed to fetch testimonials:', error);
+            }
+        };
+
+        fetchTestimonials();
+    }, []);
 
     return (
         <section className="py-16 md:py-24 bg-gray-100 overflow-hidden">

@@ -1,30 +1,52 @@
 ﻿"use client";
-import React from "react";
+
+import Image from "next/image";
+import React, { useEffect, useState } from "react";
+
+interface TeamMember {
+    id: number;
+    name: string;
+    role: string;
+    avatar: string;
+    status: string;
+}
 
 export default function CompanyHero() {
+    const [avatars, setAvatars] = useState<{ src: string; alt: string }[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
 
-    const INITIAL_EMPLOYEES = [
-        { src: "/assets/images/employee/Nina.png", alt: "Avatar illustration" },
-        { src: "/assets/images/employee/Janah.png", alt: "Avatar illustration" },
-        { src: "/assets/images/employee/Fena.png", alt: "Avatar illustration" },
-        { src: "/assets/images/employee/Rahmat.png", alt: "Main Avatar illustration - Fendi" },
-        { src: "/assets/images/employee/Imdad.png", alt: "Avatar illustration" },
-        { src: "/assets/images/employee/Luthfi.png", alt: "Avatar illustration" },
-        { src: "/assets/images/employee/Fendi.png", alt: "Avatar illustration" },
-        { src: "/assets/images/employee/Canu.png", alt: "Avatar illustration" },
-        { src: "/assets/images/employee/Rian.png", alt: "Avatar illustration" },
-        { src: "/assets/images/employee/Galang.png", alt: "Avatar illustration" },
-        { src: "/assets/images/employee/Rio.png", alt: "Avatar illustration" },
-        { src: "/assets/images/employee/Wafik.png", alt: "Avatar illustration" },
-        { src: "/assets/images/employee/Tia.png", alt: "Avatar illustration" },
-        { src: "/assets/images/employee/Dimas.png", alt: "Avatar illustration" },
-    ];
+    useEffect(() => {
+        const fetchTeam = async () => {
+            try {
+                const res = await fetch('/api/team?status=active');
+                if (res.ok) {
+                    const data: TeamMember[] = await res.json();
+                    // Convert team data to avatars format
+                    const teamAvatars = data.map(member => ({
+                        src: member.avatar || '/assets/images/employee/placeholder.png',
+                        alt: `${member.name} - ${member.role}`
+                    }));
+                    setAvatars(teamAvatars);
+                }
+            } catch (error) {
+                console.error('Failed to fetch team:', error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+        fetchTeam();
+    }, []);
 
-    const [currentEmployees, setCurrentEmployees] = React.useState(INITIAL_EMPLOYEES);
+    const [currentEmployees, setCurrentEmployees] = React.useState<{ src: string; alt: string }[]>([]);
     const [isVisible, setIsVisible] = React.useState(true);
-    const [delays, setDelays] = React.useState<number[]>(new Array(INITIAL_EMPLOYEES.length).fill(0));
+    const [delays, setDelays] = React.useState<number[]>([]);
 
     React.useEffect(() => {
+        if (avatars.length === 0) return; // Wait until avatars are loaded
+
+        setCurrentEmployees(avatars);
+        setDelays(new Array(avatars.length).fill(0));
+
         let isRunning = true;
 
         const animateSequence = async () => {
@@ -33,7 +55,7 @@ export default function CompanyHero() {
             // Phase 1: Prepare for Exit (Staggered)
             // Sequence: 0, 1, 2... just linear stagger for simplicity or custom order
             // Let's use a simple linear stagger from outside in or left to right
-            const exitDelays = currentEmployees.map((_, i) => i * 100);
+            const exitDelays = avatars.map((_, i) => i * 100);
             setDelays(exitDelays);
 
             // Give React a frame
@@ -51,7 +73,7 @@ export default function CompanyHero() {
             setCurrentEmployees(prev => [...prev].sort(() => Math.random() - 0.5));
 
             // Phase 4: Prepare for Enter
-            const enterDelays = currentEmployees.map((_, i) => i * 100);
+            const enterDelays = avatars.map((_, i) => i * 120);
             setDelays(enterDelays);
 
             // Give React a frame
@@ -68,7 +90,7 @@ export default function CompanyHero() {
         animateSequence();
 
         return () => { isRunning = false; };
-    }, []);
+    }, [avatars]);
 
     return (
         <section className="relative pt-10 lg:pb-20 md:pb-16 sm:pb-12 overflow-hidden bg-[#F4F4F7]">
@@ -81,89 +103,95 @@ export default function CompanyHero() {
                 </p>
 
                 {/* Avatar Collage */}
-                <div className="flex flex-nowrap justify-center items-center gap-1.5 sm:gap-4 md:gap-6 max-w-5xl mx-auto">
-                    {/* Item 0 */}
-                    <div
-                        className={`w-14 h-14 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-40 lg:h-40 rounded-lg overflow-hidden relative group hover:-translate-y-1 transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] will-change-transform flex-shrink-0 ${isVisible ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`}
-                        style={{ transitionDelay: `${delays[0]}ms` }}
-                    >
-                        <img
-                            alt={currentEmployees[0].alt}
-                            className="w-full h-full object-cover mix-blend-multiply opacity-80"
-                            src={currentEmployees[0].src}
-                        />
+                {isLoading || currentEmployees.length < 7 ? (
+                    <div className="h-40 md:h-72 flex items-center justify-center">
+                        <div className="animate-pulse bg-gray-200 rounded-lg w-full max-w-lg h-full opacity-50"></div>
                     </div>
-                    <div className="flex flex-col gap-1.5 sm:gap-4 flex-shrink-0">
-                        {/* Item 1 */}
+                ) : (
+                    <div className="flex flex-nowrap justify-center items-center gap-1.5 sm:gap-4 md:gap-6 max-w-5xl mx-auto">
+                        {/* Item 0 */}
                         <div
-                            className={`w-12 h-12 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 rounded-lg overflow-hidden relative group hover:-translate-y-1 transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] will-change-transform ${isVisible ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`}
-                            style={{ transitionDelay: `${delays[1]}ms` }}
+                            className={`w-14 h-14 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-40 lg:h-40 rounded-lg overflow-hidden relative group hover:-translate-y-1 transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] will-change-transform flex-shrink-0 ${isVisible ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`}
+                            style={{ transitionDelay: `${delays[0]}ms` }}
                         >
                             <img
-                                alt={currentEmployees[1].alt}
+                                alt={currentEmployees[0]?.alt || ''}
                                 className="w-full h-full object-cover mix-blend-multiply opacity-80"
-                                src={currentEmployees[1].src}
+                                src={currentEmployees[0]?.src || ''}
                             />
                         </div>
-                        {/* Item 2 */}
+                        <div className="flex flex-col gap-1.5 sm:gap-4 flex-shrink-0">
+                            {/* Item 1 */}
+                            <div
+                                className={`w-12 h-12 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 rounded-lg overflow-hidden relative group hover:-translate-y-1 transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] will-change-transform ${isVisible ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`}
+                                style={{ transitionDelay: `${delays[1]}ms` }}
+                            >
+                                <img
+                                    alt={currentEmployees[1]?.alt || ''}
+                                    className="w-full h-full object-cover mix-blend-multiply opacity-80"
+                                    src={currentEmployees[1]?.src || ''}
+                                />
+                            </div>
+                            {/* Item 2 */}
+                            <div
+                                className={`w-12 h-12 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 rounded-lg overflow-hidden relative group hover:-translate-y-1 transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] will-change-transform ${isVisible ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`}
+                                style={{ transitionDelay: `${delays[2]}ms` }}
+                            >
+                                <img
+                                    alt={currentEmployees[2]?.alt || ''}
+                                    className="w-full h-full object-cover mix-blend-multiply opacity-80"
+                                    src={currentEmployees[2]?.src || ''}
+                                />
+                            </div>
+                        </div>
+                        {/* Item 3 (Center Large) */}
                         <div
-                            className={`w-12 h-12 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 rounded-lg overflow-hidden relative group hover:-translate-y-1 transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] will-change-transform ${isVisible ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`}
-                            style={{ transitionDelay: `${delays[2]}ms` }}
+                            className={`w-20 h-28 sm:w-40 sm:h-56 md:w-40 md:h-56 lg:w-56 lg:h-72 rounded-lg overflow-hidden relative group hover:-translate-y-1 transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] will-change-transform shadow-xl flex-shrink-0 ${isVisible ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`}
+                            style={{ transitionDelay: `${delays[3]}ms` }}
                         >
                             <img
-                                alt={currentEmployees[2].alt}
-                                className="w-full h-full object-cover mix-blend-multiply opacity-80"
-                                src={currentEmployees[2].src}
+                                alt={currentEmployees[3]?.alt || ''}
+                                className="w-full h-full object-cover mix-blend-multiply opacity-90"
+                                src={currentEmployees[3]?.src || ''}
                             />
                         </div>
-                    </div>
-                    {/* Item 3 (Center Large) */}
-                    <div
-                        className={`w-20 h-28 sm:w-40 sm:h-56 md:w-40 md:h-56 lg:w-56 lg:h-72 rounded-lg overflow-hidden relative group hover:-translate-y-1 transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] will-change-transform shadow-xl flex-shrink-0 ${isVisible ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`}
-                        style={{ transitionDelay: `${delays[3]}ms` }}
-                    >
-                        <img
-                            alt={currentEmployees[3].alt}
-                            className="w-full h-full object-cover mix-blend-multiply opacity-90"
-                            src={currentEmployees[3].src}
-                        />
-                    </div>
-                    <div className="flex flex-col gap-1.5 sm:gap-4 flex-shrink-0">
-                        {/* Item 4 */}
+                        <div className="flex flex-col gap-1.5 sm:gap-4 flex-shrink-0">
+                            {/* Item 4 */}
+                            <div
+                                className={`w-12 h-12 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 rounded-lg overflow-hidden relative group hover:-translate-y-1 transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] will-change-transform ${isVisible ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`}
+                                style={{ transitionDelay: `${delays[4]}ms` }}
+                            >
+                                <img
+                                    alt={currentEmployees[4]?.alt || ''}
+                                    className="w-full h-full object-cover mix-blend-multiply opacity-80"
+                                    src={currentEmployees[4]?.src || ''}
+                                />
+                            </div>
+                            {/* Item 5 */}
+                            <div
+                                className={`w-12 h-12 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 rounded-lg overflow-hidden relative group hover:-translate-y-1 transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] will-change-transform ${isVisible ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`}
+                                style={{ transitionDelay: `${delays[5]}ms` }}
+                            >
+                                <img
+                                    alt={currentEmployees[5]?.alt || ''}
+                                    className="w-full h-full object-cover mix-blend-multiply opacity-80"
+                                    src={currentEmployees[5]?.src || ''}
+                                />
+                            </div>
+                        </div>
+                        {/* Item 6 */}
                         <div
-                            className={`w-12 h-12 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 rounded-lg overflow-hidden relative group hover:-translate-y-1 transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] will-change-transform ${isVisible ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`}
-                            style={{ transitionDelay: `${delays[4]}ms` }}
+                            className={`w-14 h-14 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-40 lg:h-40 rounded-lg overflow-hidden relative group hover:-translate-y-1 transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] will-change-transform flex-shrink-0 ${isVisible ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`}
+                            style={{ transitionDelay: `${delays[6]}ms` }}
                         >
                             <img
-                                alt={currentEmployees[4].alt}
+                                alt={currentEmployees[6]?.alt || ''}
                                 className="w-full h-full object-cover mix-blend-multiply opacity-80"
-                                src={currentEmployees[4].src}
-                            />
-                        </div>
-                        {/* Item 5 */}
-                        <div
-                            className={`w-12 h-12 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 rounded-lg overflow-hidden relative group hover:-translate-y-1 transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] will-change-transform ${isVisible ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`}
-                            style={{ transitionDelay: `${delays[5]}ms` }}
-                        >
-                            <img
-                                alt={currentEmployees[5].alt}
-                                className="w-full h-full object-cover mix-blend-multiply opacity-80"
-                                src={currentEmployees[5].src}
+                                src={currentEmployees[6]?.src || ''}
                             />
                         </div>
                     </div>
-                    {/* Item 6 */}
-                    <div
-                        className={`w-14 h-14 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-40 lg:h-40 rounded-lg overflow-hidden relative group hover:-translate-y-1 transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] will-change-transform flex-shrink-0 ${isVisible ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`}
-                        style={{ transitionDelay: `${delays[6]}ms` }}
-                    >
-                        <img
-                            alt={currentEmployees[6].alt}
-                            className="w-full h-full object-cover mix-blend-multiply opacity-80"
-                            src={currentEmployees[6].src}
-                        />
-                    </div>
-                </div>
+                )}
             </div>
         </section>
     );

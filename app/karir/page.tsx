@@ -1,6 +1,6 @@
 ﻿"use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/landing/WhatsAppButton";
@@ -20,62 +20,27 @@ interface Job {
     category: string;
 }
 
-const jobsData: Job[] = [
-    {
-        id: 1,
-        title: "Front-End Developer",
-        company: "CodeCo",
-        icon: "fab fa-react",
-        iconBg: "bg-blue-600 text-white",
-        postedTime: "2 days ago",
-        salary: "$80k - $120k/year",
-        description: "We are looking for an experienced Front-End Developer to join our team and build responsive user interfaces.",
-        type: "Technology",
-        location: "On Site",
-        category: "full-time"
-    },
-    {
-        id: 2,
-        title: "UX/UI Designer",
-        company: "EcoWorks",
-        icon: "fab fa-figma",
-        iconBg: "bg-green-500 text-white",
-        postedTime: "1 day ago",
-        salary: "$75k - $110k/year",
-        description: "Design user-centric experiences for sustainable products.",
-        type: "Technology",
-        location: "Hybrid",
-        category: "full-time"
-    },
-    {
-        id: 3,
-        title: "Back-End Engineer",
-        company: "TechFlow",
-        icon: "fas fa-server",
-        iconBg: "bg-yellow-500 text-white",
-        postedTime: "3 days ago",
-        salary: "$90k - $130k/year",
-        description: "Build scalable APIs and microservices for our growing platform.",
-        type: "Technology",
-        location: "Remote",
-        category: "full-time"
-    },
-    {
-        id: 4,
-        title: "Product Manager",
-        company: "InnoSoft",
-        icon: "fas fa-rocket",
-        iconBg: "bg-purple-500 text-white",
-        postedTime: "5 days ago",
-        salary: "$100k - $150k/year",
-        description: "Lead the product vision and strategy for our core products.",
-        type: "Management",
-        location: "On Site",
-        category: "full-time"
-    }
-];
-
 export default function KarirPage() {
+    const [jobsData, setJobsData] = useState<Job[]>([]);
+
+    useEffect(() => {
+        const fetchJobs = async () => {
+            try {
+                const res = await fetch('/api/jobs?status=active');
+                if (res.ok) {
+                    const data = await res.json();
+                    setJobsData(data.map((j: any) => ({
+                        ...j,
+                        postedTime: j.postedDate
+                    })));
+                }
+            } catch (error) {
+                console.error('Failed to fetch jobs:', error);
+            }
+        };
+        fetchJobs();
+    }, []);
+
     const [searchJob, setSearchJob] = useState("");
     const [searchLocation, setSearchLocation] = useState("");
     const [datePosted, setDatePosted] = useState("Last 7 Days");

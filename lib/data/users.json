@@ -3,7 +3,7 @@
         {
             "id": "1",
             "email": "admin@kreasi.tech",
-            "password": "$2b$10$8gUVZoiJmfQnVdnR20rvX.j.3Otc.tJCbm/0p7gDWrR3dg.JuV5A.",
+            "password": "$2b$10$RztI7I6PqsxLWD25Rxf3duAhrjdXn6Z/TlHMYp7TM0cCqrtEH1uy2",
             "name": "Admin",
             "role": "super_admin",
             "createdAt": "2025-01-01T00:00:00.000Z"

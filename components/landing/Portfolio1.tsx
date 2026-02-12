@@ -1,22 +1,30 @@
 ﻿"use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { PortfolioItem } from '@/lib/types';
 
 export default function Portfolio() {
     const [isPortfolioHovered, setIsPortfolioHovered] = useState(false);
+    const [portfolioItems, setPortfolioItems] = useState<PortfolioItem[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
 
-    const portfolioItems = [
-        { id: 1, title: "Danarhadi CRM", subtitle: "Marketing Specialist", image: "https://placehold.co/600x400", size: "large" },
-        { id: 2, title: "Danarhadi CRM", subtitle: "Marketing Specialist", image: "https://placehold.co/400x400", size: "medium" },
-        { id: 3, title: "Danarhadi CRM", subtitle: "Marketing Specialist", image: "https://placehold.co/600x400", size: "large" },
-        { id: 4, title: "Danarhadi CRM", subtitle: "Marketing Specialist", image: "https://placehold.co/600x400", size: "large" },
-        { id: 5, title: "Danarhadi CRM", subtitle: "Marketing Specialist", image: "https://placehold.co/400x400", size: "medium" },
-        { id: 6, title: "Danarhadi CRM", subtitle: "Marketing Specialist", image: "https://placehold.co/600x400", size: "large" },
-        { id: 7, title: "Danarhadi CRM", subtitle: "Marketing Specialist", image: "https://placehold.co/600x400", size: "large" },
-        { id: 8, title: "Danarhadi CRM", subtitle: "Marketing Specialist", image: "https://placehold.co/400x400", size: "medium" },
-        { id: 9, title: "Danarhadi CRM", subtitle: "Marketing Specialist", image: "https://placehold.co/600x400", size: "large" },
-        { id: 10, title: "Danarhadi CRM", subtitle: "Marketing Specialist", image: "https://placehold.co/600x400", size: "large" },
-    ];
+    useEffect(() => {
+        const fetchPortfolio = async () => {
+            try {
+                const res = await fetch('/api/portfolio?status=published');
+                if (res.ok) {
+                    const data = await res.json();
+                    setPortfolioItems(data);
+                }
+            } catch (error) {
+                console.error('Failed to fetch portfolio:', error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        fetchPortfolio();
+    }, []);
 
     return (
         <section className="py-16 md:py-24 bg-white overflow-hidden" >
@@ -38,49 +46,51 @@ export default function Portfolio() {
 
             {/* Horizontal Scrolling Portfolio Cards with Marquee */}
             <div className="relative">
-                <div
-                    className="flex overflow-hidden"
-                    onMouseEnter={() => setIsPortfolioHovered(true)}
-                    onMouseLeave={() => setIsPortfolioHovered(false)}
-                >
-                    {/* Single marquee container with all cards (original + duplicate) */}
+                {isLoading ? (
+                    <div className="text-center py-12 text-gray-500">Loading portfolio...</div>
+                ) : (
                     <div
-                        className="flex gap-4 md:gap-8 pr-4 md:pr-8 w-max flex-shrink-0 animate-marquee-reverse"
-                        style={{ animationPlayState: isPortfolioHovered ? 'paused' : 'running' }}
+                        className="flex overflow-hidden"
+                        onMouseEnter={() => setIsPortfolioHovered(true)}
+                        onMouseLeave={() => setIsPortfolioHovered(false)}
                     >
-                        {/* Auto-clone: Original + Duplicate items for seamless loop */}
-                        {[...portfolioItems, ...portfolioItems].map((item, index) => {
-                            const isOriginal = index < portfolioItems.length;
-                            const sizeClasses = item.size === "large"
-                                ? "w-80 md:w-[600px]"
-                                : "w-64 md:w-96";
+                        {/* Single marquee container with all cards (original + duplicate) */}
+                        <div
+                            className="flex gap-4 md:gap-8 pr-4 md:pr-8 w-max flex-shrink-0 animate-marquee-reverse"
+                            style={{ animationPlayState: isPortfolioHovered ? 'paused' : 'running' }}
+                        >
+                            {/* Auto-clone: Original + Duplicate items for seamless loop */}
+                            {[...portfolioItems, ...portfolioItems].map((item, index) => {
+                                const isOriginal = index < portfolioItems.length;
 
-                            return (
-                                <div
-                                    key={`portfolio-${item.id}-${index}`}
-                                    className="group flex-shrink-0 flex flex-col gap-4 md:gap-8"
-                                    aria-hidden={!isOriginal}
-                                >
-                                    <img
-                                        className={`${sizeClasses} h-64 md:h-96 object-cover`}
-                                        src={item.image}
-                                        alt={item.title}
-                                    />
-                                    <div className="flex items-center gap-2">
-                                        <h3 className="text-base md:text-xl font-medium font-montserrat text-gray-900">
-                                            {item.title}
-                                        </h3>
-                                        <span className="text-xs font-normal font-montserrat text-gray-600">
-                                            {item.subtitle}
-                                        </span>
+                                return (
+                                    <div
+                                        key={`portfolio-${item.id}-${index}`}
+                                        className="group flex-shrink-0 flex flex-col gap-4 md:gap-8"
+                                        aria-hidden={!isOriginal}
+                                    >
+                                        <img
+                                            className="w-80 md:w-[600px] h-64 md:h-96 object-cover"
+                                            src={item.image || 'https://placehold.co/600x400'}
+                                            alt={item.title}
+                                        />
+                                        <div className="flex items-center gap-2">
+                                            <h3 className="text-base md:text-xl font-medium font-montserrat text-gray-900">
+                                                {item.title}
+                                            </h3>
+                                            {item.category && (
+                                                <span className="text-xs font-normal font-montserrat text-gray-600">
+                                                    {item.category}
+                                                </span>
+                                            )}
+                                        </div>
                                     </div>
-                                </div>
-                            );
-                        })}
+                                );
+                            })}
+                        </div>
                     </div>
-                </div>
+                )}
             </div>
         </section>
     );
 }
-

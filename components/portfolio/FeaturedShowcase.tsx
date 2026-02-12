@@ -1,13 +1,49 @@
 ﻿"use client";
 
-import { useState } from 'react';
-import { portfolioItems } from '@/data/portfolioData';
+import { useState, useEffect } from 'react';
+import { PortfolioItem } from '@/lib/types';
 
 export default function FeaturedShowcase() {
     const [isReverseHovered, setIsReverseHovered] = useState(false);
     const [isNormalHovered, setIsNormalHovered] = useState(false);
+    const [portfolioItems, setPortfolioItems] = useState<PortfolioItem[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
 
+    useEffect(() => {
+        const fetchPortfolio = async () => {
+            try {
+                const res = await fetch('/api/portfolio?status=published');
+                if (res.ok) {
+                    const data = await res.json();
+                    setPortfolioItems(data);
+                }
+            } catch (error) {
+                console.error('Failed to fetch portfolio:', error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+        fetchPortfolio();
+    }, []);
 
+    if (isLoading) {
+        return (
+            <section id="featured" className="py-16 md:py-24 bg-white overflow-hidden">
+                <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 mb-12 md:mb-24">
+                    <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 md:gap-24">
+                        <div className="flex-1 flex flex-col justify-start items-start gap-4 md:gap-8">
+                            <h2 className="text-xl md:text-4xl font-medium font-montserrat text-gray-900">
+                                Portofolio Kami
+                            </h2>
+                            <p className="text-sm md:text-base font-normal font-montserrat text-gray-600">
+                                Loading...
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        );
+    }
 
     return (
         <section id="featured" className="py-16 md:py-24 bg-white overflow-hidden" >
@@ -43,8 +79,8 @@ export default function FeaturedShowcase() {
                         {[...portfolioItems, ...portfolioItems].map((item, index) => {
                             const isOriginal = index < portfolioItems.length;
                             const sizeClasses = item.size === "large"
-                                ? "w-80 md:w-[600px]"
-                                : "w-64 md:w-96";
+                                ? "w-80 md:w-[600px] h-52 md:h-[400px]"
+                                : "w-64 md:w-[400px] h-64 md:h-[400px]";
 
                             return (
                                 <div
@@ -53,17 +89,17 @@ export default function FeaturedShowcase() {
                                     aria-hidden={!isOriginal}
                                 >
                                     <img
-                                        className={`${sizeClasses} h-64 md:h-96 object-cover`}
-                                        src={item.image}
+                                        className={`${sizeClasses} object-cover`}
+                                        src={item.image || 'https://placehold.co/600x400'}
                                         alt={item.title}
                                     />
-                                    <div className="flex items-center gap-2">
+                                    <div className="flex flex-col gap-1">
+                                        <span className="text-xs font-normal font-montserrat text-gray-600">
+                                            {item.category || 'Project'}
+                                        </span>
                                         <h3 className="text-base md:text-xl font-medium font-montserrat text-gray-900">
                                             {item.title}
                                         </h3>
-                                        <span className="text-xs font-normal font-montserrat text-gray-600">
-                                            {item.subtitle}
-                                        </span>
                                     </div>
                                 </div>
                             );
@@ -88,8 +124,8 @@ export default function FeaturedShowcase() {
                         {[...portfolioItems, ...portfolioItems].map((item, index) => {
                             const isOriginal = index < portfolioItems.length;
                             const sizeClasses = item.size === "large"
-                                ? "w-80 md:w-[600px]"
-                                : "w-64 md:w-96";
+                                ? "w-80 md:w-[600px] h-52 md:h-[400px]"
+                                : "w-64 md:w-[400px] h-64 md:h-[400px]";
 
                             return (
                                 <div
@@ -98,17 +134,17 @@ export default function FeaturedShowcase() {
                                     aria-hidden={!isOriginal}
                                 >
                                     <img
-                                        className={`${sizeClasses} h-64 md:h-96 object-cover`}
-                                        src={item.image}
+                                        className={`${sizeClasses} object-cover`}
+                                        src={item.image || 'https://placehold.co/600x400'}
                                         alt={item.title}
                                     />
-                                    <div className="flex items-center gap-2">
+                                    <div className="flex flex-col gap-1">
+                                        <span className="text-xs font-normal font-montserrat text-gray-600">
+                                            {item.category || 'Project'}
+                                        </span>
                                         <h3 className="text-base md:text-xl font-medium font-montserrat text-gray-900">
                                             {item.title}
                                         </h3>
-                                        <span className="text-xs font-normal font-montserrat text-gray-600">
-                                            {item.subtitle}
-                                        </span>
                                     </div>
                                 </div>
                             );

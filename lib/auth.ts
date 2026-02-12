@@ -1,7 +1,9 @@
 import bcrypt from 'bcryptjs';
 import { cookies } from 'next/headers';
-import fs from 'fs';
-import path from 'path';
+import { getUserByEmail, getUserById } from './db';
+
+const SESSION_COOKIE_NAME = 'admin_session';
+const SESSION_MAX_AGE = 60 * 60 * 24 * 7; // 7 days
 
 export interface User {
     id: string;
@@ -12,30 +14,9 @@ export interface User {
     createdAt: string;
 }
 
-interface UsersData {
-    users: User[];
-}
-
-const SESSION_COOKIE_NAME = 'admin_session';
-const SESSION_MAX_AGE = 60 * 60 * 24 * 7; // 7 days
-
-// Read users from JSON file
-export function getUsers(): User[] {
-    try {
-        const filePath = path.join(process.cwd(), 'data', 'users.json');
-        const fileContent = fs.readFileSync(filePath, 'utf-8');
-        const data: UsersData = JSON.parse(fileContent);
-        return data.users;
-    } catch (error) {
-        console.error('Error reading users:', error);
-        return [];
-    }
-}
-
 // Find user by email
-export function findUserByEmail(email: string): User | undefined {
-    const users = getUsers();
-    return users.find(user => user.email.toLowerCase() === email.toLowerCase());
+export async function findUserByEmail(email: string): Promise<User | null> {
+    return await getUserByEmail(email);
 }
 
 // Verify password
@@ -114,6 +95,5 @@ export async function getCurrentUser(): Promise<User | null> {
         return null;
     }
 
-    const users = getUsers();
-    return users.find(user => user.id === session.userId) || null;
+    return await getUserById(session.userId);
 }

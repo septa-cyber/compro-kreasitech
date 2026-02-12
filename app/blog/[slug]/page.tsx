@@ -1,6 +1,6 @@
 ﻿"use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -9,21 +9,62 @@ import ArticleHeader from "@/components/blog/ArticleHeader";
 import ArticleContent from "@/components/blog/ArticleContent";
 import ArticleMeta from "@/components/blog/ArticleMeta";
 import RelatedArticles from "@/components/blog/RelatedArticles";
-import { blogPosts, getBlogPostBySlug, getRelatedPosts } from "@/data/blogData";
 import Link from "next/link";
 import BlogCTA from "@/components/blog/BlogCTA";
+import { BlogPost } from "@/lib/types";
 
 export default function BlogPostPage() {
     const params = useParams();
     const slug = params.slug as string;
+    const [loading, setLoading] = useState(true);
+    const [post, setPost] = useState<BlogPost | null>(null);
+    const [relatedPosts, setRelatedPosts] = useState<BlogPost[]>([]);
+    const [previousPost, setPreviousPost] = useState<BlogPost | undefined>(undefined);
+    const [nextPost, setNextPost] = useState<BlogPost | undefined>(undefined);
 
-    const post = getBlogPostBySlug(slug);
-    const relatedPosts = getRelatedPosts(slug, 3);
+    useEffect(() => {
+        const fetchArticles = async () => {
+            try {
+                const res = await fetch('/api/articles?status=publish');
+                if (res.ok) {
+                    const articles: BlogPost[] = await res.json();
 
-    // Get previous and next posts
-    const currentIndex = blogPosts.findIndex(p => p.slug === slug);
-    const previousPost = currentIndex > 0 ? blogPosts[currentIndex - 1] : undefined;
-    const nextPost = currentIndex < blogPosts.length - 1 ? blogPosts[currentIndex + 1] : undefined;
+                    const currentPost = articles.find(p => p.slug === slug);
+                    setPost(currentPost || null);
+
+                    if (currentPost) {
+                        // Find index
+                        const currentIndex = articles.findIndex(p => p.slug === slug);
+                        setPreviousPost(currentIndex > 0 ? articles[currentIndex - 1] : undefined);
+                        setNextPost(currentIndex < articles.length - 1 ? articles[currentIndex + 1] : undefined);
+
+                        // Related Posts (same category, exclude current)
+                        const related = articles
+                            .filter(p => p.category === currentPost.category && p.id !== currentPost.id)
+                            .slice(0, 3);
+                        setRelatedPosts(related);
+                    }
+                }
+            } catch (error) {
+                console.error('Error fetching articles:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        if (slug) {
+            fetchArticles();
+        }
+    }, [slug]);
+
+    if (loading) {
+        return (
+            <div className="bg-background-light text-gray-900 font-sans min-h-screen flex items-center justify-center">
+                <Navbar />
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-violet-600 mt-20"></div>
+            </div>
+        );
+    }
 
     if (!post) {
         return (

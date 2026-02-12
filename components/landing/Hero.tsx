@@ -29,60 +29,26 @@ export default function Hero() {
         }
     ];
 
-    const partnerLogos = [
-        "/assets/images/LOGO CLIENT/LOGO CLIENT/4life.png",
-        "/assets/images/LOGO CLIENT/LOGO CLIENT/AWS.png",
-        "/assets/images/LOGO CLIENT/LOGO CLIENT/Ayro_Trading_Jaya_1.png",
-        "/assets/images/LOGO CLIENT/LOGO CLIENT/Bekawan.png",
-        "/assets/images/LOGO CLIENT/LOGO CLIENT/BIG.png",
-        "/assets/images/LOGO CLIENT/LOGO CLIENT/BP.png",
-        "/assets/images/LOGO CLIENT/LOGO CLIENT/btrade.png",
-        "/assets/images/LOGO CLIENT/LOGO CLIENT/callisto erp.png",
-        "/assets/images/LOGO CLIENT/LOGO CLIENT/Ceicilia.png",
-        "/assets/images/LOGO CLIENT/LOGO CLIENT/CKS_PEARL_LOGO_MASTER.png",
-        "/assets/images/LOGO CLIENT/LOGO CLIENT/Danamon.png",
-        "/assets/images/LOGO CLIENT/LOGO CLIENT/danarhadi.png",
-        "/assets/images/LOGO CLIENT/LOGO CLIENT/eduline.png",
-        "/assets/images/LOGO CLIENT/LOGO CLIENT/FIF Group.png",
-        "/assets/images/LOGO CLIENT/LOGO CLIENT/gracia bag.png",
-        "/assets/images/LOGO CLIENT/LOGO CLIENT/IKN.jpeg",
-        "/assets/images/LOGO CLIENT/LOGO CLIENT/kalbu.png",
-        "/assets/images/LOGO CLIENT/LOGO CLIENT/kusuma medika.png",
-        "/assets/images/LOGO CLIENT/LOGO CLIENT/logo bayarind 1.png",
-        "/assets/images/LOGO CLIENT/LOGO CLIENT/logo bisa basi.png",
-        "/assets/images/LOGO CLIENT/LOGO CLIENT/logo callisto.png",
-        "/assets/images/LOGO CLIENT/LOGO CLIENT/logo eds.png",
-        "/assets/images/LOGO CLIENT/LOGO CLIENT/logo GSK.png",
-        "/assets/images/LOGO CLIENT/LOGO CLIENT/logo khs.png",
-        "/assets/images/LOGO CLIENT/LOGO CLIENT/logo medlink.png",
-        "/assets/images/LOGO CLIENT/LOGO CLIENT/logo octa meyer.png",
-        "/assets/images/LOGO CLIENT/LOGO CLIENT/logo spfio.png",
-        "/assets/images/LOGO CLIENT/LOGO CLIENT/Logo-Aizonee-v3.png",
-        "/assets/images/LOGO CLIENT/LOGO CLIENT/logo-bsi.png",
-        "/assets/images/LOGO CLIENT/LOGO CLIENT/Logo-QuBisa.png",
-        "/assets/images/LOGO CLIENT/LOGO CLIENT/LOGO-SINODE-1.png",
-        "/assets/images/LOGO CLIENT/LOGO CLIENT/logo-zep.png",
-        "/assets/images/LOGO CLIENT/LOGO CLIENT/logo_central_small.png",
-        "/assets/images/LOGO CLIENT/LOGO CLIENT/mkw.png",
-        "/assets/images/LOGO CLIENT/LOGO CLIENT/Nyalacinta.png",
-        "/assets/images/LOGO CLIENT/LOGO CLIENT/obviously sustainable.png",
-        "/assets/images/LOGO CLIENT/LOGO CLIENT/ohana.png",
-        "/assets/images/LOGO CLIENT/LOGO CLIENT/Outsystems.png",
-        "/assets/images/LOGO CLIENT/LOGO CLIENT/PPU.png",
-        "/assets/images/LOGO CLIENT/LOGO CLIENT/PT Ako Media Asia.png",
-        "/assets/images/LOGO CLIENT/LOGO CLIENT/queeri.png",
-        "/assets/images/LOGO CLIENT/LOGO CLIENT/Sangfor.png",
-        "/assets/images/LOGO CLIENT/LOGO CLIENT/save-the-children-logo-horizontal-color-positive_2.png",
-        "/assets/images/LOGO CLIENT/LOGO CLIENT/Sehat_meyer.png",
-        "/assets/images/LOGO CLIENT/LOGO CLIENT/Sequis Tower.png",
-        "/assets/images/LOGO CLIENT/LOGO CLIENT/spfio.png",
-        "/assets/images/LOGO CLIENT/LOGO CLIENT/susi.png",
-        "/assets/images/LOGO CLIENT/LOGO CLIENT/This is april.jpg",
-        "/assets/images/LOGO CLIENT/LOGO CLIENT/Titik_nol.png",
-        "/assets/images/LOGO CLIENT/LOGO CLIENT/tokocrypto.png",
-        "/assets/images/LOGO CLIENT/LOGO CLIENT/UT - Forum Study Ilmu Hukum.png",
-        "/assets/images/LOGO CLIENT/LOGO CLIENT/xendit.png",
-    ];
+    const [partnerLogos, setPartnerLogos] = React.useState<string[]>([]);
+
+    React.useEffect(() => {
+        const fetchPartners = async () => {
+            try {
+                const res = await fetch('/api/partners');
+                const data = await res.json();
+                // Filter active partners and get their logo URLs
+                const logos = data
+                    .filter((p: any) => p.status === 'active' && p.logo)
+                    .map((p: any) => p.logo);
+                setPartnerLogos(logos);
+            } catch (error) {
+                console.error('Failed to fetch partners:', error);
+                // Fallback to empty or default if needed
+            }
+        };
+
+        fetchPartners();
+    }, []);
 
     return (
         <section className="relative pt-40 pb-20 lg:pt-54 lg:pb-16 overflow-hidden bg-[#F4F4F7]">

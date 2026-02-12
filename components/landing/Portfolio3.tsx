@@ -1,13 +1,49 @@
 ﻿"use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { portfolioItems } from '@/data/portfolioData';
+import { PortfolioItem } from '@/lib/types';
 
 export default function Portfolio() {
     const [isPortfolioHovered, setIsPortfolioHovered] = useState(false);
+    const [portfolioItems, setPortfolioItems] = useState<PortfolioItem[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
 
+    useEffect(() => {
+        const fetchPortfolio = async () => {
+            try {
+                const res = await fetch('/api/portfolio?status=published');
+                if (res.ok) {
+                    const data = await res.json();
+                    setPortfolioItems(data);
+                }
+            } catch (error) {
+                console.error('Failed to fetch portfolio:', error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+        fetchPortfolio();
+    }, []);
 
+    if (isLoading) {
+        return (
+            <section className="py-16 md:py-24 bg-violet-800 overflow-hidden" data-theme="dark">
+                <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 mb-8 md:mb-24">
+                    <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 md:gap-24">
+                        <div className="flex-1 flex flex-col justify-start items-start gap-4 md:gap-8">
+                            <h2 className="text-xl md:text-4xl font-medium font-montserrat text-white">
+                                Portofolio Kami
+                            </h2>
+                            <p className="text-sm md:text-base font-normal font-montserrat text-white leading-relaxed max-w-[800px]">
+                                Loading...
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        );
+    }
 
     return (
         <section className="py-16 md:py-24 bg-violet-800 overflow-hidden" data-theme="dark">
@@ -41,8 +77,8 @@ export default function Portfolio() {
                     >
                         {[...portfolioItems].map((item, index) => {
                             const sizeClasses = item.size === "large"
-                                ? "w-80 md:w-[600px]"
-                                : "w-64 md:w-96";
+                                ? "w-80 md:w-[600px] h-52 md:h-[400px]"
+                                : "w-64 md:w-[400px] h-64 md:h-[400px]";
 
                             return (
                                 <div
@@ -50,17 +86,17 @@ export default function Portfolio() {
                                     className="group mx-2 md:mx-4 flex-shrink-0 flex flex-col gap-4 md:gap-8"
                                 >
                                     <img
-                                        className={`${sizeClasses} h-64 md:h-96 object-cover`}
-                                        src={item.image}
+                                        className={`${sizeClasses} object-cover`}
+                                        src={item.image || 'https://placehold.co/600x400'}
                                         alt={item.title}
                                     />
-                                    <div className="flex items-center gap-2">
+                                    <div className="flex flex-col gap-1">
+                                        <span className="text-xs font-normal font-montserrat text-white/70">
+                                            {item.category || 'Project'}
+                                        </span>
                                         <h3 className="text-base md:text-xl font-medium font-montserrat text-white">
                                             {item.title}
                                         </h3>
-                                        <span className="text-xs font-normal font-montserrat text-white">
-                                            {item.subtitle}
-                                        </span>
                                     </div>
                                 </div>
                             );
@@ -74,8 +110,8 @@ export default function Portfolio() {
                     >
                         {[...portfolioItems].map((item, index) => {
                             const sizeClasses = item.size === "large"
-                                ? "w-80 md:w-[600px]"
-                                : "w-64 md:w-96";
+                                ? "w-80 md:w-[600px] h-52 md:h-[400px]"
+                                : "w-64 md:w-[400px] h-64 md:h-[400px]";
 
                             return (
                                 <div
@@ -83,17 +119,17 @@ export default function Portfolio() {
                                     className="group mx-2 md:mx-4 flex-shrink-0 flex flex-col gap-4 md:gap-8"
                                 >
                                     <img
-                                        className={`${sizeClasses} h-64 md:h-96 object-cover`}
-                                        src={item.image}
+                                        className={`${sizeClasses} object-cover`}
+                                        src={item.image || 'https://placehold.co/600x400'}
                                         alt={item.title}
                                     />
-                                    <div className="flex items-center gap-2">
+                                    <div className="flex flex-col gap-1">
+                                        <span className="text-xs font-normal font-montserrat text-white/70">
+                                            {item.category || 'Project'}
+                                        </span>
                                         <h3 className="text-base md:text-xl font-medium font-montserrat text-white">
                                             {item.title}
                                         </h3>
-                                        <span className="text-xs font-normal font-montserrat text-white">
-                                            {item.subtitle}
-                                        </span>
                                     </div>
                                 </div>
                             );

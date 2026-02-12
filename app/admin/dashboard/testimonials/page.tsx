@@ -1,259 +1,283 @@
 ﻿"use client";
 
-import React, { useState } from 'react';
-import { FaHeading, FaParagraph, FaSave, FaPlus, FaTrash, FaUserCircle, FaQuoteLeft, FaBuilding, FaUserTie } from 'react-icons/fa';
+import React, { useState, useEffect } from 'react';
+import { FaHeading, FaPlus, FaTrash, FaQuoteLeft, FaStar, FaImage, FaUser } from 'react-icons/fa';
+import { Testimonial } from '@/lib/types';
+import Modal from '@/components/ui/Modal';
+import ConfirmationModal from '@/components/ui/ConfirmationModal';
 
 export default function TestimonialsSettingsPage() {
-    // Section Header
-    const [sectionTitle1, setSectionTitle1] = useState('Lihat mengapa pelanggan senang');
-    const [sectionTitle2, setSectionTitle2] = useState('menggunakan KreasiTech');
+    const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
 
-    // Testimonial Items
-    const [testimonials, setTestimonials] = useState([
-        {
-            id: 1,
-            name: "Tina Rahayu",
-            role: "Marketing Specialist",
-            company: "PT Marketing Pro",
-            avatar: "https://placehold.co/48x48/ec4899/1f2937",
-            quote: "Tina's marketing strategies are exceptionally creative, highly innovative, and meticulously data-driven, consistently capturing audience attention."
-        },
-        {
-            id: 2,
-            name: "Joko Lestari",
-            role: "QA Engineer",
-            company: "PT Quality Assurance",
-            avatar: "https://placehold.co/48x48/fbbf24/1f2937",
-            quote: "Joko's rigorous testing protocols guarantee the superior quality and reliability of our products, proactively preventing potential problems."
-        },
-        {
-            id: 3,
-            name: "Siti Aminah",
-            role: "Product Manager",
-            company: "PT Digital Solutions",
-            avatar: "https://placehold.co/48x48/3b82f6/1f2937",
-            quote: "Siti's leadership is truly transformative, as she champions collaboration, sparks innovation, and drives substantial growth."
+    // Modal States
+    const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+    const [itemToDelete, setItemToDelete] = useState<number | null>(null);
+    const [newItemData, setNewItemData] = useState<Partial<Testimonial>>({
+        name: "",
+        role: "",
+        content: "",
+        avatar: "",
+        rating: 5
+    });
+
+    useEffect(() => {
+        fetchTestimonials();
+    }, []);
+
+    const fetchTestimonials = async () => {
+        try {
+            const res = await fetch('/api/testimonials');
+            const data = await res.json();
+            setTestimonials(data);
+        } catch (error) {
+            console.error('Failed to fetch testimonials:', error);
+        } finally {
+            setIsLoading(false);
         }
-    ]);
-
-    const handleTestimonialChange = (id: number, field: string, value: string) => {
-        setTestimonials(testimonials.map(item =>
-            item.id === id ? { ...item, [field]: value } : item
-        ));
     };
 
-    const handleDeleteTestimonial = (id: number) => {
-        setTestimonials(testimonials.filter(item => item.id !== id));
+    // Delete Logic
+    const confirmDelete = async () => {
+        if (!itemToDelete) return;
+
+        try {
+            const res = await fetch(`/api/testimonials/${itemToDelete}`, { method: 'DELETE' });
+            if (res.ok) {
+                setTestimonials(testimonials.filter(t => t.id !== itemToDelete));
+                setItemToDelete(null);
+            } else {
+                alert('Gagal menghapus testimonial');
+            }
+        } catch (error) {
+            console.error('Error deleting testimonial:', error);
+            alert('Error menghapus testimonial');
+        }
     };
 
-    const handleAddTestimonial = () => {
-        const newId = testimonials.length > 0 ? Math.max(...testimonials.map(t => t.id)) + 1 : 1;
-        setTestimonials([...testimonials, {
-            id: newId,
-            name: "Nama Pelanggan",
-            role: "Jabatan",
-            company: "Perusahaan",
-            avatar: "https://placehold.co/48x48/gray/white",
-            quote: "Tulis testimoni pelanggan di sini..."
-        }]);
-    };
-
-    const handleSave = (e: React.FormEvent) => {
+    // Add Logic
+    const handleAddSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        alert('Pengaturan Testimoni berhasil disimpan!');
+        try {
+            const itemToAdd = {
+                ...newItemData,
+                avatar: newItemData.avatar || "https://placehold.co/100x100",
+                rating: Number(newItemData.rating)
+            };
+
+            const res = await fetch('/api/testimonials', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(itemToAdd)
+            });
+
+            if (res.ok) {
+                const created = await res.json();
+                setTestimonials([...testimonials, created]);
+                setIsAddModalOpen(false);
+                setNewItemData({
+                    name: "",
+                    role: "",
+                    content: "",
+                    avatar: "",
+                    rating: 5
+                });
+            } else {
+                alert('Gagal menambah testimonial');
+            }
+        } catch (error) {
+            console.error('Error adding testimonial:', error);
+            alert('Error menambah testimonial');
+        }
     };
+
+    if (isLoading) return <div>Loading...</div>;
 
     return (
         <div className="space-y-6">
             <div className="flex items-center justify-between">
                 <h1 className="text-xl md:text-3xl font-semibold font-montserrat text-text-light">
-                    Pengaturan Testimoni
+                    Pengaturan Testimonials
                 </h1>
-                <button
-                    onClick={handleSave}
-                    className="px-6 py-2.5 bg-violet-600 hover:bg-violet-700 text-white font-medium rounded-lg text-sm transition-colors shadow-glow flex items-center gap-2"
-                >
-                    <FaSave />
-                    <span>Simpan Perubahan</span>
-                </button>
             </div>
 
-            <form onSubmit={handleSave} className="grid grid-cols-1 gap-6">
-
-                {/* Section Header Settings */}
-                <div className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
-                    <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-100">
+            <div className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
+                <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-100">
+                    <div className="flex items-center gap-3">
                         <div className="w-10 h-10 bg-violet-100 rounded-lg flex items-center justify-center text-violet-600">
-                            <FaHeading size={20} />
+                            <FaQuoteLeft size={20} />
                         </div>
-                        <h2 className="text-lg font-semibold text-text-light font-montserrat">Header Seksi</h2>
+                        <h2 className="text-lg font-semibold text-text-light font-montserrat">Daftar Testimonial</h2>
                     </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label className="block text-sm font-medium text-gray-700 font-montserrat mb-2">
-                                Judul Baris 1
-                            </label>
-                            <input
-                                type="text"
-                                value={sectionTitle1}
-                                onChange={(e) => setSectionTitle1(e.target.value)}
-                                className="w-full px-4 py-2 bg-[#F4F4F7] border border-gray-200 rounded-lg text-sm text-text-light focus:outline-none focus:ring-2 focus:ring-violet-500/50 focus:border-violet-500 transition-all"
-                            />
-                        </div>
-                        <div>
-                            <label className="block text-sm font-medium text-gray-700 font-montserrat mb-2">
-                                Judul Baris 2
-                            </label>
-                            <input
-                                type="text"
-                                value={sectionTitle2}
-                                onChange={(e) => setSectionTitle2(e.target.value)}
-                                className="w-full px-4 py-2 bg-[#F4F4F7] border border-gray-200 rounded-lg text-sm text-text-light focus:outline-none focus:ring-2 focus:ring-violet-500/50 focus:border-violet-500 transition-all"
-                            />
-                        </div>
-                    </div>
+                    <button
+                        onClick={() => setIsAddModalOpen(true)}
+                        className="px-4 py-2 bg-violet-50 text-violet-600 hover:bg-violet-100 rounded-lg text-xs font-semibold transition-colors flex items-center gap-2"
+                    >
+                        <FaPlus />
+                        <span>Tambah Testimonial</span>
+                    </button>
                 </div>
 
-                {/* Testimonials List Management */}
-                <div className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
-                    <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-100">
-                        <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 bg-violet-100 rounded-lg flex items-center justify-center text-violet-600">
-                                <FaQuoteLeft size={20} />
-                            </div>
-                            <h2 className="text-lg font-semibold text-text-light font-montserrat">Daftar Testimoni</h2>
-                        </div>
-                        <button
-                            type="button"
-                            onClick={handleAddTestimonial}
-                            className="px-4 py-2 bg-violet-50 text-violet-600 hover:bg-violet-100 rounded-lg text-xs font-semibold transition-colors flex items-center gap-2"
-                        >
-                            <FaPlus />
-                            <span>Tambah Testimoni</span>
-                        </button>
-                    </div>
-
-                    <div className="grid grid-cols-1 gap-6">
-                        {testimonials.map((item, index) => (
-                            <div key={item.id} className="relative p-6 bg-[#F4F4F7] border border-gray-200 rounded-xl group hover:border-violet-300 transition-all">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {testimonials.map((testimonial) => (
+                        <div key={testimonial.id} className="relative bg-[#F4F4F7] p-6 rounded-xl border border-gray-200 hover:border-violet-300 transition-all group">
+                            <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
                                 <button
-                                    type="button"
-                                    onClick={() => handleDeleteTestimonial(item.id)}
-                                    className="absolute top-4 right-4 text-gray-400 hover:text-red-500 p-1 rounded-md hover:bg-red-50 transition-colors opacity-0 group-hover:opacity-100"
-                                    title="Hapus Testimoni"
+                                    onClick={() => setItemToDelete(testimonial.id)}
+                                    className="p-2 text-gray-400 hover:text-red-500 hover:bg-white rounded-lg transition-colors shadow-sm"
+                                    title="Hapus"
                                 >
-                                    <FaTrash size={14} />
+                                    <FaTrash />
                                 </button>
+                            </div>
 
-                                <div className="flex flex-col md:flex-row gap-6">
-                                    {/* Avatar & Info */}
-                                    <div className="w-full md:w-1/3 space-y-4">
-                                        <div className="flex items-center gap-4">
-                                            <div className="relative w-12 h-12 bg-gray-200 rounded-full overflow-hidden flex-shrink-0">
-                                                <img src={item.avatar} alt={item.name} className="w-full h-full object-cover" />
-                                            </div>
-                                            <div className="flex-1">
-                                                <label className="block text-[10px] font-medium text-gray-500 uppercase font-montserrat mb-1">
-                                                    Foto Profil
-                                                </label>
-                                                <div className="flex items-center gap-2">
-                                                    <label className="cursor-pointer bg-white px-3 py-1.5 border border-gray-200 rounded text-xs font-medium text-gray-600 hover:border-violet-400 hover:text-violet-600 transition-colors flex items-center gap-2">
-                                                        <FaUserCircle />
-                                                        <span>Upload Foto</span>
-                                                        <input
-                                                            type="file"
-                                                            accept="image/*"
-                                                            className="hidden"
-                                                            onChange={(e) => {
-                                                                const file = e.target.files?.[0];
-                                                                if (file) {
-                                                                    const imageUrl = URL.createObjectURL(file);
-                                                                    handleTestimonialChange(item.id, 'avatar', imageUrl);
-                                                                }
-                                                            }}
-                                                        />
-                                                    </label>
-                                                    <span className="text-[10px] text-gray-400 italic">
-                                                        {item.avatar.startsWith('blob:') ? 'File terpilih' : 'URL eksternal'}
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div>
-                                            <label className="block text-[10px] font-medium text-gray-500 uppercase font-montserrat mb-1">
-                                                Nama Lengkap
-                                            </label>
-                                            <div className="relative">
-                                                <FaUserCircle className="absolute left-2 top-2 text-gray-400 text-xs" />
-                                                <input
-                                                    type="text"
-                                                    value={item.name}
-                                                    onChange={(e) => handleTestimonialChange(item.id, 'name', e.target.value)}
-                                                    className="w-full pl-6 pr-2 py-1.5 bg-white border border-gray-200 rounded text-sm font-semibold text-text-light focus:outline-none focus:ring-2 focus:ring-violet-500/50 transition-all"
-                                                />
-                                            </div>
-                                        </div>
-
-                                        <div className="grid grid-cols-2 gap-3">
-                                            <div>
-                                                <label className="block text-[10px] font-medium text-gray-500 uppercase font-montserrat mb-1">
-                                                    Jabatan
-                                                </label>
-                                                <div className="relative">
-                                                    <FaUserTie className="absolute left-2 top-2 text-gray-400 text-xs" />
-                                                    <input
-                                                        type="text"
-                                                        value={item.role}
-                                                        onChange={(e) => handleTestimonialChange(item.id, 'role', e.target.value)}
-                                                        className="w-full pl-6 pr-2 py-1.5 bg-white border border-gray-200 rounded text-xs text-text-light focus:outline-none focus:ring-2 focus:ring-violet-500/50 transition-all"
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <label className="block text-[10px] font-medium text-gray-500 uppercase font-montserrat mb-1">
-                                                    Perusahaan
-                                                </label>
-                                                <div className="relative">
-                                                    <FaBuilding className="absolute left-2 top-2 text-gray-400 text-xs" />
-                                                    <input
-                                                        type="text"
-                                                        value={item.company}
-                                                        onChange={(e) => handleTestimonialChange(item.id, 'company', e.target.value)}
-                                                        className="w-full pl-6 pr-2 py-1.5 bg-white border border-gray-200 rounded text-xs text-text-light focus:outline-none focus:ring-2 focus:ring-violet-500/50 transition-all"
-                                                    />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    {/* Quote */}
-                                    <div className="flex-1">
-                                        <label className="block text-[10px] font-medium text-gray-500 uppercase font-montserrat mb-1">
-                                            Isi Testimoni (Quote)
-                                        </label>
-                                        <textarea
-                                            value={item.quote}
-                                            onChange={(e) => handleTestimonialChange(item.id, 'quote', e.target.value)}
-                                            rows={5}
-                                            className="w-full px-3 py-2 bg-white border border-gray-200 rounded-lg text-sm text-text-light leading-relaxed focus:outline-none focus:ring-2 focus:ring-violet-500/50 transition-all resize-none"
-                                        />
-                                    </div>
+                            <div className="flex items-center gap-4 mb-4">
+                                <img
+                                    src={testimonial.avatar || 'https://placehold.co/100x100'}
+                                    alt={testimonial.name}
+                                    className="w-12 h-12 rounded-full object-cover border-2 border-white shadow-sm"
+                                />
+                                <div>
+                                    <h3 className="font-semibold text-gray-900 font-montserrat">{testimonial.name}</h3>
+                                    <p className="text-xs text-gray-500">{testimonial.role}</p>
                                 </div>
                             </div>
-                        ))}
-                    </div>
 
-                    {testimonials.length === 0 && (
-                        <div className="text-center py-12 text-gray-400">
-                            <p className="text-sm font-montserrat">Belum ada testimoni yang ditambahkan.</p>
+                            <div className="mb-4">
+                                <div className="flex gap-1 text-yellow-400 text-xs mb-2">
+                                    {[...Array(5)].map((_, i) => (
+                                        <FaStar key={i} className={i < (testimonial.rating || 5) ? "fill-current" : "text-gray-300"} />
+                                    ))}
+                                </div>
+                                <p className="text-sm text-gray-600 italic line-clamp-4">"{testimonial.content}"</p>
+                            </div>
                         </div>
-                    )}
+                    ))}
                 </div>
 
-            </form>
+                {testimonials.length === 0 && (
+                    <div className="text-center py-12 text-gray-400">
+                        <p className="text-sm font-montserrat">Belum ada testimonial yang ditambahkan.</p>
+                    </div>
+                )}
+            </div>
+
+            {/* Add Modal */}
+            <Modal
+                isOpen={isAddModalOpen}
+                onClose={() => setIsAddModalOpen(false)}
+                title="Tambah Testimonial"
+            >
+                <form onSubmit={handleAddSubmit} className="space-y-4">
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Nama Klien</label>
+                        <input
+                            type="text"
+                            required
+                            value={newItemData.name}
+                            onChange={(e) => setNewItemData({ ...newItemData, name: e.target.value })}
+                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                            placeholder="Nama Lengkap"
+                        />
+                    </div>
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Perusahaan / Role</label>
+                        <input
+                            type="text"
+                            required
+                            value={newItemData.role}
+                            onChange={(e) => setNewItemData({ ...newItemData, role: e.target.value })}
+                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                            placeholder="Contoh: CEO at Company"
+                        />
+                    </div>
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Rating (1-5)</label>
+                        <select
+                            value={newItemData.rating}
+                            onChange={(e) => setNewItemData({ ...newItemData, rating: Number(e.target.value) })}
+                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                        >
+                            <option value="5">5 Stars</option>
+                            <option value="4">4 Stars</option>
+                            <option value="3">3 Stars</option>
+                            <option value="2">2 Stars</option>
+                            <option value="1">1 Star</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Isi Testimonial</label>
+                        <textarea
+                            required
+                            rows={4}
+                            value={newItemData.content}
+                            onChange={(e) => setNewItemData({ ...newItemData, content: e.target.value })}
+                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                            placeholder="Apa kata mereka..."
+                        ></textarea>
+                    </div>
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Avatar URL (Optional)</label>
+                        <div className="flex gap-2">
+                            <input
+                                type="text"
+                                value={newItemData.avatar}
+                                onChange={(e) => setNewItemData({ ...newItemData, avatar: e.target.value })}
+                                className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                                placeholder="https://..."
+                            />
+                            <label className="px-3 py-2 bg-gray-100 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-200 transition-colors flex items-center justify-center">
+                                <FaImage className="text-gray-600" />
+                                <input
+                                    type="file"
+                                    accept="image/*"
+                                    className="hidden"
+                                    onChange={(e) => {
+                                        const file = e.target.files?.[0];
+                                        if (file) {
+                                            const imageUrl = URL.createObjectURL(file);
+                                            setNewItemData({ ...newItemData, avatar: imageUrl });
+                                        }
+                                    }}
+                                />
+                            </label>
+                        </div>
+                    </div>
+
+                    {newItemData.avatar && (
+                        <div className="mt-2 p-2 border border-gray-200 rounded-lg bg-gray-50 flex justify-center">
+                            <img src={newItemData.avatar} alt="Preview" className="h-16 w-16 object-cover rounded-full" />
+                        </div>
+                    )}
+
+                    <div className="flex justify-end pt-4 gap-3">
+                        <button
+                            type="button"
+                            onClick={() => setIsAddModalOpen(false)}
+                            className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition-colors"
+                        >
+                            Batal
+                        </button>
+                        <button
+                            type="submit"
+                            className="px-4 py-2 text-sm font-medium text-white bg-violet-600 rounded-lg hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500 transition-colors shadow-md"
+                        >
+                            Simpan Testimonial
+                        </button>
+                    </div>
+                </form>
+            </Modal>
+
+            {/* Delete Confirmation Modal */}
+            <ConfirmationModal
+                isOpen={!!itemToDelete}
+                onClose={() => setItemToDelete(null)}
+                onConfirm={confirmDelete}
+                title="Hapus Testimonial"
+                message="Apakah Anda yakin ingin menghapus testimonial ini? Tindakan ini tidak dapat dibatalkan."
+                confirmText="Hapus"
+                isDanger
+            />
         </div>
     );
 }
-

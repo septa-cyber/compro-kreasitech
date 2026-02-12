@@ -5,14 +5,24 @@ import Image from "next/image";
 export default function PartnersSection() {
     const [isHovered, setIsHovered] = React.useState(false);
 
-    const partnerLogos = [
-        "/assets/images/partners/logo1.svg",
-        "/assets/images/partners/logo2.svg",
-        "/assets/images/partners/logo3.svg",
-        "/assets/images/partners/logo4.svg",
-        "/assets/images/partners/logo5.svg",
-        "/assets/images/partners/logo6.svg",
-    ];
+    const [partnerLogos, setPartnerLogos] = React.useState<string[]>([]);
+
+    React.useEffect(() => {
+        const fetchPartners = async () => {
+            try {
+                const res = await fetch('/api/partners');
+                const data = await res.json();
+                const logos = data
+                    .filter((p: any) => p.status === 'active' && p.logo)
+                    .map((p: any) => p.logo);
+                setPartnerLogos(logos);
+            } catch (error) {
+                console.error('Failed to fetch partners:', error);
+            }
+        };
+
+        fetchPartners();
+    }, []);
 
     return (
         <section className="py-10 bg-gray-100 border-y border-gray-200">

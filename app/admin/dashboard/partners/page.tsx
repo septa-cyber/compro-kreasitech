@@ -1,84 +1,139 @@
 ﻿"use client";
 
-import React, { useState } from 'react';
-import { FaHeading, FaParagraph, FaSave, FaPlus, FaTrash, FaHandshake, FaImage } from 'react-icons/fa';
+import React, { useState, useEffect } from 'react';
+import { FaHeading, FaSave, FaPlus, FaTrash, FaImage, FaHandshake } from 'react-icons/fa';
+import { Partner } from '@/lib/types';
+import Modal from '@/components/ui/Modal';
+import ConfirmationModal from '@/components/ui/ConfirmationModal';
 
 export default function PartnersSettingsPage() {
-    // Section Header
-    const [sectionTitle, setSectionTitle] = useState('Dipercaya oleh bisnis terkemuka seperti:');
+    const [partners, setPartners] = useState<Partner[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [isSaving, setIsSaving] = useState(false);
 
-    // Partner Logos
-    const [partners, setPartners] = useState([
-        { id: 1, name: "Partner 1", logo: "/assets/images/Logo.svg" },
-        { id: 2, name: "Partner 2", logo: "/assets/images/Logo.svg" },
-        { id: 3, name: "Partner 3", logo: "/assets/images/Logo.svg" },
-        { id: 4, name: "Partner 4", logo: "/assets/images/Logo.svg" },
-    ]);
+    // Modal States
+    const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+    const [itemToDelete, setItemToDelete] = useState<number | null>(null);
+    const [newPartnerData, setNewPartnerData] = useState<Partial<Partner>>({
+        name: "",
+        logo: "",
+        status: "active"
+    });
 
-    const handlePartnerChange = (id: number, field: string, value: string) => {
-        setPartners(partners.map(item =>
-            item.id === id ? { ...item, [field]: value } : item
+    useEffect(() => {
+        fetchPartners();
+    }, []);
+
+    const fetchPartners = async () => {
+        try {
+            const res = await fetch('/api/partners');
+            const data = await res.json();
+            setPartners(data);
+        } catch (error) {
+            console.error('Failed to fetch partners:', error);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    const handlePartnerChange = (id: number, field: keyof Partner, value: string) => {
+        setPartners(partners.map(partner =>
+            partner.id === id ? { ...partner, [field]: value } : partner
         ));
     };
 
-    const handleDeletePartner = (id: number) => {
-        setPartners(partners.filter(item => item.id !== id));
+    // Delete Logic
+    const confirmDelete = async () => {
+        if (!itemToDelete) return;
+
+        try {
+            const res = await fetch(`/api/partners/${itemToDelete}`, { method: 'DELETE' });
+            if (res.ok) {
+                setPartners(partners.filter(partner => partner.id !== itemToDelete));
+                setItemToDelete(null);
+            } else {
+                alert('Gagal menghapus partner');
+            }
+        } catch (error) {
+            console.error('Error deleting partner:', error);
+            alert('Error menghapus partner');
+        }
     };
 
-    const handleAddPartner = () => {
-        const newId = partners.length > 0 ? Math.max(...partners.map(p => p.id)) + 1 : 1;
-        setPartners([...partners, {
-            id: newId,
-            name: "New Partner",
-            logo: "/assets/images/Logo.svg"
-        }]);
-    };
-
-    const handleSave = (e: React.FormEvent) => {
+    // Add Logic
+    const handleAddSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        alert('Pengaturan Partner berhasil disimpan!');
+        try {
+            const partnerToAdd = {
+                ...newPartnerData,
+                logo: newPartnerData.logo || "https://placehold.co/200x100" // Default if empty
+            };
+
+            const res = await fetch('/api/partners', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(partnerToAdd)
+            });
+
+            if (res.ok) {
+                const created = await res.json();
+                setPartners([...partners, created]);
+                setIsAddModalOpen(false);
+                setNewPartnerData({ name: "", logo: "", status: "active" }); // Reset form
+            } else {
+                alert('Gagal menambah partner');
+            }
+        } catch (error) {
+            console.error('Error adding partner:', error);
+            alert('Error menambah partner');
+        }
     };
+
+    const handleSave = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setIsSaving(true);
+
+        try {
+            // Update all partners
+            const updatePromises = partners.map(partner =>
+                fetch(`/api/partners/${partner.id}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(partner)
+                })
+            );
+
+            await Promise.all(updatePromises);
+            alert('Pengaturan Partners berhasil disimpan!');
+        } catch (error) {
+            console.error('Error saving:', error);
+            alert('Gagal menyimpan perubahan');
+        } finally {
+            setIsSaving(false);
+        }
+    };
+
+    if (isLoading) return <div>Loading...</div>;
 
     return (
         <div className="space-y-6">
             <div className="flex items-center justify-between">
                 <h1 className="text-xl md:text-3xl font-semibold font-montserrat text-text-light">
-                    Pengaturan Partner
+                    Pengaturan Partners
                 </h1>
                 <button
                     onClick={handleSave}
-                    className="px-6 py-2.5 bg-violet-600 hover:bg-violet-700 text-white font-medium rounded-lg text-sm transition-colors shadow-glow flex items-center gap-2"
+                    disabled={isSaving}
+                    className="px-6 py-2.5 bg-violet-600 hover:bg-violet-700 text-white font-medium rounded-lg text-sm transition-colors shadow-glow flex items-center gap-2 disabled:opacity-50"
                 >
                     <FaSave />
-                    <span>Simpan Perubahan</span>
+                    <span>{isSaving ? 'Menyimpan...' : 'Simpan Perubahan'}</span>
                 </button>
             </div>
 
             <form onSubmit={handleSave} className="grid grid-cols-1 gap-6">
 
-                {/* Section Header Settings */}
-                <div className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
-                    <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-100">
-                        <div className="w-10 h-10 bg-violet-100 rounded-lg flex items-center justify-center text-violet-600">
-                            <FaHeading size={20} />
-                        </div>
-                        <h2 className="text-lg font-semibold text-text-light font-montserrat">Header Seksi</h2>
-                    </div>
-
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 font-montserrat mb-2">
-                            Judul Seksi Kecil
-                        </label>
-                        <input
-                            type="text"
-                            value={sectionTitle}
-                            onChange={(e) => setSectionTitle(e.target.value)}
-                            className="w-full px-4 py-2 bg-[#F4F4F7] border border-gray-200 rounded-lg text-sm text-text-light focus:outline-none focus:ring-2 focus:ring-violet-500/50 focus:border-violet-500 transition-all"
-                        />
-                    </div>
-                </div>
-
-                {/* Partner Logos Management */}
+                {/* Partners List Management */}
                 <div className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
                     <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-100">
                         <div className="flex items-center gap-3">
@@ -89,7 +144,7 @@ export default function PartnersSettingsPage() {
                         </div>
                         <button
                             type="button"
-                            onClick={handleAddPartner}
+                            onClick={() => setIsAddModalOpen(true)}
                             className="px-4 py-2 bg-violet-50 text-violet-600 hover:bg-violet-100 rounded-lg text-xs font-semibold transition-colors flex items-center gap-2"
                         >
                             <FaPlus />
@@ -97,26 +152,32 @@ export default function PartnersSettingsPage() {
                         </button>
                     </div>
 
-                    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
-                        {partners.map((item, index) => (
-                            <div key={item.id} className="relative group bg-[#F4F4F7] border border-gray-200 rounded-xl p-4 flex flex-col items-center justify-center gap-3 hover:border-violet-300 transition-all">
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
+                        {partners.map((partner) => (
+                            <div key={partner.id} className="relative bg-[#F4F4F7] border border-gray-200 rounded-xl overflow-hidden group hover:border-violet-300 transition-all">
+                                {/* Logo Preview Area */}
+                                <div className="aspect-video relative overflow-hidden bg-white flex items-center justify-center p-4">
+                                    <img
+                                        src={partner.logo || 'https://placehold.co/200x100'}
+                                        alt={partner.name}
+                                        className="max-w-full max-h-full object-contain"
+                                    />
 
-                                <button
-                                    type="button"
-                                    onClick={() => handleDeletePartner(item.id)}
-                                    className="absolute top-2 right-2 text-gray-400 hover:text-red-500 p-1.5 rounded-full hover:bg-red-50 transition-colors opacity-0 group-hover:opacity-100"
-                                    title="Hapus Partner"
-                                >
-                                    <FaTrash size={12} />
-                                </button>
+                                    <div className="absolute top-1 right-1 z-10">
+                                        <button
+                                            type="button"
+                                            onClick={() => setItemToDelete(partner.id)}
+                                            className="bg-white/80 p-1 rounded text-gray-500 hover:text-red-500 hover:bg-white transition-colors shadow-sm"
+                                            title="Hapus Partner"
+                                        >
+                                            <FaTrash size={10} />
+                                        </button>
+                                    </div>
 
-                                <div className="h-16 w-full flex items-center justify-center relative">
-                                    <img src={item.logo} alt={item.name} className="max-h-full max-w-full object-contain grayscale group-hover:grayscale-0 transition-all" />
-
-                                    {/* Overlay Upload */}
-                                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/5 rounded">
-                                        <label className="cursor-pointer bg-white/90 px-2 py-1 rounded text-[10px] font-medium text-gray-600 shadow-sm hover:text-violet-600 flex items-center gap-1">
-                                            <FaImage /> Ubah
+                                    {/* Upload Overlay */}
+                                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/5">
+                                        <label className="bg-white/95 px-2 py-1 rounded text-[10px] font-medium text-gray-600 flex items-center gap-1 cursor-pointer hover:bg-white hover:text-violet-600 shadow-sm">
+                                            <FaImage size={10} /> Ganti Logo
                                             <input
                                                 type="file"
                                                 accept="image/*"
@@ -125,7 +186,7 @@ export default function PartnersSettingsPage() {
                                                     const file = e.target.files?.[0];
                                                     if (file) {
                                                         const imageUrl = URL.createObjectURL(file);
-                                                        handlePartnerChange(item.id, 'logo', imageUrl);
+                                                        handlePartnerChange(partner.id, 'logo', imageUrl);
                                                     }
                                                 }}
                                             />
@@ -133,13 +194,13 @@ export default function PartnersSettingsPage() {
                                     </div>
                                 </div>
 
-                                <div className="w-full">
+                                <div className="p-2 bg-white">
                                     <input
                                         type="text"
-                                        value={item.name}
-                                        onChange={(e) => handlePartnerChange(item.id, 'name', e.target.value)}
-                                        className="w-full text-center bg-transparent text-[10px] text-gray-500 font-medium focus:outline-none focus:text-violet-600 border-b border-transparent focus:border-violet-300 transition-all"
+                                        value={partner.name}
+                                        onChange={(e) => handlePartnerChange(partner.id, 'name', e.target.value)}
                                         placeholder="Nama Partner"
+                                        className="w-full px-2 py-1 bg-[#F4F4F7] border border-gray-200 rounded text-[10px] text-center font-medium text-text-light focus:outline-none focus:ring-1 focus:ring-violet-500/50 transition-all"
                                     />
                                 </div>
                             </div>
@@ -154,7 +215,88 @@ export default function PartnersSettingsPage() {
                 </div>
 
             </form>
+
+            {/* Add Modal */}
+            <Modal
+                isOpen={isAddModalOpen}
+                onClose={() => setIsAddModalOpen(false)}
+                title="Tambah Partner Baru"
+            >
+                <form onSubmit={handleAddSubmit} className="space-y-4">
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Nama Partner</label>
+                        <input
+                            type="text"
+                            required
+                            value={newPartnerData.name}
+                            onChange={(e) => setNewPartnerData({ ...newPartnerData, name: e.target.value })}
+                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                            placeholder="Contoh: Google, Microsoft"
+                        />
+                    </div>
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Logo URL (Optional)</label>
+                        <div className="flex gap-2">
+                            <input
+                                type="text"
+                                value={newPartnerData.logo}
+                                onChange={(e) => setNewPartnerData({ ...newPartnerData, logo: e.target.value })}
+                                className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                                placeholder="https://..."
+                            />
+                            <label className="px-3 py-2 bg-gray-100 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-200 transition-colors flex items-center justify-center">
+                                <FaImage className="text-gray-600" />
+                                <input
+                                    type="file"
+                                    accept="image/*"
+                                    className="hidden"
+                                    onChange={(e) => {
+                                        const file = e.target.files?.[0];
+                                        if (file) {
+                                            const imageUrl = URL.createObjectURL(file);
+                                            setNewPartnerData({ ...newPartnerData, logo: imageUrl });
+                                        }
+                                    }}
+                                />
+                            </label>
+                        </div>
+                        <p className="text-xs text-gray-500 mt-1">Bisa input URL gambar atau upload dari komputer (preview only).</p>
+                    </div>
+
+                    {newPartnerData.logo && (
+                        <div className="mt-2 p-2 border border-gray-200 rounded-lg bg-gray-50 flex justify-center">
+                            <img src={newPartnerData.logo} alt="Preview" className="h-16 object-contain" />
+                        </div>
+                    )}
+
+                    <div className="flex justify-end pt-4 gap-3">
+                        <button
+                            type="button"
+                            onClick={() => setIsAddModalOpen(false)}
+                            className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition-colors"
+                        >
+                            Batal
+                        </button>
+                        <button
+                            type="submit"
+                            className="px-4 py-2 text-sm font-medium text-white bg-violet-600 rounded-lg hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500 transition-colors shadow-md"
+                        >
+                            Simpan Partner
+                        </button>
+                    </div>
+                </form>
+            </Modal>
+
+            {/* Delete Confirmation Modal */}
+            <ConfirmationModal
+                isOpen={!!itemToDelete}
+                onClose={() => setItemToDelete(null)}
+                onConfirm={confirmDelete}
+                title="Hapus Partner"
+                message="Apakah Anda yakin ingin menghapus partner ini? Tindakan ini tidak dapat dibatalkan."
+                confirmText="Hapus"
+                isDanger
+            />
         </div>
     );
 }
-

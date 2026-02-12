@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Portfolio API Test</title>
+    <style>
+        body { font-family: monospace; padding: 20px; }
+        table { border-collapse: collapse; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #4CAF50; color: white; }
+        .medium { background-color: #ffeb3b; }
+        .large { background-color: #2196F3; color: white; }
+        pre { background: #f4f4f4; padding: 10px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <h1>Portfolio API Response Test</h1>
+    <button onclick="fetchAndDisplay()">Fetch Portfolio Data</button>
+    <button onclick="location.reload()">Refresh Page</button>
+    
+    <h2>API Response:</h2>
+    <pre id="raw-response">Click "Fetch Portfolio Data" to load...</pre>
+    
+    <h2>Parsed Data:</h2>
+    <div id="table-container"></div>
+    
+    <script>
+        async function fetchAndDisplay() {
+            try {
+                const response = await fetch('http://localhost:3001/api/portfolio');
+                const data = await response.json();
+                
+                // Display raw JSON
+                document.getElementById('raw-response').textContent = JSON.stringify(data, null, 2);
+                
+                // Create table
+                let html = '<table><thead><tr><th>ID</th><th>Title</th><th>Category</th><th>Size</th><th>Status</th></tr></thead><tbody>';
+                
+                data.forEach(item => {
+                    const sizeClass = item.size === 'medium' ? 'medium' : 'large';
+                    html += `<tr>
+                        <td>${item.id}</td>
+                        <td>${item.title}</td>
+                        <td>${item.category || 'N/A'}</td>
+                        <td class="${sizeClass}">${item.size || 'NULL'}</td>
+                        <td>${item.status}</td>
+                    </tr>`;
+                });
+                
+                html += '</tbody></table>';
+                
+                // Add summary
+                const mediumCount = data.filter(item => item.size === 'medium').length;
+                const largeCount = data.filter(item => item.size === 'large').length;
+                const nullCount = data.filter(item => !item.size).length;
+                
+                html += `<p><strong>Summary:</strong></p>`;
+                html += `<ul>`;
+                html += `<li>Total items: ${data.length}</li>`;
+                html += `<li>Large: ${largeCount}</li>`;
+                html += `<li>Medium: ${mediumCount}</li>`;
+                html += `<li>NULL: ${nullCount}</li>`;
+                html += `</ul>`;
+                
+                if (mediumCount === 4 && largeCount === 6) {
+                    html += `<p style="color: green; font-weight: bold;">✅ API returns correct data (4 medium + 6 large)</p>`;
+                } else {
+                    html += `<p style="color: red; font-weight: bold;">❌ Data mismatch! Expected 4 medium + 6 large</p>`;
+                }
+                
+                document.getElementById('table-container').innerHTML = html;
+                
+            } catch (error) {
+                document.getElementById('raw-response').textContent = 'Error: ' + error.message;
+                document.getElementById('table-container').innerHTML = '<p style="color: red;">Failed to fetch data</p>';
+            }
+        }
+        
+        // Auto-fetch on load
+        window.addEventListener('load', fetchAndDisplay);
+    </script>
+</body>
+</html>
