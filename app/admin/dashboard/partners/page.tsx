@@ -5,6 +5,7 @@ import { FaHeading, FaSave, FaPlus, FaTrash, FaImage, FaHandshake } from 'react-
 import { Partner } from '@/lib/types';
 import Modal from '@/components/ui/Modal';
 import ConfirmationModal from '@/components/ui/ConfirmationModal';
+import toast from 'react-hot-toast';
 
 export default function PartnersSettingsPage() {
     const [partners, setPartners] = useState<Partner[]>([]);
@@ -51,12 +52,13 @@ export default function PartnersSettingsPage() {
             if (res.ok) {
                 setPartners(partners.filter(partner => partner.id !== itemToDelete));
                 setItemToDelete(null);
+                toast.success('Partner berhasil dihapus');
             } else {
-                alert('Gagal menghapus partner');
+                toast.error('Gagal menghapus partner');
             }
         } catch (error) {
             console.error('Error deleting partner:', error);
-            alert('Error menghapus partner');
+            toast.error('Terjadi kesalahan saat menghapus partner');
         }
     };
 
@@ -79,13 +81,14 @@ export default function PartnersSettingsPage() {
                 const created = await res.json();
                 setPartners([...partners, created]);
                 setIsAddModalOpen(false);
-                setNewPartnerData({ name: "", logo: "", status: "active" }); // Reset form
+                toast.success('Partner berhasil ditambahkan');
+                setNewPartnerData({ name: "", logo: "" }); // Reset form
             } else {
-                alert('Gagal menambah partner');
+                toast.error('Gagal menambah partner');
             }
         } catch (error) {
             console.error('Error adding partner:', error);
-            alert('Error menambah partner');
+            toast.error('Terjadi kesalahan saat menambah partner');
         }
     };
 

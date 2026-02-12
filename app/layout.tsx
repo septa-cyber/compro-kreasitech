@@ -1,5 +1,6 @@
 ﻿import type { Metadata } from "next";
 import "./globals.css";
+import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://kreasitech.com"), // Placeholder URL, should be updated with actual domain
@@ -105,10 +106,9 @@ export default function RootLayout({
           '--font-inter': "'Inter', sans-serif",
         } as React.CSSProperties}
       >
+        <Toaster position="top-center" reverseOrder={false} />
         {children}
       </body>
     </html>
   );
 }
-
-

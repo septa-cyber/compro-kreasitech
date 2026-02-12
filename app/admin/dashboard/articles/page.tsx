@@ -5,10 +5,14 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { BlogPost } from '@/lib/types';
 import { FaPlus, FaEdit, FaTrash, FaEye } from 'react-icons/fa';
+import ConfirmationModal from '@/components/ui/ConfirmationModal';
+import toast from 'react-hot-toast';
 
 export default function ArticlesPage() {
     const [articles, setArticles] = useState<BlogPost[]>([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [itemToDelete, setItemToDelete] = useState<number | null>(null);
+    const [isDeleting, setIsDeleting] = useState(false);
 
     useEffect(() => {
         fetchArticles();
@@ -26,21 +30,31 @@ export default function ArticlesPage() {
         }
     };
 
-    const handleDelete = async (id: number) => {
-        if (!confirm('Are you sure you want to delete this article?')) return;
+    const handleDelete = (id: number) => {
+        setItemToDelete(id);
+    };
+
+    const confirmDelete = async () => {
+        if (!itemToDelete) return;
+        setIsDeleting(true);
 
         try {
-            const res = await fetch(`/api/articles/${id}`, {
+            const res = await fetch(`/api/articles/${itemToDelete}`, {
                 method: 'DELETE',
             });
 
             if (res.ok) {
-                setArticles(articles.filter(a => a.id !== id));
+                setArticles(articles.filter(a => a.id !== itemToDelete));
+                setItemToDelete(null);
+                toast.success('Artikel berhasil dihapus');
             } else {
-                alert('Failed to delete');
+                toast.error('Gagal menghapus artikel');
             }
         } catch (error) {
             console.error('Error deleting:', error);
+            toast.error('Terjadi kesalahan saat menghapus artikel');
+        } finally {
+            setIsDeleting(false);
         }
     };
 
@@ -87,8 +101,8 @@ export default function ArticlesPage() {
                                     </td>
                                     <td className="px-6 py-4">
                                         <span className={`px-2 py-1 text-xs rounded-full font-medium ${article.status === 'publish'
-                                                ? 'bg-green-100 text-green-600'
-                                                : 'bg-yellow-100 text-yellow-600'
+                                            ? 'bg-green-100 text-green-600'
+                                            : 'bg-yellow-100 text-yellow-600'
                                             }`}>
                                             {article.status === 'publish' ? 'Published' : 'Draft'}
                                         </span>
@@ -124,6 +138,17 @@ export default function ArticlesPage() {
                     </table>
                 </div>
             </div>
+
+            <ConfirmationModal
+                isOpen={!!itemToDelete}
+                onClose={() => setItemToDelete(null)}
+                onConfirm={confirmDelete}
+                title="Hapus Artikel"
+                message="Apakah Anda yakin ingin menghapus artikel ini? Tindakan ini tidak dapat dibatalkan."
+                confirmText="Hapus"
+                isDanger
+                isLoading={isDeleting}
+            />
         </div>
     );
 }

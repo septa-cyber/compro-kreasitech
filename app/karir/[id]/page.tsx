@@ -1,305 +1,48 @@
 ﻿"use client";
 
 import { useParams, useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/landing/WhatsAppButton";
 import Breadcrumb from "@/components/ui/Breadcrumb";
-
-interface JobDetail {
-    id: number;
-    title: string;
-    company: string;
-    icon: string;
-    iconBg: string;
-    postedTime: string;
-    salary: string;
-    description: string;
-    type: string;
-    location: string;
-    category: string;
-    employmentType: string;
-    experience: string;
-    education: string;
-    responsibilities: string[];
-    requirements: string[];
-    benefits: string[];
-}
-
-const jobsDetailData: Record<string, JobDetail> = {
-    "1": {
-        id: 1,
-        title: "Front-End Developer",
-        company: "KreasiTech",
-        icon: "âš›ï¸",
-        iconBg: "bg-cyan-100",
-        postedTime: "18 minutes ago",
-        salary: "3,000K-8,000K",
-        description: "Kami mencari Front-End Developer yang passionate untuk bergabung dengan tim development kami. Anda akan bertanggung jawab untuk membangun dan mengoptimalkan user interface yang responsif dan user-friendly menggunakan teknologi modern seperti React, Next.js, dan TypeScript.",
-        type: "Technology",
-        location: "On-site",
-        category: "full-time",
-        employmentType: "Full-time",
-        experience: "2-4 tahun",
-        education: "S1 Teknik Informatika / setara",
-        responsibilities: [
-            "Membangun dan maintain aplikasi web menggunakan React/Next.js",
-            "Berkolaborasi dengan UI/UX designer untuk implementasi design",
-            "Mengoptimalkan performa aplikasi untuk kecepatan dan skalabilitas",
-            "Melakukan code review dan testing",
-            "Mengintegrasikan API dengan back-end services",
-            "Membuat dokumentasi teknis yang jelas"
-        ],
-        requirements: [
-            "Minimal 2 tahun pengalaman sebagai Front-End Developer",
-            "Menguasai React.js, Next.js, TypeScript, dan Tailwind CSS",
-            "Pemahaman kuat tentang HTML5, CSS3, dan JavaScript ES6+",
-            "Pengalaman dengan Git dan version control",
-            "Familiar dengan RESTful API dan GraphQL",
-            "Pemahaman tentang responsive design dan cross-browser compatibility",
-            "Problem solving dan analytical thinking yang baik",
-            "Kemampuan komunikasi yang baik dan team player"
-        ],
-        benefits: [
-            "Gaji kompetitif sesuai pengalaman (3-8 juta)",
-            "BPJS Kesehatan & Ketenagakerjaan",
-            "Tunjangan hari raya",
-            "Lingkungan kerja yang supportive dan kolaboratif",
-            "Kesempatan belajar teknologi terbaru",
-            "Work-life balance yang baik",
-            "Snack dan minuman gratis",
-            "Team building dan company trip"
-        ]
-    },
-    "2": {
-        id: 2,
-        title: "Back-End Developer",
-        company: "KreasiTech",
-        icon: "JS",
-        iconBg: "bg-yellow-400",
-        postedTime: "18 minutes ago",
-        salary: "3,500K-9,000K",
-        description: "Bergabunglah dengan tim back-end kami untuk membangun sistem yang robust dan scalable. Anda akan bekerja dengan teknologi modern seperti Node.js, Express, dan database untuk menciptakan API yang efisien dan secure.",
-        type: "Technology",
-        location: "Remote",
-        category: "full-time",
-        employmentType: "Full-time",
-        experience: "2-5 tahun",
-        education: "S1 Teknik Informatika / setara",
-        responsibilities: [
-            "Mengembangkan dan maintain RESTful API",
-            "Design dan implementasi database schema",
-            "Mengoptimalkan performa server dan database",
-            "Implementasi security best practices",
-            "Integrasi dengan third-party services",
-            "Deploy dan monitoring production systems"
-        ],
-        requirements: [
-            "Minimal 2 tahun pengalaman sebagai Back-End Developer",
-            "Menguasai Node.js, Express.js, atau NestJS",
-            "Pengalaman dengan SQL (PostgreSQL/MySQL) dan NoSQL (MongoDB)",
-            "Familiar dengan Docker dan CI/CD",
-            "Pemahaman tentang RESTful API design",
-            "Pengalaman dengan cloud platforms (AWS/GCP/Azure)",
-            "Pemahaman tentang microservices architecture",
-            "Strong problem-solving skills"
-        ],
-        benefits: [
-            "Gaji kompetitif sesuai pengalaman (3.5-9 juta)",
-            "Fully remote work",
-            "Flexible working hours",
-            "BPJS Kesehatan & Ketenagakerjaan",
-            "Budget untuk home office setup",
-            "Online courses dan certification",
-            "Quarterly bonus",
-            "Annual company retreat"
-        ]
-    },
-    "3": {
-        id: 3,
-        title: "UI/UX Designer",
-        company: "KreasiTech",
-        icon: "ðŸŽ¨",
-        iconBg: "bg-pink-100",
-        postedTime: "18 minutes ago",
-        salary: "3,000K-6,500K",
-        description: "Kami mencari UI/UX Designer kreatif yang dapat menerjemahkan kebutuhan user menjadi design yang beautiful dan functional. Anda akan bekerja closely dengan product team dan developers untuk menciptakan experience yang memorable.",
-        type: "Creative",
-        location: "On-site",
-        category: "full-time",
-        employmentType: "Full-time",
-        experience: "1-3 tahun",
-        education: "S1 Desain Grafis / DKV / setara",
-        responsibilities: [
-            "Melakukan user research dan usability testing",
-            "Membuat wireframes, mockups, dan prototypes",
-            "Design user interface untuk web dan mobile apps",
-            "Berkolaborasi dengan developers untuk implementasi",
-            "Maintain design system dan style guide",
-            "Present design ideas kepada stakeholders"
-        ],
-        requirements: [
-            "Minimal 1 tahun pengalaman sebagai UI/UX Designer",
-            "Menguasai Figma, Adobe XD, atau Sketch",
-            "Portfolio yang menunjukkan UI/UX design projects",
-            "Pemahaman tentang user-centered design principles",
-            "Familiar dengan design systems dan atomic design",
-            "Pemahaman basic HTML/CSS adalah plus",
-            "Excellent communication skills",
-            "Attention to detail dan creative thinking"
-        ],
-        benefits: [
-            "Gaji kompetitif (3-6.5 juta)",
-            "BPJS Kesehatan & Ketenagakerjaan",
-            "Creative environment dengan tools terbaik",
-            "Design software licenses (Figma, Adobe CC)",
-            "Workshop dan design conferences",
-            "Flexible working hours",
-            "Casual dress code",
-            "Regular team outings"
-        ]
-    },
-    "4": {
-        id: 4,
-        title: "Legal Staff",
-        company: "KreasiTech",
-        icon: "âš–ï¸",
-        iconBg: "bg-blue-100",
-        postedTime: "18 minutes ago",
-        salary: "3,000K-6,500K",
-        description: "Kami membutuhkan Legal Staff yang akan menangani aspek legal perusahaan, termasuk contract management, compliance, dan legal advisory untuk berbagai business operations.",
-        type: "Management",
-        location: "On-site",
-        category: "full-time",
-        employmentType: "Full-time",
-        experience: "1-3 tahun",
-        education: "S1 Hukum",
-        responsibilities: [
-            "Draft dan review kontrak kerjasama",
-            "Menangani legal compliance dan licensing",
-            "Memberikan legal advice untuk business decisions",
-            "Mengelola dokumentasi legal perusahaan",
-            "Koordinasi dengan external legal counsel",
-            "Handle dispute resolution dan negotiation"
-        ],
-        requirements: [
-            "S1 Hukum dari universitas terkemuka",
-            "Minimal 1 tahun pengalaman di bidang corporate law",
-            "Memahami hukum kontrak dan hukum bisnis",
-            "Familiar dengan regulasi IT dan digital business",
-            "Excellent analytical dan problem-solving skills",
-            "Strong attention to detail",
-            "Kemampuan negosiasi yang baik",
-            "Bahasa Inggris aktif (written & spoken)"
-        ],
-        benefits: [
-            "Gaji kompetitif (3-6.5 juta)",
-            "BPJS Kesehatan & Ketenagakerjaan",
-            "Career development opportunities",
-            "Legal certifications support",
-            "Professional working environment",
-            "Tunjangan transportasi",
-            "Annual bonus",
-            "Work-life balance"
-        ]
-    },
-    "5": {
-        id: 5,
-        title: "Digital Marketing Specialist",
-        company: "KreasiTech",
-        icon: "ðŸ“±",
-        iconBg: "bg-purple-100",
-        postedTime: "1 day ago",
-        salary: "2,500K-5,500K",
-        description: "Join our marketing team sebagai Digital Marketing Specialist. Anda akan bertanggung jawab untuk merencanakan dan execute digital marketing campaigns across various channels untuk meningkatkan brand awareness dan customer acquisition.",
-        type: "Marketing",
-        location: "Hybrid",
-        category: "full-time",
-        employmentType: "Full-time",
-        experience: "1-3 tahun",
-        education: "S1 Marketing / Komunikasi / setara",
-        responsibilities: [
-            "Merencanakan dan execute digital marketing campaigns",
-            "Manage social media accounts dan content creation",
-            "Melakukan SEO/SEM optimization",
-            "Mengelola Google Ads, Facebook Ads, Instagram Ads",
-            "Analyze campaign performance dan reporting",
-            "Email marketing dan marketing automation",
-            "Collaborate dengan design dan content team"
-        ],
-        requirements: [
-            "Minimal 1 tahun pengalaman di digital marketing",
-            "Menguasai Google Analytics, Google Ads, Meta Ads",
-            "Pemahaman tentang SEO dan SEM",
-            "Familiar dengan social media management tools",
-            "Content creation dan copywriting skills",
-            "Data analysis dan reporting skills",
-            "Creative thinking dan trend-aware",
-            "Good communication skills"
-        ],
-        benefits: [
-            "Gaji kompetitif (2.5-5.5 juta)",
-            "Hybrid work arrangement",
-            "BPJS Kesehatan & Ketenagakerjaan",
-            "Performance bonus",
-            "Digital marketing courses",
-            "Creative working environment",
-            "Marketing tools dan software",
-            "Team activities"
-        ]
-    },
-    "6": {
-        id: 6,
-        title: "Product Manager",
-        company: "KreasiTech",
-        icon: "ðŸ“Š",
-        iconBg: "bg-green-100",
-        postedTime: "2 days ago",
-        salary: "5,000K-12,000K",
-        description: "Kami mencari experienced Product Manager untuk lead product development dari ideation hingga launch. Anda akan work closely dengan engineering, design, dan business teams untuk deliver products yang impactful.",
-        type: "Management",
-        location: "Remote",
-        category: "full-time",
-        employmentType: "Full-time",
-        experience: "3-5 tahun",
-        education: "S1 atau S2 (any major)",
-        responsibilities: [
-            "Define product vision, strategy, dan roadmap",
-            "Conduct market research dan competitive analysis",
-            "Gather dan prioritize product requirements",
-            "Work dengan engineering team untuk product development",
-            "Define product metrics dan track performance",
-            "Conduct user testing dan gather feedback",
-            "Present product updates kepada stakeholders"
-        ],
-        requirements: [
-            "Minimal 3 tahun pengalaman sebagai Product Manager",
-            "Track record delivering successful products",
-            "Strong analytical dan data-driven decision making",
-            "Excellent stakeholder management skills",
-            "Pemahaman tentang Agile/Scrum methodology",
-            "Familiar dengan product management tools (Jira, Figma, etc)",
-            "Technical background adalah plus",
-            "Leadership dan strategic thinking skills"
-        ],
-        benefits: [
-            "Gaji sangat kompetitif (5-12 juta)",
-            "Fully remote work",
-            "Stock options / equity",
-            "BPJS Kesehatan & Ketenagakerjaan",
-            "Unlimited PTO",
-            "Product management courses",
-            "Conference attendance",
-            "High-impact role dengan growth opportunity"
-        ]
-    }
-};
+import { JobPosting } from "@/lib/types";
 
 export default function JobDetailPage() {
     const params = useParams();
     const router = useRouter();
     const jobId = params.id as string;
-    const job = jobsDetailData[jobId];
+
+    const [job, setJob] = useState<JobPosting | null>(null);
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchJob = async () => {
+            try {
+                const res = await fetch(`/api/jobs/${jobId}`);
+                if (res.ok) {
+                    const data = await res.json();
+                    setJob(data);
+                }
+            } catch (error) {
+                console.error("Failed to fetch job detail:", error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+        if (jobId) fetchJob();
+    }, [jobId]);
+
+    if (isLoading) {
+        return (
+            <div className="bg-[#F4F4F7] text-gray-800 min-h-screen">
+                <Navbar />
+                <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+                    <p className="font-montserrat text-gray-600">Loading...</p>
+                </div>
+            </div>
+        );
+    }
 
     if (!job) {
         return (
@@ -317,6 +60,10 @@ export default function JobDetailPage() {
             </div>
         );
     }
+
+    // Fallback for missing icon or default colors
+    const iconContent = job.icon || "💼";
+    const iconBg = job.iconBg || "bg-violet-100";
 
     return (
         <div className="bg-[#F4F4F7] text-gray-800 transition-colors duration-300 min-h-screen">
@@ -337,8 +84,12 @@ export default function JobDetailPage() {
                             {/* Job Header */}
                             <div className="bg-white rounded-2xl p-8 shadow-sm mb-6">
                                 <div className="flex items-start gap-6 mb-6">
-                                    <div className={`w-20 h-20 ${job.iconBg} rounded-2xl flex items-center justify-center flex-shrink-0 text-4xl`}>
-                                        {job.icon}
+                                    <div className={`w-20 h-20 ${iconBg} rounded-2xl flex items-center justify-center flex-shrink-0 text-4xl overflow-hidden`}>
+                                        {job.logo_url ? (
+                                            <img src={job.logo_url} alt={job.title} className="w-full h-full object-cover" />
+                                        ) : (
+                                            iconContent
+                                        )}
                                     </div>
                                     <div className="flex-1">
                                         <h1 className="text-3xl sm:text-4xl font-bold font-montserrat text-text-light mb-3">
@@ -349,13 +100,13 @@ export default function JobDetailPage() {
                                                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                                                 </svg>
-                                                <span>{job.company}</span>
+                                                <span>{job.company || "KreasiTech"}</span>
                                             </div>
                                             <div className="flex items-center gap-2">
                                                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                                                 </svg>
-                                                <span>Posted {job.postedTime}</span>
+                                                <span>Posted {job.postedDate ? new Date(job.postedDate).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) : "Recently"}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -371,9 +122,19 @@ export default function JobDetailPage() {
                                         }`}>
                                         {job.location}
                                     </span>
-                                    <span className="px-4 py-2 bg-gray-100 text-gray-700 rounded-xl text-sm font-medium font-montserrat">
-                                        {job.employmentType}
-                                    </span>
+                                    {job.location_type && (
+                                        <span className={`px-4 py-2 rounded-xl text-sm font-medium font-montserrat ${job.location_type === 'Remote' ? 'bg-green-100 text-green-700' :
+                                            job.location_type === 'Hybrid' ? 'bg-blue-100 text-blue-700' :
+                                                'bg-indigo-100 text-indigo-700'
+                                            }`}>
+                                            {job.location_type}
+                                        </span>
+                                    )}
+                                    {job.category && (
+                                        <span className="px-4 py-2 bg-gray-100 text-gray-700 rounded-xl text-sm font-medium font-montserrat">
+                                            {job.category}
+                                        </span>
+                                    )}
                                 </div>
 
                                 <p className="text-gray-600 font-montserrat leading-relaxed">
@@ -382,55 +143,61 @@ export default function JobDetailPage() {
                             </div>
 
                             {/* Responsibilities */}
-                            <div className="bg-white rounded-2xl p-8 shadow-sm mb-6">
-                                <h2 className="text-xl font-bold font-montserrat text-text-light mb-4">
-                                    Tanggung Jawab
-                                </h2>
-                                <ul className="space-y-3">
-                                    {job.responsibilities.map((item, index) => (
-                                        <li key={index} className="flex items-start gap-3">
-                                            <svg className="w-5 h-5 text-violet-600 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                                            </svg>
-                                            <span className="text-gray-700 font-montserrat">{item}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
+                            {job.responsibilities && job.responsibilities.length > 0 && (
+                                <div className="bg-white rounded-2xl p-8 shadow-sm mb-6">
+                                    <h2 className="text-xl font-bold font-montserrat text-text-light mb-4">
+                                        Tanggung Jawab
+                                    </h2>
+                                    <ul className="space-y-3">
+                                        {job.responsibilities.map((item, index) => (
+                                            <li key={index} className="flex items-start gap-3">
+                                                <svg className="w-5 h-5 text-violet-600 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                                                </svg>
+                                                <span className="text-gray-700 font-montserrat">{item}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
 
                             {/* Requirements */}
-                            <div className="bg-white rounded-2xl p-8 shadow-sm mb-6">
-                                <h2 className="text-xl font-bold font-montserrat text-text-light mb-4">
-                                    Kualifikasi
-                                </h2>
-                                <ul className="space-y-3">
-                                    {job.requirements.map((item, index) => (
-                                        <li key={index} className="flex items-start gap-3">
-                                            <svg className="w-5 h-5 text-violet-600 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                                            </svg>
-                                            <span className="text-gray-700 font-montserrat">{item}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
+                            {job.requirements && job.requirements.length > 0 && (
+                                <div className="bg-white rounded-2xl p-8 shadow-sm mb-6">
+                                    <h2 className="text-xl font-bold font-montserrat text-text-light mb-4">
+                                        Kualifikasi
+                                    </h2>
+                                    <ul className="space-y-3">
+                                        {job.requirements.map((item, index) => (
+                                            <li key={index} className="flex items-start gap-3">
+                                                <svg className="w-5 h-5 text-violet-600 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                                                </svg>
+                                                <span className="text-gray-700 font-montserrat">{item}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
 
                             {/* Benefits */}
-                            <div className="bg-white rounded-2xl p-8 shadow-sm">
-                                <h2 className="text-xl font-bold font-montserrat text-text-light mb-4">
-                                    Benefit & Fasilitas
-                                </h2>
-                                <ul className="space-y-3">
-                                    {job.benefits.map((item, index) => (
-                                        <li key={index} className="flex items-start gap-3">
-                                            <svg className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                                            </svg>
-                                            <span className="text-gray-700 font-montserrat">{item}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
+                            {job.benefits && job.benefits.length > 0 && (
+                                <div className="bg-white rounded-2xl p-8 shadow-sm">
+                                    <h2 className="text-xl font-bold font-montserrat text-text-light mb-4">
+                                        Benefit & Fasilitas
+                                    </h2>
+                                    <ul className="space-y-3">
+                                        {job.benefits.map((item, index) => (
+                                            <li key={index} className="flex items-start gap-3">
+                                                <svg className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                                                </svg>
+                                                <span className="text-gray-700 font-montserrat">{item}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
                         </div>
 
                         {/* Sidebar */}
@@ -443,28 +210,32 @@ export default function JobDetailPage() {
                                 <div className="space-y-4 mb-8">
                                     <div className="flex justify-between items-center pb-4 border-b border-gray-100">
                                         <span className="text-gray-500 font-montserrat text-sm">Salary Range</span>
-                                        <span className="text-text-light font-semibold font-montserrat">{job.salary}</span>
+                                        <span className="text-text-light font-semibold font-montserrat">{job.salary || "Negosiasi"}</span>
                                     </div>
                                     <div className="flex justify-between items-center pb-4 border-b border-gray-100">
                                         <span className="text-gray-500 font-montserrat text-sm">Job Type</span>
-                                        <span className="text-text-light font-semibold font-montserrat">{job.employmentType}</span>
+                                        <span className="text-text-light font-semibold font-montserrat">{job.type}</span>
                                     </div>
                                     <div className="flex justify-between items-center pb-4 border-b border-gray-100">
                                         <span className="text-gray-500 font-montserrat text-sm">Location</span>
                                         <span className="text-text-light font-semibold font-montserrat">{job.location}</span>
                                     </div>
-                                    <div className="flex justify-between items-center pb-4 border-b border-gray-100">
-                                        <span className="text-gray-500 font-montserrat text-sm">Experience</span>
-                                        <span className="text-text-light font-semibold font-montserrat">{job.experience}</span>
-                                    </div>
-                                    <div className="flex justify-between items-center">
-                                        <span className="text-gray-500 font-montserrat text-sm">Education</span>
-                                        <span className="text-text-light font-semibold font-montserrat text-right">{job.education}</span>
-                                    </div>
+                                    {job.experience && (
+                                        <div className="flex justify-between items-center pb-4 border-b border-gray-100">
+                                            <span className="text-gray-500 font-montserrat text-sm">Experience</span>
+                                            <span className="text-text-light font-semibold font-montserrat">{job.experience}</span>
+                                        </div>
+                                    )}
+                                    {job.education && (
+                                        <div className="flex justify-between items-center">
+                                            <span className="text-gray-500 font-montserrat text-sm">Education</span>
+                                            <span className="text-text-light font-semibold font-montserrat text-right">{job.education}</span>
+                                        </div>
+                                    )}
                                 </div>
 
                                 <button
-                                    onClick={() => window.open(`https://wa.me/6288880888877?text=Halo%20Kreasitech%2C%20saya%20tertarik%20dengan%20posisi%20${encodeURIComponent(job.title)}`, '_blank')}
+                                    onClick={() => window.open(job.whatsapp_url || `https://wa.me/6288880888877?text=Halo%20Kreasitech%2C%20saya%20tertarik%20dengan%20posisi%20${encodeURIComponent(job.title)}`, '_blank')}
                                     className="w-full px-6 py-4 bg-violet-600 text-white rounded-xl font-semibold font-montserrat hover:bg-violet-700 transition-colors flex items-center justify-center gap-3 mb-3"
                                 >
                                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -493,7 +264,7 @@ export default function JobDetailPage() {
                                             </svg>
                                         </button>
                                         <button
-                                            onClick={() => window.open(`https://twitter.com/intent/tweet?url=${window.location.href}&text=${job.title} at KreasiTech`, '_blank')}
+                                            onClick={() => window.open(`https://twitter.com/intent/tweet?url=${window.location.href}&text=${job.title} at ${job.company || "KreasiTech"}`, '_blank')}
                                             className="flex-1 p-2.5 bg-sky-500 hover:bg-sky-600 text-white rounded-lg transition-colors"
                                         >
                                             <svg className="w-5 h-5 mx-auto" fill="currentColor" viewBox="0 0 24 24">

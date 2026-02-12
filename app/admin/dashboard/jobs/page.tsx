@@ -1,10 +1,11 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { FaHeading, FaPlus, FaTrash, FaBriefcase, FaMapMarkerAlt, FaClock } from 'react-icons/fa';
+import { FaHeading, FaPlus, FaTrash, FaBriefcase, FaMapMarkerAlt, FaClock, FaImage } from 'react-icons/fa';
 import { JobPosting } from '@/lib/types';
 import Modal from '@/components/ui/Modal';
 import ConfirmationModal from '@/components/ui/ConfirmationModal';
+import toast from 'react-hot-toast';
 
 export default function JobsSettingsPage() {
     const [jobs, setJobs] = useState<JobPosting[]>([]);
@@ -17,12 +18,23 @@ export default function JobsSettingsPage() {
         title: "",
         department: "",
         location: "",
+        category: "Creative",
         type: "Full-time",
+        experience: "",
+        education: "",
+        salary: "",
+        whatsapp_url: "",
+        logo_url: "",
         description: "",
         requirements: [],
+        responsibilities: [],
+        benefits: [],
+        location_type: "WFO",
         status: "open"
     });
     const [requirementsText, setRequirementsText] = useState("");
+    const [responsibilitiesText, setResponsibilitiesText] = useState("");
+    const [benefitsText, setBenefitsText] = useState("");
 
     useEffect(() => {
         fetchJobs();
@@ -49,12 +61,13 @@ export default function JobsSettingsPage() {
             if (res.ok) {
                 setJobs(jobs.filter(j => j.id !== itemToDelete));
                 setItemToDelete(null);
+                toast.success('Lowongan berhasil dihapus');
             } else {
-                alert('Failed to delete job');
+                toast.error('Gagal menghapus lowongan');
             }
         } catch (error) {
             console.error('Error deleting job:', error);
-            alert('Error deleting job');
+            toast.error('Terjadi kesalahan saat menghapus lowongan');
         }
     };
 
@@ -64,7 +77,10 @@ export default function JobsSettingsPage() {
         try {
             const itemToAdd = {
                 ...newItemData,
-                requirements: requirementsText.split('\n').filter(Boolean)
+                requirements: requirementsText.split('\n').filter(Boolean),
+                responsibilities: responsibilitiesText.split('\n').filter(Boolean),
+                benefits: benefitsText.split('\n').filter(Boolean),
+                postedDate: new Date().toISOString().split('T')[0]
             };
 
             const res = await fetch('/api/jobs', {
@@ -77,22 +93,60 @@ export default function JobsSettingsPage() {
                 const created = await res.json();
                 setJobs([...jobs, created]);
                 setIsAddModalOpen(false);
+                toast.success('Lowongan berhasil ditambahkan');
                 setNewItemData({
                     title: "",
                     department: "",
                     location: "",
+                    category: "Creative",
                     type: "Full-time",
+                    experience: "",
+                    education: "",
+                    salary: "",
+                    whatsapp_url: "",
+                    logo_url: "",
                     description: "",
                     requirements: [],
+                    responsibilities: [],
+                    benefits: [],
+                    location_type: "WFO",
                     status: "open"
                 });
                 setRequirementsText("");
+                setResponsibilitiesText("");
+                setBenefitsText("");
             } else {
-                alert('Failed to add job');
+                toast.error('Gagal menambahkan lowongan');
             }
         } catch (error) {
             console.error('Error adding job:', error);
-            alert('Error adding job');
+            toast.error('Terjadi kesalahan saat menambahkan lowongan');
+        }
+    };
+
+    const handleLogoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+
+        const formData = new FormData();
+        formData.append('file', file);
+
+        try {
+            const res = await fetch('/api/upload', {
+                method: 'POST',
+                body: formData,
+            });
+
+            if (res.ok) {
+                const data = await res.json();
+                setNewItemData({ ...newItemData, logo_url: data.url });
+                toast.success('Logo berhasil diunggah');
+            } else {
+                toast.error('Gagal mengunggah logo');
+            }
+        } catch (error) {
+            console.error('Error uploading logo:', error);
+            toast.error('Terjadi kesalahan saat mengunggah logo');
         }
     };
 
@@ -214,6 +268,99 @@ export default function JobsSettingsPage() {
                                 <option value="Internship">Internship</option>
                             </select>
                         </div>
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Tipe Penempatan</label>
+                            <select
+                                value={newItemData.location_type}
+                                onChange={(e) => setNewItemData({ ...newItemData, location_type: e.target.value as any })}
+                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                            >
+                                <option value="Remote">Remote</option>
+                                <option value="WFO">WFO (Office)</option>
+                                <option value="WFH">WFH (Home)</option>
+                                <option value="Hybrid">Hybrid</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Kategori</label>
+                            <select
+                                value={newItemData.category}
+                                onChange={(e) => setNewItemData({ ...newItemData, category: e.target.value })}
+                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                            >
+                                <option value="Creative">Creative</option>
+                                <option value="Technology">Technology</option>
+                                <option value="Management">Management</option>
+                                <option value="Marketing">Marketing</option>
+                                <option value="Operation">Operation</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Pengalaman</label>
+                            <input
+                                type="text"
+                                value={newItemData.experience}
+                                onChange={(e) => setNewItemData({ ...newItemData, experience: e.target.value })}
+                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                                placeholder="Contoh: 1-3 tahun"
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Edukasi</label>
+                            <input
+                                type="text"
+                                value={newItemData.education}
+                                onChange={(e) => setNewItemData({ ...newItemData, education: e.target.value })}
+                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                                placeholder="Contoh: S1 Desain Grafis"
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Salary Range</label>
+                            <input
+                                type="text"
+                                value={newItemData.salary}
+                                onChange={(e) => setNewItemData({ ...newItemData, salary: e.target.value })}
+                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                                placeholder="Contoh: 3,000K-6,500K"
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">WhatsApp URL</label>
+                            <input
+                                type="text"
+                                value={newItemData.whatsapp_url}
+                                onChange={(e) => setNewItemData({ ...newItemData, whatsapp_url: e.target.value })}
+                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                                placeholder="https://wa.me/..."
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Logo Perusahaan</label>
+                            <div className="flex gap-2">
+                                <input
+                                    type="text"
+                                    value={newItemData.logo_url}
+                                    onChange={(e) => setNewItemData({ ...newItemData, logo_url: e.target.value })}
+                                    className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                                    placeholder="https://..."
+                                />
+                                <label className="px-3 py-2 bg-gray-100 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-200 transition-colors flex items-center justify-center">
+                                    <FaImage className="text-gray-600" />
+                                    <input
+                                        type="file"
+                                        accept="image/*"
+                                        className="hidden"
+                                        onChange={handleLogoUpload}
+                                    />
+                                </label>
+                            </div>
+                            {newItemData.logo_url && (
+                                <div className="mt-2 p-2 border border-gray-200 rounded-lg bg-gray-50 flex justify-center">
+                                    <img src={newItemData.logo_url} alt="Preview" className="h-12 object-contain" />
+                                </div>
+                            )}
+                        </div>
                     </div>
 
                     <div>
@@ -229,13 +376,35 @@ export default function JobsSettingsPage() {
                     </div>
 
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Persyaratan (Satu per baris)</label>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Kualifikasi (Satu per baris)</label>
                         <textarea
-                            rows={4}
+                            rows={3}
                             value={requirementsText}
                             onChange={(e) => setRequirementsText(e.target.value)}
                             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
-                            placeholder="- Menguasai React.js&#10;- Berpengalaman minimal 2 tahun&#10;- Bisa bekerja dalam tim"
+                            placeholder="- Menguasai React.js&#10;- Berpengalaman minimal 2 tahun"
+                        ></textarea>
+                    </div>
+
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Tanggung Jawab (Satu per baris)</label>
+                        <textarea
+                            rows={3}
+                            value={responsibilitiesText}
+                            onChange={(e) => setResponsibilitiesText(e.target.value)}
+                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                            placeholder="- Melakukan user research&#10;- Membuat wireframes"
+                        ></textarea>
+                    </div>
+
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Benefit & Fasilitas (Satu per baris)</label>
+                        <textarea
+                            rows={3}
+                            value={benefitsText}
+                            onChange={(e) => setBenefitsText(e.target.value)}
+                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                            placeholder="- Gaji kompetitif&#10;- BPJS Kesehatan"
                         ></textarea>
                     </div>
 

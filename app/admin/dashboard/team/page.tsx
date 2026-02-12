@@ -1,10 +1,12 @@
 ﻿"use client";
 
-import React, { useState, useEffect } from 'react';
-import { FaHeading, FaSave, FaPlus, FaTrash, FaUser, FaUserTag, FaImage } from 'react-icons/fa';
+import { FaHeading, FaSave, FaPlus, FaTrash, FaUser, FaUserTag, FaImage, FaUsers } from 'react-icons/fa';
 import { TeamMember } from '@/lib/types';
 import Modal from '@/components/ui/Modal';
 import ConfirmationModal from '@/components/ui/ConfirmationModal';
+import toast from 'react-hot-toast';
+import React, { useState, useEffect } from 'react';
+
 
 export default function TeamSettingsPage() {
     const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
@@ -52,12 +54,13 @@ export default function TeamSettingsPage() {
             if (res.ok) {
                 setTeamMembers(teamMembers.filter(member => member.id !== itemToDelete));
                 setItemToDelete(null);
+                toast.success('Anggota tim berhasil dihapus');
             } else {
-                alert('Gagal menghapus anggota');
+                toast.error('Gagal menghapus anggota tim');
             }
         } catch (error) {
             console.error('Error deleting member:', error);
-            alert('Error menghapus anggota');
+            toast.error('Terjadi kesalahan saat menghapus anggota tim');
         }
     };
 
@@ -80,6 +83,7 @@ export default function TeamSettingsPage() {
                 const created = await res.json();
                 setTeamMembers([...teamMembers, created]);
                 setIsAddModalOpen(false);
+                toast.success('Anggota tim berhasil ditambahkan');
                 setNewMemberData({
                     name: "",
                     role: "",
@@ -87,11 +91,11 @@ export default function TeamSettingsPage() {
                     status: "active"
                 });
             } else {
-                alert('Gagal menambah anggota');
+                toast.error('Gagal menambah anggota tim');
             }
         } catch (error) {
             console.error('Error adding member:', error);
-            alert('Error menambah anggota');
+            toast.error('Terjadi kesalahan saat menambah anggota tim');
         }
     };
 
@@ -110,10 +114,10 @@ export default function TeamSettingsPage() {
             );
 
             await Promise.all(updatePromises);
-            alert('Pengaturan Tim berhasil disimpan!');
+            toast.success('Pengaturan Tim berhasil disimpan!');
         } catch (error) {
             console.error('Error saving:', error);
-            alert('Gagal menyimpan perubahan');
+            toast.error('Gagal menyimpan perubahan');
         } finally {
             setIsSaving(false);
         }

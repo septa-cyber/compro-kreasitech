@@ -5,6 +5,7 @@ import { FaHeading, FaParagraph, FaSave, FaPlus, FaTrash, FaImage, FaBriefcase, 
 import { PortfolioItem } from '@/lib/types';
 import Modal from '@/components/ui/Modal';
 import ConfirmationModal from '@/components/ui/ConfirmationModal';
+import toast from 'react-hot-toast';
 
 export default function PortfolioSettingsPage() {
     const [portfolioItems, setPortfolioItems] = useState<PortfolioItem[]>([]);
@@ -52,14 +53,15 @@ export default function PortfolioSettingsPage() {
         try {
             const res = await fetch(`/api/portfolio/${itemToDelete}`, { method: 'DELETE' });
             if (res.ok) {
-                setPortfolioItems(portfolioItems.filter(item => item.id !== itemToDelete));
+                setPortfolioItems(portfolioItems.filter(p => p.id !== itemToDelete));
                 setItemToDelete(null);
+                toast.success('Proyek berhasil dihapus');
             } else {
-                alert('Gagal menghapus proyek');
+                toast.error('Gagal menghapus proyek');
             }
         } catch (error) {
-            console.error('Error deleting item:', error);
-            alert('Error menghapus proyek');
+            console.error('Error deleting portfolio item:', error);
+            toast.error('Terjadi kesalahan saat menghapus proyek');
         }
     };
 
@@ -82,20 +84,20 @@ export default function PortfolioSettingsPage() {
                 const created = await res.json();
                 setPortfolioItems([...portfolioItems, created]);
                 setIsAddModalOpen(false);
+                toast.success('Proyek berhasil ditambahkan');
                 setNewItemData({
                     title: "",
                     category: "",
                     image: "",
-                    size: "large",
-                    description: "",
-                    status: "draft"
+                    status: 'draft',
+                    size: 'large'
                 });
             } else {
-                alert('Gagal menambah proyek');
+                toast.error('Gagal menambah proyek');
             }
         } catch (error) {
-            console.error('Error adding item:', error);
-            alert('Error menambah proyek');
+            console.error('Error adding portfolio item:', error);
+            toast.error('Terjadi kesalahan saat menambah proyek');
         }
     };
 

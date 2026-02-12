@@ -5,6 +5,7 @@ import { FaHeading, FaPlus, FaTrash, FaQuoteLeft, FaStar, FaImage, FaUser } from
 import { Testimonial } from '@/lib/types';
 import Modal from '@/components/ui/Modal';
 import ConfirmationModal from '@/components/ui/ConfirmationModal';
+import toast from 'react-hot-toast';
 
 export default function TestimonialsSettingsPage() {
     const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
@@ -46,12 +47,13 @@ export default function TestimonialsSettingsPage() {
             if (res.ok) {
                 setTestimonials(testimonials.filter(t => t.id !== itemToDelete));
                 setItemToDelete(null);
+                toast.success('Testimonial berhasil dihapus');
             } else {
-                alert('Gagal menghapus testimonial');
+                toast.error('Gagal menghapus testimonial');
             }
         } catch (error) {
             console.error('Error deleting testimonial:', error);
-            alert('Error menghapus testimonial');
+            toast.error('Terjadi kesalahan saat menghapus testimonial');
         }
     };
 
@@ -75,6 +77,7 @@ export default function TestimonialsSettingsPage() {
                 const created = await res.json();
                 setTestimonials([...testimonials, created]);
                 setIsAddModalOpen(false);
+                toast.success('Testimonial berhasil ditambahkan');
                 setNewItemData({
                     name: "",
                     role: "",
@@ -83,11 +86,11 @@ export default function TestimonialsSettingsPage() {
                     rating: 5
                 });
             } else {
-                alert('Gagal menambah testimonial');
+                toast.error('Gagal menambah testimonial');
             }
         } catch (error) {
             console.error('Error adding testimonial:', error);
-            alert('Error menambah testimonial');
+            toast.error('Terjadi kesalahan saat menambah testimonial');
         }
     };
 

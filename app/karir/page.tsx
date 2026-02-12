@@ -18,6 +18,8 @@ interface Job {
     type: string;
     location: string;
     category: string;
+    logo_url?: string;
+    location_type?: string;
 }
 
 export default function KarirPage() {
@@ -31,7 +33,7 @@ export default function KarirPage() {
                     const data = await res.json();
                     setJobsData(data.map((j: any) => ({
                         ...j,
-                        postedTime: j.postedDate
+                        postedTime: j.postedDate ? new Date(j.postedDate).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) : j.postedDate
                     })));
                 }
             } catch (error) {
@@ -53,7 +55,8 @@ export default function KarirPage() {
     const [salaryRange, setSalaryRange] = useState([3500, 6500]);
     const [locationPrefs, setLocationPrefs] = useState({
         remote: false,
-        onsite: false,
+        wfo: false,
+        wfh: false,
         hybrid: false
     });
     // Track active job for mobile click state
@@ -65,7 +68,7 @@ export default function KarirPage() {
         setDatePosted("Last 7 Days");
         setJobTypes({ fulltime: false, parttime: false, contract: false, internship: false });
         setSalaryRange([3500, 6500]);
-        setLocationPrefs({ remote: false, onsite: false, hybrid: false });
+        setLocationPrefs({ remote: false, wfo: false, wfh: false, hybrid: false });
     };
 
     const handleSalaryChange = (index: number, value: number) => {
@@ -103,7 +106,14 @@ export default function KarirPage() {
         const matchesLocation = searchLocation === "" ||
             job.location.toLowerCase().includes(searchLocation.toLowerCase());
 
-        return matchesSearch && matchesLocation;
+        const activeLocs = Object.entries(locationPrefs)
+            .filter(([_, active]) => active)
+            .map(([id]) => id.toLowerCase());
+
+        const matchesLocPref = activeLocs.length === 0 ||
+            (job.location_type && activeLocs.includes(job.location_type.toLowerCase()));
+
+        return matchesSearch && matchesLocation && matchesLocPref;
     });
 
     // Calculations for salary slider track
@@ -261,7 +271,8 @@ export default function KarirPage() {
                                         <div className="justify-start text-gray-900 text-base font-medium font-montserrat">Location Preference</div>
                                         {[
                                             { id: 'remote', label: 'Remote' },
-                                            { id: 'onsite', label: 'On-site' },
+                                            { id: 'wfo', label: 'WFO (Office)' },
+                                            { id: 'wfh', label: 'WFH (Home)' },
                                             { id: 'hybrid', label: 'Hybrid' }
                                         ].map((loc) => (
                                             <label key={loc.id} className="self-stretch h-5 inline-flex justify-start items-center gap-2 cursor-pointer group">
@@ -349,10 +360,14 @@ export default function KarirPage() {
                                         <div className="flex justify-start items-center gap-4">
                                             <div className="w-11 h-11 rounded-lg flex justify-center items-center flex-shrink-0
                                                 bg-gray-100 group-hover:bg-yellow-400
-                                                data-[active=true]:bg-yellow-400 transition-colors duration-500">
-                                                <i className={`${job.icon} text-xl
-                                                    text-gray-700 group-hover:text-violet-900
-                                                    data-[active=true]:text-violet-900 transition-colors duration-500`}></i>
+                                                data-[active=true]:bg-yellow-400 transition-colors duration-500 overflow-hidden">
+                                                {job.logo_url ? (
+                                                    <img src={job.logo_url} alt={job.title} className="w-full h-full object-cover" />
+                                                ) : (
+                                                    <i className={`${job.icon} text-xl
+                                                        text-gray-700 group-hover:text-violet-900
+                                                        data-[active=true]:text-violet-900 transition-colors duration-500`}></i>
+                                                )}
                                             </div>
                                             <div className="flex flex-col justify-center items-start gap-1">
                                                 <div className="text-lg font-medium font-montserrat
@@ -385,6 +400,11 @@ export default function KarirPage() {
                                             <div className="px-3 py-1 bg-orange-300 rounded flex justify-center items-center">
                                                 <div className="text-white text-xs font-normal font-montserrat">{job.location}</div>
                                             </div>
+                                            {job.location_type && (
+                                                <div className="px-3 py-1 bg-blue-400 rounded flex justify-center items-center">
+                                                    <div className="text-white text-xs font-normal font-montserrat">{job.location_type}</div>
+                                                </div>
+                                            )}
                                         </div>
                                     </div>
 

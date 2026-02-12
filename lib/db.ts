@@ -89,18 +89,28 @@ function mapJobFromDB(row: any): JobPosting {
         icon: row.icon,
         iconBg: row.icon_bg,
         postedDate: row.posted_date,
+        expiredDate: row.expired_date,
         salary: row.salary,
         description: row.description,
         type: row.type,
         location: row.location,
+        category: row.category,
         status: row.status,
         department: row.department,
-        requirements: row.requirements
+        requirements: row.requirements || [],
+        responsibilities: row.responsibilities || [],
+        benefits: row.benefits || [],
+        experience: row.experience,
+        education: row.education,
+        whatsapp_url: row.whatsapp_url,
+        logo_url: row.logo_url,
+        location_type: row.location_type
     };
 }
 
 function mapJobToDB(job: Partial<JobPosting>): any {
     const dbJob: any = { ...job };
+    // Category is already in snake_case/camelCase same if it's 'category'
     if (job.iconBg) {
         dbJob.icon_bg = job.iconBg;
         delete dbJob.iconBg;
@@ -108,6 +118,13 @@ function mapJobToDB(job: Partial<JobPosting>): any {
     if (job.postedDate) {
         dbJob.posted_date = job.postedDate;
         delete dbJob.postedDate;
+    }
+    if (job.expiredDate) {
+        dbJob.expired_date = job.expiredDate;
+        delete dbJob.expiredDate;
+    }
+    if (job.location_type) {
+        dbJob.location_type = job.location_type;
     }
     return dbJob;
 }

@@ -26,8 +26,17 @@ export interface JobPosting {
     type: string;
     description: string;
     requirements?: string[];
+    responsibilities?: string[];
+    benefits?: string[];
+    experience?: string;
+    education?: string;
+    whatsapp_url?: string;
+    category?: string;
+    logo_url?: string;
+    location_type?: 'Remote' | 'WFO' | 'WFH' | 'Hybrid';
     status: 'open' | 'closed' | 'active' | 'inactive';
     postedDate?: string;
+    expiredDate?: string;
     salary?: string;
     icon?: string;
     iconBg?: string;
