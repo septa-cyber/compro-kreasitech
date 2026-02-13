@@ -3,42 +3,42 @@ import Image from 'next/image';
 
 const benefits = [
     {
-        icon: "https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Alarm%20clock/3D/alarm_clock_3d.png",
+        icon: "/assets/images/3d-icons/alarm_clock_3d.png",
         title: "Lebih Hemat Waktu & Biaya Rekrutmen",
         description: "Tidak perlu proses iklan lowongan, seleksi, wawancara berulang, hingga onboarding."
     },
     {
-        icon: "https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Check%20mark%20button/3D/check_mark_button_3d.png",
+        icon: "/assets/images/3d-icons/check_mark_button_3d.png",
         title: "Talent Siap Pakai",
         description: "Talent sudah diseleksi, divalidasi skill-nya, dan siap langsung bekerja."
     },
     {
-        icon: "https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Clipboard/3D/clipboard_3d.png",
+        icon: "/assets/images/3d-icons/clipboard_3d.png",
         title: "Tanpa Beban Administrasi HR",
         description: "Payroll, pajak, BPJS, kontrak, dan administrasi ditangani oleh Kreasitech."
     },
     {
-        icon: "https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Money%20bag/3D/money_bag_3d.png",
+        icon: "/assets/images/3d-icons/money_bag_3d.png",
         title: "Biaya Lebih Terkontrol & Transparan",
         description: "Tidak ada biaya tersembunyi, cukup satu tagihan bulanan sesuai kesepakatan."
     },
     {
-        icon: "https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Counterclockwise%20arrows%20button/3D/counterclockwise_arrows_button_3d.png",
+        icon: "/assets/images/3d-icons/counterclockwise_arrows_button_3d.png",
         title: "Fleksibel Sesuai Kebutuhan Proyek",
         description: "Bisa menambah, mengurangi, atau mengganti talent tanpa proses rekrut ulang."
     },
     {
-        icon: "https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Shield/3D/shield_3d.png",
+        icon: "/assets/images/3d-icons/shield_3d.png",
         title: "Risiko Turnover Lebih Rendah",
         description: "Jika talent tidak sesuai, Kreasitech membantu proses penggantian."
     },
     {
-        icon: "https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Rocket/3D/rocket_3d.png",
+        icon: "/assets/images/3d-icons/rocket_3d.png",
         title: "Fokus ke Bisnis Inti",
         description: "Klien dapat fokus pada pengembangan produk dan bisnis, bukan urusan SDM."
     },
     {
-        icon: "https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Chart%20increasing/3D/chart_increasing_3d.png",
+        icon: "/assets/images/3d-icons/chart_increasing_3d.png",
         title: "Didukung Monitoring & Evaluasi Kinerja",
         description: "Performa talent dipantau secara berkala untuk menjaga kualitas kerja."
     }

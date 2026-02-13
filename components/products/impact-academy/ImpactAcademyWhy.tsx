@@ -3,22 +3,22 @@ import Image from 'next/image';
 
 const focusPrograms = [
     {
-        icon: "https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Mechanical%20arm/3D/mechanical_arm_3d.png",
+        icon: "/assets/images/3d-icons/mechanical_arm_3d.png",
         title: "Pengembangan Skill Digital untuk Talent Difabel",
         description: "Program pelatihan digital yang dirancang khusus untuk mengembangkan kompetensi teknologi bagi individu berkebutuhan khusus dengan metode pembelajaran inklusif."
     },
     {
-        icon: "https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Briefcase/3D/briefcase_3d.png",
+        icon: "/assets/images/3d-icons/briefcase_3d.png",
         title: "Pelatihan Kesiapan Kerja & Soft Skill",
         description: "Persiapan komprehensif untuk memasuki dunia kerja dengan penguatan soft skills seperti komunikasi, teamwork, dan problem solving yang dibutuhkan industri."
     },
     {
-        icon: "https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Chart%20increasing/3D/chart_increasing_3d.png",
+        icon: "/assets/images/3d-icons/chart_increasing_3d.png",
         title: "Program Magang dan Penempatan Kerja",
         description: "Kesempatan magang yang terstruktur dengan bimbingan mentor profesional, dilanjutkan dengan dukungan penempatan kerja di perusahaan mitra."
     },
     {
-        icon: "https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Handshake/3D/handshake_3d.png",
+        icon: "/assets/images/3d-icons/handshake_3d.png",
         title: "Kolaborasi CSR & ESG",
         description: "Kemitraan strategis dengan perusahaan melalui program Corporate Social Responsibility dan Environmental, Social, Governance untuk menciptakan dampak sosial berkelanjutan."
     }

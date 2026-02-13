@@ -4,32 +4,32 @@ import Image from 'next/image';
 
 const programTypes = [
     {
-        icon: "https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Microphone/3D/microphone_3d.png",
+        icon: "/assets/images/3d-icons/microphone_3d.png",
         title: "Impact Talks",
         description: "Sesi inspiratif berupa career talk dan tech sharing dari praktisi industri untuk wawasan karir dan teknologi terkini."
     },
     {
-        icon: "https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Wrench/3D/wrench_3d.png",
+        icon: "/assets/images/3d-icons/wrench_3d.png",
         title: "Impact Skill Series",
         description: "Program workshop intensif untuk mengasah skill teknis dan soft skill yang relevan dengan kebutuhan industri."
     },
     {
-        icon: "https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Office%20building/3D/office_building_3d.png",
+        icon: "/assets/images/3d-icons/office_building_3d.png",
         title: "Corporate Training",
         description: "Pelatihan kustom untuk perusahaan dalam meningkatkan kompetensi tim dengan kurikulum yang disesuaikan."
     },
     {
-        icon: "https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Rocket/3D/rocket_3d.png",
+        icon: "/assets/images/3d-icons/rocket_3d.png",
         title: "Impact Bootcamp",
         description: "Program pelatihan intensif jangka pendek untuk menguasai skill spesifik dengan pendekatan praktis dan project-based."
     },
     {
-        icon: "https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Graduation%20cap/3D/graduation_cap_3d.png",
+        icon: "/assets/images/3d-icons/graduation_cap_3d.png",
         title: "Kreasitech Internship",
         description: "Program magang yang memberikan pengalaman kerja nyata di industri teknologi dengan bimbingan mentor profesional."
     },
     {
-        icon: "https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Briefcase/3D/briefcase_3d.png",
+        icon: "/assets/images/3d-icons/briefcase_3d.png",
         title: "Impact Career Connect",
         description: "Layanan penyaluran talenta yang menghubungkan lulusan program dengan peluang karir di perusahaan mitra."
     }

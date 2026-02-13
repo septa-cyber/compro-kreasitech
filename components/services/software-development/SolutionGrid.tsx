@@ -3,12 +3,12 @@ import { softwareDevelopmentServices } from '@/data/software-development-service
 import Image from 'next/image';
 
 const iconMapping: { [key: string]: string } = {
-    'specifications-and-wireframe': "https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Spiral%20notepad/3D/spiral_notepad_3d.png",
-    'ui-ux-design': "https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Artist%20palette/3D/artist_palette_3d.png",
-    'website-development': "https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Desktop%20computer/3D/desktop_computer_3d.png",
-    'mobile-app-development': "https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Mobile%20phone/3D/mobile_phone_3d.png",
-    'mvp-development': "https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Rocket/3D/rocket_3d.png",
-    'custom-software-development': "https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Gear/3D/gear_3d.png",
+    'specifications-and-wireframe': "/assets/images/3d-icons/spiral_notepad_3d.png",
+    'ui-ux-design': "/assets/images/3d-icons/artist_palette_3d.png",
+    'website-development': "/assets/images/3d-icons/desktop_computer_3d.png",
+    'mobile-app-development': "/assets/images/3d-icons/mobile_phone_3d.png",
+    'mvp-development': "/assets/images/3d-icons/rocket_3d.png",
+    'custom-software-development': "/assets/images/3d-icons/gear_3d.png",
 };
 
 export default function Services() {
@@ -26,7 +26,7 @@ export default function Services() {
 
                 <div className="w-full max-w-[1200px] outline outline-[0.5px] outline-offset-[-0.5px] outline-gray-200 inline-flex justify-between items-center flex-wrap content-center">
                     {softwareDevelopmentServices.map((service, index) => {
-                        const iconSrc = iconMapping[service.slug] || "https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Gear/3D/gear_3d.png";
+                        const iconSrc = iconMapping[service.slug] || "/assets/images/3d-icons/gear_3d.png";
                         return (
                             <div
                                 key={index}

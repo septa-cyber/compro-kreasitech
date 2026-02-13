@@ -20,7 +20,7 @@ export default function Services() {
                     <Link href="/services/software-development" className="w-full md:w-1/2 lg:w-1/4 h-auto py-16 px-8 bg-white outline outline-[0.5px] outline-offset-[-0.25px] outline-gray-200 inline-flex flex-col justify-center items-center text-center gap-6 hover:bg-violet-800 transition-colors duration-300 group cursor-pointer">
                         <div className="w-14 h-14 relative flex items-center justify-center rounded-2xl bg-violet-50 group-hover:bg-white/10 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 shadow-sm">
                             <Image
-                                src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Laptop/3D/laptop_3d.png"
+                                src="/assets/images/3d-icons/laptop_3d.png"
                                 alt="Laptop 3D Icon"
                                 width={40}
                                 height={40}
@@ -39,7 +39,7 @@ export default function Services() {
                     <Link href="/services" className="w-full md:w-1/2 lg:w-1/4 h-auto py-16 px-8 bg-white outline outline-[0.5px] outline-offset-[-0.25px] outline-gray-200 inline-flex flex-col justify-center items-center text-center gap-6 hover:bg-violet-800 transition-colors duration-300 group cursor-pointer">
                         <div className="w-14 h-14 relative flex items-center justify-center rounded-2xl bg-violet-50 group-hover:bg-white/10 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 shadow-sm">
                             <Image
-                                src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Briefcase/3D/briefcase_3d.png"
+                                src="/assets/images/3d-icons/briefcase_3d.png"
                                 alt="Talent as a Service Icon"
                                 width={40}
                                 height={40}
@@ -58,7 +58,7 @@ export default function Services() {
                     <Link href="/services" className="w-full md:w-1/2 lg:w-1/4 h-auto py-16 px-8 bg-white outline outline-[0.5px] outline-offset-[-0.25px] outline-gray-200 inline-flex flex-col justify-center items-center text-center gap-6 hover:bg-violet-800 transition-colors duration-300 group cursor-pointer">
                         <div className="w-14 h-14 relative flex items-center justify-center rounded-2xl bg-violet-50 group-hover:bg-white/10 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 shadow-sm">
                             <Image
-                                src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Graduation%20cap/3D/graduation_cap_3d.png"
+                                src="/assets/images/3d-icons/graduation_cap_3d.png"
                                 alt="Graduation Cap 3D Icon"
                                 width={40}
                                 height={40}
@@ -77,7 +77,7 @@ export default function Services() {
                     <Link href="/services/digital-marketing" className="w-full md:w-1/2 lg:w-1/4 h-auto py-16 px-8 bg-white outline outline-[0.5px] outline-offset-[-0.25px] outline-gray-200 inline-flex flex-col justify-center items-center text-center gap-6 hover:bg-violet-800 transition-colors duration-300 group cursor-pointer">
                         <div className="w-14 h-14 relative flex items-center justify-center rounded-2xl bg-violet-50 group-hover:bg-white/10 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 shadow-sm">
                             <Image
-                                src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Megaphone/3D/megaphone_3d.png"
+                                src="/assets/images/3d-icons/megaphone_3d.png"
                                 alt="Megaphone 3D Icon"
                                 width={40}
                                 height={40}

@@ -211,6 +211,7 @@ export default function Hero() {
                                     width={200}
                                     height={50}
                                     className="h-[50px] w-auto object-contain"
+                                    style={{ width: 'auto' }}
                                 />
                             </div>
                         ))}
@@ -228,6 +229,7 @@ export default function Hero() {
                                     width={200}
                                     height={50}
                                     className="h-[50px] w-auto object-contain"
+                                    style={{ width: 'auto' }}
                                 />
                             </div>
                         ))}

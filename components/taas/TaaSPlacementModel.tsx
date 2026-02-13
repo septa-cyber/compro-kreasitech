@@ -3,17 +3,17 @@ import Image from 'next/image';
 
 const placementModels = [
     {
-        icon: "https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Office%20building/3D/office_building_3d.png",
+        icon: "/assets/images/3d-icons/office_building_3d.png",
         title: "Onsite",
         description: "Model penempatan talent di mana tenaga kerja ditempatkan langsung di lokasi perusahaan klien untuk mendukung aktivitas operasional secara penuh. Model ini memungkinkan kolaborasi intensif, komunikasi cepat, serta integrasi langsung dengan tim internal perusahaan."
     },
     {
-        icon: "https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Desktop%20computer/3D/desktop_computer_3d.png",
+        icon: "/assets/images/3d-icons/desktop_computer_3d.png",
         title: "Remote",
         description: "Model penempatan talent yang memungkinkan tenaga kerja bekerja secara jarak jauh dengan dukungan sistem dan komunikasi digital. Cocok untuk perusahaan yang membutuhkan fleksibilitas tinggi, efisiensi biaya, serta akses ke talenta tanpa batasan geografis."
     },
     {
-        icon: "https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Counterclockwise%20arrows%20button/3D/counterclockwise_arrows_button_3d.png",
+        icon: "/assets/images/3d-icons/counterclockwise_arrows_button_3d.png",
         title: "Hybrid",
         description: "Model penempatan talent yang mengkombinasikan kerja onsite dan remote sesuai kebutuhan proyek dan kebijakan perusahaan. Pendekatan ini memberikan keseimbangan antara kolaborasi langsung dan fleksibilitas kerja, sehingga tetap optimal dalam produktivitas dan efisiensi."
     }
