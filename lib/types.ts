@@ -49,7 +49,7 @@ export interface Testimonial {
     company?: string;
     avatar?: string;
     content: string; // Changed from quote
-    rating: number;
+    rating?: number;
     status: 'visible' | 'hidden';
 }
 

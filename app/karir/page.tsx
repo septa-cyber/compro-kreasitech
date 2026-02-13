@@ -28,7 +28,7 @@ export default function KarirPage() {
     useEffect(() => {
         const fetchJobs = async () => {
             try {
-                const res = await fetch('/api/jobs?status=active');
+                const res = await fetch('/api/jobs?status=open');
                 if (res.ok) {
                     const data = await res.json();
                     setJobsData(data.map((j: any) => ({

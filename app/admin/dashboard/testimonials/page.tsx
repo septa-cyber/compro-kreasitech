@@ -1,7 +1,7 @@
 ﻿"use client";
 
 import React, { useState, useEffect } from 'react';
-import { FaHeading, FaPlus, FaTrash, FaQuoteLeft, FaStar, FaImage, FaUser } from 'react-icons/fa';
+import { FaHeading, FaPlus, FaTrash, FaQuoteLeft, FaStar, FaImage, FaUser, FaEdit } from 'react-icons/fa';
 import { Testimonial } from '@/lib/types';
 import Modal from '@/components/ui/Modal';
 import ConfirmationModal from '@/components/ui/ConfirmationModal';
@@ -13,18 +13,58 @@ export default function TestimonialsSettingsPage() {
 
     // Modal States
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
     const [itemToDelete, setItemToDelete] = useState<number | null>(null);
+    const [editingItem, setEditingItem] = useState<Testimonial | null>(null);
     const [newItemData, setNewItemData] = useState<Partial<Testimonial>>({
         name: "",
         role: "",
         content: "",
-        avatar: "",
-        rating: 5
+        avatar: ""
     });
+    const [editItemData, setEditItemData] = useState<Partial<Testimonial>>({});
 
     useEffect(() => {
         fetchTestimonials();
     }, []);
+
+    // Edit Logic
+    const handleEditClick = (testimonial: Testimonial) => {
+        setEditingItem(testimonial);
+        setEditItemData({
+            name: testimonial.name,
+            role: testimonial.role,
+            content: testimonial.content,
+            avatar: testimonial.avatar,
+            status: testimonial.status
+        });
+        setIsEditModalOpen(true);
+    };
+
+    const handleEditSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!editingItem) return;
+
+        try {
+            const res = await fetch(`/api/testimonials/${editingItem.id}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(editItemData)
+            });
+
+            if (res.ok) {
+                const updated = await res.json();
+                setTestimonials(testimonials.map(t => t.id === updated.id ? updated : t));
+                setIsEditModalOpen(false);
+                toast.success('Testimonial berhasil diperbarui');
+            } else {
+                toast.error('Gagal memperbarui testimonial');
+            }
+        } catch (error) {
+            console.error('Error updating testimonial:', error);
+            toast.error('Terjadi kesalahan saat memperbarui testimonial');
+        }
+    };
 
     const fetchTestimonials = async () => {
         try {
@@ -63,8 +103,7 @@ export default function TestimonialsSettingsPage() {
         try {
             const itemToAdd = {
                 ...newItemData,
-                avatar: newItemData.avatar || "https://placehold.co/100x100",
-                rating: Number(newItemData.rating)
+                avatar: newItemData.avatar || "https://placehold.co/100x100"
             };
 
             const res = await fetch('/api/testimonials', {
@@ -82,8 +121,7 @@ export default function TestimonialsSettingsPage() {
                     name: "",
                     role: "",
                     content: "",
-                    avatar: "",
-                    rating: 5
+                    avatar: ""
                 });
             } else {
                 toast.error('Gagal menambah testimonial');
@@ -124,13 +162,20 @@ export default function TestimonialsSettingsPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {testimonials.map((testimonial) => (
                         <div key={testimonial.id} className="relative bg-[#F4F4F7] p-6 rounded-xl border border-gray-200 hover:border-violet-300 transition-all group">
-                            <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity flex gap-2">
+                                <button
+                                    onClick={() => handleEditClick(testimonial)}
+                                    className="p-2 text-gray-400 hover:text-violet-500 hover:bg-white rounded-lg transition-colors shadow-sm"
+                                    title="Edit"
+                                >
+                                    <FaEdit size={14} />
+                                </button>
                                 <button
                                     onClick={() => setItemToDelete(testimonial.id)}
                                     className="p-2 text-gray-400 hover:text-red-500 hover:bg-white rounded-lg transition-colors shadow-sm"
                                     title="Hapus"
                                 >
-                                    <FaTrash />
+                                    <FaTrash size={14} />
                                 </button>
                             </div>
 
@@ -147,11 +192,6 @@ export default function TestimonialsSettingsPage() {
                             </div>
 
                             <div className="mb-4">
-                                <div className="flex gap-1 text-yellow-400 text-xs mb-2">
-                                    {[...Array(5)].map((_, i) => (
-                                        <FaStar key={i} className={i < (testimonial.rating || 5) ? "fill-current" : "text-gray-300"} />
-                                    ))}
-                                </div>
                                 <p className="text-sm text-gray-600 italic line-clamp-4">"{testimonial.content}"</p>
                             </div>
                         </div>
@@ -193,20 +233,6 @@ export default function TestimonialsSettingsPage() {
                             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
                             placeholder="Contoh: CEO at Company"
                         />
-                    </div>
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Rating (1-5)</label>
-                        <select
-                            value={newItemData.rating}
-                            onChange={(e) => setNewItemData({ ...newItemData, rating: Number(e.target.value) })}
-                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
-                        >
-                            <option value="5">5 Stars</option>
-                            <option value="4">4 Stars</option>
-                            <option value="3">3 Stars</option>
-                            <option value="2">2 Stars</option>
-                            <option value="1">1 Star</option>
-                        </select>
                     </div>
                     <div>
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Isi Testimonial</label>
@@ -266,6 +292,110 @@ export default function TestimonialsSettingsPage() {
                             className="px-4 py-2 text-sm font-medium text-white bg-violet-600 rounded-lg hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500 transition-colors shadow-md"
                         >
                             Simpan Testimonial
+                        </button>
+                    </div>
+                </form>
+            </Modal>
+
+            {/* Edit Modal */}
+            <Modal
+                isOpen={isEditModalOpen}
+                onClose={() => setIsEditModalOpen(false)}
+                title="Edit Testimonial"
+            >
+                <form onSubmit={handleEditSubmit} className="space-y-4">
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Nama Klien</label>
+                        <input
+                            type="text"
+                            required
+                            value={editItemData.name || ''}
+                            onChange={(e) => setEditItemData({ ...editItemData, name: e.target.value })}
+                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                            placeholder="Nama Lengkap"
+                        />
+                    </div>
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Perusahaan / Role</label>
+                        <input
+                            type="text"
+                            required
+                            value={editItemData.role || ''}
+                            onChange={(e) => setEditItemData({ ...editItemData, role: e.target.value })}
+                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                            placeholder="Contoh: CEO at Company"
+                        />
+                    </div>
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Isi Testimonial</label>
+                        <textarea
+                            required
+                            rows={4}
+                            value={editItemData.content || ''}
+                            onChange={(e) => setEditItemData({ ...editItemData, content: e.target.value })}
+                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                            placeholder="Apa kata mereka..."
+                        ></textarea>
+                    </div>
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Avatar URL (Optional)</label>
+                        <div className="flex gap-2">
+                            <input
+                                type="text"
+                                value={editItemData.avatar || ''}
+                                onChange={(e) => setEditItemData({ ...editItemData, avatar: e.target.value })}
+                                className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                                placeholder="https://..."
+                            />
+                            <label className="px-3 py-2 bg-gray-100 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-200 transition-colors flex items-center justify-center">
+                                <FaImage className="text-gray-600" />
+                                <input
+                                    type="file"
+                                    accept="image/*"
+                                    className="hidden"
+                                    onChange={(e) => {
+                                        const file = e.target.files?.[0];
+                                        if (file) {
+                                            const imageUrl = URL.createObjectURL(file);
+                                            setEditItemData({ ...editItemData, avatar: imageUrl });
+                                        }
+                                    }}
+                                />
+                            </label>
+                        </div>
+                    </div>
+
+                    {editItemData.avatar && (
+                        <div className="mt-2 p-2 border border-gray-200 rounded-lg bg-gray-50 flex justify-center">
+                            <img src={editItemData.avatar} alt="Preview" className="h-16 w-16 object-cover rounded-full" />
+                        </div>
+                    )}
+
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Status</label>
+                        <select
+                            value={editItemData.status}
+                            onChange={(e) => setEditItemData({ ...editItemData, status: e.target.value as 'visible' | 'hidden' })}
+                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                        >
+                            <option value="visible">Visible</option>
+                            <option value="hidden">Hidden</option>
+                        </select>
+                    </div>
+
+                    <div className="flex justify-end pt-4 gap-3">
+                        <button
+                            type="button"
+                            onClick={() => setIsEditModalOpen(false)}
+                            className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition-colors"
+                        >
+                            Batal
+                        </button>
+                        <button
+                            type="submit"
+                            className="px-4 py-2 text-sm font-medium text-white bg-violet-600 rounded-lg hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500 transition-colors shadow-md"
+                        >
+                            Perbarui Testimonial
                         </button>
                     </div>
                 </form>

@@ -1,62 +1,101 @@
 [
     {
         "id": 1,
-        "title": "Front-End Developer",
-        "company": "CodeCo",
-        "icon": "fab fa-react",
-        "iconBg": "bg-blue-600 text-white",
-        "postedDate": "2026-02-10",
-        "salary": "$80k - $120k/year",
-        "description": "We are looking for an experienced Front-End Developer to join our team and build responsive user interfaces.",
-        "type": "Technology",
-        "location": "On Site",
-        "category": "full-time",
-        "status": "active",
-        "expiredDate": "2026-03-30"
+        "title": "Senior Frontend Developer",
+        "department": "Engineering",
+        "company": "KreasiTech",
+        "location": "Jakarta",
+        "type": "Full-time",
+        "category": "Technology",
+        "status": "open",
+        "postedDate": "2024-02-12",
+        "salary": "12,000K-18,000K",
+        "description": "We are looking for a Senior Frontend Developer to lead our web application development.",
+        "requirements": [
+            "5+ years of React experience",
+            "Proficient in TailwindCSS",
+            "Strong TypeScript skills"
+        ],
+        "responsibilities": [
+            "Lead frontend architecture",
+            "Mentor junior developers",
+            "Implement responsive designs"
+        ],
+        "benefits": [
+            "Health Insurance",
+            "Flexible Working Hours",
+            "Learning Budget"
+        ],
+        "experience": "5+ Years",
+        "education": "S1 Computer Science",
+        "whatsapp_url": "https://wa.me/6281234567890",
+        "logo_url": "https://img.logo.dev/google.com?token=pk_ST185vJtQO6-1e4Bf7k_Qw",
+        "location_type": "Remote"
     },
     {
         "id": 2,
-        "title": "UX/UI Designer",
-        "company": "EcoWorks",
-        "icon": "fab fa-figma",
-        "iconBg": "bg-green-500 text-white",
-        "postedDate": "2026-02-11",
-        "salary": "$75k - $110k/year",
-        "description": "Design user-centric experiences for sustainable products.",
-        "type": "Technology",
-        "location": "Hybrid",
-        "category": "full-time",
-        "status": "active",
-        "expiredDate": "2026-03-30"
+        "title": "Backend Engineer (Go)",
+        "department": "Engineering",
+        "company": "KreasiTech",
+        "location": "Bandung",
+        "type": "Full-time",
+        "category": "Technology",
+        "status": "open",
+        "postedDate": "2024-02-12",
+        "salary": "10,000K-15,000K",
+        "description": "Join our backend team to build scalable microservices using Go and PostgreSQL.",
+        "requirements": [
+            "Experience with Golang",
+            "Familiar with Docker/K8s",
+            "Knowledge of SQL/NoSQL"
+        ],
+        "responsibilities": [
+            "Build scalable APIs",
+            "Optimize database performance",
+            "Implement security best practices"
+        ],
+        "benefits": [
+            "Hybrid Work Setup",
+            "Performance Bonus",
+            "Office Snacks"
+        ],
+        "experience": "3+ Years",
+        "education": "S1 Information Systems",
+        "whatsapp_url": "https://wa.me/6281234567890",
+        "logo_url": "https://img.logo.dev/microsoft.com?token=pk_ST185vJtQO6-1e4Bf7k_Qw",
+        "location_type": "Hybrid"
     },
     {
         "id": 3,
-        "title": "Back-End Engineer",
-        "company": "TechFlow",
-        "icon": "fas fa-server",
-        "iconBg": "bg-yellow-500 text-white",
-        "postedDate": "2026-02-09",
-        "salary": "$90k - $130k/year",
-        "description": "Build scalable APIs and microservices for our growing platform.",
-        "type": "Technology",
-        "location": "Remote",
-        "category": "full-time",
-        "status": "active",
-        "expiredDate": "2026-03-30"
-    },
-    {
-        "id": 4,
-        "title": "Product Manager",
-        "company": "InnoSoft",
-        "icon": "fas fa-rocket",
-        "iconBg": "bg-purple-500 text-white",
-        "postedDate": "2026-02-07",
-        "salary": "$100k - $150k/year",
-        "description": "Lead the product vision and strategy for our core products.",
-        "type": "Management",
-        "location": "On Site",
-        "category": "full-time",
-        "status": "active",
-        "expiredDate": "2026-03-30"
+        "title": "UI/UX Designer",
+        "department": "Product",
+        "company": "KreasiTech",
+        "location": "Jakarta",
+        "type": "Full-time",
+        "category": "Creative",
+        "status": "open",
+        "postedDate": "2024-02-12",
+        "salary": "8,000K-12,000K",
+        "description": "We need a creative UI/UX Designer to design beautiful and intuitive user experiences.",
+        "requirements": [
+            "Proficient in Figma",
+            "Portfolio demonstrating UI/UX skills",
+            "Understanding of design systems"
+        ],
+        "responsibilities": [
+            "Create wireframes and prototypes",
+            "Conduct user research",
+            "Maintain design consistency"
+        ],
+        "benefits": [
+            "Creative Workspace",
+            "Health Insurance",
+            "Commuter Allowance"
+        ],
+        "experience": "2+ Years",
+        "education": "S1 Design / Architecture",
+        "whatsapp_url": "https://wa.me/6281234567890",
+        "logo_url": "https://img.logo.dev/figma.com?token=pk_ST185vJtQO6-1e4Bf7k_Qw",
+        "location_type": "WFO"
     }
 ]
