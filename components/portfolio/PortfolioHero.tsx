@@ -38,7 +38,7 @@ export default function PortfolioHero() {
                                 Jelajahi <br />
                                 <span className="font-semibold text-violet-600">Karya Terbaik</span> Kami
                             </h1>
-                            <p className="text-sm sm:text-base text-gray-500 font-montserrat">
+                            <p className="text-sm sm:text-lg text-gray-500 font-montserrat">
                                 Tim kami adalah kumpulan orang-orang berbakat yang berkembang dalam lingkungan yang santai dan ramah. Jika Anda mencari tempat di mana ide-ide Anda bisa bersinar, bergabunglah dengan kami dan mari ciptakan sesuatu yang luar biasa!
                             </p>
                         </div>

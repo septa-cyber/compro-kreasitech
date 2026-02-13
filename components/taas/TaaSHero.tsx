@@ -11,7 +11,7 @@ export default function TaaSHero() {
                         <h1 className="text-[40px] sm:text-5xl lg:text-6xl font-medium leading-tight text-text-light font-montserrat">
                             Talent as a Service <span className="text-violet-600">(TaaS)</span>
                         </h1>
-                        <p className="text-sm sm:text-base text-text-light-muted max-w-lg leading-relaxed font-montserrat mx-auto lg:mx-0">
+                        <p className="text-sm sm:text-lg text-text-light-muted max-w-lg leading-relaxed font-montserrat mx-auto lg:mx-0">
                             Kami menyediakan Talent as a Service (TaaS) untuk membantu bisnis Anda mengakses talenta teknologi dan digital terbaik. Dengan pendekatan yang fleksibel dan efisien, kami menyediakan profesional berkualitas untuk mendukung proyek jangka pendek maupun panjang sesuai kebutuhan Anda.
                         </p>
                         <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-4 w-full sm:w-auto justify-center lg:justify-start">

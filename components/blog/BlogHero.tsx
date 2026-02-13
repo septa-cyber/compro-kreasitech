@@ -23,7 +23,7 @@ export default function BlogHero({ featuredPost }: BlogHeroProps) {
                         Baca Berita <br />
                         <span className="font-semibold text-violet-600">Terbaru & Terkini</span>
                     </h1>
-                    <p className="text-sm sm:text-base text-gray-500 font-montserrat">
+                    <p className="text-sm sm:text-lg text-gray-500 font-montserrat">
                         Berita industri terbaru, wawancara, teknologi, dan sumber daya terkini.
                     </p>
                 </div>

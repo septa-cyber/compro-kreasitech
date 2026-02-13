@@ -1,9 +1,8 @@
 ﻿import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CompanyHero from "@/components/company/CompanyHero";
-import ContentSection from "@/components/company/ContentSection";
+import VisionMissionSection from "@/components/company/VisionMissionSection";
 import CompanyAbout from "@/components/company/CompanyAbout";
-import MissionSection from "@/components/company/MissionSection";
 import TimelineSection from "@/components/company/TimelineSection";
 import TeamSection from "@/components/company/TeamSection";
 import Breadcrumb from "@/components/ui/Breadcrumb";
@@ -30,12 +29,7 @@ export default function CompanyPage() {
             ]} />
             <CompanyHero />
             <CompanyAbout />
-            <ContentSection title="Visi" className="bg-[#F4F4F7]">
-                <p>
-                    Menjadi ekosistem digital terdepan yang menghubungkan edukasi, talenta, dan industri melalui teknologi.
-                </p>
-            </ContentSection>
-            <MissionSection />
+            <VisionMissionSection />
             <TimelineSection />
             <TeamSection />
             <CTASection />

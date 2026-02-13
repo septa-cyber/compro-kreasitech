@@ -54,7 +54,7 @@ export default function Footer() {
                             Software Development
                         </Link>
                         <Link href="/academy" className="justify-start text-text-light text-sm font-medium font-montserrat hover:text-primary transition">
-                            Academy
+                            Kreasi Space
                         </Link>
                         <Link href="/services/digital-marketing" className="justify-start text-text-light text-sm font-medium font-montserrat hover:text-primary transition">
                             Digital Marketing

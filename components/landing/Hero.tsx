@@ -66,7 +66,7 @@ export default function Hero() {
 
                 {/* Subheading */}
                 <div className="max-w-2xl mx-auto mb-10">
-                    <p className="text-sm sm:text-base text-gray-500 font-montserrat mb-8">
+                    <p className="text-sm sm:text-lg text-gray-500 font-montserrat mb-8">
                         Software Development | Talent as a Service | Academy | Digital Marketing
                     </p>
 
@@ -187,7 +187,7 @@ export default function Hero() {
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10 flex flex-col items-center">
                 {/* Trusted By Header */}
                 <div className="mt-24 mb-6 w-full max-w-7xl mx-auto text-center z-10">
-                    <div className="w-full text-center text-SubText text-xs font-normal font-['Montserrat']">Dipercaya oleh bisnis terkemuka seperti:</div>
+                    <div className="w-full text-center text-SubText text-base font-normal font-['Montserrat']">Dipercaya oleh bisnis terkemuka seperti:</div>
                 </div>
             </div>
 

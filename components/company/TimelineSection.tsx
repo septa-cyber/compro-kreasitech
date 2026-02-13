@@ -1,6 +1,6 @@
 ﻿"use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 interface TimelineItemProps {
     year: string;
@@ -43,6 +43,15 @@ const timelineData: TimelineItemProps[] = [
 
 export default function TimelineSection() {
     const [activeIndex, setActiveIndex] = useState(0);
+
+    // Auto-play carousel every 5 seconds
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setActiveIndex((prev) => (prev + 1) % timelineData.length);
+        }, 5000); // 5 seconds
+
+        return () => clearInterval(interval);
+    }, []);
 
     const handleNext = () => {
         setActiveIndex((prev) => (prev + 1) % timelineData.length);

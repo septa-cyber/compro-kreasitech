@@ -56,7 +56,7 @@ export default function DigitalMarketingHero() {
                             </div>
 
                             {/* Description */}
-                            <p className="w-full text-gray-600 text-base font-normal font-montserrat leading-relaxed text-center lg:text-left">
+                            <p className="w-full text-gray-600 text-sm sm:text-lg font-normal font-montserrat leading-relaxed text-center lg:text-left">
                                 Tingkatkan eksistensi bisnis Anda di dunia digital dengan strategi pemasaran yang terukur. Mulai dari optimasi SEO, manajemen Iklan (Ads), penguatan Backlink, hingga publikasi Press Release untuk membangun kredibilitas brand Anda.
                             </p>
                         </div>

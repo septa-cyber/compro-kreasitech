@@ -8,7 +8,7 @@ export default function SoftwareDevHero() {
                 <h1 className="text-[40px] sm:text-5xl lg:text-7xl font-medium font-montserrat leading-tight max-w-6xl mx-auto mb-8 text-text-light">
                     Mewujudkan Ide Menjadi <span className="font-semibold text-violet-600">Solusi Digital</span> Bernilai Bisnis
                 </h1>
-                <p className="max-w-3xl mx-auto text-sm sm:text-base text-gray-500 font-montserrat mb-8">
+                <p className="max-w-3xl mx-auto text-sm sm:text-lg text-gray-500 font-montserrat mb-8">
                     Kreasitech menawarkan berbagai layanan terbaik yang diformulasikan untuk menjawab kebutuhan Anda akan teknologi dan digitalisasi produk. Maka, jangan ragu untuk menghubungi kami dan konsultasikan produk Anda.
                 </p>
                 <div className="flex justify-center items-center gap-4">

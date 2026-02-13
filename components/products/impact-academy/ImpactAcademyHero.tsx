@@ -13,11 +13,11 @@ export default function ImpactAcademyHero() {
                     Kreasi <span className="font-semibold text-violet-600">Space</span>
                 </h1>
 
-                <p className="max-w-3xl mx-auto text-sm sm:text-base text-gray-500 font-montserrat mb-4">
+                <p className="max-w-3xl mx-auto text-sm sm:text-lg text-gray-500 font-montserrat mb-4">
                     Impact Academy adalah inisiatif sosial dari Kreasitech yang fokus pada pengembangan dan pemberdayaan talenta disabilitas. Tujuannya adalah memberikan keterampilan digital & teknologi yang relevan agar mereka memiliki kesempatan karir yang setara.
                 </p>
 
-                <p className="max-w-3xl mx-auto text-sm sm:text-base text-gray-500 font-montserrat mb-8">
+                <p className="max-w-3xl mx-auto text-sm sm:text-lg text-gray-500 font-montserrat mb-8">
                     Program ini dirancang inklusif dengan metode pembelajaran adaptif, berorientasi pada kesiapan kerja talenta disabilitas.
                 </p>
 

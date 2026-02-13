@@ -98,7 +98,7 @@ export default function CompanyHero() {
                 <h1 className="text-[40px] sm:text-5xl lg:text-7xl font-medium font-montserrat leading-tight max-w-6xl mx-auto mb-8 text-text-light">
                     Di Mana <span className="font-semibold text-violet-600">Talenta</span> Bertemu <br className="hidden md:block" /> Teknologi
                 </h1>
-                <p className="max-w-3xl mx-auto text-sm sm:text-base text-gray-500 font-montserrat mb-8">
+                <p className="max-w-3xl mx-auto text-sm sm:text-lg text-gray-500 font-montserrat mb-8">
                     Di Kreasitech, kami berdedikasi untuk merevolusi industri teknologi dengan menghubungkan talenta luar biasa dengan peluang terdepan. Misi kami adalah memberdayakan individu dan organisasi untuk berkembang di era digital.
                 </p>
 
