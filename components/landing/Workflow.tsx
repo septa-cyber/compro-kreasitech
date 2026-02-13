@@ -17,19 +17,19 @@ export default function Workflow() {
         },
         {
             number: 3,
-            icon: "https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Laptop.png",
+            icon: "https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/People%20with%20professions/Man%20Technologist%20Light%20Skin%20Tone.png",
             title: "Pengembangan",
             description: "Proses coding sistem backend dan frontend untuk mengubah desain menjadi aplikasi fungsional yang robust."
         },
         {
             number: 4,
-            icon: "https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Hammer%20and%20Wrench.png",
+            icon: "https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/People%20with%20professions/Man%20Mechanic%20Light%20Skin%20Tone.png",
             title: "SIT",
             description: "System Integration Testing untuk memastikan seluruh modul dan interaksi sistem berjalan mulus tanpa konflik."
         },
         {
             number: 5,
-            icon: "https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/People/Man%20Technologist%20Medium-Light%20Skin%20Tone.png",
+            icon: "https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/People%20with%20professions/Man%20Judge%20Light%20Skin%20Tone.png",
             title: "UAT",
             description: "User Acceptance Testing, validasi akhir oleh Anda untuk memastikan aplikasi sesuai kebutuhan bisnis yang disepakati."
         },
@@ -48,14 +48,14 @@ export default function Workflow() {
     ];
 
     return (
-        <section className="py-24 bg-violet-800 text-gray-800 overflow-hidden" data-theme="dark">
+        <section className="py-24 bg-violet-800 text-white overflow-hidden" data-theme="dark">
             <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header */}
                 <div className="text-center mb-16 max-w-3xl mx-auto">
-                    <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 mb-4">
+                    <h2 className="text-3xl md:text-4xl font-semibold text-white mb-4">
                         Sesuaikan energi Anda dengan alur kerja kami
                     </h2>
-                    <p className="text-gray-700 text-base md:text-lg leading-relaxed">
+                    <p className="text-white/90 text-base md:text-lg leading-relaxed">
                         Kami memastikan setiap proyek dieksekusi secara efisien dan disesuaikan dengan kebutuhan bisnis unik Anda, menyediakan solusi inovatif yang mendorong kesuksesan.
                     </p>
                 </div>
@@ -65,12 +65,12 @@ export default function Workflow() {
                     {/* Top Row - Steps 1-4 */}
                     <div className="hidden lg:block relative">
                         {/* Connection Line */}
-                        <div className="absolute top-[52px] left-[12.5%] right-[12.5%] h-[2px] bg-teal-500">
+                        <div className="absolute top-[52px] left-[12.5%] right-[12.5%] h-[2px] bg-[#A58BFF]">
                             {/* Connector Dots */}
-                            <div className="absolute top-1/2 left-0 -translate-y-1/2 w-3 h-3 bg-teal-500 rounded-full"></div>
-                            <div className="absolute top-1/2 left-1/3 -translate-y-1/2 w-3 h-3 bg-teal-500 rounded-full"></div>
-                            <div className="absolute top-1/2 left-2/3 -translate-y-1/2 w-3 h-3 bg-teal-500 rounded-full"></div>
-                            <div className="absolute top-1/2 right-0 -translate-y-1/2 w-3 h-3 bg-teal-500 rounded-full"></div>
+                            <div className="absolute top-1/2 left-0 -translate-y-1/2 w-3 h-3 bg-[#A58BFF] rounded-full"></div>
+                            <div className="absolute top-1/2 left-1/3 -translate-y-1/2 w-3 h-3 bg-[#A58BFF] rounded-full"></div>
+                            <div className="absolute top-1/2 left-2/3 -translate-y-1/2 w-3 h-3 bg-[#A58BFF] rounded-full"></div>
+                            <div className="absolute top-1/2 right-0 -translate-y-1/2 w-3 h-3 bg-[#A58BFF] rounded-full"></div>
                         </div>
 
                         <div className="grid grid-cols-4 gap-8 relative z-10">
@@ -88,17 +88,17 @@ export default function Workflow() {
                                     </div>
 
                                     {/* Number Circle */}
-                                    <div className="w-12 h-12 rounded-full bg-teal-500 text-white flex items-center justify-center text-lg font-semibold mb-6">
+                                    <div className="w-12 h-12 rounded-full bg-[#A58BFF] text-white flex items-center justify-center text-lg font-semibold mb-6">
                                         {step.number}
                                     </div>
 
                                     {/* Title */}
-                                    <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                                    <h3 className="text-lg font-semibold text-white mb-3">
                                         {step.title}
                                     </h3>
 
                                     {/* Description */}
-                                    <p className="text-sm text-gray-700 leading-relaxed">
+                                    <p className="text-sm text-white/80 leading-relaxed">
                                         {step.description}
                                     </p>
                                 </div>
@@ -109,11 +109,11 @@ export default function Workflow() {
                     {/* Bottom Row - Steps 5-7 */}
                     <div className="hidden lg:block relative">
                         {/* Connection Line */}
-                        <div className="absolute top-[52px] left-[16.666%] right-[16.666%] h-[2px] bg-teal-500">
+                        <div className="absolute top-[52px] left-[16.666%] right-[16.666%] h-[2px] bg-[#A58BFF]">
                             {/* Connector Dots */}
-                            <div className="absolute top-1/2 left-0 -translate-y-1/2 w-3 h-3 bg-teal-500 rounded-full"></div>
-                            <div className="absolute top-1/2 left-1/2 -translate-y-1/2 w-3 h-3 bg-teal-500 rounded-full"></div>
-                            <div className="absolute top-1/2 right-0 -translate-y-1/2 w-3 h-3 bg-teal-500 rounded-full"></div>
+                            <div className="absolute top-1/2 left-0 -translate-y-1/2 w-3 h-3 bg-[#A58BFF] rounded-full"></div>
+                            <div className="absolute top-1/2 left-1/2 -translate-y-1/2 w-3 h-3 bg-[#A58BFF] rounded-full"></div>
+                            <div className="absolute top-1/2 right-0 -translate-y-1/2 w-3 h-3 bg-[#A58BFF] rounded-full"></div>
                         </div>
 
                         <div className="grid grid-cols-3 gap-8 relative z-10">
@@ -131,17 +131,17 @@ export default function Workflow() {
                                     </div>
 
                                     {/* Number Circle */}
-                                    <div className="w-12 h-12 rounded-full bg-teal-500 text-white flex items-center justify-center text-lg font-semibold mb-6">
+                                    <div className="w-12 h-12 rounded-full bg-[#A58BFF] text-white flex items-center justify-center text-lg font-semibold mb-6">
                                         {step.number}
                                     </div>
 
                                     {/* Title */}
-                                    <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                                    <h3 className="text-lg font-semibold text-white mb-3">
                                         {step.title}
                                     </h3>
 
                                     {/* Description */}
-                                    <p className="text-sm text-gray-700 leading-relaxed">
+                                    <p className="text-sm text-white/80 leading-relaxed">
                                         {step.description}
                                     </p>
                                 </div>
@@ -155,7 +155,7 @@ export default function Workflow() {
                             <div key={step.number} className="relative">
                                 {/* Vertical Connection Line */}
                                 {index < workflowSteps.length - 1 && (
-                                    <div className="absolute left-8 top-24 bottom-0 w-[2px] bg-teal-500 -mb-8"></div>
+                                    <div className="absolute left-8 top-24 bottom-0 w-[2px] bg-[#A58BFF] -mb-8"></div>
                                 )}
 
                                 <div className="flex items-start gap-6">
@@ -173,7 +173,7 @@ export default function Workflow() {
                                         </div>
 
                                         {/* Number Circle */}
-                                        <div className="w-10 h-10 rounded-full bg-teal-500 text-white flex items-center justify-center text-base font-semibold relative z-10">
+                                        <div className="w-10 h-10 rounded-full bg-[#A58BFF] text-white flex items-center justify-center text-base font-semibold relative z-10">
                                             {step.number}
                                         </div>
                                     </div>
@@ -181,12 +181,12 @@ export default function Workflow() {
                                     {/* Right Side - Content */}
                                     <div className="flex-1 pt-2">
                                         {/* Title */}
-                                        <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                                        <h3 className="text-lg font-semibold text-white mb-2">
                                             {step.title}
                                         </h3>
 
                                         {/* Description */}
-                                        <p className="text-sm text-gray-700 leading-relaxed">
+                                        <p className="text-sm text-white/80 leading-relaxed">
                                             {step.description}
                                         </p>
                                     </div>
