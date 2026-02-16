@@ -1,9 +1,11 @@
 @import "tailwindcss";
 
-html,
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   overflow-x: hidden;
-  scroll-behavior: smooth;
 }
 
 :root {
@@ -55,12 +57,27 @@ body {
 
   /* Border Radius */
   --radius: 0.5rem;
+
+  /* Semantic Typography Colors - Default Light */
+  --text-primary: #1f2937;
+  --text-secondary: #6b7280;
+  --text-muted: #9ca3af;
+}
+
+[data-theme="dark"] {
+  /* Semantic Typography Colors - Dark Theme Override */
+  --text-primary: #ffffff;
+  --text-secondary: #e5e7eb;
+  --text-muted: #9ca3af;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-sans);
+  --font-montserrat: var(--font-montserrat);
+  --font-outfit: var(--font-outfit);
+  --font-inter: var(--font-inter);
   --font-mono: var(--font-geist-mono);
 }
 
@@ -351,4 +368,68 @@ body {
 
 .animate-fade-in-up {
   animation: fadeInUp 0.5s ease-out forwards;
+}
+
+/* Typography System */
+@layer components {
+
+  /* Headings */
+  .font-h1 {
+    @apply font-montserrat font-medium text-[40px] sm:text-5xl lg:text-7xl leading-tight;
+    color: var(--text-primary);
+  }
+
+  .font-h2 {
+    @apply font-montserrat font-medium text-3xl md:text-4xl tracking-tight;
+    color: var(--text-primary);
+  }
+
+  .font-h3 {
+    @apply font-montserrat font-medium text-2xl md:text-3xl;
+    color: var(--text-primary);
+  }
+
+  .font-h4 {
+    @apply font-montserrat font-medium text-xl leading-tight;
+    color: var(--text-primary);
+  }
+
+  .font-h5 {
+    @apply font-montserrat font-semibold text-lg;
+    color: var(--text-primary);
+  }
+
+  /* Body Text */
+  .font-body-lg {
+    @apply font-montserrat font-normal text-base md:text-lg leading-relaxed;
+    color: var(--text-secondary);
+  }
+
+  .font-body {
+    @apply font-montserrat font-normal text-base leading-relaxed;
+    color: var(--text-primary);
+  }
+
+  .font-body-sm {
+    @apply font-montserrat font-normal text-sm leading-relaxed;
+    color: var(--text-secondary);
+  }
+
+  .font-body-xs {
+    @apply font-montserrat font-normal text-xs;
+    color: var(--text-muted);
+  }
+
+  /* UI Elements */
+  .font-nav {
+    @apply font-montserrat font-medium text-xs lg:text-sm;
+  }
+
+  .font-btn {
+    @apply font-montserrat font-semibold text-sm;
+  }
+
+  .font-btn-sm {
+    @apply font-montserrat font-semibold text-[10px] xl:text-xs;
+  }
 }

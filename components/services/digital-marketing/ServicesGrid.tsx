@@ -39,10 +39,10 @@ export default function ServicesGrid() {
 
                             {/* Title & Description */}
                             <div className="self-stretch flex flex-col gap-2">
-                                <h3 className="text-xl font-medium font-montserrat text-text-light group-hover:text-white transition-colors">
+                                <h3 className="font-h5 group-hover:text-white transition-colors">
                                     {service.title}
                                 </h3>
-                                <p className="text-sm font-normal font-montserrat text-text-light group-hover:text-white transition-colors line-clamp-3">
+                                <p className="font-body-sm group-hover:text-white transition-colors line-clamp-3">
                                     {service.heroDescription}
                                 </p>
                             </div>
@@ -58,7 +58,7 @@ export default function ServicesGrid() {
                                                 <rect x="3" y="3" width="18" height="18" rx="2" className="fill-violet-400 opacity-30 group-hover:fill-white group-hover:opacity-30 transition-all" />
                                                 <path d="M9 12L11 14L15 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-violet-600 group-hover:text-white transition-colors" />
                                             </svg>
-                                            <div className="flex-1 text-text-light group-hover:text-white text-sm font-normal font-montserrat transition-colors">
+                                            <div className="flex-1 group-hover:text-white font-body-sm transition-colors">
                                                 {feature}
                                             </div>
                                         </div>
@@ -71,7 +71,7 @@ export default function ServicesGrid() {
                                     <div
                                         className="w-full px-6 sm:px-8 py-3 sm:py-4 bg-violet-600 group-hover:bg-white rounded-lg flex justify-center items-center gap-2.5 transition-colors"
                                     >
-                                        <span className="text-gray-100 group-hover:text-violet-600 text-base font-medium font-montserrat transition-colors">
+                                        <span className="text-gray-100 group-hover:text-violet-600 font-btn transition-colors">
                                             Lihat Detail
                                         </span>
                                         {/* Arrow Icon */}

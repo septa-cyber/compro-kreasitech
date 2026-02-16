@@ -59,7 +59,7 @@ export default function BlogPostPage() {
 
     if (loading) {
         return (
-            <div className="bg-background-light text-gray-900 font-sans min-h-screen flex items-center justify-center">
+            <div className="flex items-center justify-center min-h-screen">
                 <Navbar />
                 <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-violet-600 mt-20"></div>
             </div>
@@ -71,15 +71,15 @@ export default function BlogPostPage() {
             <div className="bg-background-light text-gray-900 font-sans transition-colors duration-300 antialiased min-h-screen">
                 <Navbar />
                 <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
-                    <h1 className="text-[40px] sm:text-5xl lg:text-7xl font-medium font-montserrat leading-tight max-w-6xl mx-auto mb-8 text-text-light">
+                    <h1 className="font-h1 max-w-6xl mx-auto mb-8">
                         Artikel Tidak Ditemukan
                     </h1>
-                    <p className="text-gray-500 font-montserrat mb-8">
+                    <p className="font-body text-gray-500 mb-8">
                         Maaf, artikel yang Anda cari tidak tersedia.
                     </p>
                     <Link
                         href="/blog"
-                        className="px-6 py-3 bg-violet-600 hover:bg-violet-700 text-white rounded-lg font-medium font-montserrat transition-colors"
+                        className="px-6 py-3 bg-violet-600 hover:bg-violet-700 text-white rounded-lg font-btn transition-colors"
                     >
                         Kembali ke Blog
                     </Link>
@@ -91,7 +91,7 @@ export default function BlogPostPage() {
     }
 
     return (
-        <div className="bg-background-light text-gray-900 font-sans transition-colors duration-300 antialiased overflow-x-hidden">
+        <div className="transition-colors duration-300 antialiased overflow-x-hidden">
             <Navbar />
             <ArticleHeader post={post} />
             <ArticleContent post={post} />

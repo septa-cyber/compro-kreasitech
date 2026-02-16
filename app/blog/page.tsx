@@ -73,14 +73,14 @@ export default function BlogPage() {
 
     if (loading) {
         return (
-            <div className="bg-background-light text-gray-900 font-sans min-h-screen flex items-center justify-center">
+            <div className="flex items-center justify-center min-h-screen">
                 <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-violet-600"></div>
             </div>
         );
     }
 
     return (
-        <div className="bg-background-light text-gray-900 font-sans transition-colors duration-300 antialiased overflow-x-hidden">
+        <div className="transition-colors duration-300 antialiased overflow-x-hidden">
             <Navbar />
 
             {featuredPost && <BlogHero featuredPost={featuredPost} />}

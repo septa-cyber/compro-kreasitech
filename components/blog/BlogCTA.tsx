@@ -16,10 +16,10 @@ export default function BlogCTA() {
                 </div>
                 <div className="w-full lg:w-1/2 flex flex-col justify-start items-center lg:items-start gap-8">
                     <div className="w-full flex flex-col justify-start items-center lg:items-start gap-8 text-center lg:text-left">
-                        <h2 className="text-3xl sm:text-4xl font-medium font-montserrat text-text-light leading-tight">
+                        <h2 className="font-h2">
                             Masih Haus Ilmu?
                         </h2>
-                        <p className="text-sm sm:text-base font-normal font-montserrat text-text-light-muted">
+                        <p className="font-body text-text-light-muted">
                             Temukan insight menarik seputar teknologi dan digital business untuk membantu keputusan bisnis Anda.
                         </p>
                     </div>

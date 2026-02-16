@@ -18,15 +18,15 @@ export default function HiTalentCTA() {
                 </div>
                 <div className="w-full lg:w-1/2 flex flex-col justify-start items-center lg:items-start gap-8">
                     <div className="w-full flex flex-col justify-start items-center lg:items-start gap-8 text-center lg:text-left">
-                        <h2 className="text-3xl sm:text-4xl font-medium font-montserrat text-white leading-tight">
+                        <h2 className="font-h2 !text-white">
                             Kelola Tim Jadi Lebih Mudah dengan HiTalent
                         </h2>
-                        <p className="text-sm sm:text-base font-normal font-montserrat text-white/80">
+                        <p className="font-body !text-white/80">
                             Lihat langsung bagaimana platform kami membantu HR dan team leader bekerja lebih efisien.
                         </p>
                     </div>
                     <Link href="/contact" className="px-8 py-4 bg-white rounded-lg inline-flex justify-center items-center gap-2.5 hover:bg-gray-100 transition-colors">
-                        <span className="text-violet-800 text-base font-medium font-montserrat">Coba HiTalent</span>
+                        <span className="font-btn !text-violet-800">Coba HiTalent</span>
                     </Link>
                 </div>
             </div>

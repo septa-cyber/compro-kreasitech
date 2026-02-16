@@ -30,7 +30,7 @@ export default function TaaSEngagementModel() {
             <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex flex-col items-center gap-24">
                     <div className="w-full max-w-[784px] flex flex-col items-center gap-8 text-center">
-                        <h2 className="text-3xl md:text-4xl font-medium font-montserrat text-text-light">
+                        <h2 className="font-h2">
                             Talent Engagement Model
                         </h2>
                     </div>
@@ -40,7 +40,7 @@ export default function TaaSEngagementModel() {
                             return (
                                 <div
                                     key={index}
-                                    className="w-full md:w-1/2 px-8 pt-8 pb-12 bg-white outline outline-[0.5px] outline-offset-[-0.25px] outline-gray-200 inline-flex flex-col justify-start items-start gap-6 hover:bg-violet-800 transition-colors duration-300 group"
+                                    className="w-full md:w-1/2 px-8 pt-8 pb-12 bg-white outline outline-[0.5px] outline-offset-[-0.25px] outline-gray-200 inline-flex flex-col justify-start items-center text-center gap-6 hover:bg-violet-800 transition-colors duration-300 group"
                                 >
                                     <div className="w-14 h-14 flex-shrink-0 relative flex items-center justify-center rounded-2xl bg-violet-50 group-hover:bg-white/10 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 shadow-sm">
                                         <Image
@@ -51,10 +51,10 @@ export default function TaaSEngagementModel() {
                                             className="w-10 h-10 object-contain transition-all duration-300"
                                         />
                                     </div>
-                                    <h3 className="self-stretch text-text-light group-hover:text-white text-xl font-medium font-montserrat leading-tight transition-colors duration-300">
+                                    <h3 className="self-stretch font-h4 text-text-light group-hover:text-white transition-colors duration-300">
                                         {model.title}
                                     </h3>
-                                    <p className="self-stretch text-text-light group-hover:text-white text-sm font-normal font-montserrat leading-relaxed transition-colors duration-300">
+                                    <p className="self-stretch font-body-sm text-text-light group-hover:text-white transition-colors duration-300">
                                         {model.description}
                                     </p>
                                 </div>

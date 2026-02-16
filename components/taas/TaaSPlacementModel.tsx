@@ -24,10 +24,10 @@ export default function TaaSPlacementModel() {
         <section className="py-24 bg-violet-800" data-theme="dark">
             <div className="flex flex-col items-center gap-24">
                 <div className="w-full max-w-[784px] flex flex-col items-center gap-8 px-4 text-center">
-                    <h2 className="text-3xl md:text-4xl font-medium font-montserrat text-white">
+                    <h2 className="font-h1 !text-white">
                         Talent Placement Model
                     </h2>
-                    <p className="max-w-[700px] text-base font-normal font-montserrat text-white/80">
+                    <p className="max-w-[700px] font-body-lg !text-white/80">
                         Model penempatan talent yang dirancang untuk menyesuaikan kebutuhan perusahaan dengan kompetensi talenta, baik melalui penempatan onsite, remote, maupun hybrid, guna memastikan kinerja yang optimal dan efisien.
                     </p>
                 </div>
@@ -48,10 +48,10 @@ export default function TaaSPlacementModel() {
                                         className="w-10 h-10 object-contain transition-all duration-300"
                                     />
                                 </div>
-                                <h3 className="self-stretch text-white group-hover:text-gray-900 text-xl font-medium font-montserrat leading-tight transition-colors duration-300">
+                                <h3 className="self-stretch font-h4 text-white group-hover:!text-gray-900 transition-colors duration-300">
                                     {model.title}
                                 </h3>
-                                <p className="self-stretch text-white group-hover:text-gray-900 text-sm font-normal font-montserrat leading-relaxed transition-colors duration-300">
+                                <p className="self-stretch font-body-sm text-white group-hover:!text-gray-900 transition-colors duration-300">
                                     {model.description}
                                 </p>
                             </div>

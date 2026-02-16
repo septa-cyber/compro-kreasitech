@@ -29,7 +29,7 @@ export default function TeamSection() {
         return (
             <section className="py-24 bg-background-light">
                 <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h2 className="text-2xl md:text-4xl font-medium font-montserrat text-text-light mb-10">Tim KreasiTech</h2>
+                    <h2 className="font-h2 mb-10">Tim KreasiTech</h2>
                     <div className="text-gray-500">Loading...</div>
                 </div>
             </section>
@@ -51,10 +51,10 @@ export default function TeamSection() {
                                 />
                                 {/* Overlay with name/role - visible by default, hidden on hover */}
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-100 group-hover:opacity-0 transition-opacity duration-300 flex flex-col items-center justify-end text-center p-4">
-                                    <h3 className="text-white font-semibold text-sm md:text-lg leading-tight font-montserrat mb-1">
+                                    <h3 className="font-h5 leading-tight mb-1 !text-white">
                                         {member.name}
                                     </h3>
-                                    <p className="text-gray-200 text-[10px] md:text-xs font-medium font-montserrat">
+                                    <p className="font-body-xs font-medium !text-gray-200">
                                         {member.role}
                                     </p>
                                 </div>

@@ -2,59 +2,13 @@
 
 import { useState } from 'react';
 
+import { Testimonial } from '@/lib/types';
+import testimonials from '@/lib/data/testimonials.json';
+
 export default function PortfolioTestimonials() {
     const [isTestimonialHovered, setIsTestimonialHovered] = useState(false);
 
-    const testimonialItems = [
-        {
-            id: 1,
-            name: "Tina Rahayu",
-            role: "Marketing Specialist",
-            company: "PT Marketing Pro",
-            avatar: "https://placehold.co/48x48/ec4899/1f2937",
-            quote: "Tina's marketing strategies are exceptionally creative, highly innovative, and meticulously data-driven, consistently capturing audience attention and driving impressive campaign results that not only exceed targets but also maximize ROI, setting new standards for marketing effectiveness."
-        },
-        {
-            id: 2,
-            name: "Joko Lestari",
-            role: "QA Engineer",
-            company: "PT Quality Assurance",
-            avatar: "https://placehold.co/48x48/fbbf24/1f2937",
-            quote: "Joko's rigorous testing protocols guarantee the superior quality and reliability of our products, proactively preventing potential problems and ensuring a seamless user experience right from initial release, significantly enhancing customer loyalty and fostering long-term relationships."
-        },
-        {
-            id: 3,
-            name: "Siti Aminah",
-            role: "Product Manager",
-            company: "PT Digital Solutions",
-            avatar: "https://placehold.co/48x48/3b82f6/1f2937",
-            quote: "Siti's leadership is truly transformative, as she champions collaboration, sparks innovation, and drives substantial growth. Her team consistently surpasses ambitious goals, achieving remarkable success and establishing new benchmarks for excellence throughout the entire organization, inspiring others to reach higher."
-        },
-        {
-            id: 4,
-            name: "Budi Santoso",
-            role: "UX Designer",
-            company: "PT Creative Minds",
-            avatar: "https://placehold.co/48x48/f97316/1f2937",
-            quote: "Budi's UX designs are widely celebrated for their intuitive interfaces and exceptionally delightful user journeys, significantly boosting user satisfaction and engagement metrics. His thoughtful designs greatly enhance the overall user experience, making every interaction seamless and enjoyable for all users."
-        },
-        {
-            id: 5,
-            name: "Rina Dewi",
-            role: "Data Analyst",
-            company: "PT Analytics Hub",
-            avatar: "https://placehold.co/48x48/ec4899/1f2937",
-            quote: "Rina's profound data insights are instrumental in shaping our strategic direction and future initiatives. Her detailed analyses provide unparalleled clarity and foresight, enabling well-informed decisions that drive significant growth and improve efficiency across all departments, optimizing resource allocation."
-        },
-        {
-            id: 6,
-            name: "Eko Setiawan",
-            role: "DevOps Engineer",
-            company: "PT Tech Infrastructure",
-            avatar: "https://placehold.co/48x48/10b981/1f2937",
-            quote: "Eko's DevOps expertise ensures our systems run smoothly and efficiently. His automation solutions have dramatically reduced deployment times while improving reliability, enabling our team to focus on innovation rather than maintenance."
-        },
-    ];
+    const testimonialItems = testimonials as Testimonial[];
 
     return (
         <section className="py-16 md:py-24 bg-gray-100 overflow-hidden">
@@ -97,7 +51,7 @@ export default function PortfolioTestimonials() {
                                         </div>
                                     </div>
                                     <div className="self-stretch justify-start text-text-light group-hover:text-white text-base md:text-xl font-light font-montserrat transition-colors duration-300">
-                                        "{item.quote}"
+                                        "{item.quote || item.content}"
                                     </div>
                                     <div className="self-stretch justify-start text-gray-400 group-hover:text-white text-xs font-normal font-montserrat mt-auto transition-colors duration-300">
                                         {item.company}

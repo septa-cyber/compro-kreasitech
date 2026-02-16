@@ -95,10 +95,10 @@ export default function CompanyHero() {
     return (
         <section className="relative pt-10 lg:pb-20 md:pb-16 sm:pb-12 overflow-hidden bg-[#F4F4F7]">
             <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-                <h1 className="text-[40px] sm:text-5xl lg:text-7xl font-medium font-montserrat leading-tight max-w-6xl mx-auto mb-8 text-text-light">
+                <h1 className="font-h1 max-w-6xl mx-auto mb-8">
                     Di Mana <span className="font-semibold text-violet-600">Talenta</span> Bertemu <br className="hidden md:block" /> Teknologi
                 </h1>
-                <p className="max-w-3xl mx-auto text-sm sm:text-lg text-gray-500 font-montserrat mb-8">
+                <p className="font-body-lg max-w-3xl mx-auto mb-8">
                     Di Kreasitech, kami berdedikasi untuk merevolusi industri teknologi dengan menghubungkan talenta luar biasa dengan peluang terdepan. Misi kami adalah memberdayakan individu dan organisasi untuk berkembang di era digital.
                 </p>
 

@@ -48,7 +48,8 @@ export interface Testimonial {
     role: string;
     company?: string;
     avatar?: string;
-    content: string; // Changed from quote
+    content?: string;
+    quote?: string; // Matching JSON data
     rating?: number;
     status: 'visible' | 'hidden';
 }

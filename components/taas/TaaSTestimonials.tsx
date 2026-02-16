@@ -2,64 +2,25 @@
 
 import { useState } from 'react';
 
-export default function TaaSTestimonials() {
+import { Testimonial } from '@/lib/types';
+import testimonialsData from '@/lib/data/testimonials.json';
+
+interface TaaSTestimonialsProps {
+    initialData?: Testimonial[];
+}
+
+export default function TaaSTestimonials({ initialData = [] }: TaaSTestimonialsProps) {
     const [isTestimonialHovered, setIsTestimonialHovered] = useState(false);
 
-    const testimonialItems = [
-        {
-            id: 1,
-            name: "Tina Rahayu",
-            role: "Marketing Specialist",
-            company: "PT Marketing Pro",
-            avatar: "https://placehold.co/48x48/ec4899/1f2937",
-            quote: "Strategi pemasaran Tina sangat kreatif, inovatif, dan berbasis data, secara konsisten menarik perhatian audiens dan menghasilkan hasil kampanye yang mengesankan yang tidak hanya melampaui target tetapi juga memaksimalkan ROI, menetapkan standar baru untuk efektivitas pemasaran."
-        },
-        {
-            id: 2,
-            name: "Joko Lestari",
-            role: "QA Engineer",
-            company: "PT Quality Assurance",
-            avatar: "https://placehold.co/48x48/fbbf24/1f2937",
-            quote: "Protokol pengujian ketat Joko menjamin kualitas dan keandalan produk kami yang unggul, secara proaktif mencegah masalah potensial dan memastikan pengalaman pengguna yang mulus sejak rilis awal, secara signifikan meningkatkan loyalitas pelanggan dan membina hubungan jangka panjang."
-        },
-        {
-            id: 3,
-            name: "Siti Aminah",
-            role: "Product Manager",
-            company: "PT Digital Solutions",
-            avatar: "https://placehold.co/48x48/3b82f6/1f2937",
-            quote: "Kepemimpinan Siti benar-benar transformatif, karena dia memperjuangkan kolaborasi, memicu inovasi, dan mendorong pertumbuhan substansial. Timnya secara konsisten melampaui tujuan ambisius, mencapai kesuksesan luar biasa dan menetapkan tolok ukur baru untuk keunggulan di seluruh organisasi."
-        },
-        {
-            id: 4,
-            name: "Budi Santoso",
-            role: "UX Designer",
-            company: "PT Creative Minds",
-            avatar: "https://placehold.co/48x48/f97316/1f2937",
-            quote: "Desain UX Budi dikenal luas karena antarmuka intuitif dan perjalanan pengguna yang sangat menyenangkan, secara signifikan meningkatkan kepuasan dan metrik keterlibatan pengguna. Desainnya yang penuh pertimbangan sangat meningkatkan pengalaman pengguna secara keseluruhan."
-        },
-        {
-            id: 5,
-            name: "Rina Dewi",
-            role: "Data Analyst",
-            company: "PT Analytics Hub",
-            avatar: "https://placehold.co/48x48/ec4899/1f2937",
-            quote: "Wawasan data mendalam Rina sangat penting dalam membentuk arah strategis dan inisiatif masa depan kami. Analisisnya yang detail memberikan kejelasan dan pandangan ke depan yang tak tertandingi, memungkinkan keputusan yang tepat yang mendorong pertumbuhan signifikan."
-        },
-        {
-            id: 6,
-            name: "Eko Setiawan",
-            role: "DevOps Engineer",
-            company: "PT Tech Infrastructure",
-            avatar: "https://placehold.co/48x48/10b981/1f2937",
-            quote: "Keahlian DevOps Eko memastikan sistem kami berjalan dengan lancar dan efisien. Solusi otomatisasinya telah secara dramatis mengurangi waktu deployment sambil meningkatkan keandalan, memungkinkan tim kami fokus pada inovasi daripada pemeliharaan."
-        },
-    ];
+    // Use initialData if provided, otherwise fallback to static JSON (optional, or empty)
+    // Actually better to prioritize initialData. If empty, maybe static?
+    // User wants DB data. So if initialData is passed, use it.
+    const testimonialItems = (initialData.length > 0 ? initialData : testimonialsData) as Testimonial[];
 
     return (
         <section className="py-16 md:py-24 bg-gray-100 overflow-hidden">
             <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 mb-8 md:mb-24">
-                <h2 className="text-xl md:text-4xl font-medium font-montserrat text-text-light">
+                <h2 className="font-h2">
                     Lihat mengapa pelanggan <br /> senang menggunakan KreasiTech
                 </h2>
             </div>
@@ -83,18 +44,18 @@ export default function TaaSTestimonials() {
                                 <div className="self-stretch inline-flex justify-start items-center gap-3 md:gap-6">
                                     <img className="w-12 h-12" src={item.avatar} alt={item.name} />
                                     <div className="flex-1 inline-flex flex-col justify-start items-start gap-2">
-                                        <div className="self-stretch justify-start text-text-light group-hover:text-white text-base md:text-xl font-medium font-montserrat transition-colors duration-300">
+                                        <div className="self-stretch justify-start font-h5 group-hover:text-white transition-colors duration-300">
                                             {item.name}
                                         </div>
-                                        <div className="self-stretch justify-start text-text-light group-hover:text-white text-xs font-normal font-montserrat transition-colors duration-300">
+                                        <div className="self-stretch justify-start font-body-xs group-hover:text-white transition-colors duration-300">
                                             {item.role}
                                         </div>
                                     </div>
                                 </div>
-                                <div className="self-stretch justify-start text-text-light group-hover:text-white text-base md:text-xl font-light font-montserrat transition-colors duration-300">
-                                    "{item.quote}"
+                                <div className="self-stretch justify-start font-body group-hover:text-white transition-colors duration-300">
+                                    "{item.quote || item.content}"
                                 </div>
-                                <div className="self-stretch justify-start text-gray-400 group-hover:text-white text-xs font-normal font-montserrat mt-auto transition-colors duration-300">
+                                <div className="self-stretch justify-start font-body-xs group-hover:text-white mt-auto transition-colors duration-300">
                                     {item.company}
                                 </div>
                             </div>
@@ -114,18 +75,18 @@ export default function TaaSTestimonials() {
                                 <div className="self-stretch inline-flex justify-start items-center gap-3 md:gap-6">
                                     <img className="w-12 h-12" src={item.avatar} alt={item.name} />
                                     <div className="flex-1 inline-flex flex-col justify-start items-start gap-2">
-                                        <div className="self-stretch justify-start text-text-light group-hover:text-white text-base md:text-xl font-medium font-montserrat transition-colors duration-300">
+                                        <div className="self-stretch justify-start font-h5 group-hover:text-white transition-colors duration-300">
                                             {item.name}
                                         </div>
-                                        <div className="self-stretch justify-start text-text-light group-hover:text-white text-xs font-normal font-montserrat transition-colors duration-300">
+                                        <div className="self-stretch justify-start font-body-xs group-hover:text-white transition-colors duration-300">
                                             {item.role}
                                         </div>
                                     </div>
                                 </div>
-                                <div className="self-stretch justify-start text-text-light group-hover:text-white text-base md:text-xl font-light font-montserrat transition-colors duration-300">
-                                    "{item.quote}"
+                                <div className="self-stretch justify-start font-body group-hover:text-white transition-colors duration-300">
+                                    "{item.quote || item.content}"
                                 </div>
-                                <div className="self-stretch justify-start text-gray-400 group-hover:text-white text-xs font-normal font-montserrat mt-auto transition-colors duration-300">
+                                <div className="self-stretch justify-start font-body-xs group-hover:text-white mt-auto transition-colors duration-300">
                                     {item.company}
                                 </div>
                             </div>

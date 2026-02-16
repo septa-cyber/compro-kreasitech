@@ -129,10 +129,10 @@ export default function ContactPage() {
             {/* Hero Section */}
             <section className="pt-12 pb-8 bg-[#F4F4F7]">
                 <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h1 className="text-4xl sm:text-5xl lg:text-6xl font-medium font-montserrat leading-tight text-text-light mb-6">
+                    <h1 className="font-h1 mb-6">
                         Kontak <span className="text-violet-600 font-semibold">Kami</span>
                     </h1>
-                    <p className="max-w-2xl mx-auto text-base sm:text-lg text-gray-500 font-montserrat">
+                    <p className="max-w-2xl mx-auto font-body-lg">
                         Ada pertanyaan, ide kolaborasi, atau butuh bantuan? Isi form di bawah dan tim kami akan segera menghubungi Anda.
                     </p>
                 </div>
@@ -146,7 +146,7 @@ export default function ContactPage() {
                         {/* Contact Form */}
                         <div className="lg:col-span-3">
                             <div className="bg-white rounded-2xl p-8 shadow-sm">
-                                <h2 className="text-xl font-semibold font-montserrat text-text-light mb-6">
+                                <h2 className="font-h4 mb-6">
                                     Kirim Pesan
                                 </h2>
 
@@ -157,7 +157,7 @@ export default function ContactPage() {
                                             <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                                             </svg>
-                                            <p className="text-green-700 font-montserrat text-sm">
+                                            <p className="font-body-sm text-green-700">
                                                 Pesan berhasil dikirim! Kami akan segera menghubungi Anda.
                                             </p>
                                         </div>
@@ -171,7 +171,7 @@ export default function ContactPage() {
                                             <svg className="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                                             </svg>
-                                            <p className="text-red-700 font-montserrat text-sm">
+                                            <p className="font-body-sm text-red-700">
                                                 Gagal mengirim pesan. Silakan coba lagi atau hubungi via WhatsApp.
                                             </p>
                                         </div>
@@ -183,7 +183,7 @@ export default function ContactPage() {
                                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                                         {/* Name */}
                                         <div>
-                                            <label htmlFor="name" className="block text-sm font-medium font-montserrat text-gray-700 mb-2">
+                                            <label htmlFor="name" className="block font-body-sm font-medium text-gray-700 mb-2">
                                                 Nama Lengkap <span className="text-red-500">*</span>
                                             </label>
                                             <input
@@ -193,16 +193,16 @@ export default function ContactPage() {
                                                 value={formData.name}
                                                 onChange={handleChange}
                                                 placeholder="Masukkan nama Anda"
-                                                className={`w-full px-4 py-3 rounded-xl border ${errors.name ? 'border-red-400 focus:ring-red-500' : 'border-gray-200 focus:ring-violet-500'} focus:outline-none focus:ring-2 focus:border-transparent font-montserrat text-sm transition-all`}
+                                                className={`w-full px-4 py-3 rounded-xl border ${errors.name ? 'border-red-400 focus:ring-red-500' : 'border-gray-200 focus:ring-violet-500'} focus:outline-none focus:ring-2 focus:border-transparent font-body-sm transition-all`}
                                             />
                                             {errors.name && (
-                                                <p className="mt-1 text-xs text-red-500 font-montserrat">{errors.name}</p>
+                                                <p className="mt-1 font-body-xs text-red-500">{errors.name}</p>
                                             )}
                                         </div>
 
                                         {/* Email */}
                                         <div>
-                                            <label htmlFor="email" className="block text-sm font-medium font-montserrat text-gray-700 mb-2">
+                                            <label htmlFor="email" className="block font-body-sm font-medium text-gray-700 mb-2">
                                                 Email <span className="text-red-500">*</span>
                                             </label>
                                             <input
@@ -212,10 +212,10 @@ export default function ContactPage() {
                                                 value={formData.email}
                                                 onChange={handleChange}
                                                 placeholder="email@contoh.com"
-                                                className={`w-full px-4 py-3 rounded-xl border ${errors.email ? 'border-red-400 focus:ring-red-500' : 'border-gray-200 focus:ring-violet-500'} focus:outline-none focus:ring-2 focus:border-transparent font-montserrat text-sm transition-all`}
+                                                className={`w-full px-4 py-3 rounded-xl border ${errors.email ? 'border-red-400 focus:ring-red-500' : 'border-gray-200 focus:ring-violet-500'} focus:outline-none focus:ring-2 focus:border-transparent font-body-sm transition-all`}
                                             />
                                             {errors.email && (
-                                                <p className="mt-1 text-xs text-red-500 font-montserrat">{errors.email}</p>
+                                                <p className="mt-1 font-body-xs text-red-500">{errors.email}</p>
                                             )}
                                         </div>
                                     </div>
@@ -224,7 +224,7 @@ export default function ContactPage() {
                                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                                         {/* Subject */}
                                         <div>
-                                            <label htmlFor="subject" className="block text-sm font-medium font-montserrat text-gray-700 mb-2">
+                                            <label htmlFor="subject" className="block font-body-sm font-medium text-gray-700 mb-2">
                                                 Subject <span className="text-red-500">*</span>
                                             </label>
                                             <input
@@ -234,16 +234,16 @@ export default function ContactPage() {
                                                 value={formData.subject}
                                                 onChange={handleChange}
                                                 placeholder="Topik pesan Anda"
-                                                className={`w-full px-4 py-3 rounded-xl border ${errors.subject ? 'border-red-400 focus:ring-red-500' : 'border-gray-200 focus:ring-violet-500'} focus:outline-none focus:ring-2 focus:border-transparent font-montserrat text-sm transition-all`}
+                                                className={`w-full px-4 py-3 rounded-xl border ${errors.subject ? 'border-red-400 focus:ring-red-500' : 'border-gray-200 focus:ring-violet-500'} focus:outline-none focus:ring-2 focus:border-transparent font-body-sm transition-all`}
                                             />
                                             {errors.subject && (
-                                                <p className="mt-1 text-xs text-red-500 font-montserrat">{errors.subject}</p>
+                                                <p className="mt-1 font-body-xs text-red-500">{errors.subject}</p>
                                             )}
                                         </div>
 
                                         {/* Purpose Dropdown */}
                                         <div>
-                                            <label htmlFor="purpose" className="block text-sm font-medium font-montserrat text-gray-700 mb-2">
+                                            <label htmlFor="purpose" className="block font-body-sm font-medium text-gray-700 mb-2">
                                                 Tujuan Pesan <span className="text-red-500">*</span>
                                             </label>
                                             <select
@@ -251,7 +251,7 @@ export default function ContactPage() {
                                                 name="purpose"
                                                 value={formData.purpose}
                                                 onChange={handleChange}
-                                                className={`w-full px-4 py-3 rounded-xl border ${errors.purpose ? 'border-red-400 focus:ring-red-500' : 'border-gray-200 focus:ring-violet-500'} focus:outline-none focus:ring-2 focus:border-transparent font-montserrat text-sm transition-all bg-white appearance-none cursor-pointer`}
+                                                className={`w-full px-4 py-3 rounded-xl border ${errors.purpose ? 'border-red-400 focus:ring-red-500' : 'border-gray-200 focus:ring-violet-500'} focus:outline-none focus:ring-2 focus:border-transparent font-body-sm transition-all bg-white appearance-none cursor-pointer`}
                                                 style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E")`, backgroundRepeat: 'no-repeat', backgroundPosition: 'right 12px center', backgroundSize: '20px' }}
                                             >
                                                 {purposeOptions.map(option => (
@@ -261,14 +261,14 @@ export default function ContactPage() {
                                                 ))}
                                             </select>
                                             {errors.purpose && (
-                                                <p className="mt-1 text-xs text-red-500 font-montserrat">{errors.purpose}</p>
+                                                <p className="mt-1 font-body-xs text-red-500">{errors.purpose}</p>
                                             )}
                                         </div>
                                     </div>
 
                                     {/* Message */}
                                     <div>
-                                        <label htmlFor="message" className="block text-sm font-medium font-montserrat text-gray-700 mb-2">
+                                        <label htmlFor="message" className="block font-body-sm font-medium text-gray-700 mb-2">
                                             Isi Pesan <span className="text-red-500">*</span>
                                         </label>
                                         <textarea
@@ -278,10 +278,10 @@ export default function ContactPage() {
                                             onChange={handleChange}
                                             rows={5}
                                             placeholder="Tulis pesan Anda di sini..."
-                                            className={`w-full px-4 py-3 rounded-xl border ${errors.message ? 'border-red-400 focus:ring-red-500' : 'border-gray-200 focus:ring-violet-500'} focus:outline-none focus:ring-2 focus:border-transparent font-montserrat text-sm transition-all resize-none`}
+                                            className={`w-full px-4 py-3 rounded-xl border ${errors.message ? 'border-red-400 focus:ring-red-500' : 'border-gray-200 focus:ring-violet-500'} focus:outline-none focus:ring-2 focus:border-transparent font-body-sm transition-all resize-none`}
                                         />
                                         {errors.message && (
-                                            <p className="mt-1 text-xs text-red-500 font-montserrat">{errors.message}</p>
+                                            <p className="mt-1 font-body-xs text-red-500">{errors.message}</p>
                                         )}
                                     </div>
 
@@ -297,14 +297,14 @@ export default function ContactPage() {
                                                     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                                                     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                                                 </svg>
-                                                <span className="text-white text-base font-medium font-montserrat">Mengirim...</span>
+                                                <span className="font-btn text-white">Mengirim...</span>
                                             </>
                                         ) : (
                                             <>
                                                 <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                                                 </svg>
-                                                <span className="text-white text-base font-medium font-montserrat">Kirim Pesan</span>
+                                                <span className="font-btn text-white">Kirim Pesan</span>
                                             </>
                                         )}
                                     </button>
@@ -316,7 +316,7 @@ export default function ContactPage() {
                         <div className="lg:col-span-2 space-y-6">
                             {/* Quick Contact */}
                             <div className="bg-white rounded-2xl p-8 shadow-sm">
-                                <h3 className="text-xl font-semibold font-montserrat text-text-light mb-6">
+                                <h3 className="font-h4 mb-6">
                                     Hubungi Langsung
                                 </h3>
                                 <div className="space-y-5">
@@ -333,8 +333,8 @@ export default function ContactPage() {
                                             </svg>
                                         </div>
                                         <div>
-                                            <p className="text-sm text-gray-500 font-montserrat">WhatsApp</p>
-                                            <p className="text-base font-medium text-text-light font-montserrat">+62 888-8088-877</p>
+                                            <p className="font-body-sm text-gray-500">WhatsApp</p>
+                                            <p className="font-body font-medium text-text-light">+62 888-8088-877</p>
                                         </div>
                                     </a>
 
@@ -349,8 +349,8 @@ export default function ContactPage() {
                                             </svg>
                                         </div>
                                         <div>
-                                            <p className="text-sm text-gray-500 font-montserrat">Email</p>
-                                            <p className="text-base font-medium text-text-light font-montserrat">marketing@kreasi.tech</p>
+                                            <p className="font-body-sm text-gray-500">Email</p>
+                                            <p className="font-body font-medium text-text-light">marketing@kreasi.tech</p>
                                         </div>
                                     </a>
 
@@ -368,8 +368,8 @@ export default function ContactPage() {
                                             </svg>
                                         </div>
                                         <div>
-                                            <p className="text-sm text-gray-500 font-montserrat">Lokasi</p>
-                                            <p className="text-base font-medium text-text-light font-montserrat leading-tight">Sinduadi, Mlati, Sleman, DIY</p>
+                                            <p className="font-body-sm text-gray-500">Lokasi</p>
+                                            <p className="font-body font-medium text-text-light leading-tight">Sinduadi, Mlati, Sleman, DIY</p>
                                         </div>
                                     </a>
                                 </div>
@@ -377,27 +377,27 @@ export default function ContactPage() {
 
                             {/* Working Hours */}
                             <div className="bg-white rounded-2xl p-8 shadow-sm">
-                                <h3 className="text-xl font-semibold font-montserrat text-text-light mb-6">
+                                <h3 className="font-h4 mb-6">
                                     Jam Operasional
                                 </h3>
                                 <div className="space-y-3">
                                     <div className="flex justify-between items-center">
-                                        <span className="text-gray-500 font-montserrat text-sm">Senin - Jumat</span>
-                                        <span className="text-text-light font-medium font-montserrat text-sm">09:00 - 18:00 WIB</span>
+                                        <span className="font-body-sm text-gray-500">Senin - Jumat</span>
+                                        <span className="font-body-sm font-medium text-text-light">09:00 - 18:00 WIB</span>
                                     </div>
                                     <div className="flex justify-between items-center">
-                                        <span className="text-gray-500 font-montserrat text-sm">Sabtu - Minggu</span>
-                                        <span className="text-gray-400 font-medium font-montserrat text-sm">Tutup</span>
+                                        <span className="font-body-sm text-gray-500">Sabtu - Minggu</span>
+                                        <span className="font-body-sm font-medium text-gray-400">Tutup</span>
                                     </div>
                                 </div>
                             </div>
 
                             {/* Social Media */}
                             <div className="bg-violet-800 rounded-2xl p-8 shadow-sm">
-                                <h3 className="text-xl font-semibold font-montserrat text-white mb-4">
+                                <h3 className="font-h4 !text-white mb-4">
                                     Ikuti Kami
                                 </h3>
-                                <p className="text-white/70 font-montserrat text-sm mb-6">
+                                <p className="font-body-sm !text-white/70 mb-6">
                                     Dapatkan update terbaru seputar teknologi dan tips bisnis digital.
                                 </p>
                                 <div className="flex gap-3">

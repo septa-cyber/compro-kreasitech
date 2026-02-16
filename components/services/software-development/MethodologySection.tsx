@@ -8,10 +8,10 @@ export default function MethodologySection() {
 
                 {/* Header */}
                 <div className="max-w-[784px] flex flex-col items-center gap-8 text-center">
-                    <h2 className="text-4xl font-medium font-montserrat text-gray-900">
+                    <h2 className="font-h2">
                         Metode Pengembangan
                     </h2>
-                    <p className="text-base text-gray-500 font-montserrat">
+                    <p className="font-body text-gray-500">
                         Kami menyesuaikan metode pengembangan dengan kebutuhan bisnis Anda
                     </p>
                 </div>
@@ -21,10 +21,10 @@ export default function MethodologySection() {
 
                     {/* Agile Development Card */}
                     <div className="group flex-1 p-8 bg-white hover:bg-violet-800 outline outline-[0.50px] outline-offset-[-0.25px] outline-gray-200 hover:outline-violet-700 flex flex-col justify-start items-center gap-6 rounded-none min-h-[480px] transition-all duration-300">
-                        <h3 className="self-stretch text-gray-900 group-hover:text-white text-xl font-medium font-montserrat transition-colors duration-300">
+                        <h3 className="self-stretch font-h4 transition-colors duration-300">
                             Agile Development
                         </h3>
-                        <p className="self-stretch text-gray-500 group-hover:text-white/90 text-sm font-normal font-montserrat leading-relaxed transition-colors duration-300">
+                        <p className="self-stretch group-hover:!text-white font-body-sm transition-colors duration-300">
                             Kami menggunakan Agile, khususnya Scrum, untuk project IT yang butuh eksekusi cepat dan adaptasi tinggi. Pendekatan ini menjamin proses berkelanjutan dan penyampaian target yang efisien.
                         </p>
 
@@ -35,7 +35,7 @@ export default function MethodologySection() {
                                         <div className="relative w-6 h-6 flex items-center justify-center">
                                             <MdCheckCircle className="text-violet-600 group-hover:text-violet-300 text-xl transition-colors duration-300" />
                                         </div>
-                                        <span className="flex-1 text-gray-900 group-hover:text-white text-sm font-normal font-montserrat transition-colors duration-300">{item}</span>
+                                        <span className="flex-1 group-hover:!text-white font-body-sm transition-colors duration-300">{item}</span>
                                     </div>
                                 ))}
                             </div>
@@ -43,9 +43,9 @@ export default function MethodologySection() {
                             <div className="mt-8 p-4 bg-violet-50 group-hover:bg-violet-700 rounded-lg flex flex-col gap-4 transition-colors duration-300">
                                 <div className="inline-flex items-center gap-4">
                                     <MdLightbulb className="text-violet-600 group-hover:text-violet-300 text-xl transition-colors duration-300" />
-                                    <span className="text-gray-900 group-hover:text-white text-lg font-medium font-montserrat transition-colors duration-300">Cocok Untuk:</span>
+                                    <span className="group-hover:!text-white font-body-lg font-medium transition-colors duration-300">Cocok Untuk:</span>
                                 </div>
-                                <p className="text-gray-600 group-hover:text-white/90 text-sm font-normal font-montserrat transition-colors duration-300">
+                                <p className="group-hover:!text-white font-body-sm transition-colors duration-300">
                                     Pengembangan aplikasi tahap awal yang dinamis serta dapat menjawab terhadap kebutuhan pasar dengan cepat melalui fitur-fitur MVP.
                                 </p>
                             </div>
@@ -54,10 +54,10 @@ export default function MethodologySection() {
 
                     {/* Waterfall Development Card */}
                     <div className="group flex-1 p-8 bg-white hover:bg-violet-800 outline outline-[0.50px] outline-offset-[-0.25px] outline-gray-200 hover:outline-violet-700 flex flex-col justify-start items-center gap-6 rounded-none min-h-[480px] transition-all duration-300">
-                        <h3 className="self-stretch text-gray-900 group-hover:text-white text-xl font-medium font-montserrat transition-colors duration-300">
+                        <h3 className="self-stretch font-h4 transition-colors duration-300">
                             Waterfall Development
                         </h3>
-                        <p className="self-stretch text-gray-500 group-hover:text-white/90 text-sm font-normal font-montserrat leading-relaxed transition-colors duration-300">
+                        <p className="self-stretch group-hover:!text-white font-body-sm transition-colors duration-300">
                             Aplikasi dengan kebutuhan yang telah terdefinisi dengan jelas, timeline yang terencana, detail fitur dan sudah memiliki user yang akan menggunakan aplikasi tersebut dalam jangka panjang.
                         </p>
 
@@ -68,7 +68,7 @@ export default function MethodologySection() {
                                         <div className="relative w-6 h-6 flex items-center justify-center">
                                             <MdCheckCircle className="text-violet-600 group-hover:text-violet-300 text-xl transition-colors duration-300" />
                                         </div>
-                                        <span className="flex-1 text-gray-900 group-hover:text-white text-sm font-normal font-montserrat transition-colors duration-300">{item}</span>
+                                        <span className="flex-1 group-hover:!text-white font-body-sm transition-colors duration-300">{item}</span>
                                     </div>
                                 ))}
                             </div>
@@ -76,9 +76,9 @@ export default function MethodologySection() {
                             <div className="mt-8 p-4 bg-violet-50 group-hover:bg-violet-700 rounded-lg flex flex-col gap-4 transition-colors duration-300">
                                 <div className="inline-flex items-center gap-4">
                                     <MdLightbulb className="text-violet-600 group-hover:text-violet-300 text-xl transition-colors duration-300" />
-                                    <span className="text-gray-900 group-hover:text-white text-lg font-medium font-montserrat transition-colors duration-300">Cocok Untuk:</span>
+                                    <span className="group-hover:!text-white font-body-lg font-medium transition-colors duration-300">Cocok Untuk:</span>
                                 </div>
-                                <p className="text-gray-600 group-hover:text-white/90 text-sm font-normal font-montserrat transition-colors duration-300">
+                                <p className="group-hover:!text-white font-body-sm transition-colors duration-300">
                                     Pengembangan aplikasi untuk penyempurnaan fiturnya yang menyesuaikan kebutuhan user dengan milestone yang jelas dan development yang terencana.
                                 </p>
                             </div>

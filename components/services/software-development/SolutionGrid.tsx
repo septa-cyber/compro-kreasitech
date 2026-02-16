@@ -16,10 +16,10 @@ export default function Services() {
         <section id="solutions" className="py-24 bg-white">
             <div className="flex flex-col items-center gap-24">
                 <div className="w-full max-w-[784px] flex flex-col items-center gap-8 px-4 text-center">
-                    <h2 className="text-4xl font-medium font-montserrat text-text-light">
+                    <h2 className="font-h2">
                         Solusi Kami
                     </h2>
-                    <p className="max-w-[576px] text-base font-normal font-montserrat text-text-light-muted">
+                    <p className="font-body-lg max-w-[576px]">
                         Kami menyediakan solusi komprehensif, mulai dari perencanaan awal hingga implementasi akhir, memastikan proyek Anda ditangani dengan keahlian dan perhatian penuh.
                     </p>
                 </div>
@@ -30,7 +30,7 @@ export default function Services() {
                         return (
                             <div
                                 key={index}
-                                className="w-full md:w-1/2 lg:w-1/3 h-96 px-8 pt-8 pb-12 bg-white outline outline-[0.5px] outline-offset-[-0.25px] outline-gray-200 inline-flex flex-col justify-start items-start gap-6 hover:bg-violet-800 transition-colors duration-300 group"
+                                className="w-full md:w-1/2 lg:w-1/3 h-96 px-8 pt-8 pb-12 bg-white outline outline-[0.5px] outline-offset-[-0.25px] outline-gray-200 inline-flex flex-col justify-center items-center gap-6 hover:bg-violet-800 transition-colors duration-300 group text-center"
                             >
                                 <div className="w-14 h-14 relative flex items-center justify-center rounded-2xl bg-violet-50 group-hover:bg-white/10 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 shadow-sm">
                                     <Image
@@ -41,10 +41,10 @@ export default function Services() {
                                         className="w-10 h-10 object-contain transition-all duration-300"
                                     />
                                 </div>
-                                <h3 className="self-stretch text-text-light group-hover:text-white text-xl font-medium font-montserrat leading-tight transition-colors duration-300">
+                                <h3 className="font-h4 text-text-light group-hover:text-white transition-colors duration-300">
                                     {service.title}
                                 </h3>
-                                <p className="self-stretch text-text-light group-hover:text-white text-sm font-normal font-montserrat leading-relaxed transition-colors duration-300">
+                                <p className="font-body-sm text-text-light group-hover:text-white transition-colors duration-300">
                                     {service.heroDescription}
                                 </p>
                             </div>

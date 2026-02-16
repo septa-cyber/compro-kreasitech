@@ -6,7 +6,7 @@ export default function OurProduct() {
             <div className="flex flex-col items-center gap-24 px-4 w-full">
                 {/* Header */}
                 <div className="w-full max-w-[784px] text-center">
-                    <h2 className="text-2xl md:text-4xl font-medium font-montserrat text-white mb-10">
+                    <h2 className="font-h2 !text-white mb-10">
                         Produk Kami
                     </h2>
                 </div>
@@ -18,14 +18,14 @@ export default function OurProduct() {
                         <div className="text-xs font-normal font-montserrat text-white opacity-90">
                             13 Nov 2025
                         </div>
-                        <h3 className="text-3xl font-medium font-montserrat text-white">
+                        <h3 className="font-h3 !text-white">
                             HiTalent
                         </h3>
-                        <p className="text-base font-normal font-montserrat leading-relaxed text-white opacity-90">
-                            Solusi cerdas untuk mengelola sumber daya manusia secara efisien â€” mulai dari absensi hingga penggajian. Didukung oleh teknologi berbasis cloud yang menyederhanakan pengelolaan sekaligus meningkatkan produktivitas dan efisiensi perusahaan Anda.
+                        <p className="font-body !text-white/90 leading-relaxed">
+                            Solusi cerdas untuk mengelola sumber daya manusia secara efisien &mdash; mulai dari absensi hingga penggajian. Didukung oleh teknologi berbasis cloud yang menyederhanakan pengelolaan sekaligus meningkatkan produktivitas dan efisiensi perusahaan Anda.
                         </p>
                         <button className="px-8 py-4 bg-white rounded-lg inline-flex justify-center items-center gap-2.5 hover:bg-gray-100 transition-colors">
-                            <span className="text-violet-800 text-base font-medium font-montserrat">Lihat Detail</span>
+                            <span className="font-btn !text-violet-800">Lihat Detail</span>
                         </button>
                     </div>
 

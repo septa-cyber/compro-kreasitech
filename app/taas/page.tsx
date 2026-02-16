@@ -1,6 +1,4 @@
-﻿"use client";
-
-import React from "react";
+﻿import React from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Breadcrumb from "@/components/ui/Breadcrumb";
@@ -14,10 +12,12 @@ import TaaSBenefits from "@/components/taas/TaaSBenefits";
 import TaaSTalentRoles from "@/components/taas/TaaSTalentRoles";
 import TaaSTestimonials from "@/components/taas/TaaSTestimonials";
 import TaaSCTA from "@/components/taas/TaaSCTA";
+import { getTestimonials } from "@/lib/db";
 
-export default function TaaSPage() {
+export default async function TaaSPage() {
+    const testimonials = await getTestimonials('visible');
     return (
-        <div className="bg-[#F4F4F7] text-gray-800 font-sans antialiased transition-colors duration-200">
+        <div className="antialiased transition-colors duration-200">
             <Navbar />
             <Breadcrumb
                 className="px-4 sm:px-6 lg:px-8"
@@ -35,7 +35,7 @@ export default function TaaSPage() {
             <TaaSDifferentiators />
             <TaaSBenefits />
             <TaaSTalentRoles />
-            <TaaSTestimonials />
+            <TaaSTestimonials initialData={testimonials} />
             <TaaSCTA />
 
             <Footer />

@@ -24,24 +24,24 @@ export default function BlogCard({ post }: BlogCardProps) {
                 {/* Content Side */}
                 <div className="flex-1 p-6 flex flex-col items-start gap-4">
                     <div className="flex items-center gap-4">
-                        <span className={`${post.categoryColor} px-3 py-1 text-xs font-semibold font-montserrat tracking-wide rounded-[4px]`}>
+                        <span className={`${post.categoryColor} px-3 py-1 font-body-xs font-semibold tracking-wide rounded-[4px]`}>
                             {post.category}
                         </span>
-                        <span className="text-gray-400 text-xs font-montserrat">
+                        <span className="font-body-xs text-gray-400">
                             {post.date}
                         </span>
                     </div>
 
-                    <h3 className="text-lg font-medium font-montserrat text-text-light leading-snug line-clamp-2">
+                    <h3 className="font-h5 leading-snug line-clamp-2">
                         {post.title}
                     </h3>
 
-                    <p className="text-gray-500 font-montserrat leading-relaxed text-sm line-clamp-3">
+                    <p className="font-body-sm line-clamp-3">
                         {post.excerpt}
                     </p>
 
                     <div className="mt-auto pt-2">
-                        <button className="text-text-light hover:text-violet-600 font-medium font-montserrat transition-colors duration-300 flex items-center gap-2 group/btn text-sm">
+                        <button className="text-text-light hover:text-violet-600 font-body-sm font-medium transition-colors duration-300 flex items-center gap-2 group/btn">
                             Baca Selengkapnya
                             <span className="group-hover/btn:translate-x-1 transition-transform">&rarr;</span>
                         </button>

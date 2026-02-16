@@ -21,11 +21,13 @@ export async function POST(request: Request) {
     try {
         const body = await request.json();
         const newTestimonial = await createTestimonial({
+            status: 'visible', // Default status
             ...body
         });
 
         return NextResponse.json(newTestimonial, { status: 201 });
     } catch (error) {
+        console.error('Error creating testimonial:', error);
         return NextResponse.json({ error: 'Invalid data' }, { status: 400 });
     }
 }

@@ -14,7 +14,7 @@ import WhatsAppButton from "@/components/landing/WhatsAppButton";
 
 export default function HiTalentPage() {
     return (
-        <div className="bg-[#F4F4F7] text-gray-800 font-sans antialiased transition-colors duration-200">
+        <div className="antialiased transition-colors duration-200">
             <Navbar />
             <Breadcrumb className="px-4 sm:px-6 lg:px-8" items={[
                 { label: "Home", href: "/" },

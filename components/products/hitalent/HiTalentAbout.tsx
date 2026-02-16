@@ -7,7 +7,7 @@ export default function HiTalentAbout() {
             <div className="flex flex-col items-center gap-24 px-4 w-full">
                 {/* Header */}
                 <div className="w-full max-w-[784px] text-center">
-                    <h2 className="text-4xl font-medium font-montserrat">
+                    <h2 className="font-h2">
                         Tingkatkan Efisiensi HR Anda dengan HiTalent
                     </h2>
                 </div>
@@ -25,7 +25,7 @@ export default function HiTalentAbout() {
 
                     {/* Right Column: Image */}
                     <div className="w-full lg:w-[480px] flex flex-col items-center lg:items-start text-center lg:text-left gap-6 p-10">
-                        <p className="text-base font-normal font-montserrat leading-relaxed text-[#171717] opacity-90">
+                        <p className="font-body opacity-90">
                             <span className="font-semibold">HiTalent adalah Sistem Informasi Sumber Daya Manusia (HRIS)</span> yang dirancang untuk membantu perusahaan mengelola sumber daya manusia mereka dengan lebih mudah, cepat, dan akurat. <br /> <br />Dengan fitur otomatis <span className="font-semibold">untuk penggajian, absensi, cuti, dan manajemen karyawan,</span> HiTalent meningkatkan efisiensi operasional HR sambil memastikan kepatuhan terhadap peraturan ketenagakerjaan.
                         </p>
                     </div>

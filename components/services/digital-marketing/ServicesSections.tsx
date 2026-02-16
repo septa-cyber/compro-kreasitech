@@ -11,10 +11,10 @@ export default function ServicesSections() {
             <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center gap-32">
                 {/* Header */}
                 <div className="w-full max-w-[784px] flex flex-col items-center gap-6 sm:gap-8 text-center px-4">
-                    <h2 className="text-3xl sm:text-4xl font-medium font-montserrat text-text-light">
+                    <h2 className="font-h2">
                         Solusi yang Kami Tawarkan
                     </h2>
-                    <p className="w-full max-w-[627px] text-gray-600 text-sm sm:text-base font-normal font-montserrat">
+                    <p className="w-full max-w-[627px] font-body">
                         Solusi digital marketing kami dirancang untuk mengangkat brand Anda dan mendorong pertumbuhan. Kami menawarkan rangkaian layanan komprehensif untuk membantu Anda sukses di lanskap online yang kompetitif saat ini.
                     </p>
                 </div>
@@ -65,10 +65,10 @@ export default function ServicesSections() {
                                 {/* Content Column */}
                                 <div className="flex-1 flex flex-col justify-center items-start gap-6 sm:gap-8">
                                     <div className="flex flex-col gap-4">
-                                        <h3 className="text-violet-600 text-3xl sm:text-4xl lg:text-5xl font-semibold font-montserrat">
+                                        <h3 className="!text-violet-600 font-h2 lg:text-5xl">
                                             {service.title}
                                         </h3>
-                                        <p className="text-gray-600 text-sm sm:text-base lg:text-lg font-normal font-montserrat leading-relaxed max-w-xl">
+                                        <p className="font-body-lg max-w-xl">
                                             {service.heroDescription}
                                         </p>
                                     </div>
@@ -81,7 +81,7 @@ export default function ServicesSections() {
                                                         <polyline points="20 6 9 17 4 12" />
                                                     </svg>
                                                 </div>
-                                                <span className="text-gray-700 text-sm sm:text-base font-medium font-montserrat">
+                                                <span className="font-body font-medium">
                                                     {feature}
                                                 </span>
                                             </div>

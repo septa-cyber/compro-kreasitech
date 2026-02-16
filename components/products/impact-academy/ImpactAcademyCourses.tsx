@@ -47,10 +47,10 @@ export default function ImpactAcademyCourses() {
         <section className="py-16 md:py-24 bg-white overflow-hidden">
             <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 mb-8 md:mb-16">
                 <div className="flex flex-col items-center text-center gap-4 md:gap-6">
-                    <h2 className="text-xl md:text-4xl font-medium font-montserrat text-text-light">
+                    <h2 className="font-h2">
                         Start Learning Today
                     </h2>
-                    <p className="text-sm md:text-base font-normal font-montserrat text-text-light max-w-2xl">
+                    <p className="font-body max-w-2xl">
                         Unlock your potential with Impact Academy&apos;s expert-led training programs.
                     </p>
                 </div>
@@ -74,11 +74,11 @@ export default function ImpactAcademyCourses() {
 
                             {/* Content */}
                             <div className="flex-1 p-6 flex flex-col items-start gap-4">
-                                <h3 className="text-xl font-semibold font-montserrat text-text-light leading-snug">
+                                <h3 className="font-h4 leading-snug">
                                     {course.title}
                                 </h3>
 
-                                <p className="text-gray-600 font-montserrat leading-relaxed text-sm">
+                                <p className="font-body-sm">
                                     {course.description}
                                 </p>
 
@@ -89,7 +89,7 @@ export default function ImpactAcademyCourses() {
                                             <svg className="w-5 h-5 text-violet-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                             </svg>
-                                            <span className="text-gray-600 text-sm font-montserrat leading-relaxed">
+                                            <span className="font-body-sm">
                                                 {point}
                                             </span>
                                         </li>

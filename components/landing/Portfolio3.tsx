@@ -32,7 +32,7 @@ export default function Portfolio() {
                 <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 mb-8 md:mb-24">
                     <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 md:gap-24">
                         <div className="flex-1 flex flex-col justify-start items-start gap-4 md:gap-8">
-                            <h2 className="text-xl md:text-4xl font-medium font-montserrat text-white">
+                            <h2 className="font-h2">
                                 Portofolio Kami
                             </h2>
                             <p className="text-sm md:text-base font-normal font-montserrat text-white leading-relaxed max-w-[800px]">
@@ -50,15 +50,15 @@ export default function Portfolio() {
             <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 mb-8 md:mb-24">
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 md:gap-24">
                     <div className="flex-1 flex flex-col justify-start items-start gap-4 md:gap-8">
-                        <h2 className="text-xl md:text-4xl font-medium font-montserrat text-white">
+                        <h2 className="font-h2">
                             Portofolio Kami
                         </h2>
-                        <p className="text-sm md:text-base font-normal font-montserrat text-white leading-relaxed max-w-[800px]">
+                        <p className="font-body max-w-[800px]">
                             Telah mendukung berbagai jenis bisnis, startup, institusi pendidikan, UKM, dan corporate dalam membangun aplikasi, website, digital marketing, hingga penyediaan talent IT yang berkelanjutan.
                         </p>
                     </div>
                     <Link href="/portfolio" className="px-8 py-4 bg-white rounded-lg inline-flex justify-center items-center gap-2.5 hover:bg-gray-100 transition-colors">
-                        <span className="text-violet-800 text-base font-medium font-montserrat">Lihat Semua</span>
+                        <span className="font-btn text-violet-800">Lihat Semua</span>
                     </Link>
                 </div>
             </div>
@@ -91,10 +91,10 @@ export default function Portfolio() {
                                         alt={item.title}
                                     />
                                     <div className="flex flex-col gap-1">
-                                        <span className="text-xs font-normal font-montserrat text-white/70">
+                                        <span className="font-body-xs opacity-70 text-white">
                                             {item.category || 'Project'}
                                         </span>
-                                        <h3 className="text-base md:text-xl font-medium font-montserrat text-white">
+                                        <h3 className="font-h4 text-white">
                                             {item.title}
                                         </h3>
                                     </div>
@@ -124,10 +124,10 @@ export default function Portfolio() {
                                         alt={item.title}
                                     />
                                     <div className="flex flex-col gap-1">
-                                        <span className="text-xs font-normal font-montserrat text-white/70">
+                                        <span className="font-body-xs opacity-70 text-white">
                                             {item.category || 'Project'}
                                         </span>
-                                        <h3 className="text-base md:text-xl font-medium font-montserrat text-white">
+                                        <h3 className="font-h4 text-white">
                                             {item.title}
                                         </h3>
                                     </div>

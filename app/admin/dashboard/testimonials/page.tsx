@@ -19,6 +19,7 @@ export default function TestimonialsSettingsPage() {
     const [newItemData, setNewItemData] = useState<Partial<Testimonial>>({
         name: "",
         role: "",
+        company: "",
         content: "",
         avatar: ""
     });
@@ -34,6 +35,7 @@ export default function TestimonialsSettingsPage() {
         setEditItemData({
             name: testimonial.name,
             role: testimonial.role,
+            company: testimonial.company,
             content: testimonial.content,
             avatar: testimonial.avatar,
             status: testimonial.status
@@ -120,6 +122,7 @@ export default function TestimonialsSettingsPage() {
                 setNewItemData({
                     name: "",
                     role: "",
+                    company: "",
                     content: "",
                     avatar: ""
                 });
@@ -224,7 +227,17 @@ export default function TestimonialsSettingsPage() {
                         />
                     </div>
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Perusahaan / Role</label>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Perusahaan</label>
+                        <input
+                            type="text"
+                            value={newItemData.company || ''}
+                            onChange={(e) => setNewItemData({ ...newItemData, company: e.target.value })}
+                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                            placeholder="Nama Perusahaan"
+                        />
+                    </div>
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Role / Jabatan</label>
                         <input
                             type="text"
                             required
@@ -316,7 +329,17 @@ export default function TestimonialsSettingsPage() {
                         />
                     </div>
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Perusahaan / Role</label>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Perusahaan</label>
+                        <input
+                            type="text"
+                            value={editItemData.company || ''}
+                            onChange={(e) => setEditItemData({ ...editItemData, company: e.target.value })}
+                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                            placeholder="Nama Perusahaan"
+                        />
+                    </div>
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Role / Jabatan</label>
                         <input
                             type="text"
                             required

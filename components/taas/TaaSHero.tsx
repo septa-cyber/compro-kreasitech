@@ -8,10 +8,10 @@ export default function TaaSHero() {
             <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                     <div className="space-y-8 text-center lg:text-left">
-                        <h1 className="text-[40px] sm:text-5xl lg:text-6xl font-medium leading-tight text-text-light font-montserrat">
+                        <h1 className="font-h1">
                             Talent as a Service <span className="text-violet-600">(TaaS)</span>
                         </h1>
-                        <p className="text-sm sm:text-lg text-text-light-muted max-w-lg leading-relaxed font-montserrat mx-auto lg:mx-0">
+                        <p className="font-body-lg max-w-lg mx-auto lg:mx-0">
                             Kami menyediakan Talent as a Service (TaaS) untuk membantu bisnis Anda mengakses talenta teknologi dan digital terbaik. Dengan pendekatan yang fleksibel dan efisien, kami menyediakan profesional berkualitas untuk mendukung proyek jangka pendek maupun panjang sesuai kebutuhan Anda.
                         </p>
                         <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-4 w-full sm:w-auto justify-center lg:justify-start">
@@ -19,11 +19,11 @@ export default function TaaSHero() {
                                 href="/contact"
                                 className="w-full sm:w-max px-6 md:px-8 py-3 md:py-4 bg-violet-600 rounded-lg inline-flex justify-center items-center gap-2.5 hover:bg-violet-700 transition-all duration-300"
                             >
-                                <div className="text-gray-100 text-base font-medium font-montserrat">Hubungi Kami</div>
+                                <div className="font-btn text-gray-100">Hubungi Kami</div>
                             </Link>
                             <Link
                                 href="#engagement"
-                                className="w-full sm:w-max flex items-center justify-center gap-2 px-6 py-3 md:py-4 text-text-light text-base font-medium font-montserrat hover:text-violet-600 transition-colors group"
+                                className="w-full sm:w-max flex items-center justify-center gap-2 px-6 py-3 md:py-4 font-btn transition-colors group"
                             >
                                 Pelajari Lebih Lanjut
                                 <img src="/assets/images/arrow_downward.svg" alt="" className="w-6 h-6 animate-bounce" />

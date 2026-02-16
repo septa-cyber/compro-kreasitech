@@ -19,7 +19,7 @@ export default function Footer() {
                             <div data-style="Outlined" className="w-5 h-5 relative overflow-hidden flex items-center justify-center shrink-0">
                                 <FaMapMarkerAlt className="text-violet-600 text-sm" />
                             </div>
-                            <div className="text-text-light text-sm font-normal font-montserrat max-w-[195px] md:max-w-none">
+                            <div className="font-body-sm text-text-light max-w-[195px] md:max-w-none">
                                 Jalan Lorong, Gedongan RT01/RW04, Sinduadi, Mlati, Sleman, DIY 55284
                             </div>
                         </div>
@@ -27,7 +27,7 @@ export default function Footer() {
                             <div data-style="Outlined" className="w-5 h-5 relative overflow-hidden flex items-center justify-center shrink-0">
                                 <FaPhone className="text-violet-600 text-sm" />
                             </div>
-                            <div className="text-text-light text-sm font-normal font-montserrat">
+                            <div className="font-body-sm text-text-light">
                                 (62) 888-8088-877
                             </div>
                         </div>
@@ -35,7 +35,7 @@ export default function Footer() {
                             <div data-style="Outlined" className="w-5 h-5 relative overflow-hidden flex items-center justify-center shrink-0">
                                 <FaRegEnvelope className="text-violet-600 text-sm" />
                             </div>
-                            <div className="text-text-light text-sm font-normal font-montserrat">
+                            <div className="font-body-sm text-text-light">
                                 marketing@kreasi.tech
                             </div>
                         </div>
@@ -44,7 +44,7 @@ export default function Footer() {
                 <div className="w-full border-t border-gray-200" />
                 <div className="w-full grid grid-cols-2 lg:grid-cols-4 gap-y-10 gap-x-8 lg:gap-8">
                     <div className="flex flex-col justify-start items-start gap-6">
-                        <div className="justify-start text-violet-600 text-xs font-bold uppercase font-montserrat">
+                        <div className="font-btn-sm text-violet-600 uppercase">
                             Layanan
                         </div>
                         <Link href="/taas" className="justify-start text-text-light text-sm font-medium font-montserrat hover:text-primary transition">
@@ -62,7 +62,7 @@ export default function Footer() {
 
                     </div>
                     <div className="flex flex-col justify-start items-start gap-6">
-                        <div className="justify-start text-violet-600 text-xs font-bold uppercase font-montserrat">
+                        <div className="font-btn-sm text-violet-600 uppercase">
                             Perusahaan
                         </div>
                         <a href="#" className="justify-start text-text-light text-sm font-medium font-montserrat hover:text-primary transition">
@@ -73,7 +73,7 @@ export default function Footer() {
                         </Link>
                     </div>
                     <div className="flex flex-col justify-start items-start gap-6">
-                        <div className="justify-start text-violet-600 text-xs font-bold uppercase font-montserrat">
+                        <div className="font-btn-sm text-violet-600 uppercase">
                             Produk
                         </div>
                         <Link href="/products/hitalent" className="justify-start text-text-light text-sm font-medium font-montserrat hover:text-primary transition">
@@ -81,7 +81,7 @@ export default function Footer() {
                         </Link>
                     </div>
                     <div className="flex flex-col justify-start items-start gap-6">
-                        <div className="justify-start text-violet-600 text-xs font-bold uppercase font-montserrat">
+                        <div className="font-btn-sm text-violet-600 uppercase">
                             Lain-lainnya
                         </div>
                         <Link href="/karir" className="justify-start text-text-light text-sm font-medium font-montserrat hover:text-primary transition">
@@ -98,13 +98,13 @@ export default function Footer() {
                 <div className="w-full border-t border-gray-200" />
                 <div className="w-full flex flex-col lg:flex-row justify-between items-center gap-8 lg:gap-6">
                     <div className="flex justify-center lg:justify-start items-center gap-6 order-2 lg:order-1 flex-wrap">
-                        <a href="#" className="justify-start text-violet-600 text-xs font-semibold font-montserrat hover:text-primary-dark transition">
+                        <a href="#" className="font-body-xs text-violet-600 hover:text-primary transition">
                             Syarat & Ketentuan
                         </a>
-                        <a href="#" className="justify-start text-violet-600 text-xs font-semibold font-montserrat hover:text-primary-dark transition">
+                        <a href="#" className="font-body-xs text-violet-600 hover:text-primary transition">
                             Kebijakan Privasi
                         </a>
-                        <a href="#" className="justify-start text-violet-600 text-xs font-semibold font-montserrat hover:text-primary-dark transition">
+                        <a href="#" className="font-body-xs text-violet-600 hover:text-primary transition">
                             Pengaturan Cookie
                         </a>
                     </div>
@@ -123,8 +123,8 @@ export default function Footer() {
                         </a>
                     </div>
                     <div className="flex justify-center lg:justify-end items-center gap-6 order-3 lg:order-3">
-                        <div className="text-center lg:text-right justify-start text-violet-600 text-xs font-semibold font-montserrat">
-                            Â© 2025 KREASITECH. Hak cipta dilindungi.
+                        <div className="text-center lg:text-right font-body-xs text-violet-600">
+                            © 2025 KREASITECH. Hak cipta dilindungi.
                         </div>
                     </div>
                 </div>

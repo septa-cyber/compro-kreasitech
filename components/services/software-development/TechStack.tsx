@@ -38,7 +38,7 @@ export default function TechStack() {
         <section className="relative lg:pb-20 lg:pt-20 md:pb-16 md:pt-16 sm:pb-12 sm:pt-12 overflow-hidden bg-[#F4F4F7]">
             {/* Title */}
             <div className="text-center mb-12">
-                <p className="text-sm sm:text-base text-gray-500 font-montserrat mb-8">
+                <p className="font-body-sm text-gray-500 mb-8">
                     Teknologi yang kami gunakan:
                 </p>
             </div>

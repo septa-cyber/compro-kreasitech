@@ -16,10 +16,10 @@ export default function CTASection() {
                 </div>
                 <div className="w-full lg:w-1/2 flex flex-col justify-start items-center lg:items-start gap-8">
                     <div className="w-full flex flex-col justify-start items-center lg:items-start gap-8 text-center lg:text-left">
-                        <h2 className="text-2xl md:text-4xl font-medium font-montserrat text-text-light mb-10">
+                        <h2 className="font-h2">
                             Kami Tim yang Menyenangkan<br />dan Penuh Semangat
                         </h2>
-                        <p className="space-y-6 text-gray-600 leading-relaxed text-lg font-body">
+                        <p className="font-body-lg">
                             Kami berasal dari seluruh dunia. Selamat datang dan salam kenal!
                         </p>
                     </div>
@@ -28,7 +28,7 @@ export default function CTASection() {
                             href="/contact"
                             className="px-8 py-4 bg-violet-600 rounded-lg flex justify-center items-center gap-2.5 hover:bg-violet-700 transition-colors"
                         >
-                            <span className="text-gray-100 text-base font-medium font-montserrat">
+                            <span className="font-btn text-gray-100">
                                 Gabung Tim Kami
                             </span>
                         </a>

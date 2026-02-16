@@ -50,16 +50,13 @@ export default function FeaturedShowcase() {
             <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 mb-12 md:mb-24">
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 md:gap-24">
                     <div className="flex-1 flex flex-col justify-start items-start gap-4 md:gap-8">
-                        <h2 className="text-xl md:text-4xl font-medium font-montserrat text-gray-900">
+                        <h2 className="font-h2">
                             Portofolio Kami
                         </h2>
-                        <p className="text-sm md:text-base font-normal font-montserrat text-gray-600">
+                        <p className="font-body">
                             Proyek-proyek kami menunjukkan keahlian di berbagai industri. Kami berkomitmen untuk memberikan yang terbaik dalam setiap solusi.
                         </p>
                     </div>
-                    <button className="px-6 md:px-8 py-3 md:py-4 bg-violet-600 hover:bg-violet-700 rounded-lg transition-colors duration-300">
-                        <span className="text-white text-sm md:text-base font-medium font-montserrat">Lihat Semua</span>
-                    </button>
                 </div>
             </div>
 
@@ -94,10 +91,10 @@ export default function FeaturedShowcase() {
                                         alt={item.title}
                                     />
                                     <div className="flex flex-col gap-1">
-                                        <span className="text-xs font-normal font-montserrat text-gray-600">
+                                        <span className="font-body-xs opacity-70">
                                             {item.category || 'Project'}
                                         </span>
-                                        <h3 className="text-base md:text-xl font-medium font-montserrat text-gray-900">
+                                        <h3 className="font-h4">
                                             {item.title}
                                         </h3>
                                     </div>
@@ -139,10 +136,10 @@ export default function FeaturedShowcase() {
                                         alt={item.title}
                                     />
                                     <div className="flex flex-col gap-1">
-                                        <span className="text-xs font-normal font-montserrat text-gray-600">
+                                        <span className="font-body-xs opacity-70">
                                             {item.category || 'Project'}
                                         </span>
-                                        <h3 className="text-base md:text-xl font-medium font-montserrat text-gray-900">
+                                        <h3 className="font-h4">
                                             {item.title}
                                         </h3>
                                     </div>

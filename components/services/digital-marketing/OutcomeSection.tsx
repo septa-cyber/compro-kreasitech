@@ -23,7 +23,7 @@ export default function OutcomeSection() {
     return (
         <section className="py-24 bg-gray-100 flex flex-col justify-start items-center gap-24">
             <div className="max-w-[784px] flex flex-col justify-start items-center gap-8 px-4">
-                <div className="max-w-[672px] text-center text-text-light text-4xl font-medium font-montserrat">
+                <div className="max-w-[672px] text-center font-h2">
                     Hasil yang Didapat
                 </div>
             </div>
@@ -35,10 +35,10 @@ export default function OutcomeSection() {
                         className={`w-full p-8 flex flex-col justify-start items-center gap-6 ${index === 1 ? 'md:border-l-[0.5px] md:border-r-[0.5px] border-gray-200' : ''
                             }`}
                     >
-                        <div className="self-stretch text-center text-text-light text-xl font-medium font-montserrat">
+                        <div className="self-stretch text-center font-h4">
                             {outcome.title}
                         </div>
-                        <div className="self-stretch text-center text-text-light text-sm font-normal font-montserrat">
+                        <div className="self-stretch text-center font-body-sm">
                             {outcome.description}
                         </div>
                     </div>

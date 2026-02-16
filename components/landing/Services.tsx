@@ -7,10 +7,10 @@ export default function Services() {
         <section className="py-24 bg-white">
             <div className="flex flex-col items-center gap-24">
                 <div className="w-full max-w-[784px] flex flex-col items-center gap-8 px-4 text-center">
-                    <h2 className="text-2xl md:text-4xl font-medium font-montserrat text-text-light mb-10">
+                    <h2 className="font-h2 mb-10">
                         Layanan Kami
                     </h2>
-                    <p className="max-w-[700px] text-base font-normal font-montserrat text-text-light-muted">
+                    <p className="font-body text-gray-500 max-w-[700px]">
                         Kreasitech menyediakan solusi end-to-end bagi organisasi yang ingin membangun produk digital, memperkuat tim teknologi, meningkatkan kompetensi, hingga mengembangkan bisnis melalui digital marketing.
                     </p>
                 </div>
@@ -27,10 +27,10 @@ export default function Services() {
                                 className="w-10 h-10 object-contain group-hover:grayscale-0 transition-all duration-300"
                             />
                         </div>
-                        <h3 className="self-stretch text-text-light group-hover:text-white text-xl font-medium font-montserrat leading-tight transition-colors duration-300">
+                        <h3 className="font-h4 self-stretch group-hover:text-white transition-colors duration-300">
                             Software Development
                         </h3>
-                        <p className="self-stretch text-text-light group-hover:text-white text-sm font-normal font-montserrat leading-relaxed transition-colors duration-300">
+                        <p className="font-body-sm self-stretch group-hover:text-white transition-colors duration-300">
                             Website, aplikasi mobile, MVP, custom system
                         </p>
                     </Link>
@@ -46,10 +46,10 @@ export default function Services() {
                                 className="w-10 h-10 object-contain transition-all duration-300"
                             />
                         </div>
-                        <h3 className="self-stretch text-text-light group-hover:text-white text-xl font-medium font-montserrat leading-tight transition-colors duration-300">
+                        <h3 className="font-h4 self-stretch group-hover:text-white transition-colors duration-300">
                             Talent as a Service
                         </h3>
-                        <p className="self-stretch text-text-light group-hover:text-white text-sm font-normal font-montserrat leading-relaxed transition-colors duration-300">
+                        <p className="font-body-sm self-stretch group-hover:text-white transition-colors duration-300">
                             Staffing, headhunting, internship, inclusive placement
                         </p>
                     </Link>
@@ -65,10 +65,10 @@ export default function Services() {
                                 className="w-10 h-10 object-contain transition-all duration-300"
                             />
                         </div>
-                        <h3 className="self-stretch text-text-light group-hover:text-white text-xl font-medium font-montserrat leading-tight transition-colors duration-300">
+                        <h3 className="font-h4 self-stretch group-hover:text-white transition-colors duration-300">
                             Kreasi Space
                         </h3>
-                        <p className="self-stretch text-text-light group-hover:text-white text-sm font-normal font-montserrat leading-relaxed transition-colors duration-300">
+                        <p className="font-body-sm self-stretch group-hover:text-white transition-colors duration-300">
                             Pelatihan digital & tech untuk masyarakat umum dan profesional
                         </p>
                     </Link>
@@ -84,10 +84,10 @@ export default function Services() {
                                 className="w-10 h-10 object-contain transition-all duration-300"
                             />
                         </div>
-                        <h3 className="self-stretch text-text-light group-hover:text-white text-xl font-medium font-montserrat leading-tight transition-colors duration-300">
+                        <h3 className="font-h4 self-stretch group-hover:text-white transition-colors duration-300">
                             Product SaaS
                         </h3>
-                        <p className="self-stretch text-text-light group-hover:text-white text-sm font-normal font-montserrat leading-relaxed transition-colors duration-300">
+                        <p className="font-body-sm self-stretch group-hover:text-white transition-colors duration-300">
                             HiTalent, HiSales, Ventri, Idas SFA
                         </p>
                     </Link>

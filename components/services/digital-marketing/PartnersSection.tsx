@@ -27,7 +27,7 @@ export default function PartnersSection() {
     return (
         <section className="py-10 bg-gray-100 border-y border-gray-200">
             <div className="max-w-[1200px] mx-auto px-4 text-center mb-6">
-                <span className="text-sm font-medium text-gray-500 uppercase tracking-wider font-montserrat">
+                <span className="font-body-sm font-medium text-gray-500 uppercase tracking-wider">
                     Dipercaya oleh bisnis terkemuka seperti:
                 </span>
             </div>

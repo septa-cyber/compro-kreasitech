@@ -19,11 +19,11 @@ export default function BlogHero({ featuredPost }: BlogHeroProps) {
                     { label: "Blog", href: "/blog" }
                 ]} />
                 <div className="flex flex-col gap-8">
-                    <h1 className="text-4xl sm:text-5xl lg:text-7xl font-medium font-montserrat leading-tight max-w-6xl text-text-light">
+                    <h1 className="font-h1 max-w-6xl">
                         Baca Berita <br />
                         <span className="font-semibold text-violet-600">Terbaru & Terkini</span>
                     </h1>
-                    <p className="text-sm sm:text-lg text-gray-500 font-montserrat">
+                    <p className="font-body-lg">
                         Berita industri terbaru, wawancara, teknologi, dan sumber daya terkini.
                     </p>
                 </div>
@@ -44,10 +44,10 @@ export default function BlogHero({ featuredPost }: BlogHeroProps) {
                             <div className="flex flex-col gap-4 max-w-3xl">
                                 <div className="flex justify-between items-start w-full">
                                     <div>
-                                        <h2 className="text-xl sm:text-3xl lg:text-4xl font-medium font-montserrat text-white mb-3">
+                                        <h2 className="font-h2 !text-white mb-3">
                                             {featuredPost.title}
                                         </h2>
-                                        <p className="text-gray-200 text-base sm:text-lg font-montserrat mb-6 line-clamp-2">
+                                        <p className="font-body-lg !text-gray-200 mb-6 line-clamp-2">
                                             {featuredPost.excerpt}
                                         </p>
                                     </div>
@@ -63,19 +63,19 @@ export default function BlogHero({ featuredPost }: BlogHeroProps) {
                                 <div className="flex flex-wrap items-center justify-between gap-6 text-sm text-gray-300">
                                     <div className="flex items-center gap-6 sm:gap-8">
                                         <div>
-                                            <span className="block text-xs uppercase tracking-wider text-gray-400 mb-1 font-montserrat">Ditulis oleh</span>
+                                            <span className="block font-body-xs uppercase tracking-wider text-gray-400 mb-1">Ditulis oleh</span>
                                             <div className="flex items-center gap-2">
                                                 <img
                                                     src={featuredPost.author.avatar}
                                                     alt={featuredPost.author.name}
                                                     className="w-6 h-6 rounded-full border border-white/20"
                                                 />
-                                                <span className="font-medium text-white font-montserrat">{featuredPost.author.name}</span>
+                                                <span className="font-body font-medium text-white">{featuredPost.author.name}</span>
                                             </div>
                                         </div>
                                         <div>
-                                            <span className="block text-xs uppercase tracking-wider text-gray-400 mb-1 font-montserrat">Dipublikasikan</span>
-                                            <span className="font-medium text-white font-montserrat">{featuredPost.date}</span>
+                                            <span className="block font-body-xs uppercase tracking-wider text-gray-400 mb-1">Dipublikasikan</span>
+                                            <span className="font-body font-medium text-white">{featuredPost.date}</span>
                                         </div>
                                     </div>
 
@@ -83,7 +83,7 @@ export default function BlogHero({ featuredPost }: BlogHeroProps) {
                                         {featuredPost.tags.slice(0, 3).map((tag, index) => (
                                             <span
                                                 key={index}
-                                                className="px-3 py-1 rounded-full border border-white/30 text-white text-xs font-medium font-montserrat backdrop-blur-sm"
+                                                className="px-3 py-1 rounded-full border border-white/30 font-body-xs font-medium !text-white backdrop-blur-sm"
                                             >
                                                 {tag}
                                             </span>

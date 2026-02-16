@@ -11,7 +11,7 @@ import TechStack from "@/components/services/software-development/TechStack";
 
 export default function SoftwareDevelopmentPage() {
     return (
-        <div className="bg-[#F4F4F7] min-h-screen">
+        <div className="min-h-screen">
             <Navbar />
             <main>
                 <Breadcrumb className="px-4 sm:px-6 lg:px-8" items={[

@@ -26,7 +26,7 @@ export default function DigitalMarketingHero() {
                                 </div>
 
                                 {/* Title */}
-                                <h1 className="text-4xl sm:text-5xl md:text-6xl font-medium font-montserrat leading-tight text-text-light">
+                                <h1 className="font-h1 text-center lg:text-left">
                                     Buat Bisnis Anda Mudah{" "}
                                     <span className="text-violet-600 font-semibold">Ditemukan & Dipercaya</span>
                                 </h1>
@@ -36,7 +36,7 @@ export default function DigitalMarketingHero() {
                             <div className="hidden lg:flex w-full justify-start items-end gap-8">
                                 {/* Left: Title */}
                                 <div className="flex-1 flex justify-center items-end">
-                                    <h1 className="text-6xl lg:text-7xl font-medium font-montserrat leading-tight text-text-light">
+                                    <h1 className="font-h1">
                                         Buat Bisnis Anda Mudah{" "}
                                         <span className="text-violet-600 font-semibold">Ditemukan & Dipercaya</span>
                                     </h1>
@@ -56,7 +56,7 @@ export default function DigitalMarketingHero() {
                             </div>
 
                             {/* Description */}
-                            <p className="w-full text-gray-600 text-sm sm:text-lg font-normal font-montserrat leading-relaxed text-center lg:text-left">
+                            <p className="w-full font-body-lg text-center lg:text-left">
                                 Tingkatkan eksistensi bisnis Anda di dunia digital dengan strategi pemasaran yang terukur. Mulai dari optimasi SEO, manajemen Iklan (Ads), penguatan Backlink, hingga publikasi Press Release untuk membangun kredibilitas brand Anda.
                             </p>
                         </div>
@@ -67,13 +67,13 @@ export default function DigitalMarketingHero() {
                                 href="/contact"
                                 className="w-full sm:w-auto px-8 py-4 bg-violet-600 rounded-lg flex justify-center items-center gap-2.5 hover:bg-violet-700 transition-all duration-300"
                             >
-                                <span className="text-gray-100 text-base font-medium font-montserrat">Hubungi Kami</span>
+                                <span className="font-btn text-gray-100">Hubungi Kami</span>
                             </Link>
                             <Link
                                 href="#services"
                                 className="flex justify-start items-center gap-4 group"
                             >
-                                <span className="text-text-light text-base font-medium font-montserrat group-hover:text-violet-600 transition">Pelajari Layanan</span>
+                                <span className="font-btn group-hover:text-violet-600 transition">Pelajari Layanan</span>
                                 <Image
                                     src="/assets/images/arrow_downward.svg"
                                     alt=""
@@ -85,11 +85,6 @@ export default function DigitalMarketingHero() {
                         </div>
                     </div>
                 </div>
-            </div>
-
-            {/* Divider */}
-            <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 pb-12">
-                <div className="w-full h-px bg-gray-200" />
             </div>
         </section>
     );

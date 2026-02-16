@@ -25,10 +25,10 @@ export default function TaaSDeliveryModel() {
             <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex flex-col items-center gap-16">
                     <div className="w-full max-w-[784px] flex flex-col items-center gap-8 text-center">
-                        <h2 className="text-3xl md:text-4xl font-medium font-montserrat text-text-light">
+                        <h2 className="font-h2">
                             Talent Delivery Model
                         </h2>
-                        <p className="max-w-[672px] text-base font-normal font-montserrat text-text-light-muted">
+                        <p className="max-w-[672px] font-body-lg text-text-light-muted">
                             Skema penyediaan talenta yang fleksibel melalui tiga pendekatan yaitu Dedicated Team, Project-Based, dan On-Demand yang dirancang untuk menyesuaikan kebutuhan bisnis Anda secara efisien, skalabel, dan tepat sasaran.
                         </p>
                     </div>
@@ -41,10 +41,10 @@ export default function TaaSDeliveryModel() {
                                     className={`w-full p-8 flex flex-col justify-start items-center gap-6 ${index === 1 ? 'md:border-l-[0.5px] md:border-r-[0.5px] border-gray-200' : ''
                                         }`}
                                 >
-                                    <h3 className="self-stretch text-center text-text-light text-xl font-medium font-montserrat">
+                                    <h3 className="self-stretch text-center font-h4">
                                         {model.title}
                                     </h3>
-                                    <p className="self-stretch text-center text-text-light-muted text-sm font-normal font-montserrat leading-relaxed">
+                                    <p className="self-stretch text-center font-body-sm text-text-light-muted">
                                         {model.description}
                                     </p>
                                 </div>

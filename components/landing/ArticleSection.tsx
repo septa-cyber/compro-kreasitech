@@ -44,15 +44,15 @@ export default function ArticleSection() {
             <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 mb-8 md:mb-16">
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 md:gap-24">
                     <div className="flex-1 flex flex-col justify-start items-start gap-4 md:gap-8">
-                        <h2 className="text-xl md:text-4xl font-medium font-montserrat text-text-light">
+                        <h2 className="font-h2">
                             Artikel Terbaru
                         </h2>
-                        <p className="text-sm md:text-base font-normal font-montserrat text-text-light">
+                        <p className="font-body">
                             Artikel terbaru yang dapat membantu Anda dalam memahami berbagai topik dan tren terkini.
                         </p>
                     </div>
                     <Link href="/blog" className="px-6 md:px-8 py-3 md:py-4 bg-violet-600 hover:bg-violet-700 rounded-lg transition-colors duration-300">
-                        <span className="text-white text-sm md:text-base font-medium font-montserrat">Lihat Semua</span>
+                        <span className="font-btn text-white">Lihat Semua</span>
                     </Link>
                 </div>
             </div>
@@ -76,24 +76,24 @@ export default function ArticleSection() {
                             {/* Content Side */}
                             <div className="flex-1 p-6 flex flex-col items-start gap-4">
                                 <div className="flex items-center gap-4">
-                                    <span className={`${article.tagColor} px-3 py-1 text-xs font-semibold font-montserrat tracking-wide rounded-[4px]`}>
+                                    <span className={`${article.tagColor} px-3 py-1 font-btn-sm tracking-wide rounded-[4px]`}>
                                         {article.category}
                                     </span>
-                                    <span className="text-gray-400 text-xs font-montserrat">
+                                    <span className="font-body-xs opacity-70">
                                         {article.date}
                                     </span>
                                 </div>
 
-                                <h3 className="text-lg font-medium font-montserrat text-text-light leading-snug line-clamp-2">
+                                <h3 className="font-h5 line-clamp-2">
                                     {article.title}
                                 </h3>
 
-                                <p className="text-gray-500 font-montserrat leading-relaxed text-sm line-clamp-3">
+                                <p className="font-body-sm line-clamp-3">
                                     {article.description}
                                 </p>
 
                                 <div className="mt-auto pt-2">
-                                    <Link href={`/blog/${article.slug}`} className="text-text-light hover:text-violet-600 font-medium font-montserrat transition-colors duration-300 flex items-center gap-2 group/btn text-sm">
+                                    <Link href={`/blog/${article.slug}`} className="font-btn hover:text-violet-600 transition-colors duration-300 flex items-center gap-2 group/btn">
                                         Baca Selengkapnya
                                         <span className="group-hover/btn:translate-x-1 transition-transform">&rarr;</span>
                                     </Link>

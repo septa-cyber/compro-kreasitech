@@ -42,14 +42,14 @@ export default function ImpactAcademyFlow() {
     ];
 
     return (
-        <section className="py-24 bg-white text-gray-900 overflow-hidden" data-theme="light">
+        <section className="py-24 bg-[#f4f4f7] text-gray-900 overflow-hidden" data-theme="light">
             <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header */}
                 <div className="text-center mb-16 max-w-3xl mx-auto">
-                    <h2 className="text-3xl md:text-4xl font-medium font-montserrat mb-4 text-gray-900">
+                    <h2 className="font-h2 mb-4">
                         Alur Program Academy
                     </h2>
-                    <p className="text-gray-600 text-base md:text-lg leading-relaxed font-montserrat">
+                    <p className="font-body-lg">
                         Proses pembelajaran terstruktur yang dirancang untuk mengembangkan kompetensi Anda secara bertahap, dari pendaftaran hingga penempatan kerja dan pengembangan karir berkelanjutan.
                     </p>
                 </div>
@@ -86,12 +86,12 @@ export default function ImpactAcademyFlow() {
                                     </div>
 
                                     {/* Title */}
-                                    <h3 className="text-lg font-semibold font-montserrat text-gray-900 mb-3">
+                                    <h3 className="font-h5 mb-3">
                                         {step.title}
                                     </h3>
 
                                     {/* Description */}
-                                    <p className="text-sm font-montserrat text-gray-600 leading-relaxed">
+                                    <p className="font-body-sm">
                                         {step.description}
                                     </p>
                                 </div>
@@ -129,12 +129,12 @@ export default function ImpactAcademyFlow() {
                                     </div>
 
                                     {/* Title */}
-                                    <h3 className="text-lg font-semibold font-montserrat text-gray-900 mb-3">
+                                    <h3 className="font-h5 mb-3">
                                         {step.title}
                                     </h3>
 
                                     {/* Description */}
-                                    <p className="text-sm font-montserrat text-gray-600 leading-relaxed">
+                                    <p className="font-body-sm">
                                         {step.description}
                                     </p>
                                 </div>
@@ -174,7 +174,7 @@ export default function ImpactAcademyFlow() {
                                     {/* Right Side - Content */}
                                     <div className="flex-1 pt-2">
                                         {/* Title */}
-                                        <h3 className="text-lg font-semibold font-montserrat text-gray-900 mb-2">
+                                        <h3 className="font-h5 mb-2">
                                             {step.title}
                                         </h3>
 

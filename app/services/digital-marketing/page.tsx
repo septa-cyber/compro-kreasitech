@@ -16,7 +16,7 @@ export const metadata = {
 
 export default function DigitalMarketingPage() {
     return (
-        <div className="bg-[#F4F4F7] min-h-screen">
+        <div className="min-h-screen">
             <Navbar />
             <main>
                 <Breadcrumb

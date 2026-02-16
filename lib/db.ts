@@ -130,16 +130,28 @@ function mapJobToDB(job: Partial<JobPosting>): any {
 }
 
 function mapTestimonialFromDB(row: any): Testimonial {
+    const testimonialText = row.content || row.quote || '';
     return {
         id: row.id,
         name: row.name,
         role: row.role,
         company: row.company,
         avatar: row.avatar,
-        content: row.content || row.quote, // Handle both for migration compatibility
+        content: testimonialText,
+        quote: testimonialText, // Handle both for migration compatibility
         rating: row.rating,
         status: row.status
     };
+}
+
+function mapTestimonialToDB(testimonial: Partial<Testimonial>): any {
+    const dbTestimonial: any = { ...testimonial };
+    // Map content to quote for DB
+    if (testimonial.content) {
+        dbTestimonial.quote = testimonial.content;
+        delete dbTestimonial.content;
+    }
+    return dbTestimonial;
 }
 
 // --- Articles Operations ---
@@ -310,27 +322,38 @@ export async function getTestimonialById(id: number): Promise<Testimonial | null
 
 export async function createTestimonial(testimonial: Omit<Testimonial, 'id'>): Promise<Testimonial> {
     if (isSupabaseEnabled()) {
-        const { data, error } = await supabase.from('testimonials').insert(testimonial).select().single();
+        const dbTestimonial = mapTestimonialToDB(testimonial);
+        const { data, error } = await supabase.from('testimonials').insert(dbTestimonial).select().single();
         if (error) throw error;
         return mapTestimonialFromDB(data);
     }
     const testimonials = readData<Testimonial>(TESTIMONIALS_FILE, []);
     const newId = testimonials.length > 0 ? Math.max(...testimonials.map(t => t.id)) + 1 : 1;
-    const newTestimonial = { ...testimonial, id: newId };
+    // Dual-write content and quote to support legacy components
+    const newTestimonial = { ...testimonial, quote: testimonial.content, id: newId } as any;
     writeData(TESTIMONIALS_FILE, [newTestimonial, ...testimonials]);
     return newTestimonial;
 }
 
 export async function updateTestimonial(id: number, testimonial: Partial<Testimonial>): Promise<Testimonial | null> {
     if (isSupabaseEnabled()) {
-        const { data, error } = await supabase.from('testimonials').update(testimonial).eq('id', id).select().single();
+        const dbTestimonial = mapTestimonialToDB(testimonial);
+        // Remove undefined fields
+        Object.keys(dbTestimonial).forEach(key => dbTestimonial[key] === undefined && delete dbTestimonial[key]);
+
+        const { data, error } = await supabase.from('testimonials').update(dbTestimonial).eq('id', id).select().single();
         if (error) throw error;
         return mapTestimonialFromDB(data);
     }
     const testimonials = readData<Testimonial>(TESTIMONIALS_FILE, []);
     const index = testimonials.findIndex(t => t.id === id);
     if (index === -1) return null;
-    const updated = { ...testimonials[index], ...testimonial };
+    // Sync quote with content if content is updated
+    const updatedData = { ...testimonial };
+    if (updatedData.content) {
+        (updatedData as any).quote = updatedData.content;
+    }
+    const updated = { ...testimonials[index], ...updatedData };
     testimonials[index] = updated;
     writeData(TESTIMONIALS_FILE, testimonials);
     return updated;

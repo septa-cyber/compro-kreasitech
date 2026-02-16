@@ -34,21 +34,18 @@ export default function PortfolioHero() {
 
                         {/* Title & Desc */}
                         <div className="flex flex-col gap-8">
-                            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-medium font-montserrat leading-tight max-w-6xl text-text-light">
+                            <h1 className="font-h1">
                                 Jelajahi <br />
                                 <span className="font-semibold text-violet-600">Karya Terbaik</span> Kami
                             </h1>
-                            <p className="text-sm sm:text-lg text-gray-500 font-montserrat">
+                            <p className="font-body-lg">
                                 Tim kami adalah kumpulan orang-orang berbakat yang berkembang dalam lingkungan yang santai dan ramah. Jika Anda mencari tempat di mana ide-ide Anda bisa bersinar, bergabunglah dengan kami dan mari ciptakan sesuatu yang luar biasa!
                             </p>
                         </div>
 
                         {/* CTA */}
-                        <Link href="/portfolio" className="px-6 md:px-8 py-3 md:py-4 bg-violet-600 hover:bg-violet-700 rounded-lg transition-colors duration-300">
-                            <span className="text-white text-sm md:text-base font-medium font-montserrat">Lihat Semua</span>
-                        </Link>
-                        <Link href="#featured" className="group inline-flex items-center gap-4 text-gray-900 font-medium font-montserrat hover:text-violet-600 transition-colors">
-                            <span>Pelajari Layanan</span>
+                        <Link href="#featured" className="group inline-flex items-center gap-4 text-gray-900 transition-colors">
+                            <span className="font-btn hover:text-violet-600 transition-colors">Pelajari Layanan</span>
                             <div className="w-6 h-6 flex items-center justify-center relative">
                                 <MdArrowDownward className="text-violet-600 text-xl animate-bounce" />
                             </div>

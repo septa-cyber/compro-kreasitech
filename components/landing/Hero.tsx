@@ -60,22 +60,22 @@ export default function Hero() {
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10 flex flex-col items-center">
 
                 {/* Main Heading */}
-                <h1 className="text-[40px] sm:text-5xl lg:text-7xl font-medium font-montserrat leading-tight max-w-6xl mx-auto mb-8 text-text-light">
+                <h1 className="font-h1 max-w-6xl mx-auto mb-8">
                     Membangun Ekosistem <span className="font-semibold text-violet-600">Talenta & Teknologi</span> yang Bersinergi serta Terintegrasi.
                 </h1>
 
                 {/* Subheading */}
                 <div className="max-w-2xl mx-auto mb-10">
-                    <p className="text-sm sm:text-lg text-gray-500 font-montserrat mb-8">
+                    <p className="font-body-lg mb-8">
                         Software Development | Talent as a Service | Academy | Digital Marketing
                     </p>
 
                     {/* Action Buttons */}
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                         <Link href="/contact" className="w-max px-8 py-4 bg-violet-600 rounded-lg inline-flex justify-center items-center gap-2.5 hover:bg-violet-700 transition-all duration-300">
-                            <div className="text-gray-100 text-base font-medium font-montserrat">Konsultasi</div>
+                            <div className="font-btn text-gray-100">Konsultasi</div>
                         </Link>
-                        <Link href="#about" className="w-max flex items-center justify-center gap-2 px-6 py-4 text-text-light text-base font-medium font-montserrat hover:text-violet-600 transition-colors group">
+                        <Link href="#about" className="w-max flex items-center justify-center gap-2 px-6 py-4 font-btn text-text-light hover:text-violet-600 transition-colors group">
                             Pelajari Layanan
                             <img src="/assets/images/arrow_downward.svg" alt="" className="w-6 h-6 animate-bounce" />
                         </Link>
@@ -158,8 +158,8 @@ export default function Hero() {
                                     <Image src={badge.icon} alt={badge.label} width={24} height={24} className="w-6 h-6" />
                                 </div>
                                 <div className="inline-flex flex-col justify-start items-start gap-1">
-                                    <div className="text-text-light text-sm font-medium font-montserrat">{badge.count}</div>
-                                    <div className="text-gray-500 text-[10px] font-normal font-montserrat uppercase">{badge.label}</div>
+                                    <div className="font-body text-sm font-medium">{badge.count}</div>
+                                    <div className="font-body-xs uppercase">{badge.label}</div>
                                 </div>
                             </div>
                         ))}
@@ -175,8 +175,8 @@ export default function Hero() {
                                     <Image src={badge.icon} alt={badge.label} width={24} height={24} className="w-6 h-6" />
                                 </div>
                                 <div className="inline-flex flex-col justify-start items-start gap-1">
-                                    <div className="text-text-light text-sm font-medium font-montserrat">{badge.count}</div>
-                                    <div className="text-gray-500 text-[10px] font-normal font-montserrat uppercase">{badge.label}</div>
+                                    <div className="font-body text-sm font-medium">{badge.count}</div>
+                                    <div className="font-body-xs uppercase">{badge.label}</div>
                                 </div>
                             </div>
                         ))}
@@ -187,7 +187,7 @@ export default function Hero() {
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10 flex flex-col items-center">
                 {/* Trusted By Header */}
                 <div className="mt-24 mb-6 w-full max-w-7xl mx-auto text-center z-10">
-                    <div className="w-full text-center text-SubText text-base font-normal font-['Montserrat']">Dipercaya oleh bisnis terkemuka seperti:</div>
+                    <div className="w-full text-center font-body text-gray-500">Dipercaya oleh bisnis terkemuka seperti:</div>
                 </div>
             </div>
 

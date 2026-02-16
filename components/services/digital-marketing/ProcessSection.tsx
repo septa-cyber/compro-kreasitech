@@ -29,10 +29,10 @@ export default function ProcessSection() {
         <section className="py-24 bg-violet-800 text-white overflow-hidden" data-theme="dark">
             <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center gap-16">
                 <div className="max-w-3xl mx-auto">
-                    <h2 className="text-xl md:text-4xl font-medium font-montserrat mb-6">
+                    <h2 className="font-h2 !text-white mb-6">
                         Alur Layanan Digital Marketing
                     </h2>
-                    <p className="text-sm md:text-base font-normal font-montserrat text-white/90 leading-relaxed">
+                    <p className="font-body !text-white/90 leading-relaxed">
                         Setiap langkah dirancang untuk mengoptimalkan kehadiran digital Anda dengan strategi yang terukur dan efektif.
                     </p>
                 </div>
@@ -49,10 +49,10 @@ export default function ProcessSection() {
                             <div className="w-10 h-10 border border-white rounded flex items-center justify-center text-xl font-medium mb-0 group-hover:border-violet-600 group-hover:text-violet-600 transition-all duration-300">
                                 {step.number}
                             </div>
-                            <h3 className="text-xl font-medium font-montserrat text-center group-hover:text-gray-900 transition-colors duration-300">
+                            <h3 className="font-h4 text-center group-hover:!text-gray-900 transition-colors duration-300">
                                 {step.title}
                             </h3>
-                            <p className="text-sm font-normal font-montserrat text-center text-white/80 group-hover:text-gray-600 transition-colors duration-300">
+                            <p className="font-body-sm text-center !text-white/80 group-hover:!text-gray-600 transition-colors duration-300">
                                 {step.description}
                             </p>
                         </div>

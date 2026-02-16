@@ -17,7 +17,7 @@ export default function ArticleMeta({ post, previousPost, nextPost }: ArticleMet
                     {post.tags.map((tag, index) => (
                         <span
                             key={index}
-                            className="bg-white border border-gray-200 text-gray-600 px-4 py-2 rounded-full text-sm font-montserrat hover:bg-violet-50 hover:text-violet-600 transition-colors cursor-pointer"
+                            className="bg-white border border-gray-200 text-gray-600 px-4 py-2 rounded-full font-body-sm hover:bg-violet-50 hover:text-violet-600 transition-colors cursor-pointer"
                         >
                             #{tag}
                         </span>
@@ -28,8 +28,8 @@ export default function ArticleMeta({ post, previousPost, nextPost }: ArticleMet
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {previousPost ? (
                         <Link href={`/blog/${previousPost.slug}`} className="bg-white group flex flex-col gap-2 p-6 rounded-2xl border border-gray-200 hover:border-violet-200 hover:shadow-sm transition-all text-left">
-                            <span className="text-xs font-semibold text-gray-400 font-montserrat uppercase tracking-wider">Artikel Sebelumnya</span>
-                            <h4 className="text-md font-medium font-montserrat text-gray-900 group-hover:text-violet-600 transition-colors line-clamp-2">
+                            <span className="font-body-xs font-semibold text-gray-400 uppercase tracking-wider">Artikel Sebelumnya</span>
+                            <h4 className="font-body font-medium transition-colors line-clamp-2">
                                 {previousPost.title}
                             </h4>
                         </Link>
@@ -39,8 +39,8 @@ export default function ArticleMeta({ post, previousPost, nextPost }: ArticleMet
 
                     {nextPost && (
                         <Link href={`/blog/${nextPost.slug}`} className="bg-white group flex flex-col gap-2 p-6 rounded-2xl border border-gray-200 hover:border-violet-200 hover:shadow-sm transition-all text-right items-end">
-                            <span className="text-xs font-semibold text-gray-400 font-montserrat uppercase tracking-wider">Artikel Selanjutnya</span>
-                            <h4 className="text-md font-medium font-montserrat text-gray-900 group-hover:text-violet-600 transition-colors line-clamp-2">
+                            <span className="font-body-xs font-semibold text-gray-400 uppercase tracking-wider">Artikel Selanjutnya</span>
+                            <h4 className="font-body font-medium transition-colors line-clamp-2">
                                 {nextPost.title}
                             </h4>
                         </Link>

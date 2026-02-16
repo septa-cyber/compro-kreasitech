@@ -11,12 +11,12 @@ export default function CompanyAbout() {
                     {/* Left Column: Content */}
                     <div className="flex flex-col gap-8">
                         <div>
-                            <h2 className="text-2xl md:text-4xl font-medium font-montserrat text-text-light mb-10">
+                            <h2 className="font-h2 mb-10">
                                 Tentang Kami
                             </h2>
                         </div>
 
-                        <div className="space-y-6 text-gray-600 leading-relaxed text-lg font-body">
+                        <div className="space-y-6 font-body-lg">
                             <p>
                                 Kreasitech adalah perusahaan teknologi yang menghubungkan dunia pendidikan, karier, dan industri melalui inovasi digital. Berangkat dari semangat <span className="text-violet-600 font-medium">"Where Talent Meets Technology"</span> kami mencetak, mengembangkan, dan menyalurkan talenta siap kerja melalui layanan pelatihan, outsourcing, dan pengembangan produk digital.
                             </p>
@@ -28,16 +28,16 @@ export default function CompanyAbout() {
                         {/* Stats Section */}
                         <div className="grid grid-cols-3 gap-4 py-6 border-t border-gray-100 mt-2">
                             <div>
-                                <h3 className="text-2xl sm:text-4xl font-semibold text-gray-900 font-montserrat">50+</h3>
-                                <p className="text-sm text-violet-600 font-medium mt-1">Klien Puas</p>
+                                <h3 className="font-h2">50+</h3>
+                                <p className="font-body-sm text-violet-600 font-medium mt-1">Klien Puas</p>
                             </div>
                             <div>
-                                <h3 className="text-2xl sm:text-4xl font-semibold text-gray-900 font-montserrat">100+</h3>
-                                <p className="text-sm text-violet-600 font-medium mt-1">Proyek Selesai</p>
+                                <h3 className="font-h2">100+</h3>
+                                <p className="font-body-sm text-violet-600 font-medium mt-1">Proyek Selesai</p>
                             </div>
                             <div>
-                                <h3 className="text-2xl sm:text-4xl font-semibold text-gray-900 font-montserrat">4+</h3>
-                                <p className="text-sm text-violet-600 font-medium mt-1">Tahun Pengalaman</p>
+                                <h3 className="font-h2">4+</h3>
+                                <p className="font-body-sm text-violet-600 font-medium mt-1">Tahun Pengalaman</p>
                             </div>
                         </div>
                     </div>
@@ -61,8 +61,8 @@ export default function CompanyAbout() {
                                 <MdVerified className="text-2xl sm:text-3xl" />
                             </div>
                             <div>
-                                <h4 className="font-bold text-gray-900 text-sm sm:text-base font-montserrat">Certified Professional Training</h4>
-                                <p className="text-xs sm:text-sm text-gray-500 mt-1">Industry Standard Curriculum</p>
+                                <h4 className="font-h5">Certified Professional Training</h4>
+                                <p className="font-body-sm text-gray-500 mt-1">Industry Standard Curriculum</p>
                             </div>
                         </div>
                     </div>

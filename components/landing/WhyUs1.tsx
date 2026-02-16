@@ -43,10 +43,10 @@ export default function WhyUs() {
 
                         {/* Middle Content */}
                         <div className="my-auto lg:mt-64 lg:mb-64 relative z-10 flex flex-col gap-6 lg:gap-8">
-                            <h2 className="text-2xl md:text-4xl font-medium font-montserrat text-text-light mb-10">
+                            <h2 className="font-h2 mb-10">
                                 Mengapa Kreasitech pilihan yang tepat untuk Anda?
                             </h2>
-                            <p className="space-y-6 text-gray-600 leading-relaxed text-lg font-body">
+                            <p className="space-y-6 font-body leading-relaxed">
                                 Kami menyediakan solusi IT yang aman, terukur, dan inovatif yang disesuaikan dengan kebutuhan Anda. Dengan eksekusi yang dipandu oleh para ahli, kami memastikan efisiensi dan keandalan dalam setiap proyek.
                             </p>
                         </div>
@@ -66,10 +66,10 @@ export default function WhyUs() {
                     <div className="w-full lg:w-[528px] flex flex-col gap-8 lg:pt-12">
                         {items.map((item, index) => (
                             <div key={index} className="flex flex-col gap-4 sm:gap-6 py-4 border-b border-gray-100 last:border-0 hover:bg-gray-50/50 transition-colors p-4 rounded-lg">
-                                <h3 className="text-xl sm:text-xl font-medium font-montserrat text-text-light">
+                                <h3 className="font-h4 text-text-light">
                                     {item.title}
                                 </h3>
-                                <p className="text-sm font-normal font-montserrat text-text-light-muted leading-relaxed">
+                                <p className="font-body-sm text-text-light-muted leading-relaxed">
                                     {item.description}
                                 </p>
                             </div>

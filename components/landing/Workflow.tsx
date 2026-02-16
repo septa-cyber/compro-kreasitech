@@ -51,11 +51,11 @@ export default function Workflow() {
         <section className="py-24 bg-violet-800 text-white overflow-hidden" data-theme="dark">
             <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header */}
-                <div className="text-center mb-16 max-w-3xl mx-auto">
-                    <h2 className="text-3xl md:text-4xl font-semibold text-white mb-4">
+                <div className="text-center mb-16 max-w-3xl mx-auto gap-8">
+                    <h2 className="font-h2">
                         Sesuaikan energi Anda dengan alur kerja kami
                     </h2>
-                    <p className="text-white/90 text-base md:text-lg leading-relaxed">
+                    <p className="font-body">
                         Kami memastikan setiap proyek dieksekusi secara efisien dan disesuaikan dengan kebutuhan bisnis unik Anda, menyediakan solusi inovatif yang mendorong kesuksesan.
                     </p>
                 </div>
@@ -93,12 +93,12 @@ export default function Workflow() {
                                     </div>
 
                                     {/* Title */}
-                                    <h3 className="text-lg font-semibold text-white mb-3">
+                                    <h3 className="font-h5 mb-3">
                                         {step.title}
                                     </h3>
 
                                     {/* Description */}
-                                    <p className="text-sm text-white/80 leading-relaxed">
+                                    <p className="font-body-sm">
                                         {step.description}
                                     </p>
                                 </div>
@@ -181,12 +181,12 @@ export default function Workflow() {
                                     {/* Right Side - Content */}
                                     <div className="flex-1 pt-2">
                                         {/* Title */}
-                                        <h3 className="text-lg font-semibold text-white mb-2">
+                                        <h3 className="font-h5 mb-2">
                                             {step.title}
                                         </h3>
 
                                         {/* Description */}
-                                        <p className="text-sm text-white/80 leading-relaxed">
+                                        <p className="font-body-sm">
                                             {step.description}
                                         </p>
                                     </div>

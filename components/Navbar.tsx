@@ -78,8 +78,8 @@ export default function Navbar() {
                     </div>
 
                     {/* Desktop Navigation */}
-                    <div className="hidden lg:flex flex-1 justify-center items-center gap-2 xl:gap-8">
-                        <div className={`flex items-center gap-3 xl:gap-8 text-xs lg:text-sm font-medium font-montserrat transition-colors duration-300`}>
+                    <div className="hidden lg:flex flex-1 justify-center items-center gap-2 xl:gap-8 font-nav">
+                        <div className="flex items-center gap-3 xl:gap-8 transition-colors duration-300">
                             {/* Find a Talent - Mega Menu Trigger */}
                             <div className="group relative h-full flex items-center">
                                 <button
@@ -152,13 +152,13 @@ export default function Navbar() {
                     <div className="hidden lg:flex items-center gap-2 flex-shrink-0">
                         <a
                             href="/karir"
-                            className="bg-white h-8 xl:h-10 px-2 xl:px-4 rounded-lg outline outline-1 outline-violet-600 text-violet-600 text-[10px] xl:text-xs font-semibold font-montserrat flex items-center justify-center hover:bg-violet-50 transition whitespace-nowrap"
+                            className="bg-white h-8 xl:h-10 px-2 xl:px-4 rounded-lg outline outline-1 outline-violet-600 text-violet-600 font-btn-sm flex items-center justify-center hover:bg-violet-50 transition whitespace-nowrap"
                         >
                             KARIR
                         </a>
                         <a
                             href="/contact"
-                            className="h-8 xl:h-10 px-2 xl:px-4 rounded-lg bg-violet-600 text-white text-[10px] xl:text-xs font-bold font-montserrat flex items-center justify-center hover:bg-violet-700 transition shadow-[0px_4px_20px_0px_rgba(124,58,237,0.4)] whitespace-nowrap"
+                            className="h-8 xl:h-10 px-2 xl:px-4 rounded-lg bg-violet-600 text-white font-btn-sm flex items-center justify-center hover:bg-violet-700 transition shadow-[0px_4px_20px_0px_rgba(124,58,237,0.4)] whitespace-nowrap"
                         >
                             KONTAK KAMI
                         </a>
@@ -177,7 +177,7 @@ export default function Navbar() {
             </div>
             {/* Mobile menu */}
             {mobileMenuOpen && (
-                <div className="lg:hidden px-4 pt-2 pb-4 space-y-1 bg-white border-t border-gray-100 font-montserrat h-auto max-h-[calc(100vh-72px)] overflow-y-auto shadow-lg rounded-b-2xl">
+                <div className="lg:hidden px-4 pt-2 pb-4 space-y-1 bg-white border-t border-gray-100 font-nav h-auto max-h-[calc(100vh-72px)] overflow-y-auto shadow-lg rounded-b-2xl">
                     {/* Layanan (Consolidated) */}
                     <div className="border-b border-gray-50">
                         <button
@@ -241,7 +241,7 @@ export default function Navbar() {
 
                     <Link
                         href="/blog"
-                        className="block px-3 py-4 text-sm font-medium text-text-light hover:text-primary"
+                        className="block px-3 py-4 font-nav text-text-light hover:text-primary"
                     >
                         Artikel
                     </Link>
@@ -249,13 +249,13 @@ export default function Navbar() {
                     <div className="grid grid-cols-2 gap-3 mt-4 px-3 pb-8">
                         <a
                             href="/karir"
-                            className="px-4 py-2.5 rounded-lg outline outline-1 outline-violet-600 text-violet-600 text-xs font-semibold text-center hover:bg-violet-50 transition-colors"
+                            className="px-4 py-2.5 rounded-lg outline outline-1 outline-violet-600 text-violet-600 font-btn-sm text-center hover:bg-violet-50 transition-colors"
                         >
                             KARIR
                         </a>
                         <a
                             href="/contact"
-                            className="px-4 py-2.5 bg-violet-600 rounded-lg text-white text-xs font-medium text-center hover:bg-violet-700 transition-colors"
+                            className="px-4 py-2.5 bg-violet-600 rounded-lg text-white font-btn-sm text-center hover:bg-violet-700 transition-colors"
                         >
                             KONTAK KAMI
                         </a>

@@ -21,11 +21,11 @@ export default function LandingAbout({ className = "bg-white" }: LandingAboutPro
 
                     {/* Right Column: Content */}
                     <div className="flex flex-col gap-6 text-left">
-                        <h2 className="text-xl md:text-4xl font-medium font-montserrat text-text-light mb-10">
+                        <h2 className="font-h2 mb-10">
                             Tentang Kami
                         </h2>
 
-                        <div className="space-y-6 text-gray-600 leading-relaxed text-lg font-body">
+                        <div className="space-y-6 font-body-lg">
                             <p>
                                 Kreasitech adalah perusahaan teknologi yang menghubungkan dunia pendidikan, karier, dan industri melalui inovasi digital. Berangkat dari semangat <span className="text-violet-600 font-medium">"Where Talent Meets Technology"</span> kami mencetak, mengembangkan, dan menyalurkan talenta siap kerja melalui layanan pelatihan, outsourcing, dan pengembangan produk digital.
                             </p>
@@ -33,7 +33,7 @@ export default function LandingAbout({ className = "bg-white" }: LandingAboutPro
 
                         <div className="pt-2">
                             <Link href="/company" className="w-max px-8 py-4 bg-violet-600 rounded-lg inline-flex justify-center items-center gap-2.5 hover:bg-violet-700 transition-all duration-300">
-                                <div className="text-gray-100 text-base font-medium font-montserrat">Selengkapnya</div>
+                                <div className="font-btn text-gray-100">Selengkapnya</div>
                             </Link>
                         </div>
                     </div>

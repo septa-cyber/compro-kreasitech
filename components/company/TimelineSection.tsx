@@ -65,10 +65,10 @@ export default function TimelineSection() {
         <section className="py-20 bg-white overflow-hidden">
             <div className="max-w-[1200px] mx-auto px-4">
                 <div className="w-full max-w-[784px] mx-auto flex flex-col items-center gap-8 px-4 text-center mb-12 md:mb-16">
-                    <h2 className="text-2xl md:text-4xl font-medium font-montserrat text-text-light mb-10">
+                    <h2 className="font-h2 mb-10">
                         Perjalanan Kami
                     </h2>
-                    <p className="max-w-[576px] text-base font-normal font-montserrat text-text-light-muted">
+                    <p className="font-body">
                         Ini adalah perjalanan kami dalam membangun Kreasitech
                     </p>
                 </div>
@@ -130,11 +130,11 @@ export default function TimelineSection() {
 
                 {/* Content Area */}
                 <div className="max-w-4xl mx-auto text-center px-4 animate-fadeIn mt-8 md:mt-12">
-                    <h3 className="text-xl sm:text-xl font-medium font-montserrat text-violet-600">
+                    <h3 className="font-h4 text-violet-600">
                         Tahun {timelineData[activeIndex].year}
                     </h3>
                     <div className="my-6"></div>
-                    <p className="text-sm font-normal font-montserrat text-text-light-muted leading-relaxed max-w-2xl mx-auto">
+                    <p className="font-body-sm max-w-2xl mx-auto">
                         {timelineData[activeIndex].text}
                     </p>
                 </div>

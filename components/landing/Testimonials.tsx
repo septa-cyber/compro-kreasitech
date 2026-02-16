@@ -26,7 +26,7 @@ export default function Testimonials() {
     return (
         <section className="py-16 md:py-24 bg-gray-100 overflow-hidden">
             <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 mb-8 md:mb-24">
-                <h2 className="text-2xl md:text-4xl font-medium font-montserrat text-text-light mb-10">
+                <h2 className="font-h2 mb-10">
                     Lihat mengapa pelanggan <br /> senang menggunakan KreasiTech
                 </h2>
             </div>
@@ -50,18 +50,18 @@ export default function Testimonials() {
                                 <div className="self-stretch inline-flex justify-start items-center gap-3 md:gap-6">
                                     <img className="w-12 h-12" src={item.avatar} alt={item.name} />
                                     <div className="flex-1 inline-flex flex-col justify-start items-start gap-2">
-                                        <div className="self-stretch justify-start text-text-light group-hover:text-white text-base md:text-xl font-medium font-montserrat transition-colors duration-300">
+                                        <div className="self-stretch justify-start font-h4 group-hover:text-white transition-colors duration-300">
                                             {item.name}
                                         </div>
-                                        <div className="self-stretch justify-start text-text-light group-hover:text-white text-xs font-normal font-montserrat transition-colors duration-300">
+                                        <div className="self-stretch justify-start font-body-xs group-hover:text-white transition-colors duration-300">
                                             {item.role}
                                         </div>
                                     </div>
                                 </div>
-                                <div className="self-stretch justify-start text-text-light group-hover:text-white text-base md:text-xl font-light font-montserrat transition-colors duration-300">
-                                    "{item.quote}"
+                                <div className="self-stretch justify-start font-body-lg group-hover:text-white transition-colors duration-300">
+                                    "{item.content || item.quote}"
                                 </div>
-                                <div className="self-stretch justify-start text-gray-400 group-hover:text-white text-xs font-normal font-montserrat mt-auto transition-colors duration-300">
+                                <div className="self-stretch justify-start font-body-xs opacity-60 group-hover:opacity-100 group-hover:text-white mt-auto transition-colors duration-300">
                                     {item.company}
                                 </div>
                             </div>
@@ -81,18 +81,18 @@ export default function Testimonials() {
                                 <div className="self-stretch inline-flex justify-start items-center gap-3 md:gap-6">
                                     <img className="w-12 h-12" src={item.avatar} alt={item.name} />
                                     <div className="flex-1 inline-flex flex-col justify-start items-start gap-2">
-                                        <div className="self-stretch justify-start text-text-light group-hover:text-white text-base md:text-xl font-medium font-montserrat transition-colors duration-300">
+                                        <div className="self-stretch justify-start font-h4 group-hover:text-white transition-colors duration-300">
                                             {item.name}
                                         </div>
-                                        <div className="self-stretch justify-start text-text-light group-hover:text-white text-xs font-normal font-montserrat transition-colors duration-300">
+                                        <div className="self-stretch justify-start font-body-xs group-hover:text-white transition-colors duration-300">
                                             {item.role}
                                         </div>
                                     </div>
                                 </div>
-                                <div className="self-stretch justify-start text-text-light group-hover:text-white text-base md:text-xl font-light font-montserrat transition-colors duration-300">
-                                    "{item.quote}"
+                                <div className="self-stretch justify-start font-body-lg group-hover:text-white transition-colors duration-300">
+                                    "{item.content || item.quote}"
                                 </div>
-                                <div className="self-stretch justify-start text-gray-400 group-hover:text-white text-xs font-normal font-montserrat mt-auto transition-colors duration-300">
+                                <div className="self-stretch justify-start font-body-xs opacity-60 group-hover:opacity-100 group-hover:text-white mt-auto transition-colors duration-300">
                                     {item.company}
                                 </div>
                             </div>
