@@ -18,7 +18,7 @@ export default function DigitalMarketingPage() {
     return (
         <div className="min-h-screen">
             <Navbar />
-            <main>
+            <main className="bg-[#F4F4F7]">
                 <Breadcrumb
                     className="px-4 sm:px-6 lg:px-8"
                     items={[

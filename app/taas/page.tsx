@@ -17,7 +17,7 @@ import { getTestimonials } from "@/lib/db";
 export default async function TaaSPage() {
     const testimonials = await getTestimonials('visible');
     return (
-        <div className="antialiased transition-colors duration-200">
+        <div className="antialiased transition-colors duration-200 bg-[#F4F4F7]">
             <Navbar />
             <Breadcrumb
                 className="px-4 sm:px-6 lg:px-8"
