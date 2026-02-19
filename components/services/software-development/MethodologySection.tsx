@@ -21,7 +21,7 @@ export default function MethodologySection() {
 
                     {/* Agile Development Card */}
                     <div className="group flex-1 p-8 bg-white hover:bg-violet-800 outline outline-[0.50px] outline-offset-[-0.25px] outline-gray-200 hover:outline-violet-700 flex flex-col justify-start items-center gap-6 rounded-none min-h-[480px] transition-all duration-300">
-                        <h3 className="self-stretch font-h4 transition-colors duration-300">
+                        <h3 className="self-stretch font-h4 group-hover:!text-white transition-colors duration-300">
                             Agile Development
                         </h3>
                         <p className="self-stretch group-hover:!text-white font-body-sm transition-colors duration-300">
@@ -54,7 +54,7 @@ export default function MethodologySection() {
 
                     {/* Waterfall Development Card */}
                     <div className="group flex-1 p-8 bg-white hover:bg-violet-800 outline outline-[0.50px] outline-offset-[-0.25px] outline-gray-200 hover:outline-violet-700 flex flex-col justify-start items-center gap-6 rounded-none min-h-[480px] transition-all duration-300">
-                        <h3 className="self-stretch font-h4 transition-colors duration-300">
+                        <h3 className="self-stretch font-h4 group-hover:!text-white transition-colors duration-300">
                             Waterfall Development
                         </h3>
                         <p className="self-stretch group-hover:!text-white font-body-sm transition-colors duration-300">
