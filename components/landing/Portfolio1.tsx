@@ -12,10 +12,17 @@ export default function Portfolio() {
         const fetchPortfolio = async () => {
             try {
                 const res = await fetch('/api/portfolio?status=published');
-                if (res.ok) {
-                    const data = await res.json();
-                    setPortfolioItems(data);
+                if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+
+                const contentType = res.headers.get("content-type");
+                if (!contentType || !contentType.includes("application/json")) {
+                    const text = await res.text();
+                    console.error("Received non-JSON response:", text.substring(0, 100)); // Log first 100 chars
+                    return; // Stop processing
                 }
+
+                const data = await res.json();
+                setPortfolioItems(data);
             } catch (error) {
                 console.error('Failed to fetch portfolio:', error);
             } finally {

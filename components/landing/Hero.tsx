@@ -35,6 +35,15 @@ export default function Hero() {
         const fetchPartners = async () => {
             try {
                 const res = await fetch('/api/partners');
+                if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+
+                const contentType = res.headers.get("content-type");
+                if (!contentType || !contentType.includes("application/json")) {
+                    const text = await res.text();
+                    console.error("Received non-JSON response:", text.substring(0, 100)); // Log first 100 chars
+                    return; // Stop processing
+                }
+
                 const data = await res.json();
                 // Filter active partners and get their logo URLs
                 const logos = data

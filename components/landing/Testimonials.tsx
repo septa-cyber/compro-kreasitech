@@ -11,10 +11,17 @@ export default function Testimonials() {
         const fetchTestimonials = async () => {
             try {
                 const res = await fetch('/api/testimonials?status=visible');
-                if (res.ok) {
-                    const data = await res.json();
-                    setTestimonialItems(data);
+                if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+
+                const contentType = res.headers.get("content-type");
+                if (!contentType || !contentType.includes("application/json")) {
+                    const text = await res.text();
+                    console.error("Received non-JSON response:", text.substring(0, 100)); // Log first 100 chars
+                    return; // Stop processing
                 }
+
+                const data = await res.json();
+                setTestimonialItems(data);
             } catch (error) {
                 console.error('Failed to fetch testimonials:', error);
             }

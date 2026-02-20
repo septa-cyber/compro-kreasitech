@@ -19,15 +19,22 @@ export default function CompanyHero() {
         const fetchTeam = async () => {
             try {
                 const res = await fetch('/api/team?status=active');
-                if (res.ok) {
-                    const data: TeamMember[] = await res.json();
-                    // Convert team data to avatars format
-                    const teamAvatars = data.map(member => ({
-                        src: member.avatar || '/assets/images/employee/placeholder.png',
-                        alt: `${member.name} - ${member.role}`
-                    }));
-                    setAvatars(teamAvatars);
+                if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+
+                const contentType = res.headers.get("content-type");
+                if (!contentType || !contentType.includes("application/json")) {
+                    const text = await res.text();
+                    console.error("Received non-JSON response:", text.substring(0, 100)); // Log first 100 chars
+                    return; // Stop processing
                 }
+
+                const data: TeamMember[] = await res.json();
+                // Convert team data to avatars format
+                const teamAvatars = data.map(member => ({
+                    src: member.avatar || '/assets/images/employee/placeholder.png',
+                    alt: `${member.name} - ${member.role}`
+                }));
+                setAvatars(teamAvatars);
             } catch (error) {
                 console.error('Failed to fetch team:', error);
             } finally {
