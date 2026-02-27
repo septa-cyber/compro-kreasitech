@@ -11,7 +11,7 @@ export default function CallToAction() {
                         <h2 className="font-h2">
                             Yuk, Ceritakan Kebutuhan Bisnis Anda
                         </h2>
-                        <p className="font-body text-gray-500">
+                        <p className="font-body-lg text-gray-500">
                             Tim kami siap mendengar dan membantu menemukan solusi yang paling cocok. Gratis dan tanpa komitmen.
                         </p>
                     </div>

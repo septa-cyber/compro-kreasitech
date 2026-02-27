@@ -10,7 +10,7 @@ export default function Services() {
                     <h2 className="font-h2 mb-10">
                         Layanan Kami
                     </h2>
-                    <p className="font-body text-gray-500 max-w-[700px]">
+                    <p className="font-body-lg text-gray-500 max-w-[700px]">
                         Kreasitech menyediakan solusi end-to-end bagi organisasi yang ingin membangun produk digital, memperkuat tim teknologi, meningkatkan kompetensi, hingga mengembangkan bisnis melalui digital marketing.
                     </p>
                 </div>
@@ -20,7 +20,7 @@ export default function Services() {
                     <Link href="/services/software-development" className="w-full md:w-1/2 lg:w-1/4 h-auto py-16 px-8 bg-white outline outline-[0.5px] outline-offset-[-0.25px] outline-gray-200 inline-flex flex-col justify-center items-center text-center gap-6 hover:bg-violet-800 transition-colors duration-300 group cursor-pointer">
                         <div className="w-14 h-14 relative flex items-center justify-center rounded-2xl bg-violet-50 group-hover:bg-white/10 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 shadow-sm">
                             <Image
-                                src="/assets/images/3d-icons/laptop_3d.png"
+                                src="/assets/images/Icons/3d-setting 1.svg"
                                 alt="Laptop 3D Icon"
                                 width={40}
                                 height={40}
@@ -39,7 +39,7 @@ export default function Services() {
                     <Link href="/services" className="w-full md:w-1/2 lg:w-1/4 h-auto py-16 px-8 bg-white outline outline-[0.5px] outline-offset-[-0.25px] outline-gray-200 inline-flex flex-col justify-center items-center text-center gap-6 hover:bg-violet-800 transition-colors duration-300 group cursor-pointer">
                         <div className="w-14 h-14 relative flex items-center justify-center rounded-2xl bg-violet-50 group-hover:bg-white/10 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 shadow-sm">
                             <Image
-                                src="/assets/images/3d-icons/briefcase_3d.png"
+                                src="/assets/images/Icons/3d-star 1.svg"
                                 alt="Talent as a Service Icon"
                                 width={40}
                                 height={40}
@@ -58,7 +58,7 @@ export default function Services() {
                     <Link href="/services" className="w-full md:w-1/2 lg:w-1/4 h-auto py-16 px-8 bg-white outline outline-[0.5px] outline-offset-[-0.25px] outline-gray-200 inline-flex flex-col justify-center items-center text-center gap-6 hover:bg-violet-800 transition-colors duration-300 group cursor-pointer">
                         <div className="w-14 h-14 relative flex items-center justify-center rounded-2xl bg-violet-50 group-hover:bg-white/10 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 shadow-sm">
                             <Image
-                                src="/assets/images/3d-icons/graduation_cap_3d.png"
+                                src="/assets/images/Icons/books 1.svg"
                                 alt="Graduation Cap 3D Icon"
                                 width={40}
                                 height={40}

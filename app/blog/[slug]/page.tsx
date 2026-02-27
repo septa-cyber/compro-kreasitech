@@ -4,7 +4,6 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import WhatsAppButton from "@/components/landing/WhatsAppButton";
 import ArticleHeader from "@/components/blog/ArticleHeader";
 import ArticleContent from "@/components/blog/ArticleContent";
 import ArticleMeta from "@/components/blog/ArticleMeta";
@@ -103,7 +102,6 @@ export default function BlogPostPage() {
             <RelatedArticles posts={relatedPosts} />
             <BlogCTA />
             <Footer />
-            <WhatsAppButton />
         </div>
     );
 }

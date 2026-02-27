@@ -1,19 +1,23 @@
 ﻿"use client";
 import React from "react";
+import Image from "next/image";
 
 const outcomes = [
     {
         number: "1",
+        icon: "/assets/images/Icons/stats 1.svg",
         title: "Traffic Meningkat",
         description: "Implementasi strategi yang efektif untuk meningkatkan kunjungan organik ke website Anda secara signifikan."
     },
     {
         number: "2",
+        icon: "/assets/images/Icons/google 1.svg",
         title: "Brand Awareness Naik",
         description: "Tingkatkan kesadaran merek melalui visibilitas yang lebih baik di mesin pencari dan media digital."
     },
     {
         number: "3",
+        icon: "/assets/images/Icons/gold 1.svg",
         title: "ROI Marketing yang Jelas",
         description: "Dapatkan laporan yang transparan dengan metrik yang terukur untuk memastikan investasi marketing Anda memberikan hasil."
     }
@@ -32,13 +36,22 @@ export default function OutcomeSection() {
                 {outcomes.map((outcome, index) => (
                     <div
                         key={index}
-                        className={`w-full p-8 flex flex-col justify-start items-center gap-6 ${index === 1 ? 'md:border-l-[0.5px] md:border-r-[0.5px] border-gray-200' : ''
+                        className={`w-full p-8 flex flex-col justify-start items-center gap-6 group hover:bg-violet-800 transition-colors duration-300 ${index === 1 ? 'md:border-l-[0.5px] md:border-r-[0.5px] border-gray-200' : ''
                             }`}
                     >
-                        <div className="self-stretch text-center font-h4">
+                        <div className="w-14 h-14 flex-shrink-0 relative flex items-center justify-center rounded-2xl bg-violet-50 group-hover:bg-white/10 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 shadow-sm">
+                            <Image
+                                src={outcome.icon}
+                                alt={outcome.title}
+                                width={40}
+                                height={40}
+                                className="w-10 h-10 object-contain transition-all duration-300"
+                            />
+                        </div>
+                        <div className="self-stretch text-center font-h4 group-hover:text-white transition-colors duration-300">
                             {outcome.title}
                         </div>
-                        <div className="self-stretch text-center font-body-sm">
+                        <div className="self-stretch text-center font-body-sm group-hover:text-white/90 transition-colors duration-300">
                             {outcome.description}
                         </div>
                     </div>
@@ -47,4 +60,3 @@ export default function OutcomeSection() {
         </section>
     );
 }
-

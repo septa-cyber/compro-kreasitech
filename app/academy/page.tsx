@@ -24,7 +24,7 @@ export default function AcademyPage() {
                 <Breadcrumb className="px-4 sm:px-6 lg:px-8" items={[
                     { label: "Home", href: "/" },
                     { label: "Academy", href: "#" },
-                    { label: "Impact Academy", href: "/academy" }
+                    { label: "Kreasi Space", href: "/academy" }
                 ]} />
                 <ImpactAcademyHero />
                 <ImpactAcademyWhy />

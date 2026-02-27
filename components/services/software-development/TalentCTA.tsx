@@ -10,7 +10,7 @@ export default function TalentCTA() {
                         <h2 className="font-h2">
                             Ada Ide Digital Product? Yuk Diskusi!
                         </h2>
-                        <p className="font-body text-text-light-muted">
+                        <p className="font-body-lg text-text-light-muted">
                             Dari konsep hingga launching, tim developer kami siap menjadi partner terpercaya untuk mewujudkan produk impian Anda.
                         </p>
                     </div>
@@ -27,7 +27,7 @@ export default function TalentCTA() {
                 </div>
                 <div className="w-full lg:w-1/2 flex justify-center">
                     <Image
-                        src="/assets/images/CTA/designer-color-palette-violet.svg"
+                        src="/assets/images/CTA/manager-desk.svg"
                         alt="Digital product illustration"
                         width={400}
                         height={400}

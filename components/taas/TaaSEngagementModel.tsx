@@ -3,22 +3,22 @@ import Image from 'next/image';
 
 const engagementModels = [
     {
-        icon: "/assets/images/3d-icons/magnifying_glass_tilted_left_3d.png",
+        icon: "/assets/images/Icons/scavanger-hunt 1.svg",
         title: "Head Hunting",
         description: "Model kerjasama ini ditujukan untuk membantu perusahaan mendapatkan talenta berpengalaman pada level menengah hingga senior yang siap memberikan dampak strategis. Melalui proses rekrutmen yang terukur program ini memastikan kandidat memiliki komunikasi, skill teknis, dan pengalaman yang relevan untuk mendukung pertumbuhan perusahaan. Talent akan langsung dikontrak oleh perusahaan dan tidak under Kreasitech."
     },
     {
-        icon: "/assets/images/3d-icons/busts_in_silhouette_3d.png",
+        icon: "/assets/images/Icons/id-card 1.svg",
         title: "Staffing",
         description: "Penyediaan tenaga kerja berpengalaman untuk ditempatkan pada product atau project klien dalam jangka waktu tertentu. Talent akan bekerja secara dedicated di perusahaan klien selama masa kontrak kerja berjalan. Talent masih under Kreasitech sehingga secara administrasi dan management masih menjadi tanggung jawab dari Kreasitech."
     },
     {
-        icon: "/assets/images/3d-icons/graduation_cap_3d.png",
+        icon: "/assets/images/Icons/self-growth 1.svg",
         title: "Internship Program",
         description: "Program magang untuk mahasiswa semester atau fresh graduate yang berfokus pada pengembangan talenta muda melalui keterlibatan langsung dalam proyek perusahaan. Selain menghubungkan dengan perusahaan-perusahaan, program ini juga meningkatkan skill talent dalam berkarir."
     },
     {
-        icon: "/assets/images/3d-icons/sparkling_heart_3d.png",
+        icon: "/assets/images/Icons/talent 1.svg",
         title: "Inclusive Talent",
         description: "Program inklusi bertujuan membuka akses kerja yang setara bagi talenta difabel atau penyandang kebutuhan khusus yang memiliki kompetensi dan kesiapan kerja. Melalui proses seleksi, pendampingan, dan penyesuaian lingkungan kerja yang inklusif, program ini membantu perusahaan membangun tim yang beragam, produktif, dan ramah terhadap difabel."
     }

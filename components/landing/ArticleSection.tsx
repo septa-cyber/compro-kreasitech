@@ -47,7 +47,7 @@ export default function ArticleSection() {
                         <h2 className="font-h2">
                             Artikel Terbaru
                         </h2>
-                        <p className="font-body">
+                        <p className="font-body-lg">
                             Artikel terbaru yang dapat membantu Anda dalam memahami berbagai topik dan tren terkini.
                         </p>
                     </div>

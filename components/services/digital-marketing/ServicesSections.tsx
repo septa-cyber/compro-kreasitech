@@ -14,7 +14,7 @@ export default function ServicesSections() {
                     <h2 className="font-h2">
                         Solusi yang Kami Tawarkan
                     </h2>
-                    <p className="w-full max-w-[627px] font-body">
+                    <p className="w-full max-w-[627px] font-body-lg">
                         Solusi digital marketing kami dirancang untuk mengangkat brand Anda dan mendorong pertumbuhan. Kami menawarkan rangkaian layanan komprehensif untuk membantu Anda sukses di lanskap online yang kompetitif saat ini.
                     </p>
                 </div>

@@ -15,8 +15,8 @@ export default function BlogHero({ featuredPost }: BlogHeroProps) {
             {/* Header */}
             <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 pb-16 sm:pb-24">
                 <Breadcrumb className="mb-8" items={[
-                    { label: "Beranda", href: "/" },
-                    { label: "Blog", href: "/blog" }
+                    { label: "Home", href: "/" },
+                    { label: "Article", href: "/blog" }
                 ]} />
                 <div className="flex flex-col gap-8">
                     <h1 className="font-h1 max-w-6xl">

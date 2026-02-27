@@ -11,7 +11,7 @@ export default function TaaSCTA() {
                         <h2 className="font-h2">
                             Butuh Talenta Digital Berkualitas?
                         </h2>
-                        <p className="font-body text-text-light-muted max-w-2xl">
+                        <p className="font-body-lg text-text-light-muted max-w-2xl">
                             Percayakan kebutuhan tim teknologi Anda kepada kami. Akses talenta profesional yang siap bekerja sesuai model engagement yang fleksibel.
                         </p>
                     </div>
@@ -20,7 +20,7 @@ export default function TaaSCTA() {
                             href="/contact"
                             className="px-8 py-4 bg-violet-600 rounded-lg flex justify-center items-center gap-2.5 hover:bg-violet-700 transition-colors"
                         >
-                            <span className="font-btn">
+                            <span className="font-btn !text-white">
                                 Rekrut Talent Sekarang
                             </span>
                         </Link>

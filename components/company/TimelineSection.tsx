@@ -65,10 +65,10 @@ export default function TimelineSection() {
         <section className="py-20 bg-white overflow-hidden">
             <div className="max-w-[1200px] mx-auto px-4">
                 <div className="w-full max-w-[784px] mx-auto flex flex-col items-center gap-8 px-4 text-center mb-12 md:mb-16">
-                    <h2 className="font-h2 mb-10">
+                    <h2 className="font-h2">
                         Perjalanan Kami
                     </h2>
-                    <p className="font-body">
+                    <p className="font-body-lg">
                         Ini adalah perjalanan kami dalam membangun Kreasitech
                     </p>
                 </div>

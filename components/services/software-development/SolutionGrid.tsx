@@ -3,12 +3,12 @@ import { softwareDevelopmentServices } from '@/data/software-development-service
 import Image from 'next/image';
 
 const iconMapping: { [key: string]: string } = {
-    'specifications-and-wireframe': "/assets/images/3d-icons/spiral_notepad_3d.png",
-    'ui-ux-design': "/assets/images/3d-icons/artist_palette_3d.png",
-    'website-development': "/assets/images/3d-icons/desktop_computer_3d.png",
-    'mobile-app-development': "/assets/images/3d-icons/mobile_phone_3d.png",
-    'mvp-development': "/assets/images/3d-icons/rocket_3d.png",
-    'custom-software-development': "/assets/images/3d-icons/gear_3d.png",
+    'specifications-and-wireframe': "/assets/images/Icons/3d-report 1.svg",
+    'ui-ux-design': "/assets/images/Icons/3d-ruler 1.svg",
+    'website-development': "/assets/images/Icons/keyboardist 1.svg",
+    'mobile-app-development': "/assets/images/Icons/group-chat 1.svg",
+    'mvp-development': "/assets/images/Icons/setting 1.svg",
+    'custom-software-development': "/assets/images/Icons/customization 1.svg",
 };
 
 export default function Services() {

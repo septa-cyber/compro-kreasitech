@@ -8,7 +8,6 @@ import Portfolio from "@/components/landing/Portfolio3";
 import ArticleSection from "@/components/landing/ArticleSection";
 import CallToAction from "@/components/landing/CallToAction";
 import Footer from "@/components/Footer";
-import WhatsAppButton from "@/components/landing/WhatsAppButton";
 import LandingAbout from "@/components/landing/LandingAbout";
 
 export default function Home() {
@@ -27,7 +26,6 @@ export default function Home() {
         <CallToAction />
       </main>
       <Footer />
-      <WhatsAppButton />
     </div>
   );
 }

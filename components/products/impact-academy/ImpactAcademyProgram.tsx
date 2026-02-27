@@ -4,32 +4,32 @@ import Image from 'next/image';
 
 const programTypes = [
     {
-        icon: "/assets/images/3d-icons/microphone_3d.png",
+        icon: "/assets/images/Icons/chat 1.svg",
         title: "Impact Talks",
         description: "Sesi inspiratif berupa career talk dan tech sharing dari praktisi industri untuk wawasan karir dan teknologi terkini."
     },
     {
-        icon: "/assets/images/3d-icons/wrench_3d.png",
+        icon: "/assets/images/Icons/unemployment 1.svg",
         title: "Impact Skill Series",
         description: "Program workshop intensif untuk mengasah skill teknis dan soft skill yang relevan dengan kebutuhan industri."
     },
     {
-        icon: "/assets/images/3d-icons/office_building_3d.png",
+        icon: "/assets/images/Icons/exercise-routine 1.svg",
         title: "Corporate Training",
         description: "Pelatihan kustom untuk perusahaan dalam meningkatkan kompetensi tim dengan kurikulum yang disesuaikan."
     },
     {
-        icon: "/assets/images/3d-icons/rocket_3d.png",
+        icon: "/assets/images/Icons/briefing 1.svg",
         title: "Impact Bootcamp",
         description: "Program pelatihan intensif jangka pendek untuk menguasai skill spesifik dengan pendekatan praktis dan project-based."
     },
     {
-        icon: "/assets/images/3d-icons/graduation_cap_3d.png",
-        title: "Kreasitech Internship",
-        description: "Program magang yang memberikan pengalaman kerja nyata di industri teknologi dengan bimbingan mentor profesional."
+        icon: "/assets/images/Icons/online-learning 1.svg",
+        title: "Kreasitech Hub",
+        description: "Ruang pengembangan tingkat lanjut di mana peserta menyempurnakan portofolio, berkolaborasi dengan komunitas, dan mengakses bimbingan berkelanjutan."
     },
     {
-        icon: "/assets/images/3d-icons/briefcase_3d.png",
+        icon: "/assets/images/Icons/3d-rocket 1.svg",
         title: "Impact Career Connect",
         description: "Layanan penyaluran talenta yang menghubungkan lulusan program dengan peluang karir di perusahaan mitra."
     }
@@ -37,13 +37,13 @@ const programTypes = [
 
 export default function ImpactAcademyProgram() {
     return (
-        <section className="py-24 bg-violet-800 text-white overflow-hidden" data-theme="dark">
+        <section className="py-24 bg-[#6E44FF] text-white overflow-hidden" data-theme="dark">
             <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center gap-16">
                 <div className="max-w-3xl mx-auto">
                     <h2 className="font-h2 mb-6 text-white text-center">
                         Bentuk Kegiatan Impact Academy
                     </h2>
-                    <p className="font-body text-white/90">
+                    <p className="font-body-lg text-white/90">
                         Beragam program yang dirancang untuk mengembangkan skill, memperluas wawasan, dan mempercepat pertumbuhan karir Anda di industri teknologi.
                     </p>
                 </div>

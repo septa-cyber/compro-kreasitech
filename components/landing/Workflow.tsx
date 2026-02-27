@@ -51,11 +51,11 @@ export default function Workflow() {
         <section className="py-24 bg-violet-800 text-white overflow-hidden" data-theme="dark">
             <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header */}
-                <div className="text-center mb-16 max-w-3xl mx-auto gap-8">
+                <div className="flex flex-col items-center gap-8 text-center mb-16 max-w-3xl mx-auto">
                     <h2 className="font-h2">
                         Sesuaikan energi Anda dengan alur kerja kami
                     </h2>
-                    <p className="font-body">
+                    <p className="font-body-lg">
                         Kami memastikan setiap proyek dieksekusi secara efisien dan disesuaikan dengan kebutuhan bisnis unik Anda, menyediakan solusi inovatif yang mendorong kesuksesan.
                     </p>
                 </div>
@@ -65,19 +65,13 @@ export default function Workflow() {
                     {/* Top Row - Steps 1-4 */}
                     <div className="hidden lg:block relative">
                         {/* Connection Line */}
-                        <div className="absolute top-[52px] left-[12.5%] right-[12.5%] h-[2px] bg-[#A58BFF]">
-                            {/* Connector Dots */}
-                            <div className="absolute top-1/2 left-0 -translate-y-1/2 w-3 h-3 bg-[#A58BFF] rounded-full"></div>
-                            <div className="absolute top-1/2 left-1/3 -translate-y-1/2 w-3 h-3 bg-[#A58BFF] rounded-full"></div>
-                            <div className="absolute top-1/2 left-2/3 -translate-y-1/2 w-3 h-3 bg-[#A58BFF] rounded-full"></div>
-                            <div className="absolute top-1/2 right-0 -translate-y-1/2 w-3 h-3 bg-[#A58BFF] rounded-full"></div>
-                        </div>
+                        <div className="absolute top-[100px] left-[12.5%] right-[12.5%] h-[2px] bg-[#A58BFF] z-0"></div>
 
                         <div className="grid grid-cols-4 gap-8 relative z-10">
                             {workflowSteps.slice(0, 4).map((step) => (
-                                <div key={step.number} className="flex flex-col items-center text-center">
+                                <div key={step.number} className="flex flex-col items-center text-center relative z-10">
                                     {/* Icon */}
-                                    <div className="w-16 h-16 mb-4 relative">
+                                    <div className="w-16 h-16 mb-4 relative z-10">
                                         <Image
                                             src={step.icon}
                                             alt={step.title}
@@ -88,7 +82,7 @@ export default function Workflow() {
                                     </div>
 
                                     {/* Number Circle */}
-                                    <div className="w-12 h-12 rounded-full bg-[#A58BFF] text-white flex items-center justify-center text-lg font-semibold mb-6">
+                                    <div className="w-10 h-10 border border-white bg-violet-800 rounded flex items-center justify-center text-xl font-medium group-hover:border-violet-600 group-hover:text-violet-600 transition-all duration-300 mb-6 relative z-10">
                                         {step.number}
                                     </div>
 
@@ -109,18 +103,13 @@ export default function Workflow() {
                     {/* Bottom Row - Steps 5-7 */}
                     <div className="hidden lg:block relative">
                         {/* Connection Line */}
-                        <div className="absolute top-[52px] left-[16.666%] right-[16.666%] h-[2px] bg-[#A58BFF]">
-                            {/* Connector Dots */}
-                            <div className="absolute top-1/2 left-0 -translate-y-1/2 w-3 h-3 bg-[#A58BFF] rounded-full"></div>
-                            <div className="absolute top-1/2 left-1/2 -translate-y-1/2 w-3 h-3 bg-[#A58BFF] rounded-full"></div>
-                            <div className="absolute top-1/2 right-0 -translate-y-1/2 w-3 h-3 bg-[#A58BFF] rounded-full"></div>
-                        </div>
+                        <div className="absolute top-[100px] left-[16.666%] right-[16.666%] h-[2px] bg-[#A58BFF] z-0"></div>
 
                         <div className="grid grid-cols-3 gap-8 relative z-10">
                             {workflowSteps.slice(4, 7).map((step) => (
-                                <div key={step.number} className="flex flex-col items-center text-center">
+                                <div key={step.number} className="flex flex-col items-center text-center relative z-10">
                                     {/* Icon */}
-                                    <div className="w-16 h-16 mb-4 relative">
+                                    <div className="w-16 h-16 mb-4 relative z-10">
                                         <Image
                                             src={step.icon}
                                             alt={step.title}
@@ -131,7 +120,7 @@ export default function Workflow() {
                                     </div>
 
                                     {/* Number Circle */}
-                                    <div className="w-12 h-12 rounded-full bg-[#A58BFF] text-white flex items-center justify-center text-lg font-semibold mb-6">
+                                    <div className="w-10 h-10 border border-white bg-violet-800 rounded flex items-center justify-center text-xl font-medium group-hover:border-violet-600 group-hover:text-violet-600 transition-all duration-300 mb-6 relative z-10">
                                         {step.number}
                                     </div>
 
@@ -155,14 +144,14 @@ export default function Workflow() {
                             <div key={step.number} className="relative">
                                 {/* Vertical Connection Line */}
                                 {index < workflowSteps.length - 1 && (
-                                    <div className="absolute left-8 top-24 bottom-0 w-[2px] bg-[#A58BFF] -mb-8"></div>
+                                    <div className="absolute left-[23px] top-[80px] -bottom-[112px] w-[2px] bg-[#A58BFF] z-0"></div>
                                 )}
 
-                                <div className="flex items-start gap-6">
+                                <div className="flex items-start gap-6 relative z-10">
                                     {/* Left Side - Icon and Number */}
-                                    <div className="flex flex-col items-center flex-shrink-0">
+                                    <div className="flex flex-col items-center flex-shrink-0 w-12">
                                         {/* Icon */}
-                                        <div className="w-12 h-12 mb-3 relative">
+                                        <div className="w-12 h-12 mb-3 relative bg-violet-800 z-10">
                                             <Image
                                                 src={step.icon}
                                                 alt={step.title}
@@ -173,7 +162,7 @@ export default function Workflow() {
                                         </div>
 
                                         {/* Number Circle */}
-                                        <div className="w-10 h-10 rounded-full bg-[#A58BFF] text-white flex items-center justify-center text-base font-semibold relative z-10">
+                                        <div className="w-10 h-10 border border-white bg-violet-800 rounded flex items-center justify-center text-xl font-medium group-hover:border-violet-600 group-hover:text-violet-600 transition-all duration-300 relative z-10">
                                             {step.number}
                                         </div>
                                     </div>

@@ -1,6 +1,7 @@
 ﻿import type { Metadata } from "next";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
+import WhatsAppButton from "@/components/landing/WhatsAppButton";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://kreasitech.com"), // Placeholder URL, should be updated with actual domain
@@ -108,6 +109,7 @@ export default function RootLayout({
       >
         <Toaster position="top-center" reverseOrder={false} />
         {children}
+        <WhatsAppButton />
       </body>
     </html>
   );

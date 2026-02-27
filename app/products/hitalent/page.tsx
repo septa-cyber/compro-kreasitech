@@ -7,10 +7,9 @@ import HiTalentAbout from "@/components/products/hitalent/HiTalentAbout";
 import HiTalentProcess from "@/components/products/hitalent/HiTalentProcess";
 import HiTalentBenefits from "@/components/products/hitalent/HiTalentBenefits";
 import HiTalentCTA from "@/components/products/hitalent/HiTalentCTA";
-import HiTalentTestimonials from "@/components/products/hitalent/HiTalentTestimonials";
+import Testimonials from "@/components/landing/Testimonials";
 import HiTalentTools from "@/components/products/hitalent/HiTalentTools";
 import Breadcrumb from "@/components/ui/Breadcrumb";
-import WhatsAppButton from "@/components/landing/WhatsAppButton";
 
 export default function HiTalentPage() {
     return (
@@ -26,9 +25,8 @@ export default function HiTalentPage() {
             <HiTalentProcess />
             <HiTalentBenefits />
             <HiTalentCTA />
-            <HiTalentTestimonials />
+            <Testimonials />
             <Footer />
-            <WhatsAppButton />
         </div>
     );
 }

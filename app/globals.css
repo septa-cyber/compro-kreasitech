@@ -380,17 +380,17 @@ body {
   }
 
   .font-h2 {
-    @apply font-montserrat font-medium text-3xl md:text-4xl tracking-tight;
+    @apply font-montserrat font-bold text-3xl md:text-4xl tracking-tight;
     color: var(--text-primary);
   }
 
   .font-h3 {
-    @apply font-montserrat font-medium text-2xl md:text-3xl;
+    @apply font-montserrat font-semibold text-2xl md:text-3xl;
     color: var(--text-primary);
   }
 
   .font-h4 {
-    @apply font-montserrat font-medium text-xl leading-tight;
+    @apply font-montserrat font-semibold text-xl leading-tight;
     color: var(--text-primary);
   }
 

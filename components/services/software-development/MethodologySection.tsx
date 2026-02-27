@@ -11,7 +11,7 @@ export default function MethodologySection() {
                     <h2 className="font-h2">
                         Metode Pengembangan
                     </h2>
-                    <p className="font-body text-gray-500">
+                    <p className="font-body-lg text-gray-500">
                         Kami menyesuaikan metode pengembangan dengan kebutuhan bisnis Anda
                     </p>
                 </div>

@@ -50,7 +50,7 @@ export default function ImpactAcademyCourses() {
                     <h2 className="font-h2">
                         Start Learning Today
                     </h2>
-                    <p className="font-body max-w-2xl">
+                    <p className="font-body-lg max-w-2xl">
                         Unlock your potential with Impact Academy&apos;s expert-led training programs.
                     </p>
                 </div>

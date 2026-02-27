@@ -19,7 +19,7 @@ export default function OurProduct() {
                         <h3 className="font-h3">
                             HiTalent
                         </h3>
-                        <p className="font-body opacity-90">
+                        <p className="font-body-lg opacity-90">
                             Solusi cerdas untuk mengelola sumber daya manusia secara efisien — mulai dari absensi hingga penggajian. Didukung oleh teknologi berbasis cloud yang menyederhanakan pengelolaan sekaligus meningkatkan produktivitas dan efisiensi perusahaan Anda.
                         </p>
                         <Link href="/products/hitalent" className="px-6 md:px-8 py-3 md:py-4 bg-violet-600 hover:bg-violet-700 rounded-lg transition-colors duration-300 inline-block">

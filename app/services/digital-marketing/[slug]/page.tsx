@@ -4,7 +4,6 @@ import { notFound } from "next/navigation";
 import { digitalMarketingServices } from "@/data/digital-marketing-services";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import WhatsAppButton from "@/components/landing/WhatsAppButton";
 import Breadcrumb from "@/components/ui/Breadcrumb";
 import {
     FaStar, FaMobileScreenButton, FaScrewdriverWrench, FaChartColumn, FaRegCommentDots,
@@ -270,7 +269,6 @@ export default async function ServiceDetailPage({ params }: PageProps) {
 
             </main>
             <Footer />
-            <WhatsAppButton />
         </div>
     );
 }

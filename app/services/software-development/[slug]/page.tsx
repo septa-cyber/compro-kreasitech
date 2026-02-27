@@ -5,7 +5,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import WhatsAppButton from '@/components/landing/WhatsAppButton';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import { softwareDevelopmentServices } from '@/data/software-development-services';
 import { FaArrowDown } from 'react-icons/fa6';
@@ -366,7 +365,6 @@ export default async function SoftwareServiceDetailPage({ params }: PageProps) {
             </main>
 
             <Footer />
-            <WhatsAppButton />
         </div>
     );
 }

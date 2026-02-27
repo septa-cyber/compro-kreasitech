@@ -20,7 +20,7 @@ export default function DigitalMarketingCTA() {
                         <h2 className="font-h2">
                             Saatnya Brand Anda Lebih Dikenal
                         </h2>
-                        <p className="font-body text-text-light-muted">
+                        <p className="font-body-lg text-text-light-muted">
                             Kami bantu menyusun strategi digital marketing yang efektif untuk mengubah awareness menjadi engagement nyata.
                         </p>
                     </div>

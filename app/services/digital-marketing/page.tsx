@@ -2,7 +2,6 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Breadcrumb from "@/components/ui/Breadcrumb";
-import WhatsAppButton from "@/components/landing/WhatsAppButton";
 import DigitalMarketingHero from "@/components/services/digital-marketing/DigitalMarketingHero";
 import ServicesSections from "@/components/services/digital-marketing/ServicesSections";
 import ProcessSection from "@/components/services/digital-marketing/ProcessSection";
@@ -22,8 +21,8 @@ export default function DigitalMarketingPage() {
                 <Breadcrumb
                     className="px-4 sm:px-6 lg:px-8"
                     items={[
-                        { label: "Beranda", href: "/" },
-                        { label: "Layanan", href: "#" },
+                        { label: "Home", href: "/" },
+                        { label: "Services", href: "#" },
                         { label: "Digital Marketing", href: "/services/digital-marketing" }
                     ]}
                 />
@@ -34,7 +33,6 @@ export default function DigitalMarketingPage() {
                 <DigitalMarketingCTA />
             </main>
             <Footer />
-            <WhatsAppButton />
         </div>
     );
 }

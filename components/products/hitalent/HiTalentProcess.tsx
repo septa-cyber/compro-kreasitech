@@ -10,7 +10,7 @@ export default function HiTalentProcess() {
                     <h2 className="font-h2 mb-6 !text-white">
                         Sesuaikan energi Anda dengan alur kerja kami
                     </h2>
-                    <p className="font-body !text-white/90 leading-relaxed">
+                    <p className="font-body-lg !text-white/90 leading-relaxed">
                         Kami memastikan setiap proyek dieksekusi secara efisien dan disesuaikan dengan kebutuhan bisnis unik Anda, menyediakan solusi inovatif yang mendorong kesuksesan.
                     </p>
                 </div>

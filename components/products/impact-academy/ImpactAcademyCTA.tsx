@@ -12,7 +12,7 @@ export default function ImpactAcademyCTA() {
                         <h2 className="font-h2 text-white">
                             Siap Belajar dan Berkarir di Dunia Digital?
                         </h2>
-                        <p className="font-body text-white/80 max-w-2xl">
+                        <p className="font-body-lg text-white/80 max-w-2xl">
                             Bergabunglah dengan Impact Academy dan dapatkan pelatihan inklusif dengan mentor berpengalaman, kesempatan magang, serta akses ke perusahaan mitra kami.
                         </p>
                     </div>

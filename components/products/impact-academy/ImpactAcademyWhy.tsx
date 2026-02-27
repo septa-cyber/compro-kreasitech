@@ -3,22 +3,22 @@ import Image from 'next/image';
 
 const focusPrograms = [
     {
-        icon: "/assets/images/3d-icons/mechanical_arm_3d.png",
+        icon: "/assets/images/Icons/user 1.svg",
         title: "Pengembangan Skill Digital untuk Talent Difabel",
         description: "Program pelatihan digital yang dirancang khusus untuk mengembangkan kompetensi teknologi bagi individu berkebutuhan khusus dengan metode pembelajaran inklusif."
     },
     {
-        icon: "/assets/images/3d-icons/briefcase_3d.png",
+        icon: "/assets/images/Icons/teaching 1.svg",
         title: "Pelatihan Kesiapan Kerja & Soft Skill",
         description: "Persiapan komprehensif untuk memasuki dunia kerja dengan penguatan soft skills seperti komunikasi, teamwork, dan problem solving yang dibutuhkan industri."
     },
     {
-        icon: "/assets/images/3d-icons/chart_increasing_3d.png",
+        icon: "/assets/images/Icons/id-card (1) 1.svg",
         title: "Program Magang dan Penempatan Kerja",
         description: "Kesempatan magang yang terstruktur dengan bimbingan mentor profesional, dilanjutkan dengan dukungan penempatan kerja di perusahaan mitra."
     },
     {
-        icon: "/assets/images/3d-icons/handshake_3d.png",
+        icon: "/assets/images/Icons/friendship 1.svg",
         title: "Kolaborasi CSR & ESG",
         description: "Kemitraan strategis dengan perusahaan melalui program Corporate Social Responsibility dan Environmental, Social, Governance untuk menciptakan dampak sosial berkelanjutan."
     }

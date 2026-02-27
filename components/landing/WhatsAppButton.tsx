@@ -1,6 +1,16 @@
-﻿import React from 'react';
+﻿"use client";
+
+import React from 'react';
+import { usePathname } from 'next/navigation';
 
 export default function WhatsAppButton() {
+    const pathname = usePathname();
+
+    // Do not show the WhatsApp button on admin pages
+    if (pathname && pathname.startsWith('/admin')) {
+        return null;
+    }
+
     return (
         <a
             href="https://wa.me/6288880888877?text=Halo%20Kreasitech%2C%20saya%20ingin%20bertanya"

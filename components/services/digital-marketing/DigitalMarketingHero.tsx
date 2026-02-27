@@ -73,7 +73,7 @@ export default function DigitalMarketingHero() {
                                 href="#services"
                                 className="flex justify-start items-center gap-4 group"
                             >
-                                <span className="font-btn group-hover:text-violet-600 transition">Pelajari Layanan</span>
+                                <span className="font-btn group-hover:text-violet-600 transition">Pelajari Lebih Lanjut</span>
                                 <Image
                                     src="/assets/images/arrow_downward.svg"
                                     alt=""

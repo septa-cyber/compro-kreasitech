@@ -32,7 +32,7 @@ export default function ProcessSection() {
                     <h2 className="font-h2 !text-white mb-6">
                         Alur Layanan Digital Marketing
                     </h2>
-                    <p className="font-body !text-white/90 leading-relaxed">
+                    <p className="font-body-lg !text-white/90 leading-relaxed">
                         Setiap langkah dirancang untuk mengoptimalkan kehadiran digital Anda dengan strategi yang terukur dan efektif.
                     </p>
                 </div>

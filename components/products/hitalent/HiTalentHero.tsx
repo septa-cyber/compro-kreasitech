@@ -18,7 +18,7 @@ export default function HiTalentHero() {
                             <div className="font-btn text-gray-100">Diskusi ke Kami</div>
                         </Link>
                         <Link href="#about" className="w-max flex items-center justify-center gap-2 px-6 py-4 font-btn group">
-                            Pelajari Layanan
+                            Pelajari Lebih Lanjut
                             <img src="/assets/images/arrow_downward.svg" alt="" className="w-6 h-6 animate-bounce" />
                         </Link>
                     </div>

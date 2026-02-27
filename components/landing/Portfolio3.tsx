@@ -60,7 +60,7 @@ export default function Portfolio() {
                         <h2 className="font-h2">
                             Portofolio Kami
                         </h2>
-                        <p className="font-body max-w-[800px]">
+                        <p className="font-body-lg max-w-[800px]">
                             Telah mendukung berbagai jenis bisnis, startup, institusi pendidikan, UKM, dan corporate dalam membangun aplikasi, website, digital marketing, hingga penyediaan talent IT yang berkelanjutan.
                         </p>
                     </div>

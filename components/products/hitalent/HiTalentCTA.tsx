@@ -21,7 +21,7 @@ export default function HiTalentCTA() {
                         <h2 className="font-h2 !text-white">
                             Kelola Tim Jadi Lebih Mudah dengan HiTalent
                         </h2>
-                        <p className="font-body !text-white/80">
+                        <p className="font-body-lg !text-white/80">
                             Lihat langsung bagaimana platform kami membantu HR dan team leader bekerja lebih efisien.
                         </p>
                     </div>

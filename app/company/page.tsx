@@ -24,8 +24,8 @@ export default function CompanyPage() {
             <Navbar />
             <Breadcrumb className="px-4 sm:px-6 lg:px-8" items={[
                 { label: "Home", href: "/" },
-                { label: "Perusahaan", href: "#" },
-                { label: "Tentang Kami", href: "/company" }
+                { label: "Company", href: "#" },
+                { label: "About Us", href: "/company" }
             ]} />
             <CompanyHero />
             <CompanyAbout />

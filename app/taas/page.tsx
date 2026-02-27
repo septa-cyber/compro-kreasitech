@@ -2,7 +2,6 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Breadcrumb from "@/components/ui/Breadcrumb";
-import WhatsAppButton from "@/components/landing/WhatsAppButton";
 import TaaSHero from "@/components/taas/TaaSHero";
 import TaaSEngagementModel from "@/components/taas/TaaSEngagementModel";
 import TaaSDeliveryModel from "@/components/taas/TaaSDeliveryModel";
@@ -23,7 +22,7 @@ export default async function TaaSPage() {
                 className="px-4 sm:px-6 lg:px-8"
                 items={[
                     { label: "Home", href: "/" },
-                    { label: "Layanan", href: "#" },
+                    { label: "Services", href: "#" },
                     { label: "Talent as a Service", href: "/taas" }
                 ]}
             />
@@ -39,7 +38,6 @@ export default async function TaaSPage() {
             <TaaSCTA />
 
             <Footer />
-            <WhatsAppButton />
         </div>
     );
 }

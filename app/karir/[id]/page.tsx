@@ -4,7 +4,6 @@ import { useParams, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import WhatsAppButton from "@/components/landing/WhatsAppButton";
 import Breadcrumb from "@/components/ui/Breadcrumb";
 import { JobPosting } from "@/lib/types";
 
@@ -288,7 +287,6 @@ export default function JobDetailPage() {
             </section>
 
             <Footer />
-            <WhatsAppButton />
         </div>
     );
 }

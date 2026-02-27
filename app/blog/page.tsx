@@ -3,7 +3,6 @@
 import React, { useState, useMemo, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import WhatsAppButton from "@/components/landing/WhatsAppButton";
 import BlogHero from "@/components/blog/BlogHero";
 import BlogFilter from "@/components/blog/BlogFilter";
 import BlogList from "@/components/blog/BlogList";
@@ -107,7 +106,6 @@ export default function BlogPage() {
 
             <BlogCTA />
             <Footer />
-            <WhatsAppButton />
         </div>
     );
 }

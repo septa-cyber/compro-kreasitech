@@ -8,7 +8,7 @@ export default function WorkflowSection() {
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="text-center mb-16">
                     <h2 className="font-h2 !text-white mb-4">Sesuaikan energi Anda dengan<br />alur kerja kami</h2>
-                    <p className="font-body-xs !text-indigo-100 max-w-sm mx-auto">
+                    <p className="font-body-lg !text-indigo-100 max-w-sm mx-auto">
                         Kami memastikan setiap proyek dieksekusi secara efisien dan disesuaikan dengan kebutuhan bisnis unik Anda, menyediakan solusi inovatif yang mendorong kesuksesan.
                     </p>
                 </div>

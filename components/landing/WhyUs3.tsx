@@ -25,7 +25,7 @@ export default function WhyUs() {
     ];
 
     return (
-        <section className="py-24 bg-violet-800 overflow-hidden" data-theme="dark">
+        <section className="py-24 bg-[#6E44FF] overflow-hidden" data-theme="dark">
             <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex flex-col lg:flex-row gap-12 lg:gap-32">
 
