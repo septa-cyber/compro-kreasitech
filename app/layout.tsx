@@ -99,6 +99,7 @@ export default function RootLayout({
         />
       </head>
       <body
+        suppressHydrationWarning
         className="antialiased"
         style={{
           '--font-sans': "'Plus Jakarta Sans', sans-serif",

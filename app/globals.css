@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@config "../tailwind.config.js";
 
 html {
   scroll-behavior: smooth;
@@ -71,7 +72,7 @@ body {
   --text-muted: #9ca3af;
 }
 
-@theme inline {
+@theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sans);
