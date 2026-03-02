@@ -8,10 +8,10 @@ export default function HiTalentProcess() {
             <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center gap-16">
                 <div className="max-w-3xl mx-auto">
                     <h2 className="font-h2 mb-6 !text-white">
-                        Sesuaikan energi Anda dengan alur kerja kami
+                        HiTalent Features
                     </h2>
                     <p className="font-body-lg !text-white/90 leading-relaxed">
-                        Kami memastikan setiap proyek dieksekusi secara efisien dan disesuaikan dengan kebutuhan bisnis unik Anda, menyediakan solusi inovatif yang mendorong kesuksesan.
+                        HiTalent menawarkan fitur-fitur yang dapat membantu Anda dalam mengembangkan dan meningkatkan produk Anda.
                     </p>
                 </div>
 
@@ -22,10 +22,10 @@ export default function HiTalentProcess() {
                             1
                         </div>
                         <h3 className="font-h4 text-center h-14 flex items-center justify-center group-hover:!text-gray-900 transition-colors duration-300">
-                            Discovery & Requirements
+                            Smart Attendance
                         </h3>
                         <p className="font-body-sm text-center !text-white/80 group-hover:!text-gray-600 transition-colors duration-300">
-                            Dokumen penting yang menguraikan batasan dan tujuan proyek.
+                            Smart Attendance adalah fitur yang dapat membantu Anda dalam mengelola absensi karyawan Anda dengan lebih mudah.
                         </p>
                     </div>
 
@@ -34,10 +34,10 @@ export default function HiTalentProcess() {
                             2
                         </div>
                         <h3 className="font-h4 text-center h-14 flex items-center justify-center group-hover:!text-gray-900 transition-colors duration-300">
-                            Wireframe & Desain UI/UX
+                            Manage Employees
                         </h3>
                         <p className="font-body-sm text-center !text-white/80 group-hover:!text-gray-600 transition-colors duration-300">
-                            Menjelaskan metode langkah demi langkah untuk mengembangkan atau meningkatkan produk saat ini.
+                            Manage Employees adalah fitur yang dapat membantu Anda dalam mengelola karyawan Anda dengan lebih mudah.
                         </p>
                     </div>
 
@@ -46,10 +46,10 @@ export default function HiTalentProcess() {
                             3
                         </div>
                         <h3 className="font-h4 text-center h-14 flex items-center justify-center group-hover:!text-gray-900 transition-colors duration-300">
-                            Pengembangan
+                            Manage Projects
                         </h3>
                         <p className="font-body-sm text-center !text-white/80 group-hover:!text-gray-600 transition-colors duration-300">
-                            Menguraikan prosedur terperinci untuk berinovasi atau meningkatkan layanan yang ada.
+                            Manage Projects adalah fitur yang dapat membantu Anda dalam mengelola proyek Anda dengan lebih mudah.
                         </p>
                     </div>
 
@@ -58,10 +58,10 @@ export default function HiTalentProcess() {
                             4
                         </div>
                         <h3 className="font-h4 text-center h-14 flex items-center justify-center group-hover:!text-gray-900 transition-colors duration-300">
-                            SIT
+                            Manage Payroll
                         </h3>
                         <p className="font-body-sm text-center !text-white/80 group-hover:!text-gray-600 transition-colors duration-300">
-                            Mewakili pencapaian yang diraih melalui komitmen, keterampilan, dan keberanian.
+                            Manage Payroll adalah fitur yang dapat membantu Anda dalam mengelola gaji Anda dengan lebih mudah.
                         </p>
                     </div>
 
@@ -71,10 +71,10 @@ export default function HiTalentProcess() {
                             5
                         </div>
                         <h3 className="font-h4 text-center h-14 flex items-center justify-center group-hover:!text-gray-900 transition-colors duration-300">
-                            UAT
+                            Task Monitoring
                         </h3>
                         <p className="font-body-sm text-center !text-white/80 group-hover:!text-gray-600 transition-colors duration-300">
-                            Mewujudkan kisah sukses yang dibangun atas ketekunan, keahlian, dan keberanian.
+                            Task Monitoring adalah fitur yang dapat membantu Anda dalam mengelola tugas Anda dengan lebih mudah.
                         </p>
                     </div>
 
@@ -83,10 +83,10 @@ export default function HiTalentProcess() {
                             6
                         </div>
                         <h3 className="font-h4 text-center h-14 flex items-center justify-center group-hover:!text-gray-900 transition-colors duration-300">
-                            Deployment
+                            Manage Permit
                         </h3>
                         <p className="font-body-sm text-center !text-white/80 group-hover:!text-gray-600 transition-colors duration-300">
-                            Memungkinkan perbaikan berkelanjutan melalui tinjauan konstan dan perubahan berulang.
+                            Manage Permit adalah fitur yang dapat membantu Anda dalam mengelola izin Anda dengan lebih mudah.
                         </p>
                     </div>
                 </div>
