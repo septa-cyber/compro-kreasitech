@@ -62,11 +62,6 @@ export default function PortfolioTestimonials() {
                     </div>
                 </div>
             </div>
-
-            {/* Custom Progress Indicator */}
-            <div className="flex items-center gap-4 mt-12 max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="w-24 h-[5px] bg-text-light rounded-full"></div>
-            </div>
         </section>
     );
 }
