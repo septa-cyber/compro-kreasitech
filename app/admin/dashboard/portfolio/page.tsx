@@ -7,6 +7,113 @@ import Modal from '@/components/ui/Modal';
 import ConfirmationModal from '@/components/ui/ConfirmationModal';
 import toast from 'react-hot-toast';
 
+function PortfolioCard({ item, onDelete, onChange }: { item: PortfolioItem; onDelete: (id: number) => void; onChange: (id: number, field: keyof PortfolioItem, value: any) => void }) {
+    return (
+        <div className="relative bg-[#F4F4F7] border border-gray-200 rounded-xl overflow-hidden group hover:border-violet-300 transition-all">
+            {/* Image Preview */}
+            <div className="h-40 bg-gray-200 relative">
+                <img src={item.image || 'https://placehold.co/600x400'} alt={item.title} className="w-full h-full object-cover opacity-80" />
+                <div className="absolute top-2 right-2 z-10">
+                    <button
+                        type="button"
+                        onClick={() => onDelete(item.id)}
+                        className="bg-white/80 p-1.5 rounded-md text-gray-500 hover:text-red-500 hover:bg-white transition-colors shadow-sm"
+                        title="Hapus Proyek"
+                    >
+                        <FaTrash size={12} />
+                    </button>
+                </div>
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/10">
+                    <label className="bg-white/90 px-3 py-1 rounded text-xs font-medium text-gray-600 flex items-center gap-1 cursor-pointer hover:bg-white hover:text-violet-600">
+                        <FaImage /> Ganti Gambar
+                        <input
+                            type="file"
+                            accept="image/*"
+                            className="hidden"
+                            onChange={(e) => {
+                                const file = e.target.files?.[0];
+                                if (file) {
+                                    const imageUrl = URL.createObjectURL(file);
+                                    onChange(item.id, 'image', imageUrl);
+                                }
+                            }}
+                        />
+                    </label>
+                </div>
+            </div>
+
+            <div className="p-4 space-y-3">
+                <div>
+                    <label className="block text-[10px] font-medium text-gray-500 uppercase font-montserrat mb-1">
+                        Judul Proyek
+                    </label>
+                    <input
+                        type="text"
+                        value={item.title}
+                        onChange={(e) => onChange(item.id, 'title', e.target.value)}
+                        className="w-full px-2 py-1.5 bg-white border border-gray-200 rounded text-sm font-semibold text-text-light focus:outline-none focus:ring-2 focus:ring-violet-500/50 transition-all"
+                    />
+                </div>
+                <div>
+                    <label className="block text-[10px] font-medium text-gray-500 uppercase font-montserrat mb-1">
+                        Kategori
+                    </label>
+                    <div className="relative">
+                        <FaTag className="absolute left-2 top-1.5 text-gray-400 text-xs" />
+                        <input
+                            type="text"
+                            value={item.category || ''}
+                            onChange={(e) => onChange(item.id, 'category', e.target.value)}
+                            className="w-full pl-6 pr-2 py-1.5 bg-white border border-gray-200 rounded text-xs text-gray-600 focus:outline-none focus:ring-2 focus:ring-violet-500/50 transition-all"
+                        />
+                    </div>
+                </div>
+                <div className="grid grid-cols-3 gap-2">
+                    <div>
+                        <label className="block text-[10px] font-medium text-gray-500 uppercase font-montserrat mb-1">
+                            Ukuran
+                        </label>
+                        <select
+                            value={item.size || 'large'}
+                            onChange={(e) => onChange(item.id, 'size', e.target.value)}
+                            className="w-full px-2 py-1.5 bg-white border border-gray-200 rounded text-[10px] focus:outline-none focus:ring-2 focus:ring-violet-500/50 transition-all"
+                        >
+                            <option value="large">Large</option>
+                            <option value="medium">Medium</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label className="block text-[10px] font-medium text-gray-500 uppercase font-montserrat mb-1">
+                            Status
+                        </label>
+                        <select
+                            value={item.status}
+                            onChange={(e) => onChange(item.id, 'status', e.target.value as 'draft' | 'published')}
+                            className="w-full px-2 py-1.5 bg-white border border-gray-200 rounded text-[10px] focus:outline-none focus:ring-2 focus:ring-violet-500/50 transition-all"
+                        >
+                            <option value="draft">Draft</option>
+                            <option value="published">Published</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label className="block text-[10px] font-medium text-gray-500 uppercase font-montserrat mb-1">
+                            Baris
+                        </label>
+                        <select
+                            value={item.marquee_row || 'top'}
+                            onChange={(e) => onChange(item.id, 'marquee_row', e.target.value as 'top' | 'bottom')}
+                            className="w-full px-2 py-1.5 bg-white border border-gray-200 rounded text-[10px] focus:outline-none focus:ring-2 focus:ring-violet-500/50 transition-all"
+                        >
+                            <option value="top">Atas</option>
+                            <option value="bottom">Bawah</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
 export default function PortfolioSettingsPage() {
     const [portfolioItems, setPortfolioItems] = useState<PortfolioItem[]>([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -21,7 +128,8 @@ export default function PortfolioSettingsPage() {
         image: "",
         size: "large",
         description: "",
-        status: "draft"
+        status: "draft",
+        marquee_row: "top"
     });
 
     useEffect(() => {
@@ -90,7 +198,8 @@ export default function PortfolioSettingsPage() {
                     category: "",
                     image: "",
                     status: 'draft',
-                    size: 'large'
+                    size: 'large',
+                    marquee_row: 'top'
                 });
             } else {
                 toast.error('Gagal menambah proyek');
@@ -164,98 +273,30 @@ export default function PortfolioSettingsPage() {
                         </button>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {portfolioItems.map((item) => (
-                            <div key={item.id} className="relative bg-[#F4F4F7] border border-gray-200 rounded-xl overflow-hidden group hover:border-violet-300 transition-all">
-                                {/* Image Preview */}
-                                <div className="h-40 bg-gray-200 relative">
-                                    <img src={item.image || 'https://placehold.co/600x400'} alt={item.title} className="w-full h-full object-cover opacity-80" />
-                                    <div className="absolute top-2 right-2 z-10">
-                                        <button
-                                            type="button"
-                                            onClick={() => setItemToDelete(item.id)}
-                                            className="bg-white/80 p-1.5 rounded-md text-gray-500 hover:text-red-500 hover:bg-white transition-colors shadow-sm"
-                                            title="Hapus Proyek"
-                                        >
-                                            <FaTrash size={12} />
-                                        </button>
-                                    </div>
-                                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/10">
-                                        <label className="bg-white/90 px-3 py-1 rounded text-xs font-medium text-gray-600 flex items-center gap-1 cursor-pointer hover:bg-white hover:text-violet-600">
-                                            <FaImage /> Ganti Gambar
-                                            <input
-                                                type="file"
-                                                accept="image/*"
-                                                className="hidden"
-                                                onChange={(e) => {
-                                                    const file = e.target.files?.[0];
-                                                    if (file) {
-                                                        const imageUrl = URL.createObjectURL(file);
-                                                        handleItemChange(item.id, 'image', imageUrl);
-                                                    }
-                                                }}
-                                            />
-                                        </label>
-                                    </div>
-                                </div>
+                    {/* Marquee Atas */}
+                    <div className="mb-6">
+                        <h3 className="text-sm font-semibold text-violet-600 font-montserrat mb-3 flex items-center gap-2">
+                            <span className="w-3 h-3 bg-violet-500 rounded-full"></span>
+                            Marquee Baris Atas
+                        </h3>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {portfolioItems.filter(i => i.marquee_row === 'top' || (!i.marquee_row && portfolioItems.indexOf(i) < Math.ceil(portfolioItems.length / 2))).map((item) => (
+                                <PortfolioCard key={item.id} item={item} onDelete={setItemToDelete} onChange={handleItemChange} />
+                            ))}
+                        </div>
+                    </div>
 
-                                <div className="p-4 space-y-3">
-                                    <div>
-                                        <label className="block text-[10px] font-medium text-gray-500 uppercase font-montserrat mb-1">
-                                            Judul Proyek
-                                        </label>
-                                        <input
-                                            type="text"
-                                            value={item.title}
-                                            onChange={(e) => handleItemChange(item.id, 'title', e.target.value)}
-                                            className="w-full px-2 py-1.5 bg-white border border-gray-200 rounded text-sm font-semibold text-text-light focus:outline-none focus:ring-2 focus:ring-violet-500/50 transition-all"
-                                        />
-                                    </div>
-                                    <div>
-                                        <label className="block text-[10px] font-medium text-gray-500 uppercase font-montserrat mb-1">
-                                            Kategori
-                                        </label>
-                                        <div className="relative">
-                                            <FaTag className="absolute left-2 top-1.5 text-gray-400 text-xs" />
-                                            <input
-                                                type="text"
-                                                value={item.category || ''}
-                                                onChange={(e) => handleItemChange(item.id, 'category', e.target.value)}
-                                                className="w-full pl-6 pr-2 py-1.5 bg-white border border-gray-200 rounded text-xs text-gray-600 focus:outline-none focus:ring-2 focus:ring-violet-500/50 transition-all"
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className="grid grid-cols-2 gap-2">
-                                        <div>
-                                            <label className="block text-[10px] font-medium text-gray-500 uppercase font-montserrat mb-1">
-                                                Ukuran Card
-                                            </label>
-                                            <select
-                                                value={item.size || 'large'}
-                                                onChange={(e) => handleItemChange(item.id, 'size', e.target.value)}
-                                                className="w-full px-2 py-1.5 bg-white border border-gray-200 rounded text-[10px] focus:outline-none focus:ring-2 focus:ring-violet-500/50 transition-all"
-                                            >
-                                                <option value="large">Large</option>
-                                                <option value="medium">Medium</option>
-                                            </select>
-                                        </div>
-                                        <div>
-                                            <label className="block text-[10px] font-medium text-gray-500 uppercase font-montserrat mb-1">
-                                                Status
-                                            </label>
-                                            <select
-                                                value={item.status}
-                                                onChange={(e) => handleItemChange(item.id, 'status', e.target.value as 'draft' | 'published')}
-                                                className="w-full px-2 py-1.5 bg-white border border-gray-200 rounded text-xs focus:outline-none focus:ring-2 focus:ring-violet-500/50 transition-all"
-                                            >
-                                                <option value="draft">Draft</option>
-                                                <option value="published">Published</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
+                    {/* Marquee Bawah */}
+                    <div>
+                        <h3 className="text-sm font-semibold text-emerald-600 font-montserrat mb-3 flex items-center gap-2">
+                            <span className="w-3 h-3 bg-emerald-500 rounded-full"></span>
+                            Marquee Baris Bawah
+                        </h3>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {portfolioItems.filter(i => i.marquee_row === 'bottom' || (!i.marquee_row && portfolioItems.indexOf(i) >= Math.ceil(portfolioItems.length / 2))).map((item) => (
+                                <PortfolioCard key={item.id} item={item} onDelete={setItemToDelete} onChange={handleItemChange} />
+                            ))}
+                        </div>
                     </div>
 
                     {portfolioItems.length === 0 && (
@@ -295,7 +336,7 @@ export default function PortfolioSettingsPage() {
                             placeholder="Contoh: Web Development, Mobile App"
                         />
                     </div>
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-3 gap-4">
                         <div>
                             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Size</label>
                             <select
@@ -316,6 +357,17 @@ export default function PortfolioSettingsPage() {
                             >
                                 <option value="draft">Draft</option>
                                 <option value="published">Published</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Baris Marquee</label>
+                            <select
+                                value={newItemData.marquee_row || 'top'}
+                                onChange={(e) => setNewItemData({ ...newItemData, marquee_row: e.target.value as 'top' | 'bottom' })}
+                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                            >
+                                <option value="top">Atas</option>
+                                <option value="bottom">Bawah</option>
                             </select>
                         </div>
                     </div>

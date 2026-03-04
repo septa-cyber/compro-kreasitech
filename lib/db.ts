@@ -546,7 +546,8 @@ function mapPortfolioFromDB(row: any): PortfolioItem {
         project_url: row.project_url,
         github_url: row.github_url,
         status: row.status,
-        completed_date: row.completed_date
+        completed_date: row.completed_date,
+        marquee_row: row.marquee_row
     };
 }
 

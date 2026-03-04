@@ -52,6 +52,21 @@ export default function FeaturedShowcase() {
         );
     }
 
+    // Split items into top and bottom rows
+    const hasRowAssignment = portfolioItems.some(item => item.marquee_row);
+    let topRowItems: PortfolioItem[];
+    let bottomRowItems: PortfolioItem[];
+
+    if (hasRowAssignment) {
+        topRowItems = portfolioItems.filter(item => item.marquee_row === 'top');
+        bottomRowItems = portfolioItems.filter(item => item.marquee_row === 'bottom');
+    } else {
+        // Auto-split evenly if no marquee_row assigned
+        const mid = Math.ceil(portfolioItems.length / 2);
+        topRowItems = portfolioItems.slice(0, mid);
+        bottomRowItems = portfolioItems.slice(mid);
+    }
+
     return (
         <section id="featured" className="py-16 md:py-24 bg-white overflow-hidden" >
             <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 mb-12 md:mb-24">
@@ -80,8 +95,8 @@ export default function FeaturedShowcase() {
                         style={{ animationPlayState: isReverseHovered ? 'paused' : 'running' }}
                     >
                         {/* Auto-clone: Original + Duplicate items for seamless loop */}
-                        {[...portfolioItems, ...portfolioItems].map((item, index) => {
-                            const isOriginal = index < portfolioItems.length;
+                        {[...topRowItems, ...topRowItems].map((item, index) => {
+                            const isOriginal = index < topRowItems.length;
                             const sizeClasses = item.size === "large"
                                 ? "w-80 md:w-[600px] h-52 md:h-[400px]"
                                 : "w-64 md:w-[400px] h-64 md:h-[400px]";
@@ -125,8 +140,8 @@ export default function FeaturedShowcase() {
                         style={{ animationPlayState: isNormalHovered ? 'paused' : 'running' }}
                     >
                         {/* Auto-clone: Original + Duplicate items for seamless loop */}
-                        {[...portfolioItems, ...portfolioItems].map((item, index) => {
-                            const isOriginal = index < portfolioItems.length;
+                        {[...bottomRowItems, ...bottomRowItems].map((item, index) => {
+                            const isOriginal = index < bottomRowItems.length;
                             const sizeClasses = item.size === "large"
                                 ? "w-80 md:w-[600px] h-52 md:h-[400px]"
                                 : "w-64 md:w-[400px] h-64 md:h-[400px]";

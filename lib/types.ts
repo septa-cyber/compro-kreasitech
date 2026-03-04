@@ -79,6 +79,7 @@ export interface PortfolioItem {
     github_url?: string;
     status: 'draft' | 'published';
     completed_date?: string;
+    marquee_row?: 'top' | 'bottom';
 }
 
 export interface Partner {
