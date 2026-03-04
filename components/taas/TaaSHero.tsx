@@ -26,7 +26,7 @@ export default function TaaSHero() {
                                 className="w-full sm:w-max flex items-center justify-center gap-2 px-6 py-3 md:py-4 font-btn transition-colors group"
                             >
                                 Pelajari Lebih Lanjut
-                                <img src="/assets/images/arrow_downward.svg" alt="" className="w-6 h-6 animate-bounce" />
+                                <img src="/assets/images/arrow_downward.svg" alt="Ikon panah ke bawah" className="w-6 h-6 animate-bounce" />
                             </Link>
                         </div>
                     </div>

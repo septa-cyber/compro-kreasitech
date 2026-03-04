@@ -1,26 +1,12 @@
 ﻿"use client";
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { FaMapMarkerAlt, FaPhone, FaRegEnvelope, FaLinkedin, FaInstagram, FaTwitter, FaFacebook } from 'react-icons/fa';
+import { useSettings } from "@/components/providers/SettingsProvider";
 
 export default function Footer() {
-    const [settings, setSettings] = useState<any>({});
-
-    useEffect(() => {
-        const fetchSettings = async () => {
-            try {
-                const response = await fetch('/api/settings');
-                if (response.ok) {
-                    const data = await response.json();
-                    setSettings(data);
-                }
-            } catch (error) {
-                console.error('Failed to fetch settings:', error);
-            }
-        };
-        fetchSettings();
-    }, []);
+    const settings = useSettings();
 
     return (
         <footer className="w-full bg-[#F4F4F7] pb-12 pt-0 px-4">

@@ -3,6 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useSettings } from "@/components/providers/SettingsProvider";
 
 export default function Hero() {
     const [isBadgesHovered, setIsBadgesHovered] = React.useState(false);
@@ -59,27 +60,13 @@ export default function Hero() {
         fetchPartners();
     }, []);
 
-    const [settings, setSettings] = React.useState<any>({});
-    React.useEffect(() => {
-        const fetchSettings = async () => {
-            try {
-                const res = await fetch('/api/settings');
-                if (res.ok) {
-                    const data = await res.json();
-                    setSettings(data);
-                }
-            } catch (error) {
-                console.error('Failed to fetch settings:', error);
-            }
-        };
-        fetchSettings();
-    }, []);
+    const settings = useSettings();
 
     return (
         <section className="relative pt-40 pb-20 lg:pt-54 lg:pb-16 overflow-hidden bg-[#F4F4F7]">
             {/* Geometric Background Lines */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] md:w-full md:h-full max-w-[1200px] pointer-events-none flex items-center justify-center z-0">
-                <img src="/assets/images/Lines.svg" alt="" className="w-full h-full object-contain opacity-80 dark:opacity-60" />
+                <img src="/assets/images/Lines.svg" alt="Garis geometris latar belakang" className="w-full h-full object-contain opacity-80 dark:opacity-60" />
             </div>
 
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10 flex flex-col items-center">
@@ -105,7 +92,7 @@ export default function Hero() {
                         </a>
                         <Link href="#about" className="w-max flex items-center justify-center gap-2 px-6 py-4 font-btn text-text-light hover:text-violet-600 transition-colors group">
                             Pelajari Lebih Lanjut
-                            <img src="/assets/images/arrow_downward.svg" alt="" className="w-6 h-6 animate-bounce" />
+                            <img src="/assets/images/arrow_downward.svg" alt="Ikon panah ke bawah" className="w-6 h-6 animate-bounce" />
                         </Link>
                     </div>
                 </div>

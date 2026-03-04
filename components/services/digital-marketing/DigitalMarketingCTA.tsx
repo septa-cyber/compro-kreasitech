@@ -9,7 +9,7 @@ export default function DigitalMarketingCTA() {
                 <div className="w-full lg:w-1/2 flex justify-center">
                     <Image
                         src="/assets/images/CTA/speed-go-fast-violet.svg"
-                        alt="Strategy illustration"
+                        alt="Ilustrasi Kecepatan Digital Marketing"
                         width={400}
                         height={400}
                         className="w-full max-w-md"

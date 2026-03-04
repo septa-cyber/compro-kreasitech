@@ -76,7 +76,7 @@ export default function DigitalMarketingHero() {
                                 <span className="font-btn group-hover:text-violet-600 transition">Pelajari Lebih Lanjut</span>
                                 <img
                                     src="/assets/images/arrow_downward.svg"
-                                    alt="Panah Bawah"
+                                    alt="Ikon panah ke bawah"
                                     width={24}
                                     height={24}
                                     className="w-6 h-6 animate-bounce"

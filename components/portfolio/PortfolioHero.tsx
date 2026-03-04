@@ -41,7 +41,7 @@ export default function PortfolioHero() {
                     <div className="w-full md:w-1/2 flex items-center justify-center relative z-20 md:py-16">
                         <Image
                             src="/assets/images/CTA/designer-color-palette-violet.svg"
-                            alt="Designer Color Palette Illustration"
+                            alt="Ilustrasi Desainer dengan Palet Warna Kreatif"
                             width={500}
                             height={500}
                             className="w-full max-w-[300px] md:max-w-md lg:max-w-lg object-contain mt-8 md:mt-0"

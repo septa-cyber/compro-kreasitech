@@ -8,7 +8,7 @@ export default function IdeaCTA() {
                 <div className="w-full lg:w-1/2 flex justify-center">
                     <Image
                         src="/assets/images/CTA/asking-question-white.svg"
-                        alt="Creative ideas illustration"
+                        alt="Ilustrasi Memberikan Pertanyaan Kreatif"
                         width={400}
                         height={400}
                         className="w-full max-w-md"

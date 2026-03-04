@@ -28,7 +28,7 @@ export default function TalentCTA() {
                 <div className="w-full lg:w-1/2 flex justify-center">
                     <Image
                         src="/assets/images/CTA/manager-desk.svg"
-                        alt="Digital product illustration"
+                        alt="Ilustrasi Manajer di Meja Kerja"
                         width={400}
                         height={400}
                         className="w-full max-w-md"

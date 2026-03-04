@@ -28,7 +28,7 @@ export default function WorkCTA() {
                 <div className="w-full lg:w-1/2 flex justify-center">
                     <Image
                         src="/assets/images/CTA/machine-learning-violet.svg"
-                        alt="Portfolio illustration"
+                        alt="Ilustrasi Machine Learning untuk Portofolio"
                         width={400}
                         height={400}
                         className="w-full max-w-md"

@@ -3,6 +3,36 @@ import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import WhatsAppButton from "@/components/landing/WhatsAppButton";
 import { getSiteSettings } from "@/lib/db";
+import { SettingsProvider } from "@/components/providers/SettingsProvider";
+import { Plus_Jakarta_Sans, Montserrat, Outfit, Inter } from "next/font/google";
+
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800"],
+  display: "swap",
+  variable: "--font-sans",
+});
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
+  variable: "--font-montserrat",
+});
+
+const outfit = Outfit({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
+  variable: "--font-outfit",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
+  variable: "--font-inter",
+});
 
 export async function generateMetadata(): Promise<Metadata> {
   const settings = await getSiteSettings();
@@ -103,18 +133,8 @@ export default async function RootLayout({
   };
 
   return (
-    <html lang="id">
+    <html lang="id" className={`${plusJakartaSans.variable} ${montserrat.variable} ${outfit.variable} ${inter.variable}`}>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
-          rel="stylesheet"
-        />
-        <link
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-          rel="stylesheet"
-        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -123,35 +143,31 @@ export default async function RootLayout({
       <body
         suppressHydrationWarning
         className="antialiased"
-        style={{
-          '--font-sans': "'Plus Jakarta Sans', sans-serif",
-          '--font-montserrat': "'Montserrat', sans-serif",
-          '--font-outfit': "'Outfit', sans-serif",
-          '--font-inter': "'Inter', sans-serif",
-        } as React.CSSProperties}
       >
-        <Toaster
-          position="top-right"
-          toastOptions={{
-            duration: 4000,
-            style: {
-              fontFamily: 'Montserrat, sans-serif',
-              fontSize: '14px',
-              borderRadius: '12px',
-              padding: '12px 16px',
-            },
-            success: {
-              style: { background: '#f0fdf4', color: '#166534', border: '1px solid #bbf7d0' },
-              iconTheme: { primary: '#22c55e', secondary: '#f0fdf4' },
-            },
-            error: {
-              style: { background: '#fef2f2', color: '#991b1b', border: '1px solid #fecaca' },
-              iconTheme: { primary: '#ef4444', secondary: '#fef2f2' },
-            },
-          }}
-        />
-        {children}
-        <WhatsAppButton whatsappUrl={settings.whatsapp} />
+        <SettingsProvider initialSettings={settings}>
+          <Toaster
+            position="top-right"
+            toastOptions={{
+              duration: 4000,
+              style: {
+                fontFamily: 'var(--font-montserrat), sans-serif',
+                fontSize: '14px',
+                borderRadius: '12px',
+                padding: '12px 16px',
+              },
+              success: {
+                style: { background: '#f0fdf4', color: '#166534', border: '1px solid #bbf7d0' },
+                iconTheme: { primary: '#22c55e', secondary: '#f0fdf4' },
+              },
+              error: {
+                style: { background: '#fef2f2', color: '#991b1b', border: '1px solid #fecaca' },
+                iconTheme: { primary: '#ef4444', secondary: '#fef2f2' },
+              },
+            }}
+          />
+          {children}
+          <WhatsAppButton whatsappUrl={settings.whatsapp} />
+        </SettingsProvider>
       </body>
     </html>
   );
