@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { FaHeading, FaParagraph, FaSave, FaPlus, FaTrash, FaStar, FaMobileAlt, FaQuestionCircle, FaPencilRuler, FaCode, FaBullhorn, FaGraduationCap, FaLaptopCode } from 'react-icons/fa';
+import toast from 'react-hot-toast';
 
 export default function ServicesSettingsPage() {
     // Section Header
@@ -45,7 +46,7 @@ export default function ServicesSettingsPage() {
 
     const handleSave = (e: React.FormEvent) => {
         e.preventDefault();
-        alert('Pengaturan Layanan berhasil disimpan!');
+        toast.success('Pengaturan Layanan berhasil disimpan!');
     };
 
     return (

@@ -1,11 +1,29 @@
-﻿import React from "react";
+﻿"use client";
+
+import React, { useState, useEffect } from "react";
 import { BlogPost } from "@/data/blogData";
+import { FaFacebookF, FaTwitter, FaLinkedinIn, FaWhatsapp, FaLink } from "react-icons/fa";
+import toast from 'react-hot-toast';
 
 interface ArticleHeaderProps {
     post: BlogPost;
 }
 
 export default function ArticleHeader({ post }: ArticleHeaderProps) {
+    const [currentUrl, setCurrentUrl] = useState("");
+
+    useEffect(() => {
+        setCurrentUrl(window.location.href);
+    }, []);
+
+    const encodedUrl = encodeURIComponent(currentUrl);
+    const encodedTitle = encodeURIComponent(post.title);
+
+    const handleCopyLink = () => {
+        navigator.clipboard.writeText(currentUrl);
+        toast.success("Tautan berhasil disalin!");
+    };
+
     return (
         <section className="bg-white pt-32 pb-8">
             <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -27,29 +45,49 @@ export default function ArticleHeader({ post }: ArticleHeaderProps) {
                     </div>
 
                     {/* Actions */}
-                    <div className="flex items-center gap-6 text-gray-400">
-                        {/* Like/Clap */}
-                        <button className="flex items-center gap-2 hover:text-violet-600 transition-colors group">
-                            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
-                            </svg>
-                            <span className="font-body-sm font-medium group-hover:text-violet-600">124</span>
-                        </button>
-
-                        {/* Comment */}
-                        <button className="flex items-center gap-2 hover:text-violet-600 transition-colors group">
-                            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                            </svg>
-                            <span className="font-body-sm font-medium group-hover:text-violet-600">28</span>
-                        </button>
-
-                        {/* Share */}
-                        <button className="flex items-center gap-2 hover:text-violet-600 transition-colors group">
-                            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
-                            </svg>
-                        </button>
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-4 text-gray-400">
+                        <span className="font-body-sm font-medium text-gray-500">Bagikan:</span>
+                        <div className="flex items-center gap-3">
+                            <a
+                                href={`https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="w-8 h-8 flex items-center justify-center rounded-full bg-gray-50 text-gray-500 hover:text-white hover:bg-[#1877F2] transition-colors"
+                            >
+                                <FaFacebookF size={14} />
+                            </a>
+                            <a
+                                href={`https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="w-8 h-8 flex items-center justify-center rounded-full bg-gray-50 text-gray-500 hover:text-white hover:bg-[#1DA1F2] transition-colors"
+                            >
+                                <FaTwitter size={14} />
+                            </a>
+                            <a
+                                href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="w-8 h-8 flex items-center justify-center rounded-full bg-gray-50 text-gray-500 hover:text-white hover:bg-[#0A66C2] transition-colors"
+                            >
+                                <FaLinkedinIn size={14} />
+                            </a>
+                            <a
+                                href={`https://api.whatsapp.com/send?text=${encodedTitle}%20${encodedUrl}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="w-8 h-8 flex items-center justify-center rounded-full bg-gray-50 text-gray-500 hover:text-white hover:bg-[#25D366] transition-colors"
+                            >
+                                <FaWhatsapp size={15} />
+                            </a>
+                            <button
+                                onClick={handleCopyLink}
+                                className="w-8 h-8 flex items-center justify-center rounded-full bg-gray-50 text-gray-500 hover:text-white hover:bg-gray-700 transition-colors"
+                                title="Salin Tautan"
+                            >
+                                <FaLink size={14} />
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

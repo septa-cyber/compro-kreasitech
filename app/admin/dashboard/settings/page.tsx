@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { FaGlobe, FaImage, FaStar, FaAddressBook, FaShareAlt, FaInstagram, FaLinkedinIn, FaWhatsapp, FaSave, FaTwitter, FaFacebook } from 'react-icons/fa';
+import toast from 'react-hot-toast';
 
 export default function SettingsPage() {
     // General Settings
@@ -24,7 +25,7 @@ export default function SettingsPage() {
     const handleSave = (e: React.FormEvent) => {
         e.preventDefault();
         // Handle save logic here
-        alert('Pengaturan berhasil disimpan!');
+        toast.success('Pengaturan berhasil disimpan!');
     };
 
     return (

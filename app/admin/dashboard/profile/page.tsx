@@ -1,6 +1,7 @@
 ﻿"use client";
 
 import React, { useState } from 'react';
+import toast from 'react-hot-toast';
 
 export default function ProfilePage() {
     const [name, setName] = useState('Admin');
@@ -11,17 +12,17 @@ export default function ProfilePage() {
     const handleInfoSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         // Handle info update logic
-        alert('Informasi profil berhasil diperbarui!');
+        toast.success('Informasi profil berhasil diperbarui!');
     };
 
     const handlePasswordSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         if (newPassword !== confirmPassword) {
-            alert('Password baru tidak cocok!');
+            toast.error('Password baru tidak cocok!');
             return;
         }
         // Handle password change logic
-        alert('Password berhasil diubah!');
+        toast.success('Password berhasil diubah!');
         setCurrentPassword('');
         setNewPassword('');
         setConfirmPassword('');

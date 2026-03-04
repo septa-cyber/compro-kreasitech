@@ -12,7 +12,7 @@ export async function GET(request: Request) {
     let articles = await getArticles(status);
 
     // Sort by date desc if not already sorted by DB (DB sorts by created_at desc)
-    // articles.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    articles.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
     if (limit) {
         articles = articles.slice(0, parseInt(limit));

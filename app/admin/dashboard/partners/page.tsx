@@ -107,10 +107,10 @@ export default function PartnersSettingsPage() {
             );
 
             await Promise.all(updatePromises);
-            alert('Pengaturan Partners berhasil disimpan!');
+            toast.success('Pengaturan Partners berhasil disimpan!');
         } catch (error) {
             console.error('Error saving:', error);
-            alert('Gagal menyimpan perubahan');
+            toast.error('Gagal menyimpan perubahan');
         } finally {
             setIsSaving(false);
         }

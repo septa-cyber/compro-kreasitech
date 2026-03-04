@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { FaHeading, FaParagraph, FaLink, FaMousePointer, FaSave, FaChartBar, FaTag, FaPlus, FaTrash } from 'react-icons/fa';
+import toast from 'react-hot-toast';
 
 export default function HeroSettingsPage() {
     // Hero Text
@@ -32,7 +33,7 @@ export default function HeroSettingsPage() {
 
     const handleSave = (e: React.FormEvent) => {
         e.preventDefault();
-        alert('Pengaturan Hero Section berhasil disimpan!');
+        toast.success('Pengaturan Hero Section berhasil disimpan!');
     };
 
     return (

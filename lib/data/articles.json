@@ -98,7 +98,7 @@
             "avatar": "https://placehold.co/48x48/ef4444/ffffff?text=RP"
         },
         "category": "TECHNOLOGY",
-        "categoryColor": "bg-red-100 text-red-700",
+        "categoryColor": "bg-blue-100 text-blue-700",
         "coverImage": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop",
         "tags": [
             "Keamanan",
@@ -127,5 +127,49 @@
             "Teknologi"
         ],
         "status": "publish"
+    },
+    {
+        "id": 7,
+        "slug": "analisis-eskalasi-konflik-iran-as",
+        "title": "Analisis Eskalasi Konflik: Dampak Perseteruan Iran dan Amerika Serikat",
+        "excerpt": "Ketegangan diplomatis yang semakin memanas menimbulkan kekhawatiran masyarakat global akan potensi perang terbuka di kawasan Timur Tengah.",
+        "content": "\n## Akar Ketegangan Terbaru\n\nHubungan antara Republik Islam Iran dan Amerika Serikat kembali mencapai titik nadir pasca serangkaian insiden saling berbalas sanksi dan unjuk kekuatan militer di kawasan teluk. Berbagai analis menilai eskalasi ini merupakan akumulasi dari ketidakcocokan diplomatik sejak puluhan tahun lalu.\n\n## Potensi Perang Terbuka\n\nMeskipun pernyataan resmi dari kedua belah pihak selalu mengedepankan jalan diplomasi, pengerahan kapal induk dan pesawat tempur oleh AS, serta uji coba rudal oleh pasukan Garda Revolusi Iran, seolah mengirimkan pesan sebaliknya.\n\n<img src=\"https://images.unsplash.com/photo-1569007889977-42e2392850d7?q=80&w=800&auto=format&fit=crop\" alt=\"Ilustrasi konflik militer\" />\n\n## Peran Komunitas Internasional\n\nPBB beserta negara-negara Eropa seperti Prancis dan Jerman mendesak pihak yang bertikai untuk menurunkan *tensi*. Beberapa poin utama yang dituntut:\n- Menghentikan unjuk kekuatan militer secara provokatif\n- Membuka ruang perundingan di wilayah netral\n- Melibatkan mediator non-blok\n\n## Prediksi Kedepan\n\nKetidakpastian diprediksi akan terus mewarnai minggu-minggu ke depan bila tidak ada inisiatif gencatan provokasi dari salah satu negara adidaya tersebut.",
+        "date": "2026-03-04",
+        "author": {
+            "name": "Admin",
+            "avatar": ""
+        },
+        "category": "NEWS",
+        "coverImage": "https://images.unsplash.com/photo-1541887315357-550fa5df5a2c?q=80&w=1000&auto=format&fit=crop",
+        "tags": [
+            "Iran",
+            "Amerika",
+            "Konflik",
+            "Geopolitik"
+        ],
+        "status": "publish",
+        "categoryColor": "bg-green-100 text-green-700"
+    },
+    {
+        "id": 8,
+        "slug": "dampak-ekonomi-global-iran-as",
+        "title": "Dampak Gejolak Ekonomi Global dari Ketegangan Iran-AS",
+        "excerpt": "Bagaimana perseteruan dua negara besar ini mempengaruhi rantai pasok minyak dunia dan fluktuasi pasar saham internasional.",
+        "content": "\n## Ancaman pada Rantai Pasok Minyak\n\nEskalasi perseteruan antara Iran dan AS membawa kecemasan besar di sektor energi. Selat Hormuz, yang merupakan salah satu jalur perdagangan minyak paling vital di dunia, dikhawatirkan akan terdampak secara langsung.\n\n### Melonjaknya Harga Minyak Mentah\n\nPara pialang telah memperkirakan kenaikan harga per barel hingga 15% jika ancaman blokade perdagangan benar-benar terjadi. Pasokan untuk negara industri akan mengalami penundaan besar.\n\n<img src=\"https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=1000&auto=format&fit=crop\" alt=\"Kilang minyak di tengah senja\" />\n\n## Pasar Saham Menunjuk Merah\n\nTidak hanya dari sektor kelautan, bursa efek global dari Tokyo, Frankfurt hingga Wall Street merespons hal ini dengan sentimen negatif. Para investor cenderung:\n\n1. Melakukan *wait and see* atau menunda transaksi berisiko tinggi.\n2. Melarikan aset ke komoditas stabil (misalnya emas murni).\n3. Melepas portofolio dari pasar negara berkembang.\n\n## Kesimpulan\n\nKonflik geopolitik tidak pernah hanya berhenti pada urusan tembak-menembak. Roda ekonomi global selalu menjadi korban pertama dari ketegangan yang melibatkan negara *superpower* seperti USA dan Iran.",
+        "date": "2026-03-04",
+        "author": {
+            "name": "Admin",
+            "avatar": ""
+        },
+        "category": "NEWS",
+        "coverImage": "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=1000&auto=format&fit=crop",
+        "tags": [
+            "Ekonomi",
+            "Global",
+            "Minyak",
+            "Sanksi"
+        ],
+        "status": "publish",
+        "categoryColor": "bg-green-100 text-green-700"
     }
 ]

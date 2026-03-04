@@ -116,10 +116,10 @@ export default function PortfolioSettingsPage() {
             );
 
             await Promise.all(updatePromises);
-            alert('Pengaturan Portfolio berhasil disimpan!');
+            toast.success('Pengaturan Portfolio berhasil disimpan!');
         } catch (error) {
             console.error('Error saving:', error);
-            alert('Gagal menyimpan perubahan');
+            toast.error('Gagal menyimpan perubahan');
         } finally {
             setIsSaving(false);
         }

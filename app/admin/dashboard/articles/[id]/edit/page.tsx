@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import ArticleForm from '../../ArticleForm';
 import { BlogPost } from '@/lib/types';
 import { useParams } from 'next/navigation';
+import toast from 'react-hot-toast';
 
 export default function EditArticlePage() {
     const params = useParams();
@@ -25,7 +26,7 @@ export default function EditArticlePage() {
                 const data = await res.json();
                 setArticle(data);
             } else {
-                alert('Article not found');
+                toast.error('Artikel tidak ditemukan');
             }
         } catch (error) {
             console.error('Error fetching article:', error);

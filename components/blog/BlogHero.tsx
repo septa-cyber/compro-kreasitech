@@ -41,9 +41,9 @@ export default function BlogHero({ featuredPost }: BlogHeroProps) {
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
 
                         <div className="absolute bottom-0 left-0 p-6 sm:p-10 lg:p-12 w-full">
-                            <div className="flex flex-col gap-4 max-w-3xl">
-                                <div className="flex justify-between items-start w-full">
-                                    <div>
+                            <div className="flex flex-col gap-4 w-full">
+                                <div className="flex justify-between items-start w-full gap-8">
+                                    <div className="max-w-3xl">
                                         <h2 className="font-h2 !text-white mb-3">
                                             {featuredPost.title}
                                         </h2>
@@ -60,19 +60,8 @@ export default function BlogHero({ featuredPost }: BlogHeroProps) {
                                     </div>
                                 </div>
 
-                                <div className="flex flex-wrap items-center justify-between gap-6 text-sm text-gray-300">
-                                    <div className="flex items-center gap-6 sm:gap-8">
-                                        <div>
-                                            <span className="block font-body-xs uppercase tracking-wider text-gray-400 mb-1">Ditulis oleh</span>
-                                            <div className="flex items-center gap-2">
-                                                <img
-                                                    src={featuredPost.author.avatar}
-                                                    alt={featuredPost.author.name}
-                                                    className="w-6 h-6 rounded-full border border-white/20"
-                                                />
-                                                <span className="font-body font-medium text-white">{featuredPost.author.name}</span>
-                                            </div>
-                                        </div>
+                                <div className="flex flex-wrap items-end justify-between gap-6 text-sm text-gray-300">
+                                    <div className="flex items-end gap-6 sm:gap-8">
                                         <div>
                                             <span className="block font-body-xs uppercase tracking-wider text-gray-400 mb-1">Dipublikasikan</span>
                                             <span className="font-body font-medium text-white">{featuredPost.date}</span>

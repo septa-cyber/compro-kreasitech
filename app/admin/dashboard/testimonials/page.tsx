@@ -5,6 +5,7 @@ import { FaHeading, FaPlus, FaTrash, FaQuoteLeft, FaStar, FaImage, FaUser, FaEdi
 import { Testimonial } from '@/lib/types';
 import Modal from '@/components/ui/Modal';
 import ConfirmationModal from '@/components/ui/ConfirmationModal';
+import ImageCropper from '@/components/ui/ImageCropper';
 import toast from 'react-hot-toast';
 
 export default function TestimonialsSettingsPage() {
@@ -24,6 +25,10 @@ export default function TestimonialsSettingsPage() {
         avatar: ""
     });
     const [editItemData, setEditItemData] = useState<Partial<Testimonial>>({});
+
+    // Crop States
+    const [imageToCrop, setImageToCrop] = useState<string | null>(null);
+    const [cropType, setCropType] = useState<'add' | 'edit'>('add');
 
     useEffect(() => {
         fetchTestimonials();
@@ -132,6 +137,31 @@ export default function TestimonialsSettingsPage() {
         } catch (error) {
             console.error('Error adding testimonial:', error);
             toast.error('Terjadi kesalahan saat menambah testimonial');
+        }
+    };
+
+    const handleImageUpload = async (file: File | undefined, isEdit: boolean) => {
+        if (!file) return;
+        const toastId = toast.loading('Mengunggah gambar...');
+        try {
+            const formData = new FormData();
+            formData.append('file', file);
+            const res = await fetch('/api/upload', {
+                method: 'POST',
+                body: formData,
+            });
+            if (!res.ok) throw new Error('Upload gagal');
+            const data = await res.json();
+
+            if (isEdit) {
+                setEditItemData(prev => ({ ...prev, avatar: data.url }));
+            } else {
+                setNewItemData(prev => ({ ...prev, avatar: data.url }));
+            }
+            toast.success('Gambar berhasil diunggah', { id: toastId });
+        } catch (error) {
+            console.error('Upload Error:', error);
+            toast.error('Gagal mengunggah gambar', { id: toastId });
         }
     };
 
@@ -278,8 +308,11 @@ export default function TestimonialsSettingsPage() {
                                         const file = e.target.files?.[0];
                                         if (file) {
                                             const imageUrl = URL.createObjectURL(file);
-                                            setNewItemData({ ...newItemData, avatar: imageUrl });
+                                            setImageToCrop(imageUrl);
+                                            setCropType('add');
                                         }
+                                        // Reset input
+                                        e.target.value = '';
                                     }}
                                 />
                             </label>
@@ -380,8 +413,11 @@ export default function TestimonialsSettingsPage() {
                                         const file = e.target.files?.[0];
                                         if (file) {
                                             const imageUrl = URL.createObjectURL(file);
-                                            setEditItemData({ ...editItemData, avatar: imageUrl });
+                                            setImageToCrop(imageUrl);
+                                            setCropType('edit');
                                         }
+                                        // Reset input
+                                        e.target.value = '';
                                     }}
                                 />
                             </label>
@@ -434,6 +470,19 @@ export default function TestimonialsSettingsPage() {
                 confirmText="Hapus"
                 isDanger
             />
+
+            {/* Cropper Modal */}
+            {imageToCrop && (
+                <ImageCropper
+                    isOpen={!!imageToCrop}
+                    imageSrc={imageToCrop}
+                    onCropDone={async (croppedFile) => {
+                        await handleImageUpload(croppedFile, cropType === 'edit');
+                        setImageToCrop(null);
+                    }}
+                    onCropCancel={() => setImageToCrop(null)}
+                />
+            )}
         </div>
     );
 }

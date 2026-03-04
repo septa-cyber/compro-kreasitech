@@ -39,7 +39,7 @@ export default function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
 
 
     return (
-        <aside className={`${isCollapsed ? 'w-20' : 'w-64'} h-screen bg-white border-r border-gray-200 flex flex-col transition-all duration-300 fixed left-0 top-0 z-30`}>
+        <aside className={`${isCollapsed ? 'w-20' : 'w-64'} h-screen bg-white border-r border-gray-200 flex flex-col transition-all duration-300 fixed left-0 top-0 z-50`}>
             {/* Logo Section */}
             <div className="h-16 flex items-center justify-between px-4 border-b border-gray-100">
                 {!isCollapsed && (

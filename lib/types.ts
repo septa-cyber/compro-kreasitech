@@ -62,6 +62,7 @@ export interface TeamMember {
     bio?: string;
     email?: string;
     linkedin?: string;
+    order?: number;
     status: 'active' | 'inactive';
 }
 

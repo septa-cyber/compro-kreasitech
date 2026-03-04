@@ -108,7 +108,26 @@ export default function RootLayout({
           '--font-inter': "'Inter', sans-serif",
         } as React.CSSProperties}
       >
-        <Toaster position="top-center" reverseOrder={false} />
+        <Toaster
+          position="top-right"
+          toastOptions={{
+            duration: 4000,
+            style: {
+              fontFamily: 'Montserrat, sans-serif',
+              fontSize: '14px',
+              borderRadius: '12px',
+              padding: '12px 16px',
+            },
+            success: {
+              style: { background: '#f0fdf4', color: '#166534', border: '1px solid #bbf7d0' },
+              iconTheme: { primary: '#22c55e', secondary: '#f0fdf4' },
+            },
+            error: {
+              style: { background: '#fef2f2', color: '#991b1b', border: '1px solid #fecaca' },
+              iconTheme: { primary: '#ef4444', secondary: '#fef2f2' },
+            },
+          }}
+        />
         {children}
         <WhatsAppButton />
       </body>

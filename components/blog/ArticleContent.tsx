@@ -20,8 +20,23 @@ export default function ArticleContent({ post }: ArticleContentProps) {
                 </div>
 
                 {/* Content */}
-                <div className="prose prose-lg prose-slate hover:prose-a:text-violet-600 prose-headings:font-montserrat prose-p:font-montserrat prose-p:text-gray-600 prose-a:text-violet-600 max-w-none">
-                    <ReactMarkdown>{post.content}</ReactMarkdown>
+                <div className="prose prose-lg prose-slate hover:prose-a:text-violet-600 prose-headings:font-montserrat prose-p:font-montserrat prose-p:text-gray-600 prose-a:text-violet-600 max-w-none prose-img:max-h-[500px] prose-img:max-w-full prose-img:mx-auto prose-img:rounded-xl prose-img:object-contain">
+                    <ReactMarkdown
+                        components={{
+                            img: ({ node, ...props }) => (
+                                <figure className="my-8 flex flex-col items-center">
+                                    <img {...props} />
+                                    {props.alt && (
+                                        <figcaption className="text-center text-sm text-gray-500 mt-2 font-montserrat px-4">
+                                            {props.alt}
+                                        </figcaption>
+                                    )}
+                                </figure>
+                            )
+                        }}
+                    >
+                        {post.content}
+                    </ReactMarkdown>
                 </div>
             </div>
         </article>

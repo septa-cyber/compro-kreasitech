@@ -39,7 +39,7 @@ export default function AdminHeader({ isSidebarCollapsed = false }: AdminHeaderP
     const unreadCount = notifications.filter(n => !n.read).length;
 
     return (
-        <header className={`h-16 bg-white border-b border-gray-200 flex items-center justify-between px-6 fixed top-0 right-0 z-20 transition-all duration-300 ${isSidebarCollapsed ? 'left-20' : 'left-64'}`}>
+        <header className={`h-16 bg-white border-b border-gray-200 flex items-center justify-between px-6 fixed top-0 right-0 z-40 transition-all duration-300 ${isSidebarCollapsed ? 'left-20' : 'left-64'}`}>
             {/* Search Bar */}
             <div className="flex-1 max-w-xl">
                 <div className="relative">

@@ -4,7 +4,18 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { BlogPost } from '@/lib/types';
-import { FaSave, FaArrowLeft } from 'react-icons/fa';
+import { FaSave, FaArrowLeft, FaImage, FaSpinner } from 'react-icons/fa';
+import dynamic from 'next/dynamic';
+import toast from 'react-hot-toast';
+
+const RichTextEditor = dynamic(() => import('@/components/ui/RichTextEditor'), {
+    ssr: false,
+    loading: () => (
+        <div className="border border-gray-300 rounded-lg p-4 min-h-[300px] flex items-center justify-center text-gray-400 text-sm">
+            Memuat editor...
+        </div>
+    ),
+});
 
 interface ArticleFormProps {
     initialData?: BlogPost;
@@ -14,6 +25,7 @@ interface ArticleFormProps {
 export default function ArticleForm({ initialData, isEdit = false }: ArticleFormProps) {
     const router = useRouter();
     const [isLoading, setIsLoading] = useState(false);
+    const [isUploading, setIsUploading] = useState(false);
     const [formData, setFormData] = useState<Partial<BlogPost>>({
         title: '',
         slug: '',
@@ -53,14 +65,72 @@ export default function ArticleForm({ initialData, isEdit = false }: ArticleForm
         }
     };
 
+    const handleCoverImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+
+        // Validate file type
+        if (!file.type.startsWith('image/')) {
+            toast.error('File harus berupa gambar');
+            return;
+        }
+
+        // Validate file size (max 5MB)
+        if (file.size > 5 * 1024 * 1024) {
+            toast.error('Ukuran gambar maksimal 5MB');
+            return;
+        }
+
+        setIsUploading(true);
+        const uploadData = new FormData();
+        uploadData.append('file', file);
+
+        try {
+            const res = await fetch('/api/upload', {
+                method: 'POST',
+                body: uploadData,
+            });
+
+            if (res.ok) {
+                const data = await res.json();
+                setFormData(prev => ({ ...prev, coverImage: data.url }));
+                toast.success('Gambar berhasil diunggah!');
+            } else {
+                toast.error('Gagal mengunggah gambar');
+            }
+        } catch (error) {
+            console.error('Upload error:', error);
+            toast.error('Terjadi kesalahan saat mengunggah');
+        } finally {
+            setIsUploading(false);
+        }
+    };
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+
+        // Check content (Rich Text Editor doesn't have native required)
+        if (!formData.content?.trim()) {
+            toast.error('Konten artikel wajib diisi');
+            return;
+        }
+
         setIsLoading(true);
+
+        const categoryColors: Record<string, string> = {
+            'TECHNOLOGY': 'bg-blue-100 text-blue-700',
+            'NEWS': 'bg-green-100 text-green-700',
+            'EVENT': 'bg-orange-100 text-orange-700',
+            'TIPS_TRICKS': 'bg-pink-100 text-pink-700',
+        };
 
         const payload = {
             ...formData,
+            author: { name: 'Admin', avatar: formData.author?.avatar || '' },
+            date: new Date().toISOString().split('T')[0],
             tags: tagsInput.split(',').map(t => t.trim()).filter(t => t),
-            slug: formData.slug || formData.title?.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') || 'untitled'
+            slug: formData.slug || formData.title?.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') || 'untitled',
+            categoryColor: categoryColors[formData.category as string] || 'bg-gray-100 text-gray-700'
         };
 
         try {
@@ -74,21 +144,24 @@ export default function ArticleForm({ initialData, isEdit = false }: ArticleForm
             });
 
             if (res.ok) {
+                toast.success(isEdit ? 'Artikel berhasil diperbarui!' : 'Artikel berhasil dibuat!');
                 router.push('/admin/dashboard/articles');
-                router.refresh(); // Refresh server components if any
+                router.refresh();
             } else {
-                alert('Failed to save article');
+                const errorData = await res.json().catch(() => ({}));
+                console.error('Server error:', res.status, errorData);
+                toast.error(`Gagal menyimpan artikel: ${errorData.error || errorData.message || 'Terjadi kesalahan'}`);
             }
         } catch (error) {
             console.error('Error saving article:', error);
-            alert('Error saving article');
+            toast.error('Gagal menyimpan artikel. Periksa koneksi Anda.');
         } finally {
             setIsLoading(false);
         }
     };
 
     return (
-        <form onSubmit={handleSubmit} className="space-y-6 max-w-4xl mx-auto pb-12">
+        <form onSubmit={handleSubmit} className="space-y-6 w-full pb-12">
             <div className="flex justify-between items-center">
                 <button
                     type="button"
@@ -130,8 +203,8 @@ export default function ArticleForm({ initialData, isEdit = false }: ArticleForm
                     </div>
                 </div>
 
-                {/* Status & Date & Category */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {/* Status & Category */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                         <label className="block text-sm font-medium text-gray-700 font-montserrat mb-2">Status</label>
                         <select
@@ -145,16 +218,6 @@ export default function ArticleForm({ initialData, isEdit = false }: ArticleForm
                         </select>
                     </div>
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 font-montserrat mb-2">Publish Date</label>
-                        <input
-                            type="date"
-                            name="date"
-                            value={formData.date}
-                            onChange={handleChange}
-                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat"
-                        />
-                    </div>
-                    <div>
                         <label className="block text-sm font-medium text-gray-700 font-montserrat mb-2">Category</label>
                         <select
                             name="category"
@@ -165,33 +228,52 @@ export default function ArticleForm({ initialData, isEdit = false }: ArticleForm
                             <option value="TECHNOLOGY">Technology</option>
                             <option value="NEWS">News</option>
                             <option value="EVENT">Event</option>
-                            <option value="TIPS_TRICKS">Tips & Tricks</option>
+                            <option value="TIPS_TRICKS">Tips &amp; Tricks</option>
                         </select>
                     </div>
                 </div>
 
-                {/* Author & Cover Image */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Cover Image */}
+                <div className="grid grid-cols-1 gap-6">
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 font-montserrat mb-2">Author Name</label>
-                        <input
-                            type="text"
-                            name="author.name"
-                            value={formData.author?.name}
-                            onChange={handleChange}
-                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat"
-                        />
-                    </div>
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 font-montserrat mb-2">Cover Image URL</label>
-                        <input
-                            type="text"
-                            name="coverImage"
-                            value={formData.coverImage}
-                            onChange={handleChange}
-                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat"
-                            placeholder="https://..."
-                        />
+                        <label className="block text-sm font-medium text-gray-700 font-montserrat mb-2">Cover Image</label>
+                        <div className="flex gap-2 items-center">
+                            <input
+                                type="text"
+                                name="coverImage"
+                                value={formData.coverImage}
+                                onChange={handleChange}
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat"
+                                placeholder="https://... atau upload gambar"
+                            />
+                            <label className={`flex-shrink-0 p-3 border border-gray-300 rounded-lg cursor-pointer hover:bg-violet-50 hover:border-violet-300 hover:text-violet-600 transition-colors flex items-center justify-center text-sm font-montserrat ${isUploading ? 'opacity-60 cursor-not-allowed' : 'text-gray-600'
+                                }`} title="Upload Cover Image">
+                                {isUploading ? (
+                                    <FaSpinner className="animate-spin" size={16} />
+                                ) : (
+                                    <FaImage size={16} />
+                                )}
+                                <input
+                                    type="file"
+                                    accept="image/*"
+                                    className="hidden"
+                                    disabled={isUploading}
+                                    onChange={handleCoverImageUpload}
+                                />
+                            </label>
+                        </div>
+                        {formData.coverImage && (
+                            <div className="mt-3 p-2 border border-gray-200 rounded-lg bg-gray-50">
+                                <img
+                                    src={formData.coverImage}
+                                    alt="Cover Preview"
+                                    className="w-full h-40 object-cover rounded-md"
+                                    onError={(e) => {
+                                        (e.target as HTMLImageElement).style.display = 'none';
+                                    }}
+                                />
+                            </div>
+                        )}
                     </div>
                 </div>
 
@@ -214,22 +296,20 @@ export default function ArticleForm({ initialData, isEdit = false }: ArticleForm
                         name="excerpt"
                         value={formData.excerpt}
                         onChange={handleChange}
+                        required
                         rows={3}
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat"
-                        placeholder="Brief summary..."
+                        placeholder="Ringkasan singkat artikel..."
                     />
                 </div>
 
                 {/* Content */}
                 <div>
-                    <label className="block text-sm font-medium text-gray-700 font-montserrat mb-2">Content (Markdown)</label>
-                    <textarea
-                        name="content"
-                        value={formData.content}
-                        onChange={handleChange}
-                        rows={10}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat font-mono text-sm"
-                        placeholder="# Heading..."
+                    <label className="block text-sm font-medium text-gray-700 font-montserrat mb-2">Content</label>
+                    <RichTextEditor
+                        content={formData.content || ''}
+                        onChange={(md: string) => setFormData(prev => ({ ...prev, content: md }))}
+                        placeholder="Tulis konten artikel di sini..."
                     />
                 </div>
 
@@ -244,7 +324,7 @@ export default function ArticleForm({ initialData, isEdit = false }: ArticleForm
                     <button
                         type="submit"
                         disabled={isLoading}
-                        className="px-6 py-2 bg-violet-600 text-white rounded-lg hover:bg-violet-700 transition font-montserrat font-medium flex items-center gap-2"
+                        className="px-6 py-2 bg-violet-600 text-white rounded-lg hover:bg-violet-700 transition font-montserrat font-medium flex items-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
                     >
                         {isLoading ? <span className="animate-spin">⏳</span> : <FaSave />}
                         {isEdit ? 'Update Article' : 'Create Article'}

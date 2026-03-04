@@ -43,6 +43,13 @@ function writeData<T>(filePath: string, data: T[]): void {
 
 // --- Mappers ---
 
+const CATEGORY_COLORS: Record<string, string> = {
+    'TECHNOLOGY': 'bg-blue-100 text-blue-700',
+    'NEWS': 'bg-green-100 text-green-700',
+    'EVENT': 'bg-orange-100 text-orange-700',
+    'TIPS_TRICKS': 'bg-pink-100 text-pink-700',
+};
+
 function mapArticleFromDB(row: any): BlogPost {
     return {
         id: row.id,
@@ -56,7 +63,7 @@ function mapArticleFromDB(row: any): BlogPost {
             avatar: row.author_avatar || ''
         },
         category: row.category,
-        categoryColor: row.category_color,
+        categoryColor: CATEGORY_COLORS[row.category] || row.category_color || 'bg-gray-100 text-gray-700',
         coverImage: row.cover_image,
         tags: row.tags || [],
         status: row.status
@@ -65,17 +72,17 @@ function mapArticleFromDB(row: any): BlogPost {
 
 function mapArticleToDB(article: Partial<BlogPost>): any {
     const dbArticle: any = { ...article };
-    if (article.author) {
-        dbArticle.author_name = article.author.name;
-        dbArticle.author_avatar = article.author.avatar;
+    if (article.author !== undefined) {
+        dbArticle.author_name = article.author?.name || '';
+        dbArticle.author_avatar = article.author?.avatar || '';
         delete dbArticle.author;
     }
-    if (article.categoryColor) {
-        dbArticle.category_color = article.categoryColor;
+    if ('categoryColor' in dbArticle) {
+        dbArticle.category_color = article.categoryColor || '';
         delete dbArticle.categoryColor;
     }
-    if (article.coverImage) {
-        dbArticle.cover_image = article.coverImage;
+    if ('coverImage' in dbArticle) {
+        dbArticle.cover_image = article.coverImage || '';
         delete dbArticle.coverImage;
     }
     return dbArticle;
@@ -164,9 +171,12 @@ export async function getArticles(status?: string): Promise<BlogPost[]> {
         if (error) { console.error(error); return []; }
         return (data || []).map(mapArticleFromDB);
     }
-    const articles = readData<BlogPost>(ARTICLES_FILE, []);
-    // Sort desc by id for simplified "newest first" (or by date)
-    articles.sort((a, b) => b.id - a.id);
+    const articles = readData<BlogPost>(ARTICLES_FILE, []).map(article => ({
+        ...article,
+        categoryColor: CATEGORY_COLORS[article.category] || article.categoryColor || 'bg-gray-100 text-gray-700'
+    }));
+    // Sort desc by publish date for "newest first" logic
+    articles.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
     if (status) return articles.filter(a => a.status === status);
     return articles;
 }
@@ -412,14 +422,18 @@ export async function getUserById(id: string): Promise<any | null> {
 
 export async function getTeam(status?: string): Promise<TeamMember[]> {
     if (isSupabaseEnabled()) {
-        let query = supabase.from('team').select('*').order('created_at', { ascending: false });
+        let query = supabase.from('team').select('*');
         if (status) query = query.eq('status', status);
         const { data, error } = await query;
         if (error) { console.error(error); return []; }
-        return data || [];
+        // Sort by order in JS (handles missing order column gracefully)
+        const result = data || [];
+        result.sort((a: any, b: any) => (a.order ?? 9999) - (b.order ?? 9999));
+        return result;
     }
-    const team = readData<TeamMember>(TEAM_FILE, []);
-    if (status) return team.filter(t => t.status === status);
+    let team = readData<TeamMember>(TEAM_FILE, []);
+    if (status) team = team.filter(t => t.status === status);
+    team.sort((a, b) => (a.order ?? 9999) - (b.order ?? 9999));
     return team;
 }
 
@@ -435,14 +449,37 @@ export async function getTeamById(id: number): Promise<TeamMember | null> {
 
 export async function createTeamMember(member: Omit<TeamMember, 'id'>): Promise<TeamMember> {
     if (isSupabaseEnabled()) {
-        const { data, error } = await supabase.from('team').insert(member).select().single();
-        if (error) throw error;
+        // Try to get next order value, but don't fail if column doesn't exist
+        let nextOrder = 0;
+        try {
+            const { data: allMembers } = await supabase.from('team').select('*');
+            if (allMembers && allMembers.length > 0) {
+                const maxOrder = Math.max(...allMembers.map((m: any) => m.order ?? 0));
+                nextOrder = maxOrder + 1;
+            }
+        } catch (e) {
+            // order column might not exist yet, use 0
+        }
+        const memberData: any = { ...member };
+        memberData.order = member.order ?? nextOrder;
+        const { data, error } = await supabase.from('team').insert(memberData).select().single();
+        if (error) {
+            // If error is due to order column, retry without it
+            if (error.message?.includes('order')) {
+                const { order, ...memberWithoutOrder } = memberData;
+                const { data: data2, error: error2 } = await supabase.from('team').insert(memberWithoutOrder).select().single();
+                if (error2) throw error2;
+                return data2;
+            }
+            throw error;
+        }
         return data;
     }
     const team = readData<TeamMember>(TEAM_FILE, []);
     const newId = team.length > 0 ? Math.max(...team.map(t => t.id)) + 1 : 1;
-    const newMember = { ...member, id: newId };
-    writeData(TEAM_FILE, [newMember, ...team]);
+    const maxOrder = team.length > 0 ? Math.max(...team.map(t => t.order ?? 0)) : -1;
+    const newMember = { ...member, id: newId, order: member.order ?? maxOrder + 1 };
+    writeData(TEAM_FILE, [...team, newMember]);
     return newMember;
 }
 
@@ -470,6 +507,28 @@ export async function deleteTeamMember(id: number): Promise<boolean> {
     const initialLen = team.length;
     team = team.filter(t => t.id !== id);
     if (team.length === initialLen) return false;
+    writeData(TEAM_FILE, team);
+    return true;
+}
+
+export async function reorderTeam(orderedIds: number[]): Promise<boolean> {
+    if (isSupabaseEnabled()) {
+        try {
+            const updates = orderedIds.map((id, index) =>
+                supabase.from('team').update({ order: index }).eq('id', id)
+            );
+            const results = await Promise.all(updates);
+            return results.every(r => !r.error);
+        } catch (e) {
+            console.error('Reorder failed (order column may not exist):', e);
+            return false;
+        }
+    }
+    const team = readData<TeamMember>(TEAM_FILE, []);
+    orderedIds.forEach((id, index) => {
+        const member = team.find(t => t.id === id);
+        if (member) member.order = index;
+    });
     writeData(TEAM_FILE, team);
     return true;
 }

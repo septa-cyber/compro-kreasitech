@@ -89,7 +89,6 @@ export default function ArticlesPage() {
                                 <tr key={article.id} className="hover:bg-gray-50 transition">
                                     <td className="px-6 py-4">
                                         <div className="text-sm font-medium text-gray-900 font-montserrat">{article.title}</div>
-                                        <div className="text-xs text-gray-400 font-montserrat">{article.author.name}</div>
                                     </td>
                                     <td className="px-6 py-4">
                                         <span className={`px-2 py-1 text-xs rounded-full font-medium ${article.categoryColor || 'bg-gray-100 text-gray-600'}`}>

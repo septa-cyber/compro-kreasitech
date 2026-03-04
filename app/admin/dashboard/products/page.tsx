@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { FaHeading, FaParagraph, FaSave, FaPlus, FaTrash, FaImage, FaCalendarAlt, FaLink, FaBoxOpen, FaLayerGroup } from 'react-icons/fa';
+import toast from 'react-hot-toast';
 
 export default function ProductsSettingsPage() {
     // Section Header (Global for all product sections if applicable, or per section)
@@ -54,7 +55,7 @@ export default function ProductsSettingsPage() {
 
     const handleSave = (e: React.FormEvent) => {
         e.preventDefault();
-        alert('Pengaturan Produk berhasil disimpan!');
+        toast.success('Pengaturan Produk berhasil disimpan!');
     };
 
     return (
