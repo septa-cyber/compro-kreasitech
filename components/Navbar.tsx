@@ -85,7 +85,7 @@ export default function Navbar() {
                             <div className="group relative h-full flex items-center">
                                 <button
                                     onClick={() => toggleDesktopDropdown('layanan')}
-                                    className={`nav-link flex items-center gap-2 hover:text-primary transition py-6 whitespace-nowrap ${isDarkBg ? 'text-white' : 'text-text-light'}`}
+                                    className={`nav-link !inline-flex items-center gap-2 hover:text-primary transition py-6 whitespace-nowrap ${isDarkBg ? 'text-white' : 'text-text-light'}`}
                                 >
                                     <span>Layanan</span> <svg className={`w-2.5 h-2.5 shrink-0 group-hover:rotate-180 transition-transform duration-300 ${isDarkBg ? 'text-white' : 'text-text-light'} ${activeDesktopDropdown === 'layanan' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
                                 </button>
@@ -110,7 +110,7 @@ export default function Navbar() {
                             <div className="group relative h-full flex items-center">
                                 <button
                                     onClick={() => toggleDesktopDropdown('produk')}
-                                    className={`nav-link flex items-center gap-2 hover:text-primary transition py-6 whitespace-nowrap ${isDarkBg ? 'text-white' : 'text-text-light'}`}
+                                    className={`nav-link !inline-flex items-center gap-2 hover:text-primary transition py-6 whitespace-nowrap ${isDarkBg ? 'text-white' : 'text-text-light'}`}
                                 >
                                     <span>Produk</span> <svg className={`w-2.5 h-2.5 shrink-0 group-hover:rotate-180 transition-transform duration-300 ${isDarkBg ? 'text-white' : 'text-text-light'} ${activeDesktopDropdown === 'produk' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
                                 </button>
@@ -128,7 +128,7 @@ export default function Navbar() {
                             <div className="group relative h-full flex items-center">
                                 <button
                                     onClick={() => toggleDesktopDropdown('perusahaan')}
-                                    className={`nav-link flex items-center gap-2 hover:text-primary transition py-6 whitespace-nowrap ${isDarkBg ? 'text-white' : 'text-text-light'}`}
+                                    className={`nav-link !inline-flex items-center gap-2 hover:text-primary transition py-6 whitespace-nowrap ${isDarkBg ? 'text-white' : 'text-text-light'}`}
                                 >
                                     <span>Perusahaan</span> <svg className={`w-2.5 h-2.5 shrink-0 group-hover:rotate-180 transition-transform duration-300 ${isDarkBg ? 'text-white' : 'text-text-light'} ${activeDesktopDropdown === 'perusahaan' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
                                 </button>
@@ -143,7 +143,7 @@ export default function Navbar() {
                                 </div>
                             </div>
 
-                            <Link href="/blog" className={`nav-link hover:text-primary transition-colors duration-300 py-6 whitespace-nowrap ${isDarkBg ? 'text-white' : 'text-text-light'}`}>
+                            <Link href="/blog" className={`nav-link inline-block hover:text-primary transition-colors duration-300 py-6 whitespace-nowrap ${isDarkBg ? 'text-white' : 'text-text-light'}`}>
                                 Artikel
                             </Link>
                         </div>

@@ -292,9 +292,6 @@ body {
 /* Navbar Hover Effects */
 .nav-link {
   position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
   transition: color 0.3s ease;
 }
 
