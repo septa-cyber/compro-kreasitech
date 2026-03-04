@@ -10,7 +10,7 @@ import CTASection from "@/components/company/CTASection";
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-    title: "Tentang Kami",
+    title: "Tentang Kami - Kreasitech",
     description: "Pelajari lebih lanjut tentang misi Kreasitech dalam menghubungkan pendidikan, karier, dan industri melalui teknologi.",
     openGraph: {
         title: "Tentang Kami - Kreasitech",

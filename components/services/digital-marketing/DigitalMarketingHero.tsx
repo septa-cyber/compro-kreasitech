@@ -36,10 +36,10 @@ export default function DigitalMarketingHero() {
                             <div className="hidden lg:flex w-full justify-start items-end gap-8">
                                 {/* Left: Title */}
                                 <div className="flex-1 flex justify-center items-end">
-                                    <h1 className="font-h1">
+                                    <h2 className="font-h1">
                                         Buat Bisnis Anda Mudah{" "}
                                         <span className="text-violet-600 font-semibold">Ditemukan & Dipercaya</span>
-                                    </h1>
+                                    </h2>
                                 </div>
 
                                 {/* Right: Image */}
@@ -74,9 +74,9 @@ export default function DigitalMarketingHero() {
                                 className="flex justify-start items-center gap-4 group"
                             >
                                 <span className="font-btn group-hover:text-violet-600 transition">Pelajari Lebih Lanjut</span>
-                                <Image
+                                <img
                                     src="/assets/images/arrow_downward.svg"
-                                    alt=""
+                                    alt="Panah Bawah"
                                     width={24}
                                     height={24}
                                     className="w-6 h-6 animate-bounce"

@@ -36,7 +36,7 @@ export default function Services() {
                     </Link>
 
                     {/* 2. Talent as a Service */}
-                    <Link href="/services" className="w-full md:w-1/2 lg:w-1/4 h-auto py-16 px-8 bg-white outline outline-[0.5px] outline-offset-[-0.25px] outline-gray-200 inline-flex flex-col justify-center items-center text-center gap-6 hover:bg-violet-800 transition-colors duration-300 group cursor-pointer">
+                    <Link href="/taas" className="w-full md:w-1/2 lg:w-1/4 h-auto py-16 px-8 bg-white outline outline-[0.5px] outline-offset-[-0.25px] outline-gray-200 inline-flex flex-col justify-center items-center text-center gap-6 hover:bg-violet-800 transition-colors duration-300 group cursor-pointer">
                         <div className="w-14 h-14 relative flex items-center justify-center rounded-2xl bg-violet-50 group-hover:bg-white/10 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 shadow-sm">
                             <Image
                                 src="/assets/images/Icons/3d-star 1.svg"
@@ -55,7 +55,7 @@ export default function Services() {
                     </Link>
 
                     {/* 3. Academy */}
-                    <Link href="/services" className="w-full md:w-1/2 lg:w-1/4 h-auto py-16 px-8 bg-white outline outline-[0.5px] outline-offset-[-0.25px] outline-gray-200 inline-flex flex-col justify-center items-center text-center gap-6 hover:bg-violet-800 transition-colors duration-300 group cursor-pointer">
+                    <Link href="/academy" className="w-full md:w-1/2 lg:w-1/4 h-auto py-16 px-8 bg-white outline outline-[0.5px] outline-offset-[-0.25px] outline-gray-200 inline-flex flex-col justify-center items-center text-center gap-6 hover:bg-violet-800 transition-colors duration-300 group cursor-pointer">
                         <div className="w-14 h-14 relative flex items-center justify-center rounded-2xl bg-violet-50 group-hover:bg-white/10 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 shadow-sm">
                             <Image
                                 src="/assets/images/Icons/books 1.svg"
@@ -85,7 +85,7 @@ export default function Services() {
                             />
                         </div>
                         <h3 className="font-h4 self-stretch group-hover:text-white transition-colors duration-300">
-                            Product SaaS
+                            Digital Marketing
                         </h3>
                         <p className="font-body-sm self-stretch group-hover:text-white transition-colors duration-300">
                             HiTalent, HiSales, Ventri, Idas SFA

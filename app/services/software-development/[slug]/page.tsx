@@ -7,6 +7,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import { softwareDevelopmentServices } from '@/data/software-development-services';
+import { getSiteSettings } from '@/lib/db';
 import { FaArrowDown } from 'react-icons/fa6';
 import { MdNorthEast, MdFastForward, MdLocationOn } from 'react-icons/md';
 
@@ -27,12 +28,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     if (!service) {
         return {
             title: 'Service Not Found',
-            //sa
         };
     }
 
+    const settings = await getSiteSettings();
+    const siteTitle = settings.site_title || "Kreasitech";
+
     return {
-        title: `${service.roleName} Hiring - Kreasitech`,
+        title: `${service.roleName} Hiring - ${siteTitle}`,
         description: service.heroDescription,
     };
 }
@@ -44,6 +47,8 @@ export default async function SoftwareServiceDetailPage({ params }: PageProps) {
     if (!service) {
         notFound();
     }
+
+    const settings = await getSiteSettings();
 
     // Define consistent design colors
     const BRAND_PURPLE = "#4F11BD";
@@ -75,12 +80,12 @@ export default async function SoftwareServiceDetailPage({ params }: PageProps) {
                                     {service.heroDescription}
                                 </p>
                                 <div className="flex flex-col sm:flex-row gap-5 items-start sm:items-center">
-                                    <Link
-                                        href="https://wa.me/628888088877"
+                                    <a
+                                        href={settings.whatsapp || "https://wa.me/628888088877"}
                                         className="bg-[#7C3AED] text-white px-8 py-4 rounded-lg font-medium font-montserrat hover:bg-violet-700 transition-all duration-300 inline-block text-center w-full sm:w-auto"
                                     >
                                         Hire {service.roleName} Now
-                                    </Link>
+                                    </a>
                                     <span className="text-xs text-gray-400 font-normal font-montserrat tracking-wide px-2 select-none">Free to interview, low-cost hiring</span>
                                 </div>
                                 <div className="mt-10 flex items-center text-gray-900 text-sm font-medium font-montserrat cursor-pointer group w-fit select-none">
@@ -253,12 +258,12 @@ export default async function SoftwareServiceDetailPage({ params }: PageProps) {
                             })}
                         </div>
                         <div className="mt-20 text-center">
-                            <Link
-                                href="https://wa.me/628888088877"
+                            <a
+                                href={settings.whatsapp || "https://wa.me/628888088877"}
                                 className="bg-[#4F11BD] text-white px-12 py-5 rounded-xl font-bold font-montserrat hover:bg-violet-800 transition-all duration-300 shadow-2xl shadow-violet-500/10 inline-block"
                             >
                                 Hire Now
-                            </Link>
+                            </a>
                         </div>
                     </div>
                 </section>
@@ -352,14 +357,14 @@ export default async function SoftwareServiceDetailPage({ params }: PageProps) {
                             </div>
                         </div>
                         <div className="inline-flex justify-start items-start gap-8">
-                            <Link
-                                href="https://wa.me/628888088877"
+                            <a
+                                href={settings.whatsapp || "https://wa.me/628888088877"}
                                 className="px-10 py-4 bg-[#4F11BD] rounded-lg flex justify-center items-center gap-2.5 hover:bg-violet-800 transition-all duration-300 shadow-xl shadow-violet-500/10"
                             >
                                 <span className="text-white text-base font-medium font-montserrat">
                                     Hire a {service.roleName}
                                 </span>
-                            </Link>
+                            </a>
                         </div>
                     </div>
                 </section>

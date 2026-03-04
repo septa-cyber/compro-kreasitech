@@ -2,86 +2,108 @@
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import WhatsAppButton from "@/components/landing/WhatsAppButton";
+import { getSiteSettings } from "@/lib/db";
 
-export const metadata: Metadata = {
-  metadataBase: new URL("https://kreasitech.com"), // Placeholder URL, should be updated with actual domain
-  title: {
-    default: "Kreasitech | Where Talent Meets Technology",
-    template: "%s | Kreasitech"
-  },
-  description: "Kreasitech menghubungkan pendidikan, karier, dan industri melalui inovasi digital. Layanan: Software Development, Digital Marketing, dan Talent Management.",
-  keywords: ["Software Development", "Digital Marketing", "IT Outsourcing", "Talent Management", "Kreasitech", "Web Development", "Mobile App"],
-  authors: [{ name: "Kreasitech Team" }],
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
+export async function generateMetadata(): Promise<Metadata> {
+  const settings = await getSiteSettings();
+  const title = settings.site_title || "Kreasitech";
+  const desc = settings.site_description || "Kreasitech menghubungkan pendidikan, karier, dan industri melalui inovasi digital. Layanan: Software Development, Digital Marketing, dan Talent Management.";
+
+  return {
+    metadataBase: new URL("https://kreasitech.com"),
+    title: {
+      default: `${title} | ${settings.site_description || 'Where Talent Meets Technology'}`,
+      template: `%s | ${title}`
+    },
+    description: desc,
+    keywords: ["Software Development", "Digital Marketing", "IT Outsourcing", "Talent Management", title, "Web Development", "Mobile App"],
+    authors: [{ name: `${title} Team` }],
+    robots: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  openGraph: {
-    title: "Kreasitech | Connecting Education, Career, and Business",
-    description: "Solusi teknologi komprehensif untuk bisnis Anda. Dari pengembangan aplikasi hingga manajemen talenta digital.",
-    url: "https://kreasitech.com",
-    siteName: "Kreasitech",
-    locale: "id_ID",
-    type: "website",
-    images: [
-      {
-        url: "/assets/images/og-image.jpg", // Ensure this image exists or is replaced
-        width: 1200,
-        height: 630,
-        alt: "Kreasitech - Where Talent Meets Technology",
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
       },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Kreasitech | Where Talent Meets Technology",
-    description: "Solusi teknologi komprehensif untuk bisnis Anda. Dari pengembangan aplikasi hingga manajemen talenta digital.",
-    images: ["/assets/images/og-image.jpg"],
-    creator: "@kreasitech", // Placeholder
-  },
-  alternates: {
-    canonical: "/",
-  },
-};
+    },
+    openGraph: {
+      title: `${title} | ${settings.site_description || 'Connecting Education, Career, and Business'}`,
+      description: desc,
+      url: "https://kreasitech.com",
+      siteName: title,
+      locale: "id_ID",
+      type: "website",
+      images: [
+        {
+          url: "/assets/images/og-image.jpg", // Ensure this image exists or is replaced
+          width: 1200,
+          height: 630,
+          alt: "Kreasitech - Where Talent Meets Technology",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${title} | ${settings.site_description || 'Where Talent Meets Technology'}`,
+      description: desc,
+      images: ["/assets/images/og-image.jpg"],
+      creator: `@kreasitech`,
+    },
+    alternates: {
+      canonical: "/",
+      languages: {
+        'id-ID': '/',
+      },
+    },
+    icons: settings.favicon ? {
+      icon: settings.favicon,
+      shortcut: settings.favicon,
+      apple: settings.favicon,
+    } : undefined,
+  };
+}
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const settings = await getSiteSettings();
+  const sameAsLinks = [];
+  if (settings.facebook) sameAsLinks.push(settings.facebook);
+  if (settings.instagram) sameAsLinks.push(settings.instagram);
+  if (settings.linkedin) sameAsLinks.push(settings.linkedin);
+  if (settings.twitter) sameAsLinks.push(settings.twitter);
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "Kreasitech",
+    "name": settings.site_title || "Kreasitech",
     "url": "https://kreasitech.com",
-    "logo": "https://kreasitech.com/assets/images/Logo.svg",
-    "sameAs": [
+    "logo": settings.logo ? `https://kreasitech.com${settings.logo}` : "https://kreasitech.com/assets/images/Logo.svg",
+    "sameAs": sameAsLinks.length > 0 ? sameAsLinks : [
       "https://www.facebook.com/kreasitech",
       "https://www.instagram.com/kreasitech",
       "https://www.linkedin.com/company/kreasitech"
     ],
-    "description": "Perusahaan teknologi yang menghubungkan dunia pendidikan, karier, dan industri melalui inovasi digital.",
+    "description": settings.site_description || "Perusahaan teknologi yang menghubungkan dunia pendidikan, karier, dan industri melalui inovasi digital.",
     "address": {
       "@type": "PostalAddress",
-      "addressLocality": "Jakarta",
+      "addressLocality": settings.address || "Jakarta",
       "addressCountry": "ID"
     },
     "contactPoint": {
       "@type": "ContactPoint",
-      "telephone": "+62-888-8088-877",
+      "telephone": settings.phone || "+62-888-8088-877",
       "contactType": "customer service"
     }
   };
 
   return (
-    <html lang="en">
+    <html lang="id">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -129,7 +151,7 @@ export default function RootLayout({
           }}
         />
         {children}
-        <WhatsAppButton />
+        <WhatsAppButton whatsappUrl={settings.whatsapp} />
       </body>
     </html>
   );

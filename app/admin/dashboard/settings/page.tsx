@@ -1,8 +1,9 @@
 ﻿"use client";
 
-import React, { useState } from 'react';
-import { FaGlobe, FaImage, FaStar, FaAddressBook, FaShareAlt, FaInstagram, FaLinkedinIn, FaWhatsapp, FaSave, FaTwitter, FaFacebook } from 'react-icons/fa';
+import React, { useState, useEffect, useRef } from 'react';
+import { FaGlobe, FaImage, FaStar, FaAddressBook, FaShareAlt, FaSave, FaLinkedin, FaInstagram, FaTwitter, FaFacebook, FaWhatsapp } from 'react-icons/fa';
 import toast from 'react-hot-toast';
+import Image from 'next/image';
 
 export default function SettingsPage() {
     // General Settings
@@ -21,12 +22,131 @@ export default function SettingsPage() {
     const [twitter, setTwitter] = useState('https://twitter.com/kreasitech');
     const [facebook, setFacebook] = useState('https://facebook.com/kreasitech');
     const [whatsapp, setWhatsapp] = useState('https://wa.me/628888088877');
+    const [logo, setLogo] = useState('/assets/images/Logo.svg');
+    const [favicon, setFavicon] = useState('/favicon.ico');
 
-    const handleSave = (e: React.FormEvent) => {
-        e.preventDefault();
-        // Handle save logic here
-        toast.success('Pengaturan berhasil disimpan!');
+    const logoInputRef = useRef<HTMLInputElement>(null);
+    const faviconInputRef = useRef<HTMLInputElement>(null);
+    const [isUploadingLogo, setIsUploadingLogo] = useState(false);
+    const [isUploadingFavicon, setIsUploadingFavicon] = useState(false);
+
+    const [isLoading, setIsLoading] = useState(true);
+    const [isSaving, setIsSaving] = useState(false);
+
+    useEffect(() => {
+        const fetchSettings = async () => {
+            try {
+                const response = await fetch('/api/settings');
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.site_title) setSiteTitle(data.site_title);
+                    if (data.site_description) setSiteDescription(data.site_description);
+                    if (data.email) setEmail(data.email);
+                    if (data.phone) setPhone(data.phone);
+                    if (data.address) setAddress(data.address);
+                    if (data.maps_url) setMapsUrl(data.maps_url);
+                    if (data.instagram) setInstagram(data.instagram);
+                    if (data.linkedin) setLinkedin(data.linkedin);
+                    if (data.twitter) setTwitter(data.twitter);
+                    if (data.facebook) setFacebook(data.facebook);
+                    if (data.whatsapp) setWhatsapp(data.whatsapp);
+                    if (data.logo) setLogo(data.logo);
+                    if (data.favicon) setFavicon(data.favicon);
+                }
+            } catch (error) {
+                console.error('Failed to fetch settings:', error);
+                toast.error('Gagal mengambil pengaturan');
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        fetchSettings();
+    }, []);
+
+    const handleFileUpload = async (
+        e: React.ChangeEvent<HTMLInputElement>,
+        type: 'logo' | 'favicon'
+    ) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+
+        const setUploading = type === 'logo' ? setIsUploadingLogo : setIsUploadingFavicon;
+        const setUrl = type === 'logo' ? setLogo : setFavicon;
+
+        setUploading(true);
+        const uploadToast = toast.loading(`Mengunggah ${type}...`);
+
+        try {
+            const formData = new FormData();
+            formData.append('file', file);
+
+            const res = await fetch('/api/upload', {
+                method: 'POST',
+                body: formData,
+            });
+
+            if (!res.ok) throw new Error('Upload failed');
+
+            const data = await res.json();
+            setUrl(data.url);
+            toast.success(`${type} berhasil diunggah!`, { id: uploadToast });
+        } catch (error) {
+            console.error('Upload error:', error);
+            toast.error(`Gagal mengunggah ${type}`, { id: uploadToast });
+        } finally {
+            setUploading(false);
+            // Reset input so the same file can be selected again if needed
+            if (e.target) e.target.value = '';
+        }
     };
+
+    const handleSave = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setIsSaving(true);
+        const saveToast = toast.loading('Menyimpan pengaturan...');
+
+        try {
+            const response = await fetch('/api/settings', {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    site_title: siteTitle,
+                    site_description: siteDescription,
+                    email,
+                    phone,
+                    address,
+                    maps_url: mapsUrl,
+                    instagram,
+                    linkedin,
+                    twitter,
+                    facebook,
+                    whatsapp,
+                    logo,
+                    favicon
+                })
+            });
+
+            if (response.ok) {
+                toast.success('Pengaturan berhasil disimpan!', { id: saveToast });
+            } else {
+                throw new Error('Failed to save');
+            }
+        } catch (error) {
+            console.error('Failed to save settings:', error);
+            toast.error('Gagal menyimpan pengaturan', { id: saveToast });
+        } finally {
+            setIsSaving(false);
+        }
+    };
+
+    if (isLoading) {
+        return (
+            <div className="flex items-center justify-center p-12">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-violet-600"></div>
+            </div>
+        );
+    }
 
     return (
         <div className="space-y-6">
@@ -36,10 +156,11 @@ export default function SettingsPage() {
                 </h1>
                 <button
                     onClick={handleSave}
-                    className="px-6 py-2.5 bg-violet-600 hover:bg-violet-700 text-white font-medium rounded-lg text-sm transition-colors shadow-glow flex items-center gap-2"
+                    disabled={isSaving}
+                    className="px-6 py-2.5 bg-violet-600 hover:bg-violet-700 text-white font-medium rounded-lg text-sm transition-colors shadow-glow flex items-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
                 >
                     <FaSave />
-                    <span>Simpan Perubahan</span>
+                    <span>{isSaving ? 'Menyimpan...' : 'Simpan Perubahan'}</span>
                 </button>
             </div>
 
@@ -82,22 +203,58 @@ export default function SettingsPage() {
                                 <label className="block text-sm font-medium text-gray-700 font-montserrat mb-2">
                                     Logo
                                 </label>
-                                <div className="border-2 border-dashed border-gray-200 rounded-lg p-4 text-center hover:border-violet-400 transition-colors cursor-pointer bg-[#F4F4F7]">
-                                    <div className="w-12 h-12 bg-white rounded-lg shadow-sm mx-auto mb-2 flex items-center justify-center text-violet-600">
-                                        <FaImage size={20} />
-                                    </div>
-                                    <span className="text-xs text-gray-500">Upload Logo</span>
+                                <input
+                                    type="file"
+                                    ref={logoInputRef}
+                                    onChange={(e) => handleFileUpload(e, 'logo')}
+                                    accept="image/*"
+                                    className="hidden"
+                                />
+                                <div
+                                    onClick={() => logoInputRef.current?.click()}
+                                    className={`border border-gray-200 rounded-lg p-2 text-center hover:border-violet-400 transition-colors cursor-pointer ${isUploadingLogo ? 'bg-gray-100 opacity-50' : 'bg-[#F4F4F7]'} group relative overflow-hidden h-32 flex items-center justify-center`}
+                                >
+                                    {isUploadingLogo ? (
+                                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-violet-600"></div>
+                                    ) : logo ? (
+                                        <Image src={logo} alt="Logo" fill className="object-contain p-2" />
+                                    ) : (
+                                        <div>
+                                            <div className="w-12 h-12 bg-white rounded-lg shadow-sm mx-auto mb-2 flex items-center justify-center text-violet-600 group-hover:scale-110 transition-transform">
+                                                <FaImage size={20} />
+                                            </div>
+                                            <span className="text-xs text-gray-500 font-montserrat">Upload Logo</span>
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                             <div>
                                 <label className="block text-sm font-medium text-gray-700 font-montserrat mb-2">
                                     Favicon
                                 </label>
-                                <div className="border-2 border-dashed border-gray-200 rounded-lg p-4 text-center hover:border-violet-400 transition-colors cursor-pointer bg-[#F4F4F7]">
-                                    <div className="w-12 h-12 bg-white rounded-lg shadow-sm mx-auto mb-2 flex items-center justify-center text-violet-600">
-                                        <FaStar size={20} />
-                                    </div>
-                                    <span className="text-xs text-gray-500">Upload Favicon</span>
+                                <input
+                                    type="file"
+                                    ref={faviconInputRef}
+                                    onChange={(e) => handleFileUpload(e, 'favicon')}
+                                    accept="image/*"
+                                    className="hidden"
+                                />
+                                <div
+                                    onClick={() => faviconInputRef.current?.click()}
+                                    className={`border border-gray-200 rounded-lg p-2 text-center hover:border-violet-400 transition-colors cursor-pointer ${isUploadingFavicon ? 'bg-gray-100 opacity-50' : 'bg-[#F4F4F7]'} group relative overflow-hidden h-32 flex items-center justify-center`}
+                                >
+                                    {isUploadingFavicon ? (
+                                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-violet-600"></div>
+                                    ) : favicon ? (
+                                        <Image src={favicon} alt="Favicon" fill className="object-cover" />
+                                    ) : (
+                                        <div>
+                                            <div className="w-12 h-12 bg-white rounded-lg shadow-sm mx-auto mb-2 flex items-center justify-center text-violet-600 group-hover:scale-110 transition-transform">
+                                                <FaStar size={20} />
+                                            </div>
+                                            <span className="text-xs text-gray-500 font-montserrat">Upload Favicon</span>
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                         </div>
@@ -147,6 +304,18 @@ export default function SettingsPage() {
                                 className="w-full px-4 py-2 bg-[#F4F4F7] border border-gray-200 rounded-lg text-sm text-text-light focus:outline-none focus:ring-2 focus:ring-violet-500/50 focus:border-violet-500 transition-all resize-none"
                             />
                         </div>
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 font-montserrat mb-2">
+                                Google Maps URL
+                            </label>
+                            <input
+                                type="url"
+                                value={mapsUrl}
+                                onChange={(e) => setMapsUrl(e.target.value)}
+                                className="w-full px-4 py-2 bg-[#F4F4F7] border border-gray-200 rounded-lg text-sm text-text-light focus:outline-none focus:ring-2 focus:ring-violet-500/50 focus:border-violet-500 transition-all"
+                                placeholder="https://maps.app.goo.gl/..."
+                            />
+                        </div>
                     </div>
                 </div>
 
@@ -182,7 +351,7 @@ export default function SettingsPage() {
                             </label>
                             <div className="relative">
                                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <FaLinkedinIn className="text-gray-400" size={18} />
+                                    <FaLinkedin className="text-gray-400" size={18} />
                                 </div>
                                 <input
                                     type="text"

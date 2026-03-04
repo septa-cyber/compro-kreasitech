@@ -1,16 +1,35 @@
-﻿import React from 'react';
+﻿"use client";
+
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { FaMapMarkerAlt, FaPhone, FaRegEnvelope, FaLinkedin, FaInstagram, FaTwitter, FaFacebook } from 'react-icons/fa';
 
 export default function Footer() {
+    const [settings, setSettings] = useState<any>({});
+
+    useEffect(() => {
+        const fetchSettings = async () => {
+            try {
+                const response = await fetch('/api/settings');
+                if (response.ok) {
+                    const data = await response.json();
+                    setSettings(data);
+                }
+            } catch (error) {
+                console.error('Failed to fetch settings:', error);
+            }
+        };
+        fetchSettings();
+    }, []);
+
     return (
         <footer className="w-full bg-[#F4F4F7] pb-12 pt-0 px-4">
             <div className="w-full max-w-[1400px] mx-auto bg-white rounded-lg p-8 lg:p-12 shadow-sm flex flex-col justify-start items-start gap-8">
                 <div className="w-full flex flex-col lg:flex-row justify-between items-center gap-6">
                     <div className="flex items-center gap-2">
                         <img
-                            src="/assets/images/Logo.svg"
-                            alt="Kreasitech Logo"
+                            src={settings.logo || "/assets/images/Logo.svg"}
+                            alt={`${settings.site_title || 'Kreasitech'} Logo`}
                             className="h-7 w-auto"
                         />
                     </div>
@@ -20,7 +39,7 @@ export default function Footer() {
                                 <FaMapMarkerAlt className="text-violet-600 text-sm" />
                             </div>
                             <div className="font-body-sm text-text-light max-w-[195px] md:max-w-none">
-                                Jalan Lorong, Gedongan RT01/RW04, Sinduadi, Mlati, Sleman, DIY 55284
+                                {settings.address || 'Jalan Lorong, Gedongan RT01/RW04, Sinduadi, Mlati, Sleman, DIY 55284'}
                             </div>
                         </div>
                         <div className="flex flex-row justify-center md:justify-start items-center gap-2 text-center md:text-left">
@@ -28,7 +47,7 @@ export default function Footer() {
                                 <FaPhone className="text-violet-600 text-sm" />
                             </div>
                             <div className="font-body-sm text-text-light">
-                                (62) 888-8088-877
+                                {settings.phone || '(62) 888-8088-877'}
                             </div>
                         </div>
                         <div className="flex flex-row justify-center md:justify-start items-center gap-2 text-center md:text-left">
@@ -36,7 +55,7 @@ export default function Footer() {
                                 <FaRegEnvelope className="text-violet-600 text-sm" />
                             </div>
                             <div className="font-body-sm text-text-light">
-                                marketing@kreasi.tech
+                                {settings.email || 'marketing@kreasi.tech'}
                             </div>
                         </div>
                     </div>
@@ -109,22 +128,30 @@ export default function Footer() {
                         </a>
                     </div>
                     <div className="flex justify-center lg:justify-start items-center gap-6 order-1 lg:order-2">
-                        <a href="#" className="w-5 h-5 relative overflow-hidden text-violet-600 hover:text-primary-dark transition flex items-center justify-center">
-                            <FaLinkedin className="text-xl" />
-                        </a>
-                        <a href="#" className="w-5 h-5 relative overflow-hidden text-violet-600 hover:text-primary-dark transition flex items-center justify-center">
-                            <FaInstagram className="text-xl" />
-                        </a>
-                        <a href="#" className="w-5 h-5 relative overflow-hidden text-violet-600 hover:text-primary-dark transition flex items-center justify-center">
-                            <FaTwitter className="text-xl" />
-                        </a>
-                        <a href="#" className="w-5 h-5 relative overflow-hidden text-violet-600 hover:text-primary-dark transition flex items-center justify-center">
-                            <FaFacebook className="text-xl" />
-                        </a>
+                        {settings.linkedin && (
+                            <a href={settings.linkedin} target="_blank" rel="noopener noreferrer" className="w-5 h-5 relative overflow-hidden text-violet-600 hover:text-primary-dark transition flex items-center justify-center">
+                                <FaLinkedin className="text-xl" />
+                            </a>
+                        )}
+                        {settings.instagram && (
+                            <a href={settings.instagram} target="_blank" rel="noopener noreferrer" className="w-5 h-5 relative overflow-hidden text-violet-600 hover:text-primary-dark transition flex items-center justify-center">
+                                <FaInstagram className="text-xl" />
+                            </a>
+                        )}
+                        {settings.twitter && (
+                            <a href={settings.twitter} target="_blank" rel="noopener noreferrer" className="w-5 h-5 relative overflow-hidden text-violet-600 hover:text-primary-dark transition flex items-center justify-center">
+                                <FaTwitter className="text-xl" />
+                            </a>
+                        )}
+                        {settings.facebook && (
+                            <a href={settings.facebook} target="_blank" rel="noopener noreferrer" className="w-5 h-5 relative overflow-hidden text-violet-600 hover:text-primary-dark transition flex items-center justify-center">
+                                <FaFacebook className="text-xl" />
+                            </a>
+                        )}
                     </div>
                     <div className="flex justify-center lg:justify-end items-center gap-6 order-3 lg:order-3">
                         <div className="text-center lg:text-right font-body-xs text-violet-600">
-                            © 2025 KREASITECH. Hak cipta dilindungi.
+                            © {new Date().getFullYear()} {settings.site_title?.toUpperCase() || 'KREASITECH'}. Hak cipta dilindungi.
                         </div>
                     </div>
                 </div>

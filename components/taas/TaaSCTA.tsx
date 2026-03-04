@@ -1,8 +1,24 @@
-﻿import React from 'react';
-import Link from 'next/link';
+﻿"use client";
 import Image from 'next/image';
+import { useState, useEffect } from 'react';
 
 export default function TaaSCTA() {
+    const [settings, setSettings] = useState<any>({});
+
+    useEffect(() => {
+        const fetchSettings = async () => {
+            try {
+                const response = await fetch('/api/settings');
+                if (response.ok) {
+                    const data = await response.json();
+                    setSettings(data);
+                }
+            } catch (error) {
+                console.error('Failed to fetch settings:', error);
+            }
+        };
+        fetchSettings();
+    }, []);
     return (
         <section className="py-24 bg-gray-100 flex flex-col justify-start items-center gap-24 overflow-hidden">
             <div className="w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row justify-center items-center gap-16">
@@ -16,14 +32,14 @@ export default function TaaSCTA() {
                         </p>
                     </div>
                     <div className="inline-flex justify-start items-start gap-8">
-                        <Link
-                            href="/contact"
+                        <a
+                            href={settings.whatsapp || "/contact"}
                             className="px-8 py-4 bg-violet-600 rounded-lg flex justify-center items-center gap-2.5 hover:bg-violet-700 transition-colors"
                         >
                             <span className="font-btn !text-white">
                                 Rekrut Talent Sekarang
                             </span>
-                        </Link>
+                        </a>
                     </div>
                 </div>
                 <div className="w-full lg:w-1/2 flex justify-center">

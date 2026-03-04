@@ -5,6 +5,7 @@ import { digitalMarketingServices } from "@/data/digital-marketing-services";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Breadcrumb from "@/components/ui/Breadcrumb";
+import { getSiteSettings } from "@/lib/db";
 import {
     FaStar, FaMobileScreenButton, FaScrewdriverWrench, FaChartColumn, FaRegCommentDots,
     FaArrowDown, FaCheck, FaLocationDot, FaPhone, FaEnvelope, FaLinkedinIn, FaInstagram, FaTwitter, FaFacebookF, FaBars, FaChevronDown, FaArrowUpRightFromSquare, FaArrowRight,
@@ -57,8 +58,11 @@ export async function generateMetadata({ params }: PageProps) {
     const service = digitalMarketingServices.find((s) => s.slug === slug);
     if (!service) return { title: "Service Not Found" };
 
+    const settings = await getSiteSettings();
+    const siteTitle = settings.site_title || "Kreasitech";
+
     return {
-        title: `${service.title} Services - Kreasitech Digital Marketing`,
+        title: `${service.title} Services - ${siteTitle} Digital Marketing`,
         description: service.heroDescription,
     };
 }
@@ -70,6 +74,8 @@ export default async function ServiceDetailPage({ params }: PageProps) {
     if (!service) {
         notFound();
     }
+
+    const settings = await getSiteSettings();
 
     return (
         <div className="bg-[#F9FAFB] text-gray-800 font-sans min-h-screen">
@@ -98,7 +104,10 @@ export default async function ServiceDetailPage({ params }: PageProps) {
                                     {service.heroDescription}
                                 </p>
                                 <div className="flex flex-col sm:flex-row justify-center lg:justify-start items-center gap-4 sm:gap-8 w-full">
-                                    <a href="#pricelist" className="w-full sm:w-auto px-8 py-4 bg-violet-600 rounded-lg flex justify-center items-center gap-2.5 hover:bg-violet-700 transition-all duration-300">
+                                    <a
+                                        href={settings.whatsapp || "https://wa.me/628888088877"}
+                                        className="w-full sm:w-auto px-8 py-4 bg-violet-600 rounded-lg flex justify-center items-center gap-2.5 hover:bg-violet-700 transition-all duration-300"
+                                    >
                                         <span className="text-gray-100 text-base font-medium font-montserrat">Pesan Sekarang</span>
                                     </a>
                                     <a href="#advantages" className="flex justify-start items-center gap-4 group">
@@ -261,7 +270,10 @@ export default async function ServiceDetailPage({ params }: PageProps) {
                         <p className="text-gray-500 mb-10 text-sm md:text-base max-w-lg mx-auto leading-relaxed">
                             {service.ctaDescription}
                         </p>
-                        <a href="#contact" className="inline-flex px-8 py-4 bg-violet-600 rounded-lg justify-center items-center gap-2.5 hover:bg-violet-700 transition-colors">
+                        <a
+                            href={settings.whatsapp || "https://wa.me/628888088877"}
+                            className="inline-flex px-8 py-4 bg-violet-600 rounded-lg justify-center items-center gap-2.5 hover:bg-violet-700 transition-colors"
+                        >
                             <span className="text-gray-100 text-base font-medium font-montserrat">{service.ctaButtonText}</span>
                         </a>
                     </div>

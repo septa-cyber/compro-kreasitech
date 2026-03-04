@@ -59,6 +59,22 @@ export default function Hero() {
         fetchPartners();
     }, []);
 
+    const [settings, setSettings] = React.useState<any>({});
+    React.useEffect(() => {
+        const fetchSettings = async () => {
+            try {
+                const res = await fetch('/api/settings');
+                if (res.ok) {
+                    const data = await res.json();
+                    setSettings(data);
+                }
+            } catch (error) {
+                console.error('Failed to fetch settings:', error);
+            }
+        };
+        fetchSettings();
+    }, []);
+
     return (
         <section className="relative pt-40 pb-20 lg:pt-54 lg:pb-16 overflow-hidden bg-[#F4F4F7]">
             {/* Geometric Background Lines */}
@@ -81,9 +97,12 @@ export default function Hero() {
 
                     {/* Action Buttons */}
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                        <Link href="/contact" className="w-max px-8 py-4 bg-violet-600 rounded-lg inline-flex justify-center items-center gap-2.5 hover:bg-violet-700 transition-all duration-300">
+                        <a
+                            href={settings.whatsapp || "/contact"}
+                            className="w-max px-8 py-4 bg-violet-600 rounded-lg inline-flex justify-center items-center gap-2.5 hover:bg-violet-700 transition-all duration-300"
+                        >
                             <div className="font-btn text-gray-100">Konsultasi</div>
-                        </Link>
+                        </a>
                         <Link href="#about" className="w-max flex items-center justify-center gap-2 px-6 py-4 font-btn text-text-light hover:text-violet-600 transition-colors group">
                             Pelajari Lebih Lanjut
                             <img src="/assets/images/arrow_downward.svg" alt="" className="w-6 h-6 animate-bounce" />

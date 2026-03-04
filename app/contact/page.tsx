@@ -1,6 +1,6 @@
 ﻿"use client";
 
-import { useState } from "react";
+import { useState, FormEvent, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Breadcrumb from "@/components/ui/Breadcrumb";
@@ -29,6 +29,24 @@ export default function ContactPage() {
         purpose: "",
         message: "",
     });
+
+    const [siteSettings, setSiteSettings] = useState<any>({});
+
+    useEffect(() => {
+        const fetchSettings = async () => {
+            try {
+                const response = await fetch('/api/settings');
+                if (response.ok) {
+                    const data = await response.json();
+                    setSiteSettings(data);
+                }
+            } catch (error) {
+                console.error('Failed to fetch settings:', error);
+            }
+        };
+
+        fetchSettings();
+    }, []);
 
     const [errors, setErrors] = useState<FormErrors>({});
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -98,7 +116,8 @@ export default function ContactPage() {
             await new Promise(resolve => setTimeout(resolve, 1500));
 
             // For now, we'll use mailto as fallback
-            const mailtoLink = `mailto:marketing@kreasi.tech?subject=${encodeURIComponent(`[${formData.purpose}] ${formData.subject}`)}&body=${encodeURIComponent(`Nama: ${formData.name}\nEmail: ${formData.email}\nTujuan: ${purposeOptions.find(p => p.value === formData.purpose)?.label}\n\nPesan:\n${formData.message}`)}`;
+            const targetEmail = siteSettings.email || "marketing@kreasi.tech";
+            const mailtoLink = `mailto:${targetEmail}?subject=${encodeURIComponent(`[${formData.purpose}] ${formData.subject}`)}&body=${encodeURIComponent(`Nama: ${formData.name}\nEmail: ${formData.email}\nTujuan: ${purposeOptions.find(p => p.value === formData.purpose)?.label}\n\nPesan:\n${formData.message}`)}`;
 
             window.location.href = mailtoLink;
 
@@ -321,7 +340,7 @@ export default function ContactPage() {
                                 <div className="space-y-5">
                                     {/* WhatsApp */}
                                     <a
-                                        href="https://wa.me/6288880888877?text=Halo%20Kreasitech%2C%20saya%20ingin%20bertanya"
+                                        href={siteSettings.whatsapp || "https://wa.me/6288880888877?text=Halo%20Kreasitech%2C%20saya%20ingin%20bertanya"}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="flex items-center gap-4 p-4 rounded-xl hover:bg-gray-50 transition-colors group"
@@ -333,13 +352,13 @@ export default function ContactPage() {
                                         </div>
                                         <div>
                                             <p className="font-body-sm text-gray-500">WhatsApp</p>
-                                            <p className="font-body font-medium text-text-light">+62 888-8088-877</p>
+                                            <p className="font-body font-medium text-text-light">{siteSettings.phone || "+62 888-8088-877"}</p>
                                         </div>
                                     </a>
 
                                     {/* Email */}
                                     <a
-                                        href="mailto:marketing@kreasi.tech"
+                                        href={`mailto:${siteSettings.email || "marketing@kreasi.tech"}`}
                                         className="flex items-center gap-4 p-4 rounded-xl hover:bg-gray-50 transition-colors group"
                                     >
                                         <div className="w-12 h-12 bg-violet-100 rounded-xl flex items-center justify-center group-hover:bg-violet-200 transition-colors">
@@ -349,13 +368,13 @@ export default function ContactPage() {
                                         </div>
                                         <div>
                                             <p className="font-body-sm text-gray-500">Email</p>
-                                            <p className="font-body font-medium text-text-light">marketing@kreasi.tech</p>
+                                            <p className="font-body font-medium text-text-light">{siteSettings.email || "marketing@kreasi.tech"}</p>
                                         </div>
                                     </a>
 
                                     {/* Location */}
                                     <a
-                                        href="https://maps.app.goo.gl/k3xF8N7zV9fXBaEn6"
+                                        href={siteSettings.maps_url || "https://maps.app.goo.gl/k3xF8N7zV9fXBaEn6"}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="flex items-center gap-4 p-4 rounded-xl hover:bg-gray-50 transition-colors group"

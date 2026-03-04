@@ -3,7 +3,7 @@
 import React from 'react';
 import { usePathname } from 'next/navigation';
 
-export default function WhatsAppButton() {
+export default function WhatsAppButton({ whatsappUrl }: { whatsappUrl?: string }) {
     const pathname = usePathname();
 
     // Do not show the WhatsApp button on admin pages
@@ -13,7 +13,7 @@ export default function WhatsAppButton() {
 
     return (
         <a
-            href="https://wa.me/6288880888877?text=Halo%20Kreasitech%2C%20saya%20ingin%20bertanya"
+            href={whatsappUrl || "https://wa.me/6288880888877?text=Halo%20Kreasitech%2C%20saya%20ingin%20bertanya"}
             className="group fixed bottom-[30px] right-[30px] z-[1000] flex items-center gap-[10px] bg-[#25d366] text-white p-[10px] md:px-5 md:py-[10px] rounded-[50px] shadow-[0_4px_10px_rgba(0,0,0,0.2)] transition-transform duration-300 hover:-translate-y-[3px] hover:shadow-[0_8px_15px_rgba(0,0,0,0.3)] font-semibold no-underline font-sans"
             target="_blank"
             rel="noopener noreferrer"

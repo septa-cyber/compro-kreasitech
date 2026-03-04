@@ -1,9 +1,23 @@
-﻿"use client";
-import React from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
+﻿import Image from 'next/image';
+import { useState, useEffect } from 'react';
 
 export default function HiTalentCTA() {
+    const [settings, setSettings] = useState<any>({});
+
+    useEffect(() => {
+        const fetchSettings = async () => {
+            try {
+                const response = await fetch('/api/settings');
+                if (response.ok) {
+                    const data = await response.json();
+                    setSettings(data);
+                }
+            } catch (error) {
+                console.error('Failed to fetch settings:', error);
+            }
+        };
+        fetchSettings();
+    }, []);
     return (
         <section className="py-24 bg-violet-800 flex flex-col justify-start items-center gap-24 overflow-hidden" data-theme="dark">
             <div className="w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row justify-center items-center gap-16">
@@ -25,9 +39,12 @@ export default function HiTalentCTA() {
                             Lihat langsung bagaimana platform kami membantu HR dan team leader bekerja lebih efisien.
                         </p>
                     </div>
-                    <Link href="/contact" className="px-8 py-4 bg-white rounded-lg inline-flex justify-center items-center gap-2.5 hover:bg-gray-100 transition-colors">
+                    <a
+                        href={settings.whatsapp || "/contact"}
+                        className="px-8 py-4 bg-white rounded-lg inline-flex justify-center items-center gap-2.5 hover:bg-gray-100 transition-colors"
+                    >
                         <span className="font-btn !text-violet-800">Coba HiTalent</span>
-                    </Link>
+                    </a>
                 </div>
             </div>
         </section>

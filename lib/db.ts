@@ -1,7 +1,7 @@
 
 import fs from 'fs';
 import path from 'path';
-import { BlogPost, JobPosting, Testimonial, TeamMember, PortfolioItem, Partner } from './types';
+import { BlogPost, JobPosting, Testimonial, TeamMember, PortfolioItem, Partner, SiteSettings } from './types';
 import { supabase } from './supabase';
 
 const DATA_DIR = path.join(process.cwd(), 'lib', 'data');
@@ -12,6 +12,7 @@ const USERS_FILE = path.join(DATA_DIR, 'users.json');
 const TEAM_FILE = path.join(DATA_DIR, 'team.json');
 const PORTFOLIO_FILE = path.join(DATA_DIR, 'portfolio.json');
 const PARTNERS_FILE = path.join(DATA_DIR, 'partners.json');
+const SETTINGS_FILE = path.join(DATA_DIR, 'settings.json');
 
 // Helper to check if Supabase is enabled
 const isSupabaseEnabled = () => !!process.env.NEXT_PUBLIC_SUPABASE_URL && !!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
@@ -699,3 +700,72 @@ export async function deletePartner(id: number): Promise<boolean> {
     writeData(PARTNERS_FILE, partners);
     return true;
 }
+
+// --- Site Settings Operations ---
+
+export async function getSiteSettings(): Promise<SiteSettings> {
+    if (isSupabaseEnabled()) {
+        try {
+            const { data, error } = await supabase.from('site_settings').select('key, value');
+            if (error) throw error;
+
+            const settings: SiteSettings = {};
+            if (data && data.length > 0) {
+                data.forEach(item => {
+                    settings[item.key] = item.value;
+                });
+                return settings;
+            }
+        } catch (e) {
+            // Silently swallow error if table doesn't exist yet, as we have a JSON fallback
+            // console.warn('Supabase site_settings table might not exist yet. Falling back to JSON.');
+        }
+    }
+
+    // JSON Fallback
+    try {
+        if (!fs.existsSync(SETTINGS_FILE)) return {};
+        const content = fs.readFileSync(SETTINGS_FILE, 'utf-8');
+        return JSON.parse(content);
+    } catch {
+        return {};
+    }
+}
+
+export async function updateSiteSettings(settings: SiteSettings): Promise<boolean> {
+    if (isSupabaseEnabled()) {
+        try {
+            // Upsert requires iterating over keys, since settings is a single object but the DB is key-value
+            const updates = Object.keys(settings).map(key => ({
+                key,
+                value: settings[key],
+                updated_at: new Date().toISOString()
+            }));
+
+            if (updates.length > 0) {
+                const { error } = await supabase.from('site_settings').upsert(updates, { onConflict: 'key' });
+                if (error) throw error;
+            }
+        } catch (e) {
+            console.error('Error updating settings in supabase:', e);
+            // Fallback to JSON below if UPSERT fails
+        }
+    }
+
+    // Update JSON File
+    try {
+        if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
+
+        let currentSettings = {};
+        if (fs.existsSync(SETTINGS_FILE)) {
+            currentSettings = JSON.parse(fs.readFileSync(SETTINGS_FILE, 'utf-8'));
+        }
+
+        fs.writeFileSync(SETTINGS_FILE, JSON.stringify({ ...currentSettings, ...settings }, null, 2));
+        return true;
+    } catch (e) {
+        console.error('Error writing to settings.json:', e);
+        return false;
+    }
+}
+

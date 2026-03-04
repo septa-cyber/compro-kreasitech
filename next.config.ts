@@ -4,6 +4,7 @@ const nextConfig: NextConfig = {
   allowedDevOrigins: ['localhost', '127.0.0.1', '192.168.1.152', 'compro-kreasitech.kreasi.dev'],
   images: {
     dangerouslyAllowSVG: true,
+    formats: ['image/avif', 'image/webp'],
     remotePatterns: [
       {
         protocol: 'https',

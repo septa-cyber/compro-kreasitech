@@ -9,6 +9,11 @@ import TalentCTA from "@/components/services/software-development/TalentCTA";
 import Workflow from "@/components/landing/Workflow";
 import TechStack from "@/components/services/software-development/TechStack";
 
+export const metadata = {
+    title: "Software Development - Kreasitech",
+    description: "Layanan pengembangan perangkat lunak kustom (Web, Mobile, Cloud) dengan metodologi Agile dan teknologi modern untuk membantu transformasi bisnis Anda.",
+};
+
 export default function SoftwareDevelopmentPage() {
     return (
         <div className="min-h-screen">

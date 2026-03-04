@@ -91,3 +91,20 @@ export interface Partner {
     category?: string;
     status: 'active' | 'inactive';
 }
+
+export interface SiteSettings {
+    site_title?: string;
+    site_description?: string;
+    email?: string;
+    phone?: string;
+    address?: string;
+    maps_url?: string;
+    instagram?: string;
+    linkedin?: string;
+    twitter?: string;
+    facebook?: string;
+    whatsapp?: string;
+    logo?: string;
+    favicon?: string;
+    [key: string]: any;
+}

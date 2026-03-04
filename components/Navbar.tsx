@@ -8,7 +8,7 @@ export default function Navbar() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [activeMobileDropdown, setActiveMobileDropdown] = useState<string | null>(null);
     const [isDarkBg, setIsDarkBg] = useState(false);
-
+    const [settings, setSettings] = useState<any>({});
     const [activeDesktopDropdown, setActiveDesktopDropdown] = useState<string | null>(null);
 
     const toggleDesktopDropdown = (name: string) => {
@@ -57,6 +57,19 @@ export default function Navbar() {
         // Initial check
         handleScroll();
 
+        const fetchSettings = async () => {
+            try {
+                const response = await fetch('/api/settings');
+                if (response.ok) {
+                    const data = await response.json();
+                    setSettings(data);
+                }
+            } catch (error) {
+                console.error('Failed to fetch settings:', error);
+            }
+        };
+        fetchSettings();
+
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
@@ -68,8 +81,8 @@ export default function Navbar() {
                     <div className="flex-shrink-0 flex items-center gap-2">
                         <Link href="/" className="flex items-center gap-2">
                             <Image
-                                src="/assets/images/Logo.svg"
-                                alt="Kreasitech Logo"
+                                src={settings.logo || "/assets/images/Logo.svg"}
+                                alt={`${settings.site_title || 'Kreasitech'} Logo`}
                                 width={120}
                                 height={32}
                                 className={`h-6 lg:h-7 xl:h-8 w-auto transition-all duration-300 ${isDarkBg ? 'brightness-0 invert' : ''}`}

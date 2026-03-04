@@ -123,7 +123,7 @@ function LoginForm() {
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                                 className="w-full pl-11 pr-12 py-3 bg-[#F4F4F7] border border-gray-200 rounded-lg text-text-light font-montserrat text-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-violet-500/50 focus:border-violet-500 transition-all duration-300"
-                                placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
+                                placeholder="••••••••"
                                 required
                                 disabled={isLoading}
                             />

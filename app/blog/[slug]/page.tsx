@@ -89,8 +89,64 @@ export default function BlogPostPage() {
         );
     }
 
+    const jsonLd = post ? {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": post.title,
+        "description": post.excerpt,
+        "image": post.coverImage ? (post.coverImage.startsWith('http') ? post.coverImage : `https://kreasitech.com${post.coverImage}`) : "https://kreasitech.com/assets/images/og-image.jpg",
+        "datePublished": post.date,
+        "author": {
+            "@type": "Person",
+            "name": post.author.name
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Kreasitech",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://kreasitech.com/assets/images/Logo.svg"
+            }
+        }
+    } : null;
+
+    const breadcrumbLd = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://kreasitech.com"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Blog",
+                "item": "https://kreasitech.com/blog"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": post.title,
+                "item": `https://kreasitech.com/blog/${post.slug}`
+            }
+        ]
+    };
+
     return (
         <div className="transition-colors duration-300 antialiased overflow-x-hidden">
+            {jsonLd && (
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+                />
+            )}
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+            />
             <Navbar />
             <ArticleHeader post={post} />
             <ArticleContent post={post} />

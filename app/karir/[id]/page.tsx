@@ -14,6 +14,7 @@ export default function JobDetailPage() {
 
     const [job, setJob] = useState<JobPosting | null>(null);
     const [isLoading, setIsLoading] = useState(true);
+    const [siteSettings, setSiteSettings] = useState<any>({});
 
     useEffect(() => {
         const fetchJob = async () => {
@@ -29,7 +30,21 @@ export default function JobDetailPage() {
                 setIsLoading(false);
             }
         };
-        if (jobId) fetchJob();
+        const fetchSettings = async () => {
+            try {
+                const response = await fetch('/api/settings');
+                if (response.ok) {
+                    const data = await response.json();
+                    setSiteSettings(data);
+                }
+            } catch (error) {
+                console.error('Failed to fetch settings:', error);
+            }
+        };
+        if (jobId) {
+            fetchJob();
+            fetchSettings();
+        }
     }, [jobId]);
 
     if (isLoading) {
@@ -64,8 +79,68 @@ export default function JobDetailPage() {
     const iconContent = job.icon || "💼";
     const iconBg = job.iconBg || "bg-violet-100";
 
+    const jsonLd = job ? {
+        "@context": "https://schema.org",
+        "@type": "JobPosting",
+        "title": job.title,
+        "description": job.description,
+        "datePosted": job.postedDate || new Date().toISOString(),
+        "validThrough": job.expiredDate || "2026-12-31T23:59:59Z", // Default or specific
+        "employmentType": job.type === "Full-time" ? "FULL_TIME" : job.type === "Contract" ? "CONTRACTOR" : "OTHER",
+        "hiringOrganization": {
+            "@type": "Organization",
+            "name": job.company || "Kreasitech",
+            "sameAs": "https://kreasitech.com",
+            "logo": job.logo_url || "https://kreasitech.com/assets/images/Logo.svg"
+        },
+        "jobLocation": {
+            "@type": "Place",
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": job.location || "Sleman",
+                "addressRegion": "DIY",
+                "addressCountry": "ID"
+            }
+        }
+    } : null;
+
+    const breadcrumbLd = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://kreasitech.com"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Karir",
+                "item": "https://kreasitech.com/karir"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": job.title,
+                "item": `https://kreasitech.com/karir/${job.id}`
+            }
+        ]
+    };
+
     return (
         <div className="bg-[#F4F4F7] text-gray-800 transition-colors duration-300 min-h-screen">
+            {jsonLd && (
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+                />
+            )}
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+            />
             <Navbar />
             <Breadcrumb className="px-4 sm:px-6 lg:px-8" items={[
                 { label: "Home", href: "/" },
@@ -234,7 +309,7 @@ export default function JobDetailPage() {
                                 </div>
 
                                 <button
-                                    onClick={() => window.open(job.whatsapp_url || `https://wa.me/6288880888877?text=Halo%20Kreasitech%2C%20saya%20tertarik%20dengan%20posisi%20${encodeURIComponent(job.title)}`, '_blank')}
+                                    onClick={() => window.open(job.whatsapp_url || siteSettings.whatsapp || `https://wa.me/6288880888877?text=Halo%20Kreasitech%2C%20saya%20tertarik%20dengan%20posisi%20${encodeURIComponent(job.title)}`, '_blank')}
                                     className="w-full px-6 py-4 bg-violet-600 text-white rounded-xl font-btn hover:bg-violet-700 transition-colors flex items-center justify-center gap-3 mb-3"
                                 >
                                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
