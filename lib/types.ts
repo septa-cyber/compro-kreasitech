@@ -14,7 +14,7 @@ export interface BlogPost {
     categoryColor: string;
     coverImage: string;
     tags: string[];
-    status: 'draft' | 'publish';
+    status: 'draft' | 'publish' | 'published';
 }
 
 export interface JobPosting {

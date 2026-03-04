@@ -99,11 +99,11 @@ export default function ArticlesPage() {
                                         {article.date}
                                     </td>
                                     <td className="px-6 py-4">
-                                        <span className={`px-2 py-1 text-xs rounded-full font-medium ${article.status === 'publish'
+                                        <span className={`px-2 py-1 text-xs rounded-full font-medium ${article.status === 'publish' || article.status === 'published'
                                             ? 'bg-green-100 text-green-600'
                                             : 'bg-yellow-100 text-yellow-600'
                                             }`}>
-                                            {article.status === 'publish' ? 'Published' : 'Draft'}
+                                            {article.status === 'publish' || article.status === 'published' ? 'Published' : 'Draft'}
                                         </span>
                                     </td>
                                     <td className="px-6 py-4">
