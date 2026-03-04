@@ -23,6 +23,15 @@ export default function ArticleContent({ post }: ArticleContentProps) {
                 <div className="prose prose-lg prose-slate hover:prose-a:text-violet-600 prose-headings:font-montserrat prose-p:font-montserrat prose-p:text-gray-600 prose-a:text-violet-600 max-w-none prose-img:max-h-[500px] prose-img:max-w-full prose-img:mx-auto prose-img:rounded-xl prose-img:object-contain">
                     <ReactMarkdown
                         components={{
+                            p: ({ node, children, ...props }) => {
+                                const hasImage = node?.children?.some(
+                                    (child: any) => child.tagName === 'img' || child.type === 'image'
+                                );
+                                if (hasImage) {
+                                    return <div {...props}>{children}</div>;
+                                }
+                                return <p {...props}>{children}</p>;
+                            },
                             img: ({ node, ...props }) => (
                                 <figure className="my-8 flex flex-col items-center">
                                     <img {...props} />
