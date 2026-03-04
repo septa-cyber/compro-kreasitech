@@ -135,6 +135,10 @@ export default async function RootLayout({
   return (
     <html lang="id" className={`${plusJakartaSans.variable} ${montserrat.variable} ${outfit.variable} ${inter.variable}`}>
       <head>
+        <link
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+          rel="stylesheet"
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

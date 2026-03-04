@@ -87,7 +87,7 @@ export default function Navbar() {
                                     onClick={() => toggleDesktopDropdown('layanan')}
                                     className={`nav-link !inline-flex items-center gap-2 hover:text-primary transition py-6 whitespace-nowrap ${isDarkBg ? 'text-white' : 'text-text-light'}`}
                                 >
-                                    <span>Layanan</span> <svg className={`w-2.5 h-2.5 shrink-0 group-hover:rotate-180 transition-transform duration-300 ${isDarkBg ? 'text-white' : 'text-text-light'} ${activeDesktopDropdown === 'layanan' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                                    <span>Layanan</span> <i className={`fas fa-chevron-down text-[10px] shrink-0 group-hover:rotate-180 transition-transform duration-300 ${isDarkBg ? 'text-white' : 'text-text-light'} ${activeDesktopDropdown === 'layanan' ? 'rotate-180' : ''}`}></i>
                                 </button>
 
                                 {/* Mega Menu Dropdown - Now Simplified */}
@@ -112,7 +112,7 @@ export default function Navbar() {
                                     onClick={() => toggleDesktopDropdown('produk')}
                                     className={`nav-link !inline-flex items-center gap-2 hover:text-primary transition py-6 whitespace-nowrap ${isDarkBg ? 'text-white' : 'text-text-light'}`}
                                 >
-                                    <span>Produk</span> <svg className={`w-2.5 h-2.5 shrink-0 group-hover:rotate-180 transition-transform duration-300 ${isDarkBg ? 'text-white' : 'text-text-light'} ${activeDesktopDropdown === 'produk' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                                    <span>Produk</span> <i className={`fas fa-chevron-down text-[10px] shrink-0 group-hover:rotate-180 transition-transform duration-300 ${isDarkBg ? 'text-white' : 'text-text-light'} ${activeDesktopDropdown === 'produk' ? 'rotate-180' : ''}`}></i>
                                 </button>
                                 <div className={`absolute top-full left-1/2 -translate-x-1/2 w-max pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 -z-10 ${activeDesktopDropdown === 'produk' ? '!opacity-100 !visible !translate-y-0' : ''}`}>
                                     <div className="bg-white/95 backdrop-blur-md border border-gray-100 shadow-xl rounded-2xl overflow-hidden p-5 text-text-light">
@@ -130,7 +130,7 @@ export default function Navbar() {
                                     onClick={() => toggleDesktopDropdown('perusahaan')}
                                     className={`nav-link !inline-flex items-center gap-2 hover:text-primary transition py-6 whitespace-nowrap ${isDarkBg ? 'text-white' : 'text-text-light'}`}
                                 >
-                                    <span>Perusahaan</span> <svg className={`w-2.5 h-2.5 shrink-0 group-hover:rotate-180 transition-transform duration-300 ${isDarkBg ? 'text-white' : 'text-text-light'} ${activeDesktopDropdown === 'perusahaan' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                                    <span>Perusahaan</span> <i className={`fas fa-chevron-down text-[10px] shrink-0 group-hover:rotate-180 transition-transform duration-300 ${isDarkBg ? 'text-white' : 'text-text-light'} ${activeDesktopDropdown === 'perusahaan' ? 'rotate-180' : ''}`}></i>
                                 </button>
                                 <div className={`absolute top-full left-1/2 -translate-x-1/2 w-max pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 -z-10 ${activeDesktopDropdown === 'perusahaan' ? '!opacity-100 !visible !translate-y-0' : ''}`}>
                                     <div className="bg-white/95 backdrop-blur-md border border-gray-100 shadow-xl rounded-2xl overflow-hidden p-5 text-text-light">
@@ -171,7 +171,7 @@ export default function Navbar() {
                             className={`hover:text-primary transition-colors duration-300 ${isDarkBg ? 'text-white' : 'text-gray-500'}`}
                             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                         >
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /></svg>
+                            <i className="fas fa-bars text-xl"></i>
                         </button>
                     </div>
                 </div>
@@ -187,7 +187,7 @@ export default function Navbar() {
                             aria-expanded={activeMobileDropdown === "layanan"}
                         >
                             Layanan
-                            <svg className={`w-2.5 h-2.5 transition-transform duration-300 ${activeMobileDropdown === "layanan" ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                            <i className={`fas fa-chevron-down text-[10px] transition-transform duration-300 ${activeMobileDropdown === "layanan" ? "rotate-180" : ""}`}></i>
                         </button>
                         <div className={`overflow-hidden transition-all duration-300 ${activeMobileDropdown === "layanan" ? "max-h-[300px] opacity-100" : "max-h-0 opacity-0"}`}>
                             <div className="bg-gray-50 p-4 space-y-6 rounded-lg mb-2">
@@ -209,7 +209,7 @@ export default function Navbar() {
                             aria-expanded={activeMobileDropdown === "produk"}
                         >
                             Produk
-                            <svg className={`w-2.5 h-2.5 transition-transform duration-300 ${activeMobileDropdown === "produk" ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                            <i className={`fas fa-chevron-down text-[10px] transition-transform duration-300 ${activeMobileDropdown === "produk" ? "rotate-180" : ""}`}></i>
                         </button>
                         <div className={`overflow-hidden transition-all duration-300 ${activeMobileDropdown === "produk" ? "max-h-[300px] opacity-100" : "max-h-0 opacity-0"}`}>
                             <div className="bg-gray-50 p-4 rounded-lg mb-2">
@@ -228,7 +228,7 @@ export default function Navbar() {
                             aria-expanded={activeMobileDropdown === "perusahaan"}
                         >
                             Perusahaan
-                            <svg className={`w-2.5 h-2.5 transition-transform duration-300 ${activeMobileDropdown === "perusahaan" ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                            <i className={`fas fa-chevron-down text-[10px] transition-transform duration-300 ${activeMobileDropdown === "perusahaan" ? "rotate-180" : ""}`}></i>
                         </button>
                         <div className={`overflow-hidden transition-all duration-300 ${activeMobileDropdown === "perusahaan" ? "max-h-[300px] opacity-100" : "max-h-0 opacity-0"}`}>
                             <div className="bg-gray-50 p-4 rounded-lg mb-2">
