@@ -298,7 +298,6 @@ export default function DashboardPage() {
                                     <div className="min-w-0 flex-1">
                                         <div className="flex items-center gap-2">
                                             <h4 className="text-sm font-semibold text-gray-800 font-montserrat">{t.name}</h4>
-                                            <FaCircle className={`flex-shrink-0 ${t.status === 'visible' ? 'text-emerald-400' : 'text-gray-300'}`} size={6} />
                                         </div>
                                         <p className="text-xs text-gray-400">{t.role}{t.company ? ` · ${t.company}` : ''}</p>
                                         <p className="text-xs text-gray-500 italic mt-1 line-clamp-2">"{t.content || t.quote}"</p>
