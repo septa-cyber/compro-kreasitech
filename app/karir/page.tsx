@@ -19,6 +19,7 @@ interface Job {
     category: string;
     logo_url?: string;
     location_type?: string;
+    originalDate?: string;
 }
 
 export default function KarirPage() {
@@ -32,6 +33,7 @@ export default function KarirPage() {
                     const data = await res.json();
                     setJobsData(data.map((j: any) => ({
                         ...j,
+                        originalDate: j.postedDate, // Preserve for filtering
                         postedTime: j.postedDate ? new Date(j.postedDate).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) : j.postedDate
                     })));
                 }
@@ -44,14 +46,15 @@ export default function KarirPage() {
 
     const [searchJob, setSearchJob] = useState("");
     const [searchLocation, setSearchLocation] = useState("");
-    const [datePosted, setDatePosted] = useState("Last 7 Days");
+    const [datePosted, setDatePosted] = useState("Anytime");
     const [jobTypes, setJobTypes] = useState({
-        fulltime: true,
-        parttime: true,
+        fulltime: false,
+        parttime: false,
         contract: false,
+        freelance: false,
         internship: false
     });
-    const [salaryRange, setSalaryRange] = useState([3500, 6500]);
+    const [salaryRange, setSalaryRange] = useState([0, 25000]);
     const [locationPrefs, setLocationPrefs] = useState({
         remote: false,
         wfo: false,
@@ -61,12 +64,21 @@ export default function KarirPage() {
     // Track active job for mobile click state
     const [selectedJobId, setSelectedJobId] = useState<number | null>(null);
 
+    const hasActiveFilters =
+        searchJob !== "" ||
+        searchLocation !== "" ||
+        datePosted !== "Anytime" ||
+        Object.values(jobTypes).some(v => v) ||
+        salaryRange[0] !== 0 ||
+        salaryRange[1] !== 25000 ||
+        Object.values(locationPrefs).some(v => v);
+
     const handleClearAll = () => {
         setSearchJob("");
         setSearchLocation("");
-        setDatePosted("Last 7 Days");
-        setJobTypes({ fulltime: false, parttime: false, contract: false, internship: false });
-        setSalaryRange([3500, 6500]);
+        setDatePosted("Anytime");
+        setJobTypes({ fulltime: false, parttime: false, contract: false, freelance: false, internship: false });
+        setSalaryRange([0, 25000]);
         setLocationPrefs({ remote: false, wfo: false, wfh: false, hybrid: false });
     };
 
@@ -99,12 +111,76 @@ export default function KarirPage() {
         }
     };
 
+    const getTypeColor = (type: string) => {
+        if (!type) return 'bg-gray-400 !text-white';
+        const t = type.toLowerCase();
+        if (t.includes('full-time') || t.includes('fulltime')) return 'bg-violet-500 !text-white';
+        if (t.includes('part-time') || t.includes('parttime')) return 'bg-pink-500 !text-white';
+        if (t.includes('freelance')) return 'bg-amber-500 !text-white';
+        if (t.includes('internship')) return 'bg-emerald-500 !text-white';
+        if (t.includes('contract')) return 'bg-cyan-500 !text-white';
+        return 'bg-gray-400 !text-white';
+    };
+
+    const getLocationTypeColor = (type: string) => {
+        if (!type) return 'bg-gray-400 !text-white';
+        const t = type.toLowerCase();
+        if (t.includes('remote')) return 'bg-blue-400 !text-white';
+        if (t.includes('hybrid')) return 'bg-indigo-400 !text-white';
+        if (t.includes('wfo') || t.includes('office')) return 'bg-rose-400 !text-white';
+        if (t.includes('wfh') || t.includes('home')) return 'bg-sky-400 !text-white';
+        return 'bg-gray-400 !text-white';
+    };
+
     const filteredJobs = jobsData.filter(job => {
-        const matchesSearch = job.title.toLowerCase().includes(searchJob.toLowerCase()) ||
-            job.description.toLowerCase().includes(searchJob.toLowerCase());
+        // 1. Search Filter
+        const matchesSearch = job.title.toLowerCase().includes(searchJob.toLowerCase());
+
+        // 2. Location Search Filter
         const matchesLocation = searchLocation === "" ||
             job.location.toLowerCase().includes(searchLocation.toLowerCase());
 
+        // 3. Date Posted Filter
+        let matchesDate = true;
+        const compareDate = job.originalDate || job.postedTime;
+        if (datePosted !== "Anytime" && compareDate) {
+            const now = new Date();
+            const jobDate = new Date(compareDate);
+            const diffTime = Math.abs(now.getTime() - jobDate.getTime());
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+            if (datePosted === "Last 24 Hours") matchesDate = diffDays <= 1;
+            else if (datePosted === "Last 3 Days") matchesDate = diffDays <= 3;
+            else if (datePosted === "Last 7 Days") matchesDate = diffDays <= 7;
+        }
+
+        // 4. Job Type Filter
+        const activeTypes = Object.entries(jobTypes)
+            .filter(([_, active]) => active)
+            .map(([id]) => {
+                if (id === 'fulltime') return 'full-time';
+                if (id === 'parttime') return 'part-time';
+                return id;
+            });
+
+        const matchesJobType = activeTypes.length === 0 ||
+            (job.type && activeTypes.includes(job.type.toLowerCase()));
+
+        // 5. Salary Range Filter
+        let matchesSalary = true;
+        if (job.salary) {
+            // Extract numbers including separators like "12,000" or "3.500"
+            const salaryParts = job.salary.match(/\d+[\d,.]*/g);
+            if (salaryParts && salaryParts.length > 0) {
+                // Parse the first number (minimum salary) as the primary filter value
+                const jobMin = parseFloat(salaryParts[0].replace(/[,.]/g, ''));
+
+                // Use only the smallest value (jobMin) to check if it's within filter range
+                matchesSalary = jobMin >= salaryRange[0] && jobMin <= salaryRange[1];
+            }
+        }
+
+        // 6. Location Preference Filter
         const activeLocs = Object.entries(locationPrefs)
             .filter(([_, active]) => active)
             .map(([id]) => id.toLowerCase());
@@ -112,12 +188,12 @@ export default function KarirPage() {
         const matchesLocPref = activeLocs.length === 0 ||
             (job.location_type && activeLocs.includes(job.location_type.toLowerCase()));
 
-        return matchesSearch && matchesLocation && matchesLocPref;
+        return matchesSearch && matchesLocation && matchesDate && matchesJobType && matchesSalary && matchesLocPref;
     });
 
     // Calculations for salary slider track
-    const minSalary = 3000;
-    const maxSalary = 12000;
+    const minSalary = 0;
+    const maxSalary = 25000;
     const getPercent = (value: number) => Math.round(((value - minSalary) / (maxSalary - minSalary)) * 100);
 
     return (
@@ -136,12 +212,14 @@ export default function KarirPage() {
                                 <div className="w-full py-4 border-b border-gray-200 inline-flex justify-center items-center gap-2.5">
                                     <div className="flex-1 px-4 flex justify-center items-center gap-2.5">
                                         <div className="flex-1 justify-start font-body font-medium">Filters</div>
-                                        <button
-                                            onClick={handleClearAll}
-                                            className="flex-1 text-right justify-start text-violet-600 font-body-xs font-medium hover:text-violet-700"
-                                        >
-                                            Clear All
-                                        </button>
+                                        {hasActiveFilters && (
+                                            <button
+                                                onClick={handleClearAll}
+                                                className="flex-1 text-right justify-start text-violet-600 font-body-xs font-medium hover:text-violet-700"
+                                            >
+                                                Clear All
+                                            </button>
+                                        )}
                                     </div>
                                 </div>
 
@@ -178,6 +256,8 @@ export default function KarirPage() {
                                         <div className="justify-start font-body font-medium">Job Type</div>
                                         {[
                                             { id: 'fulltime', label: 'Full-time' },
+                                            { id: 'parttime', label: 'Part-time' },
+                                            { id: 'contract', label: 'Contract' },
                                             { id: 'freelance', label: 'Freelance' },
                                             { id: 'internship', label: 'Internship' }
                                         ].map((type) => (
@@ -253,13 +333,9 @@ export default function KarirPage() {
                                         </div>
 
                                         {/* Labels */}
-                                        <div className="w-full flex justify-between items-center -mt-2">
-                                            <div className="flex flex-col justify-start items-center gap-2" style={{ marginLeft: `${getPercent(salaryRange[0])}%`, transform: 'translateX(-50%)', transition: 'margin-left 0.1s' }}>
-                                                <div className="text-center justify-start font-body-xs font-medium">{salaryRange[0].toLocaleString()} K</div>
-                                            </div>
-                                            <div className="flex flex-col justify-start items-center gap-2" style={{ marginRight: `${100 - getPercent(salaryRange[1])}%`, transform: 'translateX(50%)', transition: 'margin-right 0.1s' }}>
-                                                <div className="text-center justify-start font-body-xs font-medium">{salaryRange[1].toLocaleString()} K</div>
-                                            </div>
+                                        <div className="w-full flex justify-between items-center mt-3">
+                                            <div className="text-left font-body-xs font-medium text-gray-500">{salaryRange[0].toLocaleString()} K</div>
+                                            <div className="text-right font-body-xs font-medium text-gray-500">{salaryRange[1].toLocaleString()} K</div>
                                         </div>
                                     </div>
 
@@ -312,7 +388,7 @@ export default function KarirPage() {
                                             placeholder="Search for jobs"
                                             value={searchJob}
                                             onChange={(e) => setSearchJob(e.target.value)}
-                                            className="w-full bg-transparent border-none focus:ring-0 font-body placeholder-gray-400 p-0"
+                                            className="w-full bg-transparent border-none outline-none focus:outline-none focus:ring-0 font-body placeholder-gray-400 p-0 text-gray-900"
                                         />
                                     </div>
                                 </div>
@@ -326,7 +402,7 @@ export default function KarirPage() {
                                             placeholder="Search by location"
                                             value={searchLocation}
                                             onChange={(e) => setSearchLocation(e.target.value)}
-                                            className="w-full bg-transparent border-none focus:ring-0 font-body placeholder-gray-400 p-0"
+                                            className="w-full bg-transparent border-none outline-none focus:outline-none focus:ring-0 font-body placeholder-gray-400 p-0 text-gray-900"
                                         />
                                     </div>
                                 </div>
@@ -374,7 +450,7 @@ export default function KarirPage() {
                                                     data-[active=true]:text-white transition-colors duration-500">
                                                     {job.title}
                                                 </div>
-                                                <div className="flex justify-start items-center gap-2">
+                                                <div className="flex flex-wrap items-center gap-2">
                                                     <div className="font-body-xs
                                                         text-gray-900 group-hover:text-white
                                                         data-[active=true]:text-white transition-colors duration-500">
@@ -388,20 +464,24 @@ export default function KarirPage() {
                                                         data-[active=true]:text-white transition-colors duration-500">
                                                         {job.salary}
                                                     </div>
+
+                                                    <div className="w-1 h-1 rounded-full bg-gray-300 group-hover:bg-white data-[active=true]:bg-white transition-colors duration-500 ml-1" />
+
+                                                    <div className="font-body-xs text-gray-900 group-hover:text-white data-[active=true]:text-white transition-colors duration-500">
+                                                        {job.location}
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <div className="flex justify-start items-center gap-2">
-                                            <div className="px-3 py-1 bg-violet-500 rounded flex justify-center items-center">
-                                                <div className="font-body-xs !text-white">{job.type}</div>
-                                            </div>
-                                            <div className="px-3 py-1 bg-orange-300 rounded flex justify-center items-center">
-                                                <div className="font-body-xs !text-white">{job.location}</div>
+                                        {/* Tags placed in original bottom-right position with dynamic colors */}
+                                        <div className="flex flex-wrap justify-start items-center gap-2 mt-2 md:mt-0">
+                                            <div className={`px-3 py-1 rounded flex justify-center items-center ${getTypeColor(job.type)} group-hover:bg-white/20 group-hover:text-white data-[active=true]:bg-white/20 data-[active=true]:text-white transition-colors duration-500`}>
+                                                <div className="font-body-xs font-medium !text-white">{job.type}</div>
                                             </div>
                                             {job.location_type && (
-                                                <div className="px-3 py-1 bg-blue-400 rounded flex justify-center items-center">
-                                                    <div className="font-body-xs !text-white">{job.location_type}</div>
+                                                <div className={`px-3 py-1 rounded flex justify-center items-center ${getLocationTypeColor(job.location_type)} group-hover:bg-white/20 group-hover:text-white data-[active=true]:bg-white/20 data-[active=true]:text-white transition-colors duration-500`}>
+                                                    <div className="font-body-xs font-medium !text-white">{job.location_type}</div>
                                                 </div>
                                             )}
                                         </div>

@@ -75,6 +75,38 @@ export default function JobDetailPage() {
         );
     }
 
+    const getTypeColor = (type: string) => {
+        if (!type) return 'bg-gray-400 !text-white';
+        const t = type.toLowerCase();
+        if (t.includes('full-time') || t.includes('fulltime')) return 'bg-violet-500 !text-white';
+        if (t.includes('part-time') || t.includes('parttime')) return 'bg-pink-500 !text-white';
+        if (t.includes('freelance')) return 'bg-amber-500 !text-white';
+        if (t.includes('internship')) return 'bg-emerald-500 !text-white';
+        if (t.includes('contract')) return 'bg-cyan-500 !text-white';
+        return 'bg-gray-400 !text-white';
+    };
+
+    const getLocationTypeColor = (type: string) => {
+        if (!type) return 'bg-gray-400 !text-white';
+        const t = type.toLowerCase();
+        if (t.includes('remote')) return 'bg-blue-400 !text-white';
+        if (t.includes('hybrid')) return 'bg-indigo-400 !text-white';
+        if (t.includes('wfo') || t.includes('office')) return 'bg-rose-400 !text-white';
+        if (t.includes('wfh') || t.includes('home')) return 'bg-sky-400 !text-white';
+        return 'bg-gray-400 !text-white';
+    };
+
+    const getCategoryColor = (category: string) => {
+        if (!category) return 'bg-gray-400 !text-white';
+        const c = category.toLowerCase();
+        if (c.includes('engineer') || c.includes('developer') || c.includes('programmer')) return 'bg-blue-500 !text-white';
+        if (c.includes('design') || c.includes('ui/ux') || c.includes('creative')) return 'bg-fuchsia-500 !text-white';
+        if (c.includes('marketing') || c.includes('sales')) return 'bg-orange-500 !text-white';
+        if (c.includes('content') || c.includes('writer')) return 'bg-teal-500 !text-white';
+        if (c.includes('manager') || c.includes('lead') || c.includes('director')) return 'bg-red-500 !text-white';
+        return 'bg-green-500 !text-white';
+    };
+
     // Fallback for missing icon or default colors
     const iconContent = job.icon || "💼";
     const iconBg = job.iconBg || "bg-violet-100";
@@ -191,25 +223,16 @@ export default function JobDetailPage() {
                                 </div>
 
                                 <div className="flex flex-wrap gap-2">
-                                    <span className="px-3 py-1.5 bg-violet-50 text-violet-700 rounded-lg text-sm font-medium font-montserrat">
+                                    <span className={`px-3 py-1.5 rounded-lg text-sm font-medium font-montserrat ${getTypeColor(job.type)}`}>
                                         {job.type}
                                     </span>
-                                    <span className={`px-3 py-1.5 rounded-lg text-sm font-medium font-montserrat ${job.location === 'Remote' ? 'bg-green-50 text-green-700' :
-                                        job.location === 'On-site' ? 'bg-orange-50 text-orange-700' :
-                                            'bg-blue-50 text-blue-700'
-                                        }`}>
-                                        {job.location}
-                                    </span>
                                     {job.location_type && (
-                                        <span className={`px-3 py-1.5 rounded-lg text-sm font-medium font-montserrat ${job.location_type === 'Remote' ? 'bg-green-50 text-green-700' :
-                                            job.location_type === 'Hybrid' ? 'bg-indigo-50 text-indigo-700' :
-                                                'bg-violet-50 text-violet-700'
-                                            }`}>
+                                        <span className={`px-3 py-1.5 rounded-lg text-sm font-medium font-montserrat ${getLocationTypeColor(job.location_type)}`}>
                                             {job.location_type}
                                         </span>
                                     )}
                                     {job.category && (
-                                        <span className="px-3 py-1.5 bg-gray-50 text-gray-700 rounded-lg text-sm font-medium font-montserrat">
+                                        <span className={`px-3 py-1.5 rounded-lg text-sm font-medium font-montserrat ${getCategoryColor(job.category)}`}>
                                             {job.category}
                                         </span>
                                     )}
