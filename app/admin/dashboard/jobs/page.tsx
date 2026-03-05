@@ -2,13 +2,14 @@
 
 import React, { useState, useEffect } from 'react';
 import { FaHeading, FaPlus, FaTrash, FaBriefcase, FaMapMarkerAlt, FaClock, FaImage, FaEdit } from 'react-icons/fa';
-import { JobPosting } from '@/lib/types';
+import { JobPosting, SiteSettings } from '@/lib/types';
 import Modal from '@/components/ui/Modal';
 import ConfirmationModal from '@/components/ui/ConfirmationModal';
 import toast from 'react-hot-toast';
 
 export default function JobsSettingsPage() {
     const [jobs, setJobs] = useState<JobPosting[]>([]);
+    const [siteSettings, setSiteSettings] = useState<SiteSettings | null>(null);
     const [isLoading, setIsLoading] = useState(true);
 
     // Modal States
@@ -19,6 +20,7 @@ export default function JobsSettingsPage() {
     const [newItemData, setNewItemData] = useState<Partial<JobPosting>>({
         title: "",
         department: "",
+        company: "",
         location: "",
         category: "Creative",
         type: "Full-time",
@@ -43,17 +45,36 @@ export default function JobsSettingsPage() {
     const [editResponsibilitiesText, setEditResponsibilitiesText] = useState("");
     const [editBenefitsText, setEditBenefitsText] = useState("");
 
+    const [applyMethod, setApplyMethod] = useState("");
+    const [editApplyMethod, setEditApplyMethod] = useState("");
+
+    const getApplyMethodFromUrl = (url?: string) => {
+        if (!url) return "";
+        if (url.includes("wa.me") || url.includes("whatsapp")) return "whatsapp";
+        if (url.includes("linkedin.com")) return "linkedin";
+        if (url.includes("jobstreet")) return "jobstreet";
+        if (url.includes("glints")) return "glints";
+        return "other";
+    };
+
     useEffect(() => {
-        fetchJobs();
+        fetchData();
     }, []);
 
-    const fetchJobs = async () => {
+    const fetchData = async () => {
         try {
-            const res = await fetch('/api/jobs');
-            const data = await res.json();
-            setJobs(data);
+            const [jobsRes, settingsRes] = await Promise.all([
+                fetch('/api/jobs'),
+                fetch('/api/settings')
+            ]);
+
+            const jobsData = await jobsRes.json();
+            const settingsData = await settingsRes.json();
+
+            setJobs(jobsData);
+            setSiteSettings(settingsData);
         } catch (error) {
-            console.error('Failed to fetch jobs:', error);
+            console.error('Failed to fetch data:', error);
         } finally {
             setIsLoading(false);
         }
@@ -66,6 +87,7 @@ export default function JobsSettingsPage() {
         setEditRequirementsText(job.requirements?.join('\n') || "");
         setEditResponsibilitiesText(job.responsibilities?.join('\n') || "");
         setEditBenefitsText(job.benefits?.join('\n') || "");
+        setEditApplyMethod(getApplyMethodFromUrl(job.whatsapp_url));
         setIsEditModalOpen(true);
     };
 
@@ -147,6 +169,7 @@ export default function JobsSettingsPage() {
                 setNewItemData({
                     title: "",
                     department: "",
+                    company: "",
                     location: "",
                     category: "Creative",
                     type: "Full-time",
@@ -165,8 +188,10 @@ export default function JobsSettingsPage() {
                 setRequirementsText("");
                 setResponsibilitiesText("");
                 setBenefitsText("");
+                setApplyMethod("");
             } else {
-                toast.error('Gagal menambahkan lowongan');
+                const err = await res.json();
+                toast.error(`Gagal menambahkan lowongan: ${err.error || 'Unknown error'}`);
             }
         } catch (error) {
             console.error('Error adding job:', error);
@@ -283,7 +308,7 @@ export default function JobsSettingsPage() {
                 <form onSubmit={handleAddSubmit} className="space-y-4">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Posisi / Judul</label>
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Posisi / Judul <span className="text-red-500">*</span></label>
                             <input
                                 type="text"
                                 required
@@ -294,7 +319,7 @@ export default function JobsSettingsPage() {
                             />
                         </div>
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Departemen</label>
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Departemen <span className="text-red-500">*</span></label>
                             <input
                                 type="text"
                                 required
@@ -305,7 +330,18 @@ export default function JobsSettingsPage() {
                             />
                         </div>
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Lokasi</label>
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Perusahaan <span className="text-red-500">*</span></label>
+                            <input
+                                type="text"
+                                required
+                                value={newItemData.company}
+                                onChange={(e) => setNewItemData({ ...newItemData, company: e.target.value })}
+                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                                placeholder="Contoh: PT Kreasitech"
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Lokasi <span className="text-red-500">*</span></label>
                             <input
                                 type="text"
                                 required
@@ -387,20 +423,61 @@ export default function JobsSettingsPage() {
                             />
                         </div>
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">WhatsApp URL</label>
-                            <input
-                                type="text"
-                                value={newItemData.whatsapp_url}
-                                onChange={(e) => setNewItemData({ ...newItemData, whatsapp_url: e.target.value })}
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Metode Lamaran <span className="text-red-500">*</span></label>
+                            <select
+                                required
+                                value={applyMethod}
+                                onChange={(e) => {
+                                    const method = e.target.value;
+                                    setApplyMethod(method);
+
+                                    const currentUrl = newItemData.whatsapp_url || "";
+                                    const defaultPhone = siteSettings?.whatsapp?.replace(/\D/g, '') || '62';
+                                    const defaultWaUrl = `https://wa.me/${defaultPhone}`;
+
+                                    if (method === "whatsapp" && (!currentUrl || !currentUrl.includes("wa.me"))) {
+                                        setNewItemData({ ...newItemData, whatsapp_url: defaultWaUrl });
+                                    } else if (method !== "whatsapp" && currentUrl === defaultWaUrl) {
+                                        setNewItemData({ ...newItemData, whatsapp_url: "" });
+                                    } else if (method === "") {
+                                        setNewItemData({ ...newItemData, whatsapp_url: "" });
+                                    }
+                                }}
                                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
-                                placeholder="https://wa.me/..."
-                            />
+                            >
+                                <option value="">Pilih Metode Lamaran</option>
+                                <option value="whatsapp">WhatsApp</option>
+                                <option value="linkedin">LinkedIn</option>
+                                <option value="jobstreet">Jobstreet</option>
+                                <option value="glints">Glints</option>
+                                <option value="other">Link Lainnya</option>
+                            </select>
                         </div>
+                        {applyMethod && (
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Link Lamaran (Apply URL) <span className="text-red-500">*</span></label>
+                                <input
+                                    type="text"
+                                    required
+                                    value={newItemData.whatsapp_url}
+                                    onChange={(e) => setNewItemData({ ...newItemData, whatsapp_url: e.target.value })}
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                                    placeholder={
+                                        applyMethod === 'whatsapp' ? 'https://wa.me/628...' :
+                                            applyMethod === 'linkedin' ? 'https://linkedin.com/...' :
+                                                applyMethod === 'jobstreet' ? 'https://jobstreet.co.id/...' :
+                                                    applyMethod === 'glints' ? 'https://glints.com/id/...' :
+                                                        'https://...'
+                                    }
+                                />
+                            </div>
+                        )}
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Logo Perusahaan</label>
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Logo Perusahaan <span className="text-red-500">*</span></label>
                             <div className="flex gap-2">
                                 <input
                                     type="text"
+                                    required
                                     value={newItemData.logo_url}
                                     onChange={(e) => setNewItemData({ ...newItemData, logo_url: e.target.value })}
                                     className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
@@ -425,7 +502,7 @@ export default function JobsSettingsPage() {
                     </div>
 
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Deskripsi Pekerjaan</label>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Deskripsi Pekerjaan <span className="text-red-500">*</span></label>
                         <textarea
                             required
                             rows={3}
@@ -437,17 +514,6 @@ export default function JobsSettingsPage() {
                     </div>
 
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Kualifikasi (Satu per baris)</label>
-                        <textarea
-                            rows={3}
-                            value={requirementsText}
-                            onChange={(e) => setRequirementsText(e.target.value)}
-                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
-                            placeholder="- Menguasai React.js&#10;- Berpengalaman minimal 2 tahun"
-                        ></textarea>
-                    </div>
-
-                    <div>
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Tanggung Jawab (Satu per baris)</label>
                         <textarea
                             rows={3}
@@ -455,6 +521,17 @@ export default function JobsSettingsPage() {
                             onChange={(e) => setResponsibilitiesText(e.target.value)}
                             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
                             placeholder="- Melakukan user research&#10;- Membuat wireframes"
+                        ></textarea>
+                    </div>
+
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Kualifikasi (Satu per baris)</label>
+                        <textarea
+                            rows={3}
+                            value={requirementsText}
+                            onChange={(e) => setRequirementsText(e.target.value)}
+                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                            placeholder="- Menguasai React.js&#10;- Berpengalaman minimal 2 tahun"
                         ></textarea>
                     </div>
 
@@ -519,7 +596,7 @@ export default function JobsSettingsPage() {
                 <form onSubmit={handleEditSubmit} className="space-y-4">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Posisi / Judul</label>
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Posisi / Judul <span className="text-red-500">*</span></label>
                             <input
                                 type="text"
                                 required
@@ -530,7 +607,7 @@ export default function JobsSettingsPage() {
                             />
                         </div>
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Departemen</label>
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Departemen <span className="text-red-500">*</span></label>
                             <input
                                 type="text"
                                 required
@@ -541,7 +618,18 @@ export default function JobsSettingsPage() {
                             />
                         </div>
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Lokasi</label>
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Perusahaan <span className="text-red-500">*</span></label>
+                            <input
+                                type="text"
+                                required
+                                value={editItemData.company || ''}
+                                onChange={(e) => setEditItemData({ ...editItemData, company: e.target.value })}
+                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                                placeholder="Contoh: PT Kreasitech"
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Lokasi <span className="text-red-500">*</span></label>
                             <input
                                 type="text"
                                 required
@@ -623,20 +711,61 @@ export default function JobsSettingsPage() {
                             />
                         </div>
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">WhatsApp URL</label>
-                            <input
-                                type="text"
-                                value={editItemData.whatsapp_url || ''}
-                                onChange={(e) => setEditItemData({ ...editItemData, whatsapp_url: e.target.value })}
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Metode Lamaran <span className="text-red-500">*</span></label>
+                            <select
+                                required
+                                value={editApplyMethod}
+                                onChange={(e) => {
+                                    const method = e.target.value;
+                                    setEditApplyMethod(method);
+
+                                    const currentUrl = editItemData.whatsapp_url || "";
+                                    const defaultPhone = siteSettings?.whatsapp?.replace(/\D/g, '') || '62';
+                                    const defaultWaUrl = `https://wa.me/${defaultPhone}`;
+
+                                    if (method === "whatsapp" && (!currentUrl || !currentUrl.includes("wa.me"))) {
+                                        setEditItemData({ ...editItemData, whatsapp_url: defaultWaUrl });
+                                    } else if (method !== "whatsapp" && currentUrl === defaultWaUrl) {
+                                        setEditItemData({ ...editItemData, whatsapp_url: "" });
+                                    } else if (method === "") {
+                                        setEditItemData({ ...editItemData, whatsapp_url: "" });
+                                    }
+                                }}
                                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
-                                placeholder="https://wa.me/..."
-                            />
+                            >
+                                <option value="">Pilih Metode Lamaran</option>
+                                <option value="whatsapp">WhatsApp</option>
+                                <option value="linkedin">LinkedIn</option>
+                                <option value="jobstreet">Jobstreet</option>
+                                <option value="glints">Glints</option>
+                                <option value="other">Link Lainnya</option>
+                            </select>
                         </div>
+                        {editApplyMethod && (
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Link Lamaran (Apply URL) <span className="text-red-500">*</span></label>
+                                <input
+                                    type="text"
+                                    required
+                                    value={editItemData.whatsapp_url || ''}
+                                    onChange={(e) => setEditItemData({ ...editItemData, whatsapp_url: e.target.value })}
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                                    placeholder={
+                                        editApplyMethod === 'whatsapp' ? 'https://wa.me/628...' :
+                                            editApplyMethod === 'linkedin' ? 'https://linkedin.com/...' :
+                                                editApplyMethod === 'jobstreet' ? 'https://jobstreet.co.id/...' :
+                                                    editApplyMethod === 'glints' ? 'https://glints.com/id/...' :
+                                                        'https://...'
+                                    }
+                                />
+                            </div>
+                        )}
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Logo Perusahaan</label>
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Logo Perusahaan <span className="text-red-500">*</span></label>
                             <div className="flex gap-2">
                                 <input
                                     type="text"
+                                    required
                                     value={editItemData.logo_url || ''}
                                     onChange={(e) => setEditItemData({ ...editItemData, logo_url: e.target.value })}
                                     className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
@@ -661,7 +790,7 @@ export default function JobsSettingsPage() {
                     </div>
 
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Deskripsi Pekerjaan</label>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Deskripsi Pekerjaan <span className="text-red-500">*</span></label>
                         <textarea
                             required
                             rows={3}
@@ -673,17 +802,6 @@ export default function JobsSettingsPage() {
                     </div>
 
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Kualifikasi (Satu per baris)</label>
-                        <textarea
-                            rows={3}
-                            value={editRequirementsText}
-                            onChange={(e) => setEditRequirementsText(e.target.value)}
-                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
-                            placeholder="- Menguasai React.js&#10;- Berpengalaman minimal 2 tahun"
-                        ></textarea>
-                    </div>
-
-                    <div>
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Tanggung Jawab (Satu per baris)</label>
                         <textarea
                             rows={3}
@@ -691,6 +809,17 @@ export default function JobsSettingsPage() {
                             onChange={(e) => setEditResponsibilitiesText(e.target.value)}
                             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
                             placeholder="- Melakukan user research&#10;- Membuat wireframes"
+                        ></textarea>
+                    </div>
+
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Kualifikasi (Satu per baris)</label>
+                        <textarea
+                            rows={3}
+                            value={editRequirementsText}
+                            onChange={(e) => setEditRequirementsText(e.target.value)}
+                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                            placeholder="- Menguasai React.js&#10;- Berpengalaman minimal 2 tahun"
                         ></textarea>
                     </div>
 

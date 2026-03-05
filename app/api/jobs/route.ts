@@ -26,7 +26,8 @@ export async function POST(request: Request) {
         });
 
         return NextResponse.json(newJob, { status: 201 });
-    } catch (error) {
-        return NextResponse.json({ error: 'Invalid data' }, { status: 400 });
+    } catch (error: any) {
+        console.error('API Error adding job:', error);
+        return NextResponse.json({ error: error.message || 'Invalid data' }, { status: 400 });
     }
 }

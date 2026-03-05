@@ -33,8 +33,9 @@ export async function PUT(request: Request, { params }: { params: Promise<{ id: 
         }
 
         return NextResponse.json(updatedJob);
-    } catch (error) {
-        return NextResponse.json({ error: 'Invalid data' }, { status: 400 });
+    } catch (error: any) {
+        console.error('Update job error:', error);
+        return NextResponse.json({ error: error.message || 'Invalid data', details: error }, { status: 400 });
     }
 }
 

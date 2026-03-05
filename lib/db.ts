@@ -73,6 +73,7 @@ function mapArticleFromDB(row: any): BlogPost {
 
 function mapArticleToDB(article: Partial<BlogPost>): any {
     const dbArticle: any = { ...article };
+    delete dbArticle.id;
     if (article.author !== undefined) {
         dbArticle.author_name = article.author?.name || '';
         dbArticle.author_avatar = article.author?.avatar || '';
@@ -118,20 +119,20 @@ function mapJobFromDB(row: any): JobPosting {
 
 function mapJobToDB(job: Partial<JobPosting>): any {
     const dbJob: any = { ...job };
+    // Remove id to avoid Supabase updating the primary key constraint
+    delete dbJob.id;
+    delete dbJob.expiredDate; // Column does not exist in schema
+
     // Category is already in snake_case/camelCase same if it's 'category'
-    if (job.iconBg) {
+    if ('iconBg' in dbJob) {
         dbJob.icon_bg = job.iconBg;
         delete dbJob.iconBg;
     }
-    if (job.postedDate) {
+    if ('postedDate' in dbJob) {
         dbJob.posted_date = job.postedDate;
         delete dbJob.postedDate;
     }
-    if (job.expiredDate) {
-        dbJob.expired_date = job.expiredDate;
-        delete dbJob.expiredDate;
-    }
-    if (job.location_type) {
+    if ('location_type' in dbJob) {
         dbJob.location_type = job.location_type;
     }
     return dbJob;
@@ -154,6 +155,7 @@ function mapTestimonialFromDB(row: any): Testimonial {
 
 function mapTestimonialToDB(testimonial: Partial<Testimonial>): any {
     const dbTestimonial: any = { ...testimonial };
+    delete dbTestimonial.id;
     // Map content to quote for DB
     if (testimonial.content) {
         dbTestimonial.quote = testimonial.content;
@@ -486,7 +488,9 @@ export async function createTeamMember(member: Omit<TeamMember, 'id'>): Promise<
 
 export async function updateTeamMember(id: number, member: Partial<TeamMember>): Promise<TeamMember | null> {
     if (isSupabaseEnabled()) {
-        const { data, error } = await supabase.from('team').update(member).eq('id', id).select().single();
+        const dbMember: any = { ...member };
+        delete dbMember.id;
+        const { data, error } = await supabase.from('team').update(dbMember).eq('id', id).select().single();
         if (error) throw error;
         return data;
     }
@@ -554,6 +558,7 @@ function mapPortfolioFromDB(row: any): PortfolioItem {
 
 function mapPortfolioToDB(item: Partial<PortfolioItem>): any {
     const dbItem: any = { ...item };
+    delete dbItem.id;
     if (item.project_url !== undefined) {
         dbItem.project_url = item.project_url;
         delete dbItem.project_url;
@@ -675,7 +680,9 @@ export async function createPartner(partner: Omit<Partner, 'id'>): Promise<Partn
 
 export async function updatePartner(id: number, partner: Partial<Partner>): Promise<Partner | null> {
     if (isSupabaseEnabled()) {
-        const { data, error } = await supabase.from('partners').update(partner).eq('id', id).select().single();
+        const dbPartner: any = { ...partner };
+        delete dbPartner.id;
+        const { data, error } = await supabase.from('partners').update(dbPartner).eq('id', id).select().single();
         if (error) throw error;
         return data;
     }
