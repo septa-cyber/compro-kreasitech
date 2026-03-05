@@ -177,35 +177,40 @@ export default function TestimonialsSettingsPage() {
 
             <div className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
                 <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-100">
-                    <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 bg-violet-100 rounded-lg flex items-center justify-center text-violet-600">
-                            <FaQuoteLeft size={20} />
+                    <div className="flex items-center gap-2 md:gap-3">
+                        <div className="w-8 h-8 md:w-10 md:h-10 bg-violet-100 rounded-lg flex items-center justify-center text-violet-600">
+                            <FaQuoteLeft className="text-sm md:text-xl" />
                         </div>
-                        <h2 className="text-lg font-semibold text-text-light font-montserrat">Daftar Testimonial</h2>
+                        <h2 className="text-sm md:text-lg font-semibold text-text-light font-montserrat leading-tight">Daftar Testimonial</h2>
                     </div>
                     <button
                         onClick={() => setIsAddModalOpen(true)}
-                        className="px-4 py-2 bg-violet-50 text-violet-600 hover:bg-violet-100 rounded-lg text-xs font-semibold transition-colors flex items-center gap-2"
+                        className="px-3 md:px-4 py-2 bg-violet-50 text-violet-600 hover:bg-violet-100 rounded-lg transition-colors flex items-center gap-2 group"
                     >
-                        <FaPlus />
-                        <span>Tambah Testimonial</span>
+                        <FaPlus className="text-xs shrink-0" />
+                        <div className="flex flex-col items-start leading-tight text-left">
+                            <span className="text-[10px] md:text-xs font-semibold">Tambah</span>
+                            <span className="text-[10px] md:hidden font-bold">Testimonial</span>
+                            <span className="hidden md:block text-xs font-semibold">Testimonial</span>
+                        </div>
                     </button>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-[430px]:grid-cols-1">
                     {testimonials.map((testimonial) => (
                         <div key={testimonial.id} className="relative bg-white p-6 rounded-xl border border-gray-200 hover:border-violet-300 transition-all group shadow-sm">
-                            <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity flex gap-2">
+                            {/* Desktop Actions */}
+                            <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity flex gap-2 max-[430px]:hidden">
                                 <button
                                     onClick={() => handleEditClick(testimonial)}
-                                    className="p-2 text-gray-400 hover:text-violet-500 hover:bg-gray-50 rounded-lg transition-colors shadow-sm bg-white"
+                                    className="p-2 text-gray-400 hover:text-violet-500 hover:bg-gray-50 rounded-lg transition-colors shadow-sm bg-white border border-gray-100"
                                     title="Edit"
                                 >
                                     <FaEdit size={14} />
                                 </button>
                                 <button
                                     onClick={() => setItemToDelete(testimonial.id)}
-                                    className="p-2 text-gray-400 hover:text-red-500 hover:bg-gray-50 rounded-lg transition-colors shadow-sm bg-white"
+                                    className="p-2 text-gray-400 hover:text-red-500 hover:bg-gray-50 rounded-lg transition-colors shadow-sm bg-white border border-gray-100"
                                     title="Hapus"
                                 >
                                     <FaTrash size={14} />
@@ -226,6 +231,24 @@ export default function TestimonialsSettingsPage() {
 
                             <div className="mb-4">
                                 <p className="text-sm text-gray-600 italic line-clamp-4">"{testimonial.content}"</p>
+                            </div>
+
+                            {/* Mobile Actions */}
+                            <div className="hidden max-[430px]:flex items-center justify-end gap-2 mt-4 pt-3 border-t border-gray-50">
+                                <button
+                                    onClick={() => handleEditClick(testimonial)}
+                                    className="flex-1 py-2 px-4 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center gap-2 text-sm font-semibold transition-colors active:bg-blue-100"
+                                >
+                                    <FaEdit size={14} />
+                                    <span>Edit</span>
+                                </button>
+                                <button
+                                    onClick={() => setItemToDelete(testimonial.id)}
+                                    className="flex-1 py-2 px-4 bg-red-50 text-red-600 rounded-xl flex items-center justify-center gap-2 text-sm font-semibold transition-colors active:bg-red-100"
+                                >
+                                    <FaTrash size={14} />
+                                    <span>Hapus</span>
+                                </button>
                             </div>
                         </div>
                     ))}

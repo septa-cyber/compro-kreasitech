@@ -157,7 +157,7 @@ export default function SettingsPage() {
                 <button
                     onClick={handleSave}
                     disabled={isSaving}
-                    className="px-6 py-2.5 bg-violet-600 hover:bg-violet-700 text-white font-medium rounded-lg text-sm transition-colors shadow-glow flex items-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+                    className="px-4 py-2 bg-violet-600 hover:bg-violet-700 text-white font-montserrat rounded-lg text-sm transition flex items-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
                 >
                     <FaSave />
                     <span>{isSaving ? 'Menyimpan...' : 'Simpan Perubahan'}</span>
@@ -168,11 +168,11 @@ export default function SettingsPage() {
 
                 {/* General Settings */}
                 <div className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
-                    <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-100">
-                        <div className="w-10 h-10 bg-violet-100 rounded-lg flex items-center justify-center text-violet-600">
-                            <FaGlobe size={20} />
+                    <div className="flex items-center gap-2 md:gap-3 mb-6 pb-4 border-b border-gray-100">
+                        <div className="w-8 h-8 md:w-10 md:h-10 bg-violet-100 rounded-lg flex items-center justify-center text-violet-600">
+                            <FaGlobe className="text-sm md:text-xl" />
                         </div>
-                        <h2 className="text-lg font-semibold text-text-light font-montserrat">Umum</h2>
+                        <h2 className="text-sm md:text-lg font-semibold text-text-light font-montserrat">Umum</h2>
                     </div>
 
                     <div className="space-y-4">
@@ -263,11 +263,11 @@ export default function SettingsPage() {
 
                 {/* Contact Information */}
                 <div className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
-                    <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-100">
-                        <div className="w-10 h-10 bg-violet-100 rounded-lg flex items-center justify-center text-violet-600">
-                            <FaAddressBook size={20} />
+                    <div className="flex items-center gap-2 md:gap-3 mb-6 pb-4 border-b border-gray-100">
+                        <div className="w-8 h-8 md:w-10 md:h-10 bg-violet-100 rounded-lg flex items-center justify-center text-violet-600">
+                            <FaAddressBook className="text-sm md:text-xl" />
                         </div>
-                        <h2 className="text-lg font-semibold text-text-light font-montserrat">Informasi Kontak</h2>
+                        <h2 className="text-sm md:text-lg font-semibold text-text-light font-montserrat leading-tight">Informasi Kontak</h2>
                     </div>
 
                     <div className="space-y-4">
@@ -321,11 +321,11 @@ export default function SettingsPage() {
 
                 {/* Social Media */}
                 <div className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm lg:col-span-2">
-                    <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-100">
-                        <div className="w-10 h-10 bg-violet-100 rounded-lg flex items-center justify-center text-violet-600">
-                            <FaShareAlt size={20} />
+                    <div className="flex items-center gap-2 md:gap-3 mb-6 pb-4 border-b border-gray-100">
+                        <div className="w-8 h-8 md:w-10 md:h-10 bg-violet-100 rounded-lg flex items-center justify-center text-violet-600">
+                            <FaShareAlt className="text-sm md:text-xl" />
                         </div>
-                        <h2 className="text-lg font-semibold text-text-light font-montserrat">Sosial Media</h2>
+                        <h2 className="text-sm md:text-lg font-semibold text-text-light font-montserrat">Sosial Media</h2>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

@@ -1,10 +1,9 @@
-
 "use client";
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { BlogPost } from '@/lib/types';
-import { FaPlus, FaEdit, FaTrash, FaEye } from 'react-icons/fa';
+import { FaPlus, FaTrash, FaEdit, FaEye, FaCalendar, FaUser, FaNewspaper } from 'react-icons/fa';
 import ConfirmationModal from '@/components/ui/ConfirmationModal';
 import toast from 'react-hot-toast';
 
@@ -68,12 +67,13 @@ export default function ArticlesPage() {
                     href="/admin/dashboard/articles/create"
                     className="px-4 py-2 bg-violet-600 text-white rounded-lg hover:bg-violet-700 transition flex items-center gap-2 font-montserrat text-sm"
                 >
-                    <FaPlus /> Add New Article
+                    <FaPlus /> Tambah Artikel
                 </Link>
             </div>
 
             <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-                <div className="overflow-x-auto">
+                {/* Desktop Table - Hidden on Mobile */}
+                <div className="overflow-x-auto max-[430px]:hidden">
                     <table className="w-full text-left">
                         <thead className="bg-gray-50 border-b border-gray-100">
                             <tr>
@@ -126,16 +126,59 @@ export default function ArticlesPage() {
                                     </td>
                                 </tr>
                             ))}
-                            {articles.length === 0 && (
-                                <tr>
-                                    <td colSpan={5} className="px-6 py-12 text-center text-gray-500 font-montserrat">
-                                        No articles found. Create your first one!
-                                    </td>
-                                </tr>
-                            )}
                         </tbody>
                     </table>
                 </div>
+
+                {/* Mobile Card View - Visible only on Mobile */}
+                <div className="max-[430px]:block hidden divide-y divide-gray-100">
+                    {articles.map((article) => (
+                        <div key={article.id} className="p-4 space-y-3">
+                            <div className="flex justify-between items-start gap-4">
+                                <div className="text-sm font-semibold text-gray-900 font-montserrat line-clamp-2 flex-1">
+                                    {article.title}
+                                </div>
+                                <span className={`shrink-0 px-2 py-0.5 text-[10px] rounded-full font-medium ${article.status === 'publish' || article.status === 'published'
+                                    ? 'bg-green-100 text-green-600'
+                                    : 'bg-yellow-100 text-yellow-600'
+                                    }`}>
+                                    {article.status === 'publish' || article.status === 'published' ? 'Published' : 'Draft'}
+                                </span>
+                            </div>
+
+                            <div className="flex items-center justify-between text-[11px] text-gray-500 font-montserrat">
+                                <span className={`px-2 py-0.5 rounded-full font-medium ${article.categoryColor || 'bg-gray-100 text-gray-600'}`}>
+                                    {article.category}
+                                </span>
+                                <span>{article.date}</span>
+                            </div>
+
+                            {/* Mobile Actions */}
+                            <div className="flex items-center justify-end gap-2 mt-4 pt-3 border-t border-gray-50">
+                                <Link
+                                    href={`/admin/dashboard/articles/${article.id}/edit`}
+                                    className="flex-1 py-2 px-4 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center gap-2 text-sm font-semibold transition-colors active:bg-blue-100"
+                                >
+                                    <FaEdit size={14} />
+                                    <span>Edit</span>
+                                </Link>
+                                <button
+                                    onClick={() => handleDelete(article.id)}
+                                    className="flex-1 py-2 px-4 bg-red-50 text-red-600 rounded-xl flex items-center justify-center gap-2 text-sm font-semibold transition-colors active:bg-red-100"
+                                >
+                                    <FaTrash size={14} />
+                                    <span>Hapus</span>
+                                </button>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+
+                {articles.length === 0 && (
+                    <div className="px-6 py-12 text-center text-gray-500 font-montserrat bg-white">
+                        No articles found. Create your first one!
+                    </div>
+                )}
             </div>
 
             <ConfirmationModal

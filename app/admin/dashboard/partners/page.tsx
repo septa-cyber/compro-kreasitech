@@ -139,23 +139,27 @@ export default function PartnersSettingsPage() {
                 {/* Partners List Management */}
                 <div className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
                     <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-100">
-                        <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 bg-violet-100 rounded-lg flex items-center justify-center text-violet-600">
-                                <FaHandshake size={20} />
+                        <div className="flex items-center gap-2 md:gap-3">
+                            <div className="w-8 h-8 md:w-10 md:h-10 bg-violet-100 rounded-lg flex items-center justify-center text-violet-600">
+                                <FaHandshake className="text-sm md:text-xl" />
                             </div>
-                            <h2 className="text-lg font-semibold text-text-light font-montserrat">Daftar Logo Partner</h2>
+                            <h2 className="text-sm md:text-lg font-semibold text-text-light font-montserrat leading-tight">Daftar Logo Partner</h2>
                         </div>
                         <button
                             type="button"
                             onClick={() => setIsAddModalOpen(true)}
-                            className="px-4 py-2 bg-violet-50 text-violet-600 hover:bg-violet-100 rounded-lg text-xs font-semibold transition-colors flex items-center gap-2"
+                            className="px-3 md:px-4 py-2 bg-violet-50 text-violet-600 hover:bg-violet-100 rounded-lg transition-colors flex items-center gap-2 group"
                         >
-                            <FaPlus />
-                            <span>Tambah Partner</span>
+                            <FaPlus className="text-xs shrink-0" />
+                            <div className="flex flex-col items-start leading-tight text-left">
+                                <span className="text-[10px] md:text-xs font-semibold">Tambah</span>
+                                <span className="text-[10px] md:hidden font-bold">Partner</span>
+                                <span className="hidden md:block text-xs font-semibold">Partner</span>
+                            </div>
                         </button>
                     </div>
 
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 max-[430px]:grid-cols-1">
                         {partners.map((partner) => (
                             <div key={partner.id} className="relative bg-white border border-gray-200 rounded-xl overflow-hidden group hover:border-violet-300 transition-all shadow-sm">
                                 {/* Logo Preview Area */}
@@ -166,7 +170,8 @@ export default function PartnersSettingsPage() {
                                         className="max-w-full max-h-full object-contain"
                                     />
 
-                                    <div className="absolute top-1 right-1 z-10 opacity-0 group-hover:opacity-100 transition-opacity flex gap-1.5">
+                                    {/* Desktop Actions */}
+                                    <div className="absolute top-1 right-1 z-10 opacity-0 group-hover:opacity-100 transition-opacity flex gap-1.5 max-[430px]:hidden">
                                         <button
                                             type="button"
                                             onClick={() => handleEditClick(partner)}
@@ -188,6 +193,26 @@ export default function PartnersSettingsPage() {
 
                                 <div className="p-2 bg-white text-center">
                                     <p className="text-[10px] font-medium text-text-light truncate px-2">{partner.name || 'Set Nama Partner'}</p>
+                                </div>
+
+                                {/* Mobile Actions */}
+                                <div className="hidden max-[430px]:flex items-center justify-end gap-2 p-3 border-t border-gray-50 bg-white">
+                                    <button
+                                        type="button"
+                                        onClick={() => handleEditClick(partner)}
+                                        className="flex-1 py-2 px-4 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center gap-2 text-sm font-semibold transition-colors active:bg-blue-100"
+                                    >
+                                        <FaEdit size={14} />
+                                        <span>Edit</span>
+                                    </button>
+                                    <button
+                                        type="button"
+                                        onClick={() => setItemToDelete(partner.id)}
+                                        className="flex-1 py-2 px-4 bg-red-50 text-red-600 rounded-xl flex items-center justify-center gap-2 text-sm font-semibold transition-colors active:bg-red-100"
+                                    >
+                                        <FaTrash size={14} />
+                                        <span>Hapus</span>
+                                    </button>
                                 </div>
                             </div>
                         ))}

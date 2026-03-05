@@ -241,42 +241,47 @@ export default function JobsSettingsPage() {
 
             <div className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
                 <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-100">
-                    <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 bg-violet-100 rounded-lg flex items-center justify-center text-violet-600">
-                            <FaBriefcase size={20} />
+                    <div className="flex items-center gap-2 md:gap-3">
+                        <div className="w-8 h-8 md:w-10 md:h-10 bg-violet-100 rounded-lg flex items-center justify-center text-violet-600">
+                            <FaBriefcase className="text-sm md:text-xl" />
                         </div>
-                        <h2 className="text-lg font-semibold text-text-light font-montserrat">Daftar Lowongan</h2>
+                        <h2 className="text-sm md:text-lg font-semibold text-text-light font-montserrat">Daftar Lowongan</h2>
                     </div>
                     <button
                         onClick={() => setIsAddModalOpen(true)}
-                        className="px-4 py-2 bg-violet-50 text-violet-600 hover:bg-violet-100 rounded-lg text-xs font-semibold transition-colors flex items-center gap-2"
+                        className="px-3 md:px-4 py-2 bg-violet-50 text-violet-600 hover:bg-violet-100 rounded-lg transition-colors flex items-center gap-2 group"
                     >
-                        <FaPlus />
-                        <span>Tambah Lowongan</span>
+                        <FaPlus className="text-xs shrink-0" />
+                        <div className="flex flex-col items-start leading-tight text-left">
+                            <span className="text-[10px] md:text-xs font-semibold">Tambah</span>
+                            <span className="text-[10px] md:hidden font-bold">Lowongan</span>
+                            <span className="hidden md:block text-xs font-semibold">Lowongan</span>
+                        </div>
                     </button>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-[430px]:grid-cols-1">
                     {jobs.map((job) => (
                         <div key={job.id} className="p-4 border border-gray-200 rounded-xl hover:border-violet-300 transition-all bg-white group relative shadow-sm">
-                            <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity flex gap-2">
+                            {/* Desktop Actions */}
+                            <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity flex gap-2 max-[430px]:hidden">
                                 <button
                                     onClick={() => handleEditClick(job)}
-                                    className="p-2 text-gray-400 hover:text-violet-500 hover:bg-gray-50 rounded-lg transition-colors shadow-sm bg-white"
+                                    className="p-2 text-gray-400 hover:text-violet-500 hover:bg-gray-50 rounded-lg transition-colors shadow-sm bg-white border border-gray-100"
                                     title="Edit Lowongan"
                                 >
                                     <FaEdit size={14} />
                                 </button>
                                 <button
                                     onClick={() => setItemToDelete(job.id)}
-                                    className="p-2 text-gray-400 hover:text-red-500 hover:bg-gray-50 rounded-lg transition-colors shadow-sm bg-white"
+                                    className="p-2 text-gray-400 hover:text-red-500 hover:bg-gray-50 rounded-lg transition-colors shadow-sm bg-white border border-gray-100"
                                     title="Hapus Lowongan"
                                 >
                                     <FaTrash size={14} />
                                 </button>
                             </div>
 
-                            <h3 className="font-semibold text-gray-900 font-montserrat mb-1 pr-8">{job.title}</h3>
+                            <h3 className="font-semibold text-gray-900 font-montserrat mb-1 pr-8 max-[430px]:pr-0">{job.title}</h3>
                             <div className="flex flex-wrap gap-3 text-xs text-gray-500 mb-3">
                                 <span className="flex items-center gap-1"><FaBriefcase /> {job.department}</span>
                                 <span className="flex items-center gap-1"><FaMapMarkerAlt /> {job.location}</span>
@@ -286,6 +291,24 @@ export default function JobsSettingsPage() {
                                 <span className={`px-2 py-0.5 text-[10px] rounded-full capitalize ${job.status === 'open' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-600'}`}>
                                     {job.status}
                                 </span>
+                            </div>
+
+                            {/* Mobile Actions */}
+                            <div className="hidden max-[430px]:flex items-center justify-end gap-2 mt-4 pt-3 border-t border-gray-50">
+                                <button
+                                    onClick={() => handleEditClick(job)}
+                                    className="flex-1 py-2 px-4 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center gap-2 text-sm font-semibold transition-colors active:bg-blue-100"
+                                >
+                                    <FaEdit size={14} />
+                                    <span>Edit</span>
+                                </button>
+                                <button
+                                    onClick={() => setItemToDelete(job.id)}
+                                    className="flex-1 py-2 px-4 bg-red-50 text-red-600 rounded-xl flex items-center justify-center gap-2 text-sm font-semibold transition-colors active:bg-red-100"
+                                >
+                                    <FaTrash size={14} />
+                                    <span>Hapus</span>
+                                </button>
                             </div>
                         </div>
                     ))}

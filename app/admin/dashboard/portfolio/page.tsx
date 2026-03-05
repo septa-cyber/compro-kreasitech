@@ -50,7 +50,7 @@ function PortfolioCard({
             {/* Image Preview */}
             <div className="h-40 bg-gray-200 relative">
                 <img src={item.image || 'https://placehold.co/600x400'} alt={item.title} className="w-full h-full object-cover opacity-80" />
-                <div className="absolute top-2 right-2 z-10 opacity-0 group-hover:opacity-100 transition-opacity flex gap-2">
+                <div className="absolute top-2 right-2 z-10 opacity-0 group-hover:opacity-100 transition-opacity flex gap-2 max-[430px]:hidden">
                     <button
                         type="button"
                         onClick={() => onEdit(item)}
@@ -137,14 +137,34 @@ function PortfolioCard({
                     </div>
                 </div>
 
+                {/* Mobile Actions */}
+                <div className="hidden max-[430px]:flex items-center justify-end gap-2 mt-4 pt-3 border-t border-gray-50">
+                    <button
+                        type="button"
+                        onClick={() => onEdit(item)}
+                        className="flex-1 py-2 px-4 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center gap-2 text-sm font-semibold transition-colors active:bg-blue-100"
+                    >
+                        <FaEdit size={14} />
+                        <span>Edit</span>
+                    </button>
+                    <button
+                        type="button"
+                        onClick={() => onDelete(item.id)}
+                        className="flex-1 py-2 px-4 bg-red-50 text-red-600 rounded-xl flex items-center justify-center gap-2 text-sm font-semibold transition-colors active:bg-red-100"
+                    >
+                        <FaTrash size={14} />
+                        <span>Hapus</span>
+                    </button>
+                </div>
+
                 {hasChanges && (
                     <button
                         type="button"
                         onClick={handleSave}
                         disabled={isSavingLocal}
-                        className="w-full mt-2 py-2 bg-violet-600 hover:bg-violet-700 disabled:bg-violet-400 text-white rounded-lg text-xs font-semibold transition-all flex items-center justify-center gap-2 shadow-md shadow-violet-200"
+                        className="w-full mt-2 py-2 bg-violet-600 hover:bg-violet-700 disabled:bg-violet-400 text-white rounded-xl text-sm font-semibold transition-all flex items-center justify-center gap-2 shadow-md shadow-violet-200"
                     >
-                        <FaSave className={isSavingLocal ? 'animate-pulse' : ''} />
+                        <FaSave className={`text-sm ${isSavingLocal ? 'animate-pulse' : ''}`} />
                         <span>{isSavingLocal ? 'Menyimpan...' : 'Simpan Perubahan'}</span>
                     </button>
                 )}
@@ -332,19 +352,22 @@ export default function PortfolioSettingsPage() {
                 {/* Portfolio List Management */}
                 <div className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
                     <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-100">
-                        <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 bg-violet-100 rounded-lg flex items-center justify-center text-violet-600">
-                                <FaBriefcase size={20} />
+                        <div className="flex items-center gap-2 md:gap-3">
+                            <div className="w-8 h-8 md:w-10 md:h-10 bg-violet-100 rounded-lg flex items-center justify-center text-violet-600">
+                                <FaBriefcase className="text-sm md:text-xl" />
                             </div>
-                            <h2 className="text-lg font-semibold text-text-light font-montserrat">Daftar Proyek Portfolio</h2>
+                            <h2 className="text-sm md:text-lg font-semibold text-text-light font-montserrat leading-tight">Daftar Proyek Portfolio</h2>
                         </div>
                         <button
-                            type="button"
                             onClick={() => setIsAddModalOpen(true)}
-                            className="px-4 py-2 bg-violet-50 text-violet-600 hover:bg-violet-100 rounded-lg text-xs font-semibold transition-colors flex items-center gap-2"
+                            className="px-3 md:px-4 py-2 bg-violet-50 text-violet-600 hover:bg-violet-100 rounded-lg transition-colors flex items-center gap-2 group"
                         >
-                            <FaPlus />
-                            <span>Tambah Proyek</span>
+                            <FaPlus className="text-xs shrink-0" />
+                            <div className="flex flex-col items-start leading-tight text-left">
+                                <span className="text-[10px] md:text-xs font-semibold">Tambah</span>
+                                <span className="text-[10px] md:hidden font-bold">Proyek</span>
+                                <span className="hidden md:block text-xs font-semibold">Proyek</span>
+                            </div>
                         </button>
                     </div>
 
@@ -373,7 +396,7 @@ export default function PortfolioSettingsPage() {
                             <span className="w-3 h-3 bg-emerald-500 rounded-full"></span>
                             Baris Bawah
                         </h3>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-[430px]:grid-cols-1`}>
                             {portfolioItems.filter(i => i.marquee_row === 'bottom').map((item) => (
                                 <PortfolioCard
                                     key={item.id}
@@ -423,7 +446,7 @@ export default function PortfolioSettingsPage() {
                             placeholder="Contoh: Web Development, Mobile App"
                         />
                     </div>
-                    <div className="grid grid-cols-3 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <div>
                             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Size <span className="text-red-500">*</span></label>
                             <select
@@ -447,7 +470,7 @@ export default function PortfolioSettingsPage() {
                             </select>
                         </div>
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Baris Marquee <span className="text-red-500">*</span></label>
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Baris <span className="text-red-500">*</span></label>
                             <select
                                 value={newItemData.marquee_row || 'top'}
                                 onChange={(e) => setNewItemData({ ...newItemData, marquee_row: e.target.value as 'top' | 'bottom' })}
@@ -539,7 +562,7 @@ export default function PortfolioSettingsPage() {
                                 placeholder="Contoh: Web Development, Mobile App"
                             />
                         </div>
-                        <div className="grid grid-cols-3 gap-4">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                             <div>
                                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Size <span className="text-red-500">*</span></label>
                                 <select
@@ -563,7 +586,7 @@ export default function PortfolioSettingsPage() {
                                 </select>
                             </div>
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Baris Marquee <span className="text-red-500">*</span></label>
+                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Baris <span className="text-red-500">*</span></label>
                                 <select
                                     value={itemToEdit.marquee_row || 'top'}
                                     onChange={(e) => setItemToEdit({ ...itemToEdit, marquee_row: e.target.value as 'top' | 'bottom' })}

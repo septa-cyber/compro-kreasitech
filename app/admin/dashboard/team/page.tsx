@@ -1,6 +1,6 @@
 ﻿"use client";
 
-import { FaSave, FaPlus, FaTrash, FaUser, FaUserTag, FaImage, FaGripVertical, FaEdit } from 'react-icons/fa';
+import { FaHeading, FaUsers, FaPlus, FaTrash, FaEdit, FaUser, FaSave, FaImage, FaChevronDown, FaGripVertical } from 'react-icons/fa';
 import { TeamMember } from '@/lib/types';
 import Modal from '@/components/ui/Modal';
 import ConfirmationModal from '@/components/ui/ConfirmationModal';
@@ -83,7 +83,7 @@ function SortableTeamCard({
             <div className="aspect-square relative overflow-hidden bg-gray-200">
                 <img src={member.avatar || 'https://placehold.co/400x400'} alt={member.name} className="w-full h-full object-cover" />
 
-                <div className="absolute top-2 right-2 z-10 opacity-0 group-hover:opacity-100 transition-opacity flex gap-2">
+                <div className="absolute top-2 right-2 z-10 opacity-0 group-hover:opacity-100 transition-opacity flex gap-2 max-[430px]:hidden">
                     <button
                         type="button"
                         onClick={() => onEdit(member)}
@@ -121,6 +121,26 @@ function SortableTeamCard({
                         Posisi / Jabatan
                     </label>
                     <p className="text-sm font-medium text-text-light truncate">{member.role}</p>
+                </div>
+
+                {/* Mobile Actions */}
+                <div className="hidden max-[430px]:flex items-center justify-end gap-2 mt-4 pt-3 border-t border-gray-50">
+                    <button
+                        type="button"
+                        onClick={() => onEdit(member)}
+                        className="flex-1 py-2 px-4 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center gap-2 text-sm font-semibold transition-colors active:bg-blue-100"
+                    >
+                        <FaEdit size={14} />
+                        <span>Edit</span>
+                    </button>
+                    <button
+                        type="button"
+                        onClick={() => onDelete(member.id)}
+                        className="flex-1 py-2 px-4 bg-red-50 text-red-600 rounded-xl flex items-center justify-center gap-2 text-sm font-semibold transition-colors active:bg-red-100"
+                    >
+                        <FaTrash size={14} />
+                        <span>Hapus</span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -390,22 +410,25 @@ export default function TeamSettingsPage() {
                 {/* Team List Management */}
                 <div className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
                     <div className="flex items-center justify-between mb-4 pb-4 border-b border-gray-100">
-                        <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 bg-violet-100 rounded-lg flex items-center justify-center text-violet-600">
-                                <FaUser size={20} />
+                        <div className="flex items-center gap-2 md:gap-3">
+                            <div className="w-8 h-8 md:w-10 md:h-10 bg-violet-100 rounded-lg flex items-center justify-center text-violet-600">
+                                <FaUsers className="text-sm md:text-xl" />
                             </div>
-                            <div>
-                                <h2 className="text-lg font-semibold text-text-light font-montserrat">Daftar Anggota Tim</h2>
-                                <p className="text-xs text-gray-400 mt-0.5">Drag dan drop card untuk mengatur urutan tampilan</p>
+                            <div className="flex flex-col">
+                                <h2 className="text-sm md:text-lg font-semibold text-text-light font-montserrat">Daftar Anggota Tim</h2>
+                                <p className="text-[10px] md:text-xs text-gray-400 mt-0.5 hidden md:block">Drag dan drop card untuk mengatur urutan tampilan</p>
                             </div>
                         </div>
                         <button
-                            type="button"
                             onClick={() => setIsAddModalOpen(true)}
-                            className="px-4 py-2 bg-violet-50 text-violet-600 hover:bg-violet-100 rounded-lg text-xs font-semibold transition-colors flex items-center gap-2"
+                            className="px-3 md:px-4 py-2 bg-violet-50 text-violet-600 hover:bg-violet-100 rounded-lg transition-colors flex items-center gap-2 group"
                         >
-                            <FaPlus />
-                            <span>Tambah Anggota</span>
+                            <FaPlus className="text-xs shrink-0" />
+                            <div className="flex flex-col items-start leading-tight text-left">
+                                <span className="text-[10px] md:text-xs font-semibold">Tambah</span>
+                                <span className="text-[10px] md:hidden font-bold">Anggota</span>
+                                <span className="hidden md:block text-xs font-semibold">Anggota</span>
+                            </div>
                         </button>
                     </div>
 
@@ -419,7 +442,7 @@ export default function TeamSettingsPage() {
                             items={teamMembers.map(m => m.id)}
                             strategy={rectSortingStrategy}
                         >
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-[430px]:grid-cols-1">
                                 {teamMembers.map((member, index) => (
                                     <SortableTeamCard
                                         key={member.id}
