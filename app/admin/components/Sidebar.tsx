@@ -58,13 +58,15 @@ export default function Sidebar({ isCollapsed, toggleSidebar, isMobileOpen, setI
             `}>
                 {/* Logo Section */}
                 <div className={`h-16 flex items-center ${isCollapsed ? 'justify-center' : 'justify-between px-4'} border-b border-gray-100`}>
-                    <Link href="/admin/dashboard" className="flex items-center gap-2" onClick={() => setIsMobileOpen(false)}>
-                        <img
-                            src="/assets/images/Logo.svg"
-                            alt="Kreasitech"
-                            className="h-7 w-auto"
-                        />
-                    </Link>
+                    {!isCollapsed && (
+                        <Link href="/admin/dashboard" className="flex items-center gap-2" onClick={() => setIsMobileOpen(false)}>
+                            <img
+                                src="/assets/images/Logo.svg"
+                                alt="Kreasitech"
+                                className="h-7 w-auto"
+                            />
+                        </Link>
+                    )}
                     <button
                         onClick={toggleSidebar}
                         className="p-2 rounded-lg hover:bg-gray-100 transition-colors max-[430px]:hidden"
@@ -96,7 +98,7 @@ export default function Sidebar({ isCollapsed, toggleSidebar, isMobileOpen, setI
                                 <item.icon className={`w-5 text-center ${isActive(item.href) ? 'text-white' : 'text-gray-400 group-hover:text-violet-600'}`} size={20} />
                                 <span className={`flex-1 transition-opacity duration-300 ${isCollapsed ? 'opacity-0 md:hidden' : 'opacity-100'}`}>{item.name}</span>
                                 {isActive(item.href) && isCollapsed && (
-                                    <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-white rounded-r-full" />
+                                    <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-white rounded-l-full" />
                                 )}
                             </Link>
                         ))}
