@@ -37,9 +37,8 @@ export default function Modal({ isOpen, onClose, title, children, maxWidth = 'ma
             onClose();
         }
     };
-
     return (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 backdrop-blur-sm p-4 max-[430px]:p-2 transition-opacity animate-in fade-in duration-200" onClick={handleBackdropClick}>
+        <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/50 backdrop-blur-sm p-4 max-[430px]:p-2 transition-opacity animate-in fade-in duration-200" onClick={handleBackdropClick}>
             <div
                 ref={modalRef}
                 className={`bg-white rounded-xl shadow-2xl w-full ${maxWidth} transform transition-all animate-in zoom-in-95 duration-200 border border-gray-100 dark:bg-gray-800 dark:border-gray-700`}

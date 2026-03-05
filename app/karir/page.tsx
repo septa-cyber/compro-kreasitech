@@ -64,6 +64,27 @@ export default function KarirPage() {
     // Track active job for mobile click state
     const [selectedJobId, setSelectedJobId] = useState<number | null>(null);
 
+    // Applied Filters state (used for actual data filtering)
+    const [appliedFilters, setAppliedFilters] = useState({
+        searchJob: "",
+        searchLocation: "",
+        datePosted: "Anytime",
+        jobTypes: {
+            fulltime: false,
+            parttime: false,
+            contract: false,
+            freelance: false,
+            internship: false
+        },
+        salaryRange: [0, 25000],
+        locationPrefs: {
+            remote: false,
+            wfo: false,
+            wfh: false,
+            hybrid: false
+        }
+    });
+
     const hasActiveFilters =
         searchJob !== "" ||
         searchLocation !== "" ||
@@ -74,12 +95,34 @@ export default function KarirPage() {
         Object.values(locationPrefs).some(v => v);
 
     const handleClearAll = () => {
-        setSearchJob("");
-        setSearchLocation("");
-        setDatePosted("Anytime");
-        setJobTypes({ fulltime: false, parttime: false, contract: false, freelance: false, internship: false });
-        setSalaryRange([0, 25000]);
-        setLocationPrefs({ remote: false, wfo: false, wfh: false, hybrid: false });
+        const clearedUI = {
+            searchJob: "",
+            searchLocation: "",
+            datePosted: "Anytime",
+            jobTypes: { fulltime: false, parttime: false, contract: false, freelance: false, internship: false },
+            salaryRange: [0, 25000],
+            locationPrefs: { remote: false, wfo: false, wfh: false, hybrid: false }
+        };
+
+        setSearchJob(clearedUI.searchJob);
+        setSearchLocation(clearedUI.searchLocation);
+        setDatePosted(clearedUI.datePosted);
+        setJobTypes(clearedUI.jobTypes);
+        setSalaryRange(clearedUI.salaryRange);
+        setLocationPrefs(clearedUI.locationPrefs);
+
+        setAppliedFilters(clearedUI);
+    };
+
+    const handleFindJobs = () => {
+        setAppliedFilters({
+            searchJob,
+            searchLocation,
+            datePosted,
+            jobTypes,
+            salaryRange,
+            locationPrefs
+        });
     };
 
     const handleSalaryChange = (index: number, value: number) => {
@@ -134,28 +177,28 @@ export default function KarirPage() {
 
     const filteredJobs = jobsData.filter(job => {
         // 1. Search Filter
-        const matchesSearch = job.title.toLowerCase().includes(searchJob.toLowerCase());
+        const matchesSearch = job.title.toLowerCase().includes(appliedFilters.searchJob.toLowerCase());
 
         // 2. Location Search Filter
-        const matchesLocation = searchLocation === "" ||
-            job.location.toLowerCase().includes(searchLocation.toLowerCase());
+        const matchesLocation = appliedFilters.searchLocation === "" ||
+            job.location.toLowerCase().includes(appliedFilters.searchLocation.toLowerCase());
 
         // 3. Date Posted Filter
         let matchesDate = true;
         const compareDate = job.originalDate || job.postedTime;
-        if (datePosted !== "Anytime" && compareDate) {
+        if (appliedFilters.datePosted !== "Anytime" && compareDate) {
             const now = new Date();
             const jobDate = new Date(compareDate);
             const diffTime = Math.abs(now.getTime() - jobDate.getTime());
             const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
-            if (datePosted === "Last 24 Hours") matchesDate = diffDays <= 1;
-            else if (datePosted === "Last 3 Days") matchesDate = diffDays <= 3;
-            else if (datePosted === "Last 7 Days") matchesDate = diffDays <= 7;
+            if (appliedFilters.datePosted === "Last 24 Hours") matchesDate = diffDays <= 1;
+            else if (appliedFilters.datePosted === "Last 3 Days") matchesDate = diffDays <= 3;
+            else if (appliedFilters.datePosted === "Last 7 Days") matchesDate = diffDays <= 7;
         }
 
         // 4. Job Type Filter
-        const activeTypes = Object.entries(jobTypes)
+        const activeTypes = Object.entries(appliedFilters.jobTypes)
             .filter(([_, active]) => active)
             .map(([id]) => {
                 if (id === 'fulltime') return 'full-time';
@@ -176,12 +219,12 @@ export default function KarirPage() {
                 const jobMin = parseFloat(salaryParts[0].replace(/[,.]/g, ''));
 
                 // Use only the smallest value (jobMin) to check if it's within filter range
-                matchesSalary = jobMin >= salaryRange[0] && jobMin <= salaryRange[1];
+                matchesSalary = jobMin >= appliedFilters.salaryRange[0] && jobMin <= appliedFilters.salaryRange[1];
             }
         }
 
         // 6. Location Preference Filter
-        const activeLocs = Object.entries(locationPrefs)
+        const activeLocs = Object.entries(appliedFilters.locationPrefs)
             .filter(([_, active]) => active)
             .map(([id]) => id.toLowerCase());
 
@@ -215,7 +258,7 @@ export default function KarirPage() {
                                         {hasActiveFilters && (
                                             <button
                                                 onClick={handleClearAll}
-                                                className="flex-1 text-right justify-start text-violet-600 font-body-xs font-medium hover:text-violet-700"
+                                                className="flex-1 text-right justify-start text-violet-600 font-body-xs font-medium hover:text-violet-700 cursor-pointer"
                                             >
                                                 Clear All
                                             </button>
@@ -406,8 +449,8 @@ export default function KarirPage() {
                                         />
                                     </div>
                                 </div>
-                                <button className="w-full md:w-auto px-8 py-3.5 bg-violet-600 rounded-lg flex justify-center items-center gap-2.5 hover:bg-violet-700 transition-colors">
-                                    <div className="justify-start font-btn text-gray-100">Find Jobs</div>
+                                <button onClick={handleFindJobs} className="w-full md:w-auto px-8 py-3.5 bg-violet-600 rounded-lg flex justify-center items-center gap-2.5 hover:bg-violet-700 transition-colors cursor-pointer">
+                                    <div className="justify-start font-btn text-gray-100 pointer-events-none">Find Jobs</div>
                                 </button>
                             </div>
                         </div>
