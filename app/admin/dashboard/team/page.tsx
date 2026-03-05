@@ -1,6 +1,6 @@
 ﻿"use client";
 
-import { FaSave, FaPlus, FaTrash, FaUser, FaUserTag, FaImage, FaGripVertical } from 'react-icons/fa';
+import { FaSave, FaPlus, FaTrash, FaUser, FaUserTag, FaImage, FaGripVertical, FaEdit } from 'react-icons/fa';
 import { TeamMember } from '@/lib/types';
 import Modal from '@/components/ui/Modal';
 import ConfirmationModal from '@/components/ui/ConfirmationModal';
@@ -31,12 +31,12 @@ function SortableTeamCard({
     member,
     index,
     onDelete,
-    onMemberChange,
+    onEdit,
 }: {
     member: TeamMember;
     index: number;
     onDelete: (id: number) => void;
-    onMemberChange: (id: number, field: keyof TeamMember, value: string) => void;
+    onEdit: (member: TeamMember) => void;
 }) {
     const {
         attributes,
@@ -46,27 +46,6 @@ function SortableTeamCard({
         transition,
         isDragging,
     } = useSortable({ id: member.id });
-
-    const handleAvatarUpload = async (file: File | undefined) => {
-        if (!file) return;
-        const toastId = toast.loading('Mengunggah gambar...');
-        try {
-            const formData = new FormData();
-            formData.append('file', file);
-            const res = await fetch('/api/upload', {
-                method: 'POST',
-                body: formData,
-            });
-            if (!res.ok) throw new Error('Upload gagal');
-            const data = await res.json();
-
-            onMemberChange(member.id, 'avatar', data.url);
-            toast.success('Foto berhasil diubah', { id: toastId });
-        } catch (error) {
-            console.error('Upload Error:', error);
-            toast.error('Gagal mengunggah foto', { id: toastId });
-        }
-    };
 
     const style = {
         transform: CSS.Transform.toString(transform),
@@ -79,10 +58,10 @@ function SortableTeamCard({
         <div
             ref={setNodeRef}
             style={style as React.CSSProperties}
-            className={`relative bg-[#F4F4F7] border border-gray-200 rounded-xl overflow-hidden group hover:border-violet-300 transition-all ${isDragging ? 'shadow-2xl ring-2 ring-violet-400' : ''}`}
+            className={`relative bg-white border border-gray-200 rounded-xl overflow-hidden group hover:border-violet-300 transition-all shadow-sm ${isDragging ? 'shadow-2xl ring-2 ring-violet-400' : ''}`}
         >
             {/* Drag Handle + Order Badge */}
-            <div className="absolute top-2 left-2 z-20 flex items-center gap-1.5">
+            <div className="absolute top-2 left-2 z-20 flex items-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity">
                 <button
                     type="button"
                     {...attributes}
@@ -92,6 +71,9 @@ function SortableTeamCard({
                 >
                     <FaGripVertical size={14} />
                 </button>
+            </div>
+
+            <div className="absolute top-2 left-2 z-2 group-hover:hidden transition-all">
                 <span className="bg-violet-600 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-md shadow-sm min-w-[20px] text-center">
                     {index + 1}
                 </span>
@@ -101,31 +83,23 @@ function SortableTeamCard({
             <div className="aspect-square relative overflow-hidden bg-gray-200">
                 <img src={member.avatar || 'https://placehold.co/400x400'} alt={member.name} className="w-full h-full object-cover" />
 
-                <div className="absolute top-2 right-2 z-10">
+                <div className="absolute top-2 right-2 z-10 opacity-0 group-hover:opacity-100 transition-opacity flex gap-2">
+                    <button
+                        type="button"
+                        onClick={() => onEdit(member)}
+                        className="bg-white/90 p-1.5 rounded-md text-gray-400 hover:text-violet-500 hover:bg-white transition-colors shadow-sm"
+                        title="Edit Anggota"
+                    >
+                        <FaEdit size={12} />
+                    </button>
                     <button
                         type="button"
                         onClick={() => onDelete(member.id)}
-                        className="bg-white/80 p-1.5 rounded-md text-gray-500 hover:text-red-500 hover:bg-white transition-colors shadow-sm"
+                        className="bg-white/90 p-1.5 rounded-md text-gray-400 hover:text-red-500 hover:bg-white transition-colors shadow-sm"
                         title="Hapus Anggota"
                     >
                         <FaTrash size={12} />
                     </button>
-                </div>
-
-                {/* Upload Overlay */}
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/10">
-                    <label className="bg-white/90 px-3 py-1 rounded text-xs font-medium text-gray-600 flex items-center gap-1 cursor-pointer hover:bg-white hover:text-violet-600 shadow-sm">
-                        <FaImage /> Ganti Foto
-                        <input
-                            type="file"
-                            accept="image/*"
-                            className="hidden"
-                            onChange={(e) => {
-                                const file = e.target.files?.[0];
-                                handleAvatarUpload(file);
-                            }}
-                        />
-                    </label>
                 </div>
 
                 {/* Name Overlay Preview */}
@@ -137,32 +111,16 @@ function SortableTeamCard({
 
             <div className="p-4 space-y-3 bg-white">
                 <div>
-                    <label className="block text-[10px] font-medium text-gray-500 uppercase font-montserrat mb-1">
-                        Nama Lengkap <span className="text-red-500">*</span>
+                    <label className="block text-[10px] font-medium text-gray-500 uppercase font-montserrat mb-0.5">
+                        Nama Lengkap
                     </label>
-                    <div className="relative">
-                        <FaUser className="absolute left-2 top-1.5 text-gray-400 text-xs" />
-                        <input
-                            type="text"
-                            value={member.name}
-                            onChange={(e) => onMemberChange(member.id, 'name', e.target.value)}
-                            className="w-full pl-6 pr-2 py-1.5 bg-[#F4F4F7] border border-gray-200 rounded text-sm font-semibold text-text-light focus:outline-none focus:ring-2 focus:ring-violet-500/50 transition-all"
-                        />
-                    </div>
+                    <p className="text-sm font-medium text-text-light truncate">{member.name}</p>
                 </div>
                 <div>
-                    <label className="block text-[10px] font-medium text-gray-500 uppercase font-montserrat mb-1">
-                        Posisi / Jabatan <span className="text-red-500">*</span>
+                    <label className="block text-[10px] font-medium text-gray-500 uppercase font-montserrat mb-0.5">
+                        Posisi / Jabatan
                     </label>
-                    <div className="relative">
-                        <FaUserTag className="absolute left-2 top-1.5 text-gray-400 text-xs" />
-                        <input
-                            type="text"
-                            value={member.role}
-                            onChange={(e) => onMemberChange(member.id, 'role', e.target.value)}
-                            className="w-full pl-6 pr-2 py-1.5 bg-[#F4F4F7] border border-gray-200 rounded text-xs text-text-light focus:outline-none focus:ring-2 focus:ring-violet-500/50 transition-all"
-                        />
-                    </div>
+                    <p className="text-sm font-medium text-text-light truncate">{member.role}</p>
                 </div>
             </div>
         </div>
@@ -202,7 +160,10 @@ export default function TeamSettingsPage() {
 
     // Modal States
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
     const [itemToDelete, setItemToDelete] = useState<number | null>(null);
+    const [memberToEdit, setMemberToEdit] = useState<TeamMember | null>(null);
+
     const [newMemberData, setNewMemberData] = useState<Partial<TeamMember>>({
         name: "",
         role: "",
@@ -238,10 +199,9 @@ export default function TeamSettingsPage() {
         }
     };
 
-    const handleMemberChange = (id: number, field: keyof TeamMember, value: string) => {
-        setTeamMembers(teamMembers.map(member =>
-            member.id === id ? { ...member, [field]: value } : member
-        ));
+    const handleEditClick = (member: TeamMember) => {
+        setMemberToEdit({ ...member });
+        setIsEditModalOpen(true);
     };
 
     // Drag handlers
@@ -262,12 +222,12 @@ export default function TeamSettingsPage() {
 
         const reordered = arrayMove(teamMembers, oldIndex, newIndex);
         // Update order field locally
-        const withOrder = reordered.map((m, i) => ({ ...m, order: i }));
+        const withOrder = reordered.map((m: TeamMember, i: number) => ({ ...m, order: i }));
         setTeamMembers(withOrder);
 
         // Save reorder to backend
         try {
-            const orderedIds = withOrder.map(m => m.id);
+            const orderedIds = withOrder.map((m: TeamMember) => m.id);
             const res = await fetch('/api/team/reorder', {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
@@ -361,27 +321,53 @@ export default function TeamSettingsPage() {
         }
     };
 
-    const handleSave = async (e: React.FormEvent) => {
+    const handleEditSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        if (!memberToEdit) return;
         setIsSaving(true);
 
         try {
-            // Update all team members (including order field)
-            const updatePromises = teamMembers.map(member =>
-                fetch(`/api/team/${member.id}`, {
-                    method: 'PUT',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(member)
-                })
-            );
+            const res = await fetch(`/api/team/${memberToEdit.id}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(memberToEdit)
+            });
 
-            await Promise.all(updatePromises);
-            toast.success('Pengaturan Tim berhasil disimpan!');
+            if (res.ok) {
+                setTeamMembers(teamMembers.map(member =>
+                    member.id === memberToEdit.id ? memberToEdit : member
+                ));
+                setIsEditModalOpen(false);
+                toast.success('Data anggota berhasil diperbarui');
+            } else {
+                toast.error('Gagal memperbarui data anggota');
+            }
         } catch (error) {
-            console.error('Error saving:', error);
-            toast.error('Gagal menyimpan perubahan');
+            console.error('Error updating member:', error);
+            toast.error('Terjadi kesalahan saat memperbarui data anggota');
         } finally {
             setIsSaving(false);
+        }
+    };
+
+    const handleEditAvatarUpload = async (file: File | undefined) => {
+        if (!file || !memberToEdit) return;
+        const toastId = toast.loading('Mengunggah gambar...');
+        try {
+            const formData = new FormData();
+            formData.append('file', file);
+            const res = await fetch('/api/upload', {
+                method: 'POST',
+                body: formData,
+            });
+            if (!res.ok) throw new Error('Upload gagal');
+            const data = await res.json();
+
+            setMemberToEdit(prev => prev ? ({ ...prev, avatar: data.url }) : null);
+            toast.success('Foto berhasil diunggah', { id: toastId });
+        } catch (error) {
+            console.error('Upload Error:', error);
+            toast.error('Gagal mengunggah foto', { id: toastId });
         }
     };
 
@@ -397,17 +383,9 @@ export default function TeamSettingsPage() {
                 <h1 className="text-xl md:text-3xl font-semibold font-montserrat text-text-light">
                     Pengaturan Tim (Team)
                 </h1>
-                <button
-                    onClick={handleSave}
-                    disabled={isSaving}
-                    className="px-6 py-2.5 bg-violet-600 hover:bg-violet-700 text-white font-medium rounded-lg text-sm transition-colors shadow-glow flex items-center gap-2 disabled:opacity-50"
-                >
-                    <FaSave />
-                    <span>{isSaving ? 'Menyimpan...' : 'Simpan Perubahan'}</span>
-                </button>
             </div>
 
-            <form onSubmit={handleSave} className="grid grid-cols-1 gap-6">
+            <div className="grid grid-cols-1 gap-6">
 
                 {/* Team List Management */}
                 <div className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
@@ -448,7 +426,7 @@ export default function TeamSettingsPage() {
                                         member={member}
                                         index={index}
                                         onDelete={(id) => setItemToDelete(id)}
-                                        onMemberChange={handleMemberChange}
+                                        onEdit={handleEditClick}
                                     />
                                 ))}
                             </div>
@@ -468,7 +446,7 @@ export default function TeamSettingsPage() {
                     )}
                 </div>
 
-            </form>
+            </div>
 
             {/* Add Modal */}
             <Modal
@@ -557,6 +535,98 @@ export default function TeamSettingsPage() {
                         </button>
                     </div>
                 </form>
+            </Modal>
+
+            {/* Edit Modal */}
+            <Modal
+                isOpen={isEditModalOpen}
+                onClose={() => setIsEditModalOpen(false)}
+                title="Edit Anggota Tim"
+            >
+                {memberToEdit && (
+                    <form onSubmit={handleEditSubmit} className="space-y-4">
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Nama Lengkap <span className="text-red-500">*</span></label>
+                            <input
+                                type="text"
+                                required
+                                value={memberToEdit.name}
+                                onChange={(e) => setMemberToEdit({ ...memberToEdit, name: e.target.value })}
+                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                                placeholder="Nama Lengkap"
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Posisi / Jabatan <span className="text-red-500">*</span></label>
+                            <input
+                                type="text"
+                                required
+                                value={memberToEdit.role}
+                                onChange={(e) => setMemberToEdit({ ...memberToEdit, role: e.target.value })}
+                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                                placeholder="Contoh: CEO, Developer"
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Status <span className="text-red-500">*</span></label>
+                            <select
+                                value={memberToEdit.status}
+                                onChange={(e) => setMemberToEdit({ ...memberToEdit, status: e.target.value as 'active' | 'inactive' })}
+                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                            >
+                                <option value="active">Active</option>
+                                <option value="inactive">Inactive</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Avatar URL (Optional)</label>
+                            <div className="flex gap-2">
+                                <input
+                                    type="text"
+                                    value={memberToEdit.avatar}
+                                    onChange={(e) => setMemberToEdit({ ...memberToEdit, avatar: e.target.value })}
+                                    className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                                    placeholder="https://..."
+                                />
+                                <label className="px-3 py-2 bg-gray-100 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-200 transition-colors flex items-center justify-center">
+                                    <FaImage className="text-gray-600" />
+                                    <input
+                                        type="file"
+                                        accept="image/*"
+                                        className="hidden"
+                                        onChange={(e) => {
+                                            const file = e.target.files?.[0];
+                                            handleEditAvatarUpload(file);
+                                        }}
+                                    />
+                                </label>
+                            </div>
+                        </div>
+
+                        {memberToEdit.avatar && (
+                            <div className="mt-2 p-2 border border-gray-200 rounded-lg bg-gray-50 flex justify-center">
+                                <img src={memberToEdit.avatar} alt="Preview" className="h-32 w-32 object-cover rounded-full" />
+                            </div>
+                        )}
+
+                        <div className="flex justify-end pt-4 gap-3">
+                            <button
+                                type="button"
+                                onClick={() => setIsEditModalOpen(false)}
+                                className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition-colors"
+                            >
+                                Batal
+                            </button>
+                            <button
+                                type="submit"
+                                disabled={isSaving}
+                                className="px-4 py-2 text-sm font-medium text-white bg-violet-600 rounded-lg hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500 transition-colors shadow-md disabled:opacity-50"
+                            >
+                                {isSaving ? 'Menyimpan...' : 'Simpan Perubahan'}
+                            </button>
+                        </div>
+                    </form>
+                )}
             </Modal>
 
             {/* Delete Confirmation Modal */}

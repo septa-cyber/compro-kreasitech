@@ -17,7 +17,7 @@ const menuItems: MenuItem[] = [
     { name: 'Articles', href: '/admin/dashboard/articles', icon: FaNewspaper },
     { name: 'Jobs', href: '/admin/dashboard/jobs', icon: FaUserTie },
     { name: 'Testimonials', href: '/admin/dashboard/testimonials', icon: FaComments },
-    { name: 'Portfolio', href: '/admin/dashboard/portfolio', icon: FaBriefcase, badge: 12 },
+    { name: 'Portfolio', href: '/admin/dashboard/portfolio', icon: FaBriefcase },
     { name: 'Team', href: '/admin/dashboard/team', icon: FaUsers },
     { name: 'Partners', href: '/admin/dashboard/partners', icon: FaHandshake },
 ];

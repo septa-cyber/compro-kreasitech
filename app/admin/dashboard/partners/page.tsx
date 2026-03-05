@@ -1,7 +1,7 @@
 ﻿"use client";
 
 import React, { useState, useEffect } from 'react';
-import { FaHeading, FaSave, FaPlus, FaTrash, FaImage, FaHandshake } from 'react-icons/fa';
+import { FaHeading, FaSave, FaPlus, FaTrash, FaImage, FaHandshake, FaEdit } from 'react-icons/fa';
 import { Partner } from '@/lib/types';
 import Modal from '@/components/ui/Modal';
 import ConfirmationModal from '@/components/ui/ConfirmationModal';
@@ -14,7 +14,10 @@ export default function PartnersSettingsPage() {
 
     // Modal States
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
     const [itemToDelete, setItemToDelete] = useState<number | null>(null);
+    const [partnerToEdit, setPartnerToEdit] = useState<Partner | null>(null);
+
     const [newPartnerData, setNewPartnerData] = useState<Partial<Partner>>({
         name: "",
         logo: "",
@@ -37,10 +40,9 @@ export default function PartnersSettingsPage() {
         }
     };
 
-    const handlePartnerChange = (id: number, field: keyof Partner, value: string) => {
-        setPartners(partners.map(partner =>
-            partner.id === id ? { ...partner, [field]: value } : partner
-        ));
+    const handleEditClick = (partner: Partner) => {
+        setPartnerToEdit({ ...partner });
+        setIsEditModalOpen(true);
     };
 
     // Delete Logic
@@ -92,25 +94,31 @@ export default function PartnersSettingsPage() {
         }
     };
 
-    const handleSave = async (e: React.FormEvent) => {
+    // Edit Logic
+    const handleEditSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        if (!partnerToEdit) return;
         setIsSaving(true);
 
         try {
-            // Update all partners
-            const updatePromises = partners.map(partner =>
-                fetch(`/api/partners/${partner.id}`, {
-                    method: 'PUT',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(partner)
-                })
-            );
+            const res = await fetch(`/api/partners/${partnerToEdit.id}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(partnerToEdit)
+            });
 
-            await Promise.all(updatePromises);
-            toast.success('Pengaturan Partners berhasil disimpan!');
+            if (res.ok) {
+                setPartners(partners.map(partner =>
+                    partner.id === partnerToEdit.id ? partnerToEdit : partner
+                ));
+                setIsEditModalOpen(false);
+                toast.success('Partner berhasil diperbarui');
+            } else {
+                toast.error('Gagal memperbarui partner');
+            }
         } catch (error) {
-            console.error('Error saving:', error);
-            toast.error('Gagal menyimpan perubahan');
+            console.error('Error updating partner:', error);
+            toast.error('Terjadi kesalahan saat memperbarui partner');
         } finally {
             setIsSaving(false);
         }
@@ -124,17 +132,9 @@ export default function PartnersSettingsPage() {
                 <h1 className="text-xl md:text-3xl font-semibold font-montserrat text-text-light">
                     Pengaturan Partners
                 </h1>
-                <button
-                    onClick={handleSave}
-                    disabled={isSaving}
-                    className="px-6 py-2.5 bg-violet-600 hover:bg-violet-700 text-white font-medium rounded-lg text-sm transition-colors shadow-glow flex items-center gap-2 disabled:opacity-50"
-                >
-                    <FaSave />
-                    <span>{isSaving ? 'Menyimpan...' : 'Simpan Perubahan'}</span>
-                </button>
             </div>
 
-            <form onSubmit={handleSave} className="grid grid-cols-1 gap-6">
+            <div className="grid grid-cols-1 gap-6">
 
                 {/* Partners List Management */}
                 <div className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
@@ -157,7 +157,7 @@ export default function PartnersSettingsPage() {
 
                     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
                         {partners.map((partner) => (
-                            <div key={partner.id} className="relative bg-[#F4F4F7] border border-gray-200 rounded-xl overflow-hidden group hover:border-violet-300 transition-all">
+                            <div key={partner.id} className="relative bg-white border border-gray-200 rounded-xl overflow-hidden group hover:border-violet-300 transition-all shadow-sm">
                                 {/* Logo Preview Area */}
                                 <div className="aspect-video relative overflow-hidden bg-white flex items-center justify-center p-4">
                                     <img
@@ -166,45 +166,28 @@ export default function PartnersSettingsPage() {
                                         className="max-w-full max-h-full object-contain"
                                     />
 
-                                    <div className="absolute top-1 right-1 z-10">
+                                    <div className="absolute top-1 right-1 z-10 opacity-0 group-hover:opacity-100 transition-opacity flex gap-1.5">
+                                        <button
+                                            type="button"
+                                            onClick={() => handleEditClick(partner)}
+                                            className="bg-white/90 p-1 rounded text-gray-400 hover:text-violet-500 hover:bg-white transition-colors shadow-sm"
+                                            title="Edit Partner"
+                                        >
+                                            <FaEdit size={10} />
+                                        </button>
                                         <button
                                             type="button"
                                             onClick={() => setItemToDelete(partner.id)}
-                                            className="bg-white/80 p-1 rounded text-gray-500 hover:text-red-500 hover:bg-white transition-colors shadow-sm"
+                                            className="bg-white/90 p-1 rounded text-gray-400 hover:text-red-500 hover:bg-white transition-colors shadow-sm"
                                             title="Hapus Partner"
                                         >
                                             <FaTrash size={10} />
                                         </button>
                                     </div>
-
-                                    {/* Upload Overlay */}
-                                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/5">
-                                        <label className="bg-white/95 px-2 py-1 rounded text-[10px] font-medium text-gray-600 flex items-center gap-1 cursor-pointer hover:bg-white hover:text-violet-600 shadow-sm">
-                                            <FaImage size={10} /> Ganti Logo
-                                            <input
-                                                type="file"
-                                                accept="image/*"
-                                                className="hidden"
-                                                onChange={(e) => {
-                                                    const file = e.target.files?.[0];
-                                                    if (file) {
-                                                        const imageUrl = URL.createObjectURL(file);
-                                                        handlePartnerChange(partner.id, 'logo', imageUrl);
-                                                    }
-                                                }}
-                                            />
-                                        </label>
-                                    </div>
                                 </div>
 
-                                <div className="p-2 bg-white">
-                                    <input
-                                        type="text"
-                                        value={partner.name}
-                                        onChange={(e) => handlePartnerChange(partner.id, 'name', e.target.value)}
-                                        placeholder="Nama Partner"
-                                        className="w-full px-2 py-1 bg-[#F4F4F7] border border-gray-200 rounded text-[10px] text-center font-medium text-text-light focus:outline-none focus:ring-1 focus:ring-violet-500/50 transition-all"
-                                    />
+                                <div className="p-2 bg-white text-center">
+                                    <p className="text-[10px] font-medium text-text-light truncate px-2">{partner.name || 'Set Nama Partner'}</p>
                                 </div>
                             </div>
                         ))}
@@ -217,7 +200,7 @@ export default function PartnersSettingsPage() {
                     )}
                 </div>
 
-            </form>
+            </div>
 
             {/* Add Modal */}
             <Modal
@@ -288,6 +271,79 @@ export default function PartnersSettingsPage() {
                         </button>
                     </div>
                 </form>
+            </Modal>
+
+            {/* Edit Modal */}
+            <Modal
+                isOpen={isEditModalOpen}
+                onClose={() => setIsEditModalOpen(false)}
+                title="Edit Partner"
+            >
+                {partnerToEdit && (
+                    <form onSubmit={handleEditSubmit} className="space-y-4">
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Nama Partner <span className="text-red-500">*</span></label>
+                            <input
+                                type="text"
+                                required
+                                value={partnerToEdit.name}
+                                onChange={(e) => setPartnerToEdit({ ...partnerToEdit, name: e.target.value })}
+                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                                placeholder="Contoh: Google, Microsoft"
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Logo URL (Optional)</label>
+                            <div className="flex gap-2">
+                                <input
+                                    type="text"
+                                    value={partnerToEdit.logo}
+                                    onChange={(e) => setPartnerToEdit({ ...partnerToEdit, logo: e.target.value })}
+                                    className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                                    placeholder="https://..."
+                                />
+                                <label className="px-3 py-2 bg-gray-100 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-200 transition-colors flex items-center justify-center">
+                                    <FaImage className="text-gray-600" />
+                                    <input
+                                        type="file"
+                                        accept="image/*"
+                                        className="hidden"
+                                        onChange={(e) => {
+                                            const file = e.target.files?.[0];
+                                            if (file) {
+                                                const imageUrl = URL.createObjectURL(file);
+                                                setPartnerToEdit({ ...partnerToEdit, logo: imageUrl });
+                                            }
+                                        }}
+                                    />
+                                </label>
+                            </div>
+                        </div>
+
+                        {partnerToEdit.logo && (
+                            <div className="mt-2 p-2 border border-gray-200 rounded-lg bg-gray-50 flex justify-center">
+                                <img src={partnerToEdit.logo} alt="Preview" className="h-16 object-contain" />
+                            </div>
+                        )}
+
+                        <div className="flex justify-end pt-4 gap-3">
+                            <button
+                                type="button"
+                                onClick={() => setIsEditModalOpen(false)}
+                                className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition-colors"
+                            >
+                                Batal
+                            </button>
+                            <button
+                                type="submit"
+                                disabled={isSaving}
+                                className="px-4 py-2 text-sm font-medium text-white bg-violet-600 rounded-lg hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500 transition-colors shadow-md disabled:opacity-50"
+                            >
+                                {isSaving ? 'Menyimpan...' : 'Simpan Perubahan'}
+                            </button>
+                        </div>
+                    </form>
+                )}
             </Modal>
 
             {/* Delete Confirmation Modal */}

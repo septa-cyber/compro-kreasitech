@@ -258,18 +258,18 @@ export default function JobsSettingsPage() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {jobs.map((job) => (
-                        <div key={job.id} className="p-4 border border-gray-200 rounded-xl hover:border-violet-300 transition-all bg-[#F4F4F7] group relative">
+                        <div key={job.id} className="p-4 border border-gray-200 rounded-xl hover:border-violet-300 transition-all bg-white group relative shadow-sm">
                             <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity flex gap-2">
                                 <button
                                     onClick={() => handleEditClick(job)}
-                                    className="p-2 text-gray-400 hover:text-violet-500 hover:bg-white rounded-lg transition-colors shadow-sm"
+                                    className="p-2 text-gray-400 hover:text-violet-500 hover:bg-gray-50 rounded-lg transition-colors shadow-sm bg-white"
                                     title="Edit Lowongan"
                                 >
                                     <FaEdit size={14} />
                                 </button>
                                 <button
                                     onClick={() => setItemToDelete(job.id)}
-                                    className="p-2 text-gray-400 hover:text-red-500 hover:bg-white rounded-lg transition-colors shadow-sm"
+                                    className="p-2 text-gray-400 hover:text-red-500 hover:bg-gray-50 rounded-lg transition-colors shadow-sm bg-white"
                                     title="Hapus Lowongan"
                                 >
                                     <FaTrash size={14} />

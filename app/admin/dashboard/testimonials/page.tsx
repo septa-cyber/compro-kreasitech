@@ -194,18 +194,18 @@ export default function TestimonialsSettingsPage() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {testimonials.map((testimonial) => (
-                        <div key={testimonial.id} className="relative bg-[#F4F4F7] p-6 rounded-xl border border-gray-200 hover:border-violet-300 transition-all group">
+                        <div key={testimonial.id} className="relative bg-white p-6 rounded-xl border border-gray-200 hover:border-violet-300 transition-all group shadow-sm">
                             <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity flex gap-2">
                                 <button
                                     onClick={() => handleEditClick(testimonial)}
-                                    className="p-2 text-gray-400 hover:text-violet-500 hover:bg-white rounded-lg transition-colors shadow-sm"
+                                    className="p-2 text-gray-400 hover:text-violet-500 hover:bg-gray-50 rounded-lg transition-colors shadow-sm bg-white"
                                     title="Edit"
                                 >
                                     <FaEdit size={14} />
                                 </button>
                                 <button
                                     onClick={() => setItemToDelete(testimonial.id)}
-                                    className="p-2 text-gray-400 hover:text-red-500 hover:bg-white rounded-lg transition-colors shadow-sm"
+                                    className="p-2 text-gray-400 hover:text-red-500 hover:bg-gray-50 rounded-lg transition-colors shadow-sm bg-white"
                                     title="Hapus"
                                 >
                                     <FaTrash size={14} />
