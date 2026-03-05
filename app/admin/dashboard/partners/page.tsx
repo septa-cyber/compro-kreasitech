@@ -227,7 +227,7 @@ export default function PartnersSettingsPage() {
             >
                 <form onSubmit={handleAddSubmit} className="space-y-4">
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Nama Partner</label>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Nama Partner <span className="text-red-500">*</span></label>
                         <input
                             type="text"
                             required

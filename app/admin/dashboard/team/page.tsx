@@ -138,7 +138,7 @@ function SortableTeamCard({
             <div className="p-4 space-y-3 bg-white">
                 <div>
                     <label className="block text-[10px] font-medium text-gray-500 uppercase font-montserrat mb-1">
-                        Nama Lengkap
+                        Nama Lengkap <span className="text-red-500">*</span>
                     </label>
                     <div className="relative">
                         <FaUser className="absolute left-2 top-1.5 text-gray-400 text-xs" />
@@ -152,7 +152,7 @@ function SortableTeamCard({
                 </div>
                 <div>
                     <label className="block text-[10px] font-medium text-gray-500 uppercase font-montserrat mb-1">
-                        Posisi / Jabatan
+                        Posisi / Jabatan <span className="text-red-500">*</span>
                     </label>
                     <div className="relative">
                         <FaUserTag className="absolute left-2 top-1.5 text-gray-400 text-xs" />
@@ -478,7 +478,7 @@ export default function TeamSettingsPage() {
             >
                 <form onSubmit={handleAddSubmit} className="space-y-4">
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Nama Lengkap</label>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Nama Lengkap <span className="text-red-500">*</span></label>
                         <input
                             type="text"
                             required
@@ -489,7 +489,7 @@ export default function TeamSettingsPage() {
                         />
                     </div>
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Posisi / Jabatan</label>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Posisi / Jabatan <span className="text-red-500">*</span></label>
                         <input
                             type="text"
                             required
@@ -500,7 +500,7 @@ export default function TeamSettingsPage() {
                         />
                     </div>
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Status</label>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Status <span className="text-red-500">*</span></label>
                         <select
                             value={newMemberData.status || 'active'}
                             onChange={(e) => setNewMemberData({ ...newMemberData, status: e.target.value as 'active' | 'inactive' })}

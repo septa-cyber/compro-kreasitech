@@ -246,7 +246,7 @@ export default function TestimonialsSettingsPage() {
             >
                 <form onSubmit={handleAddSubmit} className="space-y-4">
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Nama Klien</label>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Nama Klien <span className="text-red-500">*</span></label>
                         <input
                             type="text"
                             required
@@ -267,7 +267,7 @@ export default function TestimonialsSettingsPage() {
                         />
                     </div>
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Role / Jabatan</label>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Role / Jabatan <span className="text-red-500">*</span></label>
                         <input
                             type="text"
                             required
@@ -278,7 +278,7 @@ export default function TestimonialsSettingsPage() {
                         />
                     </div>
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Isi Testimonial</label>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Isi Testimonial <span className="text-red-500">*</span></label>
                         <textarea
                             required
                             rows={4}
@@ -351,7 +351,7 @@ export default function TestimonialsSettingsPage() {
             >
                 <form onSubmit={handleEditSubmit} className="space-y-4">
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Nama Klien</label>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Nama Klien <span className="text-red-500">*</span></label>
                         <input
                             type="text"
                             required
@@ -372,7 +372,7 @@ export default function TestimonialsSettingsPage() {
                         />
                     </div>
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Role / Jabatan</label>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Role / Jabatan <span className="text-red-500">*</span></label>
                         <input
                             type="text"
                             required
@@ -383,7 +383,7 @@ export default function TestimonialsSettingsPage() {
                         />
                     </div>
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Isi Testimonial</label>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Isi Testimonial <span className="text-red-500">*</span></label>
                         <textarea
                             required
                             rows={4}
@@ -431,7 +431,7 @@ export default function TestimonialsSettingsPage() {
                     )}
 
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Status</label>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Status <span className="text-red-500">*</span></label>
                         <select
                             value={editItemData.status}
                             onChange={(e) => setEditItemData({ ...editItemData, status: e.target.value as 'visible' | 'hidden' })}

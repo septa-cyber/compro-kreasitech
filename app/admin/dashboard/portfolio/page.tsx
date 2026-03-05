@@ -45,7 +45,7 @@ function PortfolioCard({ item, onDelete, onChange }: { item: PortfolioItem; onDe
             <div className="p-4 space-y-3">
                 <div>
                     <label className="block text-[10px] font-medium text-gray-500 uppercase font-montserrat mb-1">
-                        Judul Proyek
+                        Judul Proyek <span className="text-red-500">*</span>
                     </label>
                     <input
                         type="text"
@@ -139,8 +139,17 @@ export default function PortfolioSettingsPage() {
     const fetchPortfolio = async () => {
         try {
             const res = await fetch('/api/portfolio');
-            const data = await res.json();
-            setPortfolioItems(data);
+            const data: PortfolioItem[] = await res.json();
+
+            // Auto-assign marquee_row if missing to match the UI sections
+            // This ensures the dropdown matches the section and facilitates persistence
+            const mid = Math.ceil(data.length / 2);
+            const enrichedData = data.map((item, index) => ({
+                ...item,
+                marquee_row: item.marquee_row || (index < mid ? 'top' : 'bottom')
+            }));
+
+            setPortfolioItems(enrichedData);
         } catch (error) {
             console.error('Failed to fetch portfolio:', error);
         } finally {
@@ -277,10 +286,10 @@ export default function PortfolioSettingsPage() {
                     <div className="mb-6">
                         <h3 className="text-sm font-semibold text-violet-600 font-montserrat mb-3 flex items-center gap-2">
                             <span className="w-3 h-3 bg-violet-500 rounded-full"></span>
-                            Marquee Baris Atas
+                            Baris Atas
                         </h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {portfolioItems.filter(i => i.marquee_row === 'top' || (!i.marquee_row && portfolioItems.indexOf(i) < Math.ceil(portfolioItems.length / 2))).map((item) => (
+                            {portfolioItems.filter(i => i.marquee_row === 'top').map((item) => (
                                 <PortfolioCard key={item.id} item={item} onDelete={setItemToDelete} onChange={handleItemChange} />
                             ))}
                         </div>
@@ -290,10 +299,10 @@ export default function PortfolioSettingsPage() {
                     <div>
                         <h3 className="text-sm font-semibold text-emerald-600 font-montserrat mb-3 flex items-center gap-2">
                             <span className="w-3 h-3 bg-emerald-500 rounded-full"></span>
-                            Marquee Baris Bawah
+                            Baris Bawah
                         </h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {portfolioItems.filter(i => i.marquee_row === 'bottom' || (!i.marquee_row && portfolioItems.indexOf(i) >= Math.ceil(portfolioItems.length / 2))).map((item) => (
+                            {portfolioItems.filter(i => i.marquee_row === 'bottom').map((item) => (
                                 <PortfolioCard key={item.id} item={item} onDelete={setItemToDelete} onChange={handleItemChange} />
                             ))}
                         </div>
@@ -316,7 +325,7 @@ export default function PortfolioSettingsPage() {
             >
                 <form onSubmit={handleAddSubmit} className="space-y-4">
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Judul Proyek</label>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Judul Proyek <span className="text-red-500">*</span></label>
                         <input
                             type="text"
                             required
@@ -338,7 +347,7 @@ export default function PortfolioSettingsPage() {
                     </div>
                     <div className="grid grid-cols-3 gap-4">
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Size</label>
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Size <span className="text-red-500">*</span></label>
                             <select
                                 value={newItemData.size || 'large'}
                                 onChange={(e) => setNewItemData({ ...newItemData, size: e.target.value as 'large' | 'medium' })}
@@ -349,7 +358,7 @@ export default function PortfolioSettingsPage() {
                             </select>
                         </div>
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Status</label>
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Status <span className="text-red-500">*</span></label>
                             <select
                                 value={newItemData.status || 'draft'}
                                 onChange={(e) => setNewItemData({ ...newItemData, status: e.target.value as 'draft' | 'published' })}
@@ -360,7 +369,7 @@ export default function PortfolioSettingsPage() {
                             </select>
                         </div>
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Baris Marquee</label>
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Baris Marquee <span className="text-red-500">*</span></label>
                             <select
                                 value={newItemData.marquee_row || 'top'}
                                 onChange={(e) => setNewItemData({ ...newItemData, marquee_row: e.target.value as 'top' | 'bottom' })}

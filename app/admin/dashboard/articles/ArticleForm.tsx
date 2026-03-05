@@ -179,7 +179,7 @@ export default function ArticleForm({ initialData, isEdit = false }: ArticleForm
                 {/* Title & Slug */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 font-montserrat mb-2">Title</label>
+                        <label className="block text-sm font-medium text-gray-700 font-montserrat mb-2">Title <span className="text-red-500">*</span></label>
                         <input
                             type="text"
                             name="title"
@@ -206,7 +206,7 @@ export default function ArticleForm({ initialData, isEdit = false }: ArticleForm
                 {/* Status & Category */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 font-montserrat mb-2">Status</label>
+                        <label className="block text-sm font-medium text-gray-700 font-montserrat mb-2">Status <span className="text-red-500">*</span></label>
                         <select
                             name="status"
                             value={formData.status}
@@ -218,7 +218,7 @@ export default function ArticleForm({ initialData, isEdit = false }: ArticleForm
                         </select>
                     </div>
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 font-montserrat mb-2">Category</label>
+                        <label className="block text-sm font-medium text-gray-700 font-montserrat mb-2">Category <span className="text-red-500">*</span></label>
                         <select
                             name="category"
                             value={formData.category}
@@ -291,7 +291,7 @@ export default function ArticleForm({ initialData, isEdit = false }: ArticleForm
 
                 {/* Excerpt */}
                 <div>
-                    <label className="block text-sm font-medium text-gray-700 font-montserrat mb-2">Excerpt</label>
+                    <label className="block text-sm font-medium text-gray-700 font-montserrat mb-2">Excerpt <span className="text-red-500">*</span></label>
                     <textarea
                         name="excerpt"
                         value={formData.excerpt}
@@ -305,7 +305,7 @@ export default function ArticleForm({ initialData, isEdit = false }: ArticleForm
 
                 {/* Content */}
                 <div>
-                    <label className="block text-sm font-medium text-gray-700 font-montserrat mb-2">Content</label>
+                    <label className="block text-sm font-medium text-gray-700 font-montserrat mb-2">Content <span className="text-red-500">*</span></label>
                     <RichTextEditor
                         content={formData.content || ''}
                         onChange={(md: string) => setFormData(prev => ({ ...prev, content: md }))}

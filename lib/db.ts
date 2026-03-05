@@ -544,8 +544,10 @@ function mapPortfolioFromDB(row: any): PortfolioItem {
     return {
         id: row.id,
         title: row.title,
+        subtitle: row.subtitle,
         description: row.description,
         image: row.image,
+        size: row.size,
         category: row.category,
         technologies: row.technologies || [],
         project_url: row.project_url,
@@ -559,18 +561,9 @@ function mapPortfolioFromDB(row: any): PortfolioItem {
 function mapPortfolioToDB(item: Partial<PortfolioItem>): any {
     const dbItem: any = { ...item };
     delete dbItem.id;
-    if (item.project_url !== undefined) {
-        dbItem.project_url = item.project_url;
-        delete dbItem.project_url;
-    }
-    if (item.github_url !== undefined) {
-        dbItem.github_url = item.github_url;
-        delete dbItem.github_url;
-    }
-    if (item.completed_date !== undefined) {
-        dbItem.completed_date = item.completed_date;
-        delete dbItem.completed_date;
-    }
+    // Map any camelCase fields to snake_case if they exist in the interface
+    // But since PortfolioItem interface currently uses snake_case for project_url etc.
+    // we don't need additional mapping unless we change the interface.
     return dbItem;
 }
 
@@ -580,7 +573,10 @@ export async function getPortfolio(status?: string): Promise<PortfolioItem[]> {
         if (status) query = query.eq('status', status);
         const { data, error } = await query;
         if (error) { console.error(error); return []; }
-        return data || [];
+        if (data && data.length > 0) {
+            console.log('DEBUG: Raw Portfolio Data Row 0:', JSON.stringify(data[0]));
+        }
+        return (data || []).map(mapPortfolioFromDB);
     }
     const portfolio = readData<PortfolioItem>(PORTFOLIO_FILE, []);
     if (status) return portfolio.filter(p => p.status === status);
@@ -614,8 +610,12 @@ export async function createPortfolioItem(item: Omit<PortfolioItem, 'id'>): Prom
 export async function updatePortfolioItem(id: number, item: Partial<PortfolioItem>): Promise<PortfolioItem | null> {
     if (isSupabaseEnabled()) {
         const dbItem = mapPortfolioToDB(item);
+        console.log('DEBUG: Updating Portfolio ID', id, 'with data:', JSON.stringify(dbItem));
         const { data, error } = await supabase.from('portfolio').update(dbItem).eq('id', id).select().single();
-        if (error) throw error;
+        if (error) {
+            console.error('Supabase updatePortfolioItem error:', error);
+            throw error;
+        }
         return mapPortfolioFromDB(data);
     }
     const portfolio = readData<PortfolioItem>(PORTFOLIO_FILE, []);
