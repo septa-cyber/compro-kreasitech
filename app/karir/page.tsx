@@ -64,6 +64,13 @@ export default function KarirPage() {
     // Track active job for mobile click state
     const [selectedJobId, setSelectedJobId] = useState<number | null>(null);
 
+    // Filter toggle for mobile
+    const [isFilterOpen, setIsFilterOpen] = useState(false);
+    // Track if filter is maximized or minimized (half screen)
+    const [isFilterMaximized, setIsFilterMaximized] = useState(false);
+    const [dragStartY, setDragStartY] = useState<number | null>(null);
+    const [dragCurrentY, setDragCurrentY] = useState<number | null>(null);
+
     // Applied Filters state (used for actual data filtering)
     const [appliedFilters, setAppliedFilters] = useState({
         searchJob: "",
@@ -154,6 +161,58 @@ export default function KarirPage() {
         }
     };
 
+    // Drag handlers for the bottom sheet
+    const handleDragStart = (e: React.TouchEvent | React.MouseEvent) => {
+        const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY;
+        setDragStartY(clientY);
+        setDragCurrentY(0);
+    };
+
+    const handleDragMove = (e: React.TouchEvent | React.MouseEvent) => {
+        if (dragStartY === null) return;
+        const clientY = 'touches' in e ? e.touches[0].clientY : (e as React.MouseEvent).clientY;
+        const deltaY = clientY - dragStartY;
+
+        // If maximized, only allow dragging down (deltaY > 0)
+        if (isFilterMaximized && deltaY < 0) return;
+
+        setDragCurrentY(deltaY);
+    };
+
+    const handleDragEnd = () => {
+        if (dragStartY === null || dragCurrentY === null) {
+            setDragStartY(null);
+            setDragCurrentY(null);
+            return;
+        }
+
+        const threshold = 50; // pixels to trigger state change
+
+        if (isFilterMaximized) {
+            // Dragged down from max
+            if (dragCurrentY > threshold * 2) {
+                // Dragged far down, close
+                setIsFilterOpen(false);
+                setIsFilterMaximized(false);
+            } else if (dragCurrentY > threshold) {
+                // Dragged slightly down, minimize
+                setIsFilterMaximized(false);
+            }
+        } else {
+            // If dragging from half size
+            if (dragCurrentY < -threshold) {
+                // Dragged up
+                setIsFilterMaximized(true);
+            } else if (dragCurrentY > threshold) {
+                // Dragged down
+                setIsFilterOpen(false);
+            }
+        }
+
+        setDragStartY(null);
+        setDragCurrentY(null);
+    };
+
     const getTypeColor = (type: string) => {
         if (!type) return 'bg-gray-400 !text-white';
         const t = type.toLowerCase();
@@ -240,7 +299,7 @@ export default function KarirPage() {
     const getPercent = (value: number) => Math.round(((value - minSalary) / (maxSalary - minSalary)) * 100);
 
     return (
-        <div className="bg-[#f8f9fc] min-h-screen">
+        <div className="bg-[#F4F4F7] min-h-screen">
             <Navbar />
 
             {/* Main Content Container */}
@@ -248,168 +307,227 @@ export default function KarirPage() {
                 <div className="flex flex-col lg:flex-row gap-8">
 
                     {/* Sidebar Filters */}
-                    <aside className="w-full lg:w-64 flex-shrink-0">
-                        <div className="sticky top-24">
-                            <div className="pb-4 bg-white rounded-lg border border-gray-200 inline-flex flex-col justify-start items-center gap-4 w-full">
-                                {/* Header */}
-                                <div className="w-full py-4 border-b border-gray-200 inline-flex justify-center items-center gap-2.5">
-                                    <div className="flex-1 px-4 flex justify-center items-center gap-2.5">
-                                        <div className="flex-1 justify-start font-body font-medium">Filters</div>
-                                        {hasActiveFilters && (
-                                            <button
-                                                onClick={handleClearAll}
-                                                className="flex-1 text-right justify-start text-violet-600 font-body-xs font-medium hover:text-violet-700 cursor-pointer"
-                                            >
-                                                Clear All
-                                            </button>
-                                        )}
-                                    </div>
-                                </div>
+                    <aside
+                        className={`
+                            fixed inset-0 z-[1050] bg-black/50 transition-opacity duration-300
+                            ${isFilterOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}
+                            lg:relative lg:inset-auto lg:bg-transparent lg:opacity-100 lg:pointer-events-auto lg:z-[1] lg:w-64 flex-shrink-0 lg:block
+                        `}
+                        onClick={() => { setIsFilterOpen(false); setIsFilterMaximized(false); }}
+                    >
+                        <div
+                            className={`
+                                absolute bottom-0 left-0 w-full bg-white lg:bg-transparent shadow-[0_-8px_30px_rgb(0,0,0,0.12)] lg:shadow-none flex flex-col lg:block
+                                lg:static lg:h-auto lg:w-full lg:max-w-none lg:translate-y-0
+                                rounded-t-2xl lg:rounded-none lg:overflow-visible
+                                ${isFilterOpen ? 'translate-y-0' : 'translate-y-full'}
+                            `}
+                            style={{
+                                height: isFilterMaximized
+                                    ? (dragCurrentY !== null && dragCurrentY > 0 ? `calc(100dvh - ${dragCurrentY}px)` : '100dvh')
+                                    : (dragCurrentY !== null ? `calc(60vh - ${dragCurrentY}px)` : '60vh'),
+                                transition: dragStartY !== null
+                                    ? 'none'
+                                    : 'height 0.4s cubic-bezier(0.32,0.72,0,1), transform 0.4s cubic-bezier(0.32,0.72,0,1), border-radius 0.4s cubic-bezier(0.32,0.72,0,1)'
+                            }}
+                            onClick={e => e.stopPropagation()}
+                        >
+                            {/* Drag Handle for Mobile */}
+                            <div
+                                className="lg:hidden w-full flex justify-center items-center pt-4 pb-2 cursor-grab active:cursor-grabbing touch-none shrink-0"
+                                onTouchStart={handleDragStart}
+                                onTouchMove={handleDragMove}
+                                onTouchEnd={handleDragEnd}
+                                onMouseDown={handleDragStart}
+                                onMouseMove={dragStartY !== null ? handleDragMove : undefined}
+                                onMouseUp={handleDragEnd}
+                                onMouseLeave={handleDragEnd}
+                            >
+                                <div className="w-12 h-1.5 bg-gray-300 rounded-full" />
+                            </div>
 
-                                <div className="flex flex-col justify-start items-start gap-6 w-full px-4">
-                                    {/* Date Posted */}
-                                    <div className="self-stretch flex flex-col justify-start items-start gap-4">
-                                        <div className="self-stretch justify-start font-body font-medium">Date Posted</div>
-                                        <div className="relative w-full h-12 rounded-lg border border-gray-200 inline-flex justify-start items-center gap-2.5 bg-white">
-                                            <select
-                                                value={datePosted}
-                                                onChange={(e) => setDatePosted(e.target.value)}
-                                                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10 appearance-none pl-4 pr-10"
-                                            >
-                                                <option value="Anytime">Anytime</option>
-                                                <option value="Last 24 Hours">Last 24 Hours</option>
-                                                <option value="Last 3 Days">Last 3 Days</option>
-                                                <option value="Last 7 Days">Last 7 Days</option>
-                                            </select>
-
-                                            <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-gray-900">
-                                                <i className="fas fa-chevron-down text-xs"></i>
-                                            </div>
-
-                                            <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                                                <span className="font-body-xs">{datePosted}</span>
+                            <div className="flex-1 overflow-y-auto lg:overflow-visible custom-scrollbar">
+                                <div className="lg:sticky lg:top-24">
+                                    <div className={`pb-8 bg-white lg:rounded-lg border-0 lg:border border-gray-200 inline-flex flex-col justify-start items-center gap-4 w-full lg:min-h-0 rounded-t-2xl lg:rounded-none ${isFilterMaximized ? 'pt-4' : ''} lg:pt-0`}>
+                                        {/* Header */}
+                                        <div className="w-full py-4 border-b border-gray-200 inline-flex justify-center items-center gap-2.5">
+                                            <div className="flex-1 px-4 flex justify-between items-center gap-2.5">
+                                                <div className="flex-1 justify-start font-body font-medium">Filters</div>
+                                                <div className="flex-1 lg:flex-none flex justify-end items-center gap-3">
+                                                    {hasActiveFilters && (
+                                                        <button
+                                                            onClick={handleClearAll}
+                                                            className="text-right justify-start text-violet-600 font-body-xs font-medium hover:text-violet-700 cursor-pointer"
+                                                        >
+                                                            Clear All
+                                                        </button>
+                                                    )}
+                                                    <button
+                                                        onClick={() => setIsFilterOpen(false)}
+                                                        className="lg:hidden w-7 h-7 flex items-center justify-center text-gray-500 hover:text-gray-800 bg-gray-100 rounded-full shrink-0"
+                                                    >
+                                                        <i className="fas fa-times"></i>
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
 
-                                    <div className="self-stretch h-px bg-gray-200" />
+                                        <div className="flex flex-col justify-start items-start gap-6 w-full px-4">
+                                            {/* Date Posted */}
+                                            <div className="self-stretch flex flex-col justify-start items-start gap-4">
+                                                <div className="self-stretch justify-start font-body font-medium">Date Posted</div>
+                                                <div className="relative w-full h-12 rounded-lg border border-gray-200 inline-flex justify-start items-center gap-2.5 bg-white">
+                                                    <select
+                                                        value={datePosted}
+                                                        onChange={(e) => setDatePosted(e.target.value)}
+                                                        className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10 appearance-none pl-4 pr-10"
+                                                    >
+                                                        <option value="Anytime">Anytime</option>
+                                                        <option value="Last 24 Hours">Last 24 Hours</option>
+                                                        <option value="Last 3 Days">Last 3 Days</option>
+                                                        <option value="Last 7 Days">Last 7 Days</option>
+                                                    </select>
 
-                                    {/* Job Type */}
-                                    <div className="w-full flex flex-col justify-start items-start gap-4">
-                                        <div className="justify-start font-body font-medium">Job Type</div>
-                                        {[
-                                            { id: 'fulltime', label: 'Full-time' },
-                                            { id: 'parttime', label: 'Part-time' },
-                                            { id: 'contract', label: 'Contract' },
-                                            { id: 'freelance', label: 'Freelance' },
-                                            { id: 'internship', label: 'Internship' }
-                                        ].map((type) => (
-                                            <label key={type.id} className="self-stretch h-5 inline-flex justify-start items-center gap-2 cursor-pointer group">
-                                                <input
-                                                    type="checkbox"
-                                                    checked={jobTypes[type.id as keyof typeof jobTypes]}
-                                                    onChange={(e) => setJobTypes({ ...jobTypes, [type.id]: e.target.checked })}
-                                                    className="hidden"
-                                                />
-                                                {jobTypes[type.id as keyof typeof jobTypes] ? (
-                                                    <div className="w-5 h-5 bg-violet-800 rounded border border-violet-800 flex justify-center items-center gap-2.5 overflow-hidden">
-                                                        <i className="fas fa-check text-white text-[8px]"></i>
+                                                    <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-gray-900">
+                                                        <i className="fas fa-chevron-down text-xs"></i>
                                                     </div>
-                                                ) : (
-                                                    <div className="w-5 h-5 rounded border border-gray-200 group-hover:border-violet-400 transition-colors" />
-                                                )}
-                                                <div className="text-center justify-start font-body-sm">{type.label}</div>
-                                            </label>
-                                        ))}
-                                    </div>
 
-                                    <div className="self-stretch h-px bg-gray-200" />
-
-                                    {/* Salary Range */}
-                                    <div className="self-stretch justify-start font-body font-medium">Salary Range</div>
-                                    <div className="self-stretch flex flex-col justify-start items-start gap-6 relative h-16">
-                                        {/* Slider Container */}
-                                        <div className="relative w-full h-1 bg-gray-200 rounded-sm mt-2">
-                                            {/* Active Rail */}
-                                            <div
-                                                className="absolute h-full bg-violet-600 rounded-sm z-10"
-                                                style={{
-                                                    left: `${getPercent(salaryRange[0])}%`,
-                                                    width: `${getPercent(salaryRange[1]) - getPercent(salaryRange[0])}%`
-                                                }}
-                                            />
-
-                                            {/* Min Slider */}
-                                            <input
-                                                type="range"
-                                                min={minSalary}
-                                                max={maxSalary}
-                                                step="500"
-                                                value={salaryRange[0]}
-                                                onChange={(e) => handleSalaryChange(0, Math.min(Number(e.target.value), salaryRange[1] - 500))}
-                                                className="absolute w-full h-full opacity-0 z-20 cursor-pointer pointer-events-none [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:appearance-none [-webkit-appearance:none] bg-transparent"
-                                            />
-                                            {/* Max Slider */}
-                                            <input
-                                                type="range"
-                                                min={minSalary}
-                                                max={maxSalary}
-                                                step="500"
-                                                value={salaryRange[1]}
-                                                onChange={(e) => handleSalaryChange(1, Math.max(Number(e.target.value), salaryRange[0] + 500))}
-                                                className="absolute w-full h-full opacity-0 z-20 cursor-pointer pointer-events-none [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:appearance-none [-webkit-appearance:none] bg-transparent"
-                                            />
-
-                                            {/* Thumb Visuals */}
-                                            <div
-                                                className="absolute w-3 h-3 bg-white border-2 border-violet-600 rounded-full z-10 top-1/2 -translate-y-1/2 -ml-1.5 flex items-center justify-center pointer-events-none"
-                                                style={{ left: `${getPercent(salaryRange[0])}%` }}
-                                            >
-                                                <div className="w-1.5 h-1.5 bg-violet-600 rounded-full" />
-                                            </div>
-                                            <div
-                                                className="absolute w-3 h-3 bg-white border-2 border-violet-600 rounded-full z-10 top-1/2 -translate-y-1/2 -ml-1.5 flex items-center justify-center pointer-events-none"
-                                                style={{ left: `${getPercent(salaryRange[1])}%` }}
-                                            >
-                                                <div className="w-1.5 h-1.5 bg-violet-600 rounded-full" />
-                                            </div>
-                                        </div>
-
-                                        {/* Labels */}
-                                        <div className="w-full flex justify-between items-center mt-3">
-                                            <div className="text-left font-body-xs font-medium text-gray-500">{salaryRange[0].toLocaleString()} K</div>
-                                            <div className="text-right font-body-xs font-medium text-gray-500">{salaryRange[1].toLocaleString()} K</div>
-                                        </div>
-                                    </div>
-
-                                    <div className="self-stretch h-px bg-gray-200" />
-
-                                    {/* Location Preference */}
-                                    <div className="w-full flex flex-col justify-start items-start gap-4">
-                                        <div className="justify-start font-body font-medium">Location Preference</div>
-                                        {[
-                                            { id: 'remote', label: 'Remote' },
-                                            { id: 'wfo', label: 'WFO (Office)' },
-                                            { id: 'wfh', label: 'WFH (Home)' },
-                                            { id: 'hybrid', label: 'Hybrid' }
-                                        ].map((loc) => (
-                                            <label key={loc.id} className="self-stretch h-5 inline-flex justify-start items-center gap-2 cursor-pointer group">
-                                                <input
-                                                    type="checkbox"
-                                                    checked={locationPrefs[loc.id as keyof typeof locationPrefs]}
-                                                    onChange={(e) => setLocationPrefs({ ...locationPrefs, [loc.id]: e.target.checked })}
-                                                    className="hidden"
-                                                />
-                                                {locationPrefs[loc.id as keyof typeof locationPrefs] ? (
-                                                    <div className="w-5 h-5 bg-violet-800 rounded border border-violet-800 flex justify-center items-center gap-2.5 overflow-hidden">
-                                                        <i className="fas fa-check text-white text-[8px]"></i>
+                                                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                                        <span className="font-body-xs">{datePosted}</span>
                                                     </div>
-                                                ) : (
-                                                    <div className="w-5 h-5 rounded border border-gray-200 group-hover:border-violet-400 transition-colors" />
-                                                )}
-                                                <div className="text-center justify-start font-body-sm">{loc.label}</div>
-                                            </label>
-                                        ))}
+                                                </div>
+                                            </div>
+
+                                            <div className="self-stretch h-px bg-gray-200" />
+
+                                            {/* Job Type */}
+                                            <div className="w-full flex flex-col justify-start items-start gap-4">
+                                                <div className="justify-start font-body font-medium">Job Type</div>
+                                                {[
+                                                    { id: 'fulltime', label: 'Full-time' },
+                                                    { id: 'parttime', label: 'Part-time' },
+                                                    { id: 'contract', label: 'Contract' },
+                                                    { id: 'freelance', label: 'Freelance' },
+                                                    { id: 'internship', label: 'Internship' }
+                                                ].map((type) => (
+                                                    <label key={type.id} className="self-stretch h-5 inline-flex justify-start items-center gap-2 cursor-pointer group">
+                                                        <input
+                                                            type="checkbox"
+                                                            checked={jobTypes[type.id as keyof typeof jobTypes]}
+                                                            onChange={(e) => setJobTypes({ ...jobTypes, [type.id]: e.target.checked })}
+                                                            className="hidden"
+                                                        />
+                                                        {jobTypes[type.id as keyof typeof jobTypes] ? (
+                                                            <div className="w-5 h-5 bg-violet-800 rounded border border-violet-800 flex justify-center items-center gap-2.5 overflow-hidden">
+                                                                <i className="fas fa-check text-white text-[8px]"></i>
+                                                            </div>
+                                                        ) : (
+                                                            <div className="w-5 h-5 rounded border border-gray-200 group-hover:border-violet-400 transition-colors" />
+                                                        )}
+                                                        <div className="text-center justify-start font-body-sm">{type.label}</div>
+                                                    </label>
+                                                ))}
+                                            </div>
+
+                                            <div className="self-stretch h-px bg-gray-200" />
+
+                                            {/* Salary Range */}
+                                            <div className="self-stretch justify-start font-body font-medium">Salary Range</div>
+                                            <div className="self-stretch flex flex-col justify-start items-start gap-6 relative h-16">
+                                                {/* Slider Container */}
+                                                <div className="relative w-full h-1 bg-gray-200 rounded-sm mt-2">
+                                                    {/* Active Rail */}
+                                                    <div
+                                                        className="absolute h-full bg-violet-600 rounded-sm z-10"
+                                                        style={{
+                                                            left: `${getPercent(salaryRange[0])}%`,
+                                                            width: `${getPercent(salaryRange[1]) - getPercent(salaryRange[0])}%`
+                                                        }}
+                                                    />
+
+                                                    {/* Min Slider */}
+                                                    <input
+                                                        type="range"
+                                                        min={minSalary}
+                                                        max={maxSalary}
+                                                        step="500"
+                                                        value={salaryRange[0]}
+                                                        onChange={(e) => handleSalaryChange(0, Math.min(Number(e.target.value), salaryRange[1] - 500))}
+                                                        className="absolute w-full h-full opacity-0 z-20 cursor-pointer pointer-events-none [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:appearance-none [-webkit-appearance:none] bg-transparent"
+                                                    />
+                                                    {/* Max Slider */}
+                                                    <input
+                                                        type="range"
+                                                        min={minSalary}
+                                                        max={maxSalary}
+                                                        step="500"
+                                                        value={salaryRange[1]}
+                                                        onChange={(e) => handleSalaryChange(1, Math.max(Number(e.target.value), salaryRange[0] + 500))}
+                                                        className="absolute w-full h-full opacity-0 z-20 cursor-pointer pointer-events-none [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:appearance-none [-webkit-appearance:none] bg-transparent"
+                                                    />
+
+                                                    {/* Thumb Visuals */}
+                                                    <div
+                                                        className="absolute w-3 h-3 bg-white border-2 border-violet-600 rounded-full z-10 top-1/2 -translate-y-1/2 -ml-1.5 flex items-center justify-center pointer-events-none"
+                                                        style={{ left: `${getPercent(salaryRange[0])}%` }}
+                                                    >
+                                                        <div className="w-1.5 h-1.5 bg-violet-600 rounded-full" />
+                                                    </div>
+                                                    <div
+                                                        className="absolute w-3 h-3 bg-white border-2 border-violet-600 rounded-full z-10 top-1/2 -translate-y-1/2 -ml-1.5 flex items-center justify-center pointer-events-none"
+                                                        style={{ left: `${getPercent(salaryRange[1])}%` }}
+                                                    >
+                                                        <div className="w-1.5 h-1.5 bg-violet-600 rounded-full" />
+                                                    </div>
+                                                </div>
+
+                                                {/* Labels */}
+                                                <div className="w-full flex justify-between items-center mt-3">
+                                                    <div className="text-left font-body-xs font-medium text-gray-500">{salaryRange[0].toLocaleString('id-ID')} K</div>
+                                                    <div className="text-right font-body-xs font-medium text-gray-500">{salaryRange[1].toLocaleString('id-ID')} K</div>
+                                                </div>
+                                            </div>
+
+                                            <div className="self-stretch h-px bg-gray-200" />
+
+                                            {/* Location Preference */}
+                                            <div className="w-full flex flex-col justify-start items-start gap-4">
+                                                <div className="justify-start font-body font-medium">Location Preference</div>
+                                                {[
+                                                    { id: 'remote', label: 'Remote' },
+                                                    { id: 'wfo', label: 'WFO (Office)' },
+                                                    { id: 'wfh', label: 'WFH (Home)' },
+                                                    { id: 'hybrid', label: 'Hybrid' }
+                                                ].map((loc) => (
+                                                    <label key={loc.id} className="self-stretch h-5 inline-flex justify-start items-center gap-2 cursor-pointer group">
+                                                        <input
+                                                            type="checkbox"
+                                                            checked={locationPrefs[loc.id as keyof typeof locationPrefs]}
+                                                            onChange={(e) => setLocationPrefs({ ...locationPrefs, [loc.id]: e.target.checked })}
+                                                            className="hidden"
+                                                        />
+                                                        {locationPrefs[loc.id as keyof typeof locationPrefs] ? (
+                                                            <div className="w-5 h-5 bg-violet-800 rounded border border-violet-800 flex justify-center items-center gap-2.5 overflow-hidden">
+                                                                <i className="fas fa-check text-white text-[8px]"></i>
+                                                            </div>
+                                                        ) : (
+                                                            <div className="w-5 h-5 rounded border border-gray-200 group-hover:border-violet-400 transition-colors" />
+                                                        )}
+                                                        <div className="text-center justify-start font-body-sm">{loc.label}</div>
+                                                    </label>
+                                                ))}
+                                            </div>
+
+                                            {/* Mobile Apply Button */}
+                                            <div className="lg:hidden w-full px-4 mt-2 mb-4">
+                                                <button
+                                                    onClick={() => { setIsFilterOpen(false); setIsFilterMaximized(false); handleFindJobs(); }}
+                                                    className="w-full py-3 bg-violet-600 text-white rounded-lg font-body-sm font-medium hover:bg-violet-700 transition"
+                                                >
+                                                    Apply Filters
+                                                </button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -449,17 +567,33 @@ export default function KarirPage() {
                                         />
                                     </div>
                                 </div>
-                                <button onClick={handleFindJobs} className="w-full md:w-auto px-8 py-3.5 bg-violet-600 rounded-lg flex justify-center items-center gap-2.5 hover:bg-violet-700 transition-colors cursor-pointer">
-                                    <div className="justify-start font-btn text-gray-100 pointer-events-none">Find Jobs</div>
+                                <button
+                                    onClick={handleFindJobs}
+                                    disabled={!hasActiveFilters}
+                                    className={`w-full md:w-auto px-8 py-3.5 rounded-lg flex justify-center items-center gap-2.5 transition-colors ${hasActiveFilters
+                                        ? "bg-violet-600 hover:bg-violet-700 cursor-pointer text-gray-100"
+                                        : "bg-gray-200 text-gray-400 cursor-not-allowed"
+                                        }`}
+                                >
+                                    <div className="justify-start font-btn pointer-events-none">Find Jobs</div>
                                 </button>
                             </div>
                         </div>
 
-                        {/* Top Result Count */}
-                        <div className="text-right mb-4">
-                            <p className="font-body-sm text-gray-400">
-                                Found {filteredJobs.length} Related Jobs
-                            </p>
+                        {/* Top Result Count & Mobile Filter Toggle */}
+                        <div className="flex justify-between items-center mb-4">
+                            <button
+                                onClick={() => setIsFilterOpen(true)}
+                                className="lg:hidden flex border border-gray-200 bg-white items-center gap-2 px-4 py-2 rounded-lg text-gray-700 font-body-sm hover:bg-gray-50 transition-colors"
+                            >
+                                <i className="fas fa-filter"></i>
+                                Filters {hasActiveFilters && <span className="w-2 h-2 rounded-full bg-violet-600"></span>}
+                            </button>
+                            <div className="text-right flex-1">
+                                <p className="font-body-sm text-gray-400">
+                                    Found {filteredJobs.length} Related Jobs
+                                </p>
+                            </div>
                         </div>
 
                         {/* Job Lists */}
