@@ -192,8 +192,8 @@ export default function UsersPage() {
                                     </td>
                                     <td className="px-6 py-4">
                                         <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${user.role === 'super_admin'
-                                                ? 'bg-amber-100 text-amber-700'
-                                                : 'bg-emerald-100 text-emerald-700'
+                                            ? 'bg-amber-100 text-amber-700'
+                                            : 'bg-emerald-100 text-emerald-700'
                                             }`}>
                                             <FaUserShield size={10} />
                                             {user.role === 'super_admin' ? 'Super Admin' : 'Admin'}
@@ -210,24 +210,30 @@ export default function UsersPage() {
                                     </td>
                                     <td className="px-6 py-4 text-right">
                                         <div className="flex items-center justify-end gap-2">
-                                            <button
-                                                onClick={() => openEditModal(user)}
-                                                className="p-2 text-gray-400 hover:text-violet-600 hover:bg-violet-50 rounded-lg transition-all"
-                                                title="Edit User"
-                                            >
-                                                <FaEdit size={14} />
-                                            </button>
-                                            <button
-                                                onClick={() => handleDeleteUser(user.id)}
-                                                disabled={user.id === currentUser.id}
-                                                className={`p-2 rounded-lg transition-all ${user.id === currentUser.id
-                                                        ? 'text-gray-200 cursor-not-allowed'
-                                                        : 'text-gray-400 hover:text-red-600 hover:bg-red-50'
-                                                    }`}
-                                                title={user.id === currentUser.id ? "Tidak bisa menghapus diri sendiri" : "Hapus User"}
-                                            >
-                                                <FaTrash size={14} />
-                                            </button>
+                                            {user.email !== 'admin@kreasi.tech' ? (
+                                                <>
+                                                    <button
+                                                        onClick={() => openEditModal(user)}
+                                                        className="p-2 text-gray-400 hover:text-violet-600 hover:bg-violet-50 rounded-lg transition-all"
+                                                        title="Edit User"
+                                                    >
+                                                        <FaEdit size={14} />
+                                                    </button>
+                                                    <button
+                                                        onClick={() => handleDeleteUser(user.id)}
+                                                        disabled={user.id === currentUser.id}
+                                                        className={`p-2 rounded-lg transition-all ${user.id === currentUser.id
+                                                            ? 'text-gray-200 cursor-not-allowed'
+                                                            : 'text-gray-400 hover:text-red-600 hover:bg-red-50'
+                                                            }`}
+                                                        title={user.id === currentUser.id ? "Tidak bisa menghapus diri sendiri" : "Hapus User"}
+                                                    >
+                                                        <FaTrash size={14} />
+                                                    </button>
+                                                </>
+                                            ) : (
+                                                <span className="text-[10px] font-bold text-amber-500 bg-amber-50 px-2 py-0.5 rounded border border-amber-100 uppercase tracking-tighter">System Protected</span>
+                                            )}
                                         </div>
                                     </td>
                                 </tr>

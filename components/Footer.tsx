@@ -9,7 +9,7 @@ export default function Footer() {
     const settings = useSettings();
 
     return (
-        <footer className="w-full bg-[#F4F4F7] pb-12 pt-0 px-4">
+        <footer className="w-full bg-[#F4F4F7] pb-12 pt-16 px-4 relative z-10">
             <div className="w-full max-w-[1400px] mx-auto bg-white rounded-lg p-8 lg:p-12 shadow-sm flex flex-col justify-start items-start gap-8">
                 <div className="w-full flex flex-col lg:flex-row justify-between items-center gap-6">
                     <div className="flex items-center gap-2">

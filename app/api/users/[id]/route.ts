@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
-import { updateUser, deleteUser } from '@/lib/db';
+import { updateUser, deleteUser, getUserById } from '@/lib/db';
 import { getCurrentUser, hashPassword } from '@/lib/auth';
+
+const PROTECTED_EMAIL = 'admin@kreasi.tech';
 
 export async function PUT(
     request: Request,
@@ -13,6 +15,12 @@ export async function PUT(
     }
 
     try {
+        // Check if TARGET user is protected
+        const targetUser = await getUserById(id);
+        if (targetUser && targetUser.email === PROTECTED_EMAIL) {
+            return NextResponse.json({ error: 'Primary admin cannot be edited' }, { status: 403 });
+        }
+
         const body = await request.json();
         const { password, ...updateData } = body;
 
@@ -49,6 +57,12 @@ export async function DELETE(
     }
 
     try {
+        // Check if TARGET user is protected
+        const targetUser = await getUserById(id);
+        if (targetUser && targetUser.email === PROTECTED_EMAIL) {
+            return NextResponse.json({ error: 'Primary admin cannot be deleted' }, { status: 403 });
+        }
+
         const success = await deleteUser(id);
         if (!success) {
             return NextResponse.json({ error: 'User not found' }, { status: 404 });

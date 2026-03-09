@@ -8,6 +8,7 @@ import Breadcrumb from "@/components/ui/Breadcrumb";
 interface Job {
     id: number;
     title: string;
+    position?: string;
     company: string;
     icon: string;
     iconBg: string;
@@ -303,7 +304,7 @@ export default function KarirPage() {
             <Navbar />
 
             {/* Main Content Container */}
-            <div className="max-w-[1250px] mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20">
+            <div className="max-w-[1250px] mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-48">
                 <div className="flex flex-col lg:flex-row gap-8">
 
                     {/* Sidebar Filters */}
@@ -347,8 +348,8 @@ export default function KarirPage() {
                             </div>
 
                             <div className="flex-1 overflow-y-auto lg:overflow-visible custom-scrollbar">
-                                <div className="lg:sticky lg:top-24">
-                                    <div className={`pb-8 bg-white lg:rounded-lg border-0 lg:border border-gray-200 inline-flex flex-col justify-start items-center gap-4 w-full lg:min-h-0 rounded-t-2xl lg:rounded-none ${isFilterMaximized ? 'pt-4' : ''} lg:pt-0`}>
+                                <div className="lg:sticky lg:top-24 mb-12">
+                                    <div className={`pb-12 bg-white lg:rounded-lg border-0 lg:border border-gray-200 inline-flex flex-col justify-start items-center gap-4 w-full lg:min-h-0 rounded-t-2xl lg:rounded-none ${isFilterMaximized ? 'pt-4' : ''} lg:pt-0`}>
                                         {/* Header */}
                                         <div className="w-full py-4 border-b border-gray-200 inline-flex justify-center items-center gap-2.5">
                                             <div className="flex-1 px-4 flex justify-between items-center gap-2.5">
@@ -535,7 +536,7 @@ export default function KarirPage() {
                     </aside>
 
                     {/* Main Content Area */}
-                    <div className="flex-1">
+                    <div className="flex-1 min-h-[400px] lg:min-h-[800px]">
                         {/* Search Bar */}
                         <div className="w-full p-4 bg-white rounded-lg border border-gray-200 flex flex-col justify-start items-start gap-4 mb-6">
                             <div className="w-full flex flex-col md:flex-row justify-between items-center gap-4">
@@ -633,6 +634,14 @@ export default function KarirPage() {
                                                         data-[active=true]:text-white transition-colors duration-500">
                                                         Posted {job.postedTime}
                                                     </div>
+                                                    {job.position && (
+                                                        <>
+                                                            <div className="w-1 h-1 rounded-full bg-gray-300 group-hover:bg-white data-[active=true]:bg-white transition-colors duration-500" />
+                                                            <div className="font-body-xs text-gray-900 group-hover:text-white data-[active=true]:text-white transition-colors duration-500">
+                                                                {job.position}
+                                                            </div>
+                                                        </>
+                                                    )}
                                                     <div className="w-1 h-1 rounded-full
                                                         bg-gray-300 group-hover:bg-white
                                                         data-[active=true]:bg-white transition-colors duration-500" />
