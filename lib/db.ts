@@ -404,11 +404,19 @@ export async function deleteTestimonial(id: number): Promise<boolean> {
 
 // --- User Operations ---
 
+function mapUserFromDB(row: any): any {
+    if (!row) return null;
+    return {
+        ...row,
+        createdAt: row.created_at || row.createdAt
+    };
+}
+
 export async function getUserByEmail(email: string): Promise<any | null> {
     if (isSupabaseEnabled()) {
         const { data, error } = await supabase.from('users').select('*').eq('email', email).single();
         if (error) return null;
-        return data;
+        return mapUserFromDB(data);
     }
     // JSON
     try {
@@ -425,7 +433,7 @@ export async function getUserById(id: string): Promise<any | null> {
     if (isSupabaseEnabled()) {
         const { data, error } = await supabase.from('users').select('*').eq('id', id).single();
         if (error) return null;
-        return data;
+        return mapUserFromDB(data);
     }
     // JSON
     try {
@@ -442,7 +450,7 @@ export async function getUsers(): Promise<any[]> {
     if (isSupabaseEnabled()) {
         const { data, error } = await supabase.from('users').select('*').order('created_at', { ascending: false });
         if (error) { console.error(error); return []; }
-        return data || [];
+        return (data || []).map(mapUserFromDB);
     }
     // JSON
     try {

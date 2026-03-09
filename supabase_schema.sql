@@ -4,8 +4,8 @@ create table users (
   id uuid default gen_random_uuid() primary key,
   email text unique not null,
   password text not null,
-  name text,
-  role text default 'user',
+  name text not null,
+  role text default 'admin',
   created_at timestamp with time zone default timezone('utc'::text, now()) not null
 );
 
