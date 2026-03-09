@@ -4,14 +4,13 @@ import { getCurrentUser, hashPassword } from '@/lib/auth';
 
 export async function PUT(
     request: Request,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
+    const { id } = await params;
     const currentUser = await getCurrentUser();
     if (!currentUser || currentUser.role !== 'super_admin') {
         return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
-
-    const { id } = params;
 
     try {
         const body = await request.json();
@@ -36,14 +35,13 @@ export async function PUT(
 
 export async function DELETE(
     _request: Request,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
+    const { id } = await params;
     const currentUser = await getCurrentUser();
     if (!currentUser || currentUser.role !== 'super_admin') {
         return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
-
-    const { id } = params;
 
     // Prevent deleting self
     if (id === currentUser.id) {
