@@ -11,6 +11,7 @@ export interface User {
     password: string;
     name: string;
     role: string;
+    avatar_url?: string;
     createdAt: string;
 }
 

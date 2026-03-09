@@ -129,10 +129,14 @@ export default function AdminHeader({ isSidebarCollapsed = false }: AdminHeaderP
                         }}
                         className="flex items-center gap-2 md:gap-3 p-1 md:p-2 rounded-lg hover:bg-gray-100 transition-colors"
                     >
-                        <div className="w-7 h-7 md:w-8 md:h-8 bg-violet-600 rounded-full flex items-center justify-center">
-                            <span className="text-white text-xs md:text-sm font-semibold">
-                                {user?.name?.charAt(0) || 'A'}
-                            </span>
+                        <div className="w-7 h-7 md:w-8 md:h-8 bg-violet-600 rounded-full flex items-center justify-center overflow-hidden">
+                            {user?.avatar_url ? (
+                                <img src={user.avatar_url} alt={user.name} className="w-full h-full object-cover" />
+                            ) : (
+                                <span className="text-white text-xs md:text-sm font-semibold">
+                                    {user?.name?.charAt(0) || 'A'}
+                                </span>
+                            )}
                         </div>
                         <div className="hidden md:block text-left">
                             <p className="text-sm font-medium text-gray-700 font-montserrat">{user?.name || 'Admin'}</p>
