@@ -3,10 +3,12 @@
 import React, { useState } from 'react';
 import { FaHeading, FaParagraph, FaSave, FaPlus, FaTrash, FaImage, FaCalendarAlt, FaLink, FaBoxOpen, FaLayerGroup } from 'react-icons/fa';
 import toast from 'react-hot-toast';
+import AdminViewToggle from '@/app/admin/components/AdminViewToggle';
 
 export default function ProductsSettingsPage() {
     // Section Header (Global for all product sections if applicable, or per section)
     const [sectionTitle, setSectionTitle] = useState('Produk Kami');
+    const [viewMode, setViewMode] = useState<'card' | 'table'>('table');
 
     // Product Items
     const [products, setProducts] = useState([
@@ -14,7 +16,7 @@ export default function ProductsSettingsPage() {
             id: 1,
             title: "HiTalent",
             date: "13 Nov 2025",
-            description: "Solusi cerdas untuk mengelola sumber daya manusia secara efisien â€” mulai dari absensi hingga penggajian.",
+            description: "Solusi cerdas untuk mengelola sumber daya manusia secara efisien — mulai dari absensi hingga penggajian.",
             image: "https://placehold.co/600x400",
             buttonText: "Lihat Detail",
             buttonLink: "#"
@@ -60,17 +62,20 @@ export default function ProductsSettingsPage() {
 
     return (
         <div className="space-y-6">
-            <div className="flex items-center justify-between">
-                <h1 className="text-xl md:text-3xl font-semibold font-montserrat text-text-light">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <h1 className="text-xl md:text-3xl font-semibold font-montserrat text-text-light leading-tight">
                     Pengaturan Produk
                 </h1>
-                <button
-                    onClick={handleSave}
-                    className="px-6 py-2.5 bg-violet-600 hover:bg-violet-700 text-white font-medium rounded-lg text-sm transition-colors shadow-glow flex items-center gap-2"
-                >
-                    <FaSave />
-                    <span>Simpan Perubahan</span>
-                </button>
+                <div className="flex items-center gap-3">
+                    <AdminViewToggle view={viewMode} onViewChange={setViewMode} />
+                    <button
+                        onClick={handleSave}
+                        className="px-6 py-2 bg-violet-600 text-white hover:bg-violet-700 rounded-lg transition-all flex items-center gap-2 shadow-md shadow-violet-200"
+                    >
+                        <FaSave size={14} />
+                        <span className="text-xs md:text-sm font-semibold font-montserrat">Simpan</span>
+                    </button>
+                </div>
             </div>
 
             <form onSubmit={handleSave} className="grid grid-cols-1 gap-6">
@@ -98,143 +103,263 @@ export default function ProductsSettingsPage() {
                 </div>
 
                 {/* Products List Management */}
-                <div className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
+                <div className="bg-white rounded-xl p-4 md:p-6 border border-gray-100 shadow-sm">
                     <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-100">
-                        <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 bg-violet-100 rounded-lg flex items-center justify-center text-violet-600">
-                                <FaBoxOpen size={20} />
+                        <div className="flex items-center gap-2 md:gap-3">
+                            <div className="w-8 h-8 md:w-10 md:h-10 bg-violet-100 rounded-lg flex items-center justify-center text-violet-600">
+                                <FaBoxOpen className="text-sm md:text-xl" />
                             </div>
-                            <h2 className="text-lg font-semibold text-text-light font-montserrat">Daftar Produk</h2>
+                            <h2 className="text-sm md:text-lg font-semibold text-text-light font-montserrat">Daftar Produk</h2>
                         </div>
                         <button
                             type="button"
                             onClick={handleAddProduct}
-                            className="px-4 py-2 bg-violet-50 text-violet-600 hover:bg-violet-100 rounded-lg text-xs font-semibold transition-colors flex items-center gap-2"
+                            className="px-3 md:px-4 py-2 bg-violet-50 text-violet-600 hover:bg-violet-100 rounded-lg text-xs font-semibold transition-colors flex items-center gap-2"
                         >
                             <FaPlus />
                             <span>Tambah Produk</span>
                         </button>
                     </div>
 
-                    <div className="space-y-8">
-                        {products.map((item, index) => (
-                            <div key={item.id} className="relative p-6 bg-[#F4F4F7] border border-gray-200 rounded-xl group hover:border-violet-300 transition-all">
-                                <button
-                                    type="button"
-                                    onClick={() => handleDeleteProduct(item.id)}
-                                    className="absolute top-4 right-4 text-gray-400 hover:text-red-500 p-2 rounded-md hover:bg-red-50 transition-colors opacity-0 group-hover:opacity-100"
-                                    title="Hapus Produk"
-                                >
-                                    <FaTrash size={16} />
-                                </button>
-
-                                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-                                    {/* Image Section */}
-                                    <div className="lg:col-span-4 space-y-3">
-                                        <label className="block text-[10px] font-medium text-gray-500 uppercase font-montserrat mb-1">
-                                            Gambar Produk (Preview & Upload)
-                                        </label>
-                                        <div className="relative aspect-video bg-gray-200 rounded-lg overflow-hidden border border-gray-300">
-                                            <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
-                                            <div className="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center">
-                                                <label className="cursor-pointer bg-white px-3 py-1.5 rounded-full text-xs font-medium text-gray-700 shadow-sm hover:text-violet-600 flex items-center gap-2">
-                                                    <FaImage /> Ganti Gambar
-                                                    <input
-                                                        type="file"
-                                                        accept="image/*"
-                                                        className="hidden"
-                                                        onChange={(e) => {
-                                                            const file = e.target.files?.[0];
-                                                            if (file) {
-                                                                const imageUrl = URL.createObjectURL(file);
-                                                                handleProductChange(item.id, 'image', imageUrl);
-                                                            }
-                                                        }}
-                                                    />
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <p className="text-[10px] text-gray-400 italic text-center">
-                                            Disarankan ukuran 1200x800px (Rasio 3:2)
-                                        </p>
-                                    </div>
-
-                                    {/* Content Section */}
-                                    <div className="lg:col-span-8 space-y-4">
-                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                            <div>
-                                                <label className="block text-[10px] font-medium text-gray-500 uppercase font-montserrat mb-1">
-                                                    Nama Produk
-                                                </label>
-                                                <div className="relative">
-                                                    <FaHeading className="absolute left-2 top-2 text-gray-400 text-xs" />
+                    {/* Desktop View */}
+                    <div className="max-[430px]:hidden">
+                        {viewMode === 'table' ? (
+                            <div className="overflow-x-auto">
+                                <table className="w-full text-left">
+                                    <thead className="bg-gray-50 border-b border-gray-100">
+                                        <tr>
+                                            <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase font-montserrat tracking-wider w-16">#</th>
+                                            <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase font-montserrat tracking-wider w-24">Gambar</th>
+                                            <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase font-montserrat tracking-wider">Nama Produk</th>
+                                            <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase font-montserrat tracking-wider">Tanggal/Tagline</th>
+                                            <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase font-montserrat tracking-wider">Deskripsi</th>
+                                            <th className="px-6 py-4 text-center text-xs font-semibold text-gray-500 uppercase font-montserrat tracking-wider">Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="divide-y divide-gray-100">
+                                        {products.map((item, index) => (
+                                            <tr key={item.id} className="hover:bg-gray-50 transition text-sm">
+                                                <td className="px-6 py-4 text-gray-400 font-medium">
+                                                    {index + 1}
+                                                </td>
+                                                <td className="px-6 py-4">
+                                                    <div className="w-16 h-10 bg-gray-100 rounded overflow-hidden border border-gray-200">
+                                                        <img src={item.image} className="w-full h-full object-cover" alt={item.title} />
+                                                    </div>
+                                                </td>
+                                                <td className="px-6 py-4">
                                                     <input
                                                         type="text"
                                                         value={item.title}
                                                         onChange={(e) => handleProductChange(item.id, 'title', e.target.value)}
-                                                        className="w-full pl-6 pr-2 py-1.5 bg-white border border-gray-200 rounded-lg text-sm font-semibold text-text-light focus:outline-none focus:ring-2 focus:ring-violet-500/50 transition-all"
+                                                        className="w-full bg-transparent border-none focus:ring-0 p-0 font-semibold text-gray-900 font-montserrat text-sm"
                                                     />
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <label className="block text-[10px] font-medium text-gray-500 uppercase font-montserrat mb-1">
-                                                    Tanggal / Tagline Kecil
-                                                </label>
-                                                <div className="relative">
-                                                    <FaCalendarAlt className="absolute left-2 top-2 text-gray-400 text-xs" />
+                                                </td>
+                                                <td className="px-6 py-4">
                                                     <input
                                                         type="text"
                                                         value={item.date}
                                                         onChange={(e) => handleProductChange(item.id, 'date', e.target.value)}
-                                                        className="w-full pl-6 pr-2 py-1.5 bg-white border border-gray-200 rounded-lg text-sm text-gray-600 focus:outline-none focus:ring-2 focus:ring-violet-500/50 transition-all"
+                                                        className="w-full bg-transparent border-none focus:ring-0 p-0 text-gray-600 text-xs"
+                                                    />
+                                                </td>
+                                                <td className="px-6 py-4 max-w-xs">
+                                                    <textarea
+                                                        value={item.description}
+                                                        onChange={(e) => handleProductChange(item.id, 'description', e.target.value)}
+                                                        rows={1}
+                                                        className="w-full bg-transparent border-none focus:ring-0 p-0 text-gray-500 text-xs resize-none"
+                                                    />
+                                                </td>
+                                                <td className="px-6 py-4">
+                                                    <div className="flex justify-center gap-2">
+                                                        <button
+                                                            type="button"
+                                                            onClick={() => handleDeleteProduct(item.id)}
+                                                            className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors border border-transparent hover:border-red-100 shadow-sm bg-white"
+                                                            title="Hapus"
+                                                        >
+                                                            <FaTrash size={14} />
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        ) : (
+                            <div className="space-y-8">
+                                {products.map((item, index) => (
+                                    <div key={item.id} className="relative p-6 bg-[#F4F4F7] border border-gray-200 rounded-xl group hover:border-violet-300 transition-all shadow-sm">
+                                        <button
+                                            type="button"
+                                            onClick={() => handleDeleteProduct(item.id)}
+                                            className="absolute top-4 right-4 text-gray-400 hover:text-red-500 p-2 rounded-md hover:bg-red-50 transition-colors opacity-0 group-hover:opacity-100"
+                                            title="Hapus Produk"
+                                        >
+                                            <FaTrash size={16} />
+                                        </button>
+
+                                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                                            {/* Image Section */}
+                                            <div className="lg:col-span-4 space-y-3">
+                                                <label className="block text-[10px] font-medium text-gray-500 uppercase font-montserrat mb-1">
+                                                    Gambar Produk (Preview & Upload)
+                                                </label>
+                                                <div className="relative aspect-video bg-gray-200 rounded-lg overflow-hidden border border-gray-300">
+                                                    <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
+                                                    <div className="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center">
+                                                        <label className="cursor-pointer bg-white px-3 py-1.5 rounded-full text-xs font-medium text-gray-700 shadow-sm hover:text-violet-600 flex items-center gap-2">
+                                                            <FaImage /> Ganti Gambar
+                                                            <input
+                                                                type="file"
+                                                                accept="image/*"
+                                                                className="hidden"
+                                                                onChange={(e) => {
+                                                                    const file = e.target.files?.[0];
+                                                                    if (file) {
+                                                                        const imageUrl = URL.createObjectURL(file);
+                                                                        handleProductChange(item.id, 'image', imageUrl);
+                                                                    }
+                                                                }}
+                                                            />
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <p className="text-[10px] text-gray-400 italic text-center">
+                                                    Disarankan ukuran 1200x800px (Rasio 3:2)
+                                                </p>
+                                            </div>
+
+                                            {/* Content Section */}
+                                            <div className="lg:col-span-8 space-y-4">
+                                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                                    <div>
+                                                        <label className="block text-[10px] font-medium text-gray-500 uppercase font-montserrat mb-1">
+                                                            Nama Produk
+                                                        </label>
+                                                        <div className="relative">
+                                                            <FaHeading className="absolute left-2 top-2 text-gray-400 text-xs" />
+                                                            <input
+                                                                type="text"
+                                                                value={item.title}
+                                                                onChange={(e) => handleProductChange(item.id, 'title', e.target.value)}
+                                                                className="w-full pl-6 pr-2 py-1.5 bg-white border border-gray-200 rounded-lg text-sm font-semibold text-text-light focus:outline-none focus:ring-2 focus:ring-violet-500/50 transition-all"
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <label className="block text-[10px] font-medium text-gray-500 uppercase font-montserrat mb-1">
+                                                            Tanggal / Tagline Kecil
+                                                        </label>
+                                                        <div className="relative">
+                                                            <FaCalendarAlt className="absolute left-2 top-2 text-gray-400 text-xs" />
+                                                            <input
+                                                                type="text"
+                                                                value={item.date}
+                                                                onChange={(e) => handleProductChange(item.id, 'date', e.target.value)}
+                                                                className="w-full pl-6 pr-2 py-1.5 bg-white border border-gray-200 rounded-lg text-sm text-gray-600 focus:outline-none focus:ring-2 focus:ring-violet-500/50 transition-all"
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div>
+                                                    <label className="block text-[10px] font-medium text-gray-500 uppercase font-montserrat mb-1">
+                                                        Deskripsi Lengkap
+                                                    </label>
+                                                    <textarea
+                                                        value={item.description}
+                                                        onChange={(e) => handleProductChange(item.id, 'description', e.target.value)}
+                                                        rows={4}
+                                                        className="w-full px-3 py-2 bg-white border border-gray-200 rounded-lg text-sm text-text-light leading-relaxed focus:outline-none focus:ring-2 focus:ring-violet-500/50 transition-all resize-none"
                                                     />
                                                 </div>
-                                            </div>
-                                        </div>
 
-                                        <div>
-                                            <label className="block text-[10px] font-medium text-gray-500 uppercase font-montserrat mb-1">
-                                                Deskripsi Lengkap
-                                            </label>
-                                            <textarea
-                                                value={item.description}
-                                                onChange={(e) => handleProductChange(item.id, 'description', e.target.value)}
-                                                rows={4}
-                                                className="w-full px-3 py-2 bg-white border border-gray-200 rounded-lg text-sm text-text-light leading-relaxed focus:outline-none focus:ring-2 focus:ring-violet-500/50 transition-all resize-none"
-                                            />
-                                        </div>
-
-                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                            <div>
-                                                <label className="block text-[10px] font-medium text-gray-500 uppercase font-montserrat mb-1">
-                                                    Teks Tombol CTA
-                                                </label>
-                                                <input
-                                                    type="text"
-                                                    value={item.buttonText}
-                                                    onChange={(e) => handleProductChange(item.id, 'buttonText', e.target.value)}
-                                                    className="w-full px-3 py-1.5 bg-white border border-gray-200 rounded-lg text-sm text-text-light focus:outline-none focus:ring-2 focus:ring-violet-500/50 transition-all"
-                                                />
-                                            </div>
-                                            <div>
-                                                <label className="block text-[10px] font-medium text-gray-500 uppercase font-montserrat mb-1">
-                                                    Link Tujuan
-                                                </label>
-                                                <div className="relative">
-                                                    <FaLink className="absolute left-2 top-2 text-gray-400 text-xs" />
-                                                    <input
-                                                        type="text"
-                                                        value={item.buttonLink}
-                                                        onChange={(e) => handleProductChange(item.id, 'buttonLink', e.target.value)}
-                                                        className="w-full pl-6 pr-2 py-1.5 bg-white border border-gray-200 rounded-lg text-sm text-blue-600 focus:outline-none focus:ring-2 focus:ring-violet-500/50 transition-all"
-                                                    />
+                                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                                    <div>
+                                                        <label className="block text-[10px] font-medium text-gray-500 uppercase font-montserrat mb-1">
+                                                            Teks Tombol CTA
+                                                        </label>
+                                                        <input
+                                                            type="text"
+                                                            value={item.buttonText}
+                                                            onChange={(e) => handleProductChange(item.id, 'buttonText', e.target.value)}
+                                                            className="w-full px-3 py-1.5 bg-white border border-gray-200 rounded-lg text-sm text-text-light focus:outline-none focus:ring-2 focus:ring-violet-500/50 transition-all"
+                                                        />
+                                                    </div>
+                                                    <div>
+                                                        <label className="block text-[10px] font-medium text-gray-500 uppercase font-montserrat mb-1">
+                                                            Link Tujuan
+                                                        </label>
+                                                        <div className="relative">
+                                                            <FaLink className="absolute left-2 top-2 text-gray-400 text-xs" />
+                                                            <input
+                                                                type="text"
+                                                                value={item.buttonLink}
+                                                                onChange={(e) => handleProductChange(item.id, 'buttonLink', e.target.value)}
+                                                                className="w-full pl-6 pr-2 py-1.5 bg-white border border-gray-200 rounded-lg text-sm text-blue-600 focus:outline-none focus:ring-2 focus:ring-violet-500/50 transition-all"
+                                                            />
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Mobile View - Always Cards */}
+                    <div className="max-[430px]:block hidden space-y-4">
+                        {products.length > 0 ? products.map((item, index) => (
+                            <div key={item.id} className="p-4 bg-gray-50 border border-gray-100 rounded-xl space-y-4 shadow-sm">
+                                <div className="flex items-center gap-3">
+                                    <div className="shrink-0 w-8 h-8 rounded-lg bg-violet-600 text-white flex items-center justify-center text-[10px] font-bold">
+                                        {index + 1}
+                                    </div>
+                                    <div className="w-12 h-8 bg-gray-200 rounded overflow-hidden border border-gray-100">
+                                        <img src={item.image} className="w-full h-full object-cover" alt={item.title} />
+                                    </div>
+                                    <div className="min-w-0 flex-1">
+                                        <h3 className="font-semibold text-gray-900 font-montserrat text-xs truncate">{item.title}</h3>
+                                    </div>
+                                </div>
+
+                                <div className="space-y-3">
+                                    <input
+                                        type="text"
+                                        value={item.title}
+                                        onChange={(e) => handleProductChange(item.id, 'title', e.target.value)}
+                                        className="w-full px-3 py-2 bg-white border border-gray-200 rounded-lg text-xs"
+                                        placeholder="Nama Produk"
+                                    />
+                                    <textarea
+                                        value={item.description}
+                                        onChange={(e) => handleProductChange(item.id, 'description', e.target.value)}
+                                        rows={2}
+                                        className="w-full px-3 py-2 bg-white border border-gray-200 rounded-lg text-[10px] resize-none"
+                                        placeholder="Deskripsi"
+                                    />
+                                </div>
+
+                                <div className="flex items-center justify-end gap-2 pt-2 border-t border-gray-100">
+                                    <button
+                                        onClick={() => handleDeleteProduct(item.id)}
+                                        className="py-1.5 px-3 bg-red-50 text-red-600 rounded-lg flex items-center justify-center gap-2 text-xs font-semibold"
+                                    >
+                                        <FaTrash size={12} />
+                                        <span>Hapus</span>
+                                    </button>
                                 </div>
                             </div>
-                        ))}
+                        )) : (
+                            <div className="text-center py-12 text-gray-400">
+                                <p className="text-sm font-montserrat">Belum ada produk yang ditambahkan.</p>
+                            </div>
+                        )}
                     </div>
 
                     {products.length === 0 && (

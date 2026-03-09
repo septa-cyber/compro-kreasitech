@@ -1,44 +1,15 @@
-﻿"use client";
-
-import React, { useState } from 'react';
+﻿import React from 'react';
 import Link from 'next/link';
+import { BlogPost } from '@/lib/types';
 
+interface ArticleSectionProps {
+    articles: BlogPost[];
+}
 
+export default function ArticleSection({ articles }: ArticleSectionProps) {
+    // Show only the latest 3 articles
+    const displayArticles = articles.slice(0, 3);
 
-const articles = [
-    {
-        id: 1,
-        category: "TEKNOLOGI",
-        date: "21 Jan 2026",
-        title: "Transformasi Digital: Membangun Masa Depan yang Lebih Cerdas",
-        description: "Temukan bagaimana teknologi inovatif mengubah cara kita bekerja, belajar, dan berinteraksi dalam ekosistem digital yang terus berkembang pesat.",
-        image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop",
-        tagColor: "bg-blue-100 text-blue-700",
-        slug: "transformasi-digital"
-    },
-    {
-        id: 2,
-        category: "INOVASI",
-        date: "18 Jan 2026",
-        title: "Kecerdasan Buatan: Peluang Baru dalam Industri Kreatif",
-        description: "Bagaimana AI membantu para kreator untuk mengeksplorasi batas-batas baru dalam seni, desain, dan musik tanpa menghilangkan sentuhan manusia.",
-        image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1965&auto=format&fit=crop",
-        tagColor: "bg-pink-100 text-pink-700",
-        slug: "kecerdasan-buatan"
-    },
-    {
-        id: 3,
-        category: "EDUKASI",
-        date: "15 Jan 2026",
-        title: "Masa Depan Pendidikan: Belajar Tanpa Batas Ruang dan Waktu",
-        description: "Evolusi metode pembelajaran daring yang memungkinkan akses pendidikan berkualitas bagi siapa saja, di mana saja, dan kapan saja.",
-        image: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?q=80&w=1974&auto=format&fit=crop",
-        tagColor: "bg-green-100 text-green-700",
-        slug: "masa-depan-pendidikan"
-    }
-];
-
-export default function ArticleSection() {
     return (
         <section className="py-16 md:py-24 bg-white overflow-hidden">
             <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 mb-8 md:mb-16">
@@ -59,7 +30,7 @@ export default function ArticleSection() {
 
             <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    {articles.map((article) => (
+                    {displayArticles.map((article) => (
                         <div
                             key={article.id}
                             className="bg-white flex flex-col rounded-none overflow-hidden group border border-gray-300 transition-shadow duration-300 hover:shadow-lg h-full"
@@ -67,7 +38,7 @@ export default function ArticleSection() {
                             {/* Image Side - Fixed Aspect Ratio */}
                             <div className="w-full aspect-[4/3] relative overflow-hidden">
                                 <img
-                                    src={article.image}
+                                    src={article.coverImage}
                                     alt={article.title}
                                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                                 />
@@ -76,11 +47,15 @@ export default function ArticleSection() {
                             {/* Content Side */}
                             <div className="flex-1 p-6 flex flex-col items-start gap-4">
                                 <div className="flex items-center gap-4">
-                                    <span className={`${article.tagColor} px-3 py-1 font-btn-sm tracking-wide rounded-[4px]`}>
+                                    <span className={`${article.categoryColor} px-3 py-1 font-btn-sm tracking-wide rounded-[4px]`}>
                                         {article.category}
                                     </span>
                                     <span className="font-body-xs opacity-70">
-                                        {article.date}
+                                        {new Date(article.date).toLocaleDateString('id-ID', {
+                                            day: 'numeric',
+                                            month: 'short',
+                                            year: 'numeric'
+                                        })}
                                     </span>
                                 </div>
 
@@ -89,7 +64,7 @@ export default function ArticleSection() {
                                 </h3>
 
                                 <p className="font-body-sm line-clamp-3">
-                                    {article.description}
+                                    {article.excerpt || article.content.substring(0, 150) + "..."}
                                 </p>
 
                                 <div className="mt-auto pt-2">

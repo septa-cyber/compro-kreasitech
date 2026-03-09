@@ -57,7 +57,7 @@ export default function TaaSBenefits() {
                     </p>
                 </div>
 
-                <div className="w-full max-w-[1200px] outline outline-[0.5px] outline-offset-[-0.5px] outline-gray-200 inline-flex justify-between items-stretch flex-wrap content-center">
+                <div className="w-full max-w-[1200px] px-4 md:px-0 flex justify-between items-stretch flex-wrap content-center">
                     {benefits.map((benefit, index) => {
                         return (
                             <div

@@ -6,6 +6,7 @@ import Modal from '@/components/ui/Modal';
 import ConfirmationModal from '@/components/ui/ConfirmationModal';
 import toast from 'react-hot-toast';
 import React, { useState, useEffect, useCallback } from 'react';
+import AdminViewToggle from '@/app/admin/components/AdminViewToggle';
 import {
     DndContext,
     closestCenter,
@@ -170,13 +171,13 @@ function DragOverlayCard({ member, index }: { member: TeamMember; index: number 
     );
 }
 
-
 // ---------- Main Page Component ----------
 export default function TeamSettingsPage() {
     const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [isSaving, setIsSaving] = useState(false);
     const [activeId, setActiveId] = useState<number | null>(null);
+    const [viewMode, setViewMode] = useState<'card' | 'table'>('table');
 
     // Modal States
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
@@ -399,68 +400,170 @@ export default function TeamSettingsPage() {
 
     return (
         <div className="space-y-6">
-            <div className="flex items-center justify-between">
-                <h1 className="text-xl md:text-3xl font-semibold font-montserrat text-text-light">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <h1 className="text-xl md:text-3xl font-semibold font-montserrat text-text-light leading-tight">
                     Pengaturan Tim (Team)
                 </h1>
+                <div className="flex items-center gap-3">
+                    <AdminViewToggle view={viewMode} onViewChange={setViewMode} />
+                    <button
+                        onClick={() => setIsAddModalOpen(true)}
+                        className="px-3 md:px-4 py-2 bg-violet-600 text-white hover:bg-violet-700 rounded-lg transition-all flex items-center gap-2 shadow-md shadow-violet-200"
+                    >
+                        <FaPlus size={12} />
+                        <span className="text-xs md:text-sm font-semibold font-montserrat">Tambah Anggota</span>
+                    </button>
+                </div>
             </div>
 
             <div className="grid grid-cols-1 gap-6">
-
-                {/* Team List Management */}
-                <div className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
-                    <div className="flex items-center justify-between mb-4 pb-4 border-b border-gray-100">
+                <div className="bg-white rounded-xl p-4 md:p-6 border border-gray-100 shadow-sm">
+                    <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-100">
                         <div className="flex items-center gap-2 md:gap-3">
                             <div className="w-8 h-8 md:w-10 md:h-10 bg-violet-100 rounded-lg flex items-center justify-center text-violet-600">
                                 <FaUsers className="text-sm md:text-xl" />
                             </div>
                             <div className="flex flex-col">
                                 <h2 className="text-sm md:text-lg font-semibold text-text-light font-montserrat">Daftar Anggota Tim</h2>
-                                <p className="text-[10px] md:text-xs text-gray-400 mt-0.5 hidden md:block">Drag dan drop card untuk mengatur urutan tampilan</p>
+                                {viewMode === 'card' && (
+                                    <p className="text-[10px] md:text-xs text-gray-400 mt-0.5 hidden md:block">Drag dan drop card untuk mengatur urutan tampilan</p>
+                                )}
                             </div>
                         </div>
-                        <button
-                            onClick={() => setIsAddModalOpen(true)}
-                            className="px-3 md:px-4 py-2 bg-violet-50 text-violet-600 hover:bg-violet-100 rounded-lg transition-colors flex items-center gap-2 group"
-                        >
-                            <FaPlus className="text-xs shrink-0" />
-                            <div className="flex flex-col items-start leading-tight text-left">
-                                <span className="text-[10px] md:text-xs font-semibold">Tambah</span>
-                                <span className="text-[10px] md:hidden font-bold">Anggota</span>
-                                <span className="hidden md:block text-xs font-semibold">Anggota</span>
-                            </div>
-                        </button>
                     </div>
 
-                    <DndContext
-                        sensors={sensors}
-                        collisionDetection={closestCenter}
-                        onDragStart={handleDragStart}
-                        onDragEnd={handleDragEnd}
-                    >
-                        <SortableContext
-                            items={teamMembers.map(m => m.id)}
-                            strategy={rectSortingStrategy}
-                        >
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-[430px]:grid-cols-1">
-                                {teamMembers.map((member, index) => (
-                                    <SortableTeamCard
-                                        key={member.id}
-                                        member={member}
-                                        index={index}
-                                        onDelete={(id) => setItemToDelete(id)}
-                                        onEdit={handleEditClick}
-                                    />
-                                ))}
+                    {/* Desktop View */}
+                    <div className="max-[430px]:hidden">
+                        {viewMode === 'table' ? (
+                            <div className="overflow-x-auto">
+                                <table className="w-full text-left">
+                                    <thead className="bg-gray-50 border-b border-gray-100">
+                                        <tr>
+                                            <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase font-montserrat tracking-wider w-16">#</th>
+                                            <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase font-montserrat tracking-wider">Anggota</th>
+                                            <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase font-montserrat tracking-wider">Posisi</th>
+                                            <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase font-montserrat tracking-wider">Status</th>
+                                            <th className="px-6 py-4 text-center text-xs font-semibold text-gray-500 uppercase font-montserrat tracking-wider">Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="divide-y divide-gray-100">
+                                        {teamMembers.map((member, index) => (
+                                            <tr key={member.id} className="hover:bg-gray-50 transition text-sm">
+                                                <td className="px-6 py-4 text-gray-400 font-medium">
+                                                    {index + 1}
+                                                </td>
+                                                <td className="px-6 py-4">
+                                                    <div className="flex items-center gap-3">
+                                                        <img
+                                                            src={member.avatar || 'https://placehold.co/400x400'}
+                                                            className="w-10 h-10 rounded-full object-cover border border-gray-200"
+                                                            alt={member.name}
+                                                        />
+                                                        <span className="font-semibold text-gray-900 font-montserrat">{member.name}</span>
+                                                    </div>
+                                                </td>
+                                                <td className="px-6 py-4 text-gray-600 font-montserrat">
+                                                    {member.role}
+                                                </td>
+                                                <td className="px-6 py-4">
+                                                    <span className={`px-2 py-1 text-[10px] rounded-full font-medium uppercase tracking-wider ${member.status === 'active' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-600'}`}>
+                                                        {member.status || 'active'}
+                                                    </span>
+                                                </td>
+                                                <td className="px-6 py-4">
+                                                    <div className="flex justify-center gap-2">
+                                                        <button
+                                                            onClick={() => handleEditClick(member)}
+                                                            className="p-2 text-violet-600 hover:bg-violet-50 rounded-lg transition-colors border border-transparent hover:border-violet-100 shadow-sm bg-white"
+                                                            title="Edit"
+                                                        >
+                                                            <FaEdit size={14} />
+                                                        </button>
+                                                        <button
+                                                            onClick={() => setItemToDelete(member.id)}
+                                                            className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors border border-transparent hover:border-red-100 shadow-sm bg-white"
+                                                            title="Hapus"
+                                                        >
+                                                            <FaTrash size={14} />
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
                             </div>
-                        </SortableContext>
+                        ) : (
+                            <DndContext
+                                sensors={sensors}
+                                collisionDetection={closestCenter}
+                                onDragStart={handleDragStart}
+                                onDragEnd={handleDragEnd}
+                            >
+                                <SortableContext
+                                    items={teamMembers.map(m => m.id)}
+                                    strategy={rectSortingStrategy}
+                                >
+                                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                                        {teamMembers.map((member, index) => (
+                                            <SortableTeamCard
+                                                key={member.id}
+                                                member={member}
+                                                index={index}
+                                                onDelete={(id) => setItemToDelete(id)}
+                                                onEdit={handleEditClick}
+                                            />
+                                        ))}
+                                    </div>
+                                </SortableContext>
 
-                        <DragOverlay>
-                            {activeMember ? (
-                                <DragOverlayCard member={activeMember} index={activeIndex} />
-                            ) : null}
-                        </DragOverlay>
-                    </DndContext>
+                                <DragOverlay>
+                                    {activeMember ? (
+                                        <DragOverlayCard member={activeMember} index={activeIndex} />
+                                    ) : null}
+                                </DragOverlay>
+                            </DndContext>
+                        )}
+                    </div>
+
+                    {/* Mobile View - Always Cards */}
+                    <div className="max-[430px]:block hidden divide-y divide-gray-100">
+                        {teamMembers.map((member, index) => (
+                            <div key={member.id} className="p-4 space-y-3">
+                                <div className="flex items-center gap-3">
+                                    <div className="shrink-0 w-8 h-8 rounded-lg bg-violet-600 text-white flex items-center justify-center text-[10px] font-bold">
+                                        {index + 1}
+                                    </div>
+                                    <img
+                                        src={member.avatar || 'https://placehold.co/400x400'}
+                                        alt={member.name}
+                                        className="w-10 h-10 rounded-full object-cover shadow-sm bg-gray-50"
+                                    />
+                                    <div className="min-w-0">
+                                        <h3 className="font-semibold text-gray-900 font-montserrat text-xs truncate">{member.name}</h3>
+                                        <p className="text-[10px] text-gray-500 font-montserrat truncate">{member.role}</p>
+                                    </div>
+                                </div>
+
+                                <div className="flex items-center justify-end gap-2 mt-4 pt-2 border-t border-gray-50">
+                                    <button
+                                        onClick={() => handleEditClick(member)}
+                                        className="flex-1 py-1.5 px-3 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center gap-2 text-xs font-semibold transition-colors active:bg-blue-100"
+                                    >
+                                        <FaEdit size={12} />
+                                        <span>Edit</span>
+                                    </button>
+                                    <button
+                                        onClick={() => setItemToDelete(member.id)}
+                                        className="flex-1 py-1.5 px-3 bg-red-50 text-red-600 rounded-lg flex items-center justify-center gap-2 text-xs font-semibold transition-colors active:bg-red-100"
+                                    >
+                                        <FaTrash size={12} />
+                                        <span>Hapus</span>
+                                    </button>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
 
                     {teamMembers.length === 0 && (
                         <div className="text-center py-12 text-gray-400">
@@ -468,8 +571,8 @@ export default function TeamSettingsPage() {
                         </div>
                     )}
                 </div>
-
             </div>
+
 
             {/* Add Modal */}
             <Modal

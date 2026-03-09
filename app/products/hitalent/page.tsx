@@ -25,7 +25,7 @@ export default function HiTalentPage() {
             <HiTalentProcess />
             <HiTalentBenefits />
             <HiTalentCTA />
-            <Testimonials />
+            <Testimonials category="HiTalent" />
             <Footer />
         </div>
     );

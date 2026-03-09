@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 
-export default function Testimonials() {
+export default function Testimonials({ category }: { category?: string }) {
     const [isTestimonialHovered, setIsTestimonialHovered] = useState(false);
 
     const [testimonialItems, setTestimonialItems] = useState<any[]>([]);
@@ -10,7 +10,11 @@ export default function Testimonials() {
     useEffect(() => {
         const fetchTestimonials = async () => {
             try {
-                const res = await fetch('/api/testimonials?status=visible');
+                let url = '/api/testimonials?status=visible';
+                if (category) {
+                    url += `&category=${encodeURIComponent(category)}`;
+                }
+                const res = await fetch(url);
                 if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
 
                 const contentType = res.headers.get("content-type");

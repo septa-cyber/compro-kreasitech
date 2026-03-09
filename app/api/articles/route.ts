@@ -11,8 +11,12 @@ export async function GET(request: Request) {
 
     let articles = await getArticles(status);
 
-    // Sort by date desc if not already sorted by DB (DB sorts by created_at desc)
-    articles.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    // Sort by date desc with ID as tie-breaker
+    articles.sort((a, b) => {
+        const dateDiff = new Date(b.date).getTime() - new Date(a.date).getTime();
+        if (dateDiff !== 0) return dateDiff;
+        return b.id - a.id;
+    });
 
     if (limit) {
         articles = articles.slice(0, parseInt(limit));

@@ -6,11 +6,13 @@ import { Partner } from '@/lib/types';
 import Modal from '@/components/ui/Modal';
 import ConfirmationModal from '@/components/ui/ConfirmationModal';
 import toast from 'react-hot-toast';
+import AdminViewToggle from '@/app/admin/components/AdminViewToggle';
 
 export default function PartnersSettingsPage() {
     const [partners, setPartners] = useState<Partner[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [isSaving, setIsSaving] = useState(false);
+    const [viewMode, setViewMode] = useState<'card' | 'table'>('table');
 
     // Modal States
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
@@ -23,7 +25,7 @@ export default function PartnersSettingsPage() {
         logo: "",
         status: "active"
     });
-
+    // ... rest of state and effects
     useEffect(() => {
         fetchPartners();
     }, []);
@@ -128,16 +130,24 @@ export default function PartnersSettingsPage() {
 
     return (
         <div className="space-y-6">
-            <div className="flex items-center justify-between">
-                <h1 className="text-xl md:text-3xl font-semibold font-montserrat text-text-light">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <h1 className="text-xl md:text-3xl font-semibold font-montserrat text-text-light leading-tight">
                     Pengaturan Partners
                 </h1>
+                <div className="flex items-center gap-3">
+                    <AdminViewToggle view={viewMode} onViewChange={setViewMode} />
+                    <button
+                        onClick={() => setIsAddModalOpen(true)}
+                        className="px-3 md:px-4 py-2 bg-violet-600 text-white hover:bg-violet-700 rounded-lg transition-all flex items-center gap-2 shadow-md shadow-violet-200"
+                    >
+                        <FaPlus size={12} />
+                        <span className="text-xs md:text-sm font-semibold font-montserrat">Tambah Partner</span>
+                    </button>
+                </div>
             </div>
 
             <div className="grid grid-cols-1 gap-6">
-
-                {/* Partners List Management */}
-                <div className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
+                <div className="bg-white rounded-xl p-4 md:p-6 border border-gray-100 shadow-sm">
                     <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-100">
                         <div className="flex items-center gap-2 md:gap-3">
                             <div className="w-8 h-8 md:w-10 md:h-10 bg-violet-100 rounded-lg flex items-center justify-center text-violet-600">
@@ -145,72 +155,137 @@ export default function PartnersSettingsPage() {
                             </div>
                             <h2 className="text-sm md:text-lg font-semibold text-text-light font-montserrat leading-tight">Daftar Logo Partner</h2>
                         </div>
-                        <button
-                            type="button"
-                            onClick={() => setIsAddModalOpen(true)}
-                            className="px-3 md:px-4 py-2 bg-violet-50 text-violet-600 hover:bg-violet-100 rounded-lg transition-colors flex items-center gap-2 group"
-                        >
-                            <FaPlus className="text-xs shrink-0" />
-                            <div className="flex flex-col items-start leading-tight text-left">
-                                <span className="text-[10px] md:text-xs font-semibold">Tambah</span>
-                                <span className="text-[10px] md:hidden font-bold">Partner</span>
-                                <span className="hidden md:block text-xs font-semibold">Partner</span>
-                            </div>
-                        </button>
                     </div>
 
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 max-[430px]:grid-cols-1">
-                        {partners.map((partner) => (
-                            <div key={partner.id} className="relative bg-white border border-gray-200 rounded-xl overflow-hidden group hover:border-violet-300 transition-all shadow-sm">
-                                {/* Logo Preview Area */}
-                                <div className="aspect-video relative overflow-hidden bg-white flex items-center justify-center p-4">
-                                    <img
-                                        src={partner.logo || 'https://placehold.co/200x100'}
-                                        alt={partner.name}
-                                        className="max-w-full max-h-full object-contain"
-                                    />
+                    {/* Desktop View */}
+                    <div className="max-[430px]:hidden">
+                        {viewMode === 'table' ? (
+                            <div className="overflow-x-auto">
+                                <table className="w-full text-left">
+                                    <thead className="bg-gray-50 border-b border-gray-100">
+                                        <tr>
+                                            <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase font-montserrat tracking-wider w-16">#</th>
+                                            <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase font-montserrat tracking-wider">Logo</th>
+                                            <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase font-montserrat tracking-wider">Nama Partner</th>
+                                            <th className="px-6 py-4 text-center text-xs font-semibold text-gray-500 uppercase font-montserrat tracking-wider">Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="divide-y divide-gray-100">
+                                        {partners.map((partner, index) => (
+                                            <tr key={partner.id} className="hover:bg-gray-50 transition text-sm">
+                                                <td className="px-6 py-4 text-gray-400 font-medium">
+                                                    {index + 1}
+                                                </td>
+                                                <td className="px-6 py-4">
+                                                    <div className="w-20 h-10 bg-white border border-gray-100 rounded p-1 flex items-center justify-center">
+                                                        <img
+                                                            src={partner.logo || 'https://placehold.co/200x100'}
+                                                            className="max-w-full max-h-full object-contain"
+                                                            alt={partner.name}
+                                                        />
+                                                    </div>
+                                                </td>
+                                                <td className="px-6 py-4 font-semibold text-gray-900 font-montserrat">
+                                                    {partner.name || 'Set Nama Partner'}
+                                                </td>
+                                                <td className="px-6 py-4">
+                                                    <div className="flex justify-center gap-2">
+                                                        <button
+                                                            onClick={() => handleEditClick(partner)}
+                                                            className="p-2 text-violet-600 hover:bg-violet-50 rounded-lg transition-colors border border-transparent hover:border-violet-100 shadow-sm bg-white"
+                                                            title="Edit"
+                                                        >
+                                                            <FaEdit size={14} />
+                                                        </button>
+                                                        <button
+                                                            onClick={() => setItemToDelete(partner.id)}
+                                                            className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors border border-transparent hover:border-red-100 shadow-sm bg-white"
+                                                            title="Hapus"
+                                                        >
+                                                            <FaTrash size={14} />
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        ) : (
+                            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
+                                {partners.map((partner) => (
+                                    <div key={partner.id} className="relative bg-white border border-gray-200 rounded-xl overflow-hidden group hover:border-violet-300 transition-all shadow-sm">
+                                        {/* Logo Preview Area */}
+                                        <div className="aspect-video relative overflow-hidden bg-white flex items-center justify-center p-4">
+                                            <img
+                                                src={partner.logo || 'https://placehold.co/200x100'}
+                                                alt={partner.name}
+                                                className="max-w-full max-h-full object-contain"
+                                            />
 
-                                    {/* Desktop Actions */}
-                                    <div className="absolute top-1 right-1 z-10 opacity-0 group-hover:opacity-100 transition-opacity flex gap-1.5 max-[430px]:hidden">
-                                        <button
-                                            type="button"
-                                            onClick={() => handleEditClick(partner)}
-                                            className="bg-white/90 p-1 rounded text-gray-400 hover:text-violet-500 hover:bg-white transition-colors shadow-sm"
-                                            title="Edit Partner"
-                                        >
-                                            <FaEdit size={10} />
-                                        </button>
-                                        <button
-                                            type="button"
-                                            onClick={() => setItemToDelete(partner.id)}
-                                            className="bg-white/90 p-1 rounded text-gray-400 hover:text-red-500 hover:bg-white transition-colors shadow-sm"
-                                            title="Hapus Partner"
-                                        >
-                                            <FaTrash size={10} />
-                                        </button>
+                                            {/* Desktop Actions */}
+                                            <div className="absolute top-1 right-1 z-10 opacity-0 group-hover:opacity-100 transition-opacity flex gap-1.5">
+                                                <button
+                                                    type="button"
+                                                    onClick={() => handleEditClick(partner)}
+                                                    className="bg-white/90 p-1 rounded text-gray-400 hover:text-violet-500 hover:bg-white transition-colors shadow-sm"
+                                                    title="Edit Partner"
+                                                >
+                                                    <FaEdit size={10} />
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    onClick={() => setItemToDelete(partner.id)}
+                                                    className="bg-white/90 p-1 rounded text-gray-400 hover:text-red-500 hover:bg-white transition-colors shadow-sm"
+                                                    title="Hapus Partner"
+                                                >
+                                                    <FaTrash size={10} />
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <div className="p-2 bg-white text-center">
+                                            <p className="text-[10px] font-medium text-text-light truncate px-2">{partner.name || 'Set Nama Partner'}</p>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Mobile View - Always Cards */}
+                    <div className="max-[430px]:block hidden space-y-4">
+                        {partners.map((partner, index) => (
+                            <div key={partner.id} className="bg-white border border-gray-100 rounded-xl overflow-hidden shadow-sm p-4 space-y-4">
+                                <div className="flex items-center gap-4">
+                                    <div className="shrink-0 w-8 h-8 rounded-lg bg-violet-600 text-white flex items-center justify-center text-[10px] font-bold">
+                                        {index + 1}
+                                    </div>
+                                    <div className="w-16 h-10 bg-gray-50 rounded flex items-center justify-center p-1 border border-gray-100">
+                                        <img
+                                            src={partner.logo || 'https://placehold.co/200x100'}
+                                            alt={partner.name}
+                                            className="max-w-full max-h-full object-contain"
+                                        />
+                                    </div>
+                                    <div className="min-w-0 flex-1">
+                                        <h3 className="font-semibold text-gray-900 font-montserrat text-xs truncate">{partner.name || 'Set Nama Partner'}</h3>
                                     </div>
                                 </div>
 
-                                <div className="p-2 bg-white text-center">
-                                    <p className="text-[10px] font-medium text-text-light truncate px-2">{partner.name || 'Set Nama Partner'}</p>
-                                </div>
-
-                                {/* Mobile Actions */}
-                                <div className="hidden max-[430px]:flex items-center justify-end gap-2 p-3 border-t border-gray-50 bg-white">
+                                <div className="flex items-center justify-end gap-2 pt-2 border-t border-gray-50">
                                     <button
-                                        type="button"
                                         onClick={() => handleEditClick(partner)}
-                                        className="flex-1 py-2 px-4 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center gap-2 text-sm font-semibold transition-colors active:bg-blue-100"
+                                        className="flex-1 py-1.5 px-3 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center gap-2 text-xs font-semibold transition-colors active:bg-blue-100"
                                     >
-                                        <FaEdit size={14} />
+                                        <FaEdit size={12} />
                                         <span>Edit</span>
                                     </button>
                                     <button
-                                        type="button"
                                         onClick={() => setItemToDelete(partner.id)}
-                                        className="flex-1 py-2 px-4 bg-red-50 text-red-600 rounded-xl flex items-center justify-center gap-2 text-sm font-semibold transition-colors active:bg-red-100"
+                                        className="flex-1 py-1.5 px-3 bg-red-50 text-red-600 rounded-lg flex items-center justify-center gap-2 text-xs font-semibold transition-colors active:bg-red-100"
                                     >
-                                        <FaTrash size={14} />
+                                        <FaTrash size={12} />
                                         <span>Hapus</span>
                                     </button>
                                 </div>

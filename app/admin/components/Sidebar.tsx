@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { FaThLarge, FaImage, FaCogs, FaBriefcase, FaComments, FaBox, FaUsers, FaCog, FaSignOutAlt, FaChevronRight, FaChevronLeft, FaHandshake, FaNewspaper, FaUserTie, FaBars, FaTimes } from 'react-icons/fa';
+import { FaThLarge, FaImage, FaCogs, FaBriefcase, FaComments, FaBox, FaUsers, FaCog, FaSignOutAlt, FaChevronRight, FaChevronLeft, FaHandshake, FaNewspaper, FaUserTie, FaBars, FaTimes, FaUserFriends } from 'react-icons/fa';
 
 interface MenuItem {
     name: string;
@@ -22,6 +22,10 @@ const menuItems: MenuItem[] = [
     { name: 'Partners', href: '/admin/dashboard/partners', icon: FaHandshake },
 ];
 
+const superAdminMenuItems: MenuItem[] = [
+    { name: 'Users', href: '/admin/dashboard/users', icon: FaUserFriends },
+];
+
 const bottomMenuItems: MenuItem[] = [
     { name: 'Settings', href: '/admin/dashboard/settings', icon: FaCog },
     { name: 'Logout', href: '/admin/login', icon: FaSignOutAlt },
@@ -36,8 +40,24 @@ export interface SidebarProps {
 
 export default function Sidebar({ isCollapsed, toggleSidebar, isMobileOpen, setIsMobileOpen }: SidebarProps) {
     const pathname = usePathname();
+    const [user, setUser] = useState<any>(null);
 
     const isActive = (href: string) => pathname === href;
+
+    React.useEffect(() => {
+        const fetchUser = async () => {
+            try {
+                const res = await fetch('/api/auth/me');
+                if (res.ok) {
+                    const data = await res.json();
+                    setUser(data);
+                }
+            } catch (error) {
+                console.error('Failed to fetch user:', error);
+            }
+        };
+        fetchUser();
+    }, []);
 
     return (
         <>
@@ -85,6 +105,25 @@ export default function Sidebar({ isCollapsed, toggleSidebar, isMobileOpen, setI
                 <nav className="flex-1 py-6 px-3 overflow-y-auto">
                     <div className="space-y-1">
                         {menuItems.map((item) => (
+                            <Link
+                                key={item.name}
+                                href={item.href}
+                                onClick={() => setIsMobileOpen(false)}
+                                className={`flex items-center gap-3 px-3 py-3 rounded-lg font-montserrat text-sm transition-all duration-200 group relative
+                                    ${isActive(item.href)
+                                        ? 'bg-violet-600 text-white shadow-glow'
+                                        : 'text-gray-600 hover:bg-violet-50 hover:text-violet-600'
+                                    }`}
+                            >
+                                <item.icon className={`w-5 text-center ${isActive(item.href) ? 'text-white' : 'text-gray-400 group-hover:text-violet-600'}`} size={20} />
+                                <span className={`flex-1 transition-opacity duration-300 ${isCollapsed ? 'opacity-0 md:hidden' : 'opacity-100'}`}>{item.name}</span>
+                                {isActive(item.href) && isCollapsed && (
+                                    <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-white rounded-l-full" />
+                                )}
+                            </Link>
+                        ))}
+
+                        {user?.role === 'super_admin' && superAdminMenuItems.map((item) => (
                             <Link
                                 key={item.name}
                                 href={item.href}

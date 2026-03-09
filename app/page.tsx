@@ -1,5 +1,5 @@
 ﻿import { Metadata } from "next";
-import { getSiteSettings } from "@/lib/db";
+import { getSiteSettings, getArticles } from "@/lib/db";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/landing/Hero";
 import Services from "@/components/landing/Services";
@@ -23,7 +23,9 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default function Home() {
+export default async function Home() {
+  const articles = await getArticles('publish');
+
   return (
     <div className="bg-background-light text-text-light font-sans transition-colors duration-300">
       <Navbar />
@@ -34,7 +36,7 @@ export default function Home() {
         <Services />
         <OurProduct />
         <Portfolio />
-        <ArticleSection />
+        <ArticleSection articles={articles} />
         <Testimonials />
         <CallToAction />
       </main>

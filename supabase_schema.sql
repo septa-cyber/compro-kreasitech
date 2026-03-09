@@ -41,6 +41,7 @@ create table jobs (
   type text,
   location text,
   category text,
+  position text,
   status text default 'active',
   created_at timestamp with time zone default timezone('utc'::text, now()) not null
 );
@@ -54,6 +55,7 @@ create table testimonials (
   avatar text,
   quote text,
   rating integer,
+  category text,
   status text default 'visible',
   created_at timestamp with time zone default timezone('utc'::text, now()) not null
 );

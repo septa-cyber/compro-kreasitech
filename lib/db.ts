@@ -94,6 +94,7 @@ function mapJobFromDB(row: any): JobPosting {
     return {
         id: row.id,
         title: row.title,
+        position: row.position || row.title, // Fallback to title if position is null
         company: row.company,
         icon: row.icon,
         iconBg: row.icon_bg,
@@ -149,6 +150,7 @@ function mapTestimonialFromDB(row: any): Testimonial {
         content: testimonialText,
         quote: testimonialText, // Handle both for migration compatibility
         rating: row.rating,
+        category: row.category,
         status: row.status
     };
 }
@@ -161,26 +163,38 @@ function mapTestimonialToDB(testimonial: Partial<Testimonial>): any {
         dbTestimonial.quote = testimonial.content;
         delete dbTestimonial.content;
     }
+    // Category is already same
     return dbTestimonial;
 }
 
 // --- Articles Operations ---
 
 export async function getArticles(status?: string): Promise<BlogPost[]> {
+    let articles: BlogPost[] = [];
+
     if (isSupabaseEnabled()) {
-        let query = supabase.from('articles').select('*').order('created_at', { ascending: false });
+        let query = supabase.from('articles').select('*');
         if (status) query = query.eq('status', status);
         const { data, error } = await query;
         if (error) { console.error(error); return []; }
-        return (data || []).map(mapArticleFromDB);
+        articles = (data || []).map(mapArticleFromDB);
+    } else {
+        articles = readData<BlogPost>(ARTICLES_FILE, []).map(article => ({
+            ...article,
+            categoryColor: CATEGORY_COLORS[article.category] || article.categoryColor || 'bg-gray-100 text-gray-700'
+        }));
     }
-    const articles = readData<BlogPost>(ARTICLES_FILE, []).map(article => ({
-        ...article,
-        categoryColor: CATEGORY_COLORS[article.category] || article.categoryColor || 'bg-gray-100 text-gray-700'
-    }));
-    // Sort desc by publish date for "newest first" logic
-    articles.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-    if (status) return articles.filter(a => a.status === status);
+
+    // Sort desc by publish date for "newest first" logic, with ID as tie-breaker
+    articles.sort((a, b) => {
+        const dateDiff = new Date(b.date).getTime() - new Date(a.date).getTime();
+        if (dateDiff !== 0) return dateDiff;
+        return b.id - a.id;
+    });
+
+    if (status && !isSupabaseEnabled()) {
+        return articles.filter(a => a.status === status);
+    }
     return articles;
 }
 
@@ -310,17 +324,20 @@ export async function deleteJob(id: number): Promise<boolean> {
 
 // --- Testimonials Operations ---
 
-export async function getTestimonials(status?: string): Promise<Testimonial[]> {
+export async function getTestimonials(status?: string, category?: string): Promise<Testimonial[]> {
     if (isSupabaseEnabled()) {
         let query = supabase.from('testimonials').select('*').order('created_at', { ascending: false });
         if (status) query = query.eq('status', status);
+        if (category) query = query.eq('category', category);
         const { data, error } = await query;
         if (error) { console.error(error); return []; }
         return (data || []).map(mapTestimonialFromDB);
     }
     const testimonials = readData<Testimonial>(TESTIMONIALS_FILE, []);
-    if (status) return testimonials.filter(t => t.status === status);
-    return testimonials;
+    let filtered = testimonials;
+    if (status) filtered = filtered.filter(t => t.status === status);
+    if (category) filtered = filtered.filter(t => t.category === category);
+    return filtered;
 }
 
 export async function getTestimonialById(id: number): Promise<Testimonial | null> {
@@ -418,6 +435,90 @@ export async function getUserById(id: string): Promise<any | null> {
         return data.users.find((u: any) => u.id === id) || null;
     } catch {
         return null;
+    }
+}
+
+export async function getUsers(): Promise<any[]> {
+    if (isSupabaseEnabled()) {
+        const { data, error } = await supabase.from('users').select('*').order('created_at', { ascending: false });
+        if (error) { console.error(error); return []; }
+        return data || [];
+    }
+    // JSON
+    try {
+        if (!fs.existsSync(USERS_FILE)) return [];
+        const content = fs.readFileSync(USERS_FILE, 'utf-8');
+        const data = JSON.parse(content);
+        return data.users || [];
+    } catch {
+        return [];
+    }
+}
+
+export async function createUser(user: any): Promise<any> {
+    if (isSupabaseEnabled()) {
+        const { data, error } = await supabase.from('users').insert(user).select().single();
+        if (error) throw error;
+        return data;
+    }
+    // JSON
+    try {
+        const users = await getUsers();
+        const newId = users.length > 0 ? String(Math.max(...users.map((u: any) => parseInt(u.id))) + 1) : "1";
+        const newUser = {
+            ...user,
+            id: newId,
+            createdAt: new Date().toISOString()
+        };
+        const allUsers = { users: [...users, newUser] };
+        if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
+        fs.writeFileSync(USERS_FILE, JSON.stringify(allUsers, null, 2));
+        return newUser;
+    } catch (error) {
+        console.error('Error creating user in JSON:', error);
+        throw error;
+    }
+}
+
+export async function updateUser(id: string, user: any): Promise<any | null> {
+    if (isSupabaseEnabled()) {
+        const { data, error } = await supabase.from('users').update(user).eq('id', id).select().single();
+        if (error) throw error;
+        return data;
+    }
+    // JSON
+    try {
+        const users = await getUsers();
+        const index = users.findIndex((u: any) => u.id === id);
+        if (index === -1) return null;
+        const updatedUser = { ...users[index], ...user };
+        users[index] = updatedUser;
+        const allUsers = { users };
+        fs.writeFileSync(USERS_FILE, JSON.stringify(allUsers, null, 2));
+        return updatedUser;
+    } catch (error) {
+        console.error('Error updating user in JSON:', error);
+        throw error;
+    }
+}
+
+export async function deleteUser(id: string): Promise<boolean> {
+    if (isSupabaseEnabled()) {
+        const { error } = await supabase.from('users').delete().eq('id', id);
+        return !error;
+    }
+    // JSON
+    try {
+        const users = await getUsers();
+        const initialLen = users.length;
+        const filtered = users.filter((u: any) => u.id !== id);
+        if (filtered.length === initialLen) return false;
+        const allUsers = { users: filtered };
+        fs.writeFileSync(USERS_FILE, JSON.stringify(allUsers, null, 2));
+        return true;
+    } catch (error) {
+        console.error('Error deleting user in JSON:', error);
+        return false;
     }
 }
 

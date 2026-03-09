@@ -35,10 +35,10 @@ export default function TechStack() {
     ];
 
     return (
-        <section className="relative lg:pb-20 lg:pt-20 md:pb-16 md:pt-16 sm:pb-12 sm:pt-12 overflow-hidden bg-[#F4F4F7]">
+        <section className="relative py-12 md:py-16 lg:py-20 overflow-hidden bg-[#F4F4F7]">
             {/* Title */}
-            <div className="text-center mb-12">
-                <p className="font-body text-gray-500 mb-8">
+            <div className="text-center mb-8 md:mb-12 px-4">
+                <p className="font-body-lg mb-8">
                     Teknologi yang kami gunakan:
                 </p>
             </div>

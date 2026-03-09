@@ -6,8 +6,9 @@ import { getSession } from '@/lib/auth';
 export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
     const status = searchParams.get('status') || undefined;
+    const category = searchParams.get('category') || undefined;
 
-    const testimonials = await getTestimonials(status);
+    const testimonials = await getTestimonials(status, category);
 
     return NextResponse.json(testimonials);
 }

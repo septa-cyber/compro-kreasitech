@@ -84,7 +84,7 @@ export default function Portfolio() {
                     >
                         {[...portfolioItems].map((item, index) => {
                             const sizeClasses = item.size === "large"
-                                ? "w-80 md:w-[600px] h-52 md:h-[400px]"
+                                ? "w-80 md:w-[600px] h-64 md:h-[400px]" // Fixed height to match medium
                                 : "w-64 md:w-[400px] h-64 md:h-[400px]";
 
                             return (
@@ -117,7 +117,7 @@ export default function Portfolio() {
                     >
                         {[...portfolioItems].map((item, index) => {
                             const sizeClasses = item.size === "large"
-                                ? "w-80 md:w-[600px] h-52 md:h-[400px]"
+                                ? "w-80 md:w-[600px] h-64 md:h-[400px]" // Fixed height to match medium
                                 : "w-64 md:w-[400px] h-64 md:h-[400px]";
 
                             return (

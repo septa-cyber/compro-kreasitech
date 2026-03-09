@@ -192,10 +192,10 @@ export default function Navbar() {
                         <div className={`overflow-hidden transition-all duration-300 ${activeMobileDropdown === "layanan" ? "max-h-[300px] opacity-100" : "max-h-0 opacity-0"}`}>
                             <div className="bg-gray-50 p-4 space-y-6 rounded-lg mb-2">
                                 <ul className="space-y-2 text-sm text-text-light-muted">
-                                    <li><Link href="/academy" className="block py-1 hover:text-primary">Kreasi Space</Link></li>
+                                    <li><Link href="/services/software-development" className="block py-1 hover:text-primary">Software Development</Link></li>
                                     <li><Link href="/taas" className="block py-1 hover:text-primary">Talent As a Service</Link></li>
                                     <li><Link href="/services/digital-marketing" className="block py-1 hover:text-primary">Digital Marketing</Link></li>
-                                    <li><Link href="/services/software-development" className="block py-1 hover:text-primary">Software Development</Link></li>
+                                    <li><Link href="/academy" className="block py-1 hover:text-primary">Kreasi Space</Link></li>
                                 </ul>
                             </div>
                         </div>

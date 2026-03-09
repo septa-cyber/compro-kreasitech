@@ -27,14 +27,14 @@ export default function Breadcrumb({ items, className = "" }: BreadcrumbProps) {
     return (
         <section className={`w-full pt-28 pb-4`}>
             <div className={`max-w-[1200px] mx-auto ${className}`}>
-                <nav className="flex text-xs text-gray-500 font-body items-center">
+                <nav className="flex font-body-sm items-center">
                     {items.map((item, index) => (
                         <React.Fragment key={index}>
-                            {index > 0 && <MdChevronRight className="mx-2 w-4 h-4 text-gray-400" />}
+                            {index > 0 && <MdChevronRight className="mx-2 w-4 h-4 text-text-secondary" />}
                             {index === items.length - 1 ? (
-                                <span className="font-medium text-gray-800">{item.label}</span>
+                                <span className="font-medium !text-text-primary">{item.label}</span>
                             ) : (
-                                <Link className="hover:text-primary hover:underline transition-colors" href={item.href}>
+                                <Link className="hover:text-primary transition-colors" href={item.href}>
                                     {item.label}
                                 </Link>
                             )}

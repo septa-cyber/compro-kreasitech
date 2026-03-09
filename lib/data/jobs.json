@@ -2,6 +2,7 @@
     {
         "id": 1,
         "title": "Senior Frontend Developer",
+        "position": "Senior Frontend Developer",
         "department": "Engineering",
         "company": "KreasiTech",
         "location": "Jakarta",
@@ -35,6 +36,7 @@
     {
         "id": 2,
         "title": "Backend Engineer (Go)",
+        "position": "Backend Engineer (Go)",
         "department": "Engineering",
         "company": "KreasiTech",
         "location": "Bandung",
@@ -68,6 +70,7 @@
     {
         "id": 3,
         "title": "UI/UX Designer",
+        "position": "UI/UX Designer",
         "department": "Product",
         "company": "KreasiTech",
         "location": "Jakarta",

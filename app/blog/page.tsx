@@ -17,6 +17,7 @@ export default function BlogPage() {
     const [posts, setPosts] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
     const [activeCategory, setActiveCategory] = useState("all");
+    const [sortBy, setSortBy] = useState("latest");
     const [currentPage, setCurrentPage] = useState(1);
 
     useEffect(() => {
@@ -36,20 +37,33 @@ export default function BlogPage() {
         fetchPosts();
     }, []);
 
-    // Featured post is the first post
+    // Featured post is always the latest published (first in the raw array from API)
     const featuredPost = posts.length > 0 ? posts[0] : null;
 
-    // Filter posts (excluding featured post for the grid)
+    // Filter AND Sort posts
     const filteredPosts = useMemo(() => {
-        if (!featuredPost) return [];
+        if (posts.length === 0) return [];
 
-        const postsWithoutFeatured = posts.filter(post => post.id !== featuredPost.id);
+        let result = activeCategory === "all"
+            ? [...posts]
+            : posts.filter(post => post.category === activeCategory);
 
-        if (activeCategory === "all") {
-            return postsWithoutFeatured;
-        }
-        return postsWithoutFeatured.filter(post => post.category === activeCategory);
-    }, [activeCategory, featuredPost, posts]);
+        // Sort by date (already sorted desc by API, but we might want "oldest")
+        result.sort((a, b) => {
+            const dateA = new Date(a.date).getTime();
+            const dateB = new Date(b.date).getTime();
+
+            if (sortBy === "latest") {
+                // Newest first
+                return dateB - dateA || b.id - a.id;
+            } else {
+                // Oldest first
+                return dateA - dateB || a.id - b.id;
+            }
+        });
+
+        return result;
+    }, [activeCategory, posts, sortBy]);
 
     // Paginate
     const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE);
@@ -58,9 +72,14 @@ export default function BlogPage() {
         return filteredPosts.slice(start, start + POSTS_PER_PAGE);
     }, [filteredPosts, currentPage]);
 
-    // Reset page when category changes
+    // Reset page when category or sort changes
     const handleCategoryChange = (category: string) => {
         setActiveCategory(category);
+        setCurrentPage(1);
+    };
+
+    const handleSortChange = (sort: string) => {
+        setSortBy(sort);
         setCurrentPage(1);
     };
 
@@ -82,13 +101,15 @@ export default function BlogPage() {
         <div className="transition-colors duration-300 antialiased overflow-x-hidden">
             <Navbar />
 
-            {featuredPost && <BlogHero featuredPost={featuredPost} />}
+            {posts.length > 0 && <BlogHero featuredPosts={posts.slice(0, 5)} />}
 
             <section className="bg-white pt-8">
                 <BlogFilter
                     categories={categories}
                     activeCategory={activeCategory}
                     onCategoryChange={handleCategoryChange}
+                    sortBy={sortBy}
+                    onSortChange={handleSortChange}
                 />
             </section>
 

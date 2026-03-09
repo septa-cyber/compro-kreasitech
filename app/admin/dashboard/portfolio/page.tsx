@@ -6,6 +6,7 @@ import { PortfolioItem } from '@/lib/types';
 import Modal from '@/components/ui/Modal';
 import ConfirmationModal from '@/components/ui/ConfirmationModal';
 import toast from 'react-hot-toast';
+import AdminViewToggle from '@/app/admin/components/AdminViewToggle';
 
 function PortfolioCard({
     item,
@@ -177,7 +178,10 @@ export default function PortfolioSettingsPage() {
     const [portfolioItems, setPortfolioItems] = useState<PortfolioItem[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [isSaving, setIsSaving] = useState(false);
+    const [viewMode, setViewMode] = useState<'card' | 'table'>('table');
 
+    // Modal States
+    // ... (rest of the states and effects)
     // Modal States
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -341,16 +345,24 @@ export default function PortfolioSettingsPage() {
 
     return (
         <div className="space-y-6">
-            <div className="flex items-center justify-between">
-                <h1 className="text-xl md:text-3xl font-semibold font-montserrat text-text-light">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <h1 className="text-xl md:text-3xl font-semibold font-montserrat text-text-light leading-tight">
                     Pengaturan Portfolio
                 </h1>
+                <div className="flex items-center gap-3">
+                    <AdminViewToggle view={viewMode} onViewChange={setViewMode} />
+                    <button
+                        onClick={() => setIsAddModalOpen(true)}
+                        className="px-3 md:px-4 py-2 bg-violet-600 text-white hover:bg-violet-700 rounded-lg transition-all flex items-center gap-2 shadow-md shadow-violet-200"
+                    >
+                        <FaPlus size={12} />
+                        <span className="text-xs md:text-sm font-semibold font-montserrat">Tambah Proyek</span>
+                    </button>
+                </div>
             </div>
 
             <div className="grid grid-cols-1 gap-6">
-
-                {/* Portfolio List Management */}
-                <div className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
+                <div className="bg-white rounded-xl p-4 md:p-6 border border-gray-100 shadow-sm">
                     <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-100">
                         <div className="flex items-center gap-2 md:gap-3">
                             <div className="w-8 h-8 md:w-10 md:h-10 bg-violet-100 rounded-lg flex items-center justify-center text-violet-600">
@@ -358,55 +370,163 @@ export default function PortfolioSettingsPage() {
                             </div>
                             <h2 className="text-sm md:text-lg font-semibold text-text-light font-montserrat leading-tight">Daftar Proyek Portfolio</h2>
                         </div>
-                        <button
-                            onClick={() => setIsAddModalOpen(true)}
-                            className="px-3 md:px-4 py-2 bg-violet-50 text-violet-600 hover:bg-violet-100 rounded-lg transition-colors flex items-center gap-2 group"
-                        >
-                            <FaPlus className="text-xs shrink-0" />
-                            <div className="flex flex-col items-start leading-tight text-left">
-                                <span className="text-[10px] md:text-xs font-semibold">Tambah</span>
-                                <span className="text-[10px] md:hidden font-bold">Proyek</span>
-                                <span className="hidden md:block text-xs font-semibold">Proyek</span>
+                    </div>
+
+                    {/* Desktop View */}
+                    <div className="max-[430px]:hidden">
+                        {viewMode === 'table' ? (
+                            <div className="overflow-x-auto">
+                                <table className="w-full text-left">
+                                    <thead className="bg-gray-50 border-b border-gray-100">
+                                        <tr>
+                                            <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase font-montserrat tracking-wider">Proyek</th>
+                                            <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase font-montserrat tracking-wider">Kategori</th>
+                                            <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase font-montserrat tracking-wider">Size</th>
+                                            <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase font-montserrat tracking-wider">Baris</th>
+                                            <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase font-montserrat tracking-wider">Status</th>
+                                            <th className="px-6 py-4 text-center text-xs font-semibold text-gray-500 uppercase font-montserrat tracking-wider">Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="divide-y divide-gray-100">
+                                        {portfolioItems.map((item) => (
+                                            <tr key={item.id} className="hover:bg-gray-50 transition">
+                                                <td className="px-6 py-4">
+                                                    <div className="flex items-center gap-3">
+                                                        <img
+                                                            src={item.image || 'https://placehold.co/600x400'}
+                                                            className="w-12 h-8 rounded object-cover border border-gray-200"
+                                                            alt={item.title}
+                                                        />
+                                                        <span className="text-sm font-medium text-gray-900 font-montserrat">{item.title}</span>
+                                                    </div>
+                                                </td>
+                                                <td className="px-6 py-4 text-sm text-gray-600 font-montserrat">
+                                                    {item.category || '-'}
+                                                </td>
+                                                <td className="px-6 py-4">
+                                                    <span className="text-[10px] font-medium bg-gray-100 text-gray-600 px-2 py-1 rounded-full uppercase">
+                                                        {item.size || 'large'}
+                                                    </span>
+                                                </td>
+                                                <td className="px-6 py-4">
+                                                    <span className={`text-[10px] font-medium px-2 py-1 rounded-full uppercase ${item.marquee_row === 'top' ? 'bg-violet-100 text-violet-700' : 'bg-emerald-100 text-emerald-700'}`}>
+                                                        {item.marquee_row === 'top' ? 'Atas' : 'Bawah'}
+                                                    </span>
+                                                </td>
+                                                <td className="px-6 py-4">
+                                                    <span className={`px-2 py-1 text-[10px] rounded-full font-medium uppercase tracking-wider ${item.status === 'published' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-600'}`}>
+                                                        {item.status}
+                                                    </span>
+                                                </td>
+                                                <td className="px-6 py-4">
+                                                    <div className="flex justify-center gap-2">
+                                                        <button
+                                                            onClick={() => handleEditClick(item)}
+                                                            className="p-2 text-violet-600 hover:bg-violet-50 rounded-lg transition-colors border border-transparent hover:border-violet-100 shadow-sm bg-white"
+                                                            title="Edit"
+                                                        >
+                                                            <FaEdit size={14} />
+                                                        </button>
+                                                        <button
+                                                            onClick={() => setItemToDelete(item.id)}
+                                                            className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors border border-transparent hover:border-red-100 shadow-sm bg-white"
+                                                            title="Hapus"
+                                                        >
+                                                            <FaTrash size={14} />
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
                             </div>
-                        </button>
+                        ) : (
+                            <div className="space-y-8">
+                                {/* Marquee Atas */}
+                                <div className="space-y-4">
+                                    <h3 className="text-sm font-semibold text-violet-600 font-montserrat flex items-center gap-2">
+                                        <span className="w-3 h-3 bg-violet-500 rounded-full"></span>
+                                        Baris Atas
+                                    </h3>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                        {portfolioItems.filter(i => i.marquee_row === 'top').map((item) => (
+                                            <PortfolioCard
+                                                key={item.id}
+                                                item={item}
+                                                onDelete={setItemToDelete}
+                                                onEdit={handleEditClick}
+                                                onUpdate={handleQuickUpdate}
+                                            />
+                                        ))}
+                                    </div>
+                                </div>
+
+                                {/* Marquee Bawah */}
+                                <div className="space-y-4">
+                                    <h3 className="text-sm font-semibold text-emerald-600 font-montserrat flex items-center gap-2">
+                                        <span className="w-3 h-3 bg-emerald-500 rounded-full"></span>
+                                        Baris Bawah
+                                    </h3>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                        {portfolioItems.filter(i => i.marquee_row === 'bottom').map((item) => (
+                                            <PortfolioCard
+                                                key={item.id}
+                                                item={item}
+                                                onDelete={setItemToDelete}
+                                                onEdit={handleEditClick}
+                                                onUpdate={handleQuickUpdate}
+                                            />
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        )}
                     </div>
 
-                    {/* Marquee Atas */}
-                    <div className="mb-6">
-                        <h3 className="text-sm font-semibold text-violet-600 font-montserrat mb-3 flex items-center gap-2">
-                            <span className="w-3 h-3 bg-violet-500 rounded-full"></span>
-                            Baris Atas
-                        </h3>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {portfolioItems.filter(i => i.marquee_row === 'top').map((item) => (
-                                <PortfolioCard
-                                    key={item.id}
-                                    item={item}
-                                    onDelete={setItemToDelete}
-                                    onEdit={handleEditClick}
-                                    onUpdate={handleQuickUpdate}
-                                />
-                            ))}
-                        </div>
-                    </div>
+                    {/* Mobile View - Always Cards */}
+                    <div className="max-[430px]:block hidden divide-y divide-gray-100">
+                        {portfolioItems.map((item) => (
+                            <div key={item.id} className="p-4 space-y-3">
+                                <div className="flex items-center gap-3">
+                                    <img
+                                        src={item.image || 'https://placehold.co/600x400'}
+                                        alt={item.title}
+                                        className="w-16 h-12 rounded object-cover shadow-sm bg-gray-50"
+                                    />
+                                    <div className="min-w-0">
+                                        <h3 className="font-semibold text-gray-900 font-montserrat text-xs truncate">{item.title}</h3>
+                                        <p className="text-[10px] text-gray-500 font-montserrat truncate">{item.category || '-'}</p>
+                                    </div>
+                                </div>
 
-                    {/* Marquee Bawah */}
-                    <div>
-                        <h3 className="text-sm font-semibold text-emerald-600 font-montserrat mb-3 flex items-center gap-2">
-                            <span className="w-3 h-3 bg-emerald-500 rounded-full"></span>
-                            Baris Bawah
-                        </h3>
-                        <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-[430px]:grid-cols-1`}>
-                            {portfolioItems.filter(i => i.marquee_row === 'bottom').map((item) => (
-                                <PortfolioCard
-                                    key={item.id}
-                                    item={item}
-                                    onDelete={setItemToDelete}
-                                    onEdit={handleEditClick}
-                                    onUpdate={handleQuickUpdate}
-                                />
-                            ))}
-                        </div>
+                                <div className="flex items-center gap-2 text-[10px]">
+                                    <span className={`px-2 py-0.5 rounded-full uppercase font-bold tracking-wider ${item.status === 'published' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-600'}`}>
+                                        {item.status}
+                                    </span>
+                                    <span className={`px-2 py-0.5 rounded-full uppercase font-bold tracking-wider ${item.marquee_row === 'top' ? 'bg-violet-100 text-violet-700' : 'bg-emerald-100 text-emerald-700'}`}>
+                                        Baris {item.marquee_row === 'top' ? 'Atas' : 'Bawah'}
+                                    </span>
+                                </div>
+
+                                <div className="flex items-center justify-end gap-2 mt-4 pt-2 border-t border-gray-50">
+                                    <button
+                                        onClick={() => handleEditClick(item)}
+                                        className="flex-1 py-1.5 px-3 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center gap-2 text-xs font-semibold transition-colors active:bg-blue-100"
+                                    >
+                                        <FaEdit size={12} />
+                                        <span>Edit</span>
+                                    </button>
+                                    <button
+                                        onClick={() => setItemToDelete(item.id)}
+                                        className="flex-1 py-1.5 px-3 bg-red-50 text-red-600 rounded-lg flex items-center justify-center gap-2 text-xs font-semibold transition-colors active:bg-red-100"
+                                    >
+                                        <FaTrash size={12} />
+                                        <span>Hapus</span>
+                                    </button>
+                                </div>
+                            </div>
+                        ))}
                     </div>
 
                     {portfolioItems.length === 0 && (
@@ -415,8 +535,8 @@ export default function PortfolioSettingsPage() {
                         </div>
                     )}
                 </div>
-
             </div>
+
 
             {/* Add Modal */}
             <Modal

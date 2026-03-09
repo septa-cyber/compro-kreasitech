@@ -24,7 +24,7 @@ export default function Services() {
                     </p>
                 </div>
 
-                <div className="w-full max-w-[1200px] outline outline-[0.5px] outline-offset-[-0.5px] outline-gray-200 inline-flex justify-between items-center flex-wrap content-center">
+                <div className="w-full max-w-[1200px] px-4 md:px-0 flex justify-between items-center flex-wrap content-center">
                     {softwareDevelopmentServices.map((service, index) => {
                         const iconSrc = iconMapping[service.slug] || "/assets/images/3d-icons/gear_3d.png";
                         return (

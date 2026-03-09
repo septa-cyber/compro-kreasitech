@@ -9,10 +9,10 @@ import TaaSPlacementModel from "@/components/taas/TaaSPlacementModel";
 import TaaSDifferentiators from "@/components/taas/TaaSDifferentiators";
 import TaaSBenefits from "@/components/taas/TaaSBenefits";
 import TaaSTalentRoles from "@/components/taas/TaaSTalentRoles";
-import TaaSTestimonials from "@/components/taas/TaaSTestimonials";
 import TaaSCTA from "@/components/taas/TaaSCTA";
 import { getTestimonials } from "@/lib/db";
 import { Metadata } from 'next';
+import Testimonials from "@/components/landing/Testimonials";
 
 export const metadata: Metadata = {
     title: "Talent as a Service (TaaS)",
@@ -98,7 +98,7 @@ export default async function TaaSPage() {
             <TaaSDifferentiators />
             <TaaSBenefits />
             <TaaSTalentRoles />
-            <TaaSTestimonials initialData={testimonials} />
+            <Testimonials category="Talent As a Service" />
             <TaaSCTA />
 
             <Footer />

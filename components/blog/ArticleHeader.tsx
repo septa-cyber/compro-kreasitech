@@ -1,8 +1,9 @@
 ﻿"use client";
 
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import { BlogPost } from "@/data/blogData";
-import { FaFacebookF, FaTwitter, FaLinkedinIn, FaWhatsapp, FaLink } from "react-icons/fa";
+import { FaFacebookF, FaTwitter, FaLinkedinIn, FaWhatsapp, FaLink, FaArrowLeft } from "react-icons/fa";
 import toast from 'react-hot-toast';
 
 interface ArticleHeaderProps {
@@ -27,6 +28,17 @@ export default function ArticleHeader({ post }: ArticleHeaderProps) {
     return (
         <section className="bg-white pt-32 pb-8">
             <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
+                {/* Back Button */}
+                <div className="mb-4">
+                    <Link
+                        href="/blog"
+                        className="inline-flex items-center gap-2 text-violet-600 hover:text-violet-800 transition-all group font-medium"
+                    >
+                        <FaArrowLeft className="w-3.5 h-3.5 transition-transform group-hover:-translate-x-1" />
+                        Kembali ke Daftar Artikel
+                    </Link>
+                </div>
+
                 {/* Title */}
                 <h1 className="font-h2 leading-tight pt-8 mb-6">
                     {post.title}

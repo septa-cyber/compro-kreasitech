@@ -20,6 +20,7 @@ export interface BlogPost {
 export interface JobPosting {
     id: number;
     title: string;
+    position: string;
     department?: string;
     company?: string;
     location: string;
@@ -51,6 +52,7 @@ export interface Testimonial {
     content?: string;
     quote?: string; // Matching JSON data
     rating?: number;
+    category?: string;
     status: 'visible' | 'hidden';
 }
 

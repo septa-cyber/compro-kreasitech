@@ -88,7 +88,7 @@ export default function AcademyPage() {
                 <ImpactAcademyFlow />
                 <ImpactAcademyCourses />
                 <ImpactAcademyCTA />
-                <Testimonials />
+                <Testimonials category="Kreasi Space" />
             </main>
 
             <Footer />

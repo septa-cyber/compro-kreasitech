@@ -6,12 +6,14 @@ import { JobPosting, SiteSettings } from '@/lib/types';
 import Modal from '@/components/ui/Modal';
 import ConfirmationModal from '@/components/ui/ConfirmationModal';
 import toast from 'react-hot-toast';
+import AdminViewToggle from '@/app/admin/components/AdminViewToggle';
 
 export default function JobsSettingsPage() {
     const [jobs, setJobs] = useState<JobPosting[]>([]);
     const [siteSettings, setSiteSettings] = useState<SiteSettings | null>(null);
     const [isLoading, setIsLoading] = useState(true);
-
+    const [viewMode, setViewMode] = useState<'table' | 'card'>('table');
+    // ... (rest of the states and effects)
     // Modal States
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -19,6 +21,7 @@ export default function JobsSettingsPage() {
     const [editingItem, setEditingItem] = useState<JobPosting | null>(null);
     const [newItemData, setNewItemData] = useState<Partial<JobPosting>>({
         title: "",
+        position: "",
         department: "",
         company: "",
         location: "",
@@ -168,6 +171,7 @@ export default function JobsSettingsPage() {
                 toast.success('Lowongan berhasil ditambahkan');
                 setNewItemData({
                     title: "",
+                    position: "",
                     department: "",
                     company: "",
                     location: "",
@@ -233,13 +237,23 @@ export default function JobsSettingsPage() {
 
     return (
         <div className="space-y-6">
-            <div className="flex items-center justify-between">
-                <h1 className="text-xl md:text-3xl font-semibold font-montserrat text-text-light">
-                    Menejemen Lowongan Pekerjaan
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <h1 className="text-xl md:text-3xl font-semibold font-montserrat text-text-light leading-tight">
+                    Manajemen Lowongan Kerja
                 </h1>
+                <div className="flex items-center gap-3">
+                    <AdminViewToggle view={viewMode} onViewChange={setViewMode} />
+                    <button
+                        onClick={() => setIsAddModalOpen(true)}
+                        className="px-3 md:px-4 py-2 bg-violet-600 text-white hover:bg-violet-700 rounded-lg transition-all flex items-center gap-2 shadow-md shadow-violet-200"
+                    >
+                        <FaPlus size={12} />
+                        <span className="text-xs md:text-sm font-semibold font-montserrat">Tambah Lowongan</span>
+                    </button>
+                </div>
             </div>
 
-            <div className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
+            <div className="bg-white rounded-xl p-4 md:p-6 border border-gray-100 shadow-sm">
                 <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-100">
                     <div className="flex items-center gap-2 md:gap-3">
                         <div className="w-8 h-8 md:w-10 md:h-10 bg-violet-100 rounded-lg flex items-center justify-center text-violet-600">
@@ -247,66 +261,154 @@ export default function JobsSettingsPage() {
                         </div>
                         <h2 className="text-sm md:text-lg font-semibold text-text-light font-montserrat">Daftar Lowongan</h2>
                     </div>
-                    <button
-                        onClick={() => setIsAddModalOpen(true)}
-                        className="px-3 md:px-4 py-2 bg-violet-50 text-violet-600 hover:bg-violet-100 rounded-lg transition-colors flex items-center gap-2 group"
-                    >
-                        <FaPlus className="text-xs shrink-0" />
-                        <div className="flex flex-col items-start leading-tight text-left">
-                            <span className="text-[10px] md:text-xs font-semibold">Tambah</span>
-                            <span className="text-[10px] md:hidden font-bold">Lowongan</span>
-                            <span className="hidden md:block text-xs font-semibold">Lowongan</span>
-                        </div>
-                    </button>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-[430px]:grid-cols-1">
-                    {jobs.map((job) => (
-                        <div key={job.id} className="p-4 border border-gray-200 rounded-xl hover:border-violet-300 transition-all bg-white group relative shadow-sm">
-                            {/* Desktop Actions */}
-                            <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity flex gap-2 max-[430px]:hidden">
-                                <button
-                                    onClick={() => handleEditClick(job)}
-                                    className="p-2 text-gray-400 hover:text-violet-500 hover:bg-gray-50 rounded-lg transition-colors shadow-sm bg-white border border-gray-100"
-                                    title="Edit Lowongan"
-                                >
-                                    <FaEdit size={14} />
-                                </button>
-                                <button
-                                    onClick={() => setItemToDelete(job.id)}
-                                    className="p-2 text-gray-400 hover:text-red-500 hover:bg-gray-50 rounded-lg transition-colors shadow-sm bg-white border border-gray-100"
-                                    title="Hapus Lowongan"
-                                >
-                                    <FaTrash size={14} />
-                                </button>
-                            </div>
+                {/* Desktop View */}
+                <div className="max-[430px]:hidden">
+                    {viewMode === 'table' ? (
+                        <div className="overflow-x-auto">
+                            <table className="w-full text-left">
+                                <thead className="bg-gray-50 border-b border-gray-100">
+                                    <tr>
+                                        <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase font-montserrat tracking-wider">Posisi</th>
+                                        <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase font-montserrat tracking-wider">Departemen</th>
+                                        <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase font-montserrat tracking-wider">Tipe</th>
+                                        <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase font-montserrat tracking-wider">Lokasi</th>
+                                        <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase font-montserrat tracking-wider">Status</th>
+                                        <th className="px-6 py-4 text-center text-xs font-semibold text-gray-500 uppercase font-montserrat tracking-wider">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody className="divide-y divide-gray-100">
+                                    {jobs.map((job) => (
+                                        <tr key={job.id} className="hover:bg-gray-50 transition">
+                                            <td className="px-6 py-4">
+                                                <div className="text-sm font-medium text-gray-900 font-montserrat">{job.title}</div>
+                                                <div className="text-[11px] text-violet-600 font-semibold font-montserrat">{job.position}</div>
+                                                <div className="text-[10px] text-gray-400 capitalize">{job.company}</div>
+                                            </td>
+                                            <td className="px-6 py-4 text-sm text-gray-600 font-montserrat">
+                                                {job.department}
+                                            </td>
+                                            <td className="px-6 py-4 text-sm text-gray-600 font-montserrat">
+                                                {job.type}
+                                            </td>
+                                            <td className="px-6 py-4 text-sm text-gray-600 font-montserrat truncate max-w-[150px]">
+                                                {job.location}
+                                            </td>
+                                            <td className="px-6 py-4">
+                                                <span className={`px-2 py-1 text-[10px] rounded-full font-medium uppercase tracking-wider ${job.status === 'open' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-600'}`}>
+                                                    {job.status}
+                                                </span>
+                                            </td>
+                                            <td className="px-6 py-4">
+                                                <div className="flex justify-center gap-2">
+                                                    <button
+                                                        onClick={() => handleEditClick(job)}
+                                                        className="p-2 text-violet-600 hover:bg-violet-50 rounded-lg transition-colors border border-transparent hover:border-violet-100 shadow-sm bg-white"
+                                                        title="Edit"
+                                                    >
+                                                        <FaEdit size={14} />
+                                                    </button>
+                                                    <button
+                                                        onClick={() => setItemToDelete(job.id)}
+                                                        className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors border border-transparent hover:border-red-100 shadow-sm bg-white"
+                                                        title="Hapus"
+                                                    >
+                                                        <FaTrash size={14} />
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    ) : (
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {jobs.map((job) => (
+                                <div key={job.id} className="p-5 border border-gray-200 rounded-xl hover:border-violet-300 transition-all bg-white group relative shadow-sm">
+                                    <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity flex gap-2">
+                                        <button
+                                            onClick={() => handleEditClick(job)}
+                                            className="p-1.5 text-gray-400 hover:text-violet-500 hover:bg-gray-50 rounded-lg transition-colors shadow-sm bg-white border border-gray-100"
+                                            title="Edit Lowongan"
+                                        >
+                                            <FaEdit size={12} />
+                                        </button>
+                                        <button
+                                            onClick={() => setItemToDelete(job.id)}
+                                            className="p-1.5 text-gray-400 hover:text-red-500 hover:bg-gray-50 rounded-lg transition-colors shadow-sm bg-white border border-gray-100"
+                                            title="Hapus Lowongan"
+                                        >
+                                            <FaTrash size={12} />
+                                        </button>
+                                    </div>
 
-                            <h3 className="font-semibold text-gray-900 font-montserrat mb-1 pr-8 max-[430px]:pr-0">{job.title}</h3>
-                            <div className="flex flex-wrap gap-3 text-xs text-gray-500 mb-3">
-                                <span className="flex items-center gap-1"><FaBriefcase /> {job.department}</span>
-                                <span className="flex items-center gap-1"><FaMapMarkerAlt /> {job.location}</span>
-                                <span className="flex items-center gap-1"><FaClock /> {job.type}</span>
-                            </div>
-                            <div className="flex items-center gap-2 mt-2">
-                                <span className={`px-2 py-0.5 text-[10px] rounded-full capitalize ${job.status === 'open' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-600'}`}>
+                                    <div className="mb-4">
+                                        <span className={`px-2 py-0.5 text-[10px] rounded-full font-bold uppercase tracking-wider mb-2 inline-block ${job.status === 'open' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-600'}`}>
+                                            {job.status}
+                                        </span>
+                                        <h3 className="font-semibold text-gray-900 font-montserrat line-clamp-1 pr-12">{job.title}</h3>
+                                        <p className="text-[11px] text-violet-600 font-semibold font-montserrat">{job.position}</p>
+                                        <p className="text-[10px] text-gray-400 font-montserrat">{job.department}</p>
+                                    </div>
+
+                                    <div className="space-y-2 mb-4">
+                                        <div className="flex items-center gap-2 text-[11px] text-gray-500 font-montserrat">
+                                            <FaMapMarkerAlt className="text-violet-400 shrink-0" size={10} />
+                                            <span className="truncate">{job.location}</span>
+                                        </div>
+                                        <div className="flex items-center gap-2 text-[11px] text-gray-500 font-montserrat">
+                                            <FaClock className="text-violet-400 shrink-0" size={10} />
+                                            <span>{job.type}</span>
+                                        </div>
+                                    </div>
+
+                                    <div className="pt-3 border-t border-gray-50 flex items-center justify-between">
+                                        <span className="text-[10px] font-bold text-violet-600 font-montserrat uppercase tracking-tighter bg-violet-50 px-2 py-0.5 rounded">
+                                            {job.category}
+                                        </span>
+                                        <span className="text-[10px] text-gray-400 font-montserrat">ID: #{job.id}</span>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+                </div>
+
+                {/* Mobile View - Always Cards */}
+                <div className="max-[430px]:block hidden divide-y divide-gray-100">
+                    {jobs.map((job) => (
+                        <div key={job.id} className="p-4 space-y-3">
+                            <div className="flex justify-between items-start">
+                                <div>
+                                    <h3 className="font-semibold text-gray-900 font-montserrat text-sm leading-tight">{job.title}</h3>
+                                    <p className="text-[11px] text-violet-600 font-semibold font-montserrat">{job.position}</p>
+                                    <p className="text-[10px] text-gray-400 font-montserrat mt-0.5">{job.department}</p>
+                                </div>
+                                <span className={`shrink-0 px-2 py-0.5 text-[9px] rounded-full uppercase font-bold tracking-wider ${job.status === 'open' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-600'}`}>
                                     {job.status}
                                 </span>
                             </div>
 
-                            {/* Mobile Actions */}
-                            <div className="hidden max-[430px]:flex items-center justify-end gap-2 mt-4 pt-3 border-t border-gray-50">
+                            <div className="flex flex-wrap gap-x-4 gap-y-1 text-[10px] text-gray-500 font-montserrat">
+                                <span className="flex items-center gap-1"><FaMapMarkerAlt className="text-violet-400" size={8} /> {job.location}</span>
+                                <span className="flex items-center gap-1"><FaClock className="text-violet-400" size={8} /> {job.type}</span>
+                            </div>
+
+                            <div className="flex items-center justify-end gap-2 mt-4 pt-3 border-t border-gray-50">
                                 <button
                                     onClick={() => handleEditClick(job)}
-                                    className="flex-1 py-2 px-4 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center gap-2 text-sm font-semibold transition-colors active:bg-blue-100"
+                                    className="flex-1 py-1.5 px-3 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center gap-2 text-xs font-semibold transition-colors active:bg-blue-100"
                                 >
-                                    <FaEdit size={14} />
+                                    <FaEdit size={12} />
                                     <span>Edit</span>
                                 </button>
                                 <button
                                     onClick={() => setItemToDelete(job.id)}
-                                    className="flex-1 py-2 px-4 bg-red-50 text-red-600 rounded-xl flex items-center justify-center gap-2 text-sm font-semibold transition-colors active:bg-red-100"
+                                    className="flex-1 py-1.5 px-3 bg-red-50 text-red-600 rounded-lg flex items-center justify-center gap-2 text-xs font-semibold transition-colors active:bg-red-100"
                                 >
-                                    <FaTrash size={14} />
+                                    <FaTrash size={12} />
                                     <span>Hapus</span>
                                 </button>
                             </div>
@@ -321,6 +423,7 @@ export default function JobsSettingsPage() {
                 )}
             </div>
 
+
             {/* Add Modal */}
             <Modal
                 isOpen={isAddModalOpen}
@@ -331,12 +434,23 @@ export default function JobsSettingsPage() {
                 <form onSubmit={handleAddSubmit} className="space-y-4">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Posisi / Judul <span className="text-red-500">*</span></label>
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Judul Lowongan <span className="text-red-500">*</span></label>
                             <input
                                 type="text"
                                 required
                                 value={newItemData.title}
                                 onChange={(e) => setNewItemData({ ...newItemData, title: e.target.value })}
+                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                                placeholder="Contoh: Lowongan Web Developer"
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Posisi / Jabatan <span className="text-red-500">*</span></label>
+                            <input
+                                type="text"
+                                required
+                                value={newItemData.position}
+                                onChange={(e) => setNewItemData({ ...newItemData, position: e.target.value })}
                                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
                                 placeholder="Contoh: Frontend Developer"
                             />
@@ -619,12 +733,23 @@ export default function JobsSettingsPage() {
                 <form onSubmit={handleEditSubmit} className="space-y-4">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Posisi / Judul <span className="text-red-500">*</span></label>
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Judul Lowongan <span className="text-red-500">*</span></label>
                             <input
                                 type="text"
                                 required
                                 value={editItemData.title || ''}
                                 onChange={(e) => setEditItemData({ ...editItemData, title: e.target.value })}
+                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                                placeholder="Contoh: Lowongan Web Developer"
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Posisi / Jabatan <span className="text-red-500">*</span></label>
+                            <input
+                                type="text"
+                                required
+                                value={editItemData.position || ''}
+                                onChange={(e) => setEditItemData({ ...editItemData, position: e.target.value })}
                                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
                                 placeholder="Contoh: Frontend Developer"
                             />
