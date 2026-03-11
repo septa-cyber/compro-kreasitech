@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 
 const differentiators = [
     {
@@ -38,7 +38,7 @@ export default function TaaSDifferentiators() {
                 <div className="flex flex-col lg:flex-row items-start relative w-full gap-16 lg:gap-24">
 
                     {/* Left Column: Heading & Sticky Text (Visible and Sticky on lg+) */}
-                    <div className="w-full lg:w-[35%] lg:sticky lg:top-32 h-fit self-start relative pl-12 lg:pl-16 pb-12 lg:pb-14 z-30">
+                    <div className="w-full lg:w-[35%] lg:sticky lg:top-32 h-fit self-start relative lg:pl-16 lg:pb-14 z-30">
                         <div className="max-w-3xl lg:max-w-none text-left space-y-6">
                             <h2 className="font-h2 leading-tight">
                                 Kunci Pembeda <br className="hidden lg:block" />

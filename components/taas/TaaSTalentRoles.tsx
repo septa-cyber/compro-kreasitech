@@ -1,21 +1,21 @@
-﻿"use client";
+"use client";
 import React from "react";
 
 export default function TaaSTalentRoles() {
     return (
         <section className="py-24 bg-violet-800 text-white" data-theme="dark">
             <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center mb-16 space-y-4">
+                <div className="text-left md:text-center mb-16 space-y-4">
                     <h2 className="font-h2 !text-white">
                         Peran Teknologi & Digital yang Kami Sediakan
                     </h2>
-                    <p className="font-body-lg !text-white/80 max-w-2xl mx-auto">
+                    <p className="font-body-lg !text-white/80 max-w-2xl mx-0 md:mx-auto">
                         Akses talenta digital terbaik di berbagai bidang teknologi untuk mendukung kebutuhan proyek dan tim Anda.
                     </p>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {/* Data */}
-                    <div className="text-center">
+                    <div className="text-left md:text-center">
                         <h3 className="font-h4 !text-white mb-6">Data</h3>
                         <ul className="space-y-3">
                             <li className="text-sm text-white/90">Data Science</li>
@@ -29,7 +29,7 @@ export default function TaaSTalentRoles() {
                     </div>
 
                     {/* Product & UX */}
-                    <div className="text-center">
+                    <div className="text-left md:text-center">
                         <h3 className="font-h4 text-white mb-6">Product & UX</h3>
                         <ul className="space-y-3">
                             <li className="text-sm text-white/90">UI/UX Design</li>
@@ -42,7 +42,7 @@ export default function TaaSTalentRoles() {
                     </div>
 
                     {/* Functional */}
-                    <div className="text-center">
+                    <div className="text-left md:text-center">
                         <h3 className="font-h4 text-white mb-6">Functional</h3>
                         <ul className="space-y-3">
                             <li className="text-sm text-white/90">Project Manager</li>
@@ -54,7 +54,7 @@ export default function TaaSTalentRoles() {
                     </div>
 
                     {/* Mobile Application */}
-                    <div className="text-center">
+                    <div className="text-left md:text-center">
                         <h3 className="font-h4 text-white mb-6">Mobile Application</h3>
                         <ul className="space-y-3">
                             <li className="text-sm text-white/90">Android Developer</li>
@@ -64,7 +64,7 @@ export default function TaaSTalentRoles() {
                     </div>
 
                     {/* Software */}
-                    <div className="text-center">
+                    <div className="text-left md:text-center">
                         <h3 className="font-h4 text-white mb-6">Software</h3>
                         <ul className="space-y-3">
                             <li className="text-sm text-white/90">Front End</li>
@@ -76,7 +76,7 @@ export default function TaaSTalentRoles() {
                     </div>
 
                     {/* Infrastructure */}
-                    <div className="text-center">
+                    <div className="text-left md:text-center">
                         <h3 className="font-h4 text-white mb-6">Infrastructure</h3>
                         <ul className="space-y-3">
                             <li className="text-sm text-white/90">Cloud</li>

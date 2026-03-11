@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
@@ -100,7 +100,7 @@ export default function CompanyHero() {
     }, [avatars]);
 
     return (
-        <section className="relative pt-10 lg:pb-20 md:pb-16 sm:pb-12 overflow-hidden bg-[#F4F4F7]">
+        <section className="relative pt-10 pb-12 sm:pb-12 md:pb-16 lg:pb-20 overflow-hidden bg-[#F4F4F7]">
             <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
                 <h1 className="font-h1 max-w-6xl mx-auto mb-8">
                     Di Mana <span className="font-semibold text-violet-600">Talenta</span> Bertemu <br className="hidden md:block" /> Teknologi

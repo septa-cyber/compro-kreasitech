@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import Image from "next/image";
@@ -242,7 +242,7 @@ export default function Navbar() {
 
                     <Link
                         href="/blog"
-                        className="block px-3 py-4 font-nav text-text-light hover:text-primary"
+                        className="block px-3 py-4 text-sm font-medium text-text-light hover:text-primary transition-colors"
                     >
                         Artikel
                     </Link>

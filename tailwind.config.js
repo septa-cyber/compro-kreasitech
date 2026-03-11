@@ -20,7 +20,7 @@ module.exports = {
                 sans: ["var(--font-montserrat)", "system-ui", "-apple-system", "sans-serif"],
                 montserrat: ["var(--font-montserrat)"],
                 display: ["var(--font-outfit)", "sans-serif"],
-                body: ["var(--font-inter)", "sans-serif"],
+                body: ["var(--font-montserrat)", "sans-serif"],
             },
             colors: {
                 border: "hsl(var(--border))",

@@ -1,10 +1,10 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import WhatsAppButton from "@/components/landing/WhatsAppButton";
 import { getSiteSettings } from "@/lib/db";
 import { SettingsProvider } from "@/components/providers/SettingsProvider";
-import { Plus_Jakarta_Sans, Montserrat, Outfit, Inter } from "next/font/google";
+import { Plus_Jakarta_Sans, Montserrat, Outfit } from "next/font/google";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -27,12 +27,7 @@ const outfit = Outfit({
   variable: "--font-outfit",
 });
 
-const inter = Inter({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  display: "swap",
-  variable: "--font-inter",
-});
+
 
 export async function generateMetadata(): Promise<Metadata> {
   const settings = await getSiteSettings();
@@ -133,7 +128,7 @@ export default async function RootLayout({
   };
 
   return (
-    <html lang="id" className={`${plusJakartaSans.variable} ${montserrat.variable} ${outfit.variable} ${inter.variable}`}>
+    <html lang="id" className={`${plusJakartaSans.variable} ${montserrat.variable} ${outfit.variable}`}>
       <head>
         <link
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"

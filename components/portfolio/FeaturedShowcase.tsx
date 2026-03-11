@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState, useEffect } from 'react';
 import { PortfolioItem } from '@/lib/types';
@@ -108,7 +108,7 @@ export default function FeaturedShowcase() {
                                     aria-hidden={!isOriginal}
                                 >
                                     <img
-                                        className={`${sizeClasses} object-cover rounded-xl transition-transform duration-500 group-hover:scale-105`}
+                                        className={`${sizeClasses} object-cover transition-transform duration-500 group-hover:scale-105`}
                                         src={item.image || 'https://placehold.co/600x400'}
                                         alt={item.title}
                                     />
@@ -153,7 +153,7 @@ export default function FeaturedShowcase() {
                                     aria-hidden={!isOriginal}
                                 >
                                     <img
-                                        className={`${sizeClasses} object-cover rounded-xl transition-transform duration-500 group-hover:scale-105`}
+                                        className={`${sizeClasses} object-cover transition-transform duration-500 group-hover:scale-105`}
                                         src={item.image || 'https://placehold.co/600x400'}
                                         alt={item.title}
                                     />

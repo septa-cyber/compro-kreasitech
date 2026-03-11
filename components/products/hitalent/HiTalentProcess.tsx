@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import React from 'react';
 
 // Renamed to fix Turbopack HMR cache issue

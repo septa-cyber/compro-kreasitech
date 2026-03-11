@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -27,9 +27,9 @@ export default function ServicesSections() {
                         <div key={index} className="w-full max-w-[1200px] flex flex-col justify-center items-start">
                             <div className={`w-full flex flex-col lg:flex-row items-center lg:items-center gap-12 lg:gap-16 ${!isEven ? 'lg:flex-row-reverse' : ''}`}>
 
-                                <div className={`flex w-full lg:w-auto gap-6 sm:gap-8 items-stretch ${!isEven ? 'flex-row-reverse' : 'flex-row'}`}>
+                                <div className={`flex w-full lg:w-auto gap-2 sm:gap-8 items-stretch ${!isEven ? 'flex-row-reverse' : 'flex-row'}`}>
                                     {/* Large Image Column */}
-                                    <div className={`relative flex-shrink-0 w-[280px] sm:w-[320px] lg:w-[380px] h-[380px] sm:h-[420px] lg:h-[460px] rounded-2xl flex items-center justify-center overflow-hidden bg-white p-6 sm:p-8`}>
+                                    <div className={`relative flex-[1.6] sm:flex-none sm:w-[320px] lg:w-[380px] aspect-[3/4] sm:h-[420px] lg:h-[460px] rounded-2xl flex items-center justify-center overflow-hidden bg-white p-2 sm:p-8`}>
                                         <Image
                                             src={service.heroImage1}
                                             alt={`${service.title} Illustration`}
@@ -40,8 +40,8 @@ export default function ServicesSections() {
                                     </div>
 
                                     {/* Small Icon Boxes Column */}
-                                    <div className="flex flex-col gap-6 sm:gap-8">
-                                        <div className="w-44 sm:w-52 lg:w-60 flex-1 rounded-xl flex items-center justify-center overflow-hidden bg-white p-4 sm:p-5">
+                                    <div className="flex flex-col flex-1 sm:flex-none gap-2 sm:gap-8">
+                                        <div className="w-full sm:w-52 lg:w-60 flex-1 rounded-xl flex items-center justify-center overflow-hidden bg-white p-1.5 sm:p-5">
                                             <Image
                                                 src={service.heroImage2}
                                                 alt={`${service.title} Icon 1`}
@@ -50,7 +50,7 @@ export default function ServicesSections() {
                                                 className="w-full h-full object-contain"
                                             />
                                         </div>
-                                        <div className="w-44 sm:w-52 lg:w-60 flex-1 rounded-xl flex items-center justify-center overflow-hidden bg-white p-4 sm:p-5">
+                                        <div className="w-full sm:w-52 lg:w-60 flex-1 rounded-xl flex items-center justify-center overflow-hidden bg-white p-1.5 sm:p-5">
                                             <Image
                                                 src={service.heroImage3}
                                                 alt={`${service.title} Icon 2`}
