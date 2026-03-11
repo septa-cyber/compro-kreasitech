@@ -1,9 +1,10 @@
-﻿"use client";
+"use client";
 
-import { useState, FormEvent, useEffect } from "react";
+import { useState, FormEvent, useEffect, useCallback, useRef } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Breadcrumb from "@/components/ui/Breadcrumb";
+import ReCAPTCHA from "react-google-recaptcha";
 
 interface FormData {
     name: string;
@@ -31,6 +32,9 @@ export default function ContactPage() {
     });
 
     const [siteSettings, setSiteSettings] = useState<any>({});
+    const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "";
+    const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
+    const recaptchaRef = useRef<ReCAPTCHA>(null);
 
     useEffect(() => {
         const fetchSettings = async () => {
@@ -90,7 +94,14 @@ export default function ContactPage() {
         }
 
         setErrors(newErrors);
-        return Object.keys(newErrors).length === 0;
+        
+        if (Object.keys(newErrors).length === 0 && !recaptchaToken) {
+            setSubmitStatus("error");
+            alert("Mohon centang kotak reCAPTCHA untuk membuktikan Anda bukan robot.");
+            return false;
+        }
+
+        return Object.keys(newErrors).length === 0 && !!recaptchaToken;
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -112,14 +123,17 @@ export default function ContactPage() {
         setSubmitStatus("idle");
 
         try {
-            // Simulate API call - replace with actual email API endpoint
-            await new Promise(resolve => setTimeout(resolve, 1500));
+            const response = await fetch("/api/contact", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ ...formData, recaptchaToken }),
+            });
 
-            // For now, we'll use mailto as fallback
-            const targetEmail = siteSettings.email || "marketing@kreasi.tech";
-            const mailtoLink = `mailto:${targetEmail}?subject=${encodeURIComponent(`[${formData.purpose}] ${formData.subject}`)}&body=${encodeURIComponent(`Nama: ${formData.name}\nEmail: ${formData.email}\nTujuan: ${purposeOptions.find(p => p.value === formData.purpose)?.label}\n\nPesan:\n${formData.message}`)}`;
+            const data = await response.json();
 
-            window.location.href = mailtoLink;
+            if (!response.ok || !data.success) {
+                throw new Error(data.error || "Gagal mengirim pesan");
+            }
 
             setSubmitStatus("success");
             setFormData({
@@ -129,6 +143,10 @@ export default function ContactPage() {
                 purpose: "",
                 message: "",
             });
+            setRecaptchaToken(null);
+            if (recaptchaRef.current) {
+                recaptchaRef.current.reset();
+            }
         } catch {
             setSubmitStatus("error");
         } finally {
@@ -303,6 +321,18 @@ export default function ContactPage() {
                                         )}
                                     </div>
 
+                                    {/* reCAPTCHA v2 Checkbox */}
+                                    {recaptchaSiteKey && (
+                                        <div className="mb-4">
+                                            <ReCAPTCHA
+                                                ref={recaptchaRef}
+                                                sitekey={recaptchaSiteKey}
+                                                onChange={(token) => setRecaptchaToken(token)}
+                                                onExpired={() => setRecaptchaToken(null)}
+                                            />
+                                        </div>
+                                    )}
+
                                     {/* Submit Button */}
                                     <button
                                         type="submit"
@@ -319,8 +349,8 @@ export default function ContactPage() {
                                             </>
                                         ) : (
                                             <>
-                                                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                                                <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                                    <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
                                                 </svg>
                                                 <span className="font-btn text-white">Kirim Pesan</span>
                                             </>
