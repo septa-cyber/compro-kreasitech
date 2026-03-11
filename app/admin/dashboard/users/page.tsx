@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { FaPlus, FaTrash, FaEdit, FaUserShield, FaUserPlus, FaUsers } from 'react-icons/fa';
 import toast from 'react-hot-toast';
+import ConfirmationModal from '@/components/ui/ConfirmationModal';
 
 interface User {
     id: string;
@@ -19,6 +20,7 @@ export default function UsersPage() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
     const [selectedUser, setSelectedUser] = useState<User | null>(null);
+    const [userToDelete, setUserToDelete] = useState<string | null>(null);
 
     // Form states
     const [formData, setFormData] = useState({
@@ -117,13 +119,14 @@ export default function UsersPage() {
         }
     };
 
-    const handleDeleteUser = async (id: string) => {
-        if (!confirm('Apakah Anda yakin ingin menghapus user ini?')) return;
+    const handleDeleteUser = async () => {
+        if (!userToDelete) return;
 
         try {
-            const res = await fetch(`/api/users/${id}`, { method: 'DELETE' });
+            const res = await fetch(`/api/users/${userToDelete}`, { method: 'DELETE' });
             if (res.ok) {
                 toast.success('User berhasil dihapus');
+                setUserToDelete(null);
                 fetchUsers();
             } else {
                 const err = await res.json();
@@ -220,7 +223,7 @@ export default function UsersPage() {
                                                         <FaEdit size={14} />
                                                     </button>
                                                     <button
-                                                        onClick={() => handleDeleteUser(user.id)}
+                                                        onClick={() => setUserToDelete(user.id)}
                                                         disabled={user.id === currentUser.id}
                                                         className={`p-2 rounded-lg transition-all ${user.id === currentUser.id
                                                             ? 'text-gray-200 cursor-not-allowed'
@@ -325,6 +328,17 @@ export default function UsersPage() {
                     </div>
                 </div>
             )}
+
+            {/* Delete Confirmation Modal */}
+            <ConfirmationModal
+                isOpen={!!userToDelete}
+                onClose={() => setUserToDelete(null)}
+                onConfirm={handleDeleteUser}
+                title="Hapus Administrator"
+                message="Apakah Anda yakin ingin menghapus administrator ini? Tindakan ini tidak dapat dibatalkan."
+                confirmText="Hapus"
+                isDanger
+            />
         </div>
     );
 }
