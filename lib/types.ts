@@ -39,6 +39,8 @@ export interface JobPosting {
     postedDate?: string;
     expiredDate?: string;
     salary?: string;
+    salary_min?: number | string;
+    salary_max?: number | string;
     icon?: string;
     iconBg?: string;
 }

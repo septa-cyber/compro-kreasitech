@@ -10,7 +10,8 @@
         "category": "Technology",
         "status": "open",
         "postedDate": "2024-02-12",
-        "salary": "12,000K-18,000K",
+        "salary_min": 12000000,
+        "salary_max": 18000000,
         "description": "We are looking for a Senior Frontend Developer to lead our web application development.",
         "requirements": [
             "5+ years of React experience",
@@ -44,7 +45,8 @@
         "category": "Technology",
         "status": "open",
         "postedDate": "2024-02-12",
-        "salary": "10,000K-15,000K",
+        "salary_min": 10000000,
+        "salary_max": 15000000,
         "description": "Join our backend team to build scalable microservices using Go and PostgreSQL.",
         "requirements": [
             "Experience with Golang",
@@ -78,7 +80,8 @@
         "category": "Creative",
         "status": "open",
         "postedDate": "2024-02-12",
-        "salary": "8,000K-12,000K",
+        "salary_min": 8000000,
+        "salary_max": 12000000,
         "description": "We need a creative UI/UX Designer to design beautiful and intuitive user experiences.",
         "requirements": [
             "Proficient in Figma",
@@ -101,4 +104,4 @@
         "logo_url": "https://img.logo.dev/figma.com?token=pk_ST185vJtQO6-1e4Bf7k_Qw",
         "location_type": "WFO"
     }
-]
+]

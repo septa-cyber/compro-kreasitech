@@ -91,10 +91,29 @@ function mapArticleToDB(article: Partial<BlogPost>): any {
 }
 
 function mapJobFromDB(row: any): JobPosting {
+    let salary_min = row.salary_min;
+    let salary_max = row.salary_max;
+
+    // Fallback parsing for legacy salary strings
+    if ((salary_min === null || salary_min === undefined) && row.salary) {
+        const salaryStr = row.salary.toString().toLowerCase();
+        const parts = salaryStr.match(/\d+[\d,.]*/g);
+        
+        if (parts && parts.length > 0) {
+            salary_min = parseFloat(parts[0].replace(/[,.]/g, ''));
+            if (salaryStr.includes('k')) salary_min *= 1000;
+            
+            if (parts.length > 1) {
+                salary_max = parseFloat(parts[1].replace(/[,.]/g, ''));
+                if (salaryStr.includes('k')) salary_max *= 1000;
+            }
+        }
+    }
+
     return {
         id: row.id,
         title: row.title,
-        position: row.position || row.title, // Fallback to title if position is null
+        position: row.position || row.title,
         company: row.company,
         icon: row.icon,
         iconBg: row.icon_bg,
@@ -107,14 +126,16 @@ function mapJobFromDB(row: any): JobPosting {
         category: row.category,
         status: row.status,
         department: row.department,
-        requirements: row.requirements || [],
-        responsibilities: row.responsibilities || [],
-        benefits: row.benefits || [],
+        requirements: typeof row.requirements === 'string' ? JSON.parse(row.requirements) : (row.requirements || []),
+        responsibilities: typeof row.responsibilities === 'string' ? JSON.parse(row.responsibilities) : (row.responsibilities || []),
+        benefits: typeof row.benefits === 'string' ? JSON.parse(row.benefits) : (row.benefits || []),
         experience: row.experience,
         education: row.education,
         whatsapp_url: row.whatsapp_url,
         logo_url: row.logo_url,
-        location_type: row.location_type
+        location_type: row.location_type,
+        salary_min: salary_min,
+        salary_max: salary_max
     };
 }
 
@@ -135,6 +156,12 @@ function mapJobToDB(job: Partial<JobPosting>): any {
     }
     if ('location_type' in dbJob) {
         dbJob.location_type = job.location_type;
+    }
+    if ('salary_min' in dbJob) {
+        dbJob.salary_min = job.salary_min;
+    }
+    if ('salary_max' in dbJob) {
+        dbJob.salary_max = job.salary_max;
     }
     return dbJob;
 }

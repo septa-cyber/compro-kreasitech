@@ -21,7 +21,36 @@ interface Job {
     logo_url?: string;
     location_type?: string;
     originalDate?: string;
+    salary_min?: number | string;
+    salary_max?: number | string;
 }
+
+const formatCurrency = (value: number | string) => {
+    if (!value && value !== 0) return '';
+    const numberString = value.toString().replace(/\D/g, '');
+    return 'Rp ' + numberString.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+};
+
+const unformatCurrency = (value: string) => {
+    return value.replace(/\D/g, '');
+};
+
+const displaySalary = (job: any) => {
+    if (job.salary_min && job.salary_max) {
+        return `${formatCurrency(job.salary_min)} - ${formatCurrency(job.salary_max)}`;
+    } else if (job.salary_min) {
+        return `${formatCurrency(job.salary_min)}`;
+    } else if (job.salary_max) {
+        return `${formatCurrency(job.salary_max)}`;
+    }
+    
+    // Fallback if parsing failed - try to format if it looks like a number string
+    if (job.salary && /^\d+$/.test(job.salary.toString().replace(/\D/g, ''))) {
+        return formatCurrency(job.salary);
+    }
+    
+    return job.salary || "Negosiasi";
+};
 
 export default function KarirPage() {
     const [jobsData, setJobsData] = useState<Job[]>([]);
@@ -58,7 +87,7 @@ export default function KarirPage() {
         freelance: false,
         internship: false
     });
-    const [salaryRange, setSalaryRange] = useState([0, 100000]);
+    const [salaryRange, setSalaryRange] = useState<(string | number)[]>([0, ""]);
     const [locationPrefs, setLocationPrefs] = useState({
         remote: false,
         wfo: false,
@@ -87,7 +116,7 @@ export default function KarirPage() {
             freelance: false,
             internship: false
         },
-        salaryRange: [0, 100000],
+        salaryRange: [0, "" ] as (string | number)[],
         locationPrefs: {
             remote: false,
             wfo: false,
@@ -102,7 +131,7 @@ export default function KarirPage() {
         datePosted !== "Anytime" ||
         Object.values(jobTypes).some(v => v) ||
         salaryRange[0] !== 0 ||
-        salaryRange[1] !== 100000 ||
+        salaryRange[1] !== "" ||
         Object.values(locationPrefs).some(v => v);
 
     const handleClearAll = () => {
@@ -111,7 +140,7 @@ export default function KarirPage() {
             searchLocation: "",
             datePosted: "Anytime",
             jobTypes: { fulltime: false, parttime: false, contract: false, freelance: false, internship: false },
-            salaryRange: [0, 100000],
+            salaryRange: [0, ""],
             locationPrefs: { remote: false, wfo: false, wfh: false, hybrid: false }
         };
 
@@ -136,14 +165,6 @@ export default function KarirPage() {
         });
     };
 
-    const handleSalaryChange = (index: number, value: number) => {
-        const newRange = [...salaryRange];
-        newRange[index] = value;
-        // Prevent crossing
-        if (index === 0 && value > salaryRange[1]) newRange[0] = salaryRange[1];
-        if (index === 1 && value < salaryRange[0]) newRange[1] = salaryRange[0];
-        setSalaryRange(newRange);
-    };
 
     const handleJobClick = (e: React.MouseEvent, id: number) => {
         // Build navigation url
@@ -274,18 +295,21 @@ export default function KarirPage() {
 
         // 5. Salary Range Filter
         let matchesSalary = true;
-        if (job.salary) {
-            // Extract numbers including separators like "12,000" or "3.500"
+        const jobMinVal = job.salary_min ? parseFloat(job.salary_min.toString().replace(/\D/g, '')) : null;
+
+        if (jobMinVal !== null) {
+            const filterMin = appliedFilters.salaryRange[0] ? parseInt(appliedFilters.salaryRange[0].toString()) : 0;
+            const filterMax = appliedFilters.salaryRange[1] ? parseInt(appliedFilters.salaryRange[1].toString()) : null;
+            
+            matchesSalary = jobMinVal >= filterMin && (filterMax === null || jobMinVal <= filterMax);
+        } else if (job.salary) {
+            // Fallback for old string format
             const salaryParts = job.salary.match(/\d+[\d,.]*/g);
             if (salaryParts && salaryParts.length > 0) {
-                // Parse the first number (minimum salary) as the primary filter value
                 const jobMin = parseFloat(salaryParts[0].replace(/[,.]/g, ''));
-
-                // If filter is at default max (100000), don't filter out higher salaries
-                const filterMax = appliedFilters.salaryRange[1];
-                const isMaxLimit = filterMax === 100000;
-                
-                matchesSalary = jobMin >= appliedFilters.salaryRange[0] && (isMaxLimit || jobMin <= filterMax);
+                const filterMin = appliedFilters.salaryRange[0] ? parseInt(appliedFilters.salaryRange[0].toString()) : 0;
+                const filterMax = appliedFilters.salaryRange[1] ? parseInt(appliedFilters.salaryRange[1].toString()) : null;
+                matchesSalary = jobMin >= filterMin && (filterMax === null || jobMin <= filterMax);
             }
         }
 
@@ -301,9 +325,6 @@ export default function KarirPage() {
     });
 
     // Calculations for salary slider track
-    const minSalary = 0;
-    const maxSalary = 100000;
-    const getPercent = (value: number) => Math.round(((value - minSalary) / (maxSalary - minSalary)) * 100);
 
     return (
         <div className="bg-[#F4F4F7] min-h-screen">
@@ -356,9 +377,9 @@ export default function KarirPage() {
 
                             <div className="flex-1 overflow-y-auto lg:overflow-visible custom-scrollbar">
                                 <div className="lg:sticky lg:top-24 lg:mb-12">
-                                    <div className={`pb-0 lg:pb-12 bg-white lg:max-h-[calc(100vh-8rem)] lg:overflow-y-auto custom-scrollbar lg:rounded-lg border-0 lg:border border-gray-200 inline-flex flex-col justify-start items-center gap-4 w-full lg:min-h-0 rounded-t-2xl lg:rounded-none ${isFilterMaximized ? 'pt-4' : ''} lg:pt-0`}>
+                                    <div className={`pb-8 lg:pb-12 bg-white lg:max-h-[calc(100vh-8rem)] lg:overflow-y-auto custom-scrollbar lg:rounded-lg border-0 lg:border border-gray-200 inline-flex flex-col justify-start items-center gap-4 w-full lg:min-h-0 rounded-t-2xl lg:rounded-none ${isFilterMaximized ? 'pt-6' : ''} lg:pt-0`}>
                                         {/* Header */}
-                                        <div className="w-full py-5 px-6 border-b border-gray-100 flex justify-between items-center bg-gray-50/50 rounded-t-2xl lg:rounded-t-lg">
+                                        <div className="w-full py-6 px-6 border-b border-gray-100 flex justify-between items-center bg-gray-50/50 rounded-t-2xl lg:rounded-t-lg">
                                             <div className="flex justify-start font-h6 text-gray-900">Filters</div>
                                             <div className="flex justify-end items-center gap-3">
                                                     {hasActiveFilters && (
@@ -379,7 +400,7 @@ export default function KarirPage() {
                                             </div>
                                         
 
-                                        <div className="flex flex-col justify-start items-start gap-2 lg:gap-8 w-full px-6 pt-2 lg:pt-6">
+                                        <div className="flex flex-col justify-start items-start gap-6 lg:gap-8 w-full px-6 pt-2 lg:pt-6">
                                             {/* Search Group */}
                                             <div className="hidden lg:flex w-full flex-col gap-4">
                                                 {/* Job Search */}
@@ -473,64 +494,49 @@ export default function KarirPage() {
 
                                             <div className="self-stretch h-px bg-gray-100" />
 
-                                            {/* Salary Range */}
                                             <div className="self-stretch flex flex-col justify-start items-start gap-3">
                                                 <label className="text-sm font-semibold text-gray-700">Salary Range</label>
-                                                <div className="self-stretch flex flex-col justify-start items-start gap-6 relative h-16 w-full px-1">
-                                                {/* Slider Container */}
-                                                <div className="relative w-full h-1 bg-gray-200 rounded-sm mt-2">
-                                                    {/* Active Rail */}
-                                                    <div
-                                                        className="absolute h-full bg-violet-600 rounded-sm z-10"
-                                                        style={{
-                                                            left: `${getPercent(salaryRange[0])}%`,
-                                                            width: `${getPercent(salaryRange[1]) - getPercent(salaryRange[0])}%`
-                                                        }}
-                                                    />
-
-                                                    {/* Min Slider */}
-                                                    <input
-                                                        type="range"
-                                                        min={minSalary}
-                                                        max={maxSalary}
-                                                        step="500"
-                                                        value={salaryRange[0]}
-                                                        onChange={(e) => handleSalaryChange(0, Math.min(Number(e.target.value), salaryRange[1] - 500))}
-                                                        className="absolute w-full h-full opacity-0 z-20 cursor-pointer pointer-events-none [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:appearance-none [-webkit-appearance:none] bg-transparent"
-                                                    />
-                                                    {/* Max Slider */}
-                                                    <input
-                                                        type="range"
-                                                        min={minSalary}
-                                                        max={maxSalary}
-                                                        step="500"
-                                                        value={salaryRange[1]}
-                                                        onChange={(e) => handleSalaryChange(1, Math.max(Number(e.target.value), salaryRange[0] + 500))}
-                                                        className="absolute w-full h-full opacity-0 z-20 cursor-pointer pointer-events-none [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:appearance-none [-webkit-appearance:none] bg-transparent"
-                                                    />
-
-                                                    {/* Thumb Visuals */}
-                                                    <div
-                                                        className="absolute w-3 h-3 bg-white border-2 border-violet-600 rounded-full z-10 top-1/2 -translate-y-1/2 -ml-1.5 flex items-center justify-center pointer-events-none"
-                                                        style={{ left: `${getPercent(salaryRange[0])}%` }}
-                                                    >
-                                                        <div className="w-1.5 h-1.5 bg-violet-600 rounded-full" />
+                                                <div className="w-full flex flex-col gap-3">
+                                                    <div className="flex flex-col gap-1.5">
+                                                        <label className="text-[10px] uppercase tracking-wider text-gray-400 font-bold ml-1">Minimal (Rp)</label>
+                                                        <div className="relative w-full h-10 rounded-lg border border-gray-200 group focus-within:border-violet-500 transition-all bg-white flex justify-start items-center px-3">
+                                                            <input
+                                                                type="text"
+                                                                placeholder="0"
+                                                                value={salaryRange[0] ? formatCurrency(salaryRange[0].toString()).replace('Rp ', '') : ''}
+                                                                onChange={(e) => {
+                                                                    const unformatted = unformatCurrency(e.target.value);
+                                                                    if (/^\d*$/.test(unformatted)) {
+                                                                        const newRange = [...salaryRange];
+                                                                        newRange[0] = unformatted;
+                                                                        setSalaryRange(newRange);
+                                                                    }
+                                                                }}
+                                                                className="w-full bg-transparent border-none outline-none focus:outline-none focus:ring-0 font-body-sm text-gray-900 p-0"
+                                                            />
+                                                        </div>
                                                     </div>
-                                                    <div
-                                                        className="absolute w-3 h-3 bg-white border-2 border-violet-600 rounded-full z-10 top-1/2 -translate-y-1/2 -ml-1.5 flex items-center justify-center pointer-events-none"
-                                                        style={{ left: `${getPercent(salaryRange[1])}%` }}
-                                                    >
-                                                        <div className="w-1.5 h-1.5 bg-violet-600 rounded-full" />
+                                                    <div className="flex flex-col gap-1.5">
+                                                        <label className="text-[10px] uppercase tracking-wider text-gray-400 font-bold ml-1">Maksimal (Rp)</label>
+                                                        <div className="relative w-full h-10 rounded-lg border border-gray-200 group focus-within:border-violet-500 transition-all bg-white flex justify-start items-center px-3">
+                                                            <input
+                                                                type="text"
+                                                                placeholder="No Limit"
+                                                                value={salaryRange[1] ? formatCurrency(salaryRange[1].toString()).replace('Rp ', '') : ''}
+                                                                onChange={(e) => {
+                                                                    const unformatted = unformatCurrency(e.target.value);
+                                                                    if (/^\d*$/.test(unformatted)) {
+                                                                        const newRange = [...salaryRange];
+                                                                        newRange[1] = unformatted;
+                                                                        setSalaryRange(newRange);
+                                                                    }
+                                                                }}
+                                                                className="w-full bg-transparent border-none outline-none focus:outline-none focus:ring-0 font-body-sm text-gray-900 p-0"
+                                                            />
+                                                        </div>
                                                     </div>
-                                                </div>
-
-                                                {/* Labels */}
-                                                <div className="w-full flex justify-between items-center mt-3">
-                                                    <div className="text-left font-body-xs font-medium text-gray-500">{salaryRange[0].toLocaleString('id-ID')} K</div>
-                                                    <div className="text-right font-body-xs font-medium text-gray-500">{salaryRange[1].toLocaleString('id-ID')} K</div>
                                                 </div>
                                             </div>
-                                        </div>
 
                                         <div className="self-stretch h-px bg-gray-100" />
 
@@ -696,7 +702,7 @@ export default function KarirPage() {
                                                     <div className="font-body-xs
                                                         text-gray-900 group-hover:text-white
                                                         data-[active=true]:text-white transition-colors duration-500">
-                                                        {job.salary}
+                                                        {displaySalary(job)}
                                                     </div>
 
                                                     <div className="w-1 h-1 rounded-full bg-gray-300 group-hover:bg-white data-[active=true]:bg-white transition-colors duration-500 ml-1" />

@@ -8,6 +8,18 @@ import ConfirmationModal from '@/components/ui/ConfirmationModal';
 import toast from 'react-hot-toast';
 import AdminViewToggle from '@/app/admin/components/AdminViewToggle';
 
+// Helper to format number as currency string (e.g., 1000 -> 1.000)
+const formatCurrency = (value: string | number) => {
+    if (!value && value !== 0) return '';
+    const numberString = value.toString().replace(/\D/g, '');
+    return numberString.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+};
+
+// Helper to unformat currency string back to number
+const unformatCurrency = (value: string) => {
+    return value.replace(/\./g, '');
+};
+
 export default function JobsSettingsPage() {
     const [jobs, setJobs] = useState<JobPosting[]>([]);
     const [siteSettings, setSiteSettings] = useState<SiteSettings | null>(null);
@@ -27,6 +39,8 @@ export default function JobsSettingsPage() {
         experience: "",
         education: "",
         salary: "",
+        salary_min: "",
+        salary_max: "",
         whatsapp_url: "",
         logo_url: "",
         description: "",
@@ -174,6 +188,8 @@ export default function JobsSettingsPage() {
                     experience: "",
                     education: "",
                     salary: "",
+                    salary_min: "",
+                    salary_max: "",
                     whatsapp_url: "",
                     logo_url: "",
                     description: "",
@@ -441,6 +457,34 @@ export default function JobsSettingsPage() {
                         </div>
 
                         <div>
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Logo <span className="text-red-500">*</span></label>
+                            <div className="flex gap-2">
+                                <input
+                                    type="text"
+                                    required
+                                    value={newItemData.logo_url}
+                                    onChange={(e) => setNewItemData({ ...newItemData, logo_url: e.target.value })}
+                                    className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                                    placeholder="https://..."
+                                />
+                                <label className="px-3 py-2 bg-gray-100 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-200 transition-colors flex items-center justify-center">
+                                    <FaImage className="text-gray-600" />
+                                    <input
+                                        type="file"
+                                        accept="image/*"
+                                        className="hidden"
+                                        onChange={(e) => handleLogoUpload(e, false)}
+                                    />
+                                </label>
+                            </div>
+                            {newItemData.logo_url && (
+                                <div className="mt-2 p-2 border border-gray-200 rounded-lg bg-gray-50 flex justify-center">
+                                    <img src={newItemData.logo_url} alt="Preview" className="h-12 object-contain" />
+                                </div>
+                            )}
+                        </div>
+
+                        <div>
                             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Lokasi <span className="text-red-500">*</span></label>
                             <input
                                 type="text"
@@ -500,91 +544,34 @@ export default function JobsSettingsPage() {
                             />
                         </div>
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Salary Range</label>
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Gaji Minimum (Rp)</label>
                             <input
                                 type="text"
-                                value={newItemData.salary}
-                                onChange={(e) => setNewItemData({ ...newItemData, salary: e.target.value })}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
-                                placeholder="Contoh: 3,000K-6,500K"
-                            />
-                        </div>
-                        <div>
-                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Metode Lamaran <span className="text-red-500">*</span></label>
-                            <select
-                                required
-                                value={applyMethod}
+                                value={formatCurrency(newItemData.salary_min || '')}
                                 onChange={(e) => {
-                                    const method = e.target.value;
-                                    setApplyMethod(method);
-
-                                    const currentUrl = newItemData.whatsapp_url || "";
-                                    const defaultPhone = siteSettings?.whatsapp?.replace(/\D/g, '') || '62';
-                                    const defaultWaUrl = `https://wa.me/${defaultPhone}`;
-
-                                    if (method === "whatsapp" && (!currentUrl || !currentUrl.includes("wa.me"))) {
-                                        setNewItemData({ ...newItemData, whatsapp_url: defaultWaUrl });
-                                    } else if (method !== "whatsapp" && currentUrl === defaultWaUrl) {
-                                        setNewItemData({ ...newItemData, whatsapp_url: "" });
-                                    } else if (method === "") {
-                                        setNewItemData({ ...newItemData, whatsapp_url: "" });
+                                    const unformatted = unformatCurrency(e.target.value);
+                                    if (/^\d*$/.test(unformatted)) {
+                                        setNewItemData({ ...newItemData, salary_min: unformatted });
                                     }
                                 }}
                                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
-                            >
-                                <option value="">Pilih Metode Lamaran</option>
-                                <option value="whatsapp">WhatsApp</option>
-                                <option value="linkedin">LinkedIn</option>
-                                <option value="jobstreet">Jobstreet</option>
-                                <option value="glints">Glints</option>
-                                <option value="other">Link Lainnya</option>
-                            </select>
+                                placeholder="Contoh: 3.000.000"
+                            />
                         </div>
-                        {applyMethod && (
-                            <div>
-                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Link Lamaran (Apply URL) <span className="text-red-500">*</span></label>
-                                <input
-                                    type="text"
-                                    required
-                                    value={newItemData.whatsapp_url}
-                                    onChange={(e) => setNewItemData({ ...newItemData, whatsapp_url: e.target.value })}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
-                                    placeholder={
-                                        applyMethod === 'whatsapp' ? 'https://wa.me/628...' :
-                                            applyMethod === 'linkedin' ? 'https://linkedin.com/...' :
-                                                applyMethod === 'jobstreet' ? 'https://jobstreet.co.id/...' :
-                                                    applyMethod === 'glints' ? 'https://glints.com/id/...' :
-                                                        'https://...'
-                                    }
-                                />
-                            </div>
-                        )}
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Logo <span className="text-red-500">*</span></label>
-                            <div className="flex gap-2">
-                                <input
-                                    type="text"
-                                    required
-                                    value={newItemData.logo_url}
-                                    onChange={(e) => setNewItemData({ ...newItemData, logo_url: e.target.value })}
-                                    className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
-                                    placeholder="https://..."
-                                />
-                                <label className="px-3 py-2 bg-gray-100 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-200 transition-colors flex items-center justify-center">
-                                    <FaImage className="text-gray-600" />
-                                    <input
-                                        type="file"
-                                        accept="image/*"
-                                        className="hidden"
-                                        onChange={(e) => handleLogoUpload(e, false)}
-                                    />
-                                </label>
-                            </div>
-                            {newItemData.logo_url && (
-                                <div className="mt-2 p-2 border border-gray-200 rounded-lg bg-gray-50 flex justify-center">
-                                    <img src={newItemData.logo_url} alt="Preview" className="h-12 object-contain" />
-                                </div>
-                            )}
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Gaji Maksimum (Rp)</label>
+                            <input
+                                type="text"
+                                value={formatCurrency(newItemData.salary_max || '')}
+                                onChange={(e) => {
+                                    const unformatted = unformatCurrency(e.target.value);
+                                    if (/^\d*$/.test(unformatted)) {
+                                        setNewItemData({ ...newItemData, salary_max: unformatted });
+                                    }
+                                }}
+                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                                placeholder="Contoh: 6.500.000"
+                            />
                         </div>
                     </div>
 
@@ -643,6 +630,59 @@ export default function JobsSettingsPage() {
                             <option value="open">Open (Dibuka)</option>
                             <option value="closed">Closed (Ditutup)</option>
                         </select>
+                    </div>
+
+                    <div className="pt-4 border-t border-gray-100 space-y-4">
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Metode Lamaran <span className="text-red-500">*</span></label>
+                            <select
+                                required
+                                value={applyMethod}
+                                onChange={(e) => {
+                                    const method = e.target.value;
+                                    setApplyMethod(method);
+
+                                    const currentUrl = newItemData.whatsapp_url || "";
+                                    const defaultPhone = siteSettings?.whatsapp?.replace(/\D/g, '') || '62';
+                                    const defaultWaUrl = `https://wa.me/${defaultPhone}`;
+
+                                    if (method === "whatsapp" && (!currentUrl || !currentUrl.includes("wa.me"))) {
+                                        setNewItemData({ ...newItemData, whatsapp_url: defaultWaUrl });
+                                    } else if (method !== "whatsapp" && currentUrl === defaultWaUrl) {
+                                        setNewItemData({ ...newItemData, whatsapp_url: "" });
+                                    } else if (method === "") {
+                                        setNewItemData({ ...newItemData, whatsapp_url: "" });
+                                    }
+                                }}
+                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                            >
+                                <option value="">Pilih Metode Lamaran</option>
+                                <option value="whatsapp">WhatsApp</option>
+                                <option value="linkedin">LinkedIn</option>
+                                <option value="jobstreet">Jobstreet</option>
+                                <option value="glints">Glints</option>
+                                <option value="other">Link Lainnya</option>
+                            </select>
+                        </div>
+                        {applyMethod && (
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Link Lamaran (Apply URL) <span className="text-red-500">*</span></label>
+                                <input
+                                    type="text"
+                                    required
+                                    value={newItemData.whatsapp_url}
+                                    onChange={(e) => setNewItemData({ ...newItemData, whatsapp_url: e.target.value })}
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                                    placeholder={
+                                        applyMethod === 'whatsapp' ? 'https://wa.me/628...' :
+                                            applyMethod === 'linkedin' ? 'https://linkedin.com/...' :
+                                                applyMethod === 'jobstreet' ? 'https://jobstreet.co.id/...' :
+                                                    applyMethod === 'glints' ? 'https://glints.com/id/...' :
+                                                        'https://...'
+                                    }
+                                />
+                            </div>
+                        )}
                     </div>
 
                     <div className="flex justify-end pt-4 gap-3">
@@ -706,6 +746,34 @@ export default function JobsSettingsPage() {
                         </div>
 
                         <div>
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Logo <span className="text-red-500">*</span></label>
+                            <div className="flex gap-2">
+                                <input
+                                    type="text"
+                                    required
+                                    value={editItemData.logo_url || ''}
+                                    onChange={(e) => setEditItemData({ ...editItemData, logo_url: e.target.value })}
+                                    className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                                    placeholder="https://..."
+                                />
+                                <label className="px-3 py-2 bg-gray-100 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-200 transition-colors flex items-center justify-center">
+                                    <FaImage className="text-gray-600" />
+                                    <input
+                                        type="file"
+                                        accept="image/*"
+                                        className="hidden"
+                                        onChange={(e) => handleLogoUpload(e, true)}
+                                    />
+                                </label>
+                            </div>
+                            {editItemData.logo_url && (
+                                <div className="mt-2 p-2 border border-gray-200 rounded-lg bg-gray-50 flex justify-center">
+                                    <img src={editItemData.logo_url} alt="Preview" className="h-12 object-contain" />
+                                </div>
+                            )}
+                        </div>
+
+                        <div>
                             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Lokasi <span className="text-red-500">*</span></label>
                             <input
                                 type="text"
@@ -765,91 +833,34 @@ export default function JobsSettingsPage() {
                             />
                         </div>
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Salary Range</label>
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Gaji Minimum (Rp)</label>
                             <input
                                 type="text"
-                                value={editItemData.salary || ''}
-                                onChange={(e) => setEditItemData({ ...editItemData, salary: e.target.value })}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
-                                placeholder="Contoh: 3,000K-6,500K"
-                            />
-                        </div>
-                        <div>
-                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Metode Lamaran <span className="text-red-500">*</span></label>
-                            <select
-                                required
-                                value={editApplyMethod}
+                                value={formatCurrency(editItemData.salary_min || '')}
                                 onChange={(e) => {
-                                    const method = e.target.value;
-                                    setEditApplyMethod(method);
-
-                                    const currentUrl = editItemData.whatsapp_url || "";
-                                    const defaultPhone = siteSettings?.whatsapp?.replace(/\D/g, '') || '62';
-                                    const defaultWaUrl = `https://wa.me/${defaultPhone}`;
-
-                                    if (method === "whatsapp" && (!currentUrl || !currentUrl.includes("wa.me"))) {
-                                        setEditItemData({ ...editItemData, whatsapp_url: defaultWaUrl });
-                                    } else if (method !== "whatsapp" && currentUrl === defaultWaUrl) {
-                                        setEditItemData({ ...editItemData, whatsapp_url: "" });
-                                    } else if (method === "") {
-                                        setEditItemData({ ...editItemData, whatsapp_url: "" });
+                                    const unformatted = unformatCurrency(e.target.value);
+                                    if (/^\d*$/.test(unformatted)) {
+                                        setEditItemData({ ...editItemData, salary_min: unformatted });
                                     }
                                 }}
                                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
-                            >
-                                <option value="">Pilih Metode Lamaran</option>
-                                <option value="whatsapp">WhatsApp</option>
-                                <option value="linkedin">LinkedIn</option>
-                                <option value="jobstreet">Jobstreet</option>
-                                <option value="glints">Glints</option>
-                                <option value="other">Link Lainnya</option>
-                            </select>
+                                placeholder="Contoh: 3.000.000"
+                            />
                         </div>
-                        {editApplyMethod && (
-                            <div>
-                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Link Lamaran (Apply URL) <span className="text-red-500">*</span></label>
-                                <input
-                                    type="text"
-                                    required
-                                    value={editItemData.whatsapp_url || ''}
-                                    onChange={(e) => setEditItemData({ ...editItemData, whatsapp_url: e.target.value })}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
-                                    placeholder={
-                                        editApplyMethod === 'whatsapp' ? 'https://wa.me/628...' :
-                                            editApplyMethod === 'linkedin' ? 'https://linkedin.com/...' :
-                                                editApplyMethod === 'jobstreet' ? 'https://jobstreet.co.id/...' :
-                                                    editApplyMethod === 'glints' ? 'https://glints.com/id/...' :
-                                                        'https://...'
-                                    }
-                                />
-                            </div>
-                        )}
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Logo <span className="text-red-500">*</span></label>
-                            <div className="flex gap-2">
-                                <input
-                                    type="text"
-                                    required
-                                    value={editItemData.logo_url || ''}
-                                    onChange={(e) => setEditItemData({ ...editItemData, logo_url: e.target.value })}
-                                    className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
-                                    placeholder="https://..."
-                                />
-                                <label className="px-3 py-2 bg-gray-100 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-200 transition-colors flex items-center justify-center">
-                                    <FaImage className="text-gray-600" />
-                                    <input
-                                        type="file"
-                                        accept="image/*"
-                                        className="hidden"
-                                        onChange={(e) => handleLogoUpload(e, true)}
-                                    />
-                                </label>
-                            </div>
-                            {editItemData.logo_url && (
-                                <div className="mt-2 p-2 border border-gray-200 rounded-lg bg-gray-50 flex justify-center">
-                                    <img src={editItemData.logo_url} alt="Preview" className="h-12 object-contain" />
-                                </div>
-                            )}
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Gaji Maksimum (Rp)</label>
+                            <input
+                                type="text"
+                                value={formatCurrency(editItemData.salary_max || '')}
+                                onChange={(e) => {
+                                    const unformatted = unformatCurrency(e.target.value);
+                                    if (/^\d*$/.test(unformatted)) {
+                                        setEditItemData({ ...editItemData, salary_max: unformatted });
+                                    }
+                                }}
+                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                                placeholder="Contoh: 6.500.000"
+                            />
                         </div>
                     </div>
 
@@ -908,6 +919,59 @@ export default function JobsSettingsPage() {
                             <option value="open">Open (Dibuka)</option>
                             <option value="closed">Closed (Ditutup)</option>
                         </select>
+                    </div>
+
+                    <div className="pt-4 border-t border-gray-100 space-y-4">
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Metode Lamaran <span className="text-red-500">*</span></label>
+                            <select
+                                required
+                                value={editApplyMethod}
+                                onChange={(e) => {
+                                    const method = e.target.value;
+                                    setEditApplyMethod(method);
+
+                                    const currentUrl = editItemData.whatsapp_url || "";
+                                    const defaultPhone = siteSettings?.whatsapp?.replace(/\D/g, '') || '62';
+                                    const defaultWaUrl = `https://wa.me/${defaultPhone}`;
+
+                                    if (method === "whatsapp" && (!currentUrl || !currentUrl.includes("wa.me"))) {
+                                        setEditItemData({ ...editItemData, whatsapp_url: defaultWaUrl });
+                                    } else if (method !== "whatsapp" && currentUrl === defaultWaUrl) {
+                                        setEditItemData({ ...editItemData, whatsapp_url: "" });
+                                    } else if (method === "") {
+                                        setEditItemData({ ...editItemData, whatsapp_url: "" });
+                                    }
+                                }}
+                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                            >
+                                <option value="">Pilih Metode Lamaran</option>
+                                <option value="whatsapp">WhatsApp</option>
+                                <option value="linkedin">LinkedIn</option>
+                                <option value="jobstreet">Jobstreet</option>
+                                <option value="glints">Glints</option>
+                                <option value="other">Link Lainnya</option>
+                            </select>
+                        </div>
+                        {editApplyMethod && (
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Link Lamaran (Apply URL) <span className="text-red-500">*</span></label>
+                                <input
+                                    type="text"
+                                    required
+                                    value={editItemData.whatsapp_url || ''}
+                                    onChange={(e) => setEditItemData({ ...editItemData, whatsapp_url: e.target.value })}
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                                    placeholder={
+                                        editApplyMethod === 'whatsapp' ? 'https://wa.me/628...' :
+                                            editApplyMethod === 'linkedin' ? 'https://linkedin.com/...' :
+                                                editApplyMethod === 'jobstreet' ? 'https://jobstreet.co.id/...' :
+                                                    editApplyMethod === 'glints' ? 'https://glints.com/id/...' :
+                                                        'https://...'
+                                    }
+                                />
+                            </div>
+                        )}
                     </div>
 
                     <div className="flex justify-end pt-4 gap-3">

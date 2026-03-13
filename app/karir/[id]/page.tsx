@@ -7,6 +7,29 @@ import Footer from "@/components/Footer";
 import Breadcrumb from "@/components/ui/Breadcrumb";
 import { JobPosting } from "@/lib/types";
 
+const formatCurrency = (value: number | string) => {
+    if (!value && value !== 0) return '';
+    const numberString = value.toString().replace(/\D/g, '');
+    return 'Rp ' + numberString.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+};
+
+const displaySalary = (job: any) => {
+    if (job.salary_min && job.salary_max) {
+        return `${formatCurrency(job.salary_min)} - ${formatCurrency(job.salary_max)}`;
+    } else if (job.salary_min) {
+        return `${formatCurrency(job.salary_min)}`;
+    } else if (job.salary_max) {
+        return `${formatCurrency(job.salary_max)}`;
+    }
+    
+    // Fallback if parsing failed
+    if (job.salary && /^\d+$/.test(job.salary.toString().replace(/\D/g, ''))) {
+        return formatCurrency(job.salary);
+    }
+    
+    return job.salary || "Negosiasi";
+};
+
 export default function JobDetailPage() {
     const params = useParams();
     const router = useRouter();
@@ -304,7 +327,7 @@ export default function JobDetailPage() {
                                 <div className="space-y-5 mb-8">
                                     <div>
                                         <p className="font-body-sm text-gray-500 mb-1">Salary Range</p>
-                                        <p className="text-gray-900 font-semibold font-body text-base">{job.salary || "Negosiasi"}</p>
+                                        <p className="text-gray-900 font-semibold font-body text-base">{displaySalary(job)}</p>
                                     </div>
                                     <div>
                                         <p className="font-body-sm text-gray-500 mb-1">Job Type</p>
