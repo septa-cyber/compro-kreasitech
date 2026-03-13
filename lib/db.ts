@@ -258,7 +258,7 @@ export async function deleteArticle(id: number): Promise<boolean> {
 export async function getJobs(status?: string): Promise<JobPosting[]> {
     if (isSupabaseEnabled()) {
         let query = supabase.from('jobs').select('*').order('created_at', { ascending: false });
-        if (status) query = query.eq('status', status);
+        if (status) query = query.ilike('status', status);
         const { data, error } = await query;
         if (error) { console.error(error); return []; }
         return (data || []).map(mapJobFromDB);
@@ -663,7 +663,8 @@ function mapPortfolioFromDB(row: any): PortfolioItem {
         github_url: row.github_url,
         status: row.status,
         completed_date: row.completed_date,
-        marquee_row: row.marquee_row
+        marquee_row: row.marquee_row,
+        gallery: row.gallery || []
     };
 }
 

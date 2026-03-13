@@ -1,6 +1,7 @@
-﻿"use client";
+"use client";
 
 import React, { useState, useEffect, Suspense } from 'react';
+import toast from 'react-hot-toast';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 
@@ -13,18 +14,17 @@ function LoginForm() {
     const [password, setPassword] = useState('');
     const [rememberMe, setRememberMe] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState('');
 
     // Check for expired session message
     useEffect(() => {
         if (searchParams.get('expired') === 'true') {
-            setError('Sesi Anda telah berakhir. Silakan login kembali.');
+            toast.error('Sesi Anda telah berakhir. Silakan login kembali.');
         }
     }, [searchParams]);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        setError('');
+
         setIsLoading(true);
 
         try {
@@ -39,7 +39,7 @@ function LoginForm() {
             const data = await response.json();
 
             if (!response.ok) {
-                setError(data.error || 'Login gagal');
+                toast.error(data.error || 'Login gagal');
                 setIsLoading(false);
                 return;
             }
@@ -48,7 +48,7 @@ function LoginForm() {
             const redirectUrl = searchParams.get('redirect') || '/admin/dashboard';
             router.push(redirectUrl);
         } catch (err) {
-            setError('Terjadi kesalahan. Silakan coba lagi.');
+            toast.error('Terjadi kesalahan. Silakan coba lagi.');
             setIsLoading(false);
         }
     };
@@ -76,13 +76,7 @@ function LoginForm() {
                     </p>
                 </div>
 
-                {/* Error Message */}
-                {error && (
-                    <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg flex items-center gap-3">
-                        <i className="fas fa-exclamation-circle text-red-500"></i>
-                        <span className="text-sm text-red-600 font-montserrat">{error}</span>
-                    </div>
-                )}
+
 
                 {/* Login Form */}
                 <form onSubmit={handleSubmit} className="space-y-6">

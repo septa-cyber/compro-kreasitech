@@ -22,10 +22,7 @@ export default function JobsSettingsPage() {
     const [newItemData, setNewItemData] = useState<Partial<JobPosting>>({
         title: "",
         position: "",
-        department: "",
-        company: "",
         location: "",
-        category: "Creative",
         type: "Full-time",
         experience: "",
         education: "",
@@ -172,10 +169,7 @@ export default function JobsSettingsPage() {
                 setNewItemData({
                     title: "",
                     position: "",
-                    department: "",
-                    company: "",
                     location: "",
-                    category: "Creative",
                     type: "Full-time",
                     experience: "",
                     education: "",
@@ -271,7 +265,6 @@ export default function JobsSettingsPage() {
                                 <thead className="bg-gray-50 border-b border-gray-100">
                                     <tr>
                                         <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase font-montserrat tracking-wider">Posisi</th>
-                                        <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase font-montserrat tracking-wider">Departemen</th>
                                         <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase font-montserrat tracking-wider">Tipe</th>
                                         <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase font-montserrat tracking-wider">Lokasi</th>
                                         <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase font-montserrat tracking-wider">Status</th>
@@ -284,10 +277,6 @@ export default function JobsSettingsPage() {
                                             <td className="px-6 py-4">
                                                 <div className="text-sm font-medium text-gray-900 font-montserrat">{job.title}</div>
                                                 <div className="text-[11px] text-violet-600 font-semibold font-montserrat">{job.position}</div>
-                                                <div className="text-[10px] text-gray-400 capitalize">{job.company}</div>
-                                            </td>
-                                            <td className="px-6 py-4 text-sm text-gray-600 font-montserrat">
-                                                {job.department}
                                             </td>
                                             <td className="px-6 py-4 text-sm text-gray-600 font-montserrat">
                                                 {job.type}
@@ -350,7 +339,6 @@ export default function JobsSettingsPage() {
                                         </span>
                                         <h3 className="font-semibold text-gray-900 font-montserrat line-clamp-1 pr-12">{job.title}</h3>
                                         <p className="text-[11px] text-violet-600 font-semibold font-montserrat">{job.position}</p>
-                                        <p className="text-[10px] text-gray-400 font-montserrat">{job.department}</p>
                                     </div>
 
                                     <div className="space-y-2 mb-4">
@@ -364,10 +352,7 @@ export default function JobsSettingsPage() {
                                         </div>
                                     </div>
 
-                                    <div className="pt-3 border-t border-gray-50 flex items-center justify-between">
-                                        <span className="text-[10px] font-bold text-violet-600 font-montserrat uppercase tracking-tighter bg-violet-50 px-2 py-0.5 rounded">
-                                            {job.category}
-                                        </span>
+                                    <div className="pt-3 border-t border-gray-50 flex items-center justify-end">
                                         <span className="text-[10px] text-gray-400 font-montserrat">ID: #{job.id}</span>
                                     </div>
                                 </div>
@@ -384,7 +369,6 @@ export default function JobsSettingsPage() {
                                 <div>
                                     <h3 className="font-semibold text-gray-900 font-montserrat text-sm leading-tight">{job.title}</h3>
                                     <p className="text-[11px] text-violet-600 font-semibold font-montserrat">{job.position}</p>
-                                    <p className="text-[10px] text-gray-400 font-montserrat mt-0.5">{job.department}</p>
                                 </div>
                                 <span className={`shrink-0 px-2 py-0.5 text-[9px] rounded-full uppercase font-bold tracking-wider ${job.status === 'open' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-600'}`}>
                                     {job.status}
@@ -455,28 +439,7 @@ export default function JobsSettingsPage() {
                                 placeholder="Contoh: Frontend Developer"
                             />
                         </div>
-                        <div>
-                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Departemen <span className="text-red-500">*</span></label>
-                            <input
-                                type="text"
-                                required
-                                value={newItemData.department}
-                                onChange={(e) => setNewItemData({ ...newItemData, department: e.target.value })}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
-                                placeholder="Contoh: Engineering"
-                            />
-                        </div>
-                        <div>
-                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Perusahaan <span className="text-red-500">*</span></label>
-                            <input
-                                type="text"
-                                required
-                                value={newItemData.company}
-                                onChange={(e) => setNewItemData({ ...newItemData, company: e.target.value })}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
-                                placeholder="Contoh: PT Kreasitech"
-                            />
-                        </div>
+
                         <div>
                             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Lokasi <span className="text-red-500">*</span></label>
                             <input
@@ -515,20 +478,7 @@ export default function JobsSettingsPage() {
                                 <option value="Hybrid">Hybrid</option>
                             </select>
                         </div>
-                        <div>
-                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Kategori</label>
-                            <select
-                                value={newItemData.category}
-                                onChange={(e) => setNewItemData({ ...newItemData, category: e.target.value })}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
-                            >
-                                <option value="Creative">Creative</option>
-                                <option value="Technology">Technology</option>
-                                <option value="Management">Management</option>
-                                <option value="Marketing">Marketing</option>
-                                <option value="Operation">Operation</option>
-                            </select>
-                        </div>
+
                         <div>
                             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Pengalaman</label>
                             <input
@@ -754,28 +704,7 @@ export default function JobsSettingsPage() {
                                 placeholder="Contoh: Frontend Developer"
                             />
                         </div>
-                        <div>
-                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Departemen <span className="text-red-500">*</span></label>
-                            <input
-                                type="text"
-                                required
-                                value={editItemData.department || ''}
-                                onChange={(e) => setEditItemData({ ...editItemData, department: e.target.value })}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
-                                placeholder="Contoh: Engineering"
-                            />
-                        </div>
-                        <div>
-                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Perusahaan <span className="text-red-500">*</span></label>
-                            <input
-                                type="text"
-                                required
-                                value={editItemData.company || ''}
-                                onChange={(e) => setEditItemData({ ...editItemData, company: e.target.value })}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
-                                placeholder="Contoh: PT Kreasitech"
-                            />
-                        </div>
+
                         <div>
                             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Lokasi <span className="text-red-500">*</span></label>
                             <input
@@ -814,20 +743,7 @@ export default function JobsSettingsPage() {
                                 <option value="Hybrid">Hybrid</option>
                             </select>
                         </div>
-                        <div>
-                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Kategori</label>
-                            <select
-                                value={editItemData.category || 'Creative'}
-                                onChange={(e) => setEditItemData({ ...editItemData, category: e.target.value })}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
-                            >
-                                <option value="Creative">Creative</option>
-                                <option value="Technology">Technology</option>
-                                <option value="Management">Management</option>
-                                <option value="Marketing">Marketing</option>
-                                <option value="Operation">Operation</option>
-                            </select>
-                        </div>
+
                         <div>
                             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Pengalaman</label>
                             <input

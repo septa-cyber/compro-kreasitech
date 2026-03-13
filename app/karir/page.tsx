@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
@@ -29,7 +29,10 @@ export default function KarirPage() {
     useEffect(() => {
         const fetchJobs = async () => {
             try {
-                const res = await fetch('/api/jobs?status=open');
+                // Add { cache: "no-store", next: { revalidate: 0 } } or cache busting to ensure fresh data for CSR
+                const res = await fetch('/api/jobs?status=open&t=' + new Date().getTime(), {
+                    cache: 'no-store'
+                });
                 if (res.ok) {
                     const data = await res.json();
                     setJobsData(data.map((j: any) => ({
@@ -55,7 +58,7 @@ export default function KarirPage() {
         freelance: false,
         internship: false
     });
-    const [salaryRange, setSalaryRange] = useState([0, 25000]);
+    const [salaryRange, setSalaryRange] = useState([0, 100000]);
     const [locationPrefs, setLocationPrefs] = useState({
         remote: false,
         wfo: false,
@@ -84,7 +87,7 @@ export default function KarirPage() {
             freelance: false,
             internship: false
         },
-        salaryRange: [0, 25000],
+        salaryRange: [0, 100000],
         locationPrefs: {
             remote: false,
             wfo: false,
@@ -99,7 +102,7 @@ export default function KarirPage() {
         datePosted !== "Anytime" ||
         Object.values(jobTypes).some(v => v) ||
         salaryRange[0] !== 0 ||
-        salaryRange[1] !== 25000 ||
+        salaryRange[1] !== 100000 ||
         Object.values(locationPrefs).some(v => v);
 
     const handleClearAll = () => {
@@ -108,7 +111,7 @@ export default function KarirPage() {
             searchLocation: "",
             datePosted: "Anytime",
             jobTypes: { fulltime: false, parttime: false, contract: false, freelance: false, internship: false },
-            salaryRange: [0, 25000],
+            salaryRange: [0, 100000],
             locationPrefs: { remote: false, wfo: false, wfh: false, hybrid: false }
         };
 
@@ -278,8 +281,11 @@ export default function KarirPage() {
                 // Parse the first number (minimum salary) as the primary filter value
                 const jobMin = parseFloat(salaryParts[0].replace(/[,.]/g, ''));
 
-                // Use only the smallest value (jobMin) to check if it's within filter range
-                matchesSalary = jobMin >= appliedFilters.salaryRange[0] && jobMin <= appliedFilters.salaryRange[1];
+                // If filter is at default max (100000), don't filter out higher salaries
+                const filterMax = appliedFilters.salaryRange[1];
+                const isMaxLimit = filterMax === 100000;
+                
+                matchesSalary = jobMin >= appliedFilters.salaryRange[0] && (isMaxLimit || jobMin <= filterMax);
             }
         }
 
@@ -296,7 +302,7 @@ export default function KarirPage() {
 
     // Calculations for salary slider track
     const minSalary = 0;
-    const maxSalary = 25000;
+    const maxSalary = 100000;
     const getPercent = (value: number) => Math.round(((value - minSalary) / (maxSalary - minSalary)) * 100);
 
     return (

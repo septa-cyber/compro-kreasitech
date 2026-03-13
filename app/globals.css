@@ -432,3 +432,22 @@ body {
     @apply font-montserrat font-semibold text-[10px] xl:text-xs;
   }
 }
+
+/* Custom styles for matching list markers with heading sizes in RichTextEditor & Article Content */
+.prose li:has(span[style*="font-size: 32px"])::marker,
+.prose li:has(span[style*="font-size:32px"])::marker {
+  font-size: 32px;
+  font-weight: 800;
+}
+
+.prose li:has(span[style*="font-size: 24px"])::marker,
+.prose li:has(span[style*="font-size:24px"])::marker {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.prose li:has(span[style*="font-size: 20px"])::marker,
+.prose li:has(span[style*="font-size:20px"])::marker {
+  font-size: 20px;
+  font-weight: 600;
+}

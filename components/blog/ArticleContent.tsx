@@ -1,6 +1,7 @@
-﻿import React from "react";
+import React from "react";
 import { BlogPost } from "@/data/blogData";
 import ReactMarkdown from 'react-markdown';
+import rehypeRaw from 'rehype-raw';
 
 interface ArticleContentProps {
     post: BlogPost;
@@ -22,26 +23,42 @@ export default function ArticleContent({ post }: ArticleContentProps) {
                 {/* Content */}
                 <div className="prose prose-lg prose-slate hover:prose-a:text-violet-600 prose-headings:font-montserrat prose-p:font-montserrat prose-p:text-gray-600 prose-a:text-violet-600 max-w-none prose-img:max-h-[500px] prose-img:max-w-full prose-img:mx-auto prose-img:rounded-xl prose-img:object-contain">
                     <ReactMarkdown
+                        rehypePlugins={[rehypeRaw]}
                         components={{
-                            p: ({ node, children, ...props }) => {
+                            p: ({ node, children, style, className, ...props }) => {
                                 const hasImage = node?.children?.some(
-                                    (child: any) => child.tagName === 'img' || child.type === 'image'
+                                    (child: any) => child.tagName === 'img' || child.type === 'element' && child.tagName === 'img'
                                 );
                                 if (hasImage) {
-                                    return <div {...props}>{children}</div>;
+                                    return <div className={className} style={style} {...props}>{children}</div>;
                                 }
-                                return <p {...props}>{children}</p>;
+                                return <p className={className} style={style} {...props}>{children}</p>;
                             },
-                            img: ({ node, ...props }) => (
-                                <figure className="my-8 flex flex-col items-center">
-                                    <img {...props} />
-                                    {props.alt && (
-                                        <figcaption className="text-center text-sm text-gray-500 mt-2 font-montserrat px-4">
-                                            {props.alt}
-                                        </figcaption>
-                                    )}
-                                </figure>
-                            )
+                            img: ({ node, style, className, width, ...props }) => {
+                                // Extract width from style or props if it was set via TipTap drag-resize
+                                const imgWidth = style?.width || width || 'auto';
+                                // Determine text alignment based on parent or class (ReactMarkdown doesn't perfectly pass parent alignment to figure, but we can center it by default)
+
+                                return (
+                                    <figure className="my-8 flex flex-col items-center">
+                                        <img style={style} width={width} className={`max-w-full ${className || ''}`} {...props} />
+                                        {props.alt && (
+                                            <figcaption 
+                                                className="text-sm text-gray-500 mt-2 font-montserrat px-2 text-center"
+                                                style={{ width: imgWidth, maxWidth: '100%' }}
+                                            >
+                                                {props.alt}
+                                            </figcaption>
+                                        )}
+                                    </figure>
+                                );
+                            },
+                            span: ({ node, children, style, className, ...props }) => {
+                                return <span style={style} className={className} {...props}>{children}</span>;
+                            },
+                            div: ({ node, children, style, className, ...props }) => {
+                                return <div style={style} className={className} {...props}>{children}</div>;
+                            }
                         }}
                     >
                         {post.content}

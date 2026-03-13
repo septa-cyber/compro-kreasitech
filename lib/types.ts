@@ -82,6 +82,7 @@ export interface PortfolioItem {
     status: 'draft' | 'published';
     completed_date?: string;
     marquee_row?: 'top' | 'bottom';
+    gallery?: string[];
 }
 
 export interface Partner {

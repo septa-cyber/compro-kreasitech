@@ -26,6 +26,7 @@ export default function ArticleForm({ initialData, isEdit = false }: ArticleForm
     const router = useRouter();
     const [isLoading, setIsLoading] = useState(false);
     const [isUploading, setIsUploading] = useState(false);
+    const [currentUserName, setCurrentUserName] = useState('Admin');
     const [formData, setFormData] = useState<Partial<BlogPost>>({
         title: '',
         slug: '',
@@ -41,6 +42,30 @@ export default function ArticleForm({ initialData, isEdit = false }: ArticleForm
     });
 
     const [tagsInput, setTagsInput] = useState(initialData?.tags?.join(', ') || '');
+
+    // Fetch current user to set author name
+    useEffect(() => {
+        const fetchUser = async () => {
+            try {
+                const res = await fetch('/api/auth/me');
+                if (res.ok) {
+                    const user = await res.json();
+                    if (user.name) {
+                        setCurrentUserName(user.name);
+                        if (!isEdit) {
+                            setFormData(prev => ({
+                                ...prev,
+                                author: { name: user.name, avatar: user.avatar_url || '' }
+                            }));
+                        }
+                    }
+                }
+            } catch (err) {
+                console.error('Failed to fetch user:', err);
+            }
+        };
+        fetchUser();
+    }, [isEdit]);
 
     useEffect(() => {
         if (initialData) {
@@ -126,7 +151,7 @@ export default function ArticleForm({ initialData, isEdit = false }: ArticleForm
 
         const payload = {
             ...formData,
-            author: { name: 'Admin', avatar: formData.author?.avatar || '' },
+            author: { name: currentUserName, avatar: formData.author?.avatar || '' },
             date: new Date().toISOString().split('T')[0],
             tags: tagsInput.split(',').map(t => t.trim()).filter(t => t),
             slug: formData.slug || formData.title?.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') || 'untitled',

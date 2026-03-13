@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
@@ -47,13 +47,21 @@ export default function ArticleHeader({ post }: ArticleHeaderProps) {
                 {/* Meta & Actions */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 border-b border-t border-gray-100 py-6">
                     {/* Date & Category */}
-                    <div className="flex items-center gap-4">
+                    {/* Date & Category & Author */}
+                    <div className="flex flex-wrap items-center gap-4">
                         <span className={`${post.categoryColor} px-3 py-1 font-body-xs font-semibold tracking-wide rounded-[4px]`}>
                             {post.category}
                         </span>
-                        <span className="font-body-sm text-gray-500">
-                            {post.date}
-                        </span>
+                        <div className="flex items-center gap-2 text-gray-500 font-body-sm">
+                            <span className="flex items-center gap-1.5">
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                </svg>
+                                {post.author?.name || "Admin"}
+                            </span>
+                            <span className="text-gray-300">•</span>
+                            <span>{post.date}</span>
+                        </div>
                     </div>
 
                     {/* Actions */}

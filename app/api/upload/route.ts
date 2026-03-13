@@ -46,11 +46,13 @@ export async function POST(request: Request) {
 
         if (isSupabaseEnabled) {
             try {
+                const { supabaseAdmin } = await import('@/lib/supabase-admin');
+                
                 // Try 'uploads' bucket first, then 'job-logos' as fallback
                 const buckets = ['uploads', 'job-logos'];
 
                 for (const bucket of buckets) {
-                    const { data, error } = await supabase.storage
+                    const { data, error } = await supabaseAdmin.storage
                         .from(bucket)
                         .upload(filename, buffer, {
                             contentType: file.type,
@@ -58,7 +60,7 @@ export async function POST(request: Request) {
                         });
 
                     if (!error) {
-                        const { data: { publicUrl } } = supabase.storage
+                        const { data: { publicUrl } } = supabaseAdmin.storage
                             .from(bucket)
                             .getPublicUrl(filename);
 

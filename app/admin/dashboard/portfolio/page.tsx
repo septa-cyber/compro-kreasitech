@@ -1,7 +1,7 @@
-﻿"use client";
+"use client";
 
 import React, { useState, useEffect } from 'react';
-import { FaHeading, FaParagraph, FaSave, FaPlus, FaTrash, FaImage, FaBriefcase, FaTag, FaEdit, FaChevronDown } from 'react-icons/fa';
+import { FaHeading, FaParagraph, FaSave, FaPlus, FaTrash, FaImage, FaBriefcase, FaTag, FaEdit, FaChevronDown, FaTimes } from 'react-icons/fa';
 import { PortfolioItem } from '@/lib/types';
 import Modal from '@/components/ui/Modal';
 import ConfirmationModal from '@/components/ui/ConfirmationModal';
@@ -195,8 +195,12 @@ export default function PortfolioSettingsPage() {
         size: "large",
         description: "",
         status: "draft",
-        marquee_row: "top"
+        marquee_row: "top",
+        gallery: []
     });
+
+    const [newGalleryUrl, setNewGalleryUrl] = useState('');
+    const [editGalleryUrl, setEditGalleryUrl] = useState('');
 
     useEffect(() => {
         fetchPortfolio();
@@ -300,8 +304,11 @@ export default function PortfolioSettingsPage() {
                     image: "",
                     status: 'draft',
                     size: 'large',
-                    marquee_row: 'top'
+                    description: "",
+                    marquee_row: 'top',
+                    gallery: []
                 });
+                setNewGalleryUrl('');
             } else {
                 toast.error('Gagal menambah proyek');
             }
@@ -635,6 +642,73 @@ export default function PortfolioSettingsPage() {
                         </div>
                     )}
 
+                    {/* Description */}
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Deskripsi</label>
+                        <textarea
+                            value={newItemData.description || ''}
+                            onChange={(e) => setNewItemData({ ...newItemData, description: e.target.value })}
+                            rows={3}
+                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white resize-none"
+                            placeholder="Deskripsi proyek..."
+                        />
+                    </div>
+
+                    {/* Gallery */}
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Gallery</label>
+                        <div className="flex gap-2 mb-2">
+                            <input
+                                type="text"
+                                value={newGalleryUrl}
+                                onChange={(e) => setNewGalleryUrl(e.target.value)}
+                                className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                                placeholder="Masukkan URL gambar gallery"
+                                onKeyDown={(e) => {
+                                    if (e.key === 'Enter') {
+                                        e.preventDefault();
+                                        if (newGalleryUrl.trim()) {
+                                            setNewItemData({ ...newItemData, gallery: [...(newItemData.gallery || []), newGalleryUrl.trim()] });
+                                            setNewGalleryUrl('');
+                                        }
+                                    }
+                                }}
+                            />
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    if (newGalleryUrl.trim()) {
+                                        setNewItemData({ ...newItemData, gallery: [...(newItemData.gallery || []), newGalleryUrl.trim()] });
+                                        setNewGalleryUrl('');
+                                    }
+                                }}
+                                className="px-3 py-2 bg-violet-100 text-violet-700 rounded-lg hover:bg-violet-200 transition-colors text-sm font-semibold"
+                            >
+                                <FaPlus size={12} />
+                            </button>
+                        </div>
+                        {(newItemData.gallery || []).length > 0 && (
+                            <div className="grid grid-cols-3 gap-2 mt-2">
+                                {(newItemData.gallery || []).map((url, index) => (
+                                    <div key={index} className="relative group">
+                                        <img src={url} alt={`Gallery ${index + 1}`} className="w-full h-20 object-cover rounded-lg border border-gray-200" />
+                                        <button
+                                            type="button"
+                                            onClick={() => {
+                                                const updated = [...(newItemData.gallery || [])];
+                                                updated.splice(index, 1);
+                                                setNewItemData({ ...newItemData, gallery: updated });
+                                            }}
+                                            className="absolute top-1 right-1 w-5 h-5 bg-red-500 text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                                        >
+                                            <FaTimes size={8} />
+                                        </button>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+
                     <div className="flex justify-end pt-4 gap-3">
                         <button
                             type="button"
@@ -750,6 +824,73 @@ export default function PortfolioSettingsPage() {
                                 <img src={itemToEdit.image} alt="Preview" className="h-32 object-cover rounded" />
                             </div>
                         )}
+
+                        {/* Description */}
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Deskripsi</label>
+                            <textarea
+                                value={itemToEdit.description || ''}
+                                onChange={(e) => setItemToEdit({ ...itemToEdit, description: e.target.value })}
+                                rows={3}
+                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white resize-none"
+                                placeholder="Deskripsi proyek..."
+                            />
+                        </div>
+
+                        {/* Gallery */}
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Gallery</label>
+                            <div className="flex gap-2 mb-2">
+                                <input
+                                    type="text"
+                                    value={editGalleryUrl}
+                                    onChange={(e) => setEditGalleryUrl(e.target.value)}
+                                    className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                                    placeholder="Masukkan URL gambar gallery"
+                                    onKeyDown={(e) => {
+                                        if (e.key === 'Enter') {
+                                            e.preventDefault();
+                                            if (editGalleryUrl.trim()) {
+                                                setItemToEdit({ ...itemToEdit, gallery: [...(itemToEdit.gallery || []), editGalleryUrl.trim()] });
+                                                setEditGalleryUrl('');
+                                            }
+                                        }
+                                    }}
+                                />
+                                <button
+                                    type="button"
+                                    onClick={() => {
+                                        if (editGalleryUrl.trim()) {
+                                            setItemToEdit({ ...itemToEdit, gallery: [...(itemToEdit.gallery || []), editGalleryUrl.trim()] });
+                                            setEditGalleryUrl('');
+                                        }
+                                    }}
+                                    className="px-3 py-2 bg-violet-100 text-violet-700 rounded-lg hover:bg-violet-200 transition-colors text-sm font-semibold"
+                                >
+                                    <FaPlus size={12} />
+                                </button>
+                            </div>
+                            {(itemToEdit.gallery || []).length > 0 && (
+                                <div className="grid grid-cols-3 gap-2 mt-2">
+                                    {(itemToEdit.gallery || []).map((url, index) => (
+                                        <div key={index} className="relative group">
+                                            <img src={url} alt={`Gallery ${index + 1}`} className="w-full h-20 object-cover rounded-lg border border-gray-200" />
+                                            <button
+                                                type="button"
+                                                onClick={() => {
+                                                    const updated = [...(itemToEdit.gallery || [])];
+                                                    updated.splice(index, 1);
+                                                    setItemToEdit({ ...itemToEdit, gallery: updated });
+                                                }}
+                                                className="absolute top-1 right-1 w-5 h-5 bg-red-500 text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                                            >
+                                                <FaTimes size={8} />
+                                            </button>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
 
                         <div className="flex justify-end pt-4 gap-3">
                             <button
