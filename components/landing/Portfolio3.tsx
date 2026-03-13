@@ -1,6 +1,6 @@
-﻿"use client";
+"use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { PortfolioItem } from '@/lib/types';
 
@@ -8,6 +8,39 @@ export default function Portfolio() {
     const [isPortfolioHovered, setIsPortfolioHovered] = useState(false);
     const [portfolioItems, setPortfolioItems] = useState<PortfolioItem[]>([]);
     const [isLoading, setIsLoading] = useState(true);
+
+    // Ref for manual scrolling
+    const scrollRef = useRef<HTMLDivElement>(null);
+
+    const handleManualScroll = (direction: 'left' | 'right') => {
+        const container = scrollRef.current;
+        if (!container) return;
+
+        const scrollAmount = 400; 
+        const currentScroll = container.scrollLeft;
+        const itemSetWidth = container.scrollWidth / 2;
+        
+        let targetScroll = direction === 'left' ? currentScroll - scrollAmount : currentScroll + scrollAmount;
+
+        // Infinite loop logic for manual scroll
+        if (targetScroll < 20) {
+            container.style.scrollBehavior = 'auto';
+            container.scrollLeft = currentScroll + itemSetWidth;
+            container.style.scrollBehavior = 'smooth';
+            targetScroll = container.scrollLeft - scrollAmount;
+        } 
+        else if (targetScroll + container.clientWidth > container.scrollWidth - 20) {
+            container.style.scrollBehavior = 'auto';
+            container.scrollLeft = currentScroll - itemSetWidth;
+            container.style.scrollBehavior = 'smooth';
+            targetScroll = container.scrollLeft + scrollAmount;
+        }
+
+        container.scrollTo({
+            left: targetScroll,
+            behavior: 'smooth'
+        });
+    };
 
     useEffect(() => {
         const fetchPortfolio = async () => {
@@ -71,74 +104,97 @@ export default function Portfolio() {
             </div>
 
             {/* Horizontal Scrolling Portfolio Cards with Marquee */}
-            <div className="relative marquee-container">
+            <div className="relative group/marquee">
+                {/* Navigation Arrows - Using refined BlogHero style */}
+                <button 
+                    onClick={() => handleManualScroll('left')}
+                    className="absolute left-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 flex items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-md opacity-0 group-hover/marquee:opacity-100 transition-all duration-300 hover:bg-violet-600 border border-white/10 shadow-xl"
+                    aria-label="Scroll Left"
+                >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path d="M15 19l-7-7 7-7" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5"></path>
+                    </svg>
+                </button>
+                <button 
+                    onClick={() => handleManualScroll('right')}
+                    className="absolute right-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 flex items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-md opacity-0 group-hover/marquee:opacity-100 transition-all duration-300 hover:bg-violet-600 border border-white/10 shadow-xl"
+                    aria-label="Scroll Right"
+                >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path d="M9 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5"></path>
+                    </svg>
+                </button>
+
                 <div
-                    className="flex overflow-hidden"
+                    ref={scrollRef}
+                    className="flex overflow-x-auto scrollbar-hide scroll-smooth"
                     onMouseEnter={() => setIsPortfolioHovered(true)}
                     onMouseLeave={() => setIsPortfolioHovered(false)}
                 >
                     {/* Container 1 (Right Scroll) */}
                     <div
-                        className="flex w-max flex-shrink-0 animate-scroll-right"
+                        className="flex gap-4 md:gap-8 pr-4 md:pr-8 w-max flex-shrink-0 animate-scroll-right"
                         style={{ animationPlayState: isPortfolioHovered ? 'paused' : 'running' }}
                     >
                         {[...portfolioItems].map((item, index) => {
                             const sizeClasses = item.size === "large"
-                                ? "w-80 md:w-[600px] h-64 md:h-[400px]" // Fixed height to match medium
+                                ? "w-80 md:w-[600px] h-64 md:h-[400px]" 
                                 : "w-64 md:w-[400px] h-64 md:h-[400px]";
 
                             return (
-                                <div
+                                <Link
+                                    href={`/portfolio/${item.id}`}
                                     key={`portfolio-1-${item.id}-${index}`}
-                                    className="group mx-2 md:mx-4 flex-shrink-0 flex flex-col gap-4 md:gap-8"
+                                    className="group flex-shrink-0 flex flex-col gap-4 md:gap-8 cursor-pointer"
                                 >
                                     <img
-                                        className={`${sizeClasses} object-cover`}
+                                        className={`${sizeClasses} object-cover transition-transform duration-500 group-hover:scale-105`}
                                         src={item.image || 'https://placehold.co/600x400'}
                                         alt={item.title}
                                     />
                                     <div className="flex flex-col gap-1">
-                                        <span className="font-body-xs opacity-70 text-white">
+                                        <span className="font-body-xs opacity-70 text-white font-montserrat">
                                             {item.category || 'Project'}
                                         </span>
-                                        <h3 className="font-h4 text-white">
+                                        <h3 className="font-h4 text-violet-300 group-hover:text-white transition-colors">
                                             {item.title}
                                         </h3>
                                     </div>
-                                </div>
+                                </Link>
                             );
                         })}
                     </div>
 
                     {/* Container 2 (Duplicate for Right Scroll) */}
                     <div
-                        className="flex w-max flex-shrink-0 animate-scroll-right"
+                        className="flex gap-4 md:gap-8 pr-4 md:pr-8 w-max flex-shrink-0 animate-scroll-right"
                         style={{ animationPlayState: isPortfolioHovered ? 'paused' : 'running' }}
                     >
                         {[...portfolioItems].map((item, index) => {
                             const sizeClasses = item.size === "large"
-                                ? "w-80 md:w-[600px] h-64 md:h-[400px]" // Fixed height to match medium
+                                ? "w-80 md:w-[600px] h-64 md:h-[400px]" 
                                 : "w-64 md:w-[400px] h-64 md:h-[400px]";
 
                             return (
-                                <div
+                                <Link
+                                    href={`/portfolio/${item.id}`}
                                     key={`portfolio-2-${item.id}-${index}`}
-                                    className="group mx-2 md:mx-4 flex-shrink-0 flex flex-col gap-4 md:gap-8"
+                                    className="group flex-shrink-0 flex flex-col gap-4 md:gap-8 cursor-pointer"
                                 >
                                     <img
-                                        className={`${sizeClasses} object-cover`}
+                                        className={`${sizeClasses} object-cover transition-transform duration-500 group-hover:scale-105`}
                                         src={item.image || 'https://placehold.co/600x400'}
                                         alt={item.title}
                                     />
                                     <div className="flex flex-col gap-1">
-                                        <span className="font-body-xs opacity-70 text-white">
+                                        <span className="font-body-xs opacity-70 text-white font-montserrat">
                                             {item.category || 'Project'}
                                         </span>
-                                        <h3 className="font-h4 text-white">
+                                        <h3 className="font-h4 text-violet-300 group-hover:text-white transition-colors">
                                             {item.title}
                                         </h3>
                                     </div>
-                                </div>
+                                </Link>
                             );
                         })}
                     </div>

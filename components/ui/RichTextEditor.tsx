@@ -46,11 +46,9 @@ interface RichTextEditorProps {
 // -------- FontSize Extension --------
 const FontSize = Extension.create({
     name: 'fontSize',
-
     addOptions() {
         return { types: ['textStyle'] };
     },
-
     addGlobalAttributes() {
         return [
             {
@@ -61,14 +59,13 @@ const FontSize = Extension.create({
                         parseHTML: (element: HTMLElement) => element.style.fontSize?.replace(/['"]+/g, ''),
                         renderHTML: (attributes: Record<string, any>) => {
                             if (!attributes.fontSize) return {};
-                            return { style: `font-size: ${attributes.fontSize}` };
+                            return { style: `font-size: ${attributes.fontSize}; line-height: 1.2;` };
                         },
                     },
                 },
             },
         ];
     },
-
     addCommands() {
         return {
             setFontSize: (fontSize: string) => ({ chain }: any) => {
@@ -83,24 +80,91 @@ const FontSize = Extension.create({
 
 // -------- Custom Image Node with Alignment & Resize --------
 const CustomImage = Image.extend({
-    inline() {
-        return false;
-    },
-    group() {
-        return 'block';
-    },
     addAttributes() {
         return {
             ...this.parent?.(),
-            alt: { default: null },
-            title: { default: null },
-            width: { default: null },
-            alignment: { default: 'center' },
+            width: {
+                default: '100%',
+                parseHTML: element => element.style.width || element.getAttribute('width') || '100%',
+                renderHTML: attributes => ({
+                    style: `width: ${attributes.width}; max-width: 100%;`,
+                    width: attributes.width,
+                }),
+            },
+            alignment: {
+                default: 'center',
+                parseHTML: element => element.style.textAlign || element.getAttribute('data-align') || 'center',
+                renderHTML: attributes => ({
+                    'data-align': attributes.alignment,
+                    style: `display: block; margin-left: ${attributes.alignment === 'left' ? '0' : 'auto'}; margin-right: ${attributes.alignment === 'right' ? '0' : 'auto'};`,
+                }),
+            },
+        };
+    },
+    addStorage() {
+        return {
+            markdown: {
+                serialize: (state: any, node: any) => {
+                    const { src, alt, title, width, alignment } = node.attrs;
+                    const style = `width: ${width}; display: block; margin-left: ${alignment === 'left' ? '0' : 'auto'}; margin-right: ${alignment === 'right' ? '0' : 'auto'};`;
+                    state.write(`<img src="${src}" alt="${alt || ''}" title="${title || ''}" width="${width}" data-align="${alignment}" style="${style}" />`);
+                    state.closeBlock(node);
+                },
+                parse: {
+                    setup(markdownit: any) {
+                        // markdown-it will handle the raw HTML
+                    }
+                }
+            }
         };
     },
     addNodeView() {
         return ReactNodeViewRenderer(ImageNode);
     },
+});
+
+import Paragraph from '@tiptap/extension-paragraph';
+const CustomParagraph = Paragraph.extend({
+    addStorage() {
+        return {
+            markdown: {
+                serialize: (state: any, node: any) => {
+                    if (node.attrs.textAlign && node.attrs.textAlign !== 'left') {
+                        state.write(`<p style="text-align: ${node.attrs.textAlign}">`);
+                        state.renderContent(node);
+                        state.write('</p>');
+                        state.closeBlock(node);
+                    } else {
+                        state.renderInline(node);
+                        state.closeBlock(node);
+                    }
+                }
+            }
+        };
+    }
+});
+
+import Heading from '@tiptap/extension-heading';
+const CustomHeading = Heading.extend({
+    addStorage() {
+        return {
+            markdown: {
+                serialize: (state: any, node: any) => {
+                    const { level, textAlign } = node.attrs;
+                    if (textAlign && textAlign !== 'left') {
+                        state.write(`<h${level} style="text-align: ${textAlign}">`);
+                        state.renderContent(node);
+                        state.write(`</h${level}>`);
+                        state.closeBlock(node);
+                    } else {
+                        state.write(state.repeat('#', level) + ' ');
+                        state.renderInline(node);
+                        state.closeBlock(node);
+                    }
+                }
+            }
+        };
+    }
 });
 
 function ImageNode(props: any) {
@@ -142,71 +206,76 @@ function ImageNode(props: any) {
     };
 
     return (
-        <NodeViewWrapper as="div" className={`flex flex-col ${justifyClass} py-4 my-4 group relative`}>
+        <NodeViewWrapper as="div" className={`flex flex-col ${justifyClass} py-4 my-2 group relative`}>
             {/* Alignment Controls */}
             {selected && (
-                <div className="flex items-center gap-1 mb-2 bg-white border border-gray-200 rounded-lg shadow-sm px-1 py-0.5">
+                <div className="flex items-center gap-1 mb-2 bg-white border border-gray-200 rounded-lg shadow-md px-1 py-1 z-10 transition-all animate-in fade-in slide-in-from-bottom-2">
                     <button
                         type="button"
                         onClick={() => updateAttributes({ alignment: 'left' })}
-                        className={`p-1.5 rounded text-xs transition-colors ${alignment === 'left' ? 'bg-violet-100 text-violet-700' : 'text-gray-500 hover:bg-gray-100'}`}
+                        className={`p-2 rounded transition-colors ${alignment === 'left' ? 'bg-violet-100 text-violet-700' : 'text-gray-500 hover:bg-gray-100'}`}
                         title="Align Left"
                     >
-                        <FaAlignLeft size={11} />
+                        <FaAlignLeft size={12} />
                     </button>
                     <button
                         type="button"
                         onClick={() => updateAttributes({ alignment: 'center' })}
-                        className={`p-1.5 rounded text-xs transition-colors ${alignment === 'center' ? 'bg-violet-100 text-violet-700' : 'text-gray-500 hover:bg-gray-100'}`}
+                        className={`p-2 rounded transition-colors ${alignment === 'center' ? 'bg-violet-100 text-violet-700' : 'text-gray-500 hover:bg-gray-100'}`}
                         title="Align Center"
                     >
-                        <FaAlignCenter size={11} />
+                        <FaAlignCenter size={12} />
                     </button>
                     <button
                         type="button"
                         onClick={() => updateAttributes({ alignment: 'right' })}
-                        className={`p-1.5 rounded text-xs transition-colors ${alignment === 'right' ? 'bg-violet-100 text-violet-700' : 'text-gray-500 hover:bg-gray-100'}`}
+                        className={`p-2 rounded transition-colors ${alignment === 'right' ? 'bg-violet-100 text-violet-700' : 'text-gray-500 hover:bg-gray-100'}`}
                         title="Align Right"
                     >
-                        <FaAlignRight size={11} />
+                        <FaAlignRight size={12} />
                     </button>
                 </div>
             )}
-            <div className="relative inline-block" style={{ width: width || 'auto', maxWidth: '100%' }}>
+            <div 
+                className="relative group/img inline-block" 
+                style={{ width: width || '100%', maxWidth: '100%' }}
+            >
                 <img
                     ref={imgRef}
                     src={node.attrs.src}
                     alt={node.attrs.alt || ''}
                     title={node.attrs.title || ''}
                     data-drag-handle
-                    style={{ width: width || 'auto', maxWidth: '100%' }}
-                    className={`rounded-xl object-contain transition-all cursor-pointer ${selected ? 'ring-4 ring-emerald-500 ring-offset-2' : ''
-                        }`}
+                    style={{ width: '100%', height: 'auto', display: 'block' }}
+                    className={`rounded-xl object-contain transition-all duration-200 ${selected ? 'ring-4 ring-violet-500 ring-offset-2 opacity-90' : 'hover:ring-2 hover:ring-violet-200 hover:ring-offset-1'}`}
                 />
                 {/* Resize Handle */}
                 {selected && (
                     <div
                         onMouseDown={handleResizeStart}
-                        className="absolute bottom-0 right-0 w-4 h-4 bg-violet-500 rounded-tl-md cursor-se-resize flex items-center justify-center opacity-80 hover:opacity-100 transition-opacity"
+                        className="absolute bottom-2 right-2 w-7 h-7 bg-violet-600 rounded-full cursor-se-resize flex items-center justify-center shadow-lg hover:scale-110 active:scale-95 transition-all z-20 group-hover:visible"
                         title="Drag to resize"
                     >
-                        <svg width="8" height="8" viewBox="0 0 8 8" fill="white">
-                            <path d="M7 1L1 7M7 4L4 7M7 7L7 7" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round">
+                            <path d="M11 3L3 11M11 7L7 11M11 11L11 11" />
                         </svg>
                     </div>
                 )}
+                {/* Caption Input inside width container */}
+                <input
+                    type="text"
+                    placeholder="Tulis caption gambar..."
+                    className="text-center bg-transparent text-sm text-gray-500 border-none focus:outline-none focus:ring-0 mt-3 font-montserrat italic px-4 w-full placeholder:text-gray-300"
+                    value={node.attrs.alt || ''}
+                    onChange={(e) => updateAttributes({ alt: e.target.value })}
+                    onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                            e.preventDefault();
+                        }
+                        e.stopPropagation();
+                    }}
+                />
             </div>
-            <input
-                type="text"
-                placeholder="Type caption for image (optional)"
-                className="text-center bg-transparent text-sm text-gray-400 border-none focus:outline-none focus:ring-0 mt-2 font-montserrat px-2"
-                style={{ width: width || '100%', maxWidth: '100%' }}
-                value={node.attrs.alt || ''}
-                onChange={(e) => updateAttributes({ alt: e.target.value })}
-                onKeyDown={(e) => {
-                    e.stopPropagation();
-                }}
-            />
         </NodeViewWrapper>
     );
 }
@@ -350,7 +419,8 @@ export default function RichTextEditor({ content, onChange, placeholder = 'Tulis
     const editor = useEditor({
         extensions: [
             StarterKit.configure({
-                heading: { levels: [1, 2, 3] },
+                heading: false,
+                paragraph: false,
                 codeBlock: {
                     HTMLAttributes: { class: 'bg-gray-900 text-gray-100 p-4 rounded-lg text-sm font-mono' },
                 },
@@ -358,30 +428,35 @@ export default function RichTextEditor({ content, onChange, placeholder = 'Tulis
                     HTMLAttributes: { class: 'border-l-4 border-violet-400 pl-4 italic text-gray-600' },
                 },
             }),
+            CustomParagraph,
+            CustomHeading.configure({ levels: [1, 2, 3] }),
             Underline,
             TextStyle,
             FontSize,
             TextAlign.configure({
                 types: ['heading', 'paragraph'],
+                alignments: ['left', 'center', 'right', 'justify'],
+                defaultAlignment: 'left',
             }),
             Link.configure({
                 openOnClick: false,
                 HTMLAttributes: { class: 'text-violet-600 underline cursor-pointer' },
             }),
             CustomImage.configure({
-                HTMLAttributes: { class: 'rounded-xl max-w-full mx-auto object-contain' },
+                HTMLAttributes: { class: 'rounded-xl max-w-full' },
             }),
             Placeholder.configure({ placeholder }),
             Markdown.configure({
                 html: true,
                 transformPastedText: true,
                 transformCopiedText: true,
+                breaks: true,
             }),
         ],
         content,
         editorProps: {
             attributes: {
-                class: 'prose prose-sm sm:prose-base prose-slate max-w-none focus:outline-none min-h-[300px] px-4 py-3 prose-headings:font-montserrat prose-p:text-gray-700 prose-a:text-violet-600 prose-img:max-w-full prose-img:mx-auto prose-img:rounded-xl prose-img:object-contain',
+                class: 'prose prose-sm sm:prose-base prose-slate max-w-none focus:outline-none min-h-[400px] px-6 py-6 prose-headings:font-montserrat prose-p:text-gray-700 prose-a:text-violet-600 prose-img:max-w-full prose-img:rounded-xl prose-img:object-contain prose-h1:text-4xl prose-h1:font-bold prose-h1:mb-6 prose-h2:text-3xl prose-h2:font-bold prose-h2:mt-8 prose-h2:mb-4 prose-h3:text-2xl prose-h3:font-semibold prose-h3:mt-6 prose-h3:mb-3',
             },
         },
         onUpdate: ({ editor }) => {
@@ -488,12 +563,17 @@ export default function RichTextEditor({ content, onChange, placeholder = 'Tulis
         if (isInList) {
             const sizeMap = { 1: '32px', 2: '24px', 3: '20px' };
             const targetSize = sizeMap[level];
-            const isPseudo = editor?.getAttributes('textStyle')?.fontSize === targetSize && editor.isActive('bold');
+            const currentFontSize = editor?.getAttributes('textStyle')?.fontSize;
+            const isPseudo = currentFontSize === targetSize && editor.isActive('bold');
             
             if (isPseudo) {
                 (editor.commands as any).unsetFontSize();
                 editor.chain().focus().unsetMark('bold').run();
             } else {
+                // Remove other marks first to be clean
+                (editor.commands as any).unsetFontSize();
+                editor.chain().focus().unsetMark('bold').run();
+                
                 (editor.commands as any).setFontSize(targetSize);
                 editor.chain().focus().setMark('bold').run();
             }

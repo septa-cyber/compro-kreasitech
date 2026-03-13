@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useState, useEffect, useCallback } from "react";
 import Breadcrumb from "@/components/ui/Breadcrumb";
@@ -106,6 +106,19 @@ export default function BlogHero({ featuredPosts }: BlogHeroProps) {
 
                                         <div className="flex flex-wrap items-end justify-between gap-6 text-sm text-gray-300 border-t border-white/10 pt-6">
                                             <div className="flex items-center gap-8">
+                                                <div className="flex items-center gap-3">
+                                                    {post.author?.avatar ? (
+                                                        <img src={post.author.avatar} alt={post.author.name || "Author"} className="w-10 h-10 rounded-full object-cover border border-white/20" />
+                                                    ) : (
+                                                        <div className="w-10 h-10 rounded-full bg-violet-600 flex items-center justify-center text-white font-bold border border-white/20">
+                                                            {post.author?.name ? post.author.name.charAt(0).toUpperCase() : "A"}
+                                                        </div>
+                                                    )}
+                                                    <div>
+                                                        <span className="block font-body-xs uppercase tracking-wider text-gray-500 mb-1">Author</span>
+                                                        <span className="font-body font-medium text-white">{post.author?.name || "Admin"}</span>
+                                                    </div>
+                                                </div>
                                                 <div>
                                                     <span className="block font-body-xs uppercase tracking-wider text-gray-500 mb-1">Dipublikasikan</span>
                                                     <span className="font-body font-medium text-white">{formatDate(post.date)}</span>

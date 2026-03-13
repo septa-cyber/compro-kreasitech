@@ -1,13 +1,51 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { PortfolioItem } from '@/lib/types';
+import Link from 'next/link';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa6';
 
 export default function FeaturedShowcase() {
     const [isReverseHovered, setIsReverseHovered] = useState(false);
     const [isNormalHovered, setIsNormalHovered] = useState(false);
     const [portfolioItems, setPortfolioItems] = useState<PortfolioItem[]>([]);
     const [isLoading, setIsLoading] = useState(true);
+    
+    // Refs for manual scrolling
+    const topRowRef = useRef<HTMLDivElement>(null);
+    const bottomRowRef = useRef<HTMLDivElement>(null);
+
+    const handleManualScroll = (ref: React.RefObject<HTMLDivElement | null>, direction: 'left' | 'right') => {
+        const container = ref.current;
+        if (!container) return;
+
+        const scrollAmount = 400; 
+        const currentScroll = container.scrollLeft;
+        const itemSetWidth = container.scrollWidth / 2;
+        
+        let targetScroll = direction === 'left' ? currentScroll - scrollAmount : currentScroll + scrollAmount;
+
+        // Infinite loop logic for manual scroll
+        // If we scroll too far left, jump to the identical position in the second half
+        if (targetScroll < 20) {
+            container.style.scrollBehavior = 'auto';
+            container.scrollLeft = currentScroll + itemSetWidth;
+            container.style.scrollBehavior = 'smooth';
+            targetScroll = container.scrollLeft - scrollAmount;
+        } 
+        // If we scroll too far right, jump back to the identical position in the first half
+        else if (targetScroll + container.clientWidth > container.scrollWidth - 20) {
+            container.style.scrollBehavior = 'auto';
+            container.scrollLeft = currentScroll - itemSetWidth;
+            container.style.scrollBehavior = 'smooth';
+            targetScroll = container.scrollLeft + scrollAmount;
+        }
+
+        container.scrollTo({
+            left: targetScroll,
+            behavior: 'smooth'
+        });
+    };
 
     useEffect(() => {
         const fetchPortfolio = async () => {
@@ -83,9 +121,30 @@ export default function FeaturedShowcase() {
             </div>
 
             {/* Horizontal Scrolling Portfolio Cards with Marquee Reverse */}
-            <div className="relative pb-8">
+            <div className="relative pb-8 group/marquee-reverse">
+                {/* Navigation Arrows - Top Row */}
+                <button 
+                    onClick={() => handleManualScroll(topRowRef, 'left')}
+                    className="absolute left-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 flex items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-md opacity-0 group-hover/marquee-reverse:opacity-100 transition-all duration-300 hover:bg-violet-600 border border-white/10 shadow-xl"
+                    aria-label="Scroll Left"
+                >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path d="M15 19l-7-7 7-7" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5"></path>
+                    </svg>
+                </button>
+                <button 
+                    onClick={() => handleManualScroll(topRowRef, 'right')}
+                    className="absolute right-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 flex items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-md opacity-0 group-hover/marquee-reverse:opacity-100 transition-all duration-300 hover:bg-violet-600 border border-white/10 shadow-xl"
+                    aria-label="Scroll Right"
+                >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path d="M9 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5"></path>
+                    </svg>
+                </button>
+
                 <div
-                    className="flex overflow-hidden"
+                    ref={topRowRef}
+                    className="flex overflow-x-auto scrollbar-hide scroll-smooth"
                     onMouseEnter={() => setIsReverseHovered(true)}
                     onMouseLeave={() => setIsReverseHovered(false)}
                 >
@@ -102,9 +161,10 @@ export default function FeaturedShowcase() {
                                 : "w-64 md:w-[400px] h-64 md:h-[400px]";
 
                             return (
-                                <div
+                                <Link
+                                    href={`/portfolio/${item.id}`}
                                     key={`portfolio-${item.id}-${index}`}
-                                    className="group flex-shrink-0 flex flex-col gap-4 md:gap-8"
+                                    className="group flex-shrink-0 flex flex-col gap-4 md:gap-8 cursor-pointer"
                                     aria-hidden={!isOriginal}
                                 >
                                     <img
@@ -113,14 +173,14 @@ export default function FeaturedShowcase() {
                                         alt={item.title}
                                     />
                                     <div className="flex flex-col gap-1">
-                                        <span className="font-body-xs opacity-70">
+                                        <span className="font-body-xs opacity-70 font-montserrat">
                                             {item.category || 'Project'}
                                         </span>
-                                        <h3 className="font-h4">
+                                        <h3 className="font-h4 group-hover:text-violet-600 transition-colors">
                                             {item.title}
                                         </h3>
                                     </div>
-                                </div>
+                                </Link>
                             );
                         })}
                     </div>
@@ -128,9 +188,30 @@ export default function FeaturedShowcase() {
             </div>
 
             {/* Horizontal Scrolling Portfolio Cards with Marquee */}
-            <div className="relative">
+            <div className="relative group/marquee">
+                {/* Navigation Arrows - Bottom Row */}
+                <button 
+                    onClick={() => handleManualScroll(bottomRowRef, 'left')}
+                    className="absolute left-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 flex items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-md opacity-0 group-hover/marquee:opacity-100 transition-all duration-300 hover:bg-violet-600 border border-white/10 shadow-xl"
+                    aria-label="Scroll Left"
+                >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path d="M15 19l-7-7 7-7" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5"></path>
+                    </svg>
+                </button>
+                <button 
+                    onClick={() => handleManualScroll(bottomRowRef, 'right')}
+                    className="absolute right-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 flex items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-md opacity-0 group-hover/marquee:opacity-100 transition-all duration-300 hover:bg-violet-600 border border-white/10 shadow-xl"
+                    aria-label="Scroll Right"
+                >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path d="M9 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5"></path>
+                    </svg>
+                </button>
+
                 <div
-                    className="flex overflow-hidden"
+                    ref={bottomRowRef}
+                    className="flex overflow-x-auto scrollbar-hide scroll-smooth"
                     onMouseEnter={() => setIsNormalHovered(true)}
                     onMouseLeave={() => setIsNormalHovered(false)}
                 >
@@ -147,9 +228,10 @@ export default function FeaturedShowcase() {
                                 : "w-64 md:w-[400px] h-64 md:h-[400px]";
 
                             return (
-                                <div
+                                <Link
+                                    href={`/portfolio/${item.id}`}
                                     key={`portfolio-${item.id}-${index}`}
-                                    className="group flex-shrink-0 flex flex-col gap-4 md:gap-8"
+                                    className="group flex-shrink-0 flex flex-col gap-4 md:gap-8 cursor-pointer"
                                     aria-hidden={!isOriginal}
                                 >
                                     <img
@@ -158,14 +240,14 @@ export default function FeaturedShowcase() {
                                         alt={item.title}
                                     />
                                     <div className="flex flex-col gap-1">
-                                        <span className="font-body-xs opacity-70">
+                                        <span className="font-body-xs opacity-70 font-montserrat">
                                             {item.category || 'Project'}
                                         </span>
-                                        <h3 className="font-h4">
+                                        <h3 className="font-h4 group-hover:text-violet-600 transition-colors">
                                             {item.title}
                                         </h3>
                                     </div>
-                                </div>
+                                </Link>
                             );
                         })}
                     </div>

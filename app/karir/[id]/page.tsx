@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useParams, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
@@ -96,16 +96,7 @@ export default function JobDetailPage() {
         return 'bg-gray-400 !text-white';
     };
 
-    const getCategoryColor = (category: string) => {
-        if (!category) return 'bg-gray-400 !text-white';
-        const c = category.toLowerCase();
-        if (c.includes('engineer') || c.includes('developer') || c.includes('programmer')) return 'bg-blue-500 !text-white';
-        if (c.includes('design') || c.includes('ui/ux') || c.includes('creative')) return 'bg-fuchsia-500 !text-white';
-        if (c.includes('marketing') || c.includes('sales')) return 'bg-orange-500 !text-white';
-        if (c.includes('content') || c.includes('writer')) return 'bg-teal-500 !text-white';
-        if (c.includes('manager') || c.includes('lead') || c.includes('director')) return 'bg-red-500 !text-white';
-        return 'bg-green-500 !text-white';
-    };
+
 
     // Fallback for missing icon or default colors
     const iconContent = job.icon || "💼";
@@ -121,7 +112,7 @@ export default function JobDetailPage() {
         "employmentType": job.type === "Full-time" ? "FULL_TIME" : job.type === "Contract" ? "CONTRACTOR" : "OTHER",
         "hiringOrganization": {
             "@type": "Organization",
-            "name": job.company || "Kreasitech",
+            "name": "Kreasitech",
             "sameAs": "https://kreasitech.com",
             "logo": job.logo_url || "https://kreasitech.com/assets/images/Logo.svg"
         },
@@ -208,12 +199,6 @@ export default function JobDetailPage() {
                                         <div className="flex flex-wrap items-center gap-4 text-gray-600 font-body text-sm">
                                             <div className="flex items-center gap-2">
                                                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                                                </svg>
-                                                <span>{job.company || "KreasiTech"}</span>
-                                            </div>
-                                            <div className="flex items-center gap-2">
-                                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                                                 </svg>
                                                 <span>Posted {job.postedDate ? new Date(job.postedDate).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) : "Recently"}</span>
@@ -240,11 +225,6 @@ export default function JobDetailPage() {
                                     {job.location_type && (
                                         <span className={`px-3 py-1.5 rounded-lg text-sm font-medium font-montserrat ${getLocationTypeColor(job.location_type)}`}>
                                             {job.location_type}
-                                        </span>
-                                    )}
-                                    {job.category && (
-                                        <span className={`px-3 py-1.5 rounded-lg text-sm font-medium font-montserrat ${getCategoryColor(job.category)}`}>
-                                            {job.category}
                                         </span>
                                     )}
                                 </div>

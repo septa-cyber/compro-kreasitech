@@ -560,7 +560,7 @@ export default function JobsSettingsPage() {
                             </div>
                         )}
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Logo Perusahaan <span className="text-red-500">*</span></label>
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Logo <span className="text-red-500">*</span></label>
                             <div className="flex gap-2">
                                 <input
                                     type="text"
@@ -825,7 +825,7 @@ export default function JobsSettingsPage() {
                             </div>
                         )}
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Logo Perusahaan <span className="text-red-500">*</span></label>
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-montserrat mb-1">Logo <span className="text-red-500">*</span></label>
                             <div className="flex gap-2">
                                 <input
                                     type="text"

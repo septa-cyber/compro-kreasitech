@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React from "react";
 import Link from "next/link";
@@ -35,6 +35,17 @@ export default function BlogCard({ post }: BlogCardProps) {
                     <h3 className="font-h5 leading-snug line-clamp-2">
                         {post.title}
                     </h3>
+                    
+                    <div className="flex items-center gap-2 text-sm text-gray-600 mt-[-4px]">
+                        {post.author?.avatar ? (
+                            <img src={post.author.avatar} alt={post.author.name || "Author"} className="w-6 h-6 rounded-full object-cover border border-gray-100" />
+                        ) : (
+                            <div className="w-6 h-6 rounded-full bg-violet-100 flex items-center justify-center text-violet-700 text-xs font-bold border border-violet-200">
+                                {post.author?.name ? post.author.name.charAt(0).toUpperCase() : "A"}
+                            </div>
+                        )}
+                        <span className="font-medium text-xs">{post.author?.name || "Admin"}</span>
+                    </div>
 
                     <p className="font-body-sm line-clamp-3">
                         {post.excerpt}

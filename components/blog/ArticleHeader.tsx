@@ -48,17 +48,21 @@ export default function ArticleHeader({ post }: ArticleHeaderProps) {
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 border-b border-t border-gray-100 py-6">
                     {/* Date & Category */}
                     {/* Date & Category & Author */}
-                    <div className="flex flex-wrap items-center gap-4">
+                    <div className="flex flex-wrap items-center gap-6">
                         <span className={`${post.categoryColor} px-3 py-1 font-body-xs font-semibold tracking-wide rounded-[4px]`}>
                             {post.category}
                         </span>
-                        <div className="flex items-center gap-2 text-gray-500 font-body-sm">
-                            <span className="flex items-center gap-1.5">
-                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                                </svg>
-                                {post.author?.name || "Admin"}
-                            </span>
+                        <div className="flex items-center gap-3 text-gray-600 font-body-sm">
+                            <div className="flex items-center gap-2">
+                                {post.author?.avatar ? (
+                                    <img src={post.author.avatar} alt={post.author.name || "Author"} className="w-8 h-8 rounded-full object-cover border border-gray-200" />
+                                ) : (
+                                    <div className="w-8 h-8 rounded-full bg-violet-100 flex items-center justify-center text-violet-700 font-bold border border-violet-200">
+                                        {post.author?.name ? post.author.name.charAt(0).toUpperCase() : "A"}
+                                    </div>
+                                )}
+                                <span className="font-medium">{post.author?.name || "Admin"}</span>
+                            </div>
                             <span className="text-gray-300">•</span>
                             <span>{post.date}</span>
                         </div>

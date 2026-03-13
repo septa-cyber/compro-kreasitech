@@ -21,39 +21,51 @@ export default function ArticleContent({ post }: ArticleContentProps) {
                 </div>
 
                 {/* Content */}
-                <div className="prose prose-lg prose-slate hover:prose-a:text-violet-600 prose-headings:font-montserrat prose-p:font-montserrat prose-p:text-gray-600 prose-a:text-violet-600 max-w-none prose-img:max-h-[500px] prose-img:max-w-full prose-img:mx-auto prose-img:rounded-xl prose-img:object-contain">
+                <div className="prose prose-lg prose-slate hover:prose-a:text-violet-600 prose-headings:font-montserrat prose-p:font-montserrat prose-p:text-gray-600 prose-a:text-violet-600 max-w-none prose-img:rounded-xl">
                     <ReactMarkdown
                         rehypePlugins={[rehypeRaw]}
                         components={{
-                            p: ({ node, children, style, className, ...props }) => {
+                            p: ({ node, children, style, className, ...props }: any) => {
                                 const hasImage = node?.children?.some(
-                                    (child: any) => child.tagName === 'img' || child.type === 'element' && child.tagName === 'img'
+                                    (child: any) => child.tagName === 'img' || (child.type === 'element' && child.tagName === 'img')
                                 );
                                 if (hasImage) {
                                     return <div className={className} style={style} {...props}>{children}</div>;
                                 }
                                 return <p className={className} style={style} {...props}>{children}</p>;
                             },
-                            img: ({ node, style, className, width, ...props }) => {
-                                // Extract width from style or props if it was set via TipTap drag-resize
-                                const imgWidth = style?.width || width || 'auto';
-                                // Determine text alignment based on parent or class (ReactMarkdown doesn't perfectly pass parent alignment to figure, but we can center it by default)
+                            img: ({ node, style, className, width, ...props }: any) => {
+                                // Extract width and alignment from props or style
+                                // props.width might come from the 'width' attribute
+                                // style.width might come from the 'style' attribute (via rehype-raw)
+                                const imgWidth = props.width || style?.width || '100%';
+                                const alignment = props['data-align'] || props.alignment || (style?.textAlign) || 'center';
+                                
+                                const justifyClass = 
+                                    alignment === 'left' ? 'items-start' : 
+                                    alignment === 'right' ? 'items-end' : 
+                                    'items-center';
 
                                 return (
-                                    <figure className="my-8 flex flex-col items-center">
-                                        <img style={style} width={width} className={`max-w-full ${className || ''}`} {...props} />
-                                        {props.alt && (
-                                            <figcaption 
-                                                className="text-sm text-gray-500 mt-2 font-montserrat px-2 text-center"
-                                                style={{ width: imgWidth, maxWidth: '100%' }}
-                                            >
-                                                {props.alt}
-                                            </figcaption>
-                                        )}
+                                    <figure className={`my-10 flex flex-col ${justifyClass} w-full`}>
+                                        <div style={{ width: imgWidth, maxWidth: '100%' }} className="relative">
+                                            <img 
+                                                style={{ height: 'auto', display: 'block', ...style, width: '100%' }} 
+                                                className={`rounded-2xl shadow-md ${className || ''}`} 
+                                                {...props} 
+                                            />
+                                            {props.alt && (
+                                                <figcaption 
+                                                    className="text-sm text-gray-500 mt-4 font-montserrat italic text-center px-4 w-full"
+                                                >
+                                                    {props.alt}
+                                                </figcaption>
+                                            )}
+                                        </div>
                                     </figure>
                                 );
                             },
-                            span: ({ node, children, style, className, ...props }) => {
+                            span: ({ node, children, style, className, ...props }: any) => {
                                 return <span style={style} className={className} {...props}>{children}</span>;
                             },
                             div: ({ node, children, style, className, ...props }) => {

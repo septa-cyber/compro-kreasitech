@@ -352,6 +352,33 @@ body {
   /* Firefox */
 }
 
+/* Elegant Custom Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #d1d5db; /* tailwind gray-300 */
+  border-radius: 8px;
+  transition: background 0.3s ease;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #a78bfa; /* tailwind violet-400 */
+}
+
+/* Firefox custom scrollbar */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #d1d5db transparent;
+}
+
 /* Fade In Up Animation */
 @keyframes fadeInUp {
   from {
@@ -451,3 +478,41 @@ body {
   font-size: 20px;
   font-weight: 600;
 }
+/* TipTap Alignment Classes */
+.prose .has-text-align-center {
+  text-align: center !important;
+}
+
+.prose .has-text-align-right {
+  text-align: right !important;
+}
+
+.prose .has-text-align-justify {
+  text-align: justify !important;
+}
+
+.prose .has-text-align-left {
+  text-align: left !important;
+}
+
+/* Custom Image Alignment in Editor */
+.prose .image-container {
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100% !important;
+  margin-top: 1.5rem !important;
+  margin-bottom: 1.5rem !important;
+}
+
+.prose .image-container.align-center {
+  align-items: center !important;
+}
+
+.prose .image-container.align-left {
+  align-items: flex-start !important;
+}
+
+.prose .image-container.align-right {
+  align-items: flex-end !important;
+}
+

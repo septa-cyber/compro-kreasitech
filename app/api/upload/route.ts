@@ -41,15 +41,17 @@ export async function POST(request: Request) {
             .substring(0, 50); // limit length
         const filename = `${Date.now()}-${safeName}.${ext}`;
 
-        // Try Supabase Storage first if enabled
+        // Try Supabase Storage first
         const isSupabaseEnabled = !!process.env.NEXT_PUBLIC_SUPABASE_URL && !!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+        const isProduction = process.env.NODE_ENV === 'production';
 
         if (isSupabaseEnabled) {
             try {
                 const { supabaseAdmin } = await import('@/lib/supabase-admin');
                 
-                // Try 'uploads' bucket first, then 'job-logos' as fallback
+                // Primary bucket 'uploads', fallback to 'job-logos'
                 const buckets = ['uploads', 'job-logos'];
+                let lastError = null;
 
                 for (const bucket of buckets) {
                     const { data, error } = await supabaseAdmin.storage
@@ -64,20 +66,36 @@ export async function POST(request: Request) {
                             .from(bucket)
                             .getPublicUrl(filename);
 
+                        console.log(`Successfully uploaded to Supabase bucket: ${bucket}`);
                         return NextResponse.json({ url: publicUrl });
                     }
 
+                    lastError = error;
                     console.warn(`Supabase bucket '${bucket}' upload failed:`, error.message);
                 }
 
-                // If all Supabase buckets fail, fall through to local storage
-                console.warn('All Supabase buckets failed, falling back to local storage');
+                // If we reach here, Supabase failed. In production, we don't want to fall back to local
+                // because it will fail with a "Read-only file system" error.
+                if (isProduction) {
+                    console.error('All Supabase buckets failed in production. Local fallback disabled.');
+                    return NextResponse.json({ 
+                        error: 'Upload to cloud storage failed', 
+                        details: lastError?.message || 'Check Supabase bucket permissions and existence' 
+                    }, { status: 500 });
+                }
             } catch (err: any) {
-                console.warn('Supabase storage error, falling back to local:', err?.message);
+                console.error('Supabase storage initialization error:', err?.message);
+                if (isProduction) {
+                    return NextResponse.json({ error: 'Cloud storage unavailable' }, { status: 500 });
+                }
             }
+        } else if (isProduction) {
+            console.error('Supabase keys missing in production environment');
+            return NextResponse.json({ error: 'Storage configuration missing' }, { status: 500 });
         }
 
-        // Fallback to local storage (public/uploads)
+        // Fallback to local storage only in development
+        console.warn('Falling back to local storage (Development only)');
         const uploadDir = join(process.cwd(), 'public', 'uploads');
         try {
             await mkdir(uploadDir, { recursive: true });
@@ -91,7 +109,10 @@ export async function POST(request: Request) {
         return NextResponse.json({ url: `/uploads/${filename}` });
 
     } catch (error: any) {
-        console.error('Upload error:', error?.message || error);
-        return NextResponse.json({ error: 'Upload failed' }, { status: 500 });
+        console.error('Comprehensive upload error:', error?.message || error);
+        return NextResponse.json({ 
+            error: 'Upload failed',
+            message: error?.message || 'An unexpected error occurred'
+        }, { status: 500 });
     }
 }

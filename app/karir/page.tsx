@@ -310,7 +310,7 @@ export default function KarirPage() {
             <Navbar />
 
             {/* Main Content Container */}
-            <div className="max-w-[1250px] mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-48">
+            <div className="max-w-[1250px] mx-auto px-4 sm:px-6 lg:px-8 pt-24 lg:pt-32 pb-10 lg:pb-48">
                 <div className="flex flex-col lg:flex-row gap-8">
 
                     {/* Sidebar Filters */}
@@ -332,7 +332,8 @@ export default function KarirPage() {
                             style={{
                                 height: isFilterMaximized
                                     ? (dragCurrentY !== null && dragCurrentY > 0 ? `calc(100dvh - ${dragCurrentY}px)` : '100dvh')
-                                    : (dragCurrentY !== null ? `calc(60vh - ${dragCurrentY}px)` : '60vh'),
+                                    : (dragCurrentY !== null ? `calc(60vh - ${dragCurrentY}px)` : 'auto'),
+                                maxHeight: isFilterMaximized ? '100dvh' : '85vh',
                                 transition: dragStartY !== null
                                     ? 'none'
                                     : 'height 0.4s cubic-bezier(0.32,0.72,0,1), transform 0.4s cubic-bezier(0.32,0.72,0,1), border-radius 0.4s cubic-bezier(0.32,0.72,0,1)'
@@ -354,13 +355,12 @@ export default function KarirPage() {
                             </div>
 
                             <div className="flex-1 overflow-y-auto lg:overflow-visible custom-scrollbar">
-                                <div className="lg:sticky lg:top-24 mb-12">
-                                    <div className={`pb-12 bg-white lg:rounded-lg border-0 lg:border border-gray-200 inline-flex flex-col justify-start items-center gap-4 w-full lg:min-h-0 rounded-t-2xl lg:rounded-none ${isFilterMaximized ? 'pt-4' : ''} lg:pt-0`}>
+                                <div className="lg:sticky lg:top-24 lg:mb-12">
+                                    <div className={`pb-0 lg:pb-12 bg-white lg:max-h-[calc(100vh-8rem)] lg:overflow-y-auto custom-scrollbar lg:rounded-lg border-0 lg:border border-gray-200 inline-flex flex-col justify-start items-center gap-4 w-full lg:min-h-0 rounded-t-2xl lg:rounded-none ${isFilterMaximized ? 'pt-4' : ''} lg:pt-0`}>
                                         {/* Header */}
-                                        <div className="w-full py-4 border-b border-gray-200 inline-flex justify-center items-center gap-2.5">
-                                            <div className="flex-1 px-4 flex justify-between items-center gap-2.5">
-                                                <div className="flex-1 justify-start font-body font-medium">Filters</div>
-                                                <div className="flex-1 lg:flex-none flex justify-end items-center gap-3">
+                                        <div className="w-full py-5 px-6 border-b border-gray-100 flex justify-between items-center bg-gray-50/50 rounded-t-2xl lg:rounded-t-lg">
+                                            <div className="flex justify-start font-h6 text-gray-900">Filters</div>
+                                            <div className="flex justify-end items-center gap-3">
                                                     {hasActiveFilters && (
                                                         <button
                                                             onClick={handleClearAll}
@@ -377,12 +377,47 @@ export default function KarirPage() {
                                                     </button>
                                                 </div>
                                             </div>
-                                        </div>
+                                        
 
-                                        <div className="flex flex-col justify-start items-start gap-6 w-full px-4">
+                                        <div className="flex flex-col justify-start items-start gap-2 lg:gap-8 w-full px-6 pt-2 lg:pt-6">
+                                            {/* Search Group */}
+                                            <div className="hidden lg:flex w-full flex-col gap-4">
+                                                {/* Job Search */}
+                                                <div className="self-stretch flex flex-col justify-start items-start gap-2">
+                                                    <label className="text-sm font-semibold text-gray-700">Search Jobs</label>
+                                                    <div className="relative w-full h-11 rounded-lg border border-gray-200 group focus-within:border-violet-500 focus-within:ring-1 focus-within:ring-violet-500 transition-all bg-gray-50/50 flex justify-start items-center px-4">
+                                                        <i className="fas fa-search text-gray-400 text-sm mr-3 group-focus-within:text-violet-500 transition-colors"></i>
+                                                        <input
+                                                            type="text"
+                                                            placeholder="e.g. Frontend Developer"
+                                                            value={searchJob}
+                                                            onChange={(e) => setSearchJob(e.target.value)}
+                                                            className="w-full bg-transparent border-none outline-none focus:outline-none focus:ring-0 font-body-sm placeholder-gray-400 p-0 text-gray-900"
+                                                        />
+                                                    </div>
+                                                </div>
+
+                                                {/* Location Search */}
+                                                <div className="self-stretch flex flex-col justify-start items-start gap-2 hidden lg:flex">
+                                                    <label className="text-sm font-semibold text-gray-700">Location</label>
+                                                    <div className="relative w-full h-11 rounded-lg border border-gray-200 group focus-within:border-violet-500 focus-within:ring-1 focus-within:ring-violet-500 transition-all bg-gray-50/50 flex justify-start items-center px-4">
+                                                        <i className="fas fa-map-marker-alt text-gray-400 text-sm mr-3 group-focus-within:text-violet-500 transition-colors"></i>
+                                                        <input
+                                                            type="text"
+                                                            placeholder="City, state, or zip"
+                                                            value={searchLocation}
+                                                            onChange={(e) => setSearchLocation(e.target.value)}
+                                                            className="w-full bg-transparent border-none outline-none focus:outline-none focus:ring-0 font-body-sm placeholder-gray-400 p-0 text-gray-900"
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div className="hidden lg:block self-stretch h-px bg-gray-100" />
+
                                             {/* Date Posted */}
-                                            <div className="self-stretch flex flex-col justify-start items-start gap-4">
-                                                <div className="self-stretch justify-start font-body font-medium">Date Posted</div>
+                                            <div className="self-stretch flex flex-col justify-start items-start gap-3">
+                                                <label className="text-sm font-semibold text-gray-700">Date Posted</label>
                                                 <div className="relative w-full h-12 rounded-lg border border-gray-200 inline-flex justify-start items-center gap-2.5 bg-white">
                                                     <select
                                                         value={datePosted}
@@ -405,11 +440,11 @@ export default function KarirPage() {
                                                 </div>
                                             </div>
 
-                                            <div className="self-stretch h-px bg-gray-200" />
+                                            <div className="self-stretch h-px bg-gray-100" />
 
                                             {/* Job Type */}
-                                            <div className="w-full flex flex-col justify-start items-start gap-4">
-                                                <div className="justify-start font-body font-medium">Job Type</div>
+                                            <div className="w-full flex flex-col justify-start items-start gap-3">
+                                                <label className="text-sm font-semibold text-gray-700">Job Type</label>
                                                 {[
                                                     { id: 'fulltime', label: 'Full-time' },
                                                     { id: 'parttime', label: 'Part-time' },
@@ -436,11 +471,12 @@ export default function KarirPage() {
                                                 ))}
                                             </div>
 
-                                            <div className="self-stretch h-px bg-gray-200" />
+                                            <div className="self-stretch h-px bg-gray-100" />
 
                                             {/* Salary Range */}
-                                            <div className="self-stretch justify-start font-body font-medium">Salary Range</div>
-                                            <div className="self-stretch flex flex-col justify-start items-start gap-6 relative h-16">
+                                            <div className="self-stretch flex flex-col justify-start items-start gap-3">
+                                                <label className="text-sm font-semibold text-gray-700">Salary Range</label>
+                                                <div className="self-stretch flex flex-col justify-start items-start gap-6 relative h-16 w-full px-1">
                                                 {/* Slider Container */}
                                                 <div className="relative w-full h-1 bg-gray-200 rounded-sm mt-2">
                                                     {/* Active Rail */}
@@ -494,12 +530,13 @@ export default function KarirPage() {
                                                     <div className="text-right font-body-xs font-medium text-gray-500">{salaryRange[1].toLocaleString('id-ID')} K</div>
                                                 </div>
                                             </div>
+                                        </div>
 
-                                            <div className="self-stretch h-px bg-gray-200" />
+                                        <div className="self-stretch h-px bg-gray-100" />
 
                                             {/* Location Preference */}
-                                            <div className="w-full flex flex-col justify-start items-start gap-4">
-                                                <div className="justify-start font-body font-medium">Location Preference</div>
+                                            <div className="w-full flex flex-col justify-start items-start gap-3">
+                                                <label className="text-sm font-semibold text-gray-700">Location Preference</label>
                                                 {[
                                                     { id: 'remote', label: 'Remote' },
                                                     { id: 'wfo', label: 'WFO (Office)' },
@@ -525,11 +562,16 @@ export default function KarirPage() {
                                                 ))}
                                             </div>
 
-                                            {/* Mobile Apply Button */}
-                                            <div className="lg:hidden w-full px-4 mt-2 mb-4">
+                                            {/* Find Jobs Button */}
+                                            <div className="w-full mt-0 lg:mt-4 pb-0 lg:pb-4">
                                                 <button
                                                     onClick={() => { setIsFilterOpen(false); setIsFilterMaximized(false); handleFindJobs(); }}
-                                                    className="w-full py-3 bg-violet-600 text-white rounded-lg font-body-sm font-medium hover:bg-violet-700 transition"
+                                                    disabled={!hasActiveFilters}
+                                                    className={`w-full py-3 rounded-lg font-body-sm font-medium transition-all ${
+                                                        !hasActiveFilters
+                                                            ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                                                            : 'bg-violet-600 text-white hover:bg-violet-700 hover:shadow-lg shadow-md hover:-translate-y-0.5'
+                                                    }`}
                                                 >
                                                     Apply Filters
                                                 </button>
@@ -543,46 +585,46 @@ export default function KarirPage() {
 
                     {/* Main Content Area */}
                     <div className="flex-1 min-h-[400px] lg:min-h-[800px]">
-                        {/* Search Bar */}
-                        <div className="w-full p-4 bg-white rounded-lg border border-gray-200 flex flex-col justify-start items-start gap-4 mb-6">
-                            <div className="w-full flex flex-col md:flex-row justify-between items-center gap-4">
-                                <div className="flex-1 w-full md:border-r border-gray-200 flex justify-start items-center gap-2.5">
-                                    <div className="flex-1 flex justify-start items-center gap-2">
-                                        <div className="w-6 h-6 relative flex items-center justify-center">
-                                            <i className="fas fa-search text-gray-400 text-base"></i>
-                                        </div>
-                                        <input
-                                            type="text"
-                                            placeholder="Search for jobs"
-                                            value={searchJob}
-                                            onChange={(e) => setSearchJob(e.target.value)}
-                                            className="w-full bg-transparent border-none outline-none focus:outline-none focus:ring-0 font-body placeholder-gray-400 p-0 text-gray-900"
-                                        />
-                                    </div>
+                        {/* Mobile Search Card */}
+                        <div className="lg:hidden mb-4">
+                            <div className="w-full rounded-lg border border-gray-200 bg-white p-4 flex flex-col gap-4">
+                                {/* Job Keyword Search */}
+                                <div className="relative w-full h-10 flex justify-start items-center">
+                                    <i className="fas fa-search text-gray-400 text-lg mr-4"></i>
+                                    <input
+                                        type="text"
+                                        placeholder="Search for jobs"
+                                        value={searchJob}
+                                        onChange={(e) => setSearchJob(e.target.value)}
+                                        className="w-full bg-transparent border-none outline-none focus:outline-none focus:ring-0 font-body-sm placeholder-gray-400 p-0 text-gray-900"
+                                    />
                                 </div>
-                                <div className="flex-1 w-full flex justify-start items-center gap-2.5">
-                                    <div className="flex-1 md:pl-4 flex justify-start items-center gap-2">
-                                        <div className="w-6 h-6 relative flex items-center justify-center">
-                                            <i className="fas fa-map-marker-alt text-gray-400 text-base"></i>
-                                        </div>
-                                        <input
-                                            type="text"
-                                            placeholder="Search by location"
-                                            value={searchLocation}
-                                            onChange={(e) => setSearchLocation(e.target.value)}
-                                            className="w-full bg-transparent border-none outline-none focus:outline-none focus:ring-0 font-body placeholder-gray-400 p-0 text-gray-900"
-                                        />
-                                    </div>
+                                
+                                <div className="w-full h-px bg-gray-100" />
+
+                                {/* Location Search */}
+                                <div className="relative w-full h-10 flex justify-start items-center">
+                                    <i className="fas fa-map-marker-alt text-gray-400 text-lg mr-4 pl-0.5"></i>
+                                    <input
+                                        type="text"
+                                        placeholder="Search by location"
+                                        value={searchLocation}
+                                        onChange={(e) => setSearchLocation(e.target.value)}
+                                        className="w-full bg-transparent border-none outline-none focus:outline-none focus:ring-0 font-body-sm placeholder-gray-400 p-0 text-gray-900"
+                                    />
                                 </div>
+
+                                {/* Full Width Search Button */}
                                 <button
                                     onClick={handleFindJobs}
-                                    disabled={!hasActiveFilters}
-                                    className={`w-full md:w-auto px-8 py-3.5 rounded-lg flex justify-center items-center gap-2.5 transition-colors ${hasActiveFilters
-                                        ? "bg-violet-600 hover:bg-violet-700 cursor-pointer text-gray-100"
-                                        : "bg-gray-200 text-gray-400 cursor-not-allowed"
-                                        }`}
+                                    disabled={!searchJob && !searchLocation}
+                                    className={`w-full h-11 mt-1 rounded-lg font-btn-sm font-medium transition-all text-sm flex items-center justify-center ${
+                                        (!searchJob && !searchLocation)
+                                            ? 'bg-[#F4F5F7] text-gray-400 cursor-not-allowed'
+                                            : 'bg-violet-600 text-white hover:bg-violet-700'
+                                    }`}
                                 >
-                                    <div className="justify-start font-btn pointer-events-none">Find Jobs</div>
+                                    Find Jobs
                                 </button>
                             </div>
                         </div>

@@ -201,6 +201,69 @@ export default function PortfolioSettingsPage() {
 
     const [newGalleryUrl, setNewGalleryUrl] = useState('');
     const [editGalleryUrl, setEditGalleryUrl] = useState('');
+    const [isUploading, setIsUploading] = useState(false);
+
+    const handleImageUpload = async (file: File, isEdit: boolean) => {
+        setIsUploading(true);
+        const formData = new FormData();
+        formData.append('file', file);
+
+        try {
+            const res = await fetch('/api/upload', {
+                method: 'POST',
+                body: formData,
+            });
+
+            if (res.ok) {
+                const { url } = await res.json();
+                if (isEdit) {
+                    setItemToEdit(prev => prev ? { ...prev, image: url } : null);
+                } else {
+                    setNewItemData(prev => ({ ...prev, image: url }));
+                }
+                toast.success('Gambar berhasil diunggah');
+            } else {
+                toast.error('Gagal mengunggah gambar');
+            }
+        } catch (error) {
+            console.error('Upload error:', error);
+            toast.error('Terjadi kesalahan saat mengunggah');
+        } finally {
+            setIsUploading(false);
+        }
+    };
+
+    const handleGalleryUpload = async (files: FileList | null, isEdit: boolean) => {
+        if (!files || files.length === 0) return;
+        setIsUploading(true);
+        const uploadPromises = Array.from(files).map(async (file) => {
+            const formData = new FormData();
+            formData.append('file', file);
+            const res = await fetch('/api/upload', {
+                method: 'POST',
+                body: formData,
+            });
+            if (!res.ok) throw new Error(`Failed to upload ${file.name}`);
+            return await res.json();
+        });
+
+        try {
+            const results = await Promise.all(uploadPromises);
+            const urls = results.map(r => r.url);
+            
+            if (isEdit) {
+                setItemToEdit(prev => prev ? { ...prev, gallery: [...(prev.gallery || []), ...urls] } : null);
+            } else {
+                setNewItemData(prev => ({ ...prev, gallery: [...(prev.gallery || []), ...urls] }));
+            }
+            toast.success(`${urls.length} gambar berhasil diunggah ke gallery`);
+        } catch (error) {
+            console.error('Gallery upload error:', error);
+            toast.error('Beberapa gambar gagal diunggah');
+        } finally {
+            setIsUploading(false);
+        }
+    };
 
     useEffect(() => {
         fetchPortfolio();
@@ -618,18 +681,16 @@ export default function PortfolioSettingsPage() {
                                 className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
                                 placeholder="https://..."
                             />
-                            <label className="px-3 py-2 bg-gray-100 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-200 transition-colors flex items-center justify-center">
+                            <label className={`px-3 py-2 bg-gray-100 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-200 transition-colors flex items-center justify-center ${isUploading ? 'opacity-50 cursor-not-allowed' : ''}`}>
                                 <FaImage className="text-gray-600" />
                                 <input
                                     type="file"
                                     accept="image/*"
+                                    disabled={isUploading}
                                     className="hidden"
                                     onChange={(e) => {
                                         const file = e.target.files?.[0];
-                                        if (file) {
-                                            const imageUrl = URL.createObjectURL(file);
-                                            setNewItemData({ ...newItemData, image: imageUrl });
-                                        }
+                                        if (file) handleImageUpload(file, false);
                                     }}
                                 />
                             </label>
@@ -686,6 +747,17 @@ export default function PortfolioSettingsPage() {
                             >
                                 <FaPlus size={12} />
                             </button>
+                            <label className={`px-3 py-2 bg-gray-100 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-200 transition-colors flex items-center justify-center ${isUploading ? 'opacity-50 cursor-not-allowed' : ''}`}>
+                                <FaImage className="text-gray-600" />
+                                <input
+                                    type="file"
+                                    accept="image/*"
+                                    multiple
+                                    disabled={isUploading}
+                                    className="hidden"
+                                    onChange={(e) => handleGalleryUpload(e.target.files, false)}
+                                />
+                            </label>
                         </div>
                         {(newItemData.gallery || []).length > 0 && (
                             <div className="grid grid-cols-3 gap-2 mt-2">
@@ -801,18 +873,16 @@ export default function PortfolioSettingsPage() {
                                     className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition font-montserrat text-sm bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white"
                                     placeholder="https://..."
                                 />
-                                <label className="px-3 py-2 bg-gray-100 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-200 transition-colors flex items-center justify-center">
+                                <label className={`px-3 py-2 bg-gray-100 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-200 transition-colors flex items-center justify-center ${isUploading ? 'opacity-50 cursor-not-allowed' : ''}`}>
                                     <FaImage className="text-gray-600" />
                                     <input
                                         type="file"
                                         accept="image/*"
+                                        disabled={isUploading}
                                         className="hidden"
                                         onChange={(e) => {
                                             const file = e.target.files?.[0];
-                                            if (file) {
-                                                const imageUrl = URL.createObjectURL(file);
-                                                setItemToEdit({ ...itemToEdit, image: imageUrl });
-                                            }
+                                            if (file) handleImageUpload(file, true);
                                         }}
                                     />
                                 </label>
@@ -869,6 +939,17 @@ export default function PortfolioSettingsPage() {
                                 >
                                     <FaPlus size={12} />
                                 </button>
+                                <label className={`px-3 py-2 bg-gray-100 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-200 transition-colors flex items-center justify-center ${isUploading ? 'opacity-50 cursor-not-allowed' : ''}`}>
+                                    <FaImage className="text-gray-600" />
+                                    <input
+                                        type="file"
+                                        accept="image/*"
+                                        multiple
+                                        disabled={isUploading}
+                                        className="hidden"
+                                        onChange={(e) => handleGalleryUpload(e.target.files, true)}
+                                    />
+                                </label>
                             </div>
                             {(itemToEdit.gallery || []).length > 0 && (
                                 <div className="grid grid-cols-3 gap-2 mt-2">
