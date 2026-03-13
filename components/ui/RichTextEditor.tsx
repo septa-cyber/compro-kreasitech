@@ -456,7 +456,7 @@ export default function RichTextEditor({ content, onChange, placeholder = 'Tulis
         content,
         editorProps: {
             attributes: {
-                class: 'prose prose-sm sm:prose-base prose-slate max-w-none focus:outline-none min-h-[400px] px-6 py-6 prose-headings:font-montserrat prose-p:text-gray-700 prose-a:text-violet-600 prose-img:max-w-full prose-img:rounded-xl prose-img:object-contain prose-h1:text-4xl prose-h1:font-bold prose-h1:mb-6 prose-h2:text-3xl prose-h2:font-bold prose-h2:mt-8 prose-h2:mb-4 prose-h3:text-2xl prose-h3:font-semibold prose-h3:mt-6 prose-h3:mb-3',
+                class: 'prose prose-sm sm:prose-base prose-slate max-w-none focus:outline-none min-h-[400px] px-6 py-6 prose-headings:font-montserrat prose-p:text-gray-700 prose-a:text-violet-600 prose-img:max-w-full prose-img:rounded-xl prose-img:object-contain prose-h1:text-4xl prose-h1:font-bold prose-h1:mb-6 prose-h2:text-3xl prose-h2:font-bold prose-h2:mt-8 prose-h2:mb-4 prose-h3:text-2xl prose-h3:font-semibold prose-h3:mt-6 prose-h3:mb-3 break-words',
             },
         },
         onUpdate: ({ editor }) => {

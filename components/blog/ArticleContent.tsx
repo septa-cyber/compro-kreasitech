@@ -21,7 +21,7 @@ export default function ArticleContent({ post }: ArticleContentProps) {
                 </div>
 
                 {/* Content */}
-                <div className="prose prose-lg prose-slate hover:prose-a:text-violet-600 prose-headings:font-montserrat prose-p:font-montserrat prose-p:text-gray-600 prose-a:text-violet-600 max-w-none prose-img:rounded-xl">
+                <div className="prose prose-lg prose-slate hover:prose-a:text-violet-600 prose-headings:font-montserrat prose-p:font-montserrat prose-p:text-gray-600 prose-a:text-violet-600 max-w-none prose-img:rounded-xl break-words">
                     <ReactMarkdown
                         rehypePlugins={[rehypeRaw]}
                         components={{

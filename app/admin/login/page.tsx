@@ -144,12 +144,14 @@ function LoginForm() {
                             />
                             <span className="text-sm text-gray-500 font-montserrat">Ingat saya</span>
                         </label>
+                        {/* 
                         <Link
                             href="#"
                             className="text-sm text-violet-600 font-medium font-montserrat hover:text-violet-700 transition-colors"
                         >
                             Lupa password?
                         </Link>
+                        */}
                     </div>
 
                     {/* Submit Button */}
