@@ -1,13 +1,17 @@
 services:
   app:
-    build: .
+    image: kreasitech:dev
+    build:
+      context: .
+      target: dev
     ports:
       - "3020:3005"
     volumes:
       - .:/app
       - /app/node_modules
+      - /app/.next
     environment:
       - NODE_ENV=development
       - PORT=3005
     restart: unless-stopped
-    command: npm run dev -- -p 3005
+    command: bun run dev -- -p 3005
